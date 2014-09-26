@@ -1,3 +1,3 @@
-### MAXC - A Many Accelerator Coherence Protocol
+### MAxC - A Many Accelerator Coherence Protocol
 
 
