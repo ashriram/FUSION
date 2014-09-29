@@ -14,12 +14,15 @@ The assigned ACC will then inform the time it will take to do the compute and gi
 ACC's will have self invalidation and use L2's tlb.
 The traditional ACC uses scracth pad, where we will be using Sector caches (private L1).
 
-
+The type of kernels that will run on ACC.
+Type 1 Separate Kernels
+Type 2 Separate iterations of same kernel
+Type 3 Pipelined kernels - like FFT, where ACC's can use forwarding to transfer data amongst them without copying data back and forth from caches.
 
 
 
 Contributions:-
-1. Request from ACC - The Organization of ACC's
+1. The Organization of ACC's - 
 2. The Organization of Ld/St 
 3. Fine grained mem ops in ACC i.e ACC will be capable of issuing memory instructions on its own.
     For example, a program's resource allocation has the following pattern :-
@@ -29,3 +32,4 @@ Contributions:-
 4. Pipelining (optional) - Pipelining the ACC's, So that ACC's running various sections of the code, can forward data without copying back and forth to caches.
 5. Granularity (optional) - It is part of (2) having different blocks for ACC (private L1 - 32bytes per block) and ACC-L2 (64 bytes per block).
  
+
