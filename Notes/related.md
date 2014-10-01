@@ -11,3 +11,4 @@
 5. [A Reconfigurable Computing System Based on a Cache-Coherent Fabric](http://www.capsl.udel.edu/~egarcia/Papers/Reconfig11.pdf)
     Intel paper on attaching FPGAs using Quick Path Interconnect vs PCIe.
 6. [CAPI : Power 8's Coherent Accelerator Processor Interface](http://www.hotchips.org/wp-content/uploads/hc_archives/hc25/HC25.20-Processors1-epub/HC25.26.210-POWER-Studecheli-IBM.pdf)
+7. [A Survey on Hardware-aware and Heterogeneous Computing on Multicore Processors and Accelerators]  (http://emcl.iwr.uni-heidelberg.de/fileadmin/images/Publications/Preprints/emcl-preprint-2009-02.pdf)
