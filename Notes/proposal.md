@@ -13,7 +13,7 @@ We envision 3 types of workloads which will be accelerated
 2. Separate iterations of same kernel (loop parallelism)
 3. Pipelined kernels - Kernels which are composed of 2 or more `Accelerator Blocks` 
 
-In essence enable a `sea of accelerators` to cheaply communicate with the core as well as amongst themselves to perform fine grain acceleration while being far removed from core itself.
+In essence enable a sea of accelerators to cheaply communicate with the core as well as amongst themselves to perform fine grain acceleration while being far removed from core itself.
 
 ### Accelerator Blocks
 1. Compress / Deflate
@@ -26,12 +26,11 @@ In essence enable a `sea of accelerators` to cheaply communicate with the core a
 
 ### Contributions
 1. The organization of ACC's 
-2. The organization of Ld/St units 
-3. Fine grained mem ops in ACC i.e ACC will be capable of issuing memory instructions on its own 
+2. Fine grained mem ops in ACC i.e ACC will be capable of issuing memory instructions on its own 
         For example, a program's resource allocation has the following pattern 
         acc1 -> acc2 -> cpu -> acc3
-        Curently, the processor is involved in every memory interaction, since the accelerator does not have a Ld/St unit. 
+        Curently, the processor is involved in every memory interaction, since the accelerator does not have a LD/ST unit. 
         So the main core has to gather data and put it in the acc scratchpad before acc can start compute.
-4. Pipelining - Pipelining the ACC's, so that ACC's running various sections of the code, can forward data without copying back and forth.
-5. Granularity (optional) - It is part of (2) having different blocks sizes for ACC (private L1 - eg 32 bytes per block) and ACC-L2 (64 bytes per block).
+3. Pipelining - Pipelining the ACC's, so that ACC's running various sections of the code, can forward data without copying back and forth.
+4. Granularity (optional) - It is part of (2) having different blocks sizes for ACC (private L1 - eg 32 bytes per block) and ACC-L2 (64 bytes per block).
 
