@@ -343,7 +343,7 @@ $(GENERATED_DIR)/gpusim_param.h: ../common/ioutil/embedtext.py config/gpusimconf
 $(BIN_DIR)/tester.exec: simics_api_dummy.c $(RUBY_OBJ) $(BIN_DIR)/created $(GENERATED_DIR)/generated
 	@echo ""
 	@echo "Linking tester binary ..."
-	$(CC) -o $@ $(LDFLAGS) simics/simics_api_dummy.c $(RUBY_OBJ)
+	$(CC) -o $@ $(LDFLAGS) simics/simics_api_dummy.c $(RUBY_OBJ) -lz
 	@echo "Made tester"
 
 $(BIN_DIR)/notester: simics_api_dummy.c $(RUBY_OBJ) $(RUBY_LIB_DIR)/created #$(BIN_DIR)/created $(GENERATED_DIR)/generated

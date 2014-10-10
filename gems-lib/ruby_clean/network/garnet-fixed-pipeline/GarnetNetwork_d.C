@@ -306,13 +306,14 @@ void GarnetNetwork_d::printStats(ostream& out) const
 	   // output from L1
 	   int L1_num = MachineType_base_number(MachineType_L1Cache)+i;
       Vector<long long> flit_destinations = m_ni_ptr_vector[L1_num]->getFlitDestinationStats();
-      L1_out_flits += (flit_destinations[MachineType_L1Cache] + flit_destinations[MachineType_L2Cache]);
+ //     L1_out_flits += (flit_destinations[MachineType_L1Cache] + flit_destinations[MachineType_L2Cache]);
 	}
 	for(int i=0; i<RubyConfig::numberOfL2CachePerChip(); i++) {
-	   // output from L2
-      int L2_num = MachineType_base_number(MachineType_L2Cache)+i;
+	   // output from L2 [AS] If no L2 then I am busted.
+/*      int L2_num = MachineType_base_number(MachineType_L2Cache)+i;
       Vector<long long> flit_destinations = m_ni_ptr_vector[L2_num]->getFlitDestinationStats();
       L2_out_flits += (flit_destinations[MachineType_L1Cache] + flit_destinations[MachineType_L2Cache]);
+  */
    }
    L1_L2_flits_transferred += L1_out_flits + L2_out_flits;
 

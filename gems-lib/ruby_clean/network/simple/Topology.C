@@ -380,7 +380,7 @@ void Topology::makeGPGPUSimCrossbar()
   }
   for (int i=0; i<RubyConfig::numberOfL2CachePerChip(); i++) {
     SwitchID new_switch = newSwitchID();  // internal switch id #
-    addLink(MachineType_base_number(MachineType_L2Cache)+i, new_switch, NETWORK_LINK_LATENCY);
+  //  addLink(MachineType_base_number(MachineType_L2Cache)+i, new_switch, NETWORK_LINK_LATENCY);
     last_level.insertAtBottom(new_switch);
   }
   for (int i=0; i<RubyConfig::numberOfDirectoryPerChip(); i++) {

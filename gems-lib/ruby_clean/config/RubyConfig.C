@@ -103,7 +103,7 @@ void RubyConfig::init()
     g_NUM_L2_BANKS = g_NUM_PROCESSORS;
   }
   if (g_NUM_MEMORIES == 0) {  // defaults to number of ruby nodes
-    //g_NUM_MEMORIES = g_NUM_PROCESSORS;
+    g_NUM_MEMORIES = g_NUM_PROCESSORS;
   }
 
   CHECK_ZERO(g_MEMORY_SIZE_BITS);
@@ -142,7 +142,7 @@ void RubyConfig::init()
   L2_CACHE_NUM_SETS_BITS = L2_CACHE_NUM_SETS_BITS - log_int(g_NUM_L2_BANKS_PER_CHIP);
 
   ASSERT(L2_DIRECTORY_NUM_SETS_BITS > log_int(g_NUM_L2_BANKS_PER_CHIP));  // cannot have less than one set per bank
-  L2_DIRECTORY_NUM_SETS_BITS = L2_DIRECTORY_NUM_SETS_BITS - log_int(g_NUM_L2_BANKS_PER_CHIP);
+  //L2_DIRECTORY_NUM_SETS_BITS = L2_DIRECTORY_NUM_SETS_BITS - log_int(g_NUM_L2_BANKS_PER_CHIP);
 
   if (g_NUM_MEMORIES!=0 and g_NUM_CHIPS > g_NUM_MEMORIES) {
     g_NUM_MEMORIES_PER_CHIP = 1;  // some chips have a memory, others don't

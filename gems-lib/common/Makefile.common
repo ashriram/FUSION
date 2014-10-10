@@ -77,7 +77,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(SRC_C:.c=.o) $(SRC_CPP:.C=.o))
 DEP = $(addprefix $(OBJ_DIR)/,$(SRC_C:.c=.d) $(SRC_CPP:.C=.d))
 
 VPATH_INCLUDES := $(patsubst %,-I%,$(subst :, ,$(VPATH)))
-WARN_FLAGS := -Wall -W -Wwrite-strings -Woverloaded-virtual -Wno-unused #-Wshadow -Wold-style-cast -Wundef -Wconversion 
+#WARN_FLAGS := -Wall -W -Wwrite-strings -Woverloaded-virtual -Wno-unused #-Wshadow -Wold-style-cast -Wundef -Wconversion 
 
 SHELL := /bin/sh
 # define the following to see more error about the parser (when parsing parser.y)
