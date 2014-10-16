@@ -62,11 +62,21 @@
  */
 
 #include "AbstractChip.h"
-
+ 
+ /**
+  * @brief [brief description]
+  * @details [long description]
+  * 
+  * @param id [description]
+  * @param net_ptr [description]
+  */
 AbstractChip::AbstractChip(NodeID id, Network* net_ptr) {
   m_id = id;
   m_net_ptr = net_ptr;
   m_L1Cache_sequencer_vec.setSize(0);
+
+  // Acclerator Sequencer
+  m_L1TCache_sequencer_vec.setSize(0);
 }
 
 // still need to be defined for subclasses

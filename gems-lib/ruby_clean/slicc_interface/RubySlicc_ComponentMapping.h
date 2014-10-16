@@ -76,6 +76,7 @@
 #define MACHINETYPE_L1CACHE_ENUM MachineType_NUM
 #endif
 
+
 #ifdef MACHINETYPE_L2Cache
 #define MACHINETYPE_L2CACHE_ENUM MachineType_L2Cache
 #else
@@ -98,6 +99,20 @@
 #define MACHINETYPE_COLLECTOR_ENUM MachineType_Collector
 #else
 #define MACHINETYPE_COLLECTOR_ENUM MachineType_NUM
+#endif
+
+// Accelerator MACHINETYPES
+
+#ifdef MACHINETYPE_L1TCache
+#define MACHINETYPE_L1TCACHE_ENUM MachineType_L1TCache
+#else
+#define MACHINETYPE_L1TCACHE_ENUM MachineType_NUM
+#endif
+
+#ifdef MACHINETYPE_L2TCache
+#define MACHINETYPE_L2TCACHE_ENUM MachineType_L2TCache
+#else
+#define MACHINETYPE_L2TCACHE_ENUM MachineType_NUM
 #endif
 
 

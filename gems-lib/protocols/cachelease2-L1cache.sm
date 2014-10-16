@@ -101,6 +101,11 @@ machine(L1Cache, "Cache Leasing v2 L1 Cache CMP") {
         DataAtomic_Done,  desc="Atomic Data for processor and all outstanding requests are done";
     }
 
+    
+    MessageBuffer mandatoryQueue, ordered="false", abstract_chip_ptr="true";
+
+    Sequencer sequencer, abstract_chip_ptr="true", constructor_hack="i";
+
     // TYPES
 
     // CacheEntry
@@ -149,11 +154,6 @@ machine(L1Cache, "Cache Leasing v2 L1 Cache CMP") {
     TBETable L1_TBEs, template_hack="<L1Cache_TBE>";
 
     CacheMemory L1DcacheMemory, template_hack="<L1Cache_Entry>", constructor_hack='L1_CACHE_NUM_SETS_BITS,L1_CACHE_ASSOC,MachineType_L1Cache,int_to_string(i)+"_L1D"', abstract_chip_ptr="true";
-
-    MessageBuffer mandatoryQueue, ordered="false", rank="100", abstract_chip_ptr="true";
-
-    Sequencer sequencer, abstract_chip_ptr="true", constructor_hack="i";
-
 
 
 
@@ -284,6 +284,8 @@ machine(L1Cache, "Cache Leasing v2 L1 Cache CMP") {
 
     out_port(requestIntraChipL1Network_out, RequestMsg, requestFromL1Cache);
 
+    
+
     // Response IntraChip L1 Network - response msg to this L1 cache
     in_port(responseIntraChipL1Network_in, ResponseMsg, responseToL1Cache) {
         if (responseIntraChipL1Network_in.isReady()) {
@@ -325,7 +327,7 @@ machine(L1Cache, "Cache Leasing v2 L1 Cache CMP") {
 
     }
 
-    // Mandatory Queue betweens Node's CPU and it's L1 caches
+// Mandatory Queue betweens Node's CPU and it's L1 caches
     in_port(mandatoryQueue_in, CacheMsg, mandatoryQueue, desc="...") {
         if (mandatoryQueue_in.isReady()) {
             peek(mandatoryQueue_in, CacheMsg) {
@@ -359,7 +361,7 @@ machine(L1Cache, "Cache Leasing v2 L1 Cache CMP") {
             }
         }
     }
-
+ 
 
     // ACTIONS
     action(a_issueGETS, "a", desc="Issue GETS") {

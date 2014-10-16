@@ -75,7 +75,7 @@ enumeration(MemoryRequestType, desc="...") {
 
 // Message to and from Memory Control
 
-structure(MemoryMsg, desc="...", interface="Message") {
+structure(MemoryMsg, desc="...", interface="NetworkMessage") {
   Address Address,              desc="Physical address for this request";
   MemoryRequestType Type,       desc="Type of memory request (MEMORY_READ or MEMORY_WB)";
   MachineID Sender,             desc="What component sent the data";
@@ -86,7 +86,7 @@ structure(MemoryMsg, desc="...", interface="Message") {
   PrefetchBit Prefetch,         desc="Is this a prefetch request";
   bool ReadX,                   desc="Exclusive";
   int Acks,                     desc="How many acks to expect";
-
+  NetDest Destination,          desc="Node to whom the data is sent";
 
 }
 

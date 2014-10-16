@@ -274,16 +274,56 @@ Index CacheMemory<ENTRY>::addressToCacheSet(const Address& address) const
 {
   assert(address == line_address(address));
   Index temp = -1;
-  switch (m_machType) {
-  case MACHINETYPE_L1CACHE_ENUM:
+
+  /////////////////////////////
+  /// DRIVER ///
+  /// This switch case is nasty.
+  /// Essentially, you run into trouble when more than one of the machines is undefined
+  /// i.e., lets say you have a protocol that does not have L2s, L1T controllers
+  /// In RubySlicc_ComponentMapping.h all these MachineTypes will all get defined to a default MachineType_NUM
+  /// If you have more than one controller undefined all their switch cases will have the same check
+  /// leading to a duplicate case statement. Replace switch with if else.
+  /////////////////////////////
+
+  // switch (m_machType) {
+  // case MACHINETYPE_L1CACHE_ENUM:
+  //   temp = map_address_to_L1CacheSet(address, m_cache_num_set_bits);
+  //   break;
+  // case MACHINETYPE_L2CACHE_ENUM:
+  //   temp = map_address_to_L2CacheSet(address, m_cache_num_set_bits);
+  //   break;
+  // default:
+  //   ERROR_MSG("Don't recognize m_machType");
+  // }
+  // 
+  
+  //  This assertion ensures that cachememory is not declared in an undefined controller
+  assert (m_machType != MachineType_NUM); 
+  
+  // This if-else group picks up different bits for the set indexing
+  // Its defined in RubySlicc_ComponentMapping.
+  
+  if (m_machType == MACHINETYPE_L1CACHE_ENUM)
+  {
     temp = map_address_to_L1CacheSet(address, m_cache_num_set_bits);
-    break;
-  case MACHINETYPE_L2CACHE_ENUM:
-    temp = map_address_to_L2CacheSet(address, m_cache_num_set_bits);
-    break;
-  default:
+  } 
+  else if (m_machType == MACHINETYPE_L2CACHE_ENUM)
+  {
+    temp = map_address_to_L2CacheSet(address, m_cache_num_set_bits);  
+  }
+  else if (m_machType == MACHINETYPE_L1TCACHE_ENUM)
+  {
+    temp = map_address_to_L1CacheSet(address, m_cache_num_set_bits);
+  }
+  else if (m_machType == MACHINETYPE_L2TCACHE_ENUM)
+  {
+    temp = map_address_to_L1CacheSet(address, m_cache_num_set_bits);
+  }
+  else
+  {
     ERROR_MSG("Don't recognize m_machType");
   }
+
   assert(temp < m_cache_num_sets);
   assert(temp >= 0);
   return temp;
