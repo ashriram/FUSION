@@ -40,6 +40,7 @@ machine(L1Cache, "MI Example") {
   MessageBuffer mandatoryQueue, ordered="false", abstract_chip_ptr="true";
   Sequencer sequencer, abstract_chip_ptr="true", constructor_hack="i";
 
+  Sequencer_t sequencer_t, abstract_chip_ptr="true", constructor_hack="i";
   // CacheEntry
   structure(Entry, desc="...", interface="AbstractCacheEntry") {
     State CacheState,        desc="cache state";

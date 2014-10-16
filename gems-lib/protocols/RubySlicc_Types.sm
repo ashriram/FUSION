@@ -193,6 +193,36 @@ external_type(Sequencer) {
   bool isWriteAborted(Address, int);
 }
 
+
+external_type(Sequencer_t) {
+  void readCallback(Address, DataBlock, GenericMachineType, PrefetchBit, int);
+  void writeCallback(Address, DataBlock, GenericMachineType, PrefetchBit, int);
+  void readCallback(Address, DataBlock, GenericMachineType, PrefetchBit);
+  void writeCallback(Address, DataBlock, GenericMachineType, PrefetchBit);
+  void readCallback(Address, DataBlock);
+  void writeCallback(Address, DataBlock);
+  void readCallback(Address);
+  void writeCallback(Address);
+  void readCallback(Address, uint64);
+  void readCallback(Address, MemfetchSet);
+  void writeCallback(Address, uint64);
+  void memfenceCallback(int);
+  void readCallbackAbort(Address, int);
+  void writeCallbackAbort(Address, int);
+  void readConflictCallback(Address);
+  void writeConflictCallback(Address);
+  void xactCallback(Address);
+  void updateCurrentVersion();
+  void updateLastCommittedVersion();
+  void systemRecovery();
+  void systemRestart();
+  void checkCoherence(Address);
+  void profileNack(Address, int, int, uint64);
+  void resetRequestTime(Address, int);
+  bool isReadAborted(Address, int);
+  bool isWriteAborted(Address, int);
+}
+
 external_type(TimerTable, inport="yes") {
   bool isReady();
   Address readyAddress();

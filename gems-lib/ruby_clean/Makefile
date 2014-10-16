@@ -171,6 +171,7 @@ SRC_CPP := \
 	CacheProfiler.C \
 	AddressProfiler.C \
 	Sequencer.C \
+	Sequencer_t.C \
 	Set.C \
 	NetDest.C \
 	PersistentTable.C \
