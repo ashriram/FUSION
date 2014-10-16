@@ -70,9 +70,13 @@
 #include "L1Cache_Entry.h"
 #include "Address.h"
 #include "Vector.h"
+#include "Sequencer.h"
+
+#include "Sequencer_t.h"
 
 class Network;
-class Sequencer;
+//class Sequencer;
+//class Sequencer_t;
 class StoreBuffer;
 class ENTRY;
 class MessageBuffer;
@@ -93,7 +97,9 @@ public:
   // Public Methods
   NodeID getID() const { return m_id; };
   Network* getNetwork() const { return m_net_ptr; };
-  Sequencer* getSequencer(int index) const { return m_L1Cache_sequencer_vec[index]; };
+  Sequencer* getSequencer(int index)  { return m_L1Cache_sequencer_vec[index]; };
+  Sequencer_t* getSequencer_t(int index)  { return m_L1Cache_sequencer_t_vec[index]; };
+  
   CacheMemory<L1Cache_Entry>* getL1DCache(int index) const {
       assert(m_L1Cache_L1DcacheMemory_vec.size() > index);
       return m_L1Cache_L1DcacheMemory_vec[index];
@@ -152,7 +158,7 @@ protected:
   NodeID                 m_id;            // Chip id
   Network*               m_net_ptr;       // Points to the Network simulator
   Vector < Sequencer* >  m_L1Cache_sequencer_vec; // All chip should have a sequencer
-
+  Vector < Sequencer_t* >  m_L1Cache_sequencer_t_vec; // All chip should have a sequencer
 
 };
 
