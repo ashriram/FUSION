@@ -153,7 +153,7 @@ public:
   Vector < GpusimDramInterface* >m_L2Cache_GpusimDramBuffer_vec;
 
   // Accelerator interface both L1s and L2s.
-  Vector < Sequencer* >  m_L1TCache_sequencer_vec; // All chip should have a sequencer
+  Vector < Sequencer_t* >  m_L1TCache_sequencer_vec; // All chip should have a sequencer
   Vector < MessageBuffer* >m_L1TCache_mandatoryQueue_vec;
   Vector < CacheMemory<L1Cache_Entry>* > m_L1TCache_cacheMemory_vec;
   Vector < CacheMemory<L1Cache_Entry>* > m_L2TCache_cacheMemory_vec;

@@ -77,7 +77,7 @@ machine(L1Cache, "MI Example") {
 
   // STRUCTURES 
 
-  CacheMemory cacheMemory, template_hack="<L1Cache_Entry>", constructor_hack='L1_CACHE_NUM_SETS_BITS, L1_CACHE_ASSOC, MachineType_L1Cache, int_to_string(i)+"_L1"', abstract_chip_ptr="true";
+  CacheMemory cacheMemory, template_hack="<L1Cache_Entry>", constructor_hack='L1_CACHE_NUM_SETS_BITS/5, L1_CACHE_ASSOC, MachineType_L1Cache, int_to_string(i)+"_L1"', abstract_chip_ptr="true";
 
   TBETable TBEs, template_hack="<L1Cache_TBE>";
 
