@@ -261,6 +261,7 @@ $(RUBY_OBJ_DIR)/%.d: %.c $(RUBY_OBJ_DIR)/created
 all:
 ifndef PROTOCOL
 	@echo "Ruby Usage: make [-j #] PROTOCOL=[protocolname]"
+	@echo $(PROTOCOL_ROOT)
 	@echo ""
 	exit 1
 endif

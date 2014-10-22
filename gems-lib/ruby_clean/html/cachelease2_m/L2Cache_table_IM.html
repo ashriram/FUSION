@@ -1,0 +1,460 @@
+<HTML><BODY link="blue" vlink="blue">
+<H1 align="center">Cache Leasing v2 L2 Cache CMP: 
+L2Cache
+ - <A target="Table"href="L1Cache_table.html">L1Cache</A>  
+ - <A target="Table"href="Directory_table.html">Directory</A>  
+</H1>
+<TABLE border=1>
+<TR>
+  <TH> </TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L1_GETS.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L1_GETS.html') { parent.frames[1].location='L2Cache_Event_L1_GETS.html' }" >L1 GETS</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L1_Write.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L1_Write.html') { parent.frames[1].location='L2Cache_Event_L1_Write.html' }" >L1 Write</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L1_Upgrade_T.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L1_Upgrade_T.html') { parent.frames[1].location='L2Cache_Event_L1_Upgrade_T.html' }" >L1 Upgrade T</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L1_Upgrade_NT.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L1_Upgrade_NT.html') { parent.frames[1].location='L2Cache_Event_L1_Upgrade_NT.html' }" >L1 Upgrade NT</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L2_Atomic.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L2_Atomic.html') { parent.frames[1].location='L2Cache_Event_L2_Atomic.html' }" >L2 Atomic</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L2_Expire.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L2_Expire.html') { parent.frames[1].location='L2Cache_Event_L2_Expire.html' }" >L2 Expire</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L2_Replacement.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L2_Replacement.html') { parent.frames[1].location='L2Cache_Event_L2_Replacement.html' }" >L2 Replacement</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L2_Replacement_clean.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L2_Replacement_clean.html') { parent.frames[1].location='L2Cache_Event_L2_Replacement_clean.html' }" >L2 Replacement clean</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Data.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Data.html') { parent.frames[1].location='L2Cache_Event_Data.html' }" >Data</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Data_all_Acks.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Data_all_Acks.html') { parent.frames[1].location='L2Cache_Event_Data_all_Acks.html' }" >Data all Acks</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Ack.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Ack.html') { parent.frames[1].location='L2Cache_Event_Ack.html' }" >Ack</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Ack_all.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Ack_all.html') { parent.frames[1].location='L2Cache_Event_Ack_all.html' }" >Ack all</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_WB_Ack.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_WB_Ack.html') { parent.frames[1].location='L2Cache_Event_WB_Ack.html' }" >WB Ack</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Fwd_GETX.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Fwd_GETX.html') { parent.frames[1].location='L2Cache_Event_Fwd_GETX.html' }" >Fwd GETX</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Fwd_GETS.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Fwd_GETS.html') { parent.frames[1].location='L2Cache_Event_Fwd_GETS.html' }" >Fwd GETS</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Inv.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Inv.html') { parent.frames[1].location='L2Cache_Event_Inv.html' }" >Inv</A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="L2Cache_table_NP.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_NP.html') { parent.frames[1].location='L2Cache_State_NP.html' }" >NP</A></TH>
+  <TD bgcolor=white>  <A href="L2Cache_action_pM_profileRequestMiss.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pM_profileRequestMiss.html') { parent.frames[1].location='L2Cache_action_pM_profileRequestMiss.html' }" >prM</A>
+  <A href="L2Cache_action_qq_allocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_qq_allocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_qq_allocateL2CacheBlock.html' }" ><B><FONT size=+1>q</FONT></B></A>
+  <A href="L2Cache_action_i_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_i_allocateTBE.html') { parent.frames[1].location='L2Cache_action_i_allocateTBE.html' }" >i</A>
+  <A href="L2Cache_action_ss_recordGetSL1ID.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ss_recordGetSL1ID.html') { parent.frames[1].location='L2Cache_action_ss_recordGetSL1ID.html' }" ><B><FONT size=+1>s</FONT></B></A>
+  <A href="L2Cache_action_a_issueFetchToMemory.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_a_issueFetchToMemory.html') { parent.frames[1].location='L2Cache_action_a_issueFetchToMemory.html' }" >a</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+/<A href="L2Cache_table_IS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_IS.html') { parent.frames[1].location='L2Cache_State_IS.html' }" >IS</A></TD>
+  <TD bgcolor=aqua>  <A href="L2Cache_action_pM_profileResponseMiss.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pM_profileResponseMiss.html') { parent.frames[1].location='L2Cache_action_pM_profileResponseMiss.html' }" >pwM</A>
+  <A href="L2Cache_action_qq_allocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_qq_allocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_qq_allocateL2CacheBlock.html' }" ><B><FONT size=+1>q</FONT></B></A>
+  <A href="L2Cache_action_d_markBlockDirty.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markBlockDirty.html') { parent.frames[1].location='L2Cache_action_d_markBlockDirty.html' }" >d</A>
+  <A href="L2Cache_action_il_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_il_allocateTBE.html') { parent.frames[1].location='L2Cache_action_il_allocateTBE.html' }" >il</A>
+  <A href="L2Cache_action_xx_recordGetXL1ID.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_xx_recordGetXL1ID.html') { parent.frames[1].location='L2Cache_action_xx_recordGetXL1ID.html' }" >xx</A>
+  <A href="L2Cache_action_a_issueFetchToMemoryForStore.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_a_issueFetchToMemoryForStore.html') { parent.frames[1].location='L2Cache_action_a_issueFetchToMemoryForStore.html' }" >as</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+/<A href="L2Cache_table_IM.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_IM.html') { parent.frames[1].location='L2Cache_State_IM.html' }" >IM</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=aqua>  <A href="L2Cache_action_pM_profileResponseMiss.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pM_profileResponseMiss.html') { parent.frames[1].location='L2Cache_action_pM_profileResponseMiss.html' }" >pwM</A>
+  <A href="L2Cache_action_qq_allocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_qq_allocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_qq_allocateL2CacheBlock.html' }" ><B><FONT size=+1>q</FONT></B></A>
+  <A href="L2Cache_action_d_markBlockDirty.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markBlockDirty.html') { parent.frames[1].location='L2Cache_action_d_markBlockDirty.html' }" >d</A>
+  <A href="L2Cache_action_il_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_il_allocateTBE.html') { parent.frames[1].location='L2Cache_action_il_allocateTBE.html' }" >il</A>
+  <A href="L2Cache_action_xx_recordGetXL1ID.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_xx_recordGetXL1ID.html') { parent.frames[1].location='L2Cache_action_xx_recordGetXL1ID.html' }" >xx</A>
+  <A href="L2Cache_action_a_issueFetchToMemoryForStore.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_a_issueFetchToMemoryForStore.html') { parent.frames[1].location='L2Cache_action_a_issueFetchToMemoryForStore.html' }" >as</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+/<A href="L2Cache_table_IM.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_IM.html') { parent.frames[1].location='L2Cache_State_IM.html' }" >IM</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_pM_profileResponseMiss.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pM_profileResponseMiss.html') { parent.frames[1].location='L2Cache_action_pM_profileResponseMiss.html' }" >pwM</A>
+  <A href="L2Cache_action_qq_allocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_qq_allocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_qq_allocateL2CacheBlock.html' }" ><B><FONT size=+1>q</FONT></B></A>
+  <A href="L2Cache_action_d_markBlockDirty.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markBlockDirty.html') { parent.frames[1].location='L2Cache_action_d_markBlockDirty.html' }" >d</A>
+  <A href="L2Cache_action_il_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_il_allocateTBE.html') { parent.frames[1].location='L2Cache_action_il_allocateTBE.html' }" >il</A>
+  <A href="L2Cache_action_xx_recordGetXL1ID.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_xx_recordGetXL1ID.html') { parent.frames[1].location='L2Cache_action_xx_recordGetXL1ID.html' }" >xx</A>
+  <A href="L2Cache_action_a_issueFetchToMemoryForStore.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_a_issueFetchToMemoryForStore.html') { parent.frames[1].location='L2Cache_action_a_issueFetchToMemoryForStore.html' }" >as</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+/<A href="L2Cache_table_IMA.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_IMA.html') { parent.frames[1].location='L2Cache_State_IMA.html' }" >IMA</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="L2Cache_table_NP.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_NP.html') { parent.frames[1].location='L2Cache_State_NP.html' }" >NP</A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="L2Cache_table_E.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_E.html') { parent.frames[1].location='L2Cache_State_E.html' }" >E</A></TH>
+  <TD bgcolor=white>  <A href="L2Cache_action_pH_profileRequestHit.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pH_profileRequestHit.html') { parent.frames[1].location='L2Cache_action_pH_profileRequestHit.html' }" >prH</A>
+  <A href="L2Cache_action_t_updateL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_t_updateL2BlockTime.html') { parent.frames[1].location='L2Cache_action_t_updateL2BlockTime.html' }" >t</A>
+  <A href="L2Cache_action_ds_sendDataToRequestor.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ds_sendDataToRequestor.html') { parent.frames[1].location='L2Cache_action_ds_sendDataToRequestor.html' }" >ds</A>
+  <A href="L2Cache_action_set_setMRU.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_set_setMRU.html') { parent.frames[1].location='L2Cache_action_set_setMRU.html' }" ><B><FONT size=+1>s</FONT></B>et</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+/<A href="L2Cache_table_S.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_S.html') { parent.frames[1].location='L2Cache_State_S.html' }" >S</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_pH_profileResponseHit.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pH_profileResponseHit.html') { parent.frames[1].location='L2Cache_action_pH_profileResponseHit.html' }" >pwH</A>
+  <A href="L2Cache_action_d_markBlockDirty.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markBlockDirty.html') { parent.frames[1].location='L2Cache_action_d_markBlockDirty.html' }" >d</A>
+  <A href="L2Cache_action_ti_incrementL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ti_incrementL2BlockTime.html') { parent.frames[1].location='L2Cache_action_ti_incrementL2BlockTime.html' }" >ti</A>
+  <A href="L2Cache_action_wa_sendAckToRequestor.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_wa_sendAckToRequestor.html') { parent.frames[1].location='L2Cache_action_wa_sendAckToRequestor.html' }" >wa</A>
+  <A href="L2Cache_action_mr_writeDataToCacheFromRequest.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_mr_writeDataToCacheFromRequest.html') { parent.frames[1].location='L2Cache_action_mr_writeDataToCacheFromRequest.html' }" >mr</A>
+  <A href="L2Cache_action_set_setMRU.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_set_setMRU.html') { parent.frames[1].location='L2Cache_action_set_setMRU.html' }" ><B><FONT size=+1>s</FONT></B>et</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+/<A href="L2Cache_table_S.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_S.html') { parent.frames[1].location='L2Cache_State_S.html' }" >S</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_pH_profileResponseHit.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pH_profileResponseHit.html') { parent.frames[1].location='L2Cache_action_pH_profileResponseHit.html' }" >pwH</A>
+  <A href="L2Cache_action_d_markBlockDirty.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markBlockDirty.html') { parent.frames[1].location='L2Cache_action_d_markBlockDirty.html' }" >d</A>
+  <A href="L2Cache_action_ti_incrementL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ti_incrementL2BlockTime.html') { parent.frames[1].location='L2Cache_action_ti_incrementL2BlockTime.html' }" >ti</A>
+  <A href="L2Cache_action_wa_sendAckToRequestor.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_wa_sendAckToRequestor.html') { parent.frames[1].location='L2Cache_action_wa_sendAckToRequestor.html' }" >wa</A>
+  <A href="L2Cache_action_mr_writeDataToCacheFromRequest.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_mr_writeDataToCacheFromRequest.html') { parent.frames[1].location='L2Cache_action_mr_writeDataToCacheFromRequest.html' }" >mr</A>
+  <A href="L2Cache_action_set_setMRU.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_set_setMRU.html') { parent.frames[1].location='L2Cache_action_set_setMRU.html' }" ><B><FONT size=+1>s</FONT></B>et</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+/<A href="L2Cache_table_S.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_S.html') { parent.frames[1].location='L2Cache_State_S.html' }" >S</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_pH_profileResponseHit.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pH_profileResponseHit.html') { parent.frames[1].location='L2Cache_action_pH_profileResponseHit.html' }" >pwH</A>
+  <A href="L2Cache_action_d_markBlockDirty.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markBlockDirty.html') { parent.frames[1].location='L2Cache_action_d_markBlockDirty.html' }" >d</A>
+  <A href="L2Cache_action_ti_incrementL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ti_incrementL2BlockTime.html') { parent.frames[1].location='L2Cache_action_ti_incrementL2BlockTime.html' }" >ti</A>
+  <A href="L2Cache_action_ds_sendAtomicDataGlobalToRequestor.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ds_sendAtomicDataGlobalToRequestor.html') { parent.frames[1].location='L2Cache_action_ds_sendAtomicDataGlobalToRequestor.html' }" >ds a</A>
+  <A href="L2Cache_action_mr_writeDataToCacheFromRequest.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_mr_writeDataToCacheFromRequest.html') { parent.frames[1].location='L2Cache_action_mr_writeDataToCacheFromRequest.html' }" >mr</A>
+  <A href="L2Cache_action_set_setMRU.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_set_setMRU.html') { parent.frames[1].location='L2Cache_action_set_setMRU.html' }" ><B><FONT size=+1>s</FONT></B>et</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+/<A href="L2Cache_table_S.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_S.html') { parent.frames[1].location='L2Cache_State_S.html' }" >S</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_c_exclusiveReplacement.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_c_exclusiveReplacement.html') { parent.frames[1].location='L2Cache_action_c_exclusiveReplacement.html' }" >c</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+/<A href="L2Cache_table_MI_Ack.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI_Ack.html') { parent.frames[1].location='L2Cache_State_MI_Ack.html' }" >MI Ack</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_c_exclusiveReplacement.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_c_exclusiveReplacement.html') { parent.frames[1].location='L2Cache_action_c_exclusiveReplacement.html' }" >c</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+/<A href="L2Cache_table_MI_Ack.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI_Ack.html') { parent.frames[1].location='L2Cache_State_MI_Ack.html' }" >MI Ack</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_c_exclusiveReplacement.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_c_exclusiveReplacement.html') { parent.frames[1].location='L2Cache_action_c_exclusiveReplacement.html' }" >c</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+/<A href="L2Cache_table_MI_Ack.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI_Ack.html') { parent.frames[1].location='L2Cache_State_MI_Ack.html' }" >MI Ack</A></TD>
+  <TH bgcolor=white><A href="L2Cache_table_E.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_E.html') { parent.frames[1].location='L2Cache_State_E.html' }" >E</A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="L2Cache_table_S.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_S.html') { parent.frames[1].location='L2Cache_State_S.html' }" >S</A></TH>
+  <TD bgcolor=white>  <A href="L2Cache_action_pH_profileRequestHit.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pH_profileRequestHit.html') { parent.frames[1].location='L2Cache_action_pH_profileRequestHit.html' }" >prH</A>
+  <A href="L2Cache_action_t_updateL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_t_updateL2BlockTime.html') { parent.frames[1].location='L2Cache_action_t_updateL2BlockTime.html' }" >t</A>
+  <A href="L2Cache_action_ds_sendDataToRequestor.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ds_sendDataToRequestor.html') { parent.frames[1].location='L2Cache_action_ds_sendDataToRequestor.html' }" >ds</A>
+  <A href="L2Cache_action_set_setMRU.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_set_setMRU.html') { parent.frames[1].location='L2Cache_action_set_setMRU.html' }" ><B><FONT size=+1>s</FONT></B>et</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+/<A href="L2Cache_table_SS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_SS.html') { parent.frames[1].location='L2Cache_State_SS.html' }" >SS</A></TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_pH_profileResponseHit.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pH_profileResponseHit.html') { parent.frames[1].location='L2Cache_action_pH_profileResponseHit.html' }" >pwH</A>
+  <A href="L2Cache_action_d_markBlockDirty.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markBlockDirty.html') { parent.frames[1].location='L2Cache_action_d_markBlockDirty.html' }" >d</A>
+  <A href="L2Cache_action_ti_incrementL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ti_incrementL2BlockTime.html') { parent.frames[1].location='L2Cache_action_ti_incrementL2BlockTime.html' }" >ti</A>
+  <A href="L2Cache_action_wa_sendAckToRequestor.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_wa_sendAckToRequestor.html') { parent.frames[1].location='L2Cache_action_wa_sendAckToRequestor.html' }" >wa</A>
+  <A href="L2Cache_action_mr_writeDataToCacheFromRequest.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_mr_writeDataToCacheFromRequest.html') { parent.frames[1].location='L2Cache_action_mr_writeDataToCacheFromRequest.html' }" >mr</A>
+  <A href="L2Cache_action_set_setMRU.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_set_setMRU.html') { parent.frames[1].location='L2Cache_action_set_setMRU.html' }" ><B><FONT size=+1>s</FONT></B>et</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+</TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_it_insertL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_it_insertL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_it_insertL2ExpireTriggerQueue.html' }" >it</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+/<A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_it_insertL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_it_insertL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_it_insertL2ExpireTriggerQueue.html' }" >it</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+/<A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_it_insertL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_it_insertL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_it_insertL2ExpireTriggerQueue.html' }" >it</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+  <A href="L2Cache_action_o_popIncomingCPURequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPURequestQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPURequestQueue.html' }" >os</A>
+/<A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_it_insertL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_it_insertL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_it_insertL2ExpireTriggerQueue.html' }" >it</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+  <A href="L2Cache_action_o_popIncomingCPURequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPURequestQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPURequestQueue.html' }" >os</A>
+/<A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_it_insertL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_it_insertL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_it_insertL2ExpireTriggerQueue.html' }" >it</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+  <A href="L2Cache_action_o_popIncomingCPURequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPURequestQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPURequestQueue.html' }" >os</A>
+/<A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TD>
+  <TH bgcolor=white><A href="L2Cache_table_S.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_S.html') { parent.frames[1].location='L2Cache_State_S.html' }" >S</A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="L2Cache_table_SS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_SS.html') { parent.frames[1].location='L2Cache_State_SS.html' }" >SS</A></TH>
+  <TD bgcolor=white>  <A href="L2Cache_action_pH_profileRequestHit.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pH_profileRequestHit.html') { parent.frames[1].location='L2Cache_action_pH_profileRequestHit.html' }" >prH</A>
+  <A href="L2Cache_action_t_updateL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_t_updateL2BlockTime.html') { parent.frames[1].location='L2Cache_action_t_updateL2BlockTime.html' }" >t</A>
+  <A href="L2Cache_action_ds_sendDataToRequestor.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ds_sendDataToRequestor.html') { parent.frames[1].location='L2Cache_action_ds_sendDataToRequestor.html' }" >ds</A>
+  <A href="L2Cache_action_set_setMRU.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_set_setMRU.html') { parent.frames[1].location='L2Cache_action_set_setMRU.html' }" ><B><FONT size=+1>s</FONT></B>et</A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+</TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_it_insertL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_it_insertL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_it_insertL2ExpireTriggerQueue.html' }" >it</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+/<A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_it_insertL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_it_insertL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_it_insertL2ExpireTriggerQueue.html' }" >it</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+/<A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_it_insertL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_it_insertL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_it_insertL2ExpireTriggerQueue.html' }" >it</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+  <A href="L2Cache_action_o_popIncomingCPURequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPURequestQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPURequestQueue.html' }" >os</A>
+/<A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_it_insertL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_it_insertL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_it_insertL2ExpireTriggerQueue.html' }" >it</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+  <A href="L2Cache_action_o_popIncomingCPURequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPURequestQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPURequestQueue.html' }" >os</A>
+/<A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_ir_allocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ir_allocateTBE.html') { parent.frames[1].location='L2Cache_action_ir_allocateTBE.html' }" >ir</A>
+  <A href="L2Cache_action_it_insertL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_it_insertL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_it_insertL2ExpireTriggerQueue.html' }" >it</A>
+  <A href="L2Cache_action_rr_deallocateL2CacheBlock.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_rr_deallocateL2CacheBlock.html') { parent.frames[1].location='L2Cache_action_rr_deallocateL2CacheBlock.html' }" ><B><FONT size=+1>r</FONT></B></A>
+  <A href="L2Cache_action_o_popIncomingCPURequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPURequestQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPURequestQueue.html' }" >os</A>
+/<A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TD>
+  <TH bgcolor=white><A href="L2Cache_table_SS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_SS.html') { parent.frames[1].location='L2Cache_State_SS.html' }" >SS</A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="L2Cache_table_IS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_IS.html') { parent.frames[1].location='L2Cache_State_IS.html' }" >IS</A></TH>
+  <TD bgcolor=white>  <A href="L2Cache_action_pH_profileRequestHit.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_pH_profileRequestHit.html') { parent.frames[1].location='L2Cache_action_pH_profileRequestHit.html' }" >prH</A>
+  <A href="L2Cache_action_ss_recordGetSL1ID.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_ss_recordGetSL1ID.html') { parent.frames[1].location='L2Cache_action_ss_recordGetSL1ID.html' }" ><B><FONT size=+1>s</FONT></B></A>
+  <A href="L2Cache_action_jj_popL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_jj_popL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_jj_popL1RequestQueue.html' }" ><B><FONT size=+1>j</FONT></B></A>
+/<A href="L2Cache_table_ISS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_ISS.html') { parent.frames[1].location='L2Cache_State_ISS.html' }" >ISS</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_m_writeDataToCache.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_m_writeDataToCache.html') { parent.frames[1].location='L2Cache_action_m_writeDataToCache.html' }" >m</A>
+  <A href="L2Cache_action_d_markTBEDataReady.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markTBEDataReady.html') { parent.frames[1].location='L2Cache_action_d_markTBEDataReady.html' }" >D</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_m_writeDataToCache.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_m_writeDataToCache.html') { parent.frames[1].location='L2Cache_action_m_writeDataToCache.html' }" >m</A>
+  <A href="L2Cache_action_tt_updateL2BlockTime_fromTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_tt_updateL2BlockTime_fromTBE.html') { parent.frames[1].location='L2Cache_action_tt_updateL2BlockTime_fromTBE.html' }" >tt</A>
+  <A href="L2Cache_action_dst_sendDataToGetSRequestors.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_dst_sendDataToGetSRequestors.html') { parent.frames[1].location='L2Cache_action_dst_sendDataToGetSRequestors.html' }" >dst</A>
+  <A href="L2Cache_action_s_deallocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_s_deallocateTBE.html') { parent.frames[1].location='L2Cache_action_s_deallocateTBE.html' }" >s</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+/<A href="L2Cache_table_S.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_S.html') { parent.frames[1].location='L2Cache_State_S.html' }" >S</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_q_updateAckCount.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_q_updateAckCount.html') { parent.frames[1].location='L2Cache_action_q_updateAckCount.html' }" >q</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_tt_updateL2BlockTime_fromTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_tt_updateL2BlockTime_fromTBE.html') { parent.frames[1].location='L2Cache_action_tt_updateL2BlockTime_fromTBE.html' }" >tt</A>
+  <A href="L2Cache_action_dst_sendDataToGetSRequestors.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_dst_sendDataToGetSRequestors.html') { parent.frames[1].location='L2Cache_action_dst_sendDataToGetSRequestors.html' }" >dst</A>
+  <A href="L2Cache_action_s_deallocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_s_deallocateTBE.html') { parent.frames[1].location='L2Cache_action_s_deallocateTBE.html' }" >s</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+/<A href="L2Cache_table_S.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_S.html') { parent.frames[1].location='L2Cache_State_S.html' }" >S</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="L2Cache_table_IS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_IS.html') { parent.frames[1].location='L2Cache_State_IS.html' }" >IS</A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="L2Cache_table_ISS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_ISS.html') { parent.frames[1].location='L2Cache_State_ISS.html' }" >ISS</A></TH>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_m_writeDataToCache.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_m_writeDataToCache.html') { parent.frames[1].location='L2Cache_action_m_writeDataToCache.html' }" >m</A>
+  <A href="L2Cache_action_d_markTBEDataReady.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markTBEDataReady.html') { parent.frames[1].location='L2Cache_action_d_markTBEDataReady.html' }" >D</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_m_writeDataToCache.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_m_writeDataToCache.html') { parent.frames[1].location='L2Cache_action_m_writeDataToCache.html' }" >m</A>
+  <A href="L2Cache_action_tt_updateL2BlockTime_fromTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_tt_updateL2BlockTime_fromTBE.html') { parent.frames[1].location='L2Cache_action_tt_updateL2BlockTime_fromTBE.html' }" >tt</A>
+  <A href="L2Cache_action_dst_sendDataToGetSRequestors.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_dst_sendDataToGetSRequestors.html') { parent.frames[1].location='L2Cache_action_dst_sendDataToGetSRequestors.html' }" >dst</A>
+  <A href="L2Cache_action_s_deallocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_s_deallocateTBE.html') { parent.frames[1].location='L2Cache_action_s_deallocateTBE.html' }" >s</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+/<A href="L2Cache_table_SS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_SS.html') { parent.frames[1].location='L2Cache_State_SS.html' }" >SS</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_q_updateAckCount.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_q_updateAckCount.html') { parent.frames[1].location='L2Cache_action_q_updateAckCount.html' }" >q</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_tt_updateL2BlockTime_fromTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_tt_updateL2BlockTime_fromTBE.html') { parent.frames[1].location='L2Cache_action_tt_updateL2BlockTime_fromTBE.html' }" >tt</A>
+  <A href="L2Cache_action_dst_sendDataToGetSRequestors.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_dst_sendDataToGetSRequestors.html') { parent.frames[1].location='L2Cache_action_dst_sendDataToGetSRequestors.html' }" >dst</A>
+  <A href="L2Cache_action_s_deallocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_s_deallocateTBE.html') { parent.frames[1].location='L2Cache_action_s_deallocateTBE.html' }" >s</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+/<A href="L2Cache_table_SS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_SS.html') { parent.frames[1].location='L2Cache_State_SS.html' }" >SS</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="L2Cache_table_ISS.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_ISS.html') { parent.frames[1].location='L2Cache_State_ISS.html' }" >ISS</A></TH>
+</TR>
+<TR>
+  <TH bgcolor=yellow><A href="L2Cache_table_IM.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_IM.html') { parent.frames[1].location='L2Cache_State_IM.html' }" >IM</A></TH>
+  <TD bgcolor=#C0C000>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=aqua>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=#C0C000>&nbsp;</TD>
+  <TD bgcolor=aqua>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=aqua>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=#C0C000>&nbsp;</TD>
+  <TD bgcolor=#C0C000>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=#C0C000>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=aqua>  <A href="L2Cache_action_m_writeDataToCache.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_m_writeDataToCache.html') { parent.frames[1].location='L2Cache_action_m_writeDataToCache.html' }" >m</A>
+  <A href="L2Cache_action_d_markTBEDataReady.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markTBEDataReady.html') { parent.frames[1].location='L2Cache_action_d_markTBEDataReady.html' }" >D</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+</TD>
+  <TD bgcolor=yellow>  <A href="L2Cache_action_m_writeDataToCache.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_m_writeDataToCache.html') { parent.frames[1].location='L2Cache_action_m_writeDataToCache.html' }" >m</A>
+  <A href="L2Cache_action_tn_expireL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_tn_expireL2BlockTime.html') { parent.frames[1].location='L2Cache_action_tn_expireL2BlockTime.html' }" >tn</A>
+  <A href="L2Cache_action_mt_writeDataToCacheFromTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_mt_writeDataToCacheFromTBE.html') { parent.frames[1].location='L2Cache_action_mt_writeDataToCacheFromTBE.html' }" >mt</A>
+  <A href="L2Cache_action_wat_sendAckToRequestorFromTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_wat_sendAckToRequestorFromTBE.html') { parent.frames[1].location='L2Cache_action_wat_sendAckToRequestorFromTBE.html' }" >wat</A>
+  <A href="L2Cache_action_s_deallocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_s_deallocateTBE.html') { parent.frames[1].location='L2Cache_action_s_deallocateTBE.html' }" >s</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+/<A href="L2Cache_table_E.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_E.html') { parent.frames[1].location='L2Cache_State_E.html' }" >E</A></TD>
+  <TD bgcolor=aqua>  <A href="L2Cache_action_q_updateAckCount.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_q_updateAckCount.html') { parent.frames[1].location='L2Cache_action_q_updateAckCount.html' }" >q</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+</TD>
+  <TD bgcolor=yellow>  <A href="L2Cache_action_tn_expireL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_tn_expireL2BlockTime.html') { parent.frames[1].location='L2Cache_action_tn_expireL2BlockTime.html' }" >tn</A>
+  <A href="L2Cache_action_mt_writeDataToCacheFromTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_mt_writeDataToCacheFromTBE.html') { parent.frames[1].location='L2Cache_action_mt_writeDataToCacheFromTBE.html' }" >mt</A>
+  <A href="L2Cache_action_wat_sendAckToRequestorFromTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_wat_sendAckToRequestorFromTBE.html') { parent.frames[1].location='L2Cache_action_wat_sendAckToRequestorFromTBE.html' }" >wat</A>
+  <A href="L2Cache_action_s_deallocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_s_deallocateTBE.html') { parent.frames[1].location='L2Cache_action_s_deallocateTBE.html' }" >s</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+/<A href="L2Cache_table_E.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_E.html') { parent.frames[1].location='L2Cache_State_E.html' }" >E</A></TD>
+  <TD bgcolor=#C0C000>&nbsp;</TD>
+  <TD bgcolor=#C0C000>&nbsp;</TD>
+  <TD bgcolor=#C0C000>&nbsp;</TD>
+  <TD bgcolor=#C0C000>&nbsp;</TD>
+  <TH bgcolor=yellow><A href="L2Cache_table_IM.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_IM.html') { parent.frames[1].location='L2Cache_State_IM.html' }" >IM</A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="L2Cache_table_IMA.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_IMA.html') { parent.frames[1].location='L2Cache_State_IMA.html' }" >IMA</A></TH>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_m_writeDataToCache.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_m_writeDataToCache.html') { parent.frames[1].location='L2Cache_action_m_writeDataToCache.html' }" >m</A>
+  <A href="L2Cache_action_d_markTBEDataReady.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_d_markTBEDataReady.html') { parent.frames[1].location='L2Cache_action_d_markTBEDataReady.html' }" >D</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_m_writeDataToCache.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_m_writeDataToCache.html') { parent.frames[1].location='L2Cache_action_m_writeDataToCache.html' }" >m</A>
+  <A href="L2Cache_action_tn_expireL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_tn_expireL2BlockTime.html') { parent.frames[1].location='L2Cache_action_tn_expireL2BlockTime.html' }" >tn</A>
+  <A href="L2Cache_action_mt_writeDataToCacheFromTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_mt_writeDataToCacheFromTBE.html') { parent.frames[1].location='L2Cache_action_mt_writeDataToCacheFromTBE.html' }" >mt</A>
+  <A href="L2Cache_action_dst_sendAtomicDataToGetSRequestors.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_dst_sendAtomicDataToGetSRequestors.html') { parent.frames[1].location='L2Cache_action_dst_sendAtomicDataToGetSRequestors.html' }" >dst a</A>
+  <A href="L2Cache_action_s_deallocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_s_deallocateTBE.html') { parent.frames[1].location='L2Cache_action_s_deallocateTBE.html' }" >s</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+/<A href="L2Cache_table_E.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_E.html') { parent.frames[1].location='L2Cache_State_E.html' }" >E</A></TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_q_updateAckCount.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_q_updateAckCount.html') { parent.frames[1].location='L2Cache_action_q_updateAckCount.html' }" >q</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_tn_expireL2BlockTime.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_tn_expireL2BlockTime.html') { parent.frames[1].location='L2Cache_action_tn_expireL2BlockTime.html' }" >tn</A>
+  <A href="L2Cache_action_mt_writeDataToCacheFromTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_mt_writeDataToCacheFromTBE.html') { parent.frames[1].location='L2Cache_action_mt_writeDataToCacheFromTBE.html' }" >mt</A>
+  <A href="L2Cache_action_dst_sendAtomicDataToGetSRequestors.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_dst_sendAtomicDataToGetSRequestors.html') { parent.frames[1].location='L2Cache_action_dst_sendAtomicDataToGetSRequestors.html' }" >dst a</A>
+  <A href="L2Cache_action_s_deallocateTBE.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_s_deallocateTBE.html') { parent.frames[1].location='L2Cache_action_s_deallocateTBE.html' }" >s</A>
+  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+/<A href="L2Cache_table_E.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_E.html') { parent.frames[1].location='L2Cache_State_E.html' }" >E</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="L2Cache_table_IMA.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_IMA.html') { parent.frames[1].location='L2Cache_State_IMA.html' }" >IMA</A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TH>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_c_exclusiveReplacement.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_c_exclusiveReplacement.html') { parent.frames[1].location='L2Cache_action_c_exclusiveReplacement.html' }" >c</A>
+  <A href="L2Cache_action_o_popL2ExpireTriggerQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popL2ExpireTriggerQueue.html') { parent.frames[1].location='L2Cache_action_o_popL2ExpireTriggerQueue.html' }" >ot</A>
+/<A href="L2Cache_table_MI_Ack.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI_Ack.html') { parent.frames[1].location='L2Cache_State_MI_Ack.html' }" >MI Ack</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="L2Cache_table_MI.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI.html') { parent.frames[1].location='L2Cache_State_MI.html' }" >MI</A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="L2Cache_table_MI_Ack.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI_Ack.html') { parent.frames[1].location='L2Cache_State_MI_Ack.html' }" >MI Ack</A></TH>
+  <TD bgcolor=lightgrey>  <A href="L2Cache_action_z_stall.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_z_stall.html') { parent.frames[1].location='L2Cache_action_z_stall.html' }" >z</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_zz_recycleL1RequestQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_zz_recycleL1RequestQueue.html') { parent.frames[1].location='L2Cache_action_zz_recycleL1RequestQueue.html' }" >zz</A>
+</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=white>  <A href="L2Cache_action_o_popIncomingCPUResponseQueue.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_action_o_popIncomingCPUResponseQueue.html') { parent.frames[1].location='L2Cache_action_o_popIncomingCPUResponseQueue.html' }" >or</A>
+/<A href="L2Cache_table_NP.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_NP.html') { parent.frames[1].location='L2Cache_State_NP.html' }" >NP</A></TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="L2Cache_table_MI_Ack.html" target="Table" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_State_MI_Ack.html') { parent.frames[1].location='L2Cache_State_MI_Ack.html' }" >MI Ack</A></TH>
+</TR>
+<TR>
+  <TH> </TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L1_GETS.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L1_GETS.html') { parent.frames[1].location='L2Cache_Event_L1_GETS.html' }" >L1 GETS</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L1_Write.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L1_Write.html') { parent.frames[1].location='L2Cache_Event_L1_Write.html' }" >L1 Write</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L1_Upgrade_T.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L1_Upgrade_T.html') { parent.frames[1].location='L2Cache_Event_L1_Upgrade_T.html' }" >L1 Upgrade T</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L1_Upgrade_NT.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L1_Upgrade_NT.html') { parent.frames[1].location='L2Cache_Event_L1_Upgrade_NT.html' }" >L1 Upgrade NT</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L2_Atomic.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L2_Atomic.html') { parent.frames[1].location='L2Cache_Event_L2_Atomic.html' }" >L2 Atomic</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L2_Expire.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L2_Expire.html') { parent.frames[1].location='L2Cache_Event_L2_Expire.html' }" >L2 Expire</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L2_Replacement.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L2_Replacement.html') { parent.frames[1].location='L2Cache_Event_L2_Replacement.html' }" >L2 Replacement</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_L2_Replacement_clean.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_L2_Replacement_clean.html') { parent.frames[1].location='L2Cache_Event_L2_Replacement_clean.html' }" >L2 Replacement clean</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Data.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Data.html') { parent.frames[1].location='L2Cache_Event_Data.html' }" >Data</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Data_all_Acks.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Data_all_Acks.html') { parent.frames[1].location='L2Cache_Event_Data_all_Acks.html' }" >Data all Acks</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Ack.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Ack.html') { parent.frames[1].location='L2Cache_Event_Ack.html' }" >Ack</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Ack_all.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Ack_all.html') { parent.frames[1].location='L2Cache_Event_Ack_all.html' }" >Ack all</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_WB_Ack.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_WB_Ack.html') { parent.frames[1].location='L2Cache_Event_WB_Ack.html' }" >WB Ack</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Fwd_GETX.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Fwd_GETX.html') { parent.frames[1].location='L2Cache_Event_Fwd_GETX.html' }" >Fwd GETX</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Fwd_GETS.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Fwd_GETS.html') { parent.frames[1].location='L2Cache_Event_Fwd_GETS.html' }" >Fwd GETS</A></TH>
+  <TH bgcolor=white><A href="L2Cache_Event_Inv.html" target="Status" onMouseOver="if (parent.frames[1].location != parent.location + 'L2Cache_Event_Inv.html') { parent.frames[1].location='L2Cache_Event_Inv.html' }" >Inv</A></TH>
+</TR>
+</TABLE>
+</BODY></HTML>

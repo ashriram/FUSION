@@ -95,9 +95,12 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
 
         // Transient States for fetching data from memory
         IS, desc="L2 idle, got L1_GETS, issued memory fetch, have not seen response yet";
+        ISS, desc="L2 idle, got L1_GETS, issued memory fetch, and then saw another GETS";
         IM, desc="L2 idle, got L1 Write, issued memory fetch, have not seen response(s) yet";
         IMA, desc="L2 idle, got Atomic, issued memory fetch, have not seen response(s) yet";
         MI, desc="L2 replacement on valid timestamp, waiting for expire event";
+        MI_Ack, desc="Send writeback to CPU; waiting on ack";
+    
     }
 
 
@@ -106,26 +109,36 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
         // L2 events
 
         // events initiated by the local L1s
-        L1_GETS,                 desc="a L1D GETS request for a block maped to us";
+        L1_GETS,              desc ="a L1D GETS request for a block maped to us";
 
         // Store from L1
-        L1_Write,  desc="data from L1 due to a write miss in L1";
-        L1_Upgrade_T,  desc="data from L1 due to a write hit in L1. Timestamps between L1 and L2 match.";
-        L1_Upgrade_NT,  desc="data from L1 due to a write hit in L1. Timestamps between L1 and L2 do not match.";
+        L1_Write,             desc ="data from L1 due to a write miss in L1";
+        L1_Upgrade_T,         desc ="data from L1 due to a write hit in L1. Timestamps between L1 and L2 match.";
+        L1_Upgrade_NT,        desc ="data from L1 due to a write hit in L1. Timestamps between L1 and L2 do not match.";
 
         // Atomic from L1
-        L2_Atomic,  desc="Atomic request and data from L1";
+        L2_Atomic,            desc ="Atomic request and data from L1";
 
         // Expiring event
-        L2_Expire,  desc="L2 block lifetime expired";
+        L2_Expire,            desc ="L2 block lifetime expired";
 
         // events initiated by this L2
-        L2_Replacement,     desc="L2 Replacement", format="!r";
-        L2_Replacement_clean,     desc="L2 Replacement, but data is clean", format="!r";
+        L2_Replacement,       desc ="L2 Replacement", format="!r";
+        L2_Replacement_clean, desc ="L2 Replacement, but data is clean", format="!r";
 
-        // events from memory controller
-        Mem_Data,     desc="data from memory, single reader waiting", format="!r";
-        Mem_Data_SS,     desc="data from memory, multiple readers waiting", format="!r";
+
+        // events response from CPU
+        Data,                 desc ="data from CPU, not seen all Acks yet", format="!r";
+        Data_all_Acks,        desc ="data from CPU, seen all acks", format="!r";
+        Ack,                  desc ="Not seen all acks yet; possibly seen data";
+        Ack_all,              desc ="Seen all acks and already seen data";
+        WB_Ack,               desc ="Write back ack";
+        // events fwd from CPU
+
+        
+        Fwd_GETX,          desc ="We send data back to L2 with original requestor ID. Only one outstanding to Accelerator protocol from CPU Side";
+        Fwd_GETS,          desc ="We send data back to L2 with original requestor ID. Only one outstanding to Accelerator protocol from CPU Side";
+        Inv,                  desc ="We send data back to L2 with original requestor ID. Only one outstanding to Accelerator protocol from CPU Side";
     }
 
     // TYPES
@@ -134,38 +147,33 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
 
     // CacheEntry
     structure(Entry, desc="...", interface="AbstractCacheEntry") {
-        State CacheState,          desc="cache state";
-        NetDest Sharers,               desc="tracks the L1 shares on-chip";
-        MachineID Exclusive,          desc="Exclusive holder of block";
-        DataBlock DataBlk,       desc="data for the block";
-        bool Dirty, default="false", desc="data is dirty";
-        Time liveUntilTime,     desc="maximum lifetime of the cache block in any of the L1s";
+    State CacheState,                desc ="cache state";
+    NetDest Sharers,                 desc ="tracks the L1 shares on-chip";
+    MachineID Exclusive,             desc ="Exclusive holder of block";
+    DataBlock DataBlk,               desc ="data for the block";
+    bool Dirty, default="false",     desc ="data is dirty";
+    Time liveUntilTime,              desc ="maximum lifetime of the cache block in any of the L1s";
     }
 
     // TBE fields
-    structure(TBE, desc="...") {
-        Address Address,            desc="Physical address for this TBE";
-        State TBEState,             desc="Transient state";
-        DataBlock DataBlk,          desc="Buffer for the data block";
-        bool Dirty, default="false", desc="Data is Dirty";
-
-        NetDest L1_GetS_IDs,            desc="Set of the internal processors that want the block in shared state";
-        MachineID L1_WBAck_ID,          desc="ID of the L1 cache to forward the block to once we get a response";
-
-        NetDest CPURequestor,           desc="CPU requestor CPU L2 has to fwd back to";
-
-        int pendingAcks, default="0", desc="number of pending acks";
-
-        bool DataReady, default="false", desc="Have I got the data";
-        bool isPrefetch,            desc="Set if this was caused by a prefetch";
-        MemorySpaceType Space,        desc="Memory space of request (GLOBAL, LOCAL)";
-        Time deltaRequested,        desc="Delta time requested";
-
-        int RequestSize,            desc="Size of request data";
-        Time liveUntilTime,         desc="Live until time for L2 replacement TBEs";
-        uint64 memfetch,               desc="Memfetch of requestor thread";
+    structure(TBE,                   desc ="...") {
+    Address Address,                 desc ="Physical address for this TBE";
+    State TBEState,                  desc ="Transient state";
+    DataBlock DataBlk,               desc ="Buffer for the data block";
+    bool Dirty, default="false",     desc ="Data is Dirty";
+    NetDest L1_GetS_IDs,             desc ="Set of the internal processors that want the block in shared state";
+    MachineID L1_WBAck_ID,           desc ="ID of the L1 cache to forward the block to once we get a response";
+    NetDest CPURequestor,            desc ="CPU requestor CPU L2 has to fwd back to";
+    int pendingAcks, default="0",    desc ="number of pending acks";
+    bool DataReady, default="false", desc ="Have I got the data";
+    bool isPrefetch,                 desc ="Set if this was caused by a prefetch";
+    MemorySpaceType Space,           desc ="Memory space of request (GLOBAL, LOCAL)";
+    Time deltaRequested,             desc ="Delta time requested";
+    int RequestSize,                 desc ="Size of request data";
+    Time liveUntilTime,              desc ="Live until time for L2 replacement TBEs";
+    uint64 memfetch,                 desc ="Memfetch of requestor thread";
         // only loads use mfset because store requests can never be merged
-        MemfetchSet mfset,            desc="Set of memfetchs received so far in this TBE";
+    MemfetchSet mfset,               desc ="Set of memfetchs received so far in this TBE";
     }
 
     external_type(CacheMemory) {
@@ -335,9 +343,9 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
 
 
     // Response to CPU L2
-    out_port(responseCPUL1Network_out, ResponseMsg, responseFromL2TCache);
+    out_port(responseCPUNetwork_out, ResponseMsg, responseFromL2TCache);
     out_port(unblockCPUNetwork_out, ResponseMsg, unblockFromL2TCache);
-    out_port(requestCPUNetwork_out, RequestMsg, requestromL2TCache);
+    out_port(requestCPUNetwork_out, RequestMsg, requestFromL2TCache);
     
 
     // ** IN_PORTS **
@@ -391,7 +399,7 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
             peek(responseCPUNetwork_in, ResponseMsg) {
                 assert(in_msg.Destination.isElement(machineID));
                 if(in_msg.Type == CoherenceResponseType:DATA) {
-                    if ((L1_TBEs[in_msg.Address].pendingAcks - in_msg.AckCount) == 0 ) {
+                    if ((L2_TBEs[in_msg.Address].pendingAcks - in_msg.AckCount) == 0 ) {
                         trigger(Event:Data_all_Acks, in_msg.Address);
                     } 
                     else {
@@ -399,7 +407,7 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
                     }
                 } 
                 else if (in_msg.Type == CoherenceResponseType:ACK) {
-                    if (((L1_TBEs[in_msg.Address].pendingAcks - in_msg.AckCount) == 0)  && (L1_TBEs[in_msg.Address].DataReady == true)) {
+                    if (((L2_TBEs[in_msg.Address].pendingAcks - in_msg.AckCount) == 0)  && (L2_TBEs[in_msg.Address].DataReady == true)) {
                        trigger(Event:Ack_all, in_msg.Address);                            
                    } 
                    else {
@@ -435,9 +443,6 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
     }
 
 
-  
-
-
     // External ACTIONS that go to CPU side
 
     action(a_issueFetchToMemory, "a", desc="fetch data from memory") {
@@ -445,21 +450,21 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
         enqueue(requestCPUNetwork_out, RequestMsg, latency="L2_to_MEM_MSG_LATENCY") {
           out_msg.Address := address;
           out_msg.Type := CoherenceRequestType:GETX;
-          out_msg.Sender := machineID;
-          out_msg.Destination.add(map_Address_to_Directory(address));
+          out_msg.Requestor := machineID;
+          out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
           out_msg.OriginalRequestorMachId := machineID;
           out_msg.MessageSize := MessageSizeType:Control;
         }
       }
     }
 
-    action(, "as", desc="fetch data from memory for store") {
+    action(a_issueFetchToMemoryForStore, "as", desc="fetch data from memory for store") {
       peek(L1RequestIntraChipL2Network_in, RequestMsg) {
         enqueue(requestCPUNetwork_out, RequestMsg, latency="L2_to_MEM_MSG_LATENCY") {
           out_msg.Address := address;
           out_msg.Type := CoherenceRequestType:GETX;
-          out_msg.Sender := machineID;
-          out_msg.Destination.add(map_Address_to_Directory(address));
+          out_msg.Requestor := machineID;
+          out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
           out_msg.OriginalRequestorMachId := machineID;
           out_msg.MessageSize := MessageSizeType:Control;
         }
@@ -468,31 +473,28 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
 
 
     action(c_exclusiveReplacement, "c", desc="send data to the L2 cache (PUTX)") {
-        if (getL1CacheEntry(address).Dirty) 
+        if (L2_TBEs[address].Dirty) 
         {
-            enqueue(responseCPUL1Network_out, RequestMsg, latency="L1_to_L2_DATA_LATENCY") {
+            enqueue(responseCPUNetwork_out, ResponseMsg, latency="L1_to_L2_DATA_LATENCY") {
                 out_msg.Address := address;
-                out_msg.DataBlk := getL1CacheEntry(address).DataBlk;
-                out_msg.Dirty := getL1CacheEntry(address).Dirty;
-                out_msg.Requestor:= machineID;
+                out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
+                out_msg.Dirty := getL2CacheEntry(address).Dirty;
+                out_msg.Sender:= machineID;
                 out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
-                out_msg.Type := CoherenceRequestType:DATA_ACC;
-                out_msg.MessageSize := MessageSizeType:Writeback_Control;
-                out_msg.DirtyMask := getL1CacheEntry(address).DirtyMask;
+                out_msg.Type := CoherenceResponseType:DATA_ACC;
+                out_msg.MessageSize := MessageSizeType:Data;
             }
         }
         else
         {
-
-           enqueue(requestCPUL1Network_out, RequestMsg, latency="L1_to_L2_DATA_LATENCY") {
+           enqueue(requestCPUNetwork_out, RequestMsg, latency="L1_to_L2_DATA_LATENCY") {
                 out_msg.Address := address;
-                out_msg.DataBlk := getL1CacheEntry(address).DataBlk;
-                out_msg.Dirty := getL1CacheEntry(address).Dirty;
+                out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
+                out_msg.Dirty := getL2CacheEntry(address).Dirty;
                 out_msg.Requestor:= machineID;
                 out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
-                out_msg.Type := CoherenceRequestType:PUTX-ACC;
+                out_msg.Type := CoherenceRequestType:PUTX_ACC;
                 out_msg.MessageSize := MessageSizeType:Writeback_Control;
-                out_msg.DirtyMask := getL1CacheEntry(address).DirtyMask;
             }
         }
     }
@@ -612,7 +614,6 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
             check_allocate(L2_TBEs);
             L2_TBEs.allocate(address);
             L2_TBEs[address].L1_GetS_IDs.clear();
-            L2_TBEs[address].CPURequestor.clear();
             L2_TBEs[address].DataBlk := getL2CacheEntry(address).DataBlk;
             L2_TBEs[address].Dirty := getL2CacheEntry(address).Dirty;
             L2_TBEs[address].Space := in_msg.Space;
@@ -627,7 +628,6 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
             check_allocate(L2_TBEs);
             L2_TBEs.allocate(address);
             L2_TBEs[address].L1_GetS_IDs.clear();
-            L2_TBEs[address].CPURequestor.clear();
             L2_TBEs[address].DataBlk := getL2CacheEntry(address).DataBlk;
             L2_TBEs[address].Dirty := getL2CacheEntry(address).Dirty;
             L2_TBEs[address].RequestSize := in_msg.RequestSize;
@@ -640,7 +640,6 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
         check_allocate(L2_TBEs);
         L2_TBEs.allocate(address);
         L2_TBEs[address].L1_GetS_IDs.clear();
-        L2_TBEs[address].CPURequestor.clear();
         L2_TBEs[address].DataBlk := getL2CacheEntry(address).DataBlk;
         L2_TBEs[address].Dirty := getL2CacheEntry(address).Dirty;
         L2_TBEs[address].liveUntilTime := getL2CacheEntry(address).liveUntilTime;
@@ -755,7 +754,7 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
         getL2CacheEntry(address).Dirty := true;
     }
 
-    action(d_markTBEDataReady, "d", desc="Mark block as dirty") {
+    action(d_markTBEDataReady, "D", desc="Mark block as dirty") {
         L2_TBEs[address].DataReady := true;
     }
 
@@ -763,13 +762,23 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
         L2cacheMemory.deallocate(address);
     }
 
-    action(xx_recordGetXL1ID, "\x", desc="Record L1 WB for store response") {
+    action(xx_recordGetXL1ID, "xx", desc="Record L1 WB for store response") {
         DEBUG_EXPR(address);
         peek(L1RequestIntraChipL2Network_in, RequestMsg) {
             L2_TBEs[address].L1_WBAck_ID := in_msg.Requestor;
         }
         DEBUG_EXPR(address);
     }
+
+
+    action(q_updateAckCount, "q", desc="Update ack count") {
+        peek(requestCPUNetwork_in, ResponseMsg) {
+            L2_TBEs[address].pendingAcks := L2_TBEs[address].pendingAcks - in_msg.AckCount;
+            APPEND_TRANSITION_COMMENT(in_msg.AckCount);
+            APPEND_TRANSITION_COMMENT(" p: ");
+            APPEND_TRANSITION_COMMENT(L2_TBEs[address].pendingAcks);
+    }
+  }
 
     action(zz_recycleL1RequestQueue, "zz", desc="recycle L1 request queue") {
         L1RequestIntraChipL2Network_in.recycle();
@@ -853,7 +862,8 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
     }
 
 
-    // Replacement to transient state
+    // Replacement to transient state. No CPU-side msgs in this state.
+    // L2 has perfect information on whether data is cached or not at Acc
     transition({IS, IM, IMA}, {L2_Replacement, L2_Replacement_clean}) {
         // Do nothing
         // We can't recycle queue because his event can be triggered from both request and response queue
@@ -871,9 +881,8 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
   
 
     // Load request in a transient state, recycle the load queue
-    transition({IM, IMA, MI}, {L1_GETS}) {
-        zz_recycleL1RequestQueue;
-        //z_stall;
+    transition({IM, IMA, MI, MI_Ack}, {L1_GETS}) {
+        z_stall;
     }
 
     // transitions from S
@@ -1003,13 +1012,14 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
         o_popL2ExpireTriggerQueue;
     }
 
-    transition(MI_Ack, WB_Ack, I) {
-       o_popIncomingCPUResponseQueue;
+    transition(MI_Ack, WB_Ack, NP) {
+        s_deallocateTBE;
+        o_popIncomingCPUResponseQueue;
     }
 
 
     // Common transitions
-    transition({IS, IM, IMA, MI, SM, SMA, MI_Ack}, {L1_Write, L1_Upgrade_NT, L2_Atomic}) {
+    transition({IS, IM, IMA, MI, MI_Ack}, {L1_Write, L1_Upgrade_NT, L2_Atomic}) {
       zz_recycleL1RequestQueue;
       
       // zc_recycleL1ResponseNetwork;
@@ -1022,7 +1032,6 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
     transition({IM,IMA,IS,ISS}, Data) {
         m_writeDataToCache;
         d_markTBEDataReady;
-        tt_updateL2BlockTime_fromTBE;
         o_popIncomingCPUResponseQueue;
     }
 
@@ -1053,7 +1062,7 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
         o_popIncomingCPUResponseQueue;
     }
 
-    transition(ISS, Data_all_Acks, S) {
+    transition(ISS, Data_all_Acks, SS) {
         m_writeDataToCache;
         tt_updateL2BlockTime_fromTBE;
         dst_sendDataToGetSRequestors;
@@ -1098,17 +1107,16 @@ machine(L2Cache, "Cache Leasing v2 L2 Cache CMP") {
     }
     // Forwarded requests from CPU
    
-    transition({SS,S}, {Fwd_GETX,Fwd_GETS}, MI) {
+    transition({SS,S}, {Fwd_GETX,Fwd_GETS,Inv}, MI) {
         ir_allocateTBE;
         it_insertL2ExpireTriggerQueue;
         rr_deallocateL2CacheBlock;
-        xx_recordFwdL1ID;
         o_popIncomingCPURequestQueue;
     }
+    // Due to race between PUTX and GETX CPU-side has to record requestor ID.
 
-    transition(E, {L2_Replacement}, MI_Ack) {
+    transition(E, {Inv}, MI_Ack) {
         ir_allocateTBE;
-        xx_recordFwdL1ID;
         c_exclusiveReplacement;
         rr_deallocateL2CacheBlock;
     }
