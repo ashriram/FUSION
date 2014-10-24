@@ -149,6 +149,26 @@ public:
   static int numberOfPersistentArbiterPerChip(NodeID myNodeID) {return numberOfDirectoryPerChip(myNodeID); }
   static int PersistentArbiterTransitionsPerCycle() { return L2CACHE_TRANSITIONS_PER_RUBY_CYCLE; }
 
+
+  // L1T Cache Machines
+  static int L1TCacheBits() { return g_NUM_PROCESSORS_BITS; }
+  static int numberOfL1TCache() { return g_NUM_PROCESSORS; }
+  static int L1TCachePerChipBits() { return procsPerChipBits() ; } // L1s != processors not currently supported
+  static int numberOfL1TCachePerChip() { return numberOfProcsPerChip(); } // L1s != processors not currently supported
+  static int numberOfL1TCachePerChip(NodeID myNodeID) { return numberOfL1CachePerChip(); }
+  static int L1TCacheTransitionsPerCycle() { return L1CACHE_TRANSITIONS_PER_RUBY_CYCLE; }
+
+  // L2T Cache Machines
+  static int L2TCacheBits() { return g_NUM_L2_BANKS_BITS; }
+  static int numberOfL2TCache() { return g_NUM_L2_BANKS; }
+  static int L1TCacheNumToL2TBase(NodeID L1RubyNodeID);  
+  static int L2TCachePerChipBits() { return g_NUM_L2_BANKS_PER_CHIP_BITS; }
+  static int numberOfL2TCachePerChip() { return g_NUM_L2_BANKS_PER_CHIP; }
+  static int numberOfL2TCachePerChip(NodeID myNodeID) { return numberOfL2TCachePerChip(); }
+  static int L2TCacheTransitionsPerCycle() { return L2CACHE_TRANSITIONS_PER_RUBY_CYCLE; }
+ 
+
+
   // ---- END MACHINE SPECIFIC VARIABLES ----
 
   // VARIABLE MEMORY RESPONSE LATENCY

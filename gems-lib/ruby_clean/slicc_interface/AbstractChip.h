@@ -98,7 +98,7 @@ public:
   NodeID getID() const { return m_id; };
   Network* getNetwork() const { return m_net_ptr; };
   Sequencer* getSequencer(int index)  { return m_L1Cache_sequencer_vec[index]; };
-  Sequencer_t* getSequencer_t(int index)  { return m_L1Cache_sequencer_t_vec[index]; };
+  Sequencer* getSequencerT(int index)  { return m_L1TCache_sequencer_vec[index]; };
   
   CacheMemory<L1Cache_Entry>* getL1DCache(int index) const {
       assert(m_L1Cache_L1DcacheMemory_vec.size() > index);
@@ -153,10 +153,11 @@ public:
   Vector < GpusimDramInterface* >m_L2Cache_GpusimDramBuffer_vec;
 
   // Accelerator interface both L1s and L2s.
-  Vector < Sequencer_t* >  m_L1TCache_sequencer_vec; // All chip should have a sequencer
   Vector < MessageBuffer* >m_L1TCache_mandatoryQueue_vec;
   Vector < CacheMemory<L1Cache_Entry>* > m_L1TCache_cacheMemory_vec;
   Vector < CacheMemory<L1Cache_Entry>* > m_L2TCache_cacheMemory_vec;
+  Vector < CacheMemory<L1Cache_Entry>* > m_L1TCache_L1DcacheMemory_vec;
+  Vector < Sequencer* >  m_L1TCache_sequencer_vec; // All chip should have a sequencer
 
 
 protected:
@@ -165,7 +166,7 @@ protected:
   NodeID                 m_id;            // Chip id
   Network*               m_net_ptr;       // Points to the Network simulator
   Vector < Sequencer* >  m_L1Cache_sequencer_vec; // All chip should have a sequencer
-  Vector < Sequencer_t* >  m_L1Cache_sequencer_t_vec; // All chip should have a sequencer
+
 
 };
 

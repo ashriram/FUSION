@@ -107,6 +107,7 @@ public:
     assert(procNumber < RubyConfig::numberOfProcessors());
     return m_chip_vector[procNumber/RubyConfig::numberOfProcsPerChip()]->getSequencer(procNumber%RubyConfig::numberOfProcsPerChip());
   }
+
   void recordCacheContents(CacheRecorder& tr) const;
   void printConfig(ostream& out) const;
   void printStats(ostream& out);
