@@ -100,7 +100,7 @@ private:
   typedef std::map<int, Directory_Entry*> DirectoryMap; // WF: for flexible address partitioning
   DirectoryMap m_entries;
   Chip* m_chip_ptr;
-  int m_size;  // # of memory module blocks for this directory
+  int64  m_size;  // # of memory module blocks for this directory
   int m_version;
 };
 

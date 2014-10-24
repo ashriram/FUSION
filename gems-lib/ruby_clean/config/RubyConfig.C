@@ -163,7 +163,9 @@ void RubyConfig::init()
   g_PROCS_PER_CHIP_BITS = log_int(g_PROCS_PER_CHIP);
 
   g_MEMORY_MODULE_BITS = g_MEMORY_SIZE_BITS - g_DATA_BLOCK_BITS - g_NUM_MEMORIES_BITS;
+  cerr<<"g_MEMORY_SIZE_BITS:"<< g_MEMORY_SIZE_BITS <<" - g_DATA_BLOCK_BITS : "<<g_DATA_BLOCK_BITS <<" - g_NUM_MEMORIES_BITS:" <<g_NUM_MEMORIES_BITS<<endl;
   g_MEMORY_MODULE_BLOCKS = (int64(1) << g_MEMORY_MODULE_BITS);
+  cerr<<"g_MEMORY_MODULE_BLOCKS:"<< g_MEMORY_MODULE_BLOCKS<<endl;
 
   if ((!Protocol::m_CMP) && (g_PROCS_PER_CHIP > 1)) {
     ERROR_MSG("Non-CMP protocol should set g_PROCS_PER_CHIP to 1");

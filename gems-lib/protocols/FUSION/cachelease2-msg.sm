@@ -105,6 +105,7 @@ structure(RequestMsg, desc="...", interface="NetworkMessage") {
   Time deltaRequested, default="0",       desc="Timestamp needed";
   Time liveUntilTime,           desc="Local lifetime of data sent by L1";
   uint64 memfetch,              desc="Memfetch pointer of request";
+  ruby_mem_access_byte_mask_t DirtyMask, default="0", desc="which bytes have been written to (only use for PUTX and WB DATA requests";
 }
 
 // ResponseMsg
@@ -122,6 +123,7 @@ structure(ResponseMsg, desc="...", interface="NetworkMessage") {
   Time liveUntilTime,			  desc="Lifetime of block returned by L2";
   uint64 memfetch,              desc="Memfetch pointer of request";
   MemfetchSet mfset,            desc="Memfetch pointers returning from L2 (were merged)";
+  ruby_mem_access_byte_mask_t DirtyMask, default="0", desc="which bytes have been written to (only use for PUTX and WB DATA requests";
 }
 
 // TriggerType

@@ -70,7 +70,8 @@
 #include "LifetimeTrace.h"
 #include "Network.h"
 #include "Tester.h"
-#include "GpusimInterface.h"
+
+#include "O3simInterface.h"
 #include "SyntheticDriver.h"
 #include "DeterministicDriver.h"
 #include "Chip.h"
@@ -122,8 +123,8 @@ System::System()
       ERROR_MSG("SYNTHETIC and DETERMINISTIC DRIVERS are exclusive and cannot be both enabled");
     } else {
       // normally make tester object, otherwise make an opal interface object.
-      if (1) {
-        m_driver_ptr = new GpusimInterface(this);
+      if (g_YAO_DRIVER) {
+        m_driver_ptr = new O3simInterface(this);
       } else if (1) {
         m_driver_ptr = new Tester(this);
       } else {

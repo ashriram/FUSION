@@ -249,6 +249,19 @@ PROCESSOR_BUFFER_SIZE: 8
 PROTOCOL_BUFFER_SIZE: 20
 // ** end finite buffering parameters
 
+<<<<<<< HEAD
+=======
+// Cache sizes are smaller for the random tester to increase the amount
+// of false sharing.
+L1_CACHE_ASSOC: 2
+L1_CACHE_NUM_SETS_BITS: 2
+L2_CACHE_ASSOC: 2
+L2_CACHE_NUM_SETS_BITS: 5
+L2_DIRECTORY_ASSOC: 2
+/////L2_BANKS: 2
+L2_DIRECTORY_NUM_SETS_BITS: 5
+WRITES_STALL_AT_MSHR: true
+>>>>>>> 85267b52fc547f0ab1a83f5aae8f3aef46057f1d
 
 // (deprecated)
 // Allows on a single accesses to a multi-cycle L2 bank.
@@ -308,6 +321,7 @@ PROTOCOL_BUFFER_SIZE: 20
 //ATMTP_XACT_MAX_STORES: 32
 //ATMTP_DEBUG_LEVEL: 0
 
+<<<<<<< HEAD
 // MOESI_CMP_token parameters (some might be deprecated)
 //g_FILTERING_ENABLED: false
 //g_DISTRIBUTED_PERSISTENT_ENABLED: true
@@ -338,6 +352,33 @@ g_hold_time:  5
 g_wait_time:  5
 
 // Princeton Network (Garnet)
+=======
+MEM_BUS_CYCLE_MULTIPLIER: 10
+
+//g_MEMORY_SIZE_BYTES: 1048576
+
+// XACT MEMORY
+XACT_LENGTH: 2000
+XACT_SIZE:   1000
+ABORT_RETRY_TIME: 400
+XACT_ISOLATION_CHECK: true
+L2CACHE_TRANSITIONS_PER_RUBY_CYCLE: 1000
+DIRECTORY_TRANSITIONS_PER_RUBY_CYCLE: 1000
+PERFECT_FILTER: true        // If true, use perfect read/write filters
+READ_WRITE_FILTER: Perfect_
+
+//g_NETWORK_TOPOLOGY: FILE_SPECIFIED
+RECYCLE_LATENCY: 1
+//NUMBER_OF_VIRTUAL_NETWORKS: 5
+//g_NUM_MEMORIES: 16
+L2CACHE_TRANSITIONS_PER_RUBY_CYCLE: 1000
+DIRECTORY_TRANSITIONS_PER_RUBY_CYCLE: 1000
+//g_PROCS_PER_CHIP: 16
+g_NUM_L2_BANKS: 16
+//g_endpoint_bandwidth: 10000 
+//g_NUM_PROCESSORS: 16
+//g_NUM_SMT_THREADS: 1
+>>>>>>> 85267b52fc547f0ab1a83f5aae8f3aef46057f1d
 //g_GARNET_NETWORK: true
 //g_DETAIL_NETWORK: true
 //g_NETWORK_TESTING: false

@@ -78,6 +78,7 @@ DirectoryMemory::DirectoryMemory(Chip* chip_ptr, int version)
   // THIS DOESN'T SEEM TO WORK -- MRM
   // m_size = RubyConfig::memoryModuleBlocks()/RubyConfig::numberOfDirectory();
   m_size = RubyConfig::memoryModuleBlocks();
+  cerr<<"m_size: "<<m_size<<endl;
   assert(m_size > 0);
   // WF: Maps do not need to be pre allocated. 
 }

@@ -58,7 +58,7 @@
  */
 
 
-machine(L1Cache, "FUSION Leasing v2 L1 Cache CMP") {
+machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
 
     // NODE L1 CACHE
     // From this node's L1 cache TO the network
@@ -70,7 +70,7 @@ machine(L1Cache, "FUSION Leasing v2 L1 Cache CMP") {
 
 
     // STATES
-    enumeration(State, desc="Cache states", default="L1Cache_State_I") {
+    enumeration(State, desc="Cache states", default="L1TCache_State_I") {
         // Base states
         I, desc="a L1 cache entry Idle";
         S, desc="a L1 cache entry Valid";
@@ -151,9 +151,9 @@ machine(L1Cache, "FUSION Leasing v2 L1 Cache CMP") {
        Time get(int);
     }
 
-    TBETable L1_TBEs, template_hack="<L1Cache_TBE>";
+    TBETable L1_TBEs, template_hack="<L1TCache_TBE>";
 
-    CacheMemory L1DcacheMemory, template_hack="<L1Cache_Entry>", constructor_hack='L1_CACHE_NUM_SETS_BITS,L1_CACHE_ASSOC,MachineType_L1Cache,int_to_string(i)+"_L1D"', abstract_chip_ptr="true";
+    CacheMemory L1DcacheMemory, template_hack="<L1TCache_Entry>", constructor_hack='L1_CACHE_NUM_SETS_BITS,L1_CACHE_ASSOC,MachineType_L1TCache,int_to_string(i)+"_L1D"';
 
 
 
