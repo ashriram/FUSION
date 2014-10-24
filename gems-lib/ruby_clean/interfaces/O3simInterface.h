@@ -21,7 +21,7 @@ public:
 
   // Destructor
   // ~OpalInterface();
-  virtual void hitCallback(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch) = 0; //nav
+  virtual void hitCallback(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch); //nav
   //void hitCallback( NodeID proc, SubBlock& data, CacheRequestType type, int thread ); nav
   void printStats(ostream& out) const;
   void clearStats();

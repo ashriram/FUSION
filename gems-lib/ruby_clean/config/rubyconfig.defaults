@@ -64,7 +64,7 @@ SEQUENCER_TO_CONTROLLER_LATENCY: 4
 // ** important ** this parameter must be set to false for proper L1/L2 hit timing
 //  for the SMP protocols with combined L1/L2 controllers (-cache.sm)
 //
-REMOVE_SINGLE_CYCLE_DCACHE_FAST_PATH: false
+REMOVE_SINGLE_CYCLE_DCACHE_FAST_PATH: true
 
 
 // When running with Opal in SMT configurations, this indicates the number of threads per physical processor
@@ -108,7 +108,9 @@ L2_CACHE_ASSOC: 4
 L2_CACHE_NUM_SETS_BITS: 16 
 
 // 32 bits = 4 GB address space
-g_MEMORY_SIZE_BYTES: 4294967296
+//g_MEMORY_SIZE_BYTES: 4294967296
+//48bits
+ g_MEMORY_SIZE_BYTES: 281474976710656
 g_DATA_BLOCK_BYTES: 64
 g_PAGE_SIZE_BYTES: 4096
 g_REPLACEMENT_POLICY: PSEDUO_LRU // currently, only other option is LRU

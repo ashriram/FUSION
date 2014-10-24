@@ -30,7 +30,7 @@
 #include "NodeID.h"
 #include "MachineID.h"
 
-const int ADDRESS_WIDTH = 64; // address width in bytes
+const int ADDRESS_WIDTH = 48; // address width in bytes
 
 class Address;
 typedef Address PhysAddress;
