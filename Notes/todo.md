@@ -1,11 +1,11 @@
 1. Protocol - TC
     a. Testing and verification
 2. Protocol - MESI
-    a. Verification using old traces
+    a. Verification using old traces  -Naveen
 3. System 
-    a. Separate SequencerT type
+    a. Separate SequencerT type -Naveen
     b. Mapping functions for callbacks
-    c. Testing new sequencer types
+    c. Testing new sequencer types with modified tester interface  -Naveen
     d. Configuration parameters need to be set -- Scale ACC L1 and L2 by constant factor of CPU L1 and LLC.
 4. Frontend
     a. Trace reader (in icache stage) needs to be modified for multiple trace files
@@ -17,4 +17,4 @@
     a. Modify existing pintool to add acc marker along with accelerator identifier
     b. Offline trace processing which will partition the accelerator trace into load -- compute -- store 
     c. Characterize function level data movement. 
-    d. Machsuite 
+    d. Machsuite
