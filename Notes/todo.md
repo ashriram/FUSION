@@ -1,10 +1,11 @@
+X : done
 1. Protocol - TC
-    a. Testing and verification
+    a. Testing (Arrvindh checking) and verification
 2. Protocol - MESI
     a. Verification using old traces  -Naveen
 3. System 
-    a. Separate SequencerT type -Naveen
-    b. Mapping functions for callbacks
+    a. Separate SequencerT type -Naveen (X)
+    b. Mapping functions for callbacks (Arrvindh)
     c. Testing new sequencer types with modified tester interface  -Naveen
     d. Configuration parameters need to be set -- Scale ACC L1 and L2 by constant factor of CPU L1 and LLC.
 4. Frontend
