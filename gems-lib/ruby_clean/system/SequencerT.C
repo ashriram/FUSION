@@ -55,12 +55,12 @@
 */
 
 /*
- * $Id: Sequencer_t.C 1.131 2006/11/06 17:41:01-06:00 bobba@gratiano.cs.wisc.edu $
+ * $Id: SequencerT.C 1.131 2006/11/06 17:41:01-06:00 bobba@gratiano.cs.wisc.edu $
  *
  */
 
 #include "Global.h"
-#include "Sequencer_t.h"
+#include "SequencerT.h"
 #include "System.h"
 #include "Protocol.h"
 #include "Profiler.h"
@@ -76,7 +76,7 @@
 //#include "interface.h"
 #include <list>
 
-Sequencer_t::Sequencer_t(AbstractChip* chip_ptr, int version) {
+SequencerT::SequencerT(AbstractChip* chip_ptr, int version) {
   m_chip_ptr = chip_ptr;
   m_version = version;
 
@@ -97,7 +97,7 @@ Sequencer_t::Sequencer_t(AbstractChip* chip_ptr, int version) {
 
 }
 
-Sequencer_t::~Sequencer_t() {
+SequencerT::~SequencerT() {
   int smt_threads = RubyConfig::numberofSMTThreads();
   for(int i=0; i < smt_threads; ++i){
     if(m_writeRequestTable_ptr[i]){
@@ -118,7 +118,7 @@ Sequencer_t::~Sequencer_t() {
   }
 }
 
-void Sequencer_t::wakeup() {
+void SequencerT::wakeup() {
   // Check for deadlock of any of the requests
   Time current_time = g_eventQueue_ptr->getTime();
   bool deadlock = false;
@@ -194,12 +194,12 @@ void Sequencer_t::wakeup() {
 }
 
 //returns the total number of requests
-int Sequencer_t::getNumberOutstanding(){
+int SequencerT::getNumberOutstanding(){
   return m_outstanding_count;
 }
 
 // returns the total number of demand requests
-int Sequencer_t::getNumberOutstandingDemand(){
+int SequencerT::getNumberOutstandingDemand(){
   int smt_threads = RubyConfig::numberofSMTThreads();
   int total_demand = 0;
   for(int p=0; p < smt_threads; ++p){
@@ -226,7 +226,7 @@ int Sequencer_t::getNumberOutstandingDemand(){
   return total_demand;
 }
 
-int Sequencer_t::getNumberOutstandingPrefetch(){
+int SequencerT::getNumberOutstandingPrefetch(){
   int smt_threads = RubyConfig::numberofSMTThreads();
   int total_prefetch = 0;
   for(int p=0; p < smt_threads; ++p){
@@ -251,10 +251,10 @@ int Sequencer_t::getNumberOutstandingPrefetch(){
 }
 
 
-void Sequencer_t::printProgress(ostream& out) const{
+void SequencerT::printProgress(ostream& out) const{
 
   int total_demand = 0;
-  out << "Sequencer_t Stats Version " << m_version << endl;
+  out << "SequencerT Stats Version " << m_version << endl;
   out << "Current time = " << g_eventQueue_ptr->getTime() << endl;
   out << "---------------" << endl;
   out << "outstanding requests" << endl;
@@ -295,20 +295,20 @@ void Sequencer_t::printProgress(ostream& out) const{
 
 }
 
-void Sequencer_t::printConfig(ostream& out) {
+void SequencerT::printConfig(ostream& out) {
   if (TSO) {
-    out << "Sequencer_t: Sequencer_t - TSO" << endl;
+    out << "SequencerT: SequencerT - TSO" << endl;
   } else {
-    out << "Sequencer_t: Sequencer_t - SC" << endl;
+    out << "SequencerT: SequencerT - SC" << endl;
   }
   out << "  max_outstanding_requests: " << g_SEQUENCER_OUTSTANDING_REQUESTS << endl;
 }
 
-bool Sequencer_t::empty() const {
+bool SequencerT::empty() const {
   return m_outstanding_count == 0;
 }
 
-void Sequencer_t::checkOutstandingRequests() const {
+void SequencerT::checkOutstandingRequests() const {
    int total_outstanding = 0;
    int smt_threads = RubyConfig::numberofSMTThreads();
    for(int p=0; p < smt_threads; ++p){
@@ -319,7 +319,7 @@ void Sequencer_t::checkOutstandingRequests() const {
 }
 
 // Insert a skip L1 request
-void Sequencer_t::insertSkipL1Request(const CacheMsg& request) {
+void SequencerT::insertSkipL1Request(const CacheMsg& request) {
    // See if we should schedule a deadlock check
    if (m_deadlock_check_scheduled == false) {
      g_eventQueue_ptr->scheduleEvent(this, g_DEADLOCK_THRESHOLD);
@@ -341,7 +341,7 @@ void Sequencer_t::insertSkipL1Request(const CacheMsg& request) {
 
 // Insert the request on the correct request table.  Return true if
 // the entry was already present.
-bool Sequencer_t::insertRequest(const CacheMsg& request) {
+bool SequencerT::insertRequest(const CacheMsg& request) {
   int thread = request.getThreadID();
   assert(thread >= 0);
   checkOutstandingRequests();
@@ -380,7 +380,7 @@ bool Sequencer_t::insertRequest(const CacheMsg& request) {
 }
 
 
-void Sequencer_t::removeSkipL1Request(const CacheMsg& request) {
+void SequencerT::removeSkipL1Request(const CacheMsg& request) {
    checkOutstandingRequests();
    assert(m_skipL1RequestTable_ptr->exist(request.getmemfetch()));
    m_skipL1RequestTable_ptr->deallocate(request.getmemfetch());
@@ -389,7 +389,7 @@ void Sequencer_t::removeSkipL1Request(const CacheMsg& request) {
 }
 
 
-void Sequencer_t::removeRequest(const CacheMsg& request) {
+void SequencerT::removeRequest(const CacheMsg& request) {
   int thread = request.getThreadID();
   assert(thread >= 0);
 
@@ -406,12 +406,12 @@ void Sequencer_t::removeRequest(const CacheMsg& request) {
   checkOutstandingRequests();
 }
 
-void Sequencer_t::writeCallback(const Address& address) {
+void SequencerT::writeCallback(const Address& address) {
   DataBlock data;
   writeCallback(address, data);
 }
 
-void Sequencer_t::writeCallback(const Address& address, uint64 memfetch) {
+void SequencerT::writeCallback(const Address& address, uint64 memfetch) {
   assert(m_skipL1RequestTable_ptr->exist(memfetch));
   DataBlock data;
   CacheMsg request = m_skipL1RequestTable_ptr->lookup(memfetch);
@@ -421,7 +421,7 @@ void Sequencer_t::writeCallback(const Address& address, uint64 memfetch) {
   hitCallback(request, data, GenericMachineType_NULL, thread);
 }
 
-void Sequencer_t::writeCallback(const Address& address, DataBlock& data) {
+void SequencerT::writeCallback(const Address& address, DataBlock& data) {
   // process oldest thread first
   int thread = -1;
   Time oldest_time = 0;
@@ -443,7 +443,7 @@ void Sequencer_t::writeCallback(const Address& address, DataBlock& data) {
   writeCallback(address, data, GenericMachineType_NULL, PrefetchBit_No, thread);
 }
 
-void Sequencer_t::writeCallback(const Address& address, DataBlock& data, GenericMachineType respondingMach, PrefetchBit pf, int thread) {
+void SequencerT::writeCallback(const Address& address, DataBlock& data, GenericMachineType respondingMach, PrefetchBit pf, int thread) {
 
   assert(address == line_address(address));
   assert(thread >= 0);
@@ -453,7 +453,7 @@ void Sequencer_t::writeCallback(const Address& address, DataBlock& data, Generic
 
 }
 
-void Sequencer_t::writeCallback(const Address& address, DataBlock& data, GenericMachineType respondingMach, int thread) {
+void SequencerT::writeCallback(const Address& address, DataBlock& data, GenericMachineType respondingMach, int thread) {
   assert(address == line_address(address));
   assert(m_writeRequestTable_ptr[thread]->exist(line_address(address)));
   CacheMsg request = m_writeRequestTable_ptr[thread]->lookup(address);
@@ -469,12 +469,12 @@ void Sequencer_t::writeCallback(const Address& address, DataBlock& data, Generic
 
 }
 
-void Sequencer_t::readCallback(const Address& address) {
+void SequencerT::readCallback(const Address& address) {
   DataBlock data;
   readCallback(address, data);
 }
 
-void Sequencer_t::readCallback(const Address& address, uint64 memfetch) {
+void SequencerT::readCallback(const Address& address, uint64 memfetch) {
   assert(m_skipL1RequestTable_ptr->exist(memfetch));
   DataBlock data;
   CacheMsg request = m_skipL1RequestTable_ptr->lookup(memfetch);
@@ -484,7 +484,7 @@ void Sequencer_t::readCallback(const Address& address, uint64 memfetch) {
   hitCallback(request, data, GenericMachineType_NULL, thread);
 }
 
-void Sequencer_t::readCallback(const Address& address, MemfetchSet mfset) {
+void SequencerT::readCallback(const Address& address, MemfetchSet mfset) {
    std::list<uint64>& mf_list = mfset.get_list((m_chip_ptr->getID() * RubyConfig::numberOfProcsPerChip()) + m_version);
    std::list<uint64>::iterator it;
    for(it=mf_list.begin(); it!=mf_list.end(); it++) {
@@ -492,7 +492,7 @@ void Sequencer_t::readCallback(const Address& address, MemfetchSet mfset) {
    }
 }
 
-void Sequencer_t::readCallback(const Address& address, DataBlock& data) {
+void SequencerT::readCallback(const Address& address, DataBlock& data) {
   // process oldest thread first
   int thread = -1;
   Time oldest_time = 0;
@@ -514,7 +514,7 @@ void Sequencer_t::readCallback(const Address& address, DataBlock& data) {
   readCallback(address, data, GenericMachineType_NULL, PrefetchBit_No, thread);
 }
 
-void Sequencer_t::readCallback(const Address& address, DataBlock& data, GenericMachineType respondingMach, PrefetchBit pf, int thread) {
+void SequencerT::readCallback(const Address& address, DataBlock& data, GenericMachineType respondingMach, PrefetchBit pf, int thread) {
 
   assert(address == line_address(address));
   assert(m_readRequestTable_ptr[thread]->exist(line_address(address)));
@@ -522,7 +522,7 @@ void Sequencer_t::readCallback(const Address& address, DataBlock& data, GenericM
   readCallback(address, data, respondingMach, thread);
 }
 
-void Sequencer_t::readCallback(const Address& address, DataBlock& data, GenericMachineType respondingMach, int thread) {
+void SequencerT::readCallback(const Address& address, DataBlock& data, GenericMachineType respondingMach, int thread) {
   assert(address == line_address(address));
   assert(m_readRequestTable_ptr[thread]->exist(line_address(address)));
 
@@ -538,7 +538,7 @@ void Sequencer_t::readCallback(const Address& address, DataBlock& data, GenericM
   hitCallback(request, data, respondingMach, thread);
 }
 
-void Sequencer_t::hitCallback(const CacheMsg& request, DataBlock& data, GenericMachineType respondingMach, int thread) {
+void SequencerT::hitCallback(const CacheMsg& request, DataBlock& data, GenericMachineType respondingMach, int thread) {
   int size = request.getSize();
   Address request_address = request.getAddress();
   Address request_logical_address = request.getLogicalAddress();
@@ -633,11 +633,11 @@ void Sequencer_t::hitCallback(const CacheMsg& request, DataBlock& data, GenericM
 
 
 
-void Sequencer_t::memfenceCallback(int thread) {
+void SequencerT::memfenceCallback(int thread) {
     g_system_ptr->getDriver()->memfenceCallback(m_chip_ptr->getID()*RubyConfig::numberOfProcsPerChip()+m_version, thread);
 }
 
-void Sequencer_t::readConflictCallback(const Address& address) {
+void SequencerT::readConflictCallback(const Address& address) {
   // process oldest thread first
   int thread = -1;
   Time oldest_time = 0;
@@ -659,7 +659,7 @@ void Sequencer_t::readConflictCallback(const Address& address) {
   readConflictCallback(address, GenericMachineType_NULL, thread);
 }
 
-void Sequencer_t::readConflictCallback(const Address& address, GenericMachineType respondingMach, int thread) {
+void SequencerT::readConflictCallback(const Address& address, GenericMachineType respondingMach, int thread) {
   assert(address == line_address(address));
   assert(m_readRequestTable_ptr[thread]->exist(line_address(address)));
 
@@ -675,7 +675,7 @@ void Sequencer_t::readConflictCallback(const Address& address, GenericMachineTyp
   conflictCallback(request, respondingMach, thread);
 }
 
-void Sequencer_t::writeConflictCallback(const Address& address) {
+void SequencerT::writeConflictCallback(const Address& address) {
   // process oldest thread first
   int thread = -1;
   Time oldest_time = 0;
@@ -697,7 +697,7 @@ void Sequencer_t::writeConflictCallback(const Address& address) {
   writeConflictCallback(address, GenericMachineType_NULL, thread);
 }
 
-void Sequencer_t::writeConflictCallback(const Address& address, GenericMachineType respondingMach, int thread) {
+void SequencerT::writeConflictCallback(const Address& address, GenericMachineType respondingMach, int thread) {
   assert(address == line_address(address));
   assert(m_writeRequestTable_ptr[thread]->exist(line_address(address)));
   CacheMsg request = m_writeRequestTable_ptr[thread]->lookup(address);
@@ -713,7 +713,7 @@ void Sequencer_t::writeConflictCallback(const Address& address, GenericMachineTy
 
 }
 
-void Sequencer_t::conflictCallback(const CacheMsg& request, GenericMachineType respondingMach, int thread) {
+void SequencerT::conflictCallback(const CacheMsg& request, GenericMachineType respondingMach, int thread) {
   assert(XACT_MEMORY);
   int size = request.getSize();
   Address request_address = request.getAddress();
@@ -761,13 +761,13 @@ void Sequencer_t::conflictCallback(const CacheMsg& request, GenericMachineType r
   }
 }
 
-void Sequencer_t::printDebug(){
+void SequencerT::printDebug(){
   //notify driver of debug
   g_system_ptr->getDriver()->printDebug();
 }
 
 // Returns true if the sequencer already has a load or store outstanding
-bool Sequencer_t::isReady(const CacheMsg& request) const {
+bool SequencerT::isReady(const CacheMsg& request) const {
 
   if (m_outstanding_count >= g_SEQUENCER_OUTSTANDING_REQUESTS) {
     //cout << "TOO MANY OUTSTANDING: " << m_outstanding_count << " " << g_SEQUENCER_OUTSTANDING_REQUESTS << " VER " << m_version << endl;
@@ -820,7 +820,7 @@ bool Sequencer_t::isReady(const CacheMsg& request) const {
 }
 
 // Called by Driver (Simics or Tester).
-void Sequencer_t::makeRequest(const CacheMsg& request) {
+void SequencerT::makeRequest(const CacheMsg& request) {
   //assert(isReady(request));
   bool write = (request.getType() == CacheRequestType_ST) ||
     (request.getType() == CacheRequestType_ST_XACT) ||
@@ -847,7 +847,7 @@ void Sequencer_t::makeRequest(const CacheMsg& request) {
 
 }
 
-void Sequencer_t::makeMemfenceRequest(const CacheMsg& request) {
+void SequencerT::makeMemfenceRequest(const CacheMsg& request) {
    assert(request.getType() == CacheRequestType_MEM_FENCE);
 
    CacheMsg msg = request;
@@ -863,7 +863,7 @@ void Sequencer_t::makeMemfenceRequest(const CacheMsg& request) {
 
 }
 
-void Sequencer_t::makeIdealInvRequest(const CacheMsg& request) {
+void SequencerT::makeIdealInvRequest(const CacheMsg& request) {
    assert(request.getType() == CacheRequestType_IDEAL_INV);
 
    CacheMsg msg = request;
@@ -877,7 +877,7 @@ void Sequencer_t::makeIdealInvRequest(const CacheMsg& request) {
 
 }
 
-bool Sequencer_t::doRequest(const CacheMsg& request) {
+bool SequencerT::doRequest(const CacheMsg& request) {
   bool hit = false;
   // Check the fast path
   DataBlock* data_ptr;
@@ -914,7 +914,7 @@ bool Sequencer_t::doRequest(const CacheMsg& request) {
   return hit;
 }
 
-void Sequencer_t::issueSkipL1Request(const CacheMsg& request) {
+void SequencerT::issueSkipL1Request(const CacheMsg& request) {
    insertSkipL1Request(request);
 
    CacheMsg msg = request;
@@ -938,7 +938,7 @@ void Sequencer_t::issueSkipL1Request(const CacheMsg& request) {
    m_chip_ptr->m_L1Cache_mandatoryQueue_vec[m_version]->enqueue(msg, latency);
 }
 
-void Sequencer_t::issueRequest(const CacheMsg& request) {
+void SequencerT::issueRequest(const CacheMsg& request) {
   bool found = insertRequest(request);
 
   if (!found) {
@@ -965,7 +965,7 @@ void Sequencer_t::issueRequest(const CacheMsg& request) {
   }  // !found
 }
 
-bool Sequencer_t::tryCacheAccess(const Address& addr, CacheRequestType type,
+bool SequencerT::tryCacheAccess(const Address& addr, CacheRequestType type,
                                const Address& pc, AccessModeType access_mode,
                                int size, DataBlock*& data_ptr) {
   if (type == CacheRequestType_IFETCH) {
@@ -985,7 +985,7 @@ bool Sequencer_t::tryCacheAccess(const Address& addr, CacheRequestType type,
   }
 }
 
-void Sequencer_t::resetRequestTime(const Address& addr, int thread){
+void SequencerT::resetRequestTime(const Address& addr, int thread){
   assert(thread >= 0);
   //reset both load and store requests, if they exist
   if(m_readRequestTable_ptr[thread]->exist(line_address(addr))){
@@ -1008,8 +1008,8 @@ void Sequencer_t::resetRequestTime(const Address& addr, int thread){
   }
 }
 
-void Sequencer_t::print(ostream& out) const {
-  out << "[Sequencer_t: " << m_chip_ptr->getID()
+void SequencerT::print(ostream& out) const {
+  out << "[SequencerT: " << m_chip_ptr->getID()
       << ", outstanding requests: " << m_outstanding_count;
 
   int smt_threads = RubyConfig::numberofSMTThreads();
@@ -1022,13 +1022,13 @@ void Sequencer_t::print(ostream& out) const {
 
 // this can be called from setState whenever coherence permissions are upgraded
 // when invoked, coherence violations will be checked for the given block
-void Sequencer_t::checkCoherence(const Address& addr) {
+void SequencerT::checkCoherence(const Address& addr) {
 #ifdef CHECK_COHERENCE
   g_system_ptr->checkGlobalCoherenceInvariant(addr);
 #endif
 }
 
-bool Sequencer_t::getRubyMemoryValue(const Address& addr, char* value,unsigned int size_in_bytes ) {
+bool SequencerT::getRubyMemoryValue(const Address& addr, char* value,unsigned int size_in_bytes ) {
 
   if(g_SIMICS){
  #if 0
@@ -1100,7 +1100,7 @@ bool Sequencer_t::getRubyMemoryValue(const Address& addr, char* value,unsigned i
   }
 }
 
-bool Sequencer_t::setRubyMemoryValue(const Address& addr, char *value,
+bool SequencerT::setRubyMemoryValue(const Address& addr, char *value,
                                    unsigned int size_in_bytes) {
   char test_buffer[64];
 

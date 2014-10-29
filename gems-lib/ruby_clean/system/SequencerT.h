@@ -55,14 +55,14 @@
 */
 
 /*
- * $Id: Sequencer_t.h 1.70 2006/09/27 14:56:41-05:00 bobba@s1-01.cs.wisc.edu $
+ * $Id: SequencerT.h 1.70 2006/09/27 14:56:41-05:00 bobba@s1-01.cs.wisc.edu $
  *
  * Description: 
  *
  */
 
-#ifndef Sequencer_t_H
-#define Sequencer_t_H
+#ifndef SequencerT_H
+#define SequencerT_H
 
 #include "Global.h"
 #include "RubyConfig.h"
@@ -79,15 +79,15 @@ class AbstractChip;
 class CacheMsg;
 class Address;
 class MachineID;
-class Sequencer_t;
+class SequencerT;
 
-class Sequencer_t : public Consumer {
+class SequencerT : public Consumer {
 public:
   // Constructors
-  Sequencer_t(AbstractChip* chip_ptr, int version);
+  SequencerT(AbstractChip* chip_ptr, int version);
 
   // Destructor
-  ~Sequencer_t();
+  ~SequencerT();
   
   // Public Methods
   void wakeup(); // Used only for deadlock detection 
@@ -158,13 +158,13 @@ private:
  
 
   // Private copy constructor and assignment operator
-  Sequencer_t(const Sequencer_t& obj);
-  Sequencer_t& operator=(const Sequencer_t& obj);
+  SequencerT(const SequencerT& obj);
+  SequencerT& operator=(const SequencerT& obj);
   
   // Data Members (m_ prefix)
   AbstractChip* m_chip_ptr;
 
-  // indicates what processor on the chip this Sequencer_t is associated with
+  // indicates what processor on the chip this SequencerT is associated with
   int m_version;
 
   // One request table per SMT thread
@@ -179,18 +179,18 @@ private:
 };
 
 // Output operator declaration
-ostream& operator<<(ostream& out, const Sequencer_t& obj);
+ostream& operator<<(ostream& out, const SequencerT& obj);
 
 // ******************* Definitions *******************
 
 // Output operator definition
 extern inline 
-ostream& operator<<(ostream& out, const Sequencer_t& obj)
+ostream& operator<<(ostream& out, const SequencerT& obj)
 {
   obj.print(out);
   out << flush;
   return out;
 }
 
-#endif //Sequencer_t_H
+#endif //SequencerT_H
 
