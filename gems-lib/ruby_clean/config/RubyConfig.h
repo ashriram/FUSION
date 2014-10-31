@@ -112,6 +112,18 @@ public:
   static int numberOfProcsPerChip() { return g_PROCS_PER_CHIP; }
   static int numberOfChips() { return g_NUM_CHIPS; }
 
+  ////////////////////
+  /// DRIVER ///
+  /// Accelerator Cores
+  ////////////////////
+  
+  static int numberOfAccs() {return g_NUM_ACCS;}
+  static int AccsPerChipBits() { return g_ACCS_PER_CHIP_BITS; }
+  static int numberOfAccsPerChip() { return g_ACCS_PER_CHIP; }
+ 
+
+
+
   // MACHINE INSTANIATION CONFIG VARIABLES
   // -------------------------------------
   // L1 CACHE MACHINES
@@ -149,21 +161,25 @@ public:
   static int numberOfPersistentArbiterPerChip(NodeID myNodeID) {return numberOfDirectoryPerChip(myNodeID); }
   static int PersistentArbiterTransitionsPerCycle() { return L2CACHE_TRANSITIONS_PER_RUBY_CYCLE; }
 
+  /////////////////////
+  /// DRIVER ///
+  /// Accelerator Caches
+  /////////////////////
 
   // L1T Cache Machines
-  static int L1TCacheBits() { return g_NUM_PROCESSORS_BITS; }
-  static int numberOfL1TCache() { return g_NUM_PROCESSORS; }
-  static int L1TCachePerChipBits() { return procsPerChipBits() ; } // L1s != processors not currently supported
-  static int numberOfL1TCachePerChip() { return numberOfProcsPerChip(); } // L1s != processors not currently supported
-  static int numberOfL1TCachePerChip(NodeID myNodeID) { return numberOfL1CachePerChip(); }
+  static int L1TCacheBits() { return g_NUM_ACCS_BITS; }
+  static int numberOfL1TCache() { return g_NUM_ACCS; }
+  static int L1TCachePerChipBits() { return AccsPerChipBits() ; } // L1s != processors not currently supported
+  static int numberOfL1TCachePerChip() { return numberOfAccsPerChip(); } // L1s != processors not currently supported
+  static int numberOfL1TCachePerChip(NodeID myNodeID) { return numberOfL1TCachePerChip(); }
   static int L1TCacheTransitionsPerCycle() { return L1CACHE_TRANSITIONS_PER_RUBY_CYCLE; }
 
   // L2T Cache Machines
   static int L2TCacheBits() { return g_NUM_L2_BANKS_BITS; }
-  static int numberOfL2TCache() { return g_NUM_L2_BANKS; }
-  static int L1TCacheNumToL2TBase(NodeID L1RubyNodeID);  
-  static int L2TCachePerChipBits() { return g_NUM_L2_BANKS_PER_CHIP_BITS; }
-  static int numberOfL2TCachePerChip() { return g_NUM_L2_BANKS_PER_CHIP; }
+  static int numberOfL2TCache() { return g_NUM_L2T_BANKS; }
+  static int L1TCacheNumToL2TBase(NodeID L1TRubyNodeID);  
+  static int L2TCachePerChipBits() { return g_NUM_L2T_BANKS_PER_CHIP_BITS; }
+  static int numberOfL2TCachePerChip() { return g_NUM_L2T_BANKS_PER_CHIP; }
   static int numberOfL2TCachePerChip(NodeID myNodeID) { return numberOfL2TCachePerChip(); }
   static int L2TCacheTransitionsPerCycle() { return L2CACHE_TRANSITIONS_PER_RUBY_CYCLE; }
  

@@ -156,6 +156,14 @@ PARAM( g_NUM_L2_BANKS );
 PARAM( g_NUM_MEMORIES );
 PARAM( g_PROCS_PER_CHIP );
 
+
+// Accelerator Params
+
+PARAM( g_NUM_ACCS);
+PARAM( g_ACCS_PER_CHIP);
+PARAM( g_NUM_L2T_BANKS);
+
+
 // The following group of parameters are calculated.  They must
 // _always_ be left at zero.
 PARAM( g_NUM_CHIPS );
@@ -172,6 +180,15 @@ PARAM( g_NUM_MEMORIES_BITS );
 PARAM( g_NUM_MEMORIES_PER_CHIP );
 PARAM( g_MEMORY_MODULE_BITS );
 PARAM_ULONG( g_MEMORY_MODULE_BLOCKS );
+
+// Following Accelerator Params are calculated and must be // left to zero
+
+PARAM( g_NUM_ACCS_BITS );
+PARAM( g_ACCS_PER_CHIP_BITS );
+PARAM( g_NUM_L2T_BANKS_BITS );
+PARAM( g_NUM_L2T_BANKS_PER_CHIP_BITS );
+PARAM( g_NUM_L2T_BANKS_PER_CHIP );
+
 
 // determines the mapping between L2 banks and sets within L2 banks
 PARAM_BOOL( MAP_L2BANKS_TO_LOWEST_BITS );

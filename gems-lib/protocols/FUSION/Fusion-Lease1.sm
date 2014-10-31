@@ -58,7 +58,7 @@
  */
 
 
-machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
+machine(L1TCache, "FUSION Lease v2 L1 Cache") {
 
     // NODE L1 CACHE
     // From this node's L1 cache TO the network
@@ -370,7 +370,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
                 out_msg.Address := address;
                 out_msg.Type := CoherenceRequestType:GETS;
                 out_msg.Requestor := machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L1TCacheMachId_to_L2TCache(address, machineID));
                 DEBUG_EXPR(address);
                 DEBUG_EXPR(out_msg.Destination);
                 out_msg.MessageSize := MessageSizeType:Control;
@@ -391,7 +391,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
                 out_msg.Address := address;
                 out_msg.Type := CoherenceRequestType:DATA_UPGRADE;
                 out_msg.Requestor := machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L1TCacheMachId_to_L2TCache(address, machineID));
                 out_msg.MessageSize := IntToMessageSizeType(in_msg.Size);   // only need to send dirty data
                 out_msg.Space := in_msg.Space;
                 out_msg.RequestSize := in_msg.Size;
@@ -410,7 +410,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
                 out_msg.Type := CoherenceRequestType:DATA;
                 out_msg.DataBlk := L1_TBEs[address].DataBlk;
                 out_msg.Requestor := machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L1TCacheMachId_to_L2TCache(address, machineID));
                 out_msg.MessageSize := IntToMessageSizeType(in_msg.Size);   // only need to send dirty data
                 out_msg.Space := in_msg.Space;
                 out_msg.RequestSize := in_msg.Size;
@@ -428,7 +428,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
                 out_msg.Type := CoherenceRequestType:DATA_ATOMIC;
                 out_msg.DataBlk := L1_TBEs[address].DataBlk;
                 out_msg.Requestor := machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L1TCacheMachId_to_L2TCache(address, machineID));
                 out_msg.MessageSize := IntToMessageSizeType(in_msg.Size);   // only need to send dirty data
                 out_msg.Space := in_msg.Space;
                 out_msg.RequestSize := in_msg.Size;

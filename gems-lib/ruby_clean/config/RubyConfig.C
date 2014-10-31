@@ -141,6 +141,7 @@ void RubyConfig::init()
   ASSERT(L2_CACHE_NUM_SETS_BITS > log_int(g_NUM_L2_BANKS_PER_CHIP));  // cannot have less than one set per bank
   L2_CACHE_NUM_SETS_BITS = L2_CACHE_NUM_SETS_BITS - log_int(g_NUM_L2_BANKS_PER_CHIP);
 
+
   ASSERT(L2_DIRECTORY_NUM_SETS_BITS > log_int(g_NUM_L2_BANKS_PER_CHIP));  // cannot have less than one set per bank
   //L2_DIRECTORY_NUM_SETS_BITS = L2_DIRECTORY_NUM_SETS_BITS - log_int(g_NUM_L2_BANKS_PER_CHIP);
 
@@ -167,6 +168,27 @@ void RubyConfig::init()
   g_MEMORY_MODULE_BLOCKS = (int64(1) << g_MEMORY_MODULE_BITS);
   cerr<<"g_MEMORY_MODULE_BLOCKS:"<< g_MEMORY_MODULE_BLOCKS<<endl;
 
+
+  ///////////////////////////////
+  /// DRIVER ///
+  /// Assigning accelerator params
+  ///////////////////////////////
+  // Assigning accelerator config params
+  // Obviously if system has no accelerators then no need to set these params
+
+  if (g_NUM_ACCS > 0) {
+    ASSERT(g_NUM_ACCS >= g_ACCS_PER_CHIP);  // obviously can't have less processors than procs/chip
+    if (g_NUM_L2T_BANKS == 0) {  // defaults to number of ruby nodes
+      g_NUM_L2T_BANKS = g_NUM_ACCS;
+    }
+    ASSERT(g_NUM_L2T_BANKS >= g_NUM_CHIPS);  // cannot have a single L2cache across multiple chips
+    g_NUM_L2T_BANKS_PER_CHIP = g_NUM_L2T_BANKS/g_NUM_CHIPS;
+    g_NUM_ACCS_BITS = log_int(g_NUM_ACCS);
+    g_NUM_L2T_BANKS_BITS = log_int(g_NUM_L2T_BANKS);
+    g_NUM_L2T_BANKS_PER_CHIP_BITS = log_int(g_NUM_L2T_BANKS_PER_CHIP);
+    g_ACCS_PER_CHIP_BITS = log_int(g_ACCS_PER_CHIP);
+  }
+
   if ((!Protocol::m_CMP) && (g_PROCS_PER_CHIP > 1)) {
     ERROR_MSG("Non-CMP protocol should set g_PROCS_PER_CHIP to 1");
   }
@@ -178,6 +200,12 @@ void RubyConfig::init()
 int RubyConfig::L1CacheNumToL2Base(NodeID L1CacheNum)
 {
   return L1CacheNum/g_PROCS_PER_CHIP;
+}
+
+
+int RubyConfig::L1TCacheNumToL2TBase(NodeID L1TCacheNum)
+{
+  return L1TCacheNum/g_ACCS_PER_CHIP;
 }
 
 static void print_parameters(ostream& out)
