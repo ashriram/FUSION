@@ -819,13 +819,11 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
 
   action(uu_profileMiss, "\u", desc="Profile the demand miss") {
     peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-      //profile_L2Cache_miss(convertToGenericType(in_msg.Type), in_msg.AccessMode, MessageSizeTypeToInt(in_msg.MessageSize), in_msg.Prefetch, L1CacheMachIDToProcessorNum(in_msg.Requestor));
     }
   }
 
   action(ww_profileMissNoDir, "\w", desc="Profile this transition at the L2 because Dir won't see the request") {
     peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-      // profile_request(in_msg.L1CacheStateStr, getStateStr(address), "NA", getCoherenceRequestTypeStr(in_msg.Type));
     }
   }
 
@@ -1014,7 +1012,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
 
   transition(IM, {L1_GETX, L1_GETS, L1_GET_INSTR}) {
     zz_recycleL1RequestQueue;
-  }
+  }cd ..emacs
 
   // transitions from SS
   transition(SS, {L1_GETS, L1_GET_INSTR}) {

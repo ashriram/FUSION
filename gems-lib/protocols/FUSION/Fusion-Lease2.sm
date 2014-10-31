@@ -367,7 +367,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
         if(L1RequestIntraChipL2Network_in.isReady()) {
             peek(L1RequestIntraChipL2Network_in,  RequestMsg) {
 
-                assert(machineIDToMachineType(in_msg.Requestor) == MachineType:L1Cache);
+                assert(machineIDToMachineType(in_msg.Requestor) == MachineType:L1TCache);
                 assert(in_msg.Destination.isElement(machineID));
 
                 if (L2cacheMemory.isTagPresent(in_msg.Address)) {

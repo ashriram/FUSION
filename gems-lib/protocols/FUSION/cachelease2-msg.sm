@@ -155,7 +155,16 @@ GenericRequestType convertRequestToGenericType(CoherenceRequestType type) {
      return GenericRequestType:ST;
   } else if(type == CoherenceRequestType:DATA_ATOMIC) {
      return GenericRequestType:ATOMIC;
-  } else {
+  } else if(type == CoherenceRequestType:GETS) {
+    return GenericRequestType:LD;
+  } else if(type == CoherenceRequestType:GET_INSTR) {
+    return GenericRequestType:IFETCH;
+  } else if(type == CoherenceRequestType:GETX) {
+    return GenericRequestType:ST;
+  } else if(type == CoherenceRequestType:UPGRADE) {
+    return GenericRequestType:ST;
+  }
+  else {
     DEBUG_EXPR(type);
     error("invalid CoherenceRequestType");
   }
