@@ -104,7 +104,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
     
     MessageBuffer mandatoryQueue, ordered="false", abstract_chip_ptr="true";
 
-    Sequencer sequencer, abstract_chip_ptr="true", constructor_hack="i";
+    SequencerT sequencer, abstract_chip_ptr="true", constructor_hack="i";
 
     // TYPES
 

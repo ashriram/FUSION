@@ -72,11 +72,11 @@
 #include "Vector.h"
 #include "Sequencer.h"
 
-#include "Sequencer_t.h"
+#include "SequencerT.h"
 
 class Network;
 //class Sequencer;
-//class Sequencer_t;
+//class SequencerT;
 class StoreBuffer;
 class ENTRY;
 class MessageBuffer;
@@ -98,7 +98,7 @@ public:
   NodeID getID() const { return m_id; };
   Network* getNetwork() const { return m_net_ptr; };
   Sequencer* getSequencer(int index)  { return m_L1Cache_sequencer_vec[index]; };
-  Sequencer* getSequencerT(int index)  { return m_L1TCache_sequencer_vec[index]; };
+  SequencerT* getSequencerT(int index)  { return m_L1TCache_sequencer_vec[index]; };
   
   CacheMemory<L1Cache_Entry>* getL1DCache(int index) const {
       assert(m_L1Cache_L1DcacheMemory_vec.size() > index);
@@ -157,7 +157,7 @@ public:
   Vector < CacheMemory<L1Cache_Entry>* > m_L1TCache_cacheMemory_vec;
   Vector < CacheMemory<L1Cache_Entry>* > m_L2TCache_cacheMemory_vec;
   Vector < CacheMemory<L1Cache_Entry>* > m_L1TCache_L1DcacheMemory_vec;
-  Vector < Sequencer* >  m_L1TCache_sequencer_vec; // All chip should have a sequencer
+  Vector < SequencerT* >  m_L1TCache_sequencer_vec; // All chip should have a sequencer
 
 
 protected:
