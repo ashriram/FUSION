@@ -40,14 +40,12 @@ machine(L1Cache, "MI Example") {
   MessageBuffer mandatoryQueue, ordered="false", abstract_chip_ptr="true";
   Sequencer sequencer, abstract_chip_ptr="true", constructor_hack="i";
 
-  Sequencer_t sequencer_t, abstract_chip_ptr="true", constructor_hack="i";
-  // CacheEntry
+   // CacheEntry
   structure(Entry, desc="...", interface="AbstractCacheEntry") {
     State CacheState,        desc="cache state";
     bool Dirty,              desc="Is the data dirty (different than memory)?";
     DataBlock DataBlk,       desc="data for the block";
   }
-
 
   external_type(CacheMemory) {
     bool cacheAvail(Address);
