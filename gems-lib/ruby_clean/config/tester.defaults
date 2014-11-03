@@ -125,9 +125,12 @@ g_PROCS_PER_CHIP: 1
 
 
 // set automatically
-g_NUM_PROCESSORS: 0
+g_NUM_PROCESSORS: 2
 g_NUM_L2_BANKS: 0
 g_NUM_MEMORIES: 0
+
+g_NUM_ACCS: 2
+g_ACCS_PER_CHIP: 2
 
 // The following group of parameters are calculated.  They must
 // _always_ be left at zero.
@@ -146,6 +149,59 @@ g_NUM_MEMORIES_PER_CHIP: 0
 g_MEMORY_MODULE_BITS: 0
 g_MEMORY_MODULE_BLOCKS: 0
 
+// Accelerator Params these should be always set to zero
+g_NUM_ACCS_BITS: 0
+g_PROCS_ACCS_PER_CHIP_BITS: 0
+g_NUM_L2T_BANKS_BITS: 0
+g_NUM_L2T_BANKS_PER_CHIP: 0
+g_NUM_L2T_BANKS_PER_CHIP_BITS: 0
+
+// FUSION Relevant Params
+
+L1_to_L2_MSG_LATENCY: 70
+L1_to_L2_DATA_LATENCY: 70
+L2_to_L1_MSG_LATENCY: 1
+L2_to_L1_DATA_LATENCY: 1
+L2_to_MEM_MSG_LATENCY: 100
+L2_to_MEM_DATA_LATENCY: 100
+MEM_to_L2_MSG_LATENCY: 1
+MEM_to_L2_DATA_LATENCY: 1
+
+// MSHRs per controller
+
+NUMBER_OF_TBES: 128
+
+
+// Lease Prediction params
+
+//
+// GPGPU-Sim added parameters
+//
+g_GMEM_SKIP_L1D: false        // global memory requests skip L1 data cache (used by non-coherent protocol)
+WRITES_STALL_AT_MSHR: true    // writes and atomics stall at MSHRs due to pending requests
+CL_FIXED_LEASE: 800           // fixed lease time
+CL_PREDICTOR_TYPE: 0          // lifetime predictor type
+
+// Different predictor types for cachelease. These are constants - do not modify
+CL_PREDICTOR_TYPE_FIXED: 0
+CL_PREDICTOR_TYPE_GLOBAL: 1
+CL_PREDICTOR_TYPE_PERL2: 2
+CL_PREDICTOR_TYPE_PCFIXED: 3
+CL_PREDICTOR_TYPE_PCADAPTIVE: 4
+CL_PREDICTOR_TYPE_ADDRFIXED: 5
+CL_PREDICTOR_TYPE_ORACLE: 6
+CL_PREDICTOR_TYPE_PCSAMPLER: 7
+
+// DUMMYs
+
+CL_PRED_PCFIXED_INFILE: DUMMY
+CL_PRED_ADDRFIXED_INFILE: DUMMY
+LIFETIME_PROFILER_PERPC_OUTFILE: DUMMY
+LIFETIME_PROFILER_PERADDR_OUTFILE: DUMMY
+LIFETIMETRACE_OUTFILE: DUMMY
+
+
+//////////////////////////////More Params//////
 
 // For certain CMP protocols, determines whether the lowest bits of a block address
 // are used to index to a L2 cache bank or into the sets of a 
@@ -160,15 +216,7 @@ MAP_L2BANKS_TO_LOWEST_BITS: true
 // TIMING PARAMETERS  -- many of these are protocol specific.  See SLICC files
 //                       to determine where they apply
 
-// Use for GPGPU-Sim protocols
-L1_to_L2_MSG_LATENCY: 70
-L1_to_L2_DATA_LATENCY: 70
-L2_to_L1_MSG_LATENCY: 1
-L2_to_L1_DATA_LATENCY: 1
-L2_to_MEM_MSG_LATENCY: 100
-L2_to_MEM_DATA_LATENCY: 100
-MEM_to_L2_MSG_LATENCY: 1
-MEM_to_L2_DATA_LATENCY: 1
+
 
 //MEMORY_RESPONSE_LATENCY_MINUS_2: 400  // determines memory response latency
 //L1_REQUEST_LATENCY: 140
@@ -224,7 +272,7 @@ g_CACHE_DESIGN: NUCA  // specifies file prefix for FILE_SPECIFIED topology
 FAN_OUT_DEGREE: 4  // for HIERARCHICAL SWITCH topology
 
 g_adaptive_routing: false
-NUMBER_OF_VIRTUAL_NETWORKS: 6
+NUMBER_OF_VIRTUAL_NETWORKS: 8
 
 // bandwidth unit is 1/1000 byte per cycle.  the following parameter is multiplied by
 //  topology specific link weights
@@ -256,64 +304,6 @@ PROTOCOL_BUFFER_SIZE: 20
 // number of cycles.  However the TBE table can be accessed in parallel.
 //SINGLE_ACCESS_L2_BANKS: true
 
-
-// constants used by TM protocols
-//PROFILE_EXCEPTIONS: false
-//PROFILE_XACT: true
-//PROFILE_NONXACT: false
-//XACT_DEBUG: true
-//XACT_DEBUG_LEVEL: 1
-//XACT_MEMORY: true  // set to true for TM protocols. set it HERE for lazy systems to register the proper SIMICS interfaces
-//XACT_MEMORY: false
-//XACT_ENABLE_TOURMALINE: false // perfect memory system
-//XACT_NUM_CURRENT: 0 // must be 0
-//XACT_LAST_UPDATE: 0 // must be 0
-//XACT_ISOLATION_CHECK: false // Checks whether each memory access preserves transaction isolation
-//PERFECT_FILTER: true                // If true, use perfect physical read/write filters
-//READ_WRITE_FILTER: Perfect_
-//PERFECT_VIRTUAL_FILTER: true        // If true, use perfect virtual read/write filters
-//VIRTUAL_READ_WRITE_FILTER: Perfect_
-//PERFECT_SUMMARY_FILTER: true        // If true, use perfect summary read/write filters
-//SUMMARY_READ_WRITE_FILTER: Perfect_
-//XACT_EAGER_CD: true
-//XACT_LAZY_VM: false
-//XACT_CONFLICT_RES: BASE
-//XACT_COMMIT_TOKEN_LATENCY: 0
-//XACT_VISUALIZER: false
-//XACT_NO_BACKOFF: false
-//XACT_LOG_BUFFER_SIZE: 0
-//XACT_STORE_PREDICTOR_ENTRIES: 256
-//XACT_STORE_PREDICTOR_HISTORY: 256
-//XACT_STORE_PREDICTOR_THRESHOLD: 4
-//XACT_FIRST_ACCESS_COST: 0
-//XACT_FIRST_PAGE_ACCESS_COST: 0
-//ENABLE_MAGIC_WAITING: false
-//ENABLE_WATCHPOINT: false
-//XACT_ENABLE_VIRTUALIZATION_LOGTM_SE: false
-// g_NETWORK_TOPOLOGY: FILE_SPECIFIED
-// NUMBER_OF_VIRTUAL_NETWORKS: 5
-// L2_REQUEST_LATENCY: 15
-// SEQUENCER_TO_CONTROLLER_LATENCY: 3
-// L2_RESPONSE_LATENCY: 20
-// L2_TAG_LATENCY: 6
-// MEMORY_RESPONSE_LATENCY_MINUS_2: 448
-// RECYCLE_LATENCY: 1
-// g_MEMORY_SIZE_BYTES: 268435456
-// REMOVE_SINGLE_CYCLE_DCACHE_FAST_PATH: true
-
-// ATMTP
-//ATMTP_ENABLED: false
-//ATMTP_ABORT_ON_NON_XACT_INST: false
-//ATMTP_ALLOW_SAVE_RESTORE_IN_XACT: false
-//ATMTP_XACT_MAX_STORES: 32
-//ATMTP_DEBUG_LEVEL: 0
-
-// MOESI_CMP_token parameters (some might be deprecated)
-//g_FILTERING_ENABLED: false
-//g_DISTRIBUTED_PERSISTENT_ENABLED: true
-//g_RETRY_THRESHOLD: 1
-//g_DYNAMIC_TIMEOUT_ENABLED: true
-//g_FIXED_TIMEOUT_LATENCY: 300
 
 
 // tester parameters (overridden by testerconfig.defaults)
@@ -481,28 +471,3 @@ MEM_FIXED_DELAY: 0
 // MEM_CTL_LATENCY: 20
 // REFRESH_PERIOD: 3120
 
-//
-// GPGPU-Sim added parameters
-//
-g_GMEM_SKIP_L1D: false        // global memory requests skip L1 data cache (used by non-coherent protocol)
-WRITES_STALL_AT_MSHR: true    // writes and atomics stall at MSHRs due to pending requests
-CL_FIXED_LEASE: 800           // fixed lease time
-CL_PREDICTOR_TYPE: 0          // lifetime predictor type
-
-// Different predictor types for cachelease. These are constants - do not modify
-CL_PREDICTOR_TYPE_FIXED: 0
-CL_PREDICTOR_TYPE_GLOBAL: 1
-CL_PREDICTOR_TYPE_PERL2: 2
-CL_PREDICTOR_TYPE_PCFIXED: 3
-CL_PREDICTOR_TYPE_PCADAPTIVE: 4
-CL_PREDICTOR_TYPE_ADDRFIXED: 5
-CL_PREDICTOR_TYPE_ORACLE: 6
-CL_PREDICTOR_TYPE_PCSAMPLER: 7
-
-// DUMMYs
-
-CL_PRED_PCFIXED_INFILE: DUMMY
-CL_PRED_ADDRFIXED_INFILE: DUMMY
-LIFETIME_PROFILER_PERPC_OUTFILE: DUMMY
-LIFETIME_PROFILER_PERADDR_OUTFILE: DUMMY
-LIFETIMETRACE_OUTFILE: DUMMY

@@ -202,6 +202,38 @@ MachineID map_L1TCacheMachId_to_L2TCache(const Address& addr, MachineID L1TCache
 }
 
 
+// input parameter is the base ruby node of the L2T cache
+// returns a value between 0 and total_L2_Caches_within_the_system
+inline
+MachineID map_L2TCacheMachId_to_L2Cache(const Address& addr, MachineID L2TCacheMachId) 
+{
+  int L2bank = 0;
+  assert (L2TCacheMachId.type == MACHINETYPE_L2TCACHE_ENUM);
+
+  MachineID mach = {MACHINETYPE_L2CACHE_ENUM, 0};  
+
+  if (RubyConfig::L2CachePerChipBits() > 0) {
+    if (MAP_L2BANKS_TO_LOWEST_BITS) {
+      L2bank = addr.bitSelect(RubyConfig::dataBlockBits(),
+                         RubyConfig::dataBlockBits()+RubyConfig::L2CachePerChipBits()-1);
+    } else {
+      L2bank = addr.bitSelect(RubyConfig::dataBlockBits()+L2_CACHE_NUM_SETS_BITS,
+                         RubyConfig::dataBlockBits()+L2_CACHE_NUM_SETS_BITS+RubyConfig::L2CachePerChipBits()-1);
+    }
+  } 
+
+  assert(L2bank < RubyConfig::numberOfL2CachePerChip());
+  assert(L2bank >= 0);
+
+  int chip = L2TCacheMachId.num/RubyConfig::numberOfL2TCachePerChip();
+
+  mach.num = chip*RubyConfig::numberOfL2CachePerChip() // base #
+    + L2bank;  // bank #
+  assert(mach.num < RubyConfig::numberOfL2Cache());
+  return mach;
+}
+
+
 
 // used to determine the correct L2 bank
 // input parameter is the base ruby node of the L2 cache

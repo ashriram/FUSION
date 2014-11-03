@@ -451,7 +451,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
           out_msg.Address := address;
           out_msg.Type := CoherenceRequestType:GETX;
           out_msg.Requestor := machineID;
-          out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+          out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
           out_msg.OriginalRequestorMachId := machineID;
           out_msg.MessageSize := MessageSizeType:Control;
         }
@@ -464,7 +464,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
           out_msg.Address := address;
           out_msg.Type := CoherenceRequestType:GETX;
           out_msg.Requestor := machineID;
-          out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+          out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
           out_msg.OriginalRequestorMachId := machineID;
           out_msg.MessageSize := MessageSizeType:Control;
         }
@@ -484,7 +484,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
                 out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
                 out_msg.Dirty := getL2CacheEntry(address).Dirty;
                 out_msg.Sender:= machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
                 out_msg.Type := CoherenceResponseType:DATA_ACC;
                 out_msg.MessageSize := MessageSizeType:Data;
             }
@@ -496,7 +496,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
                 out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
                 out_msg.Dirty := getL2CacheEntry(address).Dirty;
                 out_msg.Requestor:= machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
                 out_msg.Type := CoherenceRequestType:PUTX_ACC;
                 out_msg.MessageSize := MessageSizeType:Writeback_Control;
             }
