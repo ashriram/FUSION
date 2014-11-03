@@ -6,9 +6,9 @@
 
     --------------------------------------------------------------------
 
-    This file is part of the SLICC (Specification Language for 
-    Implementing Cache Coherence), a component of the Multifacet GEMS 
-    (General Execution-driven Multiprocessor Simulator) software 
+    This file is part of the SLICC (Specification Language for
+    Implementing Cache Coherence), a component of the Multifacet GEMS
+    (General Execution-driven Multiprocessor Simulator) software
     toolset originally developed at the University of Wisconsin-Madison.
 
     SLICC was originally developed by Milo Martin with substantial
@@ -18,7 +18,7 @@
     University of Wisconsin was performed by Alaa Alameldeen, Brad
     Beckmann, Jayaram Bobba, Ross Dickson, Dan Gibson, Pacia Harper,
     Derek Hower, Milo Martin, Michael Marty, Carl Mauer, Michelle Moravan,
-    Kevin Moore, Andrew Phelps, Manoj Plakal, Daniel Sorin, Haris Volos, 
+    Kevin Moore, Andrew Phelps, Manoj Plakal, Daniel Sorin, Haris Volos,
     Min Xu, and Luke Yen.
     --------------------------------------------------------------------
 
@@ -56,7 +56,7 @@
 
 /*
  * ObjDeclAST.C
- * 
+ *
  * Description: See ObjDeclAST.h
  *
  * $Id: ObjDeclAST.C,v 3.13 2004/06/24 15:56:14 beckmann Exp $
@@ -67,8 +67,8 @@
 #include "SymbolTable.h"
 #include "main.h"
 
-ObjDeclAST::ObjDeclAST(TypeAST* type_ptr, 
-                       string* ident_ptr, 
+ObjDeclAST::ObjDeclAST(TypeAST* type_ptr,
+                       string* ident_ptr,
                        PairListAST* pairs_ptr)
   : DeclAST(pairs_ptr)
 {
@@ -94,7 +94,7 @@ void ObjDeclAST::generate()
 
   if (getPairs().exist("hack")) {
     warning("'hack=' is now deprecated");
-  } 
+  }
 
   if (getPairs().exist("network")) {
     if (!getPairs().exist("virtual_network")) {
@@ -102,7 +102,7 @@ void ObjDeclAST::generate()
     }
   }
 
-  Type* type_ptr = m_type_ptr->lookupType();  
+  Type* type_ptr = m_type_ptr->lookupType();
   if (type_ptr->isBuffer()) {
     if (!getPairs().exist("ordered")) {
       error("Buffer object declarations require an 'ordered' attribute.");
@@ -137,16 +137,21 @@ void ObjDeclAST::generate()
     c_code = "m_machineID";
   } else if (*m_ident_ptr == "sequencer") {
     c_code = "*(dynamic_cast<"+m_type_ptr->toString()+"*>(m_chip_ptr->getSequencer(m_version)))";
-    machineComponentSym = true;
-  } /*else if (*m_ident_ptr == "xfdr_record_mgr") {
+      machineComponentSym = true;
+  } else if (*m_ident_ptr == "sequencerT") {
+        c_code = "*(dynamic_cast<"+m_type_ptr->toString()+"*>(m_chip_ptr->getSequencerT(m_version)))";
+        machineComponentSym = true;
+  }
+
+   /*else if (*m_ident_ptr == "xfdr_record_mgr") {
     c_code = "*(dynamic_cast<"+m_type_ptr->toString()+"*>(m_chip_ptr->getXfdrManager(m_version)))";
     machineComponentSym = true;
-    } */else if (// getPairs().exist("network") || (m_type_ptr->lookupType()->existPair("cache")) 
-//              || (m_type_ptr->lookupType()->existPair("tbe")) ||  
-//              (m_type_ptr->lookupType()->existPair("newtbe")) ||  
-//              (m_type_ptr->lookupType()->existPair("timer")) ||  
-//              (m_type_ptr->lookupType()->existPair("dir")) || 
-//              (m_type_ptr->lookupType()->existPair("persistent")) || 
+    } */else if (// getPairs().exist("network") || (m_type_ptr->lookupType()->existPair("cache"))
+//              || (m_type_ptr->lookupType()->existPair("tbe")) ||
+//              (m_type_ptr->lookupType()->existPair("newtbe")) ||
+//              (m_type_ptr->lookupType()->existPair("timer")) ||
+//              (m_type_ptr->lookupType()->existPair("dir")) ||
+//              (m_type_ptr->lookupType()->existPair("persistent")) ||
 //              (m_type_ptr->lookupType()->existPair("filter")) ||
 //              (getPairs().exist("trigger_queue"))
              getPairs().exist("no_vector")) {
@@ -157,7 +162,7 @@ void ObjDeclAST::generate()
     machineComponentSym = true;
   }
 
-  Var* v = new Var(*m_ident_ptr, getLocation(), type_ptr, c_code, 
+  Var* v = new Var(*m_ident_ptr, getLocation(), type_ptr, c_code,
                              getPairs(), g_sym_table.getStateMachine());
 
   g_sym_table.newSym(v);
@@ -166,10 +171,10 @@ void ObjDeclAST::generate()
   if (machineComponentSym) {
     g_sym_table.newMachComponentSym(v);
   }
-                    
+
 }
 
-void ObjDeclAST::print(ostream& out) const 
-{ 
-  out << "[ObjDecl: " << *m_ident_ptr << "]"; 
+void ObjDeclAST::print(ostream& out) const
+{
+  out << "[ObjDecl: " << *m_ident_ptr << "]";
 }

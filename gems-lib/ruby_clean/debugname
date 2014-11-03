@@ -1,15 +1,27 @@
       1   0  -1        Seq               Begin       >       [0x400, line 0x400] LD
-      5   0   0    L1Cache                Load     NP>IS     [0x400, line 0x400] 
-     83   0   0    L2Cache             L1_GETS     NP>ISS    [0x400, line 0x400] [NetDest (5) 0 0  - 0 0  - 0 0  - 1 0  - 0 0  - ]
-     95   0   0  Directory               Fetch      I>I      [0x400, line 0x400] 
-    104   0   0    L2Cache            Mem_Data    ISS>MT_MB  [0x400, line 0x400] 
-    117   0  -1        Seq                Done       >       [0x400, line 0x400] 116 cycles NULL LD Yes
-    117   0   0    L1Cache      Data_Exclusive     IS>E      [0x400, line 0x400] 
-    195   0   0    L2Cache   Exclusive_Unblock  MT_MB>MT     [0x400, line 0x400] 
-    201   1  -1        Seq               Begin       >       [0x400, line 0x400] ST
-    205   0   1    L1Cache               Store     NP>IM     [0x400, line 0x400] 
-    283   0   0    L2Cache             L1_GETX     MT>MT_MB  [0x400, line 0x400] 
-    295   0   0    L1Cache            Fwd_GETX      E>I      [0x400, line 0x400] 
-    373   1  -1        Seq                Done       >       [0x400, line 0x400] 172 cycles NULL ST Yes
-    373   0   1    L1Cache       Data_all_Acks     IM>M      [0x400, line 0x400] 
-    451   0   0    L2Cache   Exclusive_Unblock  MT_MB>MT     [0x400, line 0x400] 
+../protocols/FUSION/Fusion-Lease1.sm:374: [0x400, line 0x400]
+../protocols/FUSION/Fusion-Lease1.sm:375: [NetDest (5) 0 0  - 1 0  - 0 0  - 0 0  - 0 0  - ]
+      5   0   0   L1TCache                Load      I>I_S    [0x400, line 0x400] 
+     83   0   0   L2TCache             L1_GETS     NP>IS     [0x400, line 0x400] 
+../protocols/FUSION/Fusion-MESI2.sm:409: [0x400, line 0x400]
+../protocols/FUSION/Fusion-MESI2.sm:410: 0
+../protocols/FUSION/Fusion-MESI2.sm:411: NP
+../protocols/FUSION/Fusion-MESI2.sm:412: L2TCache-0
+../protocols/FUSION/Fusion-MESI2.sm:413: GETX
+../protocols/FUSION/Fusion-MESI2.sm:414: [NetDest (5) 0 0  - 0 0  - 1 0  - 0 0  - 0 0  - ]
+    191   0   0    L2Cache             L1_GETX     NP>IM     [0x400, line 0x400] 
+    203   0   0  Directory               Fetch      I>I      [0x400, line 0x400] 
+../protocols/FUSION/Fusion-MESI2.sm:584: [NetDest (5) 0 0  - 1 0  - 0 0  - 0 0  - 0 0  - ]
+../protocols/FUSION/Fusion-MESI2.sm:587: [0x400, line 0x400]
+../protocols/FUSION/Fusion-MESI2.sm:588: [NetDest (5) 0 0  - 1 0  - 0 0  - 0 0  - 0 0  - ]
+../protocols/FUSION/Fusion-MESI2.sm:589: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]
+    212   0   0    L2Cache            Mem_Data     IM>MT_MB  [0x400, line 0x400] 
+    221   0   0   L2TCache       Data_all_Acks     IS>S      [0x400, line 0x400] 
+../protocols/FUSION/Fusion-Lease1.sm:219: 0
+../protocols/FUSION/Fusion-Lease1.sm:220: [0x400, line 0x400]
+    230   0  -1        Seq                Done       >       [0x400, line 0x400] 229 cycles NULL LD Yes
+    230   0   0   L1TCache           Data_Done    I_S>S      [0x400, line 0x400] 
+../protocols/FUSION/Fusion-MESI2.sm:263: L2Cache-0
+../protocols/FUSION/Fusion-MESI2.sm:264: L2TCache-0
+../protocols/FUSION/Fusion-MESI2.sm:265: [0x400, line 0x400]
+    299   0   0    L2Cache   Exclusive_Unblock  MT_MB>MT     [0x400, line 0x400] 

@@ -367,7 +367,8 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
       peek(responseIntraChipL2Network_in, ResponseMsg) {
         // test wether it's from a local L1 or an off chip source
         assert(in_msg.Destination.isElement(machineID));
-        if(machineIDToMachineType(in_msg.Sender) == MachineType:L1Cache) {
+        if ((machineIDToMachineType(in_msg.Sender) == MachineType:L1Cache) ||  (machineIDToMachineType(in_msg.Sender) == MachineType:L2TCache))
+ {
           if(in_msg.Type == CoherenceResponseType:DATA) {
             if (in_msg.Dirty) {
               trigger(Event:WB_Data, in_msg.Address);
@@ -411,7 +412,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
         DEBUG_EXPR(in_msg.Requestor);
         DEBUG_EXPR(in_msg.Type);
         DEBUG_EXPR(in_msg.Destination);
-        assert(machineIDToMachineType(in_msg.Requestor) == MachineType:L1Cache);
+        assert ((machineIDToMachineType(in_msg.Requestor) == MachineType:L1Cache) ||  (machineIDToMachineType(in_msg.Requestor) == MachineType:L2TCache));
         assert(in_msg.Destination.isElement(machineID));
         if (L2cacheMemory.isTagPresent(in_msg.Address)) { 
           // The L2 contains the block, so proceeded with handling the request
@@ -646,7 +647,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
   action(jj_popL1RequestQueue, "\j", desc="Pop incoming L1 request queue") {
     // Profile
     peek(L1RequestIntraChipL2Network_in,  RequestMsg) {
-      assert(machineIDToMachineType(in_msg.Requestor) == MachineType:L1Cache);
+      assert ((machineIDToMachineType(in_msg.Requestor) == MachineType:L1Cache) ||  (machineIDToMachineType(in_msg.Requestor) == MachineType:L2TCache));
       if(in_msg.Type == CoherenceRequestType:PUTX) {
          // PUTX is always data, L1 sends data even in E state (if data is clean)
          if(in_msg.Dirty) {
@@ -667,7 +668,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
   action(k_popUnblockQueue, "k", desc="Pop incoming unblock queue") {
     // Profile
     peek(L1unblockNetwork_in,  ResponseMsg) {
-      assert(machineIDToMachineType(in_msg.Sender) == MachineType:L1Cache);
+      assert ((machineIDToMachineType(in_msg.Sender) == MachineType:L1Cache) ||  (machineIDToMachineType(in_msg.Sender) == MachineType:L2TCache));
       if (in_msg.Type == CoherenceResponseType:EXCLUSIVE_UNBLOCK ||
           in_msg.Type == CoherenceResponseType:UNBLOCK) {
         profileBandwidth("L1_COHMSG", in_msg.MessageSize);
@@ -683,7 +684,8 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
   action(o_popIncomingResponseQueue, "o", desc="Pop Incoming Response queue") {
     // Profile
     peek(responseIntraChipL2Network_in, ResponseMsg) {
-      if(machineIDToMachineType(in_msg.Sender) == MachineType:L1Cache) {
+      if ((machineIDToMachineType(in_msg.Sender) == MachineType:L1Cache) ||  (machineIDToMachineType(in_msg.Sender) == MachineType:L2TCache))
+      {
         if(in_msg.Type == CoherenceResponseType:DATA) {
            if(in_msg.Dirty) {
               profileBandwidth("L1_DATA_PX", in_msg.MessageSize);

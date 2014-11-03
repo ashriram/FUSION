@@ -859,7 +859,7 @@ void SequencerT::makeMemfenceRequest(const CacheMsg& request) {
 
    // Send the message to the cache controller
    assert(latency > 0);
-   m_chip_ptr->m_L1Cache_mandatoryQueue_vec[m_version]->enqueue(msg, latency);
+   m_chip_ptr->m_L1TCache_mandatoryQueue_vec[m_version]->enqueue(msg, latency);
 
 }
 
@@ -935,7 +935,7 @@ void SequencerT::issueSkipL1Request(const CacheMsg& request) {
 
    // Send the message to the cache controller
    assert(latency > 0);
-   m_chip_ptr->m_L1Cache_mandatoryQueue_vec[m_version]->enqueue(msg, latency);
+   m_chip_ptr->m_L1TCache_mandatoryQueue_vec[m_version]->enqueue(msg, latency);
 }
 
 void SequencerT::issueRequest(const CacheMsg& request) {
@@ -960,7 +960,7 @@ void SequencerT::issueRequest(const CacheMsg& request) {
 
     // Send the message to the cache controller
     assert(latency > 0);
-    m_chip_ptr->m_L1Cache_mandatoryQueue_vec[m_version]->enqueue(msg, latency);
+    m_chip_ptr->m_L1TCache_mandatoryQueue_vec[m_version]->enqueue(msg, latency);
 
   }  // !found
 }
