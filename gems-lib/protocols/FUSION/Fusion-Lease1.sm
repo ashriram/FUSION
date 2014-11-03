@@ -446,8 +446,8 @@ machine(L1TCache, "FUSION Lease v2 L1 Cache") {
 
     action(hh_store_hit, "\h", desc="If not prefetch, notify sequencer that store completed.") {
        peek(responseIntraChipL1Network_in, ResponseMsg) {
-          sequencerT.writeCallback(in_msg.Address, in_msg.memfetch);
-          //sequencer.writeCallback(in_msg.Address);
+         // sequencerT.writeCallback(in_msg.Address, in_msg.memfetch);
+          sequencerT.writeCallback(in_msg.Address);
        }
     }
 
