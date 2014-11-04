@@ -162,9 +162,9 @@ void sendruby_request( unsigned long long addr, unsigned req_size, unsigned sid,
   } else {
     access_mode = AccessModeType_UserMode;
   }
-int acc_no = 4;
+//int acc_no = 4;
 
-    if  (cpuNumber <acc_no )
+    if  (cpuNumber >= g_NUM_ACCS )
     {
       // Send request to sequencer
       Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
