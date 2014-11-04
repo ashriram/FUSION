@@ -175,7 +175,7 @@ void RubyConfig::init()
   ///////////////////////////////
   // Assigning accelerator config params
   // Obviously if system has no accelerators then no need to set these params
-
+  CHECK_NON_ZERO(g_NUM_ACCS);
   if (g_NUM_ACCS > 0) {
     ASSERT(g_NUM_ACCS >= g_ACCS_PER_CHIP);  // obviously can't have less processors than procs/chip
     if (g_NUM_L2T_BANKS == 0) {  // defaults to number of ruby nodes
