@@ -77,7 +77,7 @@
 #include "Chip.h"
 #include "RubyConfig.h"
 #include "Sequencer.h"
-
+#include "SequencerT.h"
 using namespace std;
 #include <string>
 #include <map>
@@ -162,30 +162,57 @@ void sendruby_request( unsigned long long addr, unsigned req_size, unsigned sid,
   } else {
     access_mode = AccessModeType_UserMode;
   }
+int acc_no = 4;
 
-  // Send request to sequencer
-  Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
+    if  (cpuNumber <acc_no )
+    {
+      // Send request to sequencer
+      Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
 
-  targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
-                                            Address( physicalAddr ),
-                                            req_type,
-                                            Address(virtualPC),
-                                            access_mode,   // User/supervisor mode
-                                            requestSize,   // Size in bytes of request
-                                            PrefetchBit_No, // Not a prefetch
-                                            0,              // Version number
-                                            Address(logicalAddr),   // Virtual Address
-                                            thread,              // SMT thread 
-                                            0,          // TM specific - timestamp of memory request
-                                            false,      // TM specific - whether request is part of escape action
-                                            MemorySpaceType_NULL,    // memory space
-                                            false,                    // profiled yet?
-                                            0,      // dirty mask
-                                            0                  // memfetch pointer
-                                            )
-                                   );
+      targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
+                                                Address( physicalAddr ),
+                                                req_type,
+                                                Address(virtualPC),
+                                                access_mode,   // User/supervisor mode
+                                                requestSize,   // Size in bytes of request
+                                                PrefetchBit_No, // Not a prefetch
+                                                0,              // Version number
+                                                Address(logicalAddr),   // Virtual Address
+                                                thread,              // SMT thread 
+                                                0,          // TM specific - timestamp of memory request
+                                                false,      // TM specific - whether request is part of escape action
+                                                MemorySpaceType_NULL,    // memory space
+                                                false,                    // profiled yet?
+                                                0,      // dirty mask
+                                                0                  // memfetch pointer
+                                                )
+                                       );
+     }
+    else 
+    {
+      // Send request to sequencer
+      SequencerT* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencerT(cpuNumber%RubyConfig::numberOfProcsPerChip());
+
+      targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
+                                                Address( physicalAddr ),
+                                                req_type,
+                                                Address(virtualPC),
+                                                access_mode,   // User/supervisor mode
+                                                requestSize,   // Size in bytes of request
+                                                PrefetchBit_No, // Not a prefetch
+                                                0,              // Version number
+                                                Address(logicalAddr),   // Virtual Address
+                                                thread,              // SMT thread 
+                                                0,          // TM specific - timestamp of memory request
+                                                false,      // TM specific - whether request is part of escape action
+                                                MemorySpaceType_NULL,    // memory space
+                                                false,                    // profiled yet?
+                                                0,      // dirty mask
+                                                0                  // memfetch pointer
+                                                )
+                                       );
+    }
 }
-
 void tester_initialize(int argc, char **argv)
 {
   int   param_len = strlen( global_default_param ) + strlen( global_default_tester_param ) + 1;
