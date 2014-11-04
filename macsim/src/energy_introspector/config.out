@@ -1,0 +1,617 @@
+pre_config processing ...
+creating pseudo module icache
+creating pseudo module icacheMissBuffer
+creating pseudo module icacheFillBuffer
+creating pseudo module icachePrefetchBuffer
+creating pseudo module instBuffer
+creating pseudo module branchTargetBuffer
+creating pseudo module ID_inst
+creating pseudo module ID_operand
+creating pseudo module ID_misc
+creating pseudo module globalPredictor
+creating pseudo module L1_localPredictor
+creating pseudo module L2_localPredictor
+creating pseudo module chooser
+creating pseudo module RAS
+creating pseudo module instIssueQueue
+creating pseudo module fpIssueQueue
+creating pseudo module ROB
+creating pseudo module instSelection
+creating pseudo module dcache
+creating pseudo module dcacheMissBuffer
+creating pseudo module dcacheFillBuffer
+creating pseudo module dcachePrefetchBuffer
+creating pseudo module dcacheWritebackBuffer
+creating pseudo module storeQueue
+creating pseudo module loadQueue
+creating pseudo module ITLB
+creating pseudo module DTLB
+creating pseudo module IRF
+creating pseudo module FRF
+creating pseudo module ALU
+creating pseudo module FPU
+creating pseudo module MUL
+creating pseudo module aluBypass
+creating pseudo module aluTagBypass
+creating pseudo module mulBypass
+creating pseudo module mulTagBypass
+creating pseudo module fpuBypass
+creating pseudo module fpuTagBypass
+creating pseudo module intFRAT
+creating pseudo module fpFRAT
+creating pseudo module intRRAT
+creating pseudo module fpRRAT
+creating pseudo module intFreelist
+creating pseudo module fpFreelist
+creating pseudo module intDepCheck
+creating pseudo module fpDepCheck
+creating pseudo module Undiffcore
+creating pseudo module Pipeline
+creating pseudo module L2cache
+creating pseudo module L2cacheMissBuffer
+creating pseudo module L2cacheFillBuffer
+creating pseudo module L2cachePrefetchBuffer
+creating pseudo module L2cacheWritebackBuffer
+creating pseudo module L3cache
+creating pseudo module L3cacheMissBuffer
+creating pseudo module L3cacheFillBuffer
+creating pseudo module L3cachePrefetchBuffer
+creating pseudo module L3cacheWritebackBuffer
+creating pseudo module network
+post_config processing...
+initializing pseudo module icache
+initializing pseudo module icacheMissBuffer
+initializing pseudo module icacheFillBuffer
+initializing pseudo module icachePrefetchBuffer
+initializing pseudo module instBuffer
+initializing pseudo module branchTargetBuffer
+initializing pseudo module ID_inst
+initializing pseudo module ID_operand
+initializing pseudo module ID_misc
+initializing pseudo module globalPredictor
+initializing pseudo module L1_localPredictor
+initializing pseudo module L2_localPredictor
+initializing pseudo module chooser
+initializing pseudo module RAS
+initializing pseudo module instIssueQueue
+initializing pseudo module fpIssueQueue
+initializing pseudo module ROB
+initializing pseudo module instSelection
+initializing pseudo module dcache
+initializing pseudo module dcacheMissBuffer
+initializing pseudo module dcacheFillBuffer
+initializing pseudo module dcachePrefetchBuffer
+initializing pseudo module dcacheWritebackBuffer
+initializing pseudo module storeQueue
+initializing pseudo module loadQueue
+initializing pseudo module ITLB
+initializing pseudo module DTLB
+initializing pseudo module IRF
+initializing pseudo module FRF
+initializing pseudo module ALU
+initializing pseudo module FPU
+initializing pseudo module MUL
+initializing pseudo module aluBypass
+initializing pseudo module aluTagBypass
+initializing pseudo module mulBypass
+initializing pseudo module mulTagBypass
+initializing pseudo module fpuBypass
+initializing pseudo module fpuTagBypass
+initializing pseudo module intFRAT
+initializing pseudo module fpFRAT
+initializing pseudo module intRRAT
+EI WARNING (McPAT): intRRAT array size is smaller than the minimum
+initializing pseudo module fpRRAT
+EI WARNING (McPAT): fpRRAT array size is smaller than the minimum
+initializing pseudo module intFreelist
+initializing pseudo module fpFreelist
+initializing pseudo module intDepCheck
+initializing pseudo module fpDepCheck
+initializing pseudo module Undiffcore
+initializing pseudo module Pipeline
+initializing pseudo module L2cache
+initializing pseudo module L2cacheMissBuffer
+initializing pseudo module L2cacheFillBuffer
+initializing pseudo module L2cachePrefetchBuffer
+initializing pseudo module L2cacheWritebackBuffer
+initializing pseudo module L3cache
+initializing pseudo module L3cacheMissBuffer
+initializing pseudo module L3cacheFillBuffer
+initializing pseudo module L3cachePrefetchBuffer
+initializing pseudo module L3cacheWritebackBuffer
+initializing pseudo module network
+### CONFIGURATION SUMMARY ###
+module ALU
+  area = 4.036032mm^2
+  energy_library: mcpat
+  unit_energy.read = 168.868pJ
+  unit_energy.write = 168.868pJ
+  unit_energy.leakage = 628.640pJ (2.137375 W)
+  partition: n/a
+module DTLB
+  area = 0.380515mm^2
+  energy_library: mcpat
+  unit_energy.read = 15.998pJ
+  unit_energy.write = 28.184pJ
+  unit_energy.read_tag = 15.998pJ
+  unit_energy.write_tag = 28.184pJ
+  unit_energy.search = 68.888pJ
+  unit_energy.leakage =  3.566pJ (0.012124 W)
+  partition: n/a
+module FPU
+  area = 9.719586mm^2
+  energy_library: mcpat
+  unit_energy.read = 506.604pJ
+  unit_energy.write = 506.604pJ
+  unit_energy.leakage = 378.473pJ (1.286808 W)
+  partition: n/a
+module FRF
+  area = 3.700477mm^2
+  energy_library: mcpat
+  unit_energy.read = 28.090pJ
+  unit_energy.write = 33.112pJ
+  unit_energy.leakage =  6.072pJ (0.020646 W)
+  partition: n/a
+module ID_inst
+  area = 3.860223mm^2
+  energy_library: mcpat
+  unit_energy.read = 44.008pJ
+  unit_energy.write = 44.008pJ
+  unit_energy.leakage = 115.311pJ (0.392058 W)
+  partition: n/a
+module ID_misc
+  area = 0.015310mm^2
+  energy_library: mcpat
+  unit_energy.read = 42.521pJ
+  unit_energy.write = 42.521pJ
+  unit_energy.leakage =  0.454pJ (0.001542 W)
+  partition: n/a
+module ID_operand
+  area = 0.001005mm^2
+  energy_library: mcpat
+  unit_energy.read = 42.433pJ
+  unit_energy.write = 42.433pJ
+  unit_energy.leakage =  0.029pJ (0.000099 W)
+  partition: n/a
+module IRF
+  area = 7.566354mm^2
+  energy_library: mcpat
+  unit_energy.read = 37.517pJ
+  unit_energy.write = 44.542pJ
+  unit_energy.leakage =  9.033pJ (0.030711 W)
+  partition: n/a
+module ITLB
+  area = 0.127440mm^2
+  energy_library: mcpat
+  unit_energy.read = 11.538pJ
+  unit_energy.write = 20.127pJ
+  unit_energy.read_tag = 11.538pJ
+  unit_energy.write_tag = 20.127pJ
+  unit_energy.search = 55.152pJ
+  unit_energy.leakage =  2.251pJ (0.007654 W)
+  partition: n/a
+module L1_localPredictor
+  area = 0.078869mm^2
+  energy_library: mcpat
+  unit_energy.read =  9.436pJ
+  unit_energy.write =  8.800pJ
+  unit_energy.read_tag =  2.944pJ
+  unit_energy.write_tag =  2.735pJ
+  unit_energy.leakage =  1.449pJ (0.004927 W)
+  partition: n/a
+module L2_localPredictor
+  area = 0.050748mm^2
+  energy_library: mcpat
+  unit_energy.read =  6.431pJ
+  unit_energy.write =  6.014pJ
+  unit_energy.read_tag =  2.944pJ
+  unit_energy.write_tag =  2.735pJ
+  unit_energy.leakage =  1.027pJ (0.003491 W)
+  partition: n/a
+module L2cache
+  area = 15.399645mm^2
+  energy_library: mcpat
+  unit_energy.read = 651.919pJ
+  unit_energy.write = 661.481pJ
+  unit_energy.read_tag = 37.142pJ
+  unit_energy.write_tag = 112.272pJ
+  unit_energy.leakage = 383.030pJ (1.302303 W)
+  partition: n/a
+module L2cacheFillBuffer
+  area = 0.220070mm^2
+  energy_library: mcpat
+  unit_energy.read =  8.859pJ
+  unit_energy.write = 10.677pJ
+  unit_energy.read_tag =  8.859pJ
+  unit_energy.write_tag = 10.677pJ
+  unit_energy.search = 15.653pJ
+  unit_energy.leakage =  0.728pJ (0.002476 W)
+  partition: n/a
+module L2cacheMissBuffer
+  area = 0.070870mm^2
+  energy_library: mcpat
+  unit_energy.read =  4.531pJ
+  unit_energy.write =  5.476pJ
+  unit_energy.read_tag =  4.531pJ
+  unit_energy.write_tag =  5.476pJ
+  unit_energy.search = 11.300pJ
+  unit_energy.leakage =  0.450pJ (0.001530 W)
+  partition: n/a
+module L2cachePrefetchBuffer
+  area = 0.220070mm^2
+  energy_library: mcpat
+  unit_energy.read =  8.859pJ
+  unit_energy.write = 10.677pJ
+  unit_energy.read_tag =  8.859pJ
+  unit_energy.write_tag = 10.677pJ
+  unit_energy.search = 15.653pJ
+  unit_energy.leakage =  0.728pJ (0.002476 W)
+  partition: n/a
+module L2cacheWritebackBuffer
+  area = 0.220070mm^2
+  energy_library: mcpat
+  unit_energy.read =  8.859pJ
+  unit_energy.write = 10.677pJ
+  unit_energy.read_tag =  8.859pJ
+  unit_energy.write_tag = 10.677pJ
+  unit_energy.search = 15.653pJ
+  unit_energy.leakage =  0.728pJ (0.002476 W)
+  partition: n/a
+module L3cache
+  area = 276.779156mm^2
+  energy_library: mcpat
+  unit_energy.read = 5470.844pJ
+  unit_energy.write = 5722.252pJ
+  unit_energy.read_tag = 89.274pJ
+  unit_energy.write_tag = 374.102pJ
+  unit_energy.leakage = 12800.756pJ (10.880643 W)
+  partition: n/a
+module L3cacheFillBuffer
+  area = 0.656265mm^2
+  energy_library: mcpat
+  unit_energy.read = 16.145pJ
+  unit_energy.write = 19.433pJ
+  unit_energy.read_tag = 16.145pJ
+  unit_energy.write_tag = 19.433pJ
+  unit_energy.search = 22.938pJ
+  unit_energy.leakage =  2.463pJ (0.002094 W)
+  partition: n/a
+module L3cacheMissBuffer
+  area = 0.095353mm^2
+  energy_library: mcpat
+  unit_energy.read =  5.444pJ
+  unit_energy.write =  6.573pJ
+  unit_energy.read_tag =  5.444pJ
+  unit_energy.write_tag =  6.573pJ
+  unit_energy.search = 12.219pJ
+  unit_energy.leakage =  1.051pJ (0.000894 W)
+  partition: n/a
+module L3cachePrefetchBuffer
+  area = 0.656265mm^2
+  energy_library: mcpat
+  unit_energy.read = 16.145pJ
+  unit_energy.write = 19.433pJ
+  unit_energy.read_tag = 16.145pJ
+  unit_energy.write_tag = 19.433pJ
+  unit_energy.search = 22.938pJ
+  unit_energy.leakage =  2.463pJ (0.002094 W)
+  partition: n/a
+module L3cacheWritebackBuffer
+  area = 0.656265mm^2
+  energy_library: mcpat
+  unit_energy.read = 16.145pJ
+  unit_energy.write = 19.433pJ
+  unit_energy.read_tag = 16.145pJ
+  unit_energy.write_tag = 19.433pJ
+  unit_energy.search = 22.938pJ
+  unit_energy.leakage =  2.463pJ (0.002094 W)
+  partition: n/a
+module MUL
+  area = 0.336336mm^2
+  energy_library: mcpat
+  unit_energy.read = 337.736pJ
+  unit_energy.write = 337.736pJ
+  unit_energy.leakage = 52.387pJ (0.178115 W)
+  partition: n/a
+module Pipeline
+  area = 1.274177mm^2
+  energy_library: mcpat
+  unit_energy.read = 1715.767pJ
+  unit_energy.write = 1715.767pJ
+  unit_energy.leakage = 82.506pJ (0.280520 W)
+  partition: n/a
+module RAS
+  area = 0.092986mm^2
+  energy_library: mcpat
+  unit_energy.read =  5.188pJ
+  unit_energy.write =  6.348pJ
+  unit_energy.leakage =  0.497pJ (0.001690 W)
+  partition: n/a
+module ROB
+  area = 1.674284mm^2
+  energy_library: mcpat
+  unit_energy.read = 21.241pJ
+  unit_energy.write = 23.951pJ
+  unit_energy.leakage =  1.587pJ (0.005396 W)
+  partition: n/a
+module Undiffcore
+  area = 9.072355mm^2
+  energy_library: mcpat
+  unit_energy.read =  0.000pJ
+  unit_energy.write =  0.000pJ
+  unit_energy.leakage = 706.541pJ (2.402238 W)
+  partition: n/a
+module aluBypass
+  area = 0.027547mm^2
+  energy_library: mcpat
+  unit_energy.read = 335.096pJ
+  unit_energy.write = 335.096pJ
+  unit_energy.leakage =  5.906pJ (0.020080 W)
+  partition: n/a
+module aluTagBypass
+  area = 0.004119mm^2
+  energy_library: mcpat
+  unit_energy.read = 50.110pJ
+  unit_energy.write = 50.110pJ
+  unit_energy.leakage =  0.883pJ (0.003003 W)
+  partition: n/a
+module branchTargetBuffer
+  area = 0.718635mm^2
+  energy_library: mcpat
+  unit_energy.read = 44.594pJ
+  unit_energy.write = 53.387pJ
+  unit_energy.read_tag = 27.183pJ
+  unit_energy.write_tag = 37.350pJ
+  unit_energy.leakage =  7.484pJ (0.025446 W)
+  partition: n/a
+module chooser
+  area = 0.174801mm^2
+  energy_library: mcpat
+  unit_energy.read = 15.998pJ
+  unit_energy.write = 10.735pJ
+  unit_energy.read_tag =  7.408pJ
+  unit_energy.write_tag =  4.777pJ
+  unit_energy.leakage =  3.687pJ (0.012537 W)
+  partition: n/a
+module dcache
+  area = 0.825209mm^2
+  energy_library: mcpat
+  unit_energy.read = 65.843pJ
+  unit_energy.write = 98.835pJ
+  unit_energy.read_tag = 13.461pJ
+  unit_energy.write_tag = 52.353pJ
+  unit_energy.leakage =  8.582pJ (0.029179 W)
+  partition: n/a
+module dcacheFillBuffer
+  area = 0.304767mm^2
+  energy_library: mcpat
+  unit_energy.read =  6.171pJ
+  unit_energy.write =  7.930pJ
+  unit_energy.read_tag =  6.171pJ
+  unit_energy.write_tag =  7.930pJ
+  unit_energy.search = 13.911pJ
+  unit_energy.leakage =  0.842pJ (0.002864 W)
+  partition: n/a
+module dcacheMissBuffer
+  area = 0.519019mm^2
+  energy_library: mcpat
+  unit_energy.read =  8.325pJ
+  unit_energy.write = 10.681pJ
+  unit_energy.read_tag =  8.325pJ
+  unit_energy.write_tag = 10.681pJ
+  unit_energy.search = 16.065pJ
+  unit_energy.leakage =  1.075pJ (0.003654 W)
+  partition: n/a
+module dcachePrefetchBuffer
+  area = 0.304767mm^2
+  energy_library: mcpat
+  unit_energy.read =  6.171pJ
+  unit_energy.write =  7.930pJ
+  unit_energy.read_tag =  6.171pJ
+  unit_energy.write_tag =  7.930pJ
+  unit_energy.search = 13.911pJ
+  unit_energy.leakage =  0.842pJ (0.002864 W)
+  partition: n/a
+module dcacheWritebackBuffer
+  area = 0.304767mm^2
+  energy_library: mcpat
+  unit_energy.read =  6.171pJ
+  unit_energy.write =  7.930pJ
+  unit_energy.read_tag =  6.171pJ
+  unit_energy.write_tag =  7.930pJ
+  unit_energy.search = 13.911pJ
+  unit_energy.leakage =  0.842pJ (0.002864 W)
+  partition: n/a
+module fpDepCheck
+  area = 0.000000mm^2
+  energy_library: mcpat
+  unit_energy.read = 25.641pJ
+  unit_energy.write = 25.641pJ
+  unit_energy.leakage =  0.487pJ (0.001656 W)
+  partition: n/a
+module fpFRAT
+  area = 0.407642mm^2
+  energy_library: mcpat
+  unit_energy.read =  6.794pJ
+  unit_energy.write =  5.346pJ
+  unit_energy.leakage =  1.981pJ (0.006737 W)
+  partition: n/a
+module fpFreelist
+  area = 0.162758mm^2
+  energy_library: mcpat
+  unit_energy.read =  3.080pJ
+  unit_energy.write =  2.939pJ
+  unit_energy.leakage =  0.520pJ (0.001769 W)
+  partition: n/a
+module fpIssueQueue
+  area = 0.129287mm^2
+  energy_library: mcpat
+  unit_energy.read =  5.301pJ
+  unit_energy.write =  8.627pJ
+  unit_energy.read_tag =  5.301pJ
+  unit_energy.write_tag =  8.627pJ
+  unit_energy.search = 16.730pJ
+  unit_energy.leakage =  0.979pJ (0.003330 W)
+  partition: n/a
+module fpRRAT
+  area = 0.018897mm^2
+  energy_library: mcpat
+  unit_energy.read =  1.009pJ
+  unit_energy.write =  1.222pJ
+  unit_energy.leakage =  0.111pJ (0.000376 W)
+  partition: n/a
+module fpuBypass
+  area = 0.028538mm^2
+  energy_library: mcpat
+  unit_energy.read = 347.151pJ
+  unit_energy.write = 347.151pJ
+  unit_energy.leakage =  9.178pJ (0.031204 W)
+  partition: n/a
+module fpuTagBypass
+  area = 0.004921mm^2
+  energy_library: mcpat
+  unit_energy.read = 59.859pJ
+  unit_energy.write = 59.859pJ
+  unit_energy.leakage =  1.582pJ (0.005380 W)
+  partition: n/a
+module globalPredictor
+  area = 0.174801mm^2
+  energy_library: mcpat
+  unit_energy.read = 15.998pJ
+  unit_energy.write = 10.735pJ
+  unit_energy.read_tag =  7.408pJ
+  unit_energy.write_tag =  4.777pJ
+  unit_energy.leakage =  3.687pJ (0.012537 W)
+  partition: n/a
+module icache
+  area = 1.699548mm^2
+  energy_library: mcpat
+  unit_energy.read = 263.618pJ
+  unit_energy.write = 298.928pJ
+  unit_energy.read_tag = 24.834pJ
+  unit_energy.write_tag = 89.221pJ
+  unit_energy.leakage = 45.314pJ (0.154069 W)
+  partition: n/a
+module icacheFillBuffer
+  area = 0.220070mm^2
+  energy_library: mcpat
+  unit_energy.read =  8.859pJ
+  unit_energy.write = 10.677pJ
+  unit_energy.read_tag =  8.859pJ
+  unit_energy.write_tag = 10.677pJ
+  unit_energy.search = 15.653pJ
+  unit_energy.leakage =  0.728pJ (0.002476 W)
+  partition: n/a
+module icacheMissBuffer
+  area = 0.307092mm^2
+  energy_library: mcpat
+  unit_energy.read = 10.681pJ
+  unit_energy.write = 12.866pJ
+  unit_energy.read_tag = 10.681pJ
+  unit_energy.write_tag = 12.866pJ
+  unit_energy.search = 17.474pJ
+  unit_energy.leakage =  0.845pJ (0.002874 W)
+  partition: n/a
+module icachePrefetchBuffer
+  area = 0.220070mm^2
+  energy_library: mcpat
+  unit_energy.read =  8.859pJ
+  unit_energy.write = 10.677pJ
+  unit_energy.read_tag =  8.859pJ
+  unit_energy.write_tag = 10.677pJ
+  unit_energy.search = 15.653pJ
+  unit_energy.leakage =  0.728pJ (0.002476 W)
+  partition: n/a
+module instBuffer
+  area = 0.068723mm^2
+  energy_library: mcpat
+  unit_energy.read = 12.970pJ
+  unit_energy.write = 15.443pJ
+  unit_energy.leakage =  0.562pJ (0.001911 W)
+  partition: n/a
+module instIssueQueue
+  area = 0.287606mm^2
+  energy_library: mcpat
+  unit_energy.read =  4.795pJ
+  unit_energy.write =  7.992pJ
+  unit_energy.read_tag =  4.795pJ
+  unit_energy.write_tag =  7.992pJ
+  unit_energy.search = 16.104pJ
+  unit_energy.leakage =  1.657pJ (0.005632 W)
+  partition: n/a
+module instSelection
+  area = 0.000000mm^2
+  energy_library: mcpat
+  unit_energy.read = 24.177pJ
+  unit_energy.write = 24.177pJ
+  unit_energy.leakage =  0.169pJ (0.000574 W)
+  partition: n/a
+module intDepCheck
+  area = 0.000000mm^2
+  energy_library: mcpat
+  unit_energy.read = 25.641pJ
+  unit_energy.write = 25.641pJ
+  unit_energy.leakage =  0.487pJ (0.001656 W)
+  partition: n/a
+module intFRAT
+  area = 0.879521mm^2
+  energy_library: mcpat
+  unit_energy.read =  7.232pJ
+  unit_energy.write =  6.011pJ
+  unit_energy.leakage =  1.564pJ (0.005316 W)
+  partition: n/a
+module intFreelist
+  area = 0.300513mm^2
+  energy_library: mcpat
+  unit_energy.read =  4.237pJ
+  unit_energy.write =  4.065pJ
+  unit_energy.leakage =  0.745pJ (0.002533 W)
+  partition: n/a
+module intRRAT
+  area = 0.053415mm^2
+  energy_library: mcpat
+  unit_energy.read =  1.487pJ
+  unit_energy.write =  1.845pJ
+  unit_energy.leakage =  0.192pJ (0.000651 W)
+  partition: n/a
+module loadQueue
+  area = 0.638298mm^2
+  energy_library: mcpat
+  unit_energy.read = 18.879pJ
+  unit_energy.write = 32.614pJ
+  unit_energy.read_tag = 18.879pJ
+  unit_energy.write_tag = 32.614pJ
+  unit_energy.search = 76.709pJ
+  unit_energy.leakage =  3.975pJ (0.013514 W)
+  partition: n/a
+module mulBypass
+  area = 0.030046mm^2
+  energy_library: mcpat
+  unit_energy.read = 365.495pJ
+  unit_energy.write = 365.495pJ
+  unit_energy.leakage =  6.442pJ (0.021902 W)
+  partition: n/a
+module mulTagBypass
+  area = 0.004432mm^2
+  energy_library: mcpat
+  unit_energy.read = 53.910pJ
+  unit_energy.write = 53.910pJ
+  unit_energy.leakage =  0.950pJ (0.003231 W)
+  partition: n/a
+module network
+  area = 5.586435mm^2
+  energy_library: mcpat
+  unit_energy.read = 3816.487pJ
+  unit_energy.write = 3816.487pJ
+  unit_energy.leakage = 23.990pJ (0.081565 W)
+  partition: n/a
+module storeQueue
+  area = 0.811765mm^2
+  energy_library: mcpat
+  unit_energy.read = 34.632pJ
+  unit_energy.write = 62.486pJ
+  unit_energy.read_tag = 34.632pJ
+  unit_energy.write_tag = 62.486pJ
+  unit_energy.search = 137.350pJ
+  unit_energy.leakage =  7.461pJ (0.025368 W)
+  partition: n/a
