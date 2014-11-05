@@ -147,10 +147,13 @@ void sanity_check(void);
 VOID ImageLoad(IMG img,  VOID *v);
 VOID EnterROI();
 VOID ExitROI();
-VOID write_marker_to_gzfile(Inst_info* m);
+VOID StartAcc(UINT32 AccId);
+VOID EndAcc();
 
 map<string, UINT32> AccFuncs;
-
+gzFile *FuncGZFiles;
+gzFile currenTraceFile;
+bool InAccFunc = false;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // control handler for pinpoint (simpoint)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -341,7 +344,8 @@ void write_inst(ADDRINT iaddr, THREADID threadid)
     // ----------------------------------------
 
     if (trace_info->bytes_accumulated == BUF_SIZE) {
-        int write_size = gzwrite(trace_info->trace_stream, trace_info->trace_buf, BUF_SIZE);
+        //int write_size = gzwrite(trace_info->trace_stream, trace_info->trace_buf, BUF_SIZE);
+        int write_size = gzwrite(currenTraceFile, trace_info->trace_buf, BUF_SIZE);
 
         if (write_size != BUF_SIZE) {
             cerr << "-> TID - " << tid << " Error when writing instruction " << trace_info->inst_count << " write_size:" << write_size << " " << BUF_SIZE << endl;
@@ -368,7 +372,6 @@ void write_inst(ADDRINT iaddr, THREADID threadid)
         PIN_Detach();
     }
 }
-
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // Main instrumentation routine
@@ -713,6 +716,7 @@ void ThreadStart(THREADID tid, CONTEXT *ctxt, INT32 flags, void *v)
 
     gzFile trace_stream = NULL;
     trace_stream = gzopen(file_name.c_str(), WRITEM);
+    currenTraceFile = trace_stream;
 
     // DEBUG
     char debug_file_name[256] = {'\0'};
@@ -846,6 +850,10 @@ void finish(void)
     }
     configFile.close();
 
+    // Close acc gzip trace files
+    for(unsigned ii = 0; ii < AccFuncs.size(); ii++)
+        gzclose(FuncGZFiles[ii]);
+
     /**< Final print to standard output */
     for (unsigned ii = 0; ii < thread_count; ++ii) {
         cout << "-> tid " << thread_info[ii].thread_id << " inst count " << g_inst_count[ii]
@@ -886,12 +894,12 @@ void initialize(void)
 
     g_enable_instrument = false;
 
-    // Read accelerated function list
+    // ska124 -- Read accelerated function list
     ifstream funcfile;
     funcfile.open(Knob_funcfile.Value().c_str(),ios::in);
 
     if(!funcfile.is_open())
-        assert(false && "Unable to open accelerated function names file");
+        assert(false && "Unable to open accelerated function names file (default: accfunc.txt)");
 
     char name[256];
     UINT32 counter = 0;
@@ -899,6 +907,20 @@ void initialize(void)
     {
         funcfile.getline(name,256);
         AccFuncs.insert(make_pair<string,UINT32>(string(name),counter));
+        counter++;
+    }
+
+
+    // Create gzFile pointer for each file
+    
+    FuncGZFiles = new gzFile[counter];
+    for(UINT32 i = 0; i < counter; i++)
+    {
+        stringstream ss;
+        string filename;
+        ss << "ACC" << counter << ".raw";
+        ss >> filename;
+        FuncGZFiles[i] = gzopen(filename.c_str(),WRITEM);
     }
 
 }
@@ -920,8 +942,6 @@ void sanity_check(void)
             exit(0);
         }
     }
-
-
 }
 
 
@@ -1057,12 +1077,7 @@ int main(int argc, char *argv[])
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-// Following codes are for data structure acceleration project
 /////////////////////////////////////////////////////////////////////////////////////////
-
-//
-// Data Structure Markers on ImageLoad
-//
 
 VOID ImageLoad(IMG img,  VOID *v)
 {
@@ -1087,22 +1102,44 @@ VOID ImageLoad(IMG img,  VOID *v)
                 RTN_InsertCall(rtn, IPOINT_BEFORE, (AFUNPTR) ExitROI, IARG_END);
                 RTN_Close(rtn);
             }
+
+            // ska124 -- Note C++ benchmarks will need the mangled name in the acc file
+            else if (AccFuncs.find(rtnName) != AccFuncs.end())
+            {
+                RTN_Open(rtn);
+                RTN_InsertCall(rtn, IPOINT_BEFORE, (AFUNPTR) StartAcc, (UINT32) AccFuncs[rtnName], IARG_UINT32, IARG_END);
+                RTN_InsertCall(rtn, IPOINT_AFTER,  (AFUNPTR) EndAcc, IARG_END);
+                RTN_Close(rtn);
+            }
         }
     }
 }
 
-
-VOID write_marker_to_gzfile(Inst_info *m)
+VOID StartAcc(UINT32 AccId)
 {
-    int write_size = gzwrite(trace_info_array[0]->trace_stream, m, BUF_SIZE);
 
-    if (write_size != BUF_SIZE) {
-        cerr << "Error writing marker" << endl;
-        exit(-1);
-    }
+    assert(!InAccFunc && "Nested Acc funcs not supported");
+    InAccFunc = true;
 
+    // Write a jump marker in main trace
+    Inst_info m;
+    m.acc_segment = true;
+    m.acc_id = AccId;
+    gzwrite(currenTraceFile, &m, sizeof(m));
+    // Change the trace dump file to the accelerator file
+    currenTraceFile = FuncGZFiles[AccId];
 }
 
+VOID EndAcc()
+{
+    InAccFunc = false;
+    Inst_info m;
+    m.acc_segment = true;
+    m.acc_id = -1; // This will be MAX_UINT32 as it is unsigned
+    gzwrite(currenTraceFile, &m, sizeof(m));
+    // Change the trace dump file back to the main trace -- assuming single thread
+    currenTraceFile = trace_info_array[0]->trace_stream;
+}
 
 VOID EnterROI()
 {
