@@ -100,7 +100,7 @@ void TraceRecord::issueRequest()
   // Lookup sequencer pointer from system
   // Note that the chip index also needs to take into account SMT configurations
 
- if (m_node_num <=RubyConfig::numberOfProcessors()) {
+ if (m_node_num <RubyConfig::numberOfProcessors()) {
 
    AbstractChip* chip_ptr = g_system_ptr->getChip(m_node_num/RubyConfig::numberOfProcsPerChip()/RubyConfig::numberofSMTThreads());
    assert(chip_ptr != NULL);
@@ -128,7 +128,7 @@ void TraceRecord::issueRequest()
     assert(chip_ptr != NULL);
 
 
-    SequencerT* sequencer_ptr = chip_ptr->getSequencerT(m_node_num/RubyConfig::numberOfAccsPerChip());
+    SequencerT* sequencer_ptr = chip_ptr->getSequencerT(m_node_num%RubyConfig::numberOfAccsPerChip());
     assert(sequencer_ptr != NULL);
       
     CacheMsg request(m_data_address, m_data_address, m_type, m_pc_address, AccessModeType_UserMode, 0, PrefetchBit_Yes, 0, Address(0), 0 /* only 1 SMT thread */, 0, false,MemorySpaceType_NULL,false,0,0);

@@ -517,10 +517,6 @@ machine(L1TCache, "FUSION Lease v2 L1 Cache") {
         }
     }
 
-    action(dt_writeDataToL1CacheFromTBE, "dt", desc="Write data to cache from TBE") {
-         assert(isL1CacheTagPresent(address));
-         getL1CacheEntry(address).DataBlk := L1_TBEs[address].DataBlk;
-    }
 
     action(ff_deallocateL1CacheBlock, "\f", desc="Deallocate L1 cache block.  Sets the cache to not present, allowing a replacement in parallel with a fetch.") {
         if (L1DcacheMemory.isTagPresent(address)) {
@@ -536,9 +532,14 @@ machine(L1TCache, "FUSION Lease v2 L1 Cache") {
         }
     }
 
-    action(z_recycleMandatoryQueue, "\zz", desc="recycle L1 request queue") {
-        mandatoryQueue_in.recycle();
-    }
+    // All msgs are handled. Writes are never stalled here but at the L2 if they can be handled.
+    // // This is bad only if you are trying to support TSO-like models 
+    // // In such cases a stalled write could block the entire queue since we can't recycle writes from the same CPU lest we violate PROGRAM ORDER
+    // //  
+
+   // action(z_recycleMandatoryQueue, "\zz", desc="recycle L1 request queue") {
+   //     mandatoryQueue_in.recycle();
+   // }
 
     action(z_stall, "z", desc="stall - i.e. do nothing") {
     }

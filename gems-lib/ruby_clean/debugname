@@ -6,38 +6,28 @@
     117   0  -1        Seq                Done       >       [0x400, line 0x400] 116 cycles NULL LD Yes
     117   0   0    L1Cache      Data_Exclusive     IS>E      [0x400, line 0x400] 
     195   0   0    L2Cache   Exclusive_Unblock  MT_MB>MT     [0x400, line 0x400] 
-    201   0  -1        Seq               Begin       >       [0x400, line 0x400] LD
-    205   0   0   L1TCache                Load      I>I_S    [0x400, line 0x400] 
-    283   0   0   L2TCache             L1_GETS     NP>IS     [0x400, line 0x400] 
-    391   0   0    L2Cache             L1_GETX     MT>MT_MB  [0x400, line 0x400] 
-    403   0   0    L1Cache            Fwd_GETX      E>I      [0x400, line 0x400] 
-    481   0   0   L2TCache       Data_all_Acks     IS>S      [0x400, line 0x400] 
-    490   0  -1        Seq                Done       >       [0x400, line 0x400] 289 cycles NULL LD Yes
-    490   0   0   L1TCache           Data_Done    I_S>S      [0x400, line 0x400] 
-    501   0  -1        Seq               Begin       >       [0x400, line 0x400] ST
-    505   0   0    L1Cache               Store      I>IM     [0x400, line 0x400] 
-    559   0   0    L2Cache   Exclusive_Unblock  MT_MB>MT     [0x400, line 0x400] 
-    583   0   0    L2Cache             L1_GETX     MT>MT_MB  [0x400, line 0x400] 
-    595   0   0   L2TCache            Fwd_GETX      S>MI     [0x400, line 0x400] 
-   1282   0   0   L2TCache           L2_Expire     MI>MI_Ack [0x400, line 0x400] 
-   1360   0   0    L2Cache            PUTX_ACC  MT_MB>MT_MB  [0x400, line 0x400] 
-   1369   0   0   L2TCache              WB_Ack MI_Ack>NP     [0x400, line 0x400] 
-   1369   0  -1        Seq                Done       >       [0x400, line 0x400] 868 cycles NULL ST Yes
-   1369   0   0    L1Cache      Data_Exclusive     IM>M      [0x400, line 0x400] 
-   1401   1  -1        Seq               Begin       >       [0x400, line 0x400] ST
-   1405   0   1    L1Cache               Store     NP>IM     [0x400, line 0x400] 
-   1447   0   0    L2Cache   Exclusive_Unblock  MT_MB>MT     [0x400, line 0x400] 
-   1483   0   0    L2Cache             L1_GETX     MT>MT_MB  [0x400, line 0x400] 
-   1495   0   0    L1Cache            Fwd_GETX      M>I      [0x400, line 0x400] 
-   1573   1  -1        Seq                Done       >       [0x400, line 0x400] 172 cycles NULL ST Yes
-   1573   0   1    L1Cache       Data_all_Acks     IM>M      [0x400, line 0x400] 
-   1601   0  -1        Seq               Begin       >       [0x400, line 0x400] LD
-   1605   0   0   L1TCache                Load      I>I_S    [0x400, line 0x400] 
-   1651   0   0    L2Cache   Exclusive_Unblock  MT_MB>MT     [0x400, line 0x400] 
-   1683   0   0   L2TCache             L1_GETS     NP>IS     [0x400, line 0x400] 
-   1791   0   0    L2Cache             L1_GETX     MT>MT_MB  [0x400, line 0x400] 
-   1803   0   1    L1Cache            Fwd_GETX      M>I      [0x400, line 0x400] 
-   1881   0   0   L2TCache       Data_all_Acks     IS>S      [0x400, line 0x400] 
-   1890   0  -1        Seq                Done       >       [0x400, line 0x400] 289 cycles NULL LD Yes
-   1890   0   0   L1TCache           Data_Done    I_S>S      [0x400, line 0x400] 
-   1959   0   0    L2Cache   Exclusive_Unblock  MT_MB>MT     [0x400, line 0x400] 
+    201   1  -1        Seq               Begin       >       [0x400, line 0x400] LD
+    205   0   1    L1Cache                Load     NP>IS     [0x400, line 0x400] 
+    283   0   0    L2Cache             L1_GETS     MT>MT_IIB [0x400, line 0x400] 
+    295   0   0    L1Cache            Fwd_GETS      E>S      [0x400, line 0x400] 
+    373   1  -1        Seq                Done       >       [0x400, line 0x400] 172 cycles NULL LD Yes
+    373   0   1    L1Cache        DataS_fromL1     IS>S      [0x400, line 0x400] 
+    386   0   0    L2Cache       WB_Data_clean MT_IIB>MT_SB  [0x400, line 0x400] 
+    401   0  -1        Seq               Begin       >       [0x400, line 0x400] ST
+    405   0   0   L1TCache            L1_WThru      I>I_I    [0x400, line 0x400] 
+    451   0   0    L2Cache             Unblock  MT_SB>SS     [0x400, line 0x400] 
+    483   0   0   L2TCache            L1_Write     NP>IM     [0x400, line 0x400] 
+    591   0   0    L2Cache             L1_GETX     SS>SS_MB  [0x400, line 0x400] 
+    600   0   0   L2TCache                Data     IM>IM     [0x400, line 0x400] -2 p: 2
+    613   0   0    L1Cache                 Inv      S>I      [0x400, line 0x400] 
+    613   0   1    L1Cache                 Inv      S>I      [0x400, line 0x400] 
+    691   0   0   L2TCache                 Ack     IM>IM     [0x400, line 0x400] 1 p: 1
+    691   0   0   L2TCache             Ack_all     IM>E      [0x400, line 0x400] 
+    700   0  -1        Seq                Done       >       [0x400, line 0x400] 299 cycles NULL ST Yes
+    700   0   0   L1TCache            Ack_Done    I_I>I      [0x400, line 0x400] 
+    701   0  -1        Seq               Begin       >       [0x400, line 0x400] ST
+    705   0   0   L1TCache            L1_WThru      I>I_I    [0x400, line 0x400] 
+    769   0   0    L2Cache   Exclusive_Unblock  SS_MB>MT     [0x400, line 0x400] 
+    783   0   0   L2TCache            L1_Write      E>S      [0x400, line 0x400] 
+    792   0  -1        Seq                Done       >       [0x400, line 0x400] 91 cycles NULL ST Yes
+    792   0   0   L1TCache            Ack_Done    I_I>I      [0x400, line 0x400] 
