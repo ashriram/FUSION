@@ -79,7 +79,6 @@ TraceRecord::TraceRecord(NodeID id, const Address& data_addr, const Address& pc_
     m_type = CacheRequestType_ST;  
   }
 }
-
 // Public copy constructor and assignment operator
 TraceRecord::TraceRecord(const TraceRecord& obj)
 {
@@ -96,27 +95,55 @@ TraceRecord& TraceRecord::operator=(const TraceRecord& obj)
   return *this;
 }
 
-void TraceRecord::issueRequest() const
+void TraceRecord::issueRequest() 
 {
   // Lookup sequencer pointer from system
   // Note that the chip index also needs to take into account SMT configurations
-  AbstractChip* chip_ptr = g_system_ptr->getChip(m_node_num/RubyConfig::numberOfProcsPerChip()/RubyConfig::numberofSMTThreads());
-  assert(chip_ptr != NULL);
-  SequencerT* sequencer_ptr = chip_ptr->getSequencerT((m_node_num/RubyConfig::numberofSMTThreads())%RubyConfig::numberOfProcsPerChip());
-  assert(sequencer_ptr != NULL);
-    
-  CacheMsg request(m_data_address, m_data_address, m_type, m_pc_address, AccessModeType_UserMode, 0, PrefetchBit_Yes, 0, Address(0), 0 /* only 1 SMT thread */, 0, false,MemorySpaceType_NULL,false,0,0);
 
-  // Clear out the sequencer
-  while (!sequencer_ptr->empty()) {
-    g_eventQueue_ptr->triggerEvents(g_eventQueue_ptr->getTime() + 100);
-  }
+ if (m_node_num <=RubyConfig::numberOfProcessors()) {
 
-  sequencer_ptr->makeRequest(request);
+   AbstractChip* chip_ptr = g_system_ptr->getChip(m_node_num/RubyConfig::numberOfProcsPerChip()/RubyConfig::numberofSMTThreads());
+   assert(chip_ptr != NULL);
 
-  // Clear out the sequencer
-  while (!sequencer_ptr->empty()) {
-    g_eventQueue_ptr->triggerEvents(g_eventQueue_ptr->getTime() + 100);
+   Sequencer* sequencer_ptr = chip_ptr->getSequencer((m_node_num/RubyConfig::numberofSMTThreads())%RubyConfig::numberOfProcsPerChip());
+   assert(sequencer_ptr != NULL);
+      
+    CacheMsg request(m_data_address, m_data_address, m_type, m_pc_address, AccessModeType_UserMode, 0, PrefetchBit_Yes, 0, Address(0), 0 /* only 1 SMT thread */, 0, false,MemorySpaceType_NULL,false,0,0);
+
+    // Clear out the sequencer
+    while (!sequencer_ptr->empty()) {
+      g_eventQueue_ptr->triggerEvents(g_eventQueue_ptr->getTime() + 100);
+    }
+
+    sequencer_ptr->makeRequest(request);
+
+    // Clear out the sequencer
+    while (!sequencer_ptr->empty()) {
+      g_eventQueue_ptr->triggerEvents(g_eventQueue_ptr->getTime() + 100);
+    }
+  } else {
+    m_node_num -= RubyConfig::numberOfProcessors();
+
+    AbstractChip* chip_ptr = g_system_ptr->getChip(m_node_num/RubyConfig::numberOfAccsPerChip());
+    assert(chip_ptr != NULL);
+
+
+    SequencerT* sequencer_ptr = chip_ptr->getSequencerT(m_node_num/RubyConfig::numberOfAccsPerChip());
+    assert(sequencer_ptr != NULL);
+      
+    CacheMsg request(m_data_address, m_data_address, m_type, m_pc_address, AccessModeType_UserMode, 0, PrefetchBit_Yes, 0, Address(0), 0 /* only 1 SMT thread */, 0, false,MemorySpaceType_NULL,false,0,0);
+
+    // Clear out the sequencer
+    while (!sequencer_ptr->empty()) {
+      g_eventQueue_ptr->triggerEvents(g_eventQueue_ptr->getTime() + 100);
+    }
+
+    sequencer_ptr->makeRequest(request);
+
+    // Clear out the sequencer
+    while (!sequencer_ptr->empty()) {
+      g_eventQueue_ptr->triggerEvents(g_eventQueue_ptr->getTime() + 100);
+    }
   }
 }
 

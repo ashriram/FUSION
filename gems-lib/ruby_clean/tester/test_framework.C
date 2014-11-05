@@ -106,6 +106,7 @@ static void tester_destroy();
 static string trace_filename;
 char * my_default_param;
 initvar_t * my_initvar;
+const char * global_command_line_param;
 
 void tester_main(int argc, char **argv)
 {
@@ -186,14 +187,50 @@ void sendruby_request( unsigned long long addr, unsigned req_size, unsigned sid,
                                    );
 }
 
+char* tester_config_read()
+{
+
+ string command = "";
+
+  std::string config_file = std::string("CONFIG");
+
+  //  system(command.c_str());
+  // "python ../common/ioutil/dynamicparam.py config/O3simconfig.defaults O3sim_param.h global_default_O3sim_param");
+
+  FILE *infile;
+  command = "";
+
+  infile = fopen(config_file.c_str(), "r");
+
+  char line [1000];
+  /* or other suitable maximum line size */
+  while ( fgets ( line, sizeof(line), infile ) != NULL ) /* read a line */
+  {
+
+      command = command + line;
+
+  }
+
+  fclose ( infile );
+
+  global_command_line_param = command.c_str();
+
+}
+
 void tester_initialize(int argc, char **argv)
 {
-  int   param_len = strlen( global_default_param ) + strlen( global_default_tester_param ) + 1;
-  char *default_param = (char *) malloc( sizeof(char) * param_len );
-  my_default_param = default_param;
-  strcpy( default_param, global_default_param );
-  strcat( default_param, global_default_tester_param );
 
+  tester_config_read();
+
+    int param_len = strlen( global_default_param ) +
+                   strlen( global_default_tester_param ) +
+                   strlen( global_command_line_param) + 1000;
+
+   char *default_param = (char *) malloc( sizeof(char) * param_len );
+   my_default_param = default_param;
+   strcpy( default_param, global_default_param );
+   strcat( default_param, global_default_tester_param );
+  // strcat( default_param, global_command_line_param );
   // when the initvar object is created, it reads the configuration default
   //   -for the tester, the configuration defaults in config/tester.defaults
 

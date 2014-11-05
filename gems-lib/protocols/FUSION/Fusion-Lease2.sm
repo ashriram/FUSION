@@ -481,8 +481,8 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
         {
             enqueue(responseCPUNetwork_out, ResponseMsg, latency="L1_to_L2_DATA_LATENCY") {
                 out_msg.Address := address;
-                out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
-                out_msg.Dirty := getL2CacheEntry(address).Dirty;
+                out_msg.DataBlk := L2_TBEs[address].DataBlk;
+                out_msg.Dirty := L2_TBEs[address].Dirty;
                 out_msg.Sender:= machineID;
                 out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
                 out_msg.Type := CoherenceResponseType:DATA_ACC;
@@ -493,8 +493,8 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
         {
            enqueue(requestCPUNetwork_out, RequestMsg, latency="L1_to_L2_DATA_LATENCY") {
                 out_msg.Address := address;
-                out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
-                out_msg.Dirty := getL2CacheEntry(address).Dirty;
+                out_msg.DataBlk := L2_TBEs[address].DataBlk;
+                out_msg.Dirty := L2_TBEs[address].Dirty;
                 out_msg.Requestor:= machineID;
                 out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
                 out_msg.Type := CoherenceRequestType:PUTX_ACC;

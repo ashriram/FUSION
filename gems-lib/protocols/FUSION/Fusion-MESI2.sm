@@ -533,6 +533,21 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
     }
   }
 
+
+   action(dd_sendExclusiveDataToPendingCPURequestor, "dc", desc="Send exclusive data to pending CPU requestor") {
+     enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_DATA_LATENCY") {
+        out_msg.Address := address;
+        out_msg.Type := CoherenceResponseType:DATA_EXCLUSIVE;
+        out_msg.Sender := machineID;
+        out_msg.Destination.add(getL2CacheEntry(address).Pending);
+        out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
+        out_msg.Dirty := getL2CacheEntry(address).Dirty;
+        out_msg.MessageSize := MessageSizeType:Response_Data;
+        out_msg.AckCount := 0 - getL2CacheEntry(address).Sharers.count();
+      }
+  }
+
+
   action(ds_sendSharedDataToRequestor, "ds", desc="Send shared data from cache to reqeustor") {
     peek(L1RequestIntraChipL2Network_in, RequestMsg) {
       enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_DATA_LATENCY") {
@@ -1186,15 +1201,17 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
 // Fwd to remote requestor at this point.Acc fwding
   transition({MT_MB,MT_IIB}, {DATA_ACC}, MT_MB) {
     m_writeDataToCache;
+    ll_clearSharers;
     ta_sendWBAck;
-    dd_sendExclusiveDataToRequestor;
+    dd_sendExclusiveDataToPendingCPURequestor;
     o_popIncomingResponseQueue;
   }
 
 
   transition({MT_MB, MT_IIB}, {PUTX_ACC}, MT_MB) {
     t_sendWBAck;
-    dd_sendExclusiveDataToRequestor;
+    ll_clearSharers;
+    dd_sendExclusiveDataToPendingCPURequestor;
     jj_popL1RequestQueue;
   }
 
