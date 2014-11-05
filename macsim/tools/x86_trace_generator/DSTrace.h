@@ -54,9 +54,6 @@ typedef unsigned __int32 uint32_t;
 
 #define MAX_THREADS 1000
 
-// ska124 - data structure related
-#include "common-enums.h"
-
 /**
  * Instrumentation Option
  */
@@ -105,9 +102,9 @@ struct Inst_info {
     uint8_t mem_write_size;  // 8 bit
     bool rep_dir;  // 1 bit
     bool actually_taken; // 1 bit
-    /** ds-acc specific start **/
+    /** acc specific start **/
     #include "common-trace-fields.cpp"
-    /** ds-acc specific end **/
+    /** acc specific end **/
 };
 
 #define BUF_SIZE (1 * sizeof(struct Inst_info)) // This should always be 1* so that the DS markers appear in the stream in the order they are executed.

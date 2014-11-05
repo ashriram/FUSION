@@ -1,30 +1,30 @@
 /*
-Copyright (c) <2012>, <Georgia Institute of Technology> All rights reserved.
+   Copyright (c) <2012>, <Georgia Institute of Technology> All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification, are permitted
-provided that the following conditions are met:
+   Redistribution and use in source and binary forms, with or without modification, are permitted
+   provided that the following conditions are met:
 
-Redistributions of source code must retain the above copyright notice, this list of conditions
-and the following disclaimer.
+   Redistributions of source code must retain the above copyright notice, this list of conditions
+   and the following disclaimer.
 
-Redistributions in binary form must reproduce the above copyright notice, this list of
-conditions and the following disclaimer in the documentation and/or other materials provided
-with the distribution.
+   Redistributions in binary form must reproduce the above copyright notice, this list of
+   conditions and the following disclaimer in the documentation and/or other materials provided
+   with the distribution.
 
-Neither the name of the <Georgia Institue of Technology> nor the names of its contributors
-may be used to endorse or promote products derived from this software without specific prior
-written permission.
+   Neither the name of the <Georgia Institue of Technology> nor the names of its contributors
+   may be used to endorse or promote products derived from this software without specific prior
+   written permission.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
-*/
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+   IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+   AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+   SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+   OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE.
+   */
 
 
 #include <iostream>
@@ -69,11 +69,11 @@ TIME_WARP tw;
 #define DUMMY_THREAD 100000
 
 #define THREAD_ENABLE_CHECK(tid) \
-  if ((tid) == DUMMY_THREAD) \
-    return ; \
-  \
-  if (!g_enable_thread_instrument[(tid)]) \
-    return ;
+    if ((tid) == DUMMY_THREAD) \
+return ; \
+\
+if (!g_enable_thread_instrument[(tid)]) \
+return ;
 
 
 
@@ -81,15 +81,16 @@ TIME_WARP tw;
 // Memory Instruction Data type
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-struct inst_t {
-  addr_t pc;
-  REG base;
-  REG index;
-  REG dest;
-  INT64 displacement;
-  UINT32 scale;
-  UINT32 size;
-  string assem;
+struct inst_t 
+{
+    addr_t pc;
+    REG base;
+    REG index;
+    REG dest;
+    INT64 displacement;
+    UINT32 scale;
+    UINT32 size;
+    string assem;
 };
 
 map<ADDRINT, inst_t *> g_inst_map;
@@ -131,6 +132,7 @@ KNOB<string> Knob_dump_file         (KNOB_MODE_WRITEONCE, "pintool", "dump_file"
 KNOB<UINT32> Knob_num_thread        (KNOB_MODE_WRITEONCE, "pintool", "thread", "1", "Total number of threads to gather information");
 KNOB<string> Knob_compiler          (KNOB_MODE_WRITEONCE, "pintool", "compiler", "gcc", "Which compiler was used?");
 KNOB<string> Knob_pl                (KNOB_MODE_WRITEONCE, "pintool", "pl", "normal", "Programming Language");
+KNOB<string> Knob_funcfile          (KNOB_MODE_WRITEONCE, "pintool", "func", "accfunc.txt", "File which contains the names of functions to be accelerated");
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -142,39 +144,12 @@ void sanity_check(void);
 
 /** ska124 - Data Structure Acceleration **/
 
-static const int MAX_DS_COUNT = 8;
-
 VOID ImageLoad(IMG img,  VOID *v);
 VOID EnterROI();
 VOID ExitROI();
 VOID write_marker_to_gzfile(Inst_info* m);
 
-VOID VecIter(UINT32 num_iter,
-             ADDRINT load_base_addrs[],
-             UINT32 node_size[],
-             UINT32 load_index_offsets[],
-             UINT32 static_ins_count,
-             UINT32 compute_slice_latency,
-             UINT32 compute_int_count,
-             UINT32 compute_fp_count,
-             UINT32 compute_k,
-             UINT32 stack_accesses,
-             ADDRINT store_base_addrs[],
-             UINT32 store_index_offsets[],
-             UINT32 vec_len[]);
-
-VOID VecSort(ADDRINT base_addr,
-             UINT32 node_size,
-             UINT32 start_index,
-             UINT32 end_index,
-             UINT32 comp_func_latency);
-
-VOID HashSearch(CHAR* md5_keys,
-                UINT32 num_keys,
-                ADDRINT base_addr);
-
-VOID BTreeTraverse(VOID *v);
-
+map<string, UINT32> AccFuncs;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // control handler for pinpoint (simpoint)
@@ -182,22 +157,25 @@ VOID BTreeTraverse(VOID *v);
 void Handler(CONTROL_EVENT ev, void * v, CONTEXT * ctxt, void * ip, THREADID tid)
 {
 
-  switch (ev) {
-    case CONTROL_START: {
-      cerr << "-> CONTROL START " << g_inst_count[tid] << endl;
-      break;
+    switch (ev) {
+        case CONTROL_START: 
+            {
+                cerr << "-> CONTROL START " << g_inst_count[tid] << endl;
+                break;
+            }
+        case CONTROL_STOP: 
+            {
+                cerr << "-> Trace Generation Done at icount " << g_inst_count[tid] << endl;
+                g_enable_instrument = false;
+                PIN_Detach();
+                break;
+            }
+        default: 
+            {
+                ASSERTX(false);
+                break;
+            }
     }
-    case CONTROL_STOP: {
-      cerr << "-> Trace Generation Done at icount " << g_inst_count[tid] << endl;
-      g_enable_instrument = false;
-      PIN_Detach();
-      break;
-    }
-    default: {
-      ASSERTX(false);
-      break;
-    }
-  }
 }
 
 
@@ -206,16 +184,16 @@ void Handler(CONTROL_EVENT ev, void * v, CONTEXT * ctxt, void * ip, THREADID tid
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 void IncrementNumInstruction(THREADID threadid)
 {
-  THREADID tid = threadMap[PIN_ThreadId()];
+    THREADID tid = threadMap[PIN_ThreadId()];
 
-  if (tid == 100000)
-    return ;
+    if (tid == 100000)
+        return ;
 
 
-  g_inst_count[tid]++;
+    g_inst_count[tid]++;
 
-  if (!g_enable_thread_instrument[tid])
-    return ;
+    if (!g_enable_thread_instrument[tid])
+        return ;
 }
 
 
@@ -225,9 +203,9 @@ void IncrementNumInstruction(THREADID threadid)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Detach(void *v)
 {
-  cout << "Detaching..." << endl;
-  thread_end(0);
-  finish();
+    cout << "Detaching..." << endl;
+    thread_end(0);
+    finish();
 }
 
 
@@ -246,17 +224,17 @@ uint32_t eflag_value=0;
 /////////////////////////////////////////////////////////////////////////////////////////
 void get_ld_ea(ADDRINT addr, UINT32 mem_read_size,
 #ifndef PINLINUX
-    UINT32 eflag_value,
+        UINT32 eflag_value,
 #endif
-    THREADID threadid)
+        THREADID threadid)
 {
-  THREADID tid = threadMap[threadid];
-  THREAD_ENABLE_CHECK(tid);
+    THREADID tid = threadMap[threadid];
+    THREAD_ENABLE_CHECK(tid);
 
-  Trace_info* trace_info = trace_info_array[tid];
-  trace_info->vaddr1        = addr;
-  trace_info->mem_read_size = mem_read_size;
-  trace_info->eflags        = eflag_value;
+    Trace_info* trace_info = trace_info_array[tid];
+    trace_info->vaddr1        = addr;
+    trace_info->mem_read_size = mem_read_size;
+    trace_info->eflags        = eflag_value;
 }
 
 
@@ -266,18 +244,18 @@ void get_ld_ea(ADDRINT addr, UINT32 mem_read_size,
 /////////////////////////////////////////////////////////////////////////////////////////
 void get_ld_ea2(ADDRINT addr1, ADDRINT addr2, UINT32 mem_read_size,
 #ifndef PINLINUX
-    UINT32 eflag_value,
+        UINT32 eflag_value,
 #endif
-    THREADID threadid)
+        THREADID threadid)
 {
-  THREADID tid = threadMap[threadid];
-  THREAD_ENABLE_CHECK(tid);
+    THREADID tid = threadMap[threadid];
+    THREAD_ENABLE_CHECK(tid);
 
-  Trace_info* trace_info = trace_info_array[tid];
-  trace_info->vaddr1        = addr1;
-  trace_info->vaddr2        = addr2;
-  trace_info->mem_read_size = mem_read_size;
-  trace_info->eflags        = eflag_value;
+    Trace_info* trace_info = trace_info_array[tid];
+    trace_info->vaddr1        = addr1;
+    trace_info->vaddr2        = addr2;
+    trace_info->mem_read_size = mem_read_size;
+    trace_info->eflags        = eflag_value;
 }
 
 
@@ -287,18 +265,18 @@ void get_ld_ea2(ADDRINT addr1, ADDRINT addr2, UINT32 mem_read_size,
 /////////////////////////////////////////////////////////////////////////////////////////
 void get_st_ea(ADDRINT addr, UINT32 mem_st_size,
 #ifndef PINLINUX
-    UINT32 eflag_value,
+        UINT32 eflag_value,
 #endif
-    THREADID threadid)
+        THREADID threadid)
 {
-  THREADID tid = threadMap[threadid];
-  THREAD_ENABLE_CHECK(tid);
+    THREADID tid = threadMap[threadid];
+    THREAD_ENABLE_CHECK(tid);
 
-  Trace_info* trace_info = trace_info_array[tid];
+    Trace_info* trace_info = trace_info_array[tid];
 
-  trace_info->st_vaddr       = addr;
-  trace_info->mem_write_size = mem_st_size;
-  trace_info->eflags         = eflag_value;
+    trace_info->st_vaddr       = addr;
+    trace_info->mem_write_size = mem_st_size;
+    trace_info->eflags         = eflag_value;
 }
 
 
@@ -307,13 +285,13 @@ void get_st_ea(ADDRINT addr, UINT32 mem_st_size,
 /////////////////////////////////////////////////////////////////////////////////////////
 void get_target(ADDRINT target, bool taken, THREADID threadid)
 {
-  THREADID tid = threadMap[threadid];
-  THREAD_ENABLE_CHECK(tid);
+    THREADID tid = threadMap[threadid];
+    THREAD_ENABLE_CHECK(tid);
 
-  Trace_info* trace_info = trace_info_array[tid];
+    Trace_info* trace_info = trace_info_array[tid];
 
-  trace_info->target         = target;
-  trace_info->actually_taken = taken;
+    trace_info->target         = target;
+    trace_info->actually_taken = taken;
 }
 
 
@@ -399,294 +377,294 @@ void write_inst(ADDRINT iaddr, THREADID threadid)
 /////////////////////////////////////////////////////////////////////////////////////////
 void instrument(INS ins)
 {
-  THREADID tid = threadMap[PIN_ThreadId()];
-  if (tid == 100000)
-    return ;
+    THREADID tid = threadMap[PIN_ThreadId()];
+    if (tid == 100000)
+        return ;
 
-  if (!g_enable_thread_instrument[tid])
-    return;
+    if (!g_enable_thread_instrument[tid])
+        return;
 
-  if(!g_enable_instrument)
-      return;
+    if(!g_enable_instrument)
+        return;
 
 
-  set<LEVEL_BASE::REG> src_regs;
-  set<LEVEL_BASE::REG> dst_regs;
-  const ADDRINT iaddr = INS_Address(ins);
-  Inst_info *info = new Inst_info;
-  memset(info,0,sizeof(*info));
+    set<LEVEL_BASE::REG> src_regs;
+    set<LEVEL_BASE::REG> dst_regs;
+    const ADDRINT iaddr = INS_Address(ins);
+    Inst_info *info = new Inst_info;
+    memset(info,0,sizeof(*info));
 
-  src_regs.clear();
-  dst_regs.clear();
+    src_regs.clear();
+    dst_regs.clear();
 
-  // ----------------------------------------
-  // check all operands
-  // ----------------------------------------
-  for (UINT32 ii = 0; ii < INS_OperandCount(ins); ++ii) {
-    LEVEL_BASE::REG reg;
     // ----------------------------------------
-    // operand - Register
-    // add source and destination registers
+    // check all operands
     // ----------------------------------------
-    if (INS_OperandIsReg(ins, ii)) {
-      reg = INS_OperandReg(ins, ii);
+    for (UINT32 ii = 0; ii < INS_OperandCount(ins); ++ii) {
+        LEVEL_BASE::REG reg;
+        // ----------------------------------------
+        // operand - Register
+        // add source and destination registers
+        // ----------------------------------------
+        if (INS_OperandIsReg(ins, ii)) {
+            reg = INS_OperandReg(ins, ii);
 
-      if (INS_OperandRead(ins,ii)) {
-        src_regs.insert(reg);
-      }
-      if (INS_OperandWritten(ins,ii)) {
-        dst_regs.insert(reg);
-      }
+            if (INS_OperandRead(ins,ii)) {
+                src_regs.insert(reg);
+            }
+            if (INS_OperandWritten(ins,ii)) {
+                dst_regs.insert(reg);
+            }
+        }
+        // ----------------------------------------
+        // operand - Memory
+        // ----------------------------------------
+        else if (INS_OperandIsMemory(ins, ii) || INS_OperandIsAddressGenerator(ins, ii)) {
+            // ----------------------------------------
+            // Add base, index, or segment registers if exists
+            // ----------------------------------------
+            reg = INS_OperandMemoryBaseReg(ins, ii);
+            if (reg) {
+                src_regs.insert(reg);
+            }
+
+            reg = INS_OperandMemoryIndexReg(ins, ii);
+            if (reg) {
+                src_regs.insert(reg);
+            }
+
+            reg = INS_OperandMemorySegmentReg(ins, ii);
+            if (reg) {
+                src_regs.insert(reg);
+            }
+        }
+    }
+
+    // ----------------------------------------
+    // handle source registers
+    // ----------------------------------------
+    if (!src_regs.empty()) {
+        info->num_read_regs = src_regs.size();
+        assert(info->num_read_regs < MAX_SRC_NUM);
+
+        set<LEVEL_BASE::REG>::iterator begin(src_regs.begin()), end(src_regs.end());
+        uint8_t *ptr = info->src;
+        while (begin != end) {
+            if (*begin >= LEVEL_BASE::REG_PIN_EDI && *begin <= LEVEL_BASE::REG_LAST) {
+                cerr << "PIN LEVEL_BASE::REGISTER!! : " << *begin << endl;
+                assert(0);
+            }
+
+            if (LEVEL_BASE::REG_is_fr(*begin))
+                info->is_fp = TRUE;
+
+            *ptr = REG_FullRegName(*begin);
+            ++ptr;
+            ++begin;
+        }
+    }
+
+
+    // ----------------------------------------
+    // destination registers
+    // ----------------------------------------
+    if (!dst_regs.empty()) {
+        info->num_dest_regs=dst_regs.size();
+        assert(info->num_dest_regs < MAX_DST_NUM);
+        set<LEVEL_BASE::REG>::iterator begin(dst_regs.begin()), end(dst_regs.end());
+        uint8_t *ptr = info->dst;
+        while (begin != end) {
+            if (*begin >= LEVEL_BASE::REG_PIN_EDI && *begin <= LEVEL_BASE::REG_LAST) {
+                cerr << "PIN LEVEL_BASE::REGISTER!! : " << *begin << endl;
+                assert(0);
+            }
+
+            if (*begin == LEVEL_BASE::REG_EFLAGS)
+                info->write_flg = 1;
+
+            if (LEVEL_BASE::REG_is_fr(*begin))
+                info->is_fp = 1;
+
+            *ptr = REG_FullRegName(*begin);
+            ++ptr;
+            ++begin;
+        }
+    }
+
+    // ----------------------------------------
+    // instruction size
+    // ----------------------------------------
+    info->size = INS_Size(ins);
+
+    // ----------------------------------------
+    // PC address
+    // ----------------------------------------
+    info->instruction_addr = iaddr;
+
+    // ----------------------------------------
+    // set the opcode
+    // ----------------------------------------
+    if (OPCODE_StringShort(INS_Opcode(ins)).find("NOP") != string::npos) {
+        info->opcode = TR_NOP;
     }
     // ----------------------------------------
-    // operand - Memory
+    // opcode : multiply
     // ----------------------------------------
-    else if (INS_OperandIsMemory(ins, ii) || INS_OperandIsAddressGenerator(ins, ii)) {
-      // ----------------------------------------
-      // Add base, index, or segment registers if exists
-      // ----------------------------------------
-      reg = INS_OperandMemoryBaseReg(ins, ii);
-      if (reg) {
-        src_regs.insert(reg);
-      }
-
-      reg = INS_OperandMemoryIndexReg(ins, ii);
-      if (reg) {
-        src_regs.insert(reg);
-      }
-
-      reg = INS_OperandMemorySegmentReg(ins, ii);
-      if (reg) {
-        src_regs.insert(reg);
-      }
+    else if (OPCODE_StringShort(INS_Opcode(ins)).find("MUL") != string::npos) {
+        if (INS_Opcode(ins) == XED_ICLASS_IMUL || INS_Opcode(ins) == XED_ICLASS_MUL) {
+            info->opcode = TR_MUL;
+        } else {
+            info->opcode = TR_FMUL;
+        }
     }
-  }
-
-  // ----------------------------------------
-  // handle source registers
-  // ----------------------------------------
-  if (!src_regs.empty()) {
-    info->num_read_regs = src_regs.size();
-    assert(info->num_read_regs < MAX_SRC_NUM);
-
-    set<LEVEL_BASE::REG>::iterator begin(src_regs.begin()), end(src_regs.end());
-    uint8_t *ptr = info->src;
-    while (begin != end) {
-      if (*begin >= LEVEL_BASE::REG_PIN_EDI && *begin <= LEVEL_BASE::REG_LAST) {
-        cerr << "PIN LEVEL_BASE::REGISTER!! : " << *begin << endl;
-        assert(0);
-      }
-
-      if (LEVEL_BASE::REG_is_fr(*begin))
-        info->is_fp = TRUE;
-
-      *ptr = REG_FullRegName(*begin);
-      ++ptr;
-      ++begin;
+    // ----------------------------------------
+    // opcode : multiply
+    // ----------------------------------------
+    else if (OPCODE_StringShort(INS_Opcode(ins)).find("DIV") != string::npos) {
+        if (INS_Opcode(ins) == XED_ICLASS_DIV || INS_Opcode(ins) == XED_ICLASS_IDIV) {
+            info->opcode = TR_DIV;
+        } else {
+            info->opcode = TR_FDIV;
+        }
     }
-  }
-
-
-  // ----------------------------------------
-  // destination registers
-  // ----------------------------------------
-  if (!dst_regs.empty()) {
-    info->num_dest_regs=dst_regs.size();
-    assert(info->num_dest_regs < MAX_DST_NUM);
-    set<LEVEL_BASE::REG>::iterator begin(dst_regs.begin()), end(dst_regs.end());
-    uint8_t *ptr = info->dst;
-    while (begin != end) {
-      if (*begin >= LEVEL_BASE::REG_PIN_EDI && *begin <= LEVEL_BASE::REG_LAST) {
-        cerr << "PIN LEVEL_BASE::REGISTER!! : " << *begin << endl;
-        assert(0);
-      }
-
-      if (*begin == LEVEL_BASE::REG_EFLAGS)
-        info->write_flg = 1;
-
-      if (LEVEL_BASE::REG_is_fr(*begin))
-        info->is_fp = 1;
-
-      *ptr = REG_FullRegName(*begin);
-      ++ptr;
-      ++begin;
+    // ----------------------------------------
+    // opcode : prefetch
+    // ----------------------------------------
+    else if (INS_Opcode(ins) == XED_ICLASS_PREFETCHNTA) {
+        info->opcode = PREFETCH_NTA;
     }
-  }
-
-  // ----------------------------------------
-  // instruction size
-  // ----------------------------------------
-  info->size = INS_Size(ins);
-
-  // ----------------------------------------
-  // PC address
-  // ----------------------------------------
-  info->instruction_addr = iaddr;
-
-  // ----------------------------------------
-  // set the opcode
-  // ----------------------------------------
-  if (OPCODE_StringShort(INS_Opcode(ins)).find("NOP") != string::npos) {
-    info->opcode = TR_NOP;
-  }
-  // ----------------------------------------
-  // opcode : multiply
-  // ----------------------------------------
-  else if (OPCODE_StringShort(INS_Opcode(ins)).find("MUL") != string::npos) {
-    if (INS_Opcode(ins) == XED_ICLASS_IMUL || INS_Opcode(ins) == XED_ICLASS_MUL) {
-      info->opcode = TR_MUL;
-    } else {
-      info->opcode = TR_FMUL;
+    else if (INS_Opcode(ins) == XED_ICLASS_PREFETCHT0) {
+        info->opcode = PREFETCH_T0;
     }
-  }
-  // ----------------------------------------
-  // opcode : multiply
-  // ----------------------------------------
-  else if (OPCODE_StringShort(INS_Opcode(ins)).find("DIV") != string::npos) {
-    if (INS_Opcode(ins) == XED_ICLASS_DIV || INS_Opcode(ins) == XED_ICLASS_IDIV) {
-      info->opcode = TR_DIV;
-    } else {
-      info->opcode = TR_FDIV;
+    else if (INS_Opcode(ins) == XED_ICLASS_PREFETCHT1) {
+        info->opcode = PREFETCH_T1;
     }
-  }
-  // ----------------------------------------
-  // opcode : prefetch
-  // ----------------------------------------
-  else if (INS_Opcode(ins) == XED_ICLASS_PREFETCHNTA) {
-    info->opcode = PREFETCH_NTA;
-  }
-  else if (INS_Opcode(ins) == XED_ICLASS_PREFETCHT0) {
-    info->opcode = PREFETCH_T0;
-  }
-  else if (INS_Opcode(ins) == XED_ICLASS_PREFETCHT1) {
-    info->opcode = PREFETCH_T1;
-  }
-  else if (INS_Opcode(ins) == XED_ICLASS_PREFETCHT2) {
-    info->opcode = PREFETCH_T2;
-  }
-  // ----------------------------------------
-  // opcode : others
-  // ----------------------------------------
-  else {
-    info->opcode = (uint8_t) (INS_Category(ins));
-  }
-
-
-  // ----------------------------------------
-  // SSE, AVX (Vector) instruction
-  // ----------------------------------------
-  if (INS_Category(ins) == XED_CATEGORY_AVX ||
-      INS_Category(ins) == XED_CATEGORY_FCMOV ||
-      INS_Category(ins) == XED_CATEGORY_X87_ALU ||
-      INS_Category(ins) == XED_CATEGORY_MMX ||
-      INS_Category(ins) == XED_CATEGORY_SSE) {
-    info->is_fp = 1;
-  }
-
-
-  // ----------------------------------------
-  // Branch instruction - set branch type
-  // ----------------------------------------
-  if (INS_IsIndirectBranchOrCall(ins) && !INS_IsRet(ins) && !INS_IsInterrupt(ins)) {
-    /**< Indirect branch */
-    if (INS_Category(ins)  == XED_CATEGORY_UNCOND_BR)
-      info->cf_type = CF_IBR;
-    else if (INS_Category(ins)  == XED_CATEGORY_COND_BR)
-      info->cf_type = CF_ICBR;
-    else if (INS_Category(ins) == XED_CATEGORY_CALL)
-      info->cf_type = CF_ICALL;
-  }
-  else if(INS_IsDirectBranchOrCall(ins) && !INS_IsInterrupt(ins)) {
-    /**< Direct branch */
-    if (INS_Category(ins) == XED_CATEGORY_UNCOND_BR)
-      info->cf_type = CF_BR;
-    else if (INS_Category(ins)  == XED_CATEGORY_COND_BR)
-      info->cf_type = CF_CBR;
-    else if (INS_Category(ins) == XED_CATEGORY_CALL)
-      info->cf_type = CF_CALL;
-    info->branch_target = INS_DirectBranchOrCallTargetAddress(ins);
-  }
-  else if (INS_IsRet(ins)) {
-    info->cf_type = CF_RET;
-  }
-  else if (INS_IsInterrupt(ins)) {
-    info->cf_type = CF_ICO;
-  }
-  else {
-    info->cf_type = NOT_CF;
-  }
-
-
-  // ----------------------------------------
-  // Load instruction
-  // ----------------------------------------
-  if (INS_IsMemoryRead(ins)) {
-    // 2 memory loads
-    if (INS_HasMemoryRead2(ins)) {
-      info->num_ld = 2;
-      INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)get_ld_ea2, IARG_MEMORYREAD_EA, IARG_MEMORYREAD2_EA, IARG_MEMORYREAD_SIZE,
-#ifndef PINLINUX
-      IARG_LEVEL_BASE::REG_VALUE, LEVEL_BASE::REG_EFLAGS,
-#endif
-      IARG_THREAD_ID, IARG_END);
+    else if (INS_Opcode(ins) == XED_ICLASS_PREFETCHT2) {
+        info->opcode = PREFETCH_T2;
     }
-    // 1 memory load
+    // ----------------------------------------
+    // opcode : others
+    // ----------------------------------------
     else {
-      info->num_ld = 1;
-      INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)get_ld_ea, IARG_MEMORYREAD_EA, IARG_MEMORYREAD_SIZE,
-#ifndef PINLINUX
-      IARG_LEVEL_BASE::REG_VALUE, LEVEL_BASE::REG_EFLAGS,
-#endif
-      IARG_THREAD_ID, IARG_END);
+        info->opcode = (uint8_t) (INS_Category(ins));
     }
-  }
 
 
-  // ----------------------------------------
-  // Store instruction
-  // ----------------------------------------
-  if (INS_IsMemoryWrite(ins)) {
-    info->has_st = 1;
-    INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)get_st_ea, IARG_MEMORYWRITE_EA, IARG_MEMORYWRITE_SIZE,
-#ifndef PINLINUX
-        IARG_LEVEL_BASE::REG_VALUE, LEVEL_BASE::REG_EFLAGS,
-#endif
-        IARG_THREAD_ID, IARG_END);
-  }
-
-
-  // ----------------------------------------
-  // add a static instruction (per thread id)
-  // ----------------------------------------
-  if (g_inst_storage[tid].find(iaddr) == g_inst_storage[tid].end()) {
-    for (UINT32 ii = 0; ii < Knob_num_thread.Value(); ++ii) {
-      g_inst_storage[ii][iaddr] = info;
+    // ----------------------------------------
+    // SSE, AVX (Vector) instruction
+    // ----------------------------------------
+    if (INS_Category(ins) == XED_CATEGORY_AVX ||
+            INS_Category(ins) == XED_CATEGORY_FCMOV ||
+            INS_Category(ins) == XED_CATEGORY_X87_ALU ||
+            INS_Category(ins) == XED_CATEGORY_MMX ||
+            INS_Category(ins) == XED_CATEGORY_SSE) {
+        info->is_fp = 1;
     }
-  }
+
+
+    // ----------------------------------------
+    // Branch instruction - set branch type
+    // ----------------------------------------
+    if (INS_IsIndirectBranchOrCall(ins) && !INS_IsRet(ins) && !INS_IsInterrupt(ins)) {
+        /**< Indirect branch */
+        if (INS_Category(ins)  == XED_CATEGORY_UNCOND_BR)
+            info->cf_type = CF_IBR;
+        else if (INS_Category(ins)  == XED_CATEGORY_COND_BR)
+            info->cf_type = CF_ICBR;
+        else if (INS_Category(ins) == XED_CATEGORY_CALL)
+            info->cf_type = CF_ICALL;
+    }
+    else if(INS_IsDirectBranchOrCall(ins) && !INS_IsInterrupt(ins)) {
+        /**< Direct branch */
+        if (INS_Category(ins) == XED_CATEGORY_UNCOND_BR)
+            info->cf_type = CF_BR;
+        else if (INS_Category(ins)  == XED_CATEGORY_COND_BR)
+            info->cf_type = CF_CBR;
+        else if (INS_Category(ins) == XED_CATEGORY_CALL)
+            info->cf_type = CF_CALL;
+        info->branch_target = INS_DirectBranchOrCallTargetAddress(ins);
+    }
+    else if (INS_IsRet(ins)) {
+        info->cf_type = CF_RET;
+    }
+    else if (INS_IsInterrupt(ins)) {
+        info->cf_type = CF_ICO;
+    }
+    else {
+        info->cf_type = NOT_CF;
+    }
+
+
+    // ----------------------------------------
+    // Load instruction
+    // ----------------------------------------
+    if (INS_IsMemoryRead(ins)) {
+        // 2 memory loads
+        if (INS_HasMemoryRead2(ins)) {
+            info->num_ld = 2;
+            INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)get_ld_ea2, IARG_MEMORYREAD_EA, IARG_MEMORYREAD2_EA, IARG_MEMORYREAD_SIZE,
+#ifndef PINLINUX
+                    IARG_LEVEL_BASE::REG_VALUE, LEVEL_BASE::REG_EFLAGS,
+#endif
+                    IARG_THREAD_ID, IARG_END);
+        }
+        // 1 memory load
+        else {
+            info->num_ld = 1;
+            INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)get_ld_ea, IARG_MEMORYREAD_EA, IARG_MEMORYREAD_SIZE,
+#ifndef PINLINUX
+                    IARG_LEVEL_BASE::REG_VALUE, LEVEL_BASE::REG_EFLAGS,
+#endif
+                    IARG_THREAD_ID, IARG_END);
+        }
+    }
+
+
+    // ----------------------------------------
+    // Store instruction
+    // ----------------------------------------
+    if (INS_IsMemoryWrite(ins)) {
+        info->has_st = 1;
+        INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)get_st_ea, IARG_MEMORYWRITE_EA, IARG_MEMORYWRITE_SIZE,
+#ifndef PINLINUX
+                IARG_LEVEL_BASE::REG_VALUE, LEVEL_BASE::REG_EFLAGS,
+#endif
+                IARG_THREAD_ID, IARG_END);
+    }
+
+
+    // ----------------------------------------
+    // add a static instruction (per thread id)
+    // ----------------------------------------
+    if (g_inst_storage[tid].find(iaddr) == g_inst_storage[tid].end()) {
+        for (UINT32 ii = 0; ii < Knob_num_thread.Value(); ++ii) {
+            g_inst_storage[ii][iaddr] = info;
+        }
+    }
 
 
 
 
 
-  // ----------------------------------------
-  // Branch instruction
-  // ----------------------------------------
-  if (info->cf_type) {
-    INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)get_target, IARG_BRANCH_TARGET_ADDR, IARG_BRANCH_TAKEN, IARG_THREAD_ID, IARG_END);
-  }
+    // ----------------------------------------
+    // Branch instruction
+    // ----------------------------------------
+    if (info->cf_type) {
+        INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)get_target, IARG_BRANCH_TARGET_ADDR, IARG_BRANCH_TAKEN, IARG_THREAD_ID, IARG_END);
+    }
 
-  // ----------------------------------------
-  // Write an instruction to buffer
-  // ----------------------------------------
-  INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)write_inst, IARG_INST_PTR, IARG_THREAD_ID, IARG_END);
+    // ----------------------------------------
+    // Write an instruction to buffer
+    // ----------------------------------------
+    INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)write_inst, IARG_INST_PTR, IARG_THREAD_ID, IARG_END);
 
 
-  // ----------------------------------------
-  // Dump out an instruction
-  // ----------------------------------------
-  if (print_inst) {
-    INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)dprint_inst, IARG_INST_PTR, IARG_PTR, new string(INS_Disassemble(ins)), IARG_THREAD_ID, IARG_END);
-  }
+    // ----------------------------------------
+    // Dump out an instruction
+    // ----------------------------------------
+    if (print_inst) {
+        INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)dprint_inst, IARG_INST_PTR, IARG_PTR, new string(INS_Disassemble(ins)), IARG_THREAD_ID, IARG_END);
+    }
 }
 
 
@@ -695,11 +673,11 @@ void instrument(INS ins)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Instruction(INS ins, void* v)
 {
-  // Count instructions
-  INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)IncrementNumInstruction, IARG_THREAD_ID, IARG_END);
+    // Count instructions
+    INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)IncrementNumInstruction, IARG_THREAD_ID, IARG_END);
 
-  // Instrument instructions
-  instrument(ins);
+    // Instrument instructions
+    instrument(ins);
 }
 
 
@@ -712,61 +690,61 @@ void Instruction(INS ins, void* v)
 /////////////////////////////////////////////////////////////////////////////////////////
 void ThreadStart(THREADID tid, CONTEXT *ctxt, INT32 flags, void *v)
 {
-  cout << "-> Thread[" << tid << "->" << threadMap[tid] << "] begins."<<endl;
-  THREADID threadid = threadMap[tid];
+    cout << "-> Thread[" << tid << "->" << threadMap[tid] << "] begins."<<endl;
+    THREADID threadid = threadMap[tid];
 
-  if (threadid == 100000)
-    return ;
+    if (threadid == 100000)
+        return ;
 
-  struct Trace_info* trace_info = NULL;
-  int my_index;
+    struct Trace_info* trace_info = NULL;
+    int my_index;
 
-  trace_info = new Trace_info;
-  if (trace_info == NULL) {
-    cerr << "could not allocate memory\n";
-    return;
-  }
-  memset(trace_info, 0, sizeof(Trace_info));
+    trace_info = new Trace_info;
+    if (trace_info == NULL) {
+        cerr << "could not allocate memory\n";
+        return;
+    }
+    memset(trace_info, 0, sizeof(Trace_info));
 
-  stringstream sstream;
-  sstream << Knob_trace_name.Value() << "_" << threadid << ".raw";
-  string file_name;
-  sstream >> file_name;
+    stringstream sstream;
+    sstream << Knob_trace_name.Value() << "_" << threadid << ".raw";
+    string file_name;
+    sstream >> file_name;
 
-  gzFile trace_stream = NULL;
-  trace_stream = gzopen(file_name.c_str(), WRITEM);
+    gzFile trace_stream = NULL;
+    trace_stream = gzopen(file_name.c_str(), WRITEM);
 
-  // DEBUG
-  char debug_file_name[256] = {'\0'};
+    // DEBUG
+    char debug_file_name[256] = {'\0'};
 
-  ofstream* debug_stream = NULL;
-  sprintf(debug_file_name, "%s_%d.dump", Knob_dump_file.Value().c_str(), threadid);
-  debug_stream = new ofstream(debug_file_name);
+    ofstream* debug_stream = NULL;
+    sprintf(debug_file_name, "%s_%d.dump", Knob_dump_file.Value().c_str(), threadid);
+    debug_stream = new ofstream(debug_file_name);
 
-  if (trace_stream != NULL) {
-    trace_info->trace_stream = trace_stream;
-    trace_info->bytes_accumulated = 0;
-    trace_info->inst_count = 0;
+    if (trace_stream != NULL) {
+        trace_info->trace_stream = trace_stream;
+        trace_info->bytes_accumulated = 0;
+        trace_info->inst_count = 0;
 
-    if (Knob_inst_dump.Value())
-      trace_info->debug_stream = debug_stream;
+        if (Knob_inst_dump.Value())
+            trace_info->debug_stream = debug_stream;
 
-    assert(threadid < MAX_THREADS);
-    GetLock(&g_lock, threadid+1);
-    if (thread_count == 0)
-      main_thread_id = threadid;
+        assert(threadid < MAX_THREADS);
+        GetLock(&g_lock, threadid+1);
+        if (thread_count == 0)
+            main_thread_id = threadid;
 
-    my_index = thread_count++;
-    ReleaseLock(&g_lock);
-    trace_info_array[threadid] = trace_info;
+        my_index = thread_count++;
+        ReleaseLock(&g_lock);
+        trace_info_array[threadid] = trace_info;
 
-    thread_info[threadid].thread_id = threadid;
-    thread_info[threadid].inst_count = trace_info_array[main_thread_id]->inst_count;
-  }
-  else {
-    cerr << "error opening file for writing\n";
-    exit(-1);
-  }
+        thread_info[threadid].thread_id = threadid;
+        thread_info[threadid].inst_count = trace_info_array[main_thread_id]->inst_count;
+    }
+    else {
+        cerr << "error opening file for writing\n";
+        exit(-1);
+    }
 }
 
 
@@ -776,7 +754,7 @@ void ThreadStart(THREADID tid, CONTEXT *ctxt, INT32 flags, void *v)
 /////////////////////////////////////////////////////////////////////////////////////////
 void ThreadEnd(THREADID threadid, const CONTEXT *ctxt, INT32 flags, void *v)
 {
-  thread_end();
+    thread_end();
 }
 
 
@@ -789,7 +767,7 @@ void ThreadEnd(THREADID threadid, const CONTEXT *ctxt, INT32 flags, void *v)
 /////////////////////////////////////////////////////////////////////////////////////////
 void thread_end(void)
 {
-  thread_end(threadMap[PIN_ThreadId()]);
+    thread_end(threadMap[PIN_ThreadId()]);
 }
 
 
@@ -812,12 +790,12 @@ void thread_end(THREADID threadid)
     {
 
         if (trace_info->bytes_accumulated != gzwrite(trace_info->trace_stream,
-                                                     trace_info->trace_buf,
-                                                     trace_info->bytes_accumulated))
+                    trace_info->trace_buf,
+                    trace_info->bytes_accumulated))
         {
             cerr << "TID " << threadid
-                 << " Error when writting instruction "
-                 << trace_info->inst_count << endl;
+                << " Error when writting instruction "
+                << trace_info->inst_count << endl;
         }
     }
 
@@ -842,7 +820,7 @@ void thread_end(THREADID threadid)
 /////////////////////////////////////////////////////////////////////////////////////////
 void Fini(INT32 code, void *v)
 {
-  finish();
+    finish();
 }
 
 
@@ -856,25 +834,25 @@ void finish(void)
 {
     // thread_end();
 
-  /**< Create configuration file */
-  string config_file_name = Knob_trace_name.Value() + ".txt";
-  ofstream configFile;
+    /**< Create configuration file */
+    string config_file_name = Knob_trace_name.Value() + ".txt";
+    ofstream configFile;
 
-  configFile.open(config_file_name.c_str());
-  configFile << thread_count << " x86" << endl;
-  for (unsigned int ii = 0; ii < thread_count; ++ii) {
-    // thread_id thread_inst_start_count (relative to main thread)
-    configFile << thread_info[ii].thread_id << " " << thread_info[ii].inst_count << endl;
-  }
-  configFile.close();
+    configFile.open(config_file_name.c_str());
+    configFile << thread_count << " x86" << endl;
+    for (unsigned int ii = 0; ii < thread_count; ++ii) {
+        // thread_id thread_inst_start_count (relative to main thread)
+        configFile << thread_info[ii].thread_id << " " << thread_info[ii].inst_count << endl;
+    }
+    configFile.close();
 
-  /**< Final print to standard output */
-  for (unsigned ii = 0; ii < thread_count; ++ii) {
-    cout << "-> tid " << thread_info[ii].thread_id << " inst count " << g_inst_count[ii]
-      << " (from " << thread_info[ii].inst_count << ")\n";
-  }
-  cout << "-> Final icount: " << g_inst_count[0] << endl;
-  cout << "-> Exiting..." << endl;
+    /**< Final print to standard output */
+    for (unsigned ii = 0; ii < thread_count; ++ii) {
+        cout << "-> tid " << thread_info[ii].thread_id << " inst count " << g_inst_count[ii]
+            << " (from " << thread_info[ii].inst_count << ")\n";
+    }
+    cout << "-> Final icount: " << g_inst_count[0] << endl;
+    cout << "-> Exiting..." << endl;
 }
 
 
@@ -883,30 +861,46 @@ void finish(void)
 /////////////////////////////////////////////////////////////////////////////////////////
 void initialize(void)
 {
-  // Enable Analysis Routine
-  for (int ii = 0; ii < MAX_THREADS; ++ii) {
-    g_enable_thread_instrument[ii] = true;
-    g_inst_print_count[ii] = 0;
-  }
-
-  // Initialize Lock
-  InitLock(&g_lock);
-
-  // Thread ID mapping due to icc compiler (TODO:more explanation)
-  if (Knob_compiler.Value() == "icc") {
-    threadMap[0] = 0;
-    threadMap[1] = 100000;
-    for (UINT32 ii = 2; ii <= Knob_num_thread.Value(); ++ii) {
-      threadMap[ii] = ii-1;
+    // Enable Analysis Routine
+    for (int ii = 0; ii < MAX_THREADS; ++ii) {
+        g_enable_thread_instrument[ii] = true;
+        g_inst_print_count[ii] = 0;
     }
-  }
-  else if (Knob_compiler.Value() == "gcc") {
-    for (UINT32 ii = 0; ii < Knob_num_thread.Value(); ++ii) {
-      threadMap[ii] = ii;
-    }
-  }
 
-  g_enable_instrument = false;
+    // Initialize Lock
+    InitLock(&g_lock);
+
+    // Thread ID mapping due to icc compiler (TODO:more explanation)
+    if (Knob_compiler.Value() == "icc") {
+        threadMap[0] = 0;
+        threadMap[1] = 100000;
+        for (UINT32 ii = 2; ii <= Knob_num_thread.Value(); ++ii) {
+            threadMap[ii] = ii-1;
+        }
+    }
+    else if (Knob_compiler.Value() == "gcc") {
+        for (UINT32 ii = 0; ii < Knob_num_thread.Value(); ++ii) {
+            threadMap[ii] = ii;
+        }
+    }
+
+    g_enable_instrument = false;
+
+    // Read accelerated function list
+    ifstream funcfile;
+    funcfile.open(Knob_funcfile.Value().c_str(),ios::in);
+
+    if(!funcfile.is_open())
+        assert(false && "Unable to open accelerated function names file");
+
+    char name[256];
+    UINT32 counter = 0;
+    while(funcfile.good())
+    {
+        funcfile.getline(name,256);
+        AccFuncs.insert(make_pair<string,UINT32>(string(name),counter));
+    }
+
 }
 
 
@@ -916,27 +910,18 @@ void initialize(void)
 /////////////////////////////////////////////////////////////////////////////////////////
 void sanity_check(void)
 {
-  // ----------------------------------------
-  // check whether there has been changes in the pin XED enumerators
-  // ----------------------------------------
-  for (int ii = 0; ii < XED_CATEGORY_LAST; ++ii) {
-    if (tr_opcode_names[ii] != CATEGORY_StringShort(ii)) {
-      cout << ii << " " << tr_opcode_names[ii] << " " << CATEGORY_StringShort(ii) << "\n";
-      cout << "-> Changes in XED_CATEGORY!\n";
-      exit(0);
+    // ----------------------------------------
+    // check whether there has been changes in the pin XED enumerators
+    // ----------------------------------------
+    for (int ii = 0; ii < XED_CATEGORY_LAST; ++ii) {
+        if (tr_opcode_names[ii] != CATEGORY_StringShort(ii)) {
+            cout << ii << " " << tr_opcode_names[ii] << " " << CATEGORY_StringShort(ii) << "\n";
+            cout << "-> Changes in XED_CATEGORY!\n";
+            exit(0);
+        }
     }
-  }
 
 
-  // compiler must be either icc or gcc
-  if (Knob_compiler.Value() != "icc" && Knob_compiler.Value() != "gcc") {
-    cerr << "-> Please check -compiler value. Unknown compiler option.\n";
-  }
-
-  // programming language must be either c (normal) or c++
-  if (Knob_pl.Value() != "normal" && Knob_pl.Value() != "c++") {
-    cerr << "-> Please check -pl value. Unknown programming language option.\n";
-  }
 }
 
 
@@ -945,43 +930,43 @@ void sanity_check(void)
 /////////////////////////////////////////////////////////////////////////////////////////
 void write_inst_to_file(ofstream* file, Inst_info *t_info)
 {
-  THREADID tid = threadMap[PIN_ThreadId()];
-  if (tid == 100000 || !g_enable_thread_instrument[tid] || g_inst_print_count[tid] > Knob_dump_max.Value())
-    return ;
+    THREADID tid = threadMap[PIN_ThreadId()];
+    if (tid == 100000 || !g_enable_thread_instrument[tid] || g_inst_print_count[tid] > Knob_dump_max.Value())
+        return ;
 
-  g_inst_print_count[tid]++;
+    g_inst_print_count[tid]++;
 
 
-  (*file) << "*** begin of the data strcture *** " <<endl;
-  (*file) << "t_info->uop_opcode " <<tr_opcode_names[(uint32_t) t_info->opcode]  << endl;
-  (*file) << "t_info->num_read_regs: " << hex <<  (uint32_t) t_info->num_read_regs << endl;
-  (*file) << "t_info->num_dest_regs: " << hex << (uint32_t) t_info->num_dest_regs << endl;
-  for (UINT32 ii = 0; ii < 4; ++ii) {
-    if (t_info->src[ii] != 0) {
-      (*file) << "t_info->src" << ii << ": " << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->src[ii])) << endl;
+    (*file) << "*** begin of the data strcture *** " <<endl;
+    (*file) << "t_info->uop_opcode " <<tr_opcode_names[(uint32_t) t_info->opcode]  << endl;
+    (*file) << "t_info->num_read_regs: " << hex <<  (uint32_t) t_info->num_read_regs << endl;
+    (*file) << "t_info->num_dest_regs: " << hex << (uint32_t) t_info->num_dest_regs << endl;
+    for (UINT32 ii = 0; ii < 4; ++ii) {
+        if (t_info->src[ii] != 0) {
+            (*file) << "t_info->src" << ii << ": " << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->src[ii])) << endl;
+        }
     }
-  }
-  for (UINT32 ii = 0; ii < 4; ++ii) {
-    if (t_info->dst[ii] != 0) {
-      (*file) << "t_info->dst" << ii << ": " << hex << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->dst[ii])) << endl;
+    for (UINT32 ii = 0; ii < 4; ++ii) {
+        if (t_info->dst[ii] != 0) {
+            (*file) << "t_info->dst" << ii << ": " << hex << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->dst[ii])) << endl;
+        }
     }
-  }
-  (*file) << "t_info->cf_type: " << hex << tr_cf_names[(uint32_t) t_info->cf_type] << endl;
-  (*file) << "t_info->has_immediate: " << hex << (uint32_t) t_info->has_immediate << endl;
-  (*file) << "t_info->r_dir:" << (uint32_t) t_info->rep_dir << endl;
-  (*file) << "t_info->has_st: " << hex << (uint32_t) t_info->has_st << endl;
-  (*file) << "t_info->num_ld: " << hex << (uint32_t) t_info->num_ld << endl;
-  (*file) << "t_info->mem_read_size: " << hex << (uint32_t) t_info->mem_read_size << endl;
-  (*file) << "t_info->mem_write_size: " << hex << (uint32_t) t_info->mem_write_size << endl;
-  (*file) << "t_info->is_fp: " << (uint32_t) t_info->is_fp << endl;
-  (*file) << "t_info->ld_vaddr1: " << hex << (uint32_t) t_info->ld_vaddr1 << endl;
-  (*file) << "t_info->ld_vaddr2: " << hex << (uint32_t) t_info->ld_vaddr2 << endl;
-  (*file) << "t_info->st_vaddr: " << hex << (uint32_t) t_info->st_vaddr << endl;
-  (*file) << "t_info->instruction_addr: " << hex << (uint32_t) t_info->instruction_addr << endl;
-  (*file) << "t_info->branch_target: " << hex << (uint32_t) t_info->branch_target << endl;
-  (*file) << "t_info->actually_taken: " << hex << (uint32_t) t_info->actually_taken << endl;
-  (*file) << "t_info->write_flg: " << hex << (uint32_t) t_info->write_flg << endl;
-  (*file) << "*** end of the data strcture *** " << endl << endl;
+    (*file) << "t_info->cf_type: " << hex << tr_cf_names[(uint32_t) t_info->cf_type] << endl;
+    (*file) << "t_info->has_immediate: " << hex << (uint32_t) t_info->has_immediate << endl;
+    (*file) << "t_info->r_dir:" << (uint32_t) t_info->rep_dir << endl;
+    (*file) << "t_info->has_st: " << hex << (uint32_t) t_info->has_st << endl;
+    (*file) << "t_info->num_ld: " << hex << (uint32_t) t_info->num_ld << endl;
+    (*file) << "t_info->mem_read_size: " << hex << (uint32_t) t_info->mem_read_size << endl;
+    (*file) << "t_info->mem_write_size: " << hex << (uint32_t) t_info->mem_write_size << endl;
+    (*file) << "t_info->is_fp: " << (uint32_t) t_info->is_fp << endl;
+    (*file) << "t_info->ld_vaddr1: " << hex << (uint32_t) t_info->ld_vaddr1 << endl;
+    (*file) << "t_info->ld_vaddr2: " << hex << (uint32_t) t_info->ld_vaddr2 << endl;
+    (*file) << "t_info->st_vaddr: " << hex << (uint32_t) t_info->st_vaddr << endl;
+    (*file) << "t_info->instruction_addr: " << hex << (uint32_t) t_info->instruction_addr << endl;
+    (*file) << "t_info->branch_target: " << hex << (uint32_t) t_info->branch_target << endl;
+    (*file) << "t_info->actually_taken: " << hex << (uint32_t) t_info->actually_taken << endl;
+    (*file) << "t_info->write_flg: " << hex << (uint32_t) t_info->write_flg << endl;
+    (*file) << "*** end of the data strcture *** " << endl << endl;
 }
 
 
@@ -990,46 +975,46 @@ void write_inst_to_file(ofstream* file, Inst_info *t_info)
 /////////////////////////////////////////////////////////////////////////////////////////
 void dprint_inst(ADDRINT iaddr, string *disassemble_info, THREADID threadid)
 {
-  THREADID tid = threadMap[threadid];
-  if (tid == 100000 || !g_enable_thread_instrument[tid])
-    return ;
+    THREADID tid = threadMap[threadid];
+    if (tid == 100000 || !g_enable_thread_instrument[tid])
+        return ;
 
-  Inst_info *t_info = NULL;
-  t_info = g_inst_storage[tid][iaddr];
+    Inst_info *t_info = NULL;
+    t_info = g_inst_storage[tid][iaddr];
 
-  cout << "\nInstruction count: " << g_inst_count[tid] << endl;
-  cout << "*** beginning of the data strcture *** " <<endl;
-  cout << "t_info->uop_opcode " <<tr_opcode_names[(uint32_t) t_info->opcode]  << endl;
-  cout << "t_info->num_read_regs: " << hex <<  (uint32_t) t_info->num_read_regs << endl;
-  cout << "t_info->num_dest_regs: " << hex << (uint32_t) t_info->num_dest_regs << endl;
-  for (UINT32 ii = 0; ii < 4; ++ii) {
-    if (t_info->src[ii] != 0) {
-      cout << "t_info->src" << ii << ": " << hex << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->src[ii])) << endl;
+    cout << "\nInstruction count: " << g_inst_count[tid] << endl;
+    cout << "*** beginning of the data strcture *** " <<endl;
+    cout << "t_info->uop_opcode " <<tr_opcode_names[(uint32_t) t_info->opcode]  << endl;
+    cout << "t_info->num_read_regs: " << hex <<  (uint32_t) t_info->num_read_regs << endl;
+    cout << "t_info->num_dest_regs: " << hex << (uint32_t) t_info->num_dest_regs << endl;
+    for (UINT32 ii = 0; ii < 4; ++ii) {
+        if (t_info->src[ii] != 0) {
+            cout << "t_info->src" << ii << ": " << hex << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->src[ii])) << endl;
+        }
     }
-  }
 
-  for (UINT32 ii = 0; ii < 4; ++ii) {
-    if (t_info->dst[ii] != 0) {
-      cout << "t_info->src" << ii << ": " << hex << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->dst[ii])) << endl;
+    for (UINT32 ii = 0; ii < 4; ++ii) {
+        if (t_info->dst[ii] != 0) {
+            cout << "t_info->src" << ii << ": " << hex << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->dst[ii])) << endl;
+        }
     }
-  }
 
-  cout << "t_info->cf_type: " << hex << tr_cf_names[(uint32_t) t_info->cf_type] << endl;
-  cout << "t_info->has_immediate: " << hex << (uint32_t) t_info->has_immediate << endl;
-  cout << "t_info->r_dir:" << (uint32_t) t_info->rep_dir << endl;
-  cout << "t_info->has_st: " << hex << (uint32_t) t_info->has_st << endl;
-  cout << "t_info->num_ld: " << hex << (uint32_t) t_info->num_ld << endl;
-  cout << "t_info->mem_read_size: " << hex << (uint32_t) t_info->mem_read_size << endl;
-  cout << "t_info->mem_write_size: " << hex << (uint32_t) t_info->mem_write_size << endl;
-  cout << "t_info->is_fp: " << (uint32_t) t_info->is_fp << endl;
-  cout << "t_info->ld_vaddr1: " << hex << (uint32_t) t_info->ld_vaddr1 << endl;
-  cout << "t_info->ld_vaddr2: " << hex << (uint32_t) t_info->ld_vaddr2 << endl;
-  cout << "t_info->st_vaddr: " << hex << (uint32_t) t_info->st_vaddr << endl;
-  cout << "t_info->instruction_addr: " << hex << (uint32_t) t_info->instruction_addr << endl;
-  cout << "t_info->branch_target: " << hex << (uint32_t) t_info->branch_target << endl;
-  cout << "t_info->actually_taken: " << hex << (uint32_t) t_info->actually_taken << endl;
-  cout << "t_info->write_flg: " << hex << (uint32_t) t_info->write_flg << endl;
-  cout << "*** end of the data strcture *** " << endl;
+    cout << "t_info->cf_type: " << hex << tr_cf_names[(uint32_t) t_info->cf_type] << endl;
+    cout << "t_info->has_immediate: " << hex << (uint32_t) t_info->has_immediate << endl;
+    cout << "t_info->r_dir:" << (uint32_t) t_info->rep_dir << endl;
+    cout << "t_info->has_st: " << hex << (uint32_t) t_info->has_st << endl;
+    cout << "t_info->num_ld: " << hex << (uint32_t) t_info->num_ld << endl;
+    cout << "t_info->mem_read_size: " << hex << (uint32_t) t_info->mem_read_size << endl;
+    cout << "t_info->mem_write_size: " << hex << (uint32_t) t_info->mem_write_size << endl;
+    cout << "t_info->is_fp: " << (uint32_t) t_info->is_fp << endl;
+    cout << "t_info->ld_vaddr1: " << hex << (uint32_t) t_info->ld_vaddr1 << endl;
+    cout << "t_info->ld_vaddr2: " << hex << (uint32_t) t_info->ld_vaddr2 << endl;
+    cout << "t_info->st_vaddr: " << hex << (uint32_t) t_info->st_vaddr << endl;
+    cout << "t_info->instruction_addr: " << hex << (uint32_t) t_info->instruction_addr << endl;
+    cout << "t_info->branch_target: " << hex << (uint32_t) t_info->branch_target << endl;
+    cout << "t_info->actually_taken: " << hex << (uint32_t) t_info->actually_taken << endl;
+    cout << "t_info->write_flg: " << hex << (uint32_t) t_info->write_flg << endl;
+    cout << "*** end of the data strcture *** " << endl;
 }
 
 
@@ -1038,36 +1023,36 @@ void dprint_inst(ADDRINT iaddr, string *disassemble_info, THREADID threadid)
 /////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char *argv[])
 {
-  PIN_InitSymbols();
+    PIN_InitSymbols();
 
-  if (PIN_Init(argc,argv)) {
-    cerr << "This pin tool generates traces\n\n";
-    cerr << KNOB_BASE::StringKnobSummary() << endl;
-    return -1;
-  }
+    if (PIN_Init(argc,argv)) {
+        cerr << "This pin tool generates traces\n\n";
+        cerr << KNOB_BASE::StringKnobSummary() << endl;
+        return -1;
+    }
 
-  initialize();
-  sanity_check();
+    initialize();
+    sanity_check();
 
-  cerr << "-> Size of Inst_info: " << sizeof(Inst_info) << endl;
+    cerr << "-> Size of Inst_info: " << sizeof(Inst_info) << endl;
 
-  detach_inst = Knob_detach_inst.Value();
-  print_inst = Knob_print_inst.Value();
+    detach_inst = Knob_detach_inst.Value();
+    print_inst = Knob_print_inst.Value();
 
-  IMG_AddInstrumentFunction ( &ImageLoad, NULL );
+    IMG_AddInstrumentFunction ( &ImageLoad, NULL );
 
-  PIN_AddThreadStartFunction(ThreadStart, 0);
-  PIN_AddThreadFiniFunction(ThreadEnd, 0);
+    PIN_AddThreadStartFunction(ThreadStart, 0);
+    PIN_AddThreadFiniFunction(ThreadEnd, 0);
 
-  // instrumentation option
-  INS_AddInstrumentFunction(Instruction, 0);
-  control.CheckKnobs(Handler, 0);
+    // instrumentation option
+    INS_AddInstrumentFunction(Instruction, 0);
+    control.CheckKnobs(Handler, 0);
 
-  PIN_AddDetachFunction(Detach, 0);
-  PIN_AddFiniFunction(Fini, 0);
-  PIN_StartProgram();
+    PIN_AddDetachFunction(Detach, 0);
+    PIN_AddFiniFunction(Fini, 0);
+    PIN_StartProgram();
 
-  return 0;
+    return 0;
 }
 
 
@@ -1102,172 +1087,13 @@ VOID ImageLoad(IMG img,  VOID *v)
                 RTN_InsertCall(rtn, IPOINT_BEFORE, (AFUNPTR) ExitROI, IARG_END);
                 RTN_Close(rtn);
             }
-
-            /** Vector Markers Begin **/
-
-            if(rtnName == string("__vec_iter"))
-            {
-
-                RTN_Open(rtn);
-
-                RTN_InsertCall(rtn, IPOINT_AFTER, (AFUNPTR)VecIter,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 0,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 1,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 2,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 3,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 4,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 5,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 6,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 7,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 8,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 9,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 10,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 11,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 12,
-                               IARG_END);
-
-                RTN_Close(rtn);
-            }
-
-            else if(rtnName == string("__vec_sort"))
-            {
-                RTN_Open(rtn);
-
-                RTN_InsertCall(rtn, IPOINT_AFTER, (AFUNPTR)VecSort,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 0,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 1,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 2,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 3,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 4,
-                               IARG_END);
-
-                RTN_Close(rtn);
-            }
-
-            /** Vector Markers End **/
-
-            /** Hash Markers Begin **/
-
-            else if(rtnName == string("__hash_search"))
-            {
-                RTN_Open(rtn);
-
-                RTN_InsertCall(rtn, IPOINT_AFTER, (AFUNPTR)HashSearch,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 0,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 1,
-                               IARG_FUNCARG_ENTRYPOINT_VALUE, 2);
-
-                RTN_Close(rtn);
-            }
-
-            else if(rtnName == string("__btree_traverse"))
-            {
-                RTN_Open(rtn);
-
-                RTN_InsertCall(rtn, IPOINT_AFTER, (AFUNPTR) BTreeTraverse, IARG_END);
-
-                RTN_Close(rtn);
-            }
-
         }
     }
-}
-
-VOID VecIter(UINT32 num_iter,
-             ADDRINT load_base_addrs[],
-             UINT32 node_size[],
-             UINT32 load_index_offsets[],
-             UINT32 static_ins_count,
-             UINT32 compute_slice_latency,
-             UINT32 compute_int_count,
-             UINT32 compute_fp_count,
-             UINT32 compute_k,
-             UINT32 stack_accesses,
-             ADDRINT store_base_addrs[],
-             UINT32 store_index_offsets[],
-             UINT32 vec_len[])
-{
-    
-    std::cout << "Found Vec Iter" << std::endl;
-
-    Inst_info* m = (Inst_info*)memset((void *)new Inst_info, 0, sizeof(Inst_info));
-    m->ds_flag = true;
-    m->ds_op_type = VEC_ITER;
-    m->ds_num_iter = num_iter;
-    memcpy((void *)m->ds_load_base_addrs, (const void*)load_base_addrs, MAX_DS_COUNT * sizeof(ADDRINT));
-    memcpy((void *)m->ds_node_size,  (const void*)node_size, MAX_DS_COUNT * sizeof(UINT32));
-    memcpy((void *)m->ds_load_index_offsets,  (const void*)load_index_offsets, MAX_DS_COUNT * sizeof(UINT32));
-    m->ds_static_ins_count = static_ins_count;
-    m->ds_compute_slice_latency = compute_slice_latency;
-    m->ds_compute_int_count = compute_int_count;
-    m->ds_compute_fp_count = compute_fp_count;
-    m->ds_compute_k = compute_k;
-    m->ds_stack_accesses = stack_accesses;
-    memcpy((void *)m->ds_store_base_addrs, (const void*)store_base_addrs, MAX_DS_COUNT * sizeof(ADDRINT));
-    memcpy((void *)m->ds_store_index_offsets,  (const void*)store_index_offsets, MAX_DS_COUNT * sizeof(UINT32));
-    memcpy((void *)m->ds_vec_len,  (const void*)vec_len, MAX_DS_COUNT * sizeof(UINT32));
-
-
-    write_marker_to_gzfile(m);
-
-    std::cout << "Wrote Iter Marker: " << g_inst_count[0] << endl;
-
-    delete m;
-}
-
-VOID VecSort(ADDRINT base_addr,
-             UINT32 node_size,
-             UINT32 start_index,
-             UINT32 end_index,
-             UINT32 comp_func_latency)
-{
-    Inst_info* m = (Inst_info*)memset((void *)new Inst_info, 0, sizeof(Inst_info));
-    m->ds_flag = true;
-    m->ds_op_type = VEC_SORT;
-    m->ds_load_base_addrs[0] = base_addr;
-    m->ds_node_size[0] = node_size;
-    m->ds_load_index_offsets[0] = start_index;
-    m->ds_load_index_offsets[1] = end_index;
-    m->ds_compute_slice_latency = comp_func_latency;
-
-    write_marker_to_gzfile(m);
-    delete m;
-}
-
-VOID HashSearch(CHAR* md5_keys,
-                UINT32 num_keys,
-                ADDRINT base_addr)
-{
-    Inst_info* m = (Inst_info*)memset((void *)new Inst_info, 0, sizeof(Inst_info));
-    m->ds_flag = true;
-    m->ds_op_type = HASH_SEARCH;
-
-    m->ds_load_base_addrs[0] = base_addr;
-
-    // This is going to be messy
-
-    memcpy((void *)m->ds_node_size, (const void*)md5_keys, 32);                  // Keys 0,1
-    memcpy((void *)m->ds_load_index_offsets, (const void*)(md5_keys + 32), 32);  // Keys 2,3
-    memcpy((void *)m->ds_store_base_addrs, (const void*)(md5_keys + 64), 32);    // Keys 4,5
-    memcpy((void *)m->ds_store_index_offsets, (const void*)(md5_keys + 96), 32); // Keys 6,7
-
-    write_marker_to_gzfile(m);
-    delete m;
-}
-
-VOID BTreeTraverse(VOID*v)
-{
-    Inst_info* m = (Inst_info*)memset((void *)new Inst_info, 0, sizeof(Inst_info));
-    m->ds_flag = true;
-    m->ds_op_type = BTREE_TRAVERSE;
-    write_marker_to_gzfile(m);
-    delete m;
 }
 
 
 VOID write_marker_to_gzfile(Inst_info *m)
 {
-    // ska124 - Only works for single threaded dumps
     int write_size = gzwrite(trace_info_array[0]->trace_stream, m, BUF_SIZE);
 
     if (write_size != BUF_SIZE) {
