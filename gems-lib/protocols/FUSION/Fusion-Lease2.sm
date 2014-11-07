@@ -481,8 +481,8 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
         {
             enqueue(responseCPUNetwork_out, ResponseMsg, latency="L1_to_L2_DATA_LATENCY") {
                 out_msg.Address := address;
-                out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
-                out_msg.Dirty := getL2CacheEntry(address).Dirty;
+                out_msg.DataBlk := L2_TBEs[address].DataBlk;
+                out_msg.Dirty := L2_TBEs[address].Dirty;
                 out_msg.Sender:= machineID;
                 out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
                 out_msg.Type := CoherenceResponseType:DATA_ACC;
@@ -493,8 +493,8 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
         {
            enqueue(requestCPUNetwork_out, RequestMsg, latency="L1_to_L2_DATA_LATENCY") {
                 out_msg.Address := address;
-                out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
-                out_msg.Dirty := getL2CacheEntry(address).Dirty;
+                out_msg.DataBlk := L2_TBEs[address].DataBlk;
+                out_msg.Dirty := L2_TBEs[address].Dirty;
                 out_msg.Requestor:= machineID;
                 out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
                 out_msg.Type := CoherenceRequestType:PUTX_ACC;
@@ -634,6 +634,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
             L2_TBEs[address].RequestSize := in_msg.RequestSize;
             L2_TBEs[address].deltaRequested := in_msg.deltaRequested;
             L2_TBEs[address].memfetch := in_msg.memfetch;
+            L2_TBEs[address].pendingAcks := 0;
         }
     }
 
@@ -647,6 +648,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
             L2_TBEs[address].RequestSize := in_msg.RequestSize;
             L2_TBEs[address].Space := in_msg.Space;
             L2_TBEs[address].memfetch := in_msg.memfetch;
+            L2_TBEs[address].pendingAcks := 0;
         }
     }
 
@@ -657,6 +659,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
         L2_TBEs[address].DataBlk := getL2CacheEntry(address).DataBlk;
         L2_TBEs[address].Dirty := getL2CacheEntry(address).Dirty;
         L2_TBEs[address].liveUntilTime := getL2CacheEntry(address).liveUntilTime;
+        L2_TBEs[address].pendingAcks := 0;
     }
 
     action(it_insertL2ExpireTriggerQueue, "it", desc="Insert expire event into L2 expire trigger queue") {
@@ -786,7 +789,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
 
     action(q_updateAckCount, "q", desc="Update ack count") {
-        peek(requestCPUNetwork_in, ResponseMsg) {
+        peek(responseCPUNetwork_in, ResponseMsg) {
             L2_TBEs[address].pendingAcks := L2_TBEs[address].pendingAcks - in_msg.AckCount;
             APPEND_TRANSITION_COMMENT(in_msg.AckCount);
             APPEND_TRANSITION_COMMENT(" p: ");
@@ -794,13 +797,9 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     }
   }
 
-    action(zz_recycleL1RequestQueue, "zz", desc="recycle L1 request queue") {
-        L1RequestIntraChipL2Network_in.recycle();
-    }
-
-    action(zc_recycleL1ResponseNetwork, "zc", desc="recycle L1 response queue") {
-       L1RequestIntraChipL2Network_in.recycle();
-    }
+ 
+  // Can't recycle writes in L1 request queue as they are unordered
+  // Can't recycle L1 response queue as that might lead to deadlock
 
     action(z_stall, "z", desc="stall - i.e. do nothing") {
     }
@@ -1033,7 +1032,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     // Ignore CPU fwd requests as eventually I am going to send back to CPU anyway
     transition({MI,MI_Ack}, {Fwd_GETS,Fwd_GETX,Inv}) {
-        o_popIncomingCPUResponseQueue;
+        o_popIncomingCPURequestQueue;
     }
 
 
@@ -1050,6 +1049,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     // Transitions on Interaction with CPU side msgs.
     transition({IM,IMA,IS,ISS}, Data) {
         m_writeDataToCache;
+        q_updateAckCount;
         d_markTBEDataReady;
         o_popIncomingCPUResponseQueue;
     }

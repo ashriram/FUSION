@@ -106,6 +106,7 @@ static void tester_destroy();
 static string trace_filename;
 char * my_default_param;
 initvar_t * my_initvar;
+const char * global_command_line_param;
 
 void tester_main(int argc, char **argv)
 {
@@ -162,65 +163,69 @@ void sendruby_request( unsigned long long addr, unsigned req_size, unsigned sid,
   } else {
     access_mode = AccessModeType_UserMode;
   }
-//int acc_no = 4;
 
-    if  (cpuNumber >= g_NUM_ACCS )
-    {
-      // Send request to sequencer
-      Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
+  // Send request to sequencer
+  Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
 
-      targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
-                                                Address( physicalAddr ),
-                                                req_type,
-                                                Address(virtualPC),
-                                                access_mode,   // User/supervisor mode
-                                                requestSize,   // Size in bytes of request
-                                                PrefetchBit_No, // Not a prefetch
-                                                0,              // Version number
-                                                Address(logicalAddr),   // Virtual Address
-                                                thread,              // SMT thread 
-                                                0,          // TM specific - timestamp of memory request
-                                                false,      // TM specific - whether request is part of escape action
-                                                MemorySpaceType_NULL,    // memory space
-                                                false,                    // profiled yet?
-                                                0,      // dirty mask
-                                                0                  // memfetch pointer
-                                                )
-                                       );
-     }
-    else 
-    {
-      // Send request to sequencer
-      SequencerT* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencerT(cpuNumber%RubyConfig::numberOfProcsPerChip());
-
-      targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
-                                                Address( physicalAddr ),
-                                                req_type,
-                                                Address(virtualPC),
-                                                access_mode,   // User/supervisor mode
-                                                requestSize,   // Size in bytes of request
-                                                PrefetchBit_No, // Not a prefetch
-                                                0,              // Version number
-                                                Address(logicalAddr),   // Virtual Address
-                                                thread,              // SMT thread 
-                                                0,          // TM specific - timestamp of memory request
-                                                false,      // TM specific - whether request is part of escape action
-                                                MemorySpaceType_NULL,    // memory space
-                                                false,                    // profiled yet?
-                                                0,      // dirty mask
-                                                0                  // memfetch pointer
-                                                )
-                                       );
-    }
+  targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
+                                            Address( physicalAddr ),
+                                            req_type,
+                                            Address(virtualPC),
+                                            access_mode,   // User/supervisor mode
+                                            requestSize,   // Size in bytes of request
+                                            PrefetchBit_No, // Not a prefetch
+                                            0,              // Version number
+                                            Address(logicalAddr),   // Virtual Address
+                                            thread,              // SMT thread 
+                                            0,          // TM specific - timestamp of memory request
+                                            false,      // TM specific - whether request is part of escape action
+                                            MemorySpaceType_NULL,    // memory space
+                                            false,                    // profiled yet?
+                                            0,      // dirty mask
+                                            0                  // memfetch pointer
+                                            )
+                                   );
 }
+
+string tester_config_read()
+{
+
+
+  FILE *infile;
+  command = "";
+
+  infile = fopen(config_file.c_str(), "r");
+
+  char line [1000];
+  /* or other suitable maximum line size */
+  while ( fgets ( line, sizeof(line), infile ) != NULL ) /* read a line */
+  {
+
+      command = command + line;
+
+  }
+
+  fclose ( infile );
+
+  return command; 
+}
+
 void tester_initialize(int argc, char **argv)
 {
-  int   param_len = strlen( global_default_param ) + strlen( global_default_tester_param ) + 1;
-  char *default_param = (char *) malloc( sizeof(char) * param_len );
-  my_default_param = default_param;
-  strcpy( default_param, global_default_param );
-  strcat( default_param, global_default_tester_param );
 
+	string command = tester_config_read();
+
+	global_command_line_param = command.c_str();
+
+    int param_len = strlen( global_default_param ) +
+                   strlen( global_default_tester_param ) +
+                   strlen( global_command_line_param) + 1000;
+
+   char *default_param = (char *) malloc( sizeof(char) * param_len );
+   my_default_param = default_param;
+   strcpy( default_param, global_default_param );
+   strcat( default_param, global_default_tester_param );
+   strcat( default_param, global_command_line_param );
   // when the initvar object is created, it reads the configuration default
   //   -for the tester, the configuration defaults in config/tester.defaults
 

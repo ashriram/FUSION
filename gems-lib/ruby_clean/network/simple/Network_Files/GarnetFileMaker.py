@@ -1,4 +1,4 @@
-#!/s/std/bin/python
+#/usr/bin/python
 import sys, os, string, re, math
 
 rows = 0
