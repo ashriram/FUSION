@@ -187,7 +187,7 @@ void sendruby_request( unsigned long long addr, unsigned req_size, unsigned sid,
                                    );
 }
 
-char* tester_config_read()
+string tester_config_read()
 {
 
  string command = "";
@@ -213,14 +213,15 @@ char* tester_config_read()
 
   fclose ( infile );
 
-  global_command_line_param = command.c_str();
-
+  return command; 
 }
 
 void tester_initialize(int argc, char **argv)
 {
 
-  tester_config_read();
+	string command = tester_config_read();
+
+	global_command_line_param = command.c_str();
 
     int param_len = strlen( global_default_param ) +
                    strlen( global_default_tester_param ) +
@@ -230,7 +231,7 @@ void tester_initialize(int argc, char **argv)
    my_default_param = default_param;
    strcpy( default_param, global_default_param );
    strcat( default_param, global_default_tester_param );
-  // strcat( default_param, global_command_line_param );
+   strcat( default_param, global_command_line_param );
   // when the initvar object is created, it reads the configuration default
   //   -for the tester, the configuration defaults in config/tester.defaults
 

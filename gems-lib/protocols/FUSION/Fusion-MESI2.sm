@@ -326,8 +326,10 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
     } else if (type == CoherenceRequestType:PUTX_ACC) {
      // Accelerator PUTX/DATA I can only get if CPU asks for it or Accelerator evicts it
      // MT_IIB,MT_MB (CPU blocked on GETS and GETX and accelerator has it); MT baseline state if Acc has it
-     // MT_I; CPU had it but then evicted it and is waiting on response from accelerator.
-     assert ( (getState(addr) == State:MT_IIB) || (getState(addr) == State:MT_MB) || (getState(addr) == State:MT) || (getState(addr) == State:MT))   ;
+     // MCT_I, MT_I; CPU had it but then evicted it and is waiting on response from accelerator.
+   
+      assert ( (getState(addr) == State:MT_IIB) || (getState(addr) == State:MT_MB) || (getState(addr) == State:MT_I) || (getState(addr) == State:MCT_I) || (getState(addr) == State:MT))   ;
+
 
       return Event:PUTX_ACC;
     }
@@ -391,7 +393,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
           } else if(in_msg.Type == CoherenceResponseType:MEMORY_ACK) {
               trigger(Event:Mem_Ack, in_msg.Address);  // L2 now has data and all off-chip acks
             } else if (in_msg.Type == CoherenceResponseType:DATA_ACC) {
-              assert ( (getState(in_msg.Address) == State:MT_IIB) || (getState(in_msg.Address) == State:MT_MB) || (getState(in_msg.Address) == State:MT) || (getState(in_msg.Address) == State:MT))   ;
+              assert ( (getState(in_msg.Address) == State:MT_IIB) || (getState(in_msg.Address) == State:MT_MB) || (getState(in_msg.Address) == State:MT_I) || (getState(in_msg.Address) == State:MCT_I) || (getState(in_msg.Address) == State:MT))   ;
               trigger(Event:DATA_ACC,in_msg.Address);
             } 
             else {
@@ -1271,10 +1273,9 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
   }
 
   transition(MCT_I, PUTX_ACC, NP) {
-    qq_writeDataToTBE;
-    ta_sendWBAck;
+    t_sendWBAck;
     s_deallocateTBE;
-    o_popIncomingResponseQueue;
+    jj_popL1RequestQueue;
   }
 
 

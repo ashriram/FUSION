@@ -327,7 +327,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
      // Accelerator PUTX/DATA I can only get if CPU asks for it or Accelerator evicts it
      // MT_IIB,MT_MB (CPU blocked on GETS and GETX and accelerator has it); MT baseline state if Acc has it
      // MT_I; CPU had it but then evicted it and is waiting on response from accelerator.
-     assert ( (getState(addr) == State:MT_IIB) || (getState(addr) == State:MT_MB) || (getState(addr) == State:MT) || (getState(addr) == State:MT))   ;
+     assert ( (getState(addr) == State:MT_IIB) || (getState(addr) == State:MT_MB) || (getState(addr) == State:MCT_I) || (getState(addr) == State:MT) || (getState(addr) == State:MT_I))    ;
 
       return Event:PUTX_ACC;
     }
@@ -390,7 +390,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
           } else if(in_msg.Type == CoherenceResponseType:MEMORY_ACK) {
               trigger(Event:Mem_Ack, in_msg.Address);  // L2 now has data and all off-chip acks
             } else if (in_msg.Type == CoherenceResponseType:DATA_ACC) {
-              assert ( (getState(in_msg.Address) == State:MT_IIB) || (getState(in_msg.Address) == State:MT_MB) || (getState(in_msg.Address) == State:MT) || (getState(in_msg.Address) == State:MT))   ;
+              assert ( (getState(addr) == State:MT_IIB) || (getState(addr) == State:MT_MB) || (getState(addr) == State:MCT_I) || (getState(addr) == State:MT) || (getState(addr) == State:MT_I))    ;
               trigger(Event:DATA_ACC,in_msg.Address);
             } 
             else {

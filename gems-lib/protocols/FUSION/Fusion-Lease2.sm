@@ -1032,7 +1032,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     // Ignore CPU fwd requests as eventually I am going to send back to CPU anyway
     transition({MI,MI_Ack}, {Fwd_GETS,Fwd_GETX,Inv}) {
-        o_popIncomingCPUResponseQueue;
+        o_popIncomingCPURequestQueue;
     }
 
 
