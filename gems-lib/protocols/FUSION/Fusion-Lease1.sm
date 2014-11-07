@@ -485,11 +485,11 @@ machine(L1TCache, "FUSION Lease v2 L1 Cache") {
         // Profile
         peek(responseIntraChipL1Network_in, ResponseMsg) {
             if(in_msg.Type == CoherenceResponseType:DATA) {
-               profileBandwidth("L2_DATA", in_msg.MessageSize);
+               profileBandwidth("L2T_TO_L1T_DATA", in_msg.MessageSize);
             } else if(in_msg.Type == CoherenceResponseType:ACK) {
-               profileBandwidth("L2_MSG", in_msg.MessageSize);
+               profileBandwidth("L2T_TO_L1T_MSG", in_msg.MessageSize);
             } else if(in_msg.Type == CoherenceResponseType:DATA_ATOMIC) {
-               profileBandwidth("L2_ATOMIC", in_msg.MessageSize);
+               profileBandwidth("L2T_TO_L1T_ATOMIC", in_msg.MessageSize);
             } else {
               error("Invalid L1 response type");
             }
