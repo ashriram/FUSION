@@ -6,6 +6,8 @@
 #include <cstring>
 #include <map>
 #include <vector>
+#include <sstream>
+#include <cassert>
 
 #define MAX_SRC_NUM 9
 #define MAX_DST_NUM 6
@@ -45,6 +47,8 @@ struct Inst_info {
 
 map<uint32_t, Inst_info*> LoadInsts;
 vector<Inst_info *> OtherInsts;
+
+unsigned long long ReadCount = 0, WriteCount = 0, Redundant = 0;
 
 enum TR_OPCODE_enum {
   TR_MUL = XED_CATEGORY_LAST ,
