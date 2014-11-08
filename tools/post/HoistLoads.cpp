@@ -1,10 +1,11 @@
 #include "HoistLoads.h"
 
-void processTrace(int ScratchpadSize)
+void processTrace(unsigned ScratchpadSize)
 {
     unsigned loadSize = 0;
     while(gzread(OrigTrace, (void*)&inst, sizeof(Inst_info)) > 0)
     {
+        ReadCount++;
         Inst_info *II = new Inst_info;
         memcpy((void *)II, (void *)&inst, sizeof(Inst_info));
 
@@ -13,6 +14,8 @@ void processTrace(int ScratchpadSize)
             loadSize += II->mem_read_size; 
             if(LoadInsts.count(II->ld_vaddr1))
                 LoadInsts.insert(make_pair(II->ld_vaddr1,II));
+            else
+                Redundant++;
         }
         else
         {
@@ -26,6 +29,7 @@ void processTrace(int ScratchpadSize)
             for(auto l : LoadInsts)
             {
                 gzwrite(NewTrace, l.second, sizeof(Inst_info));
+                WriteCount++;
                 delete l.second;
             }
             LoadInsts.clear();
@@ -34,6 +38,7 @@ void processTrace(int ScratchpadSize)
             for(auto i : OtherInsts)
             {
                 gzwrite(NewTrace, i, sizeof(Inst_info));
+                WriteCount++;
                 delete i;
             }
             OtherInsts.clear();
@@ -55,6 +60,7 @@ void processTrace(int ScratchpadSize)
     for(auto l : LoadInsts)
     {
         gzwrite(NewTrace, l.second, sizeof(Inst_info));
+        WriteCount++;
         delete l.second;
     }
     LoadInsts.clear();
@@ -63,6 +69,7 @@ void processTrace(int ScratchpadSize)
     for(auto i : OtherInsts)
     {
         gzwrite(NewTrace, i, sizeof(Inst_info));
+        WriteCount++;
         delete i;
     }
     OtherInsts.clear();
@@ -78,13 +85,24 @@ int main(int argc, char *argv[])
     }
 
     OrigTrace = gzopen(argv[1], "rb");
-    NewTrace = gzopen((string(argv[1])+string(".new")).c_str(),"wb");
+    NewTrace = gzopen((string("seg.")+string(argv[1])).c_str(),"wb");
 
     if(!OrigTrace || !NewTrace)
     {
         cerr << "Could not open trace files" << endl;
         return 0;
     }
+
+    unsigned ScratchpadSize = 0;
+    istringstream(argv[2]) >> ScratchpadSize;
+
+    processTrace(ScratchpadSize);
+
+    //std::cerr << "Read: " << ReadCount << "\n";
+    //std::cerr << "Write: " << WriteCount << "\n";
+    //std::cerr << "Redundant: " << Redundant<< "\n";
+    
+    assert(ReadCount == WriteCount + Redundant);
 
     gzclose(OrigTrace);
     gzclose(NewTrace);
