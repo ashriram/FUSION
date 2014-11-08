@@ -621,6 +621,8 @@ void instrument(INS ins)
                     IARG_THREAD_ID, IARG_END);
         }
 
+        if(!INS_IsStackRead(ins))
+            info->acc_heap_load = true;
     }
 
 
@@ -636,7 +638,8 @@ void instrument(INS ins)
                 IARG_THREAD_ID, IARG_END);
 
         if(!INS_IsStackWrite(ins))
-            info->acc_heap_access = true;
+            info->acc_heap_store = true;
+
     }
 
 
@@ -906,10 +909,11 @@ void initialize(void)
     while(funcfile.good())
     {
         funcfile.getline(name,256);
+        if(strlen(name) == 0) continue;
+        std::cerr << "Name: " << name << " Id: " << counter << "\n";
         AccFuncs.insert(make_pair<string,UINT32>(string(name),counter));
         counter++;
     }
-
 
     // Create gzFile pointer for each file
     
@@ -918,7 +922,7 @@ void initialize(void)
     {
         stringstream ss;
         string filename;
-        ss << "ACC" << counter << ".raw";
+        ss << "acc" << i << ".raw";
         ss >> filename;
         FuncGZFiles[i] = gzopen(filename.c_str(),WRITEM);
     }
@@ -1106,8 +1110,9 @@ VOID ImageLoad(IMG img,  VOID *v)
             // ska124 -- Note C++ benchmarks will need the mangled name in the acc file
             else if (AccFuncs.find(rtnName) != AccFuncs.end())
             {
+                std::cerr << "Instrumenting: " << rtnName << "\n";
                 RTN_Open(rtn);
-                RTN_InsertCall(rtn, IPOINT_BEFORE, (AFUNPTR) StartAcc, (UINT32) AccFuncs[rtnName], IARG_UINT32, IARG_END);
+                RTN_InsertCall(rtn, IPOINT_BEFORE, (AFUNPTR) StartAcc, IARG_UINT32, (UINT32) AccFuncs[rtnName], IARG_END);
                 RTN_InsertCall(rtn, IPOINT_AFTER,  (AFUNPTR) EndAcc, IARG_END);
                 RTN_Close(rtn);
             }
@@ -1123,7 +1128,8 @@ VOID StartAcc(UINT32 AccId)
 
     // Write a jump marker in main trace
     Inst_info m;
-    m.acc_segment = true;
+    m.opcode = TR_NOP;
+    m.acc_segment_delim = true;
     m.acc_id = AccId;
     gzwrite(currenTraceFile, &m, sizeof(m));
     // Change the trace dump file to the accelerator file
@@ -1134,7 +1140,8 @@ VOID EndAcc()
 {
     InAccFunc = false;
     Inst_info m;
-    m.acc_segment = true;
+    m.opcode = TR_NOP;
+    m.acc_segment_delim = true;
     m.acc_id = -1; // This will be MAX_UINT32 as it is unsigned
     gzwrite(currenTraceFile, &m, sizeof(m));
     // Change the trace dump file back to the main trace -- assuming single thread

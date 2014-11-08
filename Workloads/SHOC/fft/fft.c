@@ -613,7 +613,10 @@ int main(){
 	TYPE data_y[ 8 ];
 	TYPE smem[8*8*9];
   int reversed[8] = {0,4,2,6,1,5,3,7};
+
+    __app_roi_begin();
 	fft1D_512(a_x, a_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, sin_512, cos_64, cos_512);
+    __app_roi_end();
 
 	for( i = 0; i < 2; i++){
 		printf("x = %i y = %i \n", a_x[i], a_y[i]);
