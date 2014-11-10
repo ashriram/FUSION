@@ -1,18 +1,22 @@
 CC=gcc
-CFLAGS=-c -Wall -O2 -fno-inline -I../../../libroi -m32
+CFLAGS=-c -Wall -O2 -fno-inline -I../../../libroi 
 LDFLAGS=
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=$(shell basename $(CURDIR))
 
+ifndef ARCH
+	ARCH=-m64
+endif
+
 all: $(SOURCES) $(EXECUTABLE)
 	
 $(EXECUTABLE): $(OBJECTS)
 	@mkdir -p bin
-	$(CC) $(LDFLAGS) $(OBJECTS) -o bin/$@
+	$(CC) $(ARCH) $(LDFLAGS) $(OBJECTS) -o bin/$@
 
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+.c.o:
+	$(CC) $(CFLAGS) $(ARCH) $< -o $@
 
 clean:
 	rm -f *.o
