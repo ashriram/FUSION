@@ -151,21 +151,7 @@ class acc_core_c
      */
     void init(void);
 
-    /*
-     *  ds accelerator stuff
-     */
-
-    void push_marker(trace_info_s* trace_info, uint32_t core_id);
-    void pop_marker(void);
-    bool ds_op_pending(uint32_t core_id);
-    bool add_walker(void);
-    string ds_op_type_to_str(ds_ops x);
-    trace_info_s* get_front_marker(void);
-    void add_stat(string name, uint64_t inc_val);
-    void print_stats();
-    uint32_t get_pe_cursor_stride();
-    uint32_t get_bank_latency(uint32_t addr){ return walkers->get_bank_latency(addr); }
-
+    
   private:
     int                      m_core_id; /**< core id */
     string                   m_core_type; /**< simulation core type (x86 or ptx) */
@@ -185,27 +171,6 @@ class acc_core_c
     Counter m_last_forward_progress; /**< last checked cycle */
     Counter m_last_inst_count;       /**< last checked instruction count */
 
-    // marker queue
-
-    std::queue<trace_info_s*> m_marker_in_queue;
-    std::map<int,uint32_t> m_requesting_cores;
-
-    // acc core components
-    pe_c *pes;
-    imb_c *int_buf;
-    walker_c *walkers;
-
-    // acc queues
-    pqueue_c<Acc_Msg_Type> *m_walker_imb_queue; // Enqueue walker - Dequeue IMB
-    pqueue_c<Acc_Msg_Type> *m_imb_walker_queue; // Enqueue IMB - Dequeue walker
-    pqueue_c<Acc_Msg_Type> *m_pe_imb_queue;     // Enqueue PE - Dequeue IMB
-    pqueue_c<Acc_Msg_Type> *m_imb_pe_queue;     // Enqueue IMB - Dequeue PE
-
-    // Shared Data
-
-    std::map<uint32_t, std::unordered_set<uint32_t> > m_pe_walker_load_keys;
-    std::map<uint32_t, std::unordered_set<uint32_t> > m_pe_walker_store_keys;
-
     // heartbeat
     heartbeat_s* m_heartbeat; /**< heartbeat per thread*/
     time_t  m_heartbeat_last_time_core; /**< last heartbeat time */
@@ -219,7 +184,5 @@ class acc_core_c
 
     // clock cycle
     Counter m_cycle; /**< clock cycle */
-    Counter m_last_pop;
-    Counter m_marker_count;
 };
 #endif   // ACC_CORE_H_INCLUDED
