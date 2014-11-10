@@ -1,0 +1,26 @@
+
+Accelerator side msgs. 
+
+L2T_TO_L1T_MSG
+
+L1T_TO_L2T_MSG
+
+L2T_TO_L1T_DATA
+
+L1T_TO_L2T_DATA
+
+L1T_TO_L2T_ATOMIC
+
+L2T_TO_L1T_ATOMIC
+
+-------------------------
+
+L2_DATA_S (L2-L1 Data)
+
+L1_DATA_GX (L2-L1 Data for GETX); further split into DATA_GX_OW (what we are writing over. Logically wasted byte fetches) and DATA_GX_C (what we are fetching and caching). 
+
+
+
+L1_DATA_F (L1-L1 data)
+L2_COHMSG (Fwd, Acks, etc)
+L1_COHMSG_INVACK (Inv Ack)
