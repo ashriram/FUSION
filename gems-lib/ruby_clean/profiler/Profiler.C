@@ -111,7 +111,12 @@ Profiler::Profiler()
   m_L1D_cache_profiler_ptr = new CacheProfiler("L1D_cache");
   m_L1I_cache_profiler_ptr = new CacheProfiler("L1I_cache");
 
+  m_L1T_cache_profiler_ptr = new CacheProfiler("L1T_cache");
+
   m_L2_cache_profiler_ptr = new CacheProfiler("L2_cache");
+
+  m_L2T_cache_profiler_ptr = new CacheProfiler("L2T_cache");
+
 
   m_address_profiler_ptr = new AddressProfiler;
   m_inst_profiler_ptr = NULL;
@@ -195,6 +200,8 @@ Profiler::~Profiler()
   }
   delete m_address_profiler_ptr;
   delete m_L1D_cache_profiler_ptr;
+  delete m_L1T_cache_profiler_ptr;
+  delete m_L2T_cache_profiler_ptr;
   delete m_L1I_cache_profiler_ptr;
   delete m_L2_cache_profiler_ptr;
   delete m_requestProfileMap_ptr;
@@ -409,7 +416,9 @@ void Profiler::printStats(ostream& out, bool short_stats)
 
   m_L1D_cache_profiler_ptr->printStats(out);
   m_L1I_cache_profiler_ptr->printStats(out);
+  m_L1T_cache_profiler_ptr->printStats(out);
   m_L2_cache_profiler_ptr->printStats(out);
+  m_L2T_cache_profiler_ptr->printStats(out);
 
   out << endl;
 
@@ -771,8 +780,8 @@ void Profiler::clearStats()
 
   m_multicast_retry_histogram.clear();
 
-  m_numtbeQuery = 0; 
-  m_busytbeCount = 0; 
+  m_numtbeQuery = 0;
+  m_busytbeCount = 0;
   m_L1tbeProfile.clear();
   m_L2tbeProfile.clear();
   m_stopTableProfile.clear();
@@ -872,9 +881,10 @@ void Profiler::clearStats()
   m_outstanding_persistent_requests.clear();
 
   m_L1D_cache_profiler_ptr->clearStats();
+  m_L1T_cache_profiler_ptr->clearStats();
   m_L1I_cache_profiler_ptr->clearStats();
   m_L2_cache_profiler_ptr->clearStats();
-
+  m_L2T_cache_profiler_ptr->clearStats();
 
   //---- begin XACT_MEM code
   ASSERT(m_xactExceptionMap_ptr != NULL);
@@ -987,21 +997,31 @@ void Profiler::profileConflictingRequests(const Address& addr)
 
 
 ///// Added for GPGPU-Sim protocols:
-void Profiler::addL1RequestSample(const CacheMsg& msg, NodeID id, bool miss)
+void Profiler::addL1RequestSample(const CacheMsg& msg, NodeID id, bool miss, MachineID mid)
 {
    if (msg.getType() == CacheRequestType_IFETCH) {
       m_L1I_cache_profiler_ptr->addRequestSample(CacheRequestType_to_GenericRequestType(msg.getType()),
                                                 msg.getSize(), miss);
-   } else {
-      m_L1D_cache_profiler_ptr->addRequestSample(CacheRequestType_to_GenericRequestType(msg.getType()),
-                                              msg.getSize(), miss);
-   }
+    } else if (mid.type == MachineType_L1TCache) {
+    	m_L1T_cache_profiler_ptr->addRequestSample(CacheRequestType_to_GenericRequestType(msg.getType()),msg.getSize(), miss);
+    } else if (mid.type == MachineType_L1Cache) {
+   	  	m_L1D_cache_profiler_ptr->addRequestSample(CacheRequestType_to_GenericRequestType(msg.getType()),msg.getSize(), miss);
+   	} else {
+   	  	ERROR_MSG ("Unknown Machine Type in profiling L2");
+   	}
 }
 
 
-void Profiler::addL2RequestSample(const GenericRequestType& type, MessageSizeType size, NodeID id, bool miss)
+void Profiler::addL2RequestSample(const GenericRequestType& type, MessageSizeType size, NodeID id, bool miss, MachineID mid)
 {
-   m_L2_cache_profiler_ptr->addRequestSample(type, MessageSizeType_to_int(size), miss);
+  if (mid.type == MachineType_L2TCache)
+  {
+    m_L2_cache_profiler_ptr->addRequestSample(type, MessageSizeType_to_int(size), miss);
+  } else if (mid.type == MachineType_L2Cache) {
+    m_L2T_cache_profiler_ptr->addRequestSample(type, MessageSizeType_to_int(size), miss);
+  } else {
+    ERROR_MSG ("Unknown Machine Type in profiling L2");
+  }
 }
 
 /////
@@ -1167,9 +1187,9 @@ void Profiler::controllerBusy(MachineID machID)
 
 void Profiler::tbeQueryProfile(bool available)
 {
-  m_numtbeQuery++; 
-  if (!available) 
-    m_busytbeCount++; 
+  m_numtbeQuery++;
+  if (!available)
+    m_busytbeCount++;
 }
 
 void Profiler::profilePFWait(Time waitTime)
