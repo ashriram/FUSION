@@ -77,7 +77,7 @@
 #include "Chip.h"
 #include "RubyConfig.h"
 #include "Sequencer.h"
-#include "SequencerT.h"
+
 using namespace std;
 #include <string>
 #include <map>
@@ -190,6 +190,9 @@ void sendruby_request( unsigned long long addr, unsigned req_size, unsigned sid,
 string tester_config_read()
 {
 
+ string command = "";
+
+  std::string config_file = std::string("CONFIG");
 
   FILE *infile;
   command = "";
