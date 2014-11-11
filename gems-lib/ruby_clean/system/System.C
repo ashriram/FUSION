@@ -76,6 +76,7 @@
 #include "Chip.h"
 #include "Tracer.h"
 #include "Protocol.h"
+#include "O3simInterface.h"
 
 int Network::CONTROL_MESSAGE_SIZE = 8;
 int Network::DATA_MESSAGE_SIZE = (64+8);
@@ -122,12 +123,16 @@ System::System()
       ERROR_MSG("SYNTHETIC and DETERMINISTIC DRIVERS are exclusive and cannot be both enabled");
     } else {
       // normally make tester object, otherwise make an opal interface object.
-      if (1) {
+      if (g_YAO_DRIVER == 0) {
         m_driver_ptr = new GpusimInterface(this);
-      } else if (1) {
+      } else if ( g_YAO_DRIVER == 1 ) {
         m_driver_ptr = new Tester(this);
+      } else if (g_YAO_DRIVER == 2) {
+          m_driver_ptr = new O3simInterface(this);
       } else {
           assert(0);
+          ERROR_MSG("g_YAO_DRIVER should be either 0 or 1 or 2  check System.C ");
+
           //         m_driver_ptr = new OpalInterface(this);
       }
     }
