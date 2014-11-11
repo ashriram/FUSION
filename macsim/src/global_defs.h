@@ -64,6 +64,7 @@ class context_pool_c;
 class core_c;
 class acc_core_c;
 class dcu_c;
+class dma_core_c;
 class exec_c;
 class frontend_c;
 class mem_factory_c;
@@ -76,7 +77,6 @@ class hwp_common_c;
 class map_c;
 class memory_c;
 class macsim_c;
-class pe_c;
 class port_c;
 class retire_c;
 class recovery_info_c;
@@ -92,7 +92,6 @@ class readonly_cache_c;
 class sw_managed_cache_c;
 class dram_controller_c;
 class icache_data_c;
-class imb_c;
 class frontend_s;
 class thread_s;
 class throttler_c;
@@ -120,13 +119,8 @@ class ProcessorStatistics;
 class CoreStatistics;
 class cache_partition_framework_c;
 class ei_power_c;
-class at_walker_c;
-class vector_walker_c;
 class walker_c;
 class O3sim_ruby;
-class walker_mshr_c;
-class BTree;
-class Node;
 
 template <class T> class pqueue_c;
 template <typename T> class hash_c;
@@ -181,6 +175,7 @@ void delete_store_hash_entry_wrapper (map_c *map, uop_c *uop);
 #define MAX_NUM_THREADS 3000
 #define MAX_NUM_BLOCKS 64
 // across all the cores
+#define MAX_NUM_ACC 8
 #define MAX_NUM_TOTAL_BLOCKS 16384
 #define MAX_NUM_CORES 128
 #define NUM_REG_IDS 512
@@ -219,10 +214,6 @@ void delete_store_hash_entry_wrapper (map_c *map, uop_c *uop);
 #define NULL ((void *)0x0)
 #endif
 
-
-// BTree junk
-const int invalid_index = -1;
-const int max_elements = 200;  // max elements in a node
 
 // size limit for the array in a vector object.  best performance was
 // at 800 bytes.

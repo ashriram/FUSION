@@ -835,6 +835,26 @@ void Profiler::clearStats()
   m_profiling_bandwidth_alt->add("DATA_PX_D", 0);
   m_profiling_bandwidth_alt->add("DATA_PX_C", 0);
 
+
+  // Profiling for Accelerators
+
+
+  m_profiling_bandwidth->add("L2T_TO_L1T_MSG", 0);
+  m_profiling_bandwidth->add("L1T_TO_L2T_MSG", 0);
+  m_profiling_bandwidth->add("L2T_TO_L1T_DATA", 0);
+  m_profiling_bandwidth->add("L1T_TO_L2T_DATA", 0);
+  m_profiling_bandwidth->add("L1T_TO_L2T_ATOMIC", 0);
+  m_profiling_bandwidth->add("L2T_TO_L1T_ATOMIC", 0);
+  m_profiling_bandwidth->add("L2_TO_L2T_MSG", 0);
+  m_profiling_bandwidth->add("L2_TO_L2T_DATA", 0);
+  m_profiling_bandwidth->add("L2_TO_L2T_ACK", 0);
+
+
+
+
+
+
+
   //////
 
   m_blockLifetimes_pow2.clear(-1, 20);

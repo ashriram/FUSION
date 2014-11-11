@@ -28,7 +28,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 /**********************************************************************************************
- * File         : acc_core.cc
+ * File         : dma_core.cc
  * Author       : ska124
  * Date         : 07/05/2013
  * CVS          :
@@ -51,11 +51,12 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <fstream>
 
 #include "assert.h"
-#include "acc_core.h"
+#include "dma_core.h"
 #include "knob.h"
 #include "pqueue.h"
 #include "utils.h"
 #include "bug_detector.h"
+#include "walker.h"
 
 #include "config.h"
 
@@ -72,34 +73,34 @@ POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void acc_core_c::init(void)
+void dma_core_c::init(void)
 {
 
 }
 
 
-// acc_core_c constructor
-acc_core_c::acc_core_c (macsim_c* simBase, Unit_Type type)
+// dma_core_c constructor
+dma_core_c::dma_core_c (macsim_c* simBase, Unit_Type type)
 {
 
 }
 
-// acc_core_c destructor
-acc_core_c::~acc_core_c()
+// dma_core_c destructor
+dma_core_c::~dma_core_c()
 {
 
 }
 
 
 // start core simulation
-void acc_core_c::start(void)
+void dma_core_c::start(void)
 {
 
 }
 
 
 // stop core simulation
-void acc_core_c::stop(void)
+void dma_core_c::stop(void)
 {
 
 }
@@ -107,30 +108,30 @@ void acc_core_c::stop(void)
 
 // main execution routine
 // In every cycle, run all pipeline stages
-void acc_core_c::run_a_cycle(void)
+void dma_core_c::run_a_cycle(void)
 {}
 
 
 // age entries in various queues
-void acc_core_c::advance_queues(void)
+void dma_core_c::advance_queues(void)
 {}
 
 
 // last heartbeat call when a thread is terminated
-void acc_core_c::final_heartbeat(int thread_id)
+void dma_core_c::final_heartbeat(int thread_id)
 {
 
 }
 
 
 // In every HEARTBEAT_INTERVAL cycles, print performance information
-void acc_core_c::check_heartbeat(bool final)
+void dma_core_c::check_heartbeat(bool final)
 {
   core_heartbeat(final);
 }
 
 // core heartbeat
-void acc_core_c::core_heartbeat(bool final)
+void dma_core_c::core_heartbeat(bool final)
 {
     if (!*m_simBase->m_knobs->KNOB_PRINT_HEARTBEAT)
         return ;
@@ -138,19 +139,19 @@ void acc_core_c::core_heartbeat(bool final)
 
 
 // check forward progress of the simulation
-void acc_core_c::check_forward_progress()
+void dma_core_c::check_forward_progress()
 {
 }
 
-void acc_core_c::add_stat(string name, uint64_t inc_val)
+void dma_core_c::add_stat(string name, uint64_t inc_val)
 {
-    ASSERTM(m_stats.count(name) > 0, "Unknown ACC Stat");
+    ASSERTM(m_stats.count(name) > 0, "Unknown dma Stat");
     m_stats[name] += inc_val;
 }
 
-void acc_core_c::print_stats()
+void dma_core_c::print_stats()
 {
-    std::ofstream stats_file("acc.stat.out", std::ofstream::out);
+    std::ofstream stats_file("dma.stat.out", std::ofstream::out);
 
     for(auto I = m_stats.begin(); I != m_stats.end(); I++)
         stats_file << I->first << "\t" << I->second << endl;

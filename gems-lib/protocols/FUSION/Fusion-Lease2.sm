@@ -679,12 +679,12 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     action(jj_popL1RequestQueue, "\j", desc="Pop incoming L1 request queue") {
         peek(L1RequestIntraChipL2Network_in,  RequestMsg) {
             if(in_msg.Type == CoherenceRequestType:GETS) {
-               profileBandwidth("L1_MSG", in_msg.MessageSize);
+               profileBandwidth("L1T_TO_L2T_MSG", in_msg.MessageSize);
             } else if (in_msg.Type == CoherenceRequestType:DATA ||
                        in_msg.Type == CoherenceRequestType:DATA_UPGRADE) {
-               profileBandwidth("L1_DATA", in_msg.MessageSize);
+               profileBandwidth("L1T_TO_L2T_DATA", in_msg.MessageSize);
             } else if (in_msg.Type == CoherenceRequestType:DATA_ATOMIC) {
-               profileBandwidth("L1_ATOMIC", in_msg.MessageSize);
+               profileBandwidth("L1T_TO_L2T_ATOMIC", in_msg.MessageSize);
             } else {
                error("Invalid CacheResponseType");
             }
@@ -694,10 +694,22 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
 
     action(o_popIncomingCPUResponseQueue, "or", desc="Pop Incoming Response queue") {
+        peek(responseCPUNetwork_in, ResponseMsg) {
+            if(in_msg.Type == CoherenceResponseType:DATA) {
+                profileBandwidth("L2_TO_L2T_DATA", in_msg.MessageSize);
+            } else if ((in_msg.Type == CoherenceResponseType:ACK) || (in_msg.Type == CoherenceResponseType:WB_ACK))
+            {
+                profileBandwidth("L2_TO_L2T_ACK", in_msg.MessageSize);
+            }
+        } 
         responseCPUNetwork_in.dequeue();
     }
 
     action(o_popIncomingCPURequestQueue, "os", desc="Pop Incoming Response queue") {
+         peek(requestCPUNetwork_in,  RequestMsg) {
+            profileBandwidth("L2_TO_L2T_MSG", in_msg.MessageSize);
+            } 
+
         requestCPUNetwork_in.dequeue();
     }
 

@@ -47,6 +47,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "global_types.h"
 #include "core.h"
 #include "acc_core.h"
+#include "dma_core.h"
 #include "trace_read.h"
 #include "frontend.h"
 #include "knob.h"
@@ -147,24 +148,6 @@ void macsim_c::init_knobs(int argc, char** argv)
     // Get a reference to the actual knobs for this component instance
     m_knobs = m_knobsContainer->getAllKnobs();
 
-#ifdef USING_SST
-    string  paramPath(argv[0]);
-    string  tracePath(argv[1]);
-    string outputPath(argv[2]);
-
-    //Apply specified params.in file
-    m_knobsContainer->applyParamFile(paramPath);
-
-    //Specify trace_file_list and update the knob
-    m_knobsContainer->updateKnob("trace_name_file", tracePath);
-
-    //Specify output path for statistics
-    m_knobsContainer->updateKnob("out", outputPath);
-
-    //save the states of all knobs to a file
-    m_knobsContainer->saveToFile(outputPath + "/params.out");
-
-#else
     // apply values from parameters file
     m_knobsContainer->applyParamFile("params.in");
 
@@ -175,7 +158,6 @@ void macsim_c::init_knobs(int argc, char** argv)
 
     // save the states of all knobs to a file
     m_knobsContainer->saveToFile("params.out");
-#endif
 }
 
 
@@ -374,166 +356,27 @@ void macsim_c::init_cores(int num_max_core)
             m_x86_core_pool.push(ii + total_core);
     }
 
-    // Accelerator Core
-    report("initialize accelerator");
-    m_acc_core_pointer = new acc_core_c(m_simBase, UNIT_ACC);
-}
-
-
-#ifdef IRIS
-// =======================================
-// initialize IRIS parameters (with config file, preferrably)
-// =======================================
-void macsim_c::init_iris_config(map<string, string> &params)  //passed g_iris_params here
-{
-  params["topology"] = KNOB(KNOB_IRIS_TOPOLOGY)->getValue();
-
-  // todo
-  // 1. mapping function
-  // 2. # port for torus
-  // 3. rc method
-  // 4. other knobs
-  if (params["topology"] == "ring") {
-    params["no_ports"] = "3";
-    stringstream sstr;
-    for (int ii = 0; ii < 64; ++ii) {
-      sstr << ii;
-      if (ii != 63)
-        sstr << ',';
+    // Accelerator Cores
+    report("Initialize accelerator cores");
+    for(int ii = 0; ii < 8; ii++)
+    {
+        m_acc_core_pointers[ii] = new acc_core_c(m_simBase, UNIT_ACC);
     }
-    sstr >> params["mapping"];
-    params["rc_method"] = "RING_ROUTING";
-  }
-  else if (params["topology"] == "mesh" || params["topology"] == "torus") {
-    params["grid_size"] = KNOB(KNOB_IRIS_GRIDSIZE)->getValue();
-    params["no_ports"]  = "5"; // check for torus
-    params["rc_method"] = "XY_ROUTING_HETERO";
-    params["mapping"]  = "0,1,2,5,6,7,8,9,10,13,14,15,16,17,18,21,22,23,24,25,26,29,30,31,32,33,34,37,38,39,40,41,42,45,46,47,48,49,50,53,54,55,56,57,58,61,62,63,11,12,19,20,27,28,35,36,43,44,51,52,3,4,59,60,";
-    //original spinal order "0,1,2,48,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,3,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66";
 
-//"0,1,2,60,61,3,4,5,6,7,8,48,49,9,10,11,12,13,14,50,51,15,16,17,18,19,20,52,53,21,22,23,24,25,26,54,55,27,28,29,30,31,32,56,57,33,34,35,36,37,38,58,59,39,40,41,42,43,44,62,63,45,46,47";
-    //"0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16";
-  }//else if (params["topology"] == "spinalMesh")
-
-  //FIXME - always uses spinalMesh for testing
-  if (0)
-  {
-    params["grid_size"] = KNOB(KNOB_IRIS_GRIDSIZE)->getValue();
-    params["no_ports"]  = "5"; // 4 for north/south, 2 for west/east, 1 for interface
-    params["mapping"]  = "0,1,2,60,61,3,4,5,6,7,8,48,49,9,10,11,12,13,14,50,51,15,16,17,18,19,20,52,53,21,22,23,24,25,26,54,55,27,28,29,30,31,32,56,57,33,34,35,36,37,38,58,59,39,40,41,42,43,44,62,63,45,46,47";
-    //"0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66";
-    cout << "reading mesh topology in init iris config" << endl;
-    params["rc_method"] = "XY_ROUTING_HETERO"; //doesn't work in param file, might need to use quotes
-  }
-  params["no_vcs"]         = KNOB(KNOB_IRIS_NUM_VC)->getValue();
-  params["credits"]        = KNOB(KNOB_IRIS_CREDIT)->getValue();
-  params["int_buff_width"] = KNOB(KNOB_IRIS_INT_BUFF_WIDTH)->getValue();
-  params["link_width"]     = KNOB(KNOB_IRIS_LINK_WIDTH)->getValue();
-
-  string s;
-  ToString(s, KNOB(KNOB_DRAM_NUM_MC)->getValue());
-  params["no_mcs"] = s;
-
-  //number of nodes depends on MacSim configuration (# of L1+L3(acts as L2))+MC nodes)
-  ToString(s, m_macsim_terminals.size());
-  params["no_nodes"] = s;
-
-  report("Routing method: " << params["rc_method"] << "\n");
-#if FIXME
-  //if (! key.compare("-iris:self_assign_dest_id"))
-   //           params.insert(pair<string,string>("self_assign_dest_id",value));
-          if (! key.compare("-mc:resp_payload_len"))
-              params.insert(pair<string,string>("resp_payload_len",value));
-          if (! key.compare("-mc:memory_latency"))
-              params.insert(pair<string,string>("memory_latency",value));
-#endif
+    // DMA Core 
+    m_dma_core_pointer = new dma_core_c(m_simBase, UNIT_DMA);
 }
-#endif
+
 
 
 // =======================================
-// IRIS
 // initialize Iris/manifold network
 // =======================================
 void macsim_c::init_network(void)
 {
-#ifdef IRIS
-  assert(*KNOB(KNOB_ENABLE_IRIS) == true && *KNOB(KNOB_ENABLE_NEW_NOC) == false);
-  init_iris_config(m_iris_params);
-
-  map<std::string, std::string>:: iterator it;
-
-  it = m_iris_params.find("topology");
-  if ((it->second).compare("ring") == 0) {
-    m_iris_network = new Ring(m_simBase);
-  }
-  else if ((it->second).compare("mesh") == 0) {
-    m_iris_network = new Mesh(m_simBase);
-  }
-  else if ((it->second).compare("torus") == 0) {
-    m_iris_network = new Torus(m_simBase);
-  }
-
-  //initialize iris network
-  m_iris_network->parse_config(m_iris_params);
-  m_simBase->no_nodes = m_macsim_terminals.size();
-  report("number of macsim terminals: " << m_macsim_terminals.size() << "\n");
-
-#define MAPI i //((Mesh*)m_iris_network)->mapping[i]
-
-  for (unsigned int i=0; i<m_macsim_terminals.size(); i++) {
-    //create component id
-    manifold::kernel::CompId_t interface_id = manifold::kernel::Component::Create<NInterface>(0,m_simBase);
-    manifold::kernel::CompId_t router_id = manifold::kernel::Component::Create<SimpleRouter>(0,m_simBase);
-
-    //create component
-    NInterface* interface = manifold::kernel::Component::GetComponent<NInterface>(interface_id);
-    SimpleRouter* rr =manifold::kernel::Component::GetComponent<SimpleRouter>(router_id);
-
-    //set node id
-    interface->node_id = i;
-    rr->node_id = i;
-
-    //register clock
-    manifold::kernel::Clock::Register<NInterface>(interface, &NInterface::tick, &NInterface::tock);
-    manifold::kernel::Clock::Register<SimpleRouter>(rr, &SimpleRouter::tick, &SimpleRouter::tock);
-
-    //push back
-    m_iris_network->terminals.push_back(m_macsim_terminals[MAPI]);
-    m_iris_network->terminal_ids.push_back(m_macsim_terminals[MAPI]->GetComponentId());
-    m_iris_network->interfaces.push_back(interface);
-    m_iris_network->interface_ids.push_back(interface_id);
-    m_iris_network->routers.push_back(rr);
-    m_iris_network->router_ids.push_back(router_id);
-
-    //init
-    m_macsim_terminals[MAPI]->parse_config(m_iris_params);
-    m_macsim_terminals[MAPI]->init();
-    interface->parse_config(m_iris_params);
-    interface->init();
-    rr->parse_config(m_iris_params);
-    rr->init();
-  }
-
-  //initialize router outports
-  for (unsigned int i = 0; i < m_macsim_terminals.size(); i++)
-    m_iris_network->set_router_outports(i);
-
-  m_iris_network->connect_interface_terminal();
-  m_iris_network->connect_interface_routers();
-  m_iris_network->connect_routers();
-
-#ifdef POWER_EI
-  //initialize power stats
-  avg_power     = 0;
-  total_energy  = 0;
-  total_packets = 0;
-#endif
-#else
   if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
     m_router->init();
   }
-#endif
 }
 
 
@@ -635,7 +478,8 @@ void macsim_c::deallocate_memory(void)
     m_core_pointers[ii + num_large_medium_cores] = NULL;
   }
 
-  delete m_acc_core_pointer;
+  for(int ii = 0; ii < MAX_NUM_ACC; ii++)
+    delete m_acc_core_pointers[ii];
 }
 
 
@@ -662,54 +506,6 @@ void macsim_c::fini_sim(void)
   if (*KNOB(KNOB_ENABLE_ENERGY_INTROSPECTOR)) {
     compute_power();
   }
-#endif
-
-
-#ifdef IRIS
-  ofstream irisTraceFile;
-  string logName = "iris_log_mesh_stall";
-
-  irisTraceFile.open(logName.c_str());
-  if (irisTraceFile.is_open())
-  {
-    cout << "printing to file " << logName << endl;
-
-    //mapping info
-    irisTraceFile << ":Topology mapping:" << endl;
-
-    const char* message_class_type[] = {"INVALID", "PROC", "L1", "L2", "L3", "MC"};
-    for(unsigned int i=0; i<m_macsim_terminals.size(); i++)
-    {
-      int node_id = ((Ring*)m_iris_network)->mapping[i];
-      int type = m_simBase->m_macsim_terminals.at(node_id)->mclass;
-
-      irisTraceFile << message_class_type[type] << ","
-        << m_macsim_terminals[node_id]->ptx << "," << node_id << ",";
-    }
-    irisTraceFile << endl;
-
-    //summary info
-    irisTraceFile << ":Per Node Summary: node id, total packets out, total flits in, total flits out, cycles: ib, sa, vca, st, average buffer size, average packet latency, average flit latency,  " << endl;
-    for(unsigned int i=0; i<m_iris_network->routers.size(); i++)
-    {
-      irisTraceFile << m_iris_network->routers[i]->print_csv_stats();
-    }
-
-    //detailed, router/packet state vs time info
-    irisTraceFile << ":Detail info: clock cycle, req ID, mem state, msg type, current node, dst node, component (R=Router), input buffer port0.vc0, port0,vc1, port1,vc0, etc..." << endl;
-    irisTraceFile << m_simBase->network_trace.str();
-  }
-  irisTraceFile.close();
-
-  for (unsigned int ii = 0; ii < m_iris_network->routers.size(); ++ii) {
-    //        m_iris_network->routers[i]->print_stats();
-    m_iris_network->routers[ii]->power_stats();
-  }
-#ifdef POWER_EI
-  cout << "Average Network power: " << avg_power << "W\n"
-    << "Total Network Energy: " << total_energy << "J\n"
-    << "Total packets " << total_packets << "\n";
-#endif
 #endif
 }
 
@@ -757,9 +553,6 @@ void macsim_c::initialize(int argc, char** argv)
   // initialize simulation
   init_sim();
 
-#ifdef IRIS
-  master_clock = new manifold::kernel::Clock(1); //clock has to be global or static
-#endif
 
   // init memory
   init_memory();
@@ -771,18 +564,10 @@ void macsim_c::initialize(int argc, char** argv)
   init_cores(*KNOB(KNOB_NUM_SIM_CORES));
 
 
-#ifdef IRIS
-  REPORT("Initializing sim IRIS\n");
-  manifold::kernel::Manifold::Init(0, NULL);
-
-  // initialize interconnect network
-  init_network();
-#else
   if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
     report("Initializing new noc\n");
     init_network();
   }
-#endif
 
   // initialize clocks
   init_clock_domain();
@@ -893,6 +678,7 @@ int macsim_c::run_a_cycle()
     //  run memory system - ska
     if (m_clock_internal % m_clock_divisor[CLOCK_L3] == 0) {
         m_memory->run_a_cycle();
+        m_dma_core_pointer->run_a_cycle();
     }
 
     // run dram controllers
@@ -985,8 +771,10 @@ int macsim_c::run_a_cycle()
 
     // Run accelerator 
     if (m_clock_internal % m_clock_divisor[CLOCK_ACC] == 0) {
-        m_acc_core_pointer->run_a_cycle();
+        for(int ii = 0; ii < MAX_NUM_ACC; ii++)
+            m_acc_core_pointers[ii]->run_a_cycle();
     }
+
 
 
     // increase simulation cycle
@@ -1024,7 +812,7 @@ router_c* macsim_c::create_router(int type)
 void macsim_c::finalize()
 {
     // dump out stat files at the end of simulation
-    m_simBase->m_acc_core_pointer->print_stats();
+    //m_simBase->m_acc_core_pointer->print_stats();
     m_ProcessorStats->saveStats();
 
     // deallocate memory
