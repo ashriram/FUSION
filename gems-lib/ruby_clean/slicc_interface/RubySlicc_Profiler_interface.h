@@ -99,8 +99,8 @@ void profileGetS(const Address& datablock, const Address& PC, const Set& owner, 
 
 void profileOverflow(const Address & addr, MachineID mach);
 
-void profile_L1Cache_request_g(const CacheMsg& msg, NodeID id, bool miss);
-void profile_L2Cache_request_g(const GenericRequestType& type, MessageSizeType size, NodeID id, bool miss);
+void profile_L1Cache_request_g(const CacheMsg& msg, NodeID id, bool miss, MachineID mid);
+void profile_L2Cache_request_g(const GenericRequestType& type, MessageSizeType size, NodeID id, bool miss, MachineID mid);
 
 void profilePrivateL1Eviction();
 

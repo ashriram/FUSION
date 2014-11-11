@@ -85,7 +85,7 @@ void profileOverflow(Address addr, MachineID mach);
 
 // used by GPGPU-Sim protocols
 void profile_L1Cache_request_g(CacheMsg msg, NodeID l1cacheID, bool miss);
-void profile_L2Cache_request_g(GenericRequestType type, MessageSizeType size, NodeID id, bool miss);
+void profile_L2Cache_request_g(GenericRequestType type, MessageSizeType size, NodeID id, bool miss, MachineID mid);
 
 void profilePrivateL1Eviction();
 
