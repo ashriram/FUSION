@@ -145,7 +145,9 @@ class dma_core_c
      */
     void init(void);
 
-    
+    void add_stat(string name, uint64_t inc_val);
+    void print_stats();
+
   private:
     int                      m_core_id; /**< core id */
     string                   m_core_type; /**< simulation core type (x86 or ptx) */

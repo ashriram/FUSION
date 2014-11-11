@@ -56,7 +56,6 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "pqueue.h"
 #include "utils.h"
 #include "bug_detector.h"
-#include "walker.h"
 
 #include "config.h"
 
@@ -145,16 +144,8 @@ void dma_core_c::check_forward_progress()
 
 void dma_core_c::add_stat(string name, uint64_t inc_val)
 {
-    ASSERTM(m_stats.count(name) > 0, "Unknown dma Stat");
-    m_stats[name] += inc_val;
 }
 
 void dma_core_c::print_stats()
 {
-    std::ofstream stats_file("dma.stat.out", std::ofstream::out);
-
-    for(auto I = m_stats.begin(); I != m_stats.end(); I++)
-        stats_file << I->first << "\t" << I->second << endl;
-
-    stats_file.close();
 }

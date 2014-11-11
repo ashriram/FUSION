@@ -37,6 +37,7 @@ POWEROBJS = \
 
 COMMONOBJS = \
   $(OBJDIR)/acc_core.o \
+  $(OBJDIR)/dma_core.o \
   $(OBJDIR)/all_knobs.o \
   $(OBJDIR)/all_stats.o \
   $(OBJDIR)/allocate.o \
@@ -86,10 +87,10 @@ OBJS = $(COMMONOBJS)
 
 DBGOBJS = $(COMMONOBJS) 
 
-RUBY_PROTOCOLS = MI_example
+RUBY_PROTOCOLS = Fusion 
 
 %.rubyprotocol_build:
-	$(MAKE) -C $(GEMS_HOME)/ruby_clean PROTOCOL=$* NOTESTER=1 DEBUG=1 -j 8
+	$(MAKE) -C $(GEMS_HOME)/ruby_clean PROTOCOL=$* PROTOCOL_ROOT=../protocols/FUSION NOTESTER=1 DEBUG=1 -j 8
 	if [ ! -d $(OBJDIR)/ruby/$* ]; then mkdir -p $(OBJDIR)/ruby/$*; fi;
 	cp $(GEMS_HOME)/ruby_clean/amd64-linux/generated/$*/lib/*.so $(OBJDIR)/ruby/$*/
 	if [ -L "$(BINDIR)/libruby.so" ]; then rm -f $(BINDIR)/libruby.so; fi; 
