@@ -28,15 +28,15 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 /**********************************************************************************************
- * File         : acc_core.h
+ * File         : dma_core.h
  * Author       : ska124
  * Date         : 07/05/2013
  * SVN          :
  * Description  : accelerator core structure
  *********************************************************************************************/
 
-#ifndef ACC_CORE_H_INCLUDED
-#define ACC_CORE_H_INCLUDED
+#ifndef DMA_CORE_H_INCLUDED
+#define DMA_CORE_H_INCLUDED
 
 
 #include <string>
@@ -49,35 +49,33 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "global_types.h"
 #include "trace_read.h"
 
-#define ACC_STAT(x,y) m_simBase->m_acc_core_pointer->add_stat(string(#x),y)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-/// \brief Core (Accelerator) class
+/// \brief DMA Core class
 ///
-/// Accelerator core has walker, pe and imb
 ///////////////////////////////////////////////////////////////////////////////////////////////
-class acc_core_c
+class dma_core_c
 {
   public:
     /**
-     *  \brief Constructor to class acc_core_c
+     *  \brief Constructor to class dma_core_c
      *  \param c_id - core id
      *  \param type - Type of unit
      *  \param simBase - Pointer to base simulation class for perf/stat counters
      *  \return void
      */
-    acc_core_c(macsim_c* simBase, Unit_Type type = UNIT_ACC);
+    dma_core_c(macsim_c* simBase, Unit_Type type = UNIT_ACC);
 
     /**
-     *  \brief Destructor to class acc_core_c
+     *  \brief Destructor to class dma_core_c
      *  \return void
      */
-    ~acc_core_c(void);
+    ~dma_core_c(void);
 
     string get_core_type(void) { return m_core_type; }
 
     /*! \fn void run_a_cycle()
-     *  \brief Function to run a cycle of acc_core_c
+     *  \brief Function to run a cycle of dma_core_c
      *  \return void
      */
     void run_a_cycle();
@@ -86,13 +84,13 @@ class acc_core_c
      *  \brief Function to return cycle count for the core
      *  \return Counter - Cycle count of the core
      */
-    Counter get_cycle_count(void) {return m_acc_core_cycle_count;}
+    Counter get_cycle_count(void) {return m_dma_core_cycle_count;}
 
-    /*! \fn void inc_acc_core_cycle_count(void)
+    /*! \fn void inc_dma_core_cycle_count(void)
      *  \brief Function to increment core cycle count
      *  \return void
      */
-    void inc_acc_core_cycle_count(void) { m_acc_core_cycle_count++; }
+    void inc_dma_core_cycle_count(void) { m_dma_core_cycle_count++; }
 
     /*! \fn void advance_queues(void)
      *  \brief Function to advance queues
@@ -147,8 +145,6 @@ class acc_core_c
      */
     void init(void);
 
-    void add_stat(string name, uint64_t inc_val);
-    void print_stats();
     
   private:
     int                      m_core_id; /**< core id */
@@ -158,7 +154,7 @@ class acc_core_c
     unordered_map<int, bool> m_terminated_tid; /**< ids of terminated threads */
     Counter                  m_unique_uop_num; /**< unique uop number */
     time_t                   m_sim_start_time; /**< simulation start time */
-    Counter                  m_acc_core_cycle_count; /**< current core cycle */
+    Counter                  m_dma_core_cycle_count; /**< current core cycle */
     Counter                  m_inst_count; /**< current instruction count */
 
     // Stats

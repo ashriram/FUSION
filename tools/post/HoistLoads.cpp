@@ -1,45 +1,48 @@
 #include "HoistLoads.h"
 
+uint32_t makeCacheAddr(uint32_t addr)
+{
+    return (addr >> 5) << 5;
+}
+
 void processTrace(unsigned ScratchpadSize)
 {
     unsigned loadSize = 0;
-    while(gzread(OrigTrace, (void*)&inst, sizeof(Inst_info)) > 0)
+    Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
+    while(gzread(OrigTrace, (void*)inst, sizeof(Inst_info)) > 0)
     {
-        ReadCount++;
-        Inst_info *II = new Inst_info;
-        memcpy((void *)II, (void *)&inst, sizeof(Inst_info));
+        Inst_info *II = (Inst_info*)malloc(sizeof(Inst_info));
+        memcpy((void *)II, (void *)inst, sizeof(Inst_info));
 
         if(II->acc_heap_load)
         {
-            loadSize += II->mem_read_size; 
-            if(LoadInsts.count(II->ld_vaddr1))
+            if(LoadInsts.count(II->ld_vaddr1) == 0)
+            {
                 LoadInsts.insert(make_pair(II->ld_vaddr1,II));
-            else
-                Redundant++;
+                loadSize += II->mem_read_size; 
+                CacheBlocks.insert(makeCacheAddr(II->ld_vaddr1));
+            }
         }
-        else
-        {
-            OtherInsts.push_back(II);
-        }
+        // Other insts including the load insts themselves
+        OtherInsts.push_back(II);
 
         // If ScratchpadSize is exceeded, then drain
-        if(loadSize > ScratchpadSize)
+        if(CacheBlocks.size()*32 == ScratchpadSize)
         {
+            //cerr << "Load Size: " << loadSize << "\n";
+            //cerr << "Cache Size: " << CacheBlocks.size()*32 << "\n";
             // Write out the load instructions
-            for(auto l : LoadInsts)
+            for(auto &l : LoadInsts)
             {
                 gzwrite(NewTrace, l.second, sizeof(Inst_info));
-                WriteCount++;
-                delete l.second;
             }
             LoadInsts.clear();
 
             // Write out the other instructions 
-            for(auto i : OtherInsts)
+            for(auto &i : OtherInsts)
             {
                 gzwrite(NewTrace, i, sizeof(Inst_info));
-                WriteCount++;
-                delete i;
+                free(i);
             }
             OtherInsts.clear();
 
@@ -51,26 +54,23 @@ void processTrace(unsigned ScratchpadSize)
 
             // Reset load size
             loadSize = 0; 
+            CacheBlocks.clear();
         }
-
     }
+    free(inst);
 
     // Drain Remaining insts
-    // Write out the load instructions
-    for(auto l : LoadInsts)
+    for(auto &l : LoadInsts)
     {
         gzwrite(NewTrace, l.second, sizeof(Inst_info));
-        WriteCount++;
-        delete l.second;
     }
     LoadInsts.clear();
 
     // Write out the other instructions 
-    for(auto i : OtherInsts)
+    for(auto &i : OtherInsts)
     {
         gzwrite(NewTrace, i, sizeof(Inst_info));
-        WriteCount++;
-        delete i;
+        free(i);
     }
     OtherInsts.clear();
 
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     }
 
     OrigTrace = gzopen(argv[1], "rb");
-    NewTrace = gzopen((string("seg.")+string(argv[1])).c_str(),"wb");
+    NewTrace = gzopen((string("seg.")+string(argv[2])+string(".")+string(argv[1])).c_str(),"wb");
 
     if(!OrigTrace || !NewTrace)
     {
@@ -96,13 +96,9 @@ int main(int argc, char *argv[])
     unsigned ScratchpadSize = 0;
     istringstream(argv[2]) >> ScratchpadSize;
 
-    processTrace(ScratchpadSize);
+    assert(ScratchpadSize % 32 == 0 && "ScratchpadSize should be a multiple of 32");
 
-    //std::cerr << "Read: " << ReadCount << "\n";
-    //std::cerr << "Write: " << WriteCount << "\n";
-    //std::cerr << "Redundant: " << Redundant<< "\n";
-    
-    assert(ReadCount == WriteCount + Redundant);
+    processTrace(ScratchpadSize);
 
     gzclose(OrigTrace);
     gzclose(NewTrace);

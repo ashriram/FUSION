@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <roi.h>
+#include <string.h>
 
 #define THREADS 64
 

@@ -1399,17 +1399,19 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
         
 
         // ska124 -- Enqueue into the acc_core marker queue
-        while( thread_trace_info->m_next_trace_info->ds_flag && read_success )
-        {
-            m_simBase->m_acc_core_pointer->push_marker( thread_trace_info->m_next_trace_info,
-                                                        core_id);
-
-            read_success = read_trace(core_id,
-                                      thread_trace_info->m_next_trace_info,
-                                      sim_thread_id,
-                                      &inst_read);
-
-        }
+/*
+ *        while( thread_trace_info->m_next_trace_info->ds_flag && read_success )
+ *        {
+ *            m_simBase->m_acc_core_pointer->push_marker( thread_trace_info->m_next_trace_info,
+ *                                                        core_id);
+ *
+ *            read_success = read_trace(core_id,
+ *                                      thread_trace_info->m_next_trace_info,
+ *                                      sim_thread_id,
+ *                                      &inst_read);
+ *
+ *        }
+ */
 
 
 
