@@ -6,9 +6,9 @@ SRCDIR=$(SIM_HOME)/src
 VPATH=$(SRCDIR): $(SRCDIR)/energy_introspector
 INCDIR=-I$(SRCDIR) -I$(GEMS_HOME)/ruby_clean/O3sim_ruby 
 
-CC = g++-4.6
+CC = g++
 #CWARN = -W -Wall -Wshadow -Wimplicit -Wreturn-type -Wcomment -Wtrigraphs -Wformat -Wparentheses -Wpointer-arith -Wuninitialized -O
-CFLAGS = $(INCDIR) -std=c++0x 
+CFLAGS = $(INCDIR) -std=gnu++0x
 CWARD = -O3 
 CDBG = -g $(CWARN) -fno-inline -DCHECK_REGISTER_FILE
 DFLAGS = -g $(CWARN) -fno-inline -DDEBUG=1
@@ -86,8 +86,7 @@ OBJS = $(COMMONOBJS)
 
 DBGOBJS = $(COMMONOBJS) 
 
-RUBY_PROTOCOLS = MESI_CMP_directory_m
-
+RUBY_PROTOCOLS = MI_example
 
 %.rubyprotocol_build:
 	$(MAKE) -C $(GEMS_HOME)/ruby_clean PROTOCOL=$* NOTESTER=1 DEBUG=1 -j 8
@@ -114,7 +113,7 @@ $(BINDIR)/$(DBGTGT): $(DBGOBJS)
 	$(CC) $(DFLAGS) -o $@ $(DBGOBJS)
 
 $(BINDIR)/$(TGT): .knobs $(OBJS) $(addsuffix .rubyprotocol_build,$(RUBY_PROTOCOLS))
-	$(CC) $(CFLAGS) -lz -L $(GEMS_HOME)/ruby_clean/amd64-linux/generated/$(word 1,$(RUBY_PROTOCOLS))/lib/ -lruby -o $@ $(OBJS)
+	$(CC) $(CFLAGS) -L$(GEMS_HOME)/ruby_clean/amd64-linux/generated/$(word 1,$(RUBY_PROTOCOLS))/lib/ -o $@ $(OBJS) -lz -lruby
 #	$(CC) $(CFLAGS) -o $@ $(OBJS) -lz
 
 # more complicated dependency computation, so all prereqs listed
