@@ -360,7 +360,7 @@ void macsim_c::init_cores(int num_max_core)
     report("Initialize accelerator cores");
     for(int ii = 0; ii < 8; ii++)
     {
-        m_acc_core_pointers[ii] = new acc_core_c(m_simBase, UNIT_ACC);
+        m_acc_core_pointers[ii] = new acc_core_c(m_simBase, UNIT_ACC, ii);
     }
 
     // DMA Core 

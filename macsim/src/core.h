@@ -332,6 +332,9 @@ class core_c
     unordered_map<int, Counter> m_last_fetch_cycle; /**< last fetched cycle */
     Counter                     m_max_inst_fetched; /**< maximum inst fetched */
 
+    // ska124
+    bool m_active;
+
   private:
     int                      m_core_id; /**< core id */
     string                   m_core_type; /**< simulation core type (x86 or ptx) */

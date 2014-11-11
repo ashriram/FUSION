@@ -147,17 +147,19 @@ class dma_core_c
 
     void add_stat(string name, uint64_t inc_val);
     void print_stats();
+    
+    // ska124
+    int                      m_next; // 0-7 for ACC and -1 for CPU
+    bool                     m_active; // Is Running? 
+    bool                     m_done; // Ready to switch to acc or CPU
 
   private:
     int                      m_core_id; /**< core id */
     string                   m_core_type; /**< simulation core type (x86 or ptx) */
     Unit_Type                m_unit_type; /**< core type */
-    int                      m_last_terminated_tid; /**< last terminated thread id */
-    unordered_map<int, bool> m_terminated_tid; /**< ids of terminated threads */
-    Counter                  m_unique_uop_num; /**< unique uop number */
     time_t                   m_sim_start_time; /**< simulation start time */
     Counter                  m_dma_core_cycle_count; /**< current core cycle */
-    Counter                  m_inst_count; /**< current instruction count */
+
 
     // Stats
     std::map < std::string, uint64_t > m_stats;

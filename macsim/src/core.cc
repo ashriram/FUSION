@@ -294,6 +294,9 @@ core_c::core_c (int c_id, macsim_c* simBase, Unit_Type type)
 
   // clock cycle
   m_cycle = 0;
+
+  // Active by default
+  m_active = true;
 }
 
 
@@ -368,6 +371,8 @@ void core_c::stop(void)
 // In every cycle, run all pipeline stages
 void core_c::run_a_cycle(void)
 {
+    if(!m_active)
+        return;
 
         start();
 
@@ -377,7 +382,6 @@ void core_c::run_a_cycle(void)
                 m_frontend->stop();
             }
         }
-
 
         // run each pipeline stages in backwards
 

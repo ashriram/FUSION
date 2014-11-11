@@ -56,6 +56,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "pqueue.h"
 #include "utils.h"
 #include "bug_detector.h"
+#include "acc_core.h"
 
 #include "config.h"
 
@@ -81,7 +82,7 @@ void dma_core_c::init(void)
 // dma_core_c constructor
 dma_core_c::dma_core_c (macsim_c* simBase, Unit_Type type)
 {
-
+    
 }
 
 // dma_core_c destructor
@@ -94,7 +95,6 @@ dma_core_c::~dma_core_c()
 // start core simulation
 void dma_core_c::start(void)
 {
-
 }
 
 
@@ -108,7 +108,28 @@ void dma_core_c::stop(void)
 // main execution routine
 // In every cycle, run all pipeline stages
 void dma_core_c::run_a_cycle(void)
-{}
+{
+    if(m_done)
+    {
+        std::cerr << "DMA Done\n";
+        // Set the next acc/CPU to active
+        if(m_next != -1)
+            m_simBase->m_acc_core_pointers[m_next]->m_active = true;
+        else
+            m_simBase->m_core_pointers[0]->m_active = true;
+
+        m_active = false;
+        m_done = false;
+    }
+
+    if(m_active)
+    {
+        // Issue all the requests we need to 
+        // Wait for them to come back
+        std::cerr << "DMA Active\n";
+        m_done = true;     
+    }
+}
 
 
 // age entries in various queues

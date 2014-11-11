@@ -56,6 +56,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "pqueue.h"
 #include "utils.h"
 #include "bug_detector.h"
+#include "dma_core.h"
 
 #include "config.h"
 
@@ -79,9 +80,12 @@ void acc_core_c::init(void)
 
 
 // acc_core_c constructor
-acc_core_c::acc_core_c (macsim_c* simBase, Unit_Type type)
+acc_core_c::acc_core_c (macsim_c* simBase, Unit_Type type, uint32_t Id)
 {
-
+    m_core_id = Id; /**< core id */
+    m_core_type = string("acc"); 
+    m_unit_type = type; /**< core type */
+    m_active = false;
 }
 
 // acc_core_c destructor
@@ -108,7 +112,11 @@ void acc_core_c::stop(void)
 // main execution routine
 // In every cycle, run all pipeline stages
 void acc_core_c::run_a_cycle(void)
-{}
+{
+    std::cerr << "In ACC: " << m_core_id << "\n";
+    m_simBase->m_dma_core_pointer->m_active = true;
+    m_simBase->m_dma_core_pointer->m_next = -1;
+}
 
 
 // age entries in various queues

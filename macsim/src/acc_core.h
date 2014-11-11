@@ -66,7 +66,7 @@ class acc_core_c
      *  \param simBase - Pointer to base simulation class for perf/stat counters
      *  \return void
      */
-    acc_core_c(macsim_c* simBase, Unit_Type type = UNIT_ACC);
+    acc_core_c(macsim_c* simBase, Unit_Type type = UNIT_ACC, uint32_t Id = 0);
 
     /**
      *  \brief Destructor to class acc_core_c
@@ -149,6 +149,8 @@ class acc_core_c
 
     void add_stat(string name, uint64_t inc_val);
     void print_stats();
+
+    bool m_active;
     
   private:
     int                      m_core_id; /**< core id */

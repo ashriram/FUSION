@@ -44,6 +44,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "global_types.h"
 #include "core.h"
 #include "acc_core.h"
+#include "dma_core.h"
 #include "knob.h"
 #include "process_manager.h"
 #include "debug_macros.h"
@@ -1413,6 +1414,16 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
  *        }
  */
 
+        if(thread_trace_info->m_next_trace_info->acc_segment_delim == true)
+        {
+            uint32_t Id = thread_trace_info->m_next_trace_info->acc_id;
+            // Activate ACC[N]
+            // Deactivate calling core
+            assert(Id >= 0 && Id <8 && "Invalid Acc Id from trace");
+            m_simBase->m_core_pointers[core_id]->m_active = false;
+            m_simBase->m_dma_core_pointer->m_active = true;
+            m_simBase->m_dma_core_pointer->m_next = Id;
+        }
 
 
         // Copy current instruction to data structure
