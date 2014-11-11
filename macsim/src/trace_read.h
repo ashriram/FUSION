@@ -42,7 +42,6 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include "uop.h"
 #include "inst_info.h"
-#include "../tools/x86_trace_generator/common-enums.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 

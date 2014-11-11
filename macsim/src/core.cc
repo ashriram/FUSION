@@ -368,8 +368,6 @@ void core_c::stop(void)
 // In every cycle, run all pipeline stages
 void core_c::run_a_cycle(void)
 {
-    if(!m_simBase->m_acc_core_pointer->ds_op_pending(m_core_id))
-    {
 
         start();
 
@@ -405,7 +403,6 @@ void core_c::run_a_cycle(void)
 
         // frontend stage
         m_frontend->run_a_cycle();
-    }
     ++m_cycle;
 }
 

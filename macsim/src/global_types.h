@@ -74,7 +74,8 @@ typedef enum _Unit_Type_enum
     UNIT_SMALL = 0, /**< small core */
     UNIT_MEDIUM, /**< medium core */
     UNIT_LARGE, /**< large core */
-    UNIT_ACC  /**< accelerator core */
+    UNIT_ACC,  /**< accelerator core */
+    UNIT_DMA /* DMA Engine */
 } Unit_Type;
 
 

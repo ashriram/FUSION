@@ -6,9 +6,9 @@ SRCDIR=$(SIM_HOME)/src
 VPATH=$(SRCDIR): $(SRCDIR)/energy_introspector
 INCDIR=-I$(SRCDIR) -I$(GEMS_HOME)/ruby_clean/O3sim_ruby 
 
-CC = g++
+CC = g++-4.6
 #CWARN = -W -Wall -Wshadow -Wimplicit -Wreturn-type -Wcomment -Wtrigraphs -Wformat -Wparentheses -Wpointer-arith -Wuninitialized -O
-CFLAGS = $(INCDIR) -std=gnu++0x 
+CFLAGS = $(INCDIR) -std=c++0x 
 CWARD = -O3 
 CDBG = -g $(CWARN) -fno-inline -DCHECK_REGISTER_FILE
 DFLAGS = -g $(CWARN) -fno-inline -DDEBUG=1
@@ -37,7 +37,6 @@ POWEROBJS = \
 
 COMMONOBJS = \
   $(OBJDIR)/acc_core.o \
-  $(OBJDIR)/acc_btree.o \
   $(OBJDIR)/all_knobs.o \
   $(OBJDIR)/all_stats.o \
   $(OBJDIR)/allocate.o \
@@ -46,7 +45,6 @@ COMMONOBJS = \
   $(OBJDIR)/bp_gshare.o \
   $(OBJDIR)/bp_targ.o \
   $(OBJDIR)/bug_detector.o \
-  $(OBJDIR)/btree.o \
   $(OBJDIR)/cache.o \
   $(OBJDIR)/core.o \
   $(OBJDIR)/dram.o \
@@ -54,7 +52,6 @@ COMMONOBJS = \
   $(OBJDIR)/factory_class.o \
   $(OBJDIR)/fetch_factory.o \
   $(OBJDIR)/frontend.o \
-  $(OBJDIR)/imb.o \
   $(OBJDIR)/knob.o \
   $(OBJDIR)/macsim.o \
   $(OBJDIR)/main.o \
@@ -62,7 +59,6 @@ COMMONOBJS = \
   $(OBJDIR)/memory.o \
   $(OBJDIR)/memreq_info.o \
   $(OBJDIR)/noc.o \
-  $(OBJDIR)/pe.o \
   $(OBJDIR)/port.o \
   $(OBJDIR)/pref.o \
   $(OBJDIR)/pref_common.o \
@@ -83,7 +79,6 @@ COMMONOBJS = \
   $(OBJDIR)/trace_read.o \
   $(OBJDIR)/uop.o \
   $(OBJDIR)/utils.o \
-  $(OBJDIR)/walker.o \
 
 
 OBJS = $(COMMONOBJS) 

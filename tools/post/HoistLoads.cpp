@@ -29,8 +29,8 @@ void processTrace(unsigned ScratchpadSize)
         // If ScratchpadSize is exceeded, then drain
         if(CacheBlocks.size()*32 == ScratchpadSize)
         {
-            cerr << "Load Size: " << loadSize << "\n";
-            cerr << "Cache Size: " << CacheBlocks.size()*32 << "\n";
+            //cerr << "Load Size: " << loadSize << "\n";
+            //cerr << "Cache Size: " << CacheBlocks.size()*32 << "\n";
             // Write out the load instructions
             for(auto &l : LoadInsts)
             {
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     }
 
     OrigTrace = gzopen(argv[1], "rb");
-    NewTrace = gzopen((string("seg.")+string(argv[1])).c_str(),"wb");
+    NewTrace = gzopen((string("seg.")+string(argv[2])+string(".")+string(argv[1])).c_str(),"wb");
 
     if(!OrigTrace || !NewTrace)
     {

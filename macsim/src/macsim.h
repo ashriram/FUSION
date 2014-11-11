@@ -214,7 +214,8 @@ class macsim_c
         bool m_core_started[MAX_NUM_CORES]; /**< core started flag */
 
         core_c *m_core_pointers[MAX_NUM_CORES]; /**< core pointers */
-        acc_core_c *m_acc_core_pointer;
+        acc_core_c *m_acc_core_pointers[MAX_NUM_ACC]; // Support upto 8 accelerator cores
+        dma_core_c *m_dma_core_pointer; // DMA core pointer
         memory_c* m_memory; /**< main memory */
         dram_controller_c** m_dram_controller; /**< dram controller */
         int m_num_mc; /**< number of memory controllers */
