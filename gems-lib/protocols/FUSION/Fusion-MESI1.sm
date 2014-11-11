@@ -498,19 +498,6 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
      }
   }
 
-  /*
-  action(e_sendAckToRequestor, "e", desc="send invalidate ack to requestor (could be L2 or L1)") {
-    peek(requestIntraChipL1Network_in, RequestMsg) {
-      enqueue(responseIntraChipL1Network_out, ResponseMsg, latency="L1_RESPONSE_LATENCY") {
-        out_msg.Address := address;
-        out_msg.Type := CoherenceResponseType:ACK;
-        out_msg.Sender := machineID;
-        out_msg.Destination.add(in_msg.Requestor);
-        out_msg.MessageSize := MessageSizeType:Response_Control;
-      }
-    }
-  }
-  */
 
   action(f_sendDataToL2, "f", desc="send data to the L2 cache") {
     enqueue(responseIntraChipL1Network_out, ResponseMsg, latency="L1_to_L2_DATA_LATENCY") {
@@ -754,14 +741,14 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
   action(pM_profileMiss, "pM", desc="Profile a demand miss") {
     peek(mandatoryQueue_in, CacheMsg) {
        assert(in_msg.profiled == false);
-       profile_L1Cache_request_g(in_msg, id, true /*miss*/);
+       profile_L1Cache_request_g(in_msg, id, true /*miss*/, machineID);
     }
   }
 
   action(pH_profileHit, "pH", desc="Profile a demand hit") {
     peek(mandatoryQueue_in, CacheMsg) {
        assert(in_msg.profiled == false);
-       profile_L1Cache_request_g(in_msg, id, false /*hit*/);
+       profile_L1Cache_request_g(in_msg, id, false /*hit*/, machineID);
     }
   }
 
