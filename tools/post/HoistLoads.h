@@ -43,12 +43,10 @@ struct Inst_info {
     /** ds-acc specific start **/
 #include "common-trace-fields.cpp"
     /** ds-acc specific end **/
-} inst;
+} Inst;
 
 map<uint32_t, Inst_info*> LoadInsts;
 vector<Inst_info *> OtherInsts;
-
-unsigned long long ReadCount = 0, WriteCount = 0, Redundant = 0;
 
 enum TR_OPCODE_enum {
   TR_MUL = XED_CATEGORY_LAST ,

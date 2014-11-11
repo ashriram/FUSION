@@ -3,43 +3,38 @@
 void processTrace(unsigned ScratchpadSize)
 {
     unsigned loadSize = 0;
-    while(gzread(OrigTrace, (void*)&inst, sizeof(Inst_info)) > 0)
+    Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
+    while(gzread(OrigTrace, (void*)inst, sizeof(Inst_info)) > 0)
     {
-        ReadCount++;
-        Inst_info *II = new Inst_info;
-        memcpy((void *)II, (void *)&inst, sizeof(Inst_info));
+        Inst_info *II = (Inst_info*)malloc(sizeof(Inst_info));
+        memcpy((void *)II, (void *)inst, sizeof(Inst_info));
 
         if(II->acc_heap_load)
         {
-            loadSize += II->mem_read_size; 
-            if(LoadInsts.count(II->ld_vaddr1))
+            if(LoadInsts.count(II->ld_vaddr1) == 0)
+            {
                 LoadInsts.insert(make_pair(II->ld_vaddr1,II));
-            else
-                Redundant++;
+                loadSize += II->mem_read_size; 
+            }
         }
-        else
-        {
-            OtherInsts.push_back(II);
-        }
+        // Other insts including the load insts themselves
+        OtherInsts.push_back(II);
 
         // If ScratchpadSize is exceeded, then drain
         if(loadSize > ScratchpadSize)
         {
             // Write out the load instructions
-            for(auto l : LoadInsts)
+            for(auto &l : LoadInsts)
             {
                 gzwrite(NewTrace, l.second, sizeof(Inst_info));
-                WriteCount++;
-                delete l.second;
             }
             LoadInsts.clear();
 
             // Write out the other instructions 
-            for(auto i : OtherInsts)
+            for(auto &i : OtherInsts)
             {
                 gzwrite(NewTrace, i, sizeof(Inst_info));
-                WriteCount++;
-                delete i;
+                free(i);
             }
             OtherInsts.clear();
 
@@ -52,25 +47,21 @@ void processTrace(unsigned ScratchpadSize)
             // Reset load size
             loadSize = 0; 
         }
-
     }
+    free(inst);
 
     // Drain Remaining insts
-    // Write out the load instructions
-    for(auto l : LoadInsts)
+    for(auto &l : LoadInsts)
     {
         gzwrite(NewTrace, l.second, sizeof(Inst_info));
-        WriteCount++;
-        delete l.second;
     }
     LoadInsts.clear();
 
     // Write out the other instructions 
-    for(auto i : OtherInsts)
+    for(auto &i : OtherInsts)
     {
         gzwrite(NewTrace, i, sizeof(Inst_info));
-        WriteCount++;
-        delete i;
+        free(i);
     }
     OtherInsts.clear();
 
@@ -97,12 +88,6 @@ int main(int argc, char *argv[])
     istringstream(argv[2]) >> ScratchpadSize;
 
     processTrace(ScratchpadSize);
-
-    //std::cerr << "Read: " << ReadCount << "\n";
-    //std::cerr << "Write: " << WriteCount << "\n";
-    //std::cerr << "Redundant: " << Redundant<< "\n";
-    
-    assert(ReadCount == WriteCount + Redundant);
 
     gzclose(OrigTrace);
     gzclose(NewTrace);

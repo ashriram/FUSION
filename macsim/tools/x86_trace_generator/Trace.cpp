@@ -922,7 +922,7 @@ void initialize(void)
     {
         stringstream ss;
         string filename;
-        ss << "acc" << i << ".raw";
+        ss << "acc_" << i << ".raw";
         ss >> filename;
         FuncGZFiles[i] = gzopen(filename.c_str(),WRITEM);
     }
