@@ -176,18 +176,18 @@ void profileOverflow(const Address & addr, MachineID mach)
   #endif
 }
 
-void profile_L1Cache_request_g(const CacheMsg& msg, NodeID id, bool miss)
+void profile_L1Cache_request_g(const CacheMsg& msg, NodeID id, bool miss, MachineID mid)
 {
   // only called by protocols assuming non-zero cycle hits
   ASSERT (REMOVE_SINGLE_CYCLE_DCACHE_FAST_PATH);
-  g_system_ptr->getProfiler()->addL1RequestSample(msg, id, miss);
+  g_system_ptr->getProfiler()->addL1RequestSample(msg, id, miss, mid);
   // Hack to change state of const CacheMsg
   const_cast<CacheMsg *>(&msg)->setprofiled(true);
 }
 
-void profile_L2Cache_request_g(const GenericRequestType& type, MessageSizeType size, NodeID id, bool miss)
+void profile_L2Cache_request_g(const GenericRequestType& type, MessageSizeType size, NodeID id, bool miss, MachineID mid)
 {
-   g_system_ptr->getProfiler()->addL2RequestSample(type, size, id, miss);
+   g_system_ptr->getProfiler()->addL2RequestSample(type, size, id, miss, mid);
 }
 
 void profileCLStallEvict(Time stall_cycles){

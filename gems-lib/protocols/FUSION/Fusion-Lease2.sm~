@@ -198,7 +198,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     TBETable L2_TBEs, template_hack="<L2TCache_TBE>";
 
-    CacheMemory L2cacheMemory, template_hack="<L2TCache_Entry>", constructor_hack='L2T_CACHE_NUM_SETS_BITS,L2T_CACHE_ASSOC,MachineType_L2TCache,int_to_string(i)';
+    CacheMemory L2cacheMemory, template_hack="<L2TCache_Entry>", constructor_hack='L2_CACHE_NUM_SETS_BITS,L2_CACHE_ASSOC,MachineType_L2TCache,int_to_string(i)';
 
     MessageBuffer L2ExpireTriggerQueue,  ordered="false";
 
@@ -820,26 +820,26 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     action(pM_profileRequestMiss, "prM", desc="Profile a demand miss for request message") {
        peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, true, machineID);   // miss
+         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, true);   // miss
       }
     }
 
     action(pH_profileRequestHit, "prH", desc="Profile a demand hit for request message") {
        peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, false, machineID);  // hit
+         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, false);  // hit
       }
     }
 
 
     action(pM_profileResponseMiss, "pwM", desc="Profile a demand miss for response message") {
        peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, true, machineID);   // miss
+         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, true);   // miss
       }
     }
 
     action(pH_profileResponseHit, "pwH", desc="Profile a demand hit for response message") {
        peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, false, machineID);  // hit
+         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, false);  // hit
       }
     }
 

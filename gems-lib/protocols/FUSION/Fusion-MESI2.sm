@@ -441,7 +441,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
 
    action(a_issueFetchToMemory, "a", desc="fetch data from memory") {
     peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-      enqueue(DirRequestIntraChipL2Network_out, RequestMsg, latency="L2_REQUEST_LATENCY") {
+      enqueue(DirRequestIntraChipL2Network_out, RequestMsg, latency="L2_to_L1_MSG_LATENCY") {
         out_msg.Address := address;
         out_msg.Type := CoherenceRequestType:GETS;
         out_msg.Requestor := machineID;
@@ -453,7 +453,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
 
   action(b_forwardRequestToExclusive, "b", desc="Forward request to the exclusive L1") {
     peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-      enqueue(L1RequestIntraChipL2Network_out, RequestMsg, latency="L2_REQUEST_LATENCY") {
+      enqueue(L1RequestIntraChipL2Network_out, RequestMsg, latency="L2_to_L1_MSG_LATENCY") {
         out_msg.Address := address;
         out_msg.Type := in_msg.Type;
         out_msg.Requestor := in_msg.Requestor;
@@ -464,7 +464,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
   }
 
   action(c_exclusiveReplacement, "c", desc="Send data to memory") {
-    enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_RESPONSE_LATENCY") {
+    enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_DATA_LATENCY") {
       out_msg.Address := address;
       out_msg.Type := CoherenceResponseType:MEMORY_DATA;
       out_msg.Sender := machineID;
@@ -475,18 +475,8 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
     }
   }
 
-  action(c_exclusiveCleanReplacement, "cc", desc="Send ack to memory for clean replacement") {
-    enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_RESPONSE_LATENCY") {
-      out_msg.Address := address;
-      out_msg.Type := CoherenceResponseType:ACK;
-      out_msg.Sender := machineID;
-      out_msg.Destination.add(map_Address_to_Directory(address));
-      out_msg.MessageSize := MessageSizeType:Control;
-    }
-  }
-
   action(ct_exclusiveReplacementFromTBE, "ct", desc="Send data to memory") {
-    enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_RESPONSE_LATENCY") {
+    enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_DATA_LATENCY") {
       out_msg.Address := address;
       out_msg.Type := CoherenceResponseType:MEMORY_DATA;
       out_msg.Sender := machineID;
@@ -841,10 +831,10 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
     }
   }
 
-  action(ww_profileMissNoDir, "\w", desc="Profile this transition at the L2 because Dir won't see the request") {
-    peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-    }
-  }
+//  action(ww_profileMissNoDir, "\w", desc="Profile this transition at the L2 because Dir won't see the request") {
+//    peek(L1RequestIntraChipL2Network_in, RequestMsg) {
+//    }
+//  }
 
 
 
@@ -862,11 +852,11 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
   }
 
 
-  action(kk_removeRequestSharer, "\k", desc="Remove L1 Request sharer from list") {
-    peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-      L2cacheMemory[address].Sharers.remove(in_msg.Requestor);
-    }    
-  }
+  // action(kk_removeRequestSharer, "\k", desc="Remove L1 Request sharer from list") {
+  //   peek(L1RequestIntraChipL2Network_in, RequestMsg) {
+  //     L2cacheMemory[address].Sharers.remove(in_msg.Requestor);
+  //   }    
+  // }
 
   action(ll_clearSharers, "\l", desc="Remove all L1 sharers from list") {
     peek(L1RequestIntraChipL2Network_in, RequestMsg) {
@@ -874,13 +864,13 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
     }    
   }
 
-  action(mm_markExclusive, "\m", desc="set the exclusive owner") {
-    peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-      L2cacheMemory[address].Sharers.clear();
-      L2cacheMemory[address].Exclusive := in_msg.Requestor;
-      addSharer(address, in_msg.Requestor);
-    }    
-  }
+  // action(mm_markExclusive, "\m", desc="set the exclusive owner") {
+  //   peek(L1RequestIntraChipL2Network_in, RequestMsg) {
+  //     L2cacheMemory[address].Sharers.clear();
+  //     L2cacheMemory[address].Exclusive := in_msg.Requestor;
+  //     addSharer(address, in_msg.Requestor);
+  //   }    
+  // }
 
   action(mmu_markExclusiveFromUnblock, "\mu", desc="set the exclusive owner") {
     peek(L1unblockNetwork_in, ResponseMsg) {
@@ -894,22 +884,20 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
     L1RequestIntraChipL2Network_in.recycle();
   }
 
-  action(zn_recycleResponseNetwork, "zn", desc="recycle memory request") {
-    responseIntraChipL2Network_in.recycle();
-  }
-
-
+  // action(zn_recycleResponseNetwork, "zn", desc="recycle memory request") {
+  //   responseIntraChipL2Network_in.recycle();
+  // }
 
 
   action(pM_profileRequestMiss, "prM", desc="Profile a demand miss for request message") {
      peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-       profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, true);   // miss
+       profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, true, machineID );   // miss
     }
   }
 
   action(pH_profileRequestHit, "prH", desc="Profile a demand hit for request message") {
      peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-       profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, false);  // hit
+       profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, false, machineID);  // hit
     }
   }
 
@@ -1109,9 +1097,8 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
     rr_deallocateL2CacheBlock;
   }
 
-   transition(M, L2_Replacement_clean, M_I) {
+   transition(M, L2_Replacement_clean, NP) {
     i_allocateTBE;
-    c_exclusiveCleanReplacement;
     rr_deallocateL2CacheBlock;
   }
 
@@ -1239,8 +1226,8 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
     o_popIncomingResponseQueue;
   }
 
-  transition(I_I, Ack_all, M_I) {
-    c_exclusiveCleanReplacement;
+  transition(I_I, Ack_all, NP) {
+    s_deallocateTBE;
     o_popIncomingResponseQueue;
   }
 
@@ -1280,9 +1267,9 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
 
 
 
-  transition(MCT_I, {WB_Data_clean, Ack_all}, M_I) {
-    c_exclusiveCleanReplacement;
-    o_popIncomingResponseQueue;
+  transition(MCT_I, {WB_Data_clean, Ack_all}, NP) {
+   s_deallocateTBE;
+   o_popIncomingResponseQueue;
   }
 
   transition(MCT_I,  {L1_PUTX, L1_PUTX_old}){

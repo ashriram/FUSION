@@ -135,8 +135,8 @@ public:
   void addAddressTraceSample(const CacheMsg& msg, NodeID id);
 
 
-  void addL1RequestSample(const CacheMsg& msg, NodeID id, bool miss);
-  void addL2RequestSample(const GenericRequestType& type, MessageSizeType size, NodeID id, bool miss);
+  void addL1RequestSample(const CacheMsg& msg, NodeID id, bool miss, MachineID mid);
+  void addL2RequestSample(const GenericRequestType& type, MessageSizeType size, NodeID id, bool miss, MachineID mid);
 
   void profileRequest(const string& requestStr);
   void profileSharing(const Address& addr, AccessType type, NodeID requestor, const Set& sharers, const Set& owner);
@@ -296,8 +296,10 @@ private:
 
   // Data Members (m_ prefix)
   CacheProfiler* m_L1D_cache_profiler_ptr;
+  CacheProfiler* m_L1T_cache_profiler_ptr;
   CacheProfiler* m_L1I_cache_profiler_ptr;
   CacheProfiler* m_L2_cache_profiler_ptr;
+  CacheProfiler* m_L2T_cache_profiler_ptr;
   AddressProfiler* m_address_profiler_ptr;
   AddressProfiler* m_inst_profiler_ptr;
 

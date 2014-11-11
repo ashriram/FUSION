@@ -153,7 +153,7 @@ machine(L1TCache, "FUSION Lease v2 L1 Cache") {
 
     TBETable L1_TBEs, template_hack="<L1TCache_TBE>";
 
-    CacheMemory L1DcacheMemory, template_hack="<L1TCache_Entry>", constructor_hack='L1T_CACHE_NUM_SETS_BITS,L1T_CACHE_ASSOC,MachineType_L1TCache,int_to_string(i)+"_L1D"';
+    CacheMemory L1DcacheMemory, template_hack="<L1TCache_Entry>", constructor_hack='L1_CACHE_NUM_SETS_BITS,L1_CACHE_ASSOC,MachineType_L1TCache,int_to_string(i)+"_L1D"';
 
 
 
@@ -548,14 +548,14 @@ machine(L1TCache, "FUSION Lease v2 L1 Cache") {
     action(pM_profileMiss, "pM", desc="Profile a demand miss") {
       peek(mandatoryQueue_in, CacheMsg) {
          assert(in_msg.profiled == false);
-         profile_L1Cache_request_g(in_msg, id, true /*miss*/, machineID);
+         profile_L1Cache_request_g(in_msg, id, true /*miss*/);
       }
     }
 
     action(pH_profileHit, "pH", desc="Profile a demand hit") {
       peek(mandatoryQueue_in, CacheMsg) {
          assert(in_msg.profiled == false);
-         profile_L1Cache_request_g(in_msg, id, false /*hit*/, machineID);
+         profile_L1Cache_request_g(in_msg, id, false /*hit*/);
       }
     }
 
