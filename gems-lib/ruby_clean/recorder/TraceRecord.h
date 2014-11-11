@@ -87,7 +87,7 @@ public:
 
   // Public Methods
   bool node_less_then_eq(const TraceRecord& rec) const { return (this->m_time <= rec.m_time); }
-  void issueRequest() const;
+  void issueRequest();
 
   void print(ostream& out) const;
   void output(ostream& out) const;

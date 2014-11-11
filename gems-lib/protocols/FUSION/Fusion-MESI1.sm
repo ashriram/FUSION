@@ -997,7 +997,7 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     o_popIncomingResponseQueue;
   }
 
-  transition(IM, Data_all_Acks, M) {
+  transition(IM, {Data_Exclusive,Data_all_Acks}, M) {
     u_writeDataToL1Cache;
     dm_from_tbe;
     dm_from_resp;
