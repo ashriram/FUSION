@@ -69,7 +69,7 @@ endif
 
 # Note that VPATH has to be defined before the common Makefile is
 # included.
-VPATH = ${NETWORK_VPATH}:${GARNET_VPATH}:.:${GARNET_DETAIL_VPATH}:${ORION_VPATH}:$(GEMS_ROOT)/common:$(GEMS_ROOT)/common/gzstream:buffers:common:slicc_interface:profiler:config:eventqueue:system:interfaces:simics:tester:gpusim_ruby:recorder:log_tm:rock:$(GENERATED_DIR):$(GEMS_ROOT)/common/ioutil:network
+VPATH = ${NETWORK_VPATH}:${GARNET_VPATH}:.:${GARNET_DETAIL_VPATH}:${ORION_VPATH}:$(GEMS_ROOT)/common:$(GEMS_ROOT)/common/gzstream:buffers:common:slicc_interface:profiler:config:eventqueue:system:interfaces:simics:tester:O3sim_ruby:gpusim_ruby:recorder:log_tm:rock:$(GENERATED_DIR):$(GEMS_ROOT)/common/ioutil:network
 
 # Need to keep this statement here, the order is tricky here
 include $(GEMS_ROOT)/common/Makefile.common
@@ -197,7 +197,9 @@ SRC_CPP := \
 	CheckTable.C \
 	Tester.C \
 	GpusimInterface.C \
-	gpusim_ruby.C \
+	O3simInterface.C \
+	O3sim_ruby.C   \
+	gpusim_ruby.C 	\
 	RequestGenerator.C \
 	SpecifiedGenerator.C \
 	DetermGETXGenerator.C \
@@ -341,6 +343,10 @@ $(GENERATED_DIR)/tester_param.h: ../common/ioutil/embedtext.py config/tester.def
 
 $(GENERATED_DIR)/gpusim_param.h: ../common/ioutil/embedtext.py config/gpusimconfig.defaults
 	python ../common/ioutil/embedtext.py config/gpusimconfig.defaults $(GENERATED_DIR)/gpusim_param.h global_default_gpusim_param
+
+$(GENERATED_DIR)/O3sim_param.h: ../common/ioutil/embedtext.py config/O3simconfig.defaults
+	python ../common/ioutil/embedtext.py config/O3simconfig.defaults $(GENERATED_DIR)/O3sim_param.h global_default_O3sim_param
+
 
 $(BIN_DIR)/tester.exec: simics_api_dummy.c $(RUBY_OBJ) $(BIN_DIR)/created $(GENERATED_DIR)/generated
 	@echo ""
