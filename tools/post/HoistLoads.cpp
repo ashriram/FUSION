@@ -1,5 +1,10 @@
 #include "HoistLoads.h"
 
+uint32_t makeCacheAddr(uint32_t addr)
+{
+    return (addr >> 5) << 5;
+}
+
 void processTrace(unsigned ScratchpadSize)
 {
     unsigned loadSize = 0;
@@ -15,14 +20,17 @@ void processTrace(unsigned ScratchpadSize)
             {
                 LoadInsts.insert(make_pair(II->ld_vaddr1,II));
                 loadSize += II->mem_read_size; 
+                CacheBlocks.insert(makeCacheAddr(II->ld_vaddr1));
             }
         }
         // Other insts including the load insts themselves
         OtherInsts.push_back(II);
 
         // If ScratchpadSize is exceeded, then drain
-        if(loadSize > ScratchpadSize)
+        if(CacheBlocks.size()*32 == ScratchpadSize)
         {
+            cerr << "Load Size: " << loadSize << "\n";
+            cerr << "Cache Size: " << CacheBlocks.size()*32 << "\n";
             // Write out the load instructions
             for(auto &l : LoadInsts)
             {
@@ -46,6 +54,7 @@ void processTrace(unsigned ScratchpadSize)
 
             // Reset load size
             loadSize = 0; 
+            CacheBlocks.clear();
         }
     }
     free(inst);
@@ -86,6 +95,8 @@ int main(int argc, char *argv[])
 
     unsigned ScratchpadSize = 0;
     istringstream(argv[2]) >> ScratchpadSize;
+
+    assert(ScratchpadSize % 32 == 0 && "ScratchpadSize should be a multiple of 32");
 
     processTrace(ScratchpadSize);
 
