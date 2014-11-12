@@ -397,16 +397,9 @@ void core_c::run_a_cycle(void)
             {
                 std::cerr << "DMA Done\n";
                 // Set the next acc/CPU to active
-                if(m_next != -1)
-                {
-                    std::cerr << "Activating Accelerator " << m_next << "\n";
-                    m_simBase->m_core_pointers[m_next]->m_active = true;
-                }
-                else
-                {
-                    m_simBase->m_core_pointers[0]->start_frontend();
-                    m_simBase->m_core_pointers[0]->m_active = true;
-                }
+                std::cerr << "Activating " << m_next << "\n";
+                m_simBase->m_core_pointers[m_next]->m_active = true;
+                m_simBase->m_core_pointers[m_next]->start_frontend();
 
                 m_active = false;
                 m_dma_done = false;
@@ -424,12 +417,12 @@ void core_c::run_a_cycle(void)
         }
         else
         {
-            std::cerr << "In ACC: " << m_core_id << "\n";
-            m_simBase->m_core_pointers[1]->m_active = true;
-            m_simBase->m_core_pointers[1]->m_next = -1;
-            m_active = false;
-            ++m_cycle;
-            return;
+            report("In ACC: " << m_core_id);
+            //m_simBase->m_core_pointers[1]->m_active = true;
+            //m_simBase->m_core_pointers[1]->m_next = 0; // Go to CPU
+            //m_active = false;
+            //++m_cycle;
+            //return;
 
             /******************************************/
 
@@ -444,7 +437,7 @@ void core_c::run_a_cycle(void)
 
             if(!m_frontend->is_running() && m_rob->entries() == 0)
             {
-                std::cerr << "Core Halt\n";
+                std::cerr << "Acc Halt\n";
                 m_active = false;
             }
 

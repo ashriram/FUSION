@@ -693,10 +693,12 @@ int macsim_c::run_a_cycle()
 
         core_c *core = m_core_pointers[ii];
 
-        // Skip DMA or ACC cores if CPU is inactive
+        // Skip DMA or ACC cores if CPU is active
         if(ii > 0 && m_core_pointers[0]->m_active)
            continue; 
 
+
+        
         string core_type = core->get_core_type();
         if (core_type == "ptx" && m_clock_internal % m_clock_divisor[CLOCK_GPU] != 0) {
             continue;
