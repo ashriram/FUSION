@@ -48,6 +48,7 @@ void processTrace(unsigned ScratchpadSize)
 
             // Add acc_window delim
             Inst_info t;
+            memset((void*)&t, 0, sizeof(t));
             t.opcode = TR_NOP;
             t.acc_window_delim = true;
             gzwrite(NewTrace, &t, sizeof(t));
