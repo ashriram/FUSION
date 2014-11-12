@@ -82,7 +82,10 @@ void dma_core_c::init(void)
 // dma_core_c constructor
 dma_core_c::dma_core_c (macsim_c* simBase, Unit_Type type)
 {
-    
+   m_simBase = simBase;
+   m_unit_type = type;
+   m_active = false;
+   m_done = false;
 }
 
 // dma_core_c destructor

@@ -170,7 +170,7 @@ string tr_cf_names[15] = {
 };
 
 // Pin 2.10
-/*
+
 string tr_opcode_names[60] = {
   "INVALID",
   "3DNOW",
@@ -216,10 +216,10 @@ string tr_opcode_names[60] = {
   "XSAVE",
   "XSAVEOPT",
 };
-*/
+
 
 // Pin 2.12
-
+/*
 string tr_opcode_names[60] = {
     "INVALID",
     "3DNOW",
@@ -278,7 +278,7 @@ string tr_opcode_names[60] = {
     "XOP",
     "XSAVE",
     "XSAVEOPT"
-};
+}; */
 
 
 

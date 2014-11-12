@@ -1128,6 +1128,7 @@ VOID StartAcc(UINT32 AccId)
 
     // Write a jump marker in main trace
     Inst_info m;
+    memset((void*)&m,0,sizeof(m));
     m.opcode = TR_NOP;
     m.acc_segment_delim = true;
     m.acc_id = AccId;
@@ -1140,6 +1141,7 @@ VOID EndAcc()
 {
     InAccFunc = false;
     Inst_info m;
+    memset((void*)&m,0,sizeof(m));
     m.opcode = TR_NOP;
     m.acc_segment_delim = true;
     m.acc_id = -1; // This will be MAX_UINT32 as it is unsigned

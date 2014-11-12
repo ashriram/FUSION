@@ -364,7 +364,7 @@ void macsim_c::init_cores(int num_max_core)
     }
 
     // DMA Core 
-    m_dma_core_pointer = new dma_core_c(m_simBase, UNIT_DMA);
+   m_dma_core_pointer = new dma_core_c(m_simBase, UNIT_DMA);
 }
 
 

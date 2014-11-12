@@ -380,8 +380,8 @@ bool trace_read_c::read_trace(int core_id, trace_info_s *trace_info, int sim_thr
  */
 void trace_read_c::dprint_inst(trace_info_s *t_info, int core_id, int thread_id)
 {
-  if (dprint_count++ >= 50000 || !*KNOB(KNOB_DEBUG_PRINT_TRACE))
-    return ;
+  //if (dprint_count++ >= 50000 || !*KNOB(KNOB_DEBUG_PRINT_TRACE))
+    //return ;
 
   *dprint_output << "*** begin of the data strcture *** " << endl;
   *dprint_output << "core_id:" << core_id << " thread_id:" << thread_id << endl;
@@ -779,7 +779,6 @@ inst_info_s* trace_read_c::convert_pinuop_to_t_uop(trace_info_s *pi, trace_uop_s
     // temporal register rules:
     // load->dest_reg (through tmp), load->store (through tmp), dest_reg->store (real reg)
     // load->cf (through tmp), dest_reg->cf (thought dest), st->cf (no dependency)
-
 
     ///
     /// 1. This instruction has a memory load operation
@@ -1428,6 +1427,8 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
 
         // Copy current instruction to data structure
         memcpy( &trace_info, thread_trace_info->m_prev_trace_info, sizeof(trace_info_s));
+
+        dprint_inst(&trace_info,0,0);
 
         // Set next pc address
         trace_info.m_instruction_next_addr =

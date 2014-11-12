@@ -86,6 +86,7 @@ acc_core_c::acc_core_c (macsim_c* simBase, Unit_Type type, uint32_t Id)
     m_core_type = string("acc"); 
     m_unit_type = type; /**< core type */
     m_active = false;
+    m_simBase = simBase;
 }
 
 // acc_core_c destructor
@@ -113,9 +114,13 @@ void acc_core_c::stop(void)
 // In every cycle, run all pipeline stages
 void acc_core_c::run_a_cycle(void)
 {
+    if(!m_active)
+        return;
+
     std::cerr << "In ACC: " << m_core_id << "\n";
     m_simBase->m_dma_core_pointer->m_active = true;
     m_simBase->m_dma_core_pointer->m_next = -1;
+    m_active = false;
 }
 
 
