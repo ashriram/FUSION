@@ -64,6 +64,7 @@ using namespace DRAMSim;
 #endif
 
 
+#undef DEBUG
 #define DEBUG(args...) _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_DRAM, ## args)
 
 static int total_dram_bandwidth = 0;

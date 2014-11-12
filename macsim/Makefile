@@ -8,7 +8,7 @@ INCDIR=-I$(SRCDIR) -I$(GEMS_HOME)/ruby_clean/O3sim_ruby
 
 CC = g++
 #CWARN = -W -Wall -Wshadow -Wimplicit -Wreturn-type -Wcomment -Wtrigraphs -Wformat -Wparentheses -Wpointer-arith -Wuninitialized -O
-CFLAGS = $(INCDIR) -std=gnu++0x
+CFLAGS = $(INCDIR) -std=c++0x
 CWARD = -O3 
 CDBG = -g $(CWARN) -fno-inline -DCHECK_REGISTER_FILE
 DFLAGS = -g $(CWARN) -fno-inline -DDEBUG=1
@@ -115,7 +115,6 @@ $(BINDIR)/$(DBGTGT): $(DBGOBJS)
 
 $(BINDIR)/$(TGT): .knobs $(OBJS) $(addsuffix .rubyprotocol_build,$(RUBY_PROTOCOLS))
 	$(CC) $(CFLAGS) -L$(GEMS_HOME)/ruby_clean/amd64-linux/generated/$(word 1,$(RUBY_PROTOCOLS))/lib/ -o $@ $(OBJS) -lz -lruby
-#	$(CC) $(CFLAGS) -o $@ $(OBJS) -lz
 
 # more complicated dependency computation, so all prereqs listed
 # will also become command-less, prereq-less targets
@@ -132,12 +131,12 @@ $(BINDIR)/$(TGT): .knobs $(OBJS) $(addsuffix .rubyprotocol_build,$(RUBY_PROTOCOL
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cc
 	$(CC) $(CFLAGS) -c -o $@ $<
-	gcc -MM $(CFLAGS) $? > $(OBJDIR)/$*.d
-	mv -f $(OBJDIR)/$*.d $(OBJDIR)/$*.d.tmp
+	$(CC) -MM $(CFLAGS) $? > $(OBJDIR)/$*.d
+	@mv -f $(OBJDIR)/$*.d $(OBJDIR)/$*.d.tmp
 	@sed -e 's|.*:|obj/$*.o:|' < obj/$*.d.tmp > obj/$*.d
-	sed -e 's/.*://' -e 's/\\$$//' < obj/$*.d.tmp | fmt -1 | \
-	sed -e 's/^ *//' -e 's/$$/:/' >> obj/$*.d
-	rm -f $(OBJDIR)/$*.d.tmp
+	@sed -e 's/.*://' -e 's/\\$$//' < obj/$*.d.tmp | fmt -1 | \
+	 sed -e 's/^ *//' -e 's/$$/:/' >> obj/$*.d
+	@rm -f $(OBJDIR)/$*.d.tmp
 
 
 

@@ -65,6 +65,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 #define DEBUG_MEM(args...) _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_MEM_TRACE, ## args)
+#undef DEBUG
 #define DEBUG(args...)		_DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_PREF_STRIDE, ## args)
 
 

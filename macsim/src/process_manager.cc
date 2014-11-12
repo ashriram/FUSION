@@ -93,6 +93,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #define THREAD_ID_MASK 0xFFF 
 #define BLOCK_ID_MOD 16384 
 
+#undef DEBUG
 #define DEBUG(args...) _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_SIM_THREAD_SCHEDULE, ## args)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////

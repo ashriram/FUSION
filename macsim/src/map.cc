@@ -55,6 +55,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include "all_knobs.h"
 
+#undef DEBUG
 #define DEBUG(args...) _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_MAP_STAGE, ## args)
 
 #define MEM_MAP_KEY(va, off_path)(((va >> 3) << 1) | off_path)

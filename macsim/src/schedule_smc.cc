@@ -50,6 +50,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include "all_knobs.h"
 
+#undef DEBUG
 #define DEBUG(args...)   _DEBUG(*KNOB(KNOB_DEBUG_SCHEDULE_STAGE), ## args) 
 
 

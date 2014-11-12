@@ -77,6 +77,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 
+#undef DEBUG
 #define DEBUG(args...) _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_NOC, ## args)
 
 /////////////////////////////////////////////////////////////////////////////////////////

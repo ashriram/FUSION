@@ -59,7 +59,9 @@
 #include "all_knobs.h"
 
 
+#undef DEBUG
 #define DEBUG(args...)   _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_FRONT_STAGE, ## args)
+#undef DEBUG_CORE
 #define DEBUG_CORE(m_core_id, args...)       \
     if (m_core_id == *m_simBase->m_knobs->KNOB_DEBUG_CORE_ID) {     \
         _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_FRONT_STAGE, ## args); \

@@ -46,6 +46,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include "all_knobs.h"
 
+#undef DEBUG
 #define DEBUG(args...)   _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_BP_DIR, ## args) 
 
 #define PHT_INIT_VALUE ((0x1 << *KNOB(KNOB_PHT_CTR_BITS)) - 1) /* weakly taken */

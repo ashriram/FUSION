@@ -312,6 +312,7 @@ class core_c
      */
     void init(void);
 
+
   public:
     // stats to run the simulation (used for the simulation)
     int m_unique_scheduled_thread_num; /**< total number of scheduled threads */
@@ -334,6 +335,8 @@ class core_c
 
     // ska124
     bool m_active;
+    void stop_frontend(); 
+    void start_frontend();
 
   private:
     int                      m_core_id; /**< core id */
