@@ -103,7 +103,6 @@ void acc_core_c::start(void)
 
 }
 
-
 // stop core simulation
 void acc_core_c::stop(void)
 {

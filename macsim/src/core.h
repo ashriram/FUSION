@@ -337,6 +337,8 @@ class core_c
     bool m_active;
     void stop_frontend(); 
     void start_frontend();
+    bool m_dma_done;
+    int  m_next;
 
   private:
     int                      m_core_id; /**< core id */

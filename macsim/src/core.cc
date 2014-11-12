@@ -108,7 +108,8 @@
 #undef DEBUG
 #define DEBUG(args...)   _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_TRACE_READ, ## args)
 
-
+#define GET_CORE(x) (m_simBase->m_core_pointers[x])
+#define GET_CPU() (GET_CORE(0))
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -298,8 +299,16 @@ core_c::core_c (int c_id, macsim_c* simBase, Unit_Type type)
     // clock cycle
     m_cycle = 0;
 
-    // Active by default
-    m_active = true;
+    // Active for CPU, false for DMA and ACC 
+    if(m_unit_type == UNIT_LARGE)
+        m_active = true;
+    else if(m_unit_type == UNIT_MEDIUM)
+        m_active = false;
+    else
+        assert(0 && "Small core type not allowed");
+
+    m_dma_done = false;
+    m_next = -1;
 }
 
 
@@ -341,7 +350,6 @@ void core_c::start(void)
     // start frontend
     m_frontend->start();
 
-
     // start backend
     if (m_allocate)
         m_allocate->start();
@@ -374,54 +382,102 @@ void core_c::stop(void)
 // In every cycle, run all pipeline stages
 void core_c::run_a_cycle(void)
 {
-    if(!m_active)
+    // Accelerator or DMA Core
+    if(m_unit_type == UNIT_MEDIUM)
     {
-        ++m_cycle; 
-        return;
-    }
+        if(m_core_id == 1)
+        {
+            // DMA Core
+            if(m_dma_done)
+            {
+                std::cerr << "DMA Done\n";
+                // Set the next acc/CPU to active
+                if(m_next != -1)
+                {
+                    std::cerr << "Activating Accelerator " << m_next << "\n";
+                    m_simBase->m_core_pointers[m_next]->m_active = true;
+                }
+                else
+                {
+                    m_simBase->m_core_pointers[0]->start_frontend();
+                    m_simBase->m_core_pointers[0]->m_active = true;
+                }
 
-    //start();
+                m_active = false;
+                m_dma_done = false;
+            }
 
-    // to simulate kernel invocation from host code
-    if (*KNOB(KNOB_ENABLE_CONDITIONAL_EXECUTION)) {
-        if (m_core_type == "ptx" && m_simBase->m_gpu_paused) {
-            m_frontend->stop();
+            if(m_active)
+            {
+                // Issue all the requests we need to 
+                // Wait for them to come back
+                std::cerr << "DMA Active\n";
+                m_dma_done = true;     
+            }
+            ++m_cycle;
+            return;
+        }
+        else
+        {
+            std::cerr << "ACC " << m_core_id << "\n";
+            // Accelerator Core
+            if(!m_active)
+                return;
+
+            std::cerr << "In ACC: " << m_core_id << "\n";
+            m_simBase->m_core_pointers[1]->m_active = true;
+            m_simBase->m_core_pointers[1]->m_next = -1;
+            m_active = false;
+            ++m_cycle;
+            return;
         }
     }
-
-    // run each pipeline stages in backwards
-
-
-    // execution stage
-    m_exec->run_a_cycle();
-
-    // retire stage
-    m_retire->run_a_cycle();
-
-    // prefetcher
-    if (*m_simBase->m_knobs->KNOB_PREF_FRAMEWORK_ON && m_knob_enable_pref)
-        m_hw_pref->pref_update_queues();
-
-    // scheduler
-    m_schedule->run_a_cycle();
-
-    // allocate stage
-    if (m_allocate)
-        m_allocate->run_a_cycle();
     else
-        m_gpu_allocate->run_a_cycle();
-   
-    m_frontend->run_a_cycle();
-
-
-    if(!m_frontend->is_running() && m_rob->entries() == 0)
     {
-        //std::cerr << "Core stopping\n";
-        m_active = false;
-    }
+        // This is the CPU core
 
-    
-    ++m_cycle;
+        if(!m_active)
+        {
+            ++m_cycle; 
+            return;
+        }
+
+        // run each pipeline stages in backwards
+
+        // execution stage
+        m_exec->run_a_cycle();
+
+        // retire stage
+        m_retire->run_a_cycle();
+
+        // prefetcher
+        if (*m_simBase->m_knobs->KNOB_PREF_FRAMEWORK_ON && m_knob_enable_pref)
+            m_hw_pref->pref_update_queues();
+
+        // scheduler
+        m_schedule->run_a_cycle();
+
+        // allocate stage
+        if (m_allocate)
+            m_allocate->run_a_cycle();
+        else
+            m_gpu_allocate->run_a_cycle();
+
+        m_frontend->run_a_cycle();
+
+
+        if(!m_frontend->is_running() && m_rob->entries() == 0)
+        {
+            std::cerr << "Core Halt\n";
+            m_active = false;
+        }
+        
+        
+        //if(!m_frontend->is_running() && m_rob->entries() != 0)
+            //std::cerr << "Frontend Stalled : Core Running\n";
+
+        ++m_cycle;
+    }
 }
 
 

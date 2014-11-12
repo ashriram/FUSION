@@ -357,15 +357,6 @@ void macsim_c::init_cores(int num_max_core)
             m_x86_core_pool.push(ii + total_core);
     }
 
-    // Accelerator Cores
-    report("Initialize accelerator cores");
-    for(int ii = 0; ii < 8; ii++)
-    {
-        m_acc_core_pointers[ii] = new acc_core_c(m_simBase, UNIT_ACC, ii);
-    }
-
-    // DMA Core 
-   m_dma_core_pointer = new dma_core_c(m_simBase, UNIT_DMA);
 }
 
 
@@ -479,8 +470,6 @@ void macsim_c::deallocate_memory(void)
     m_core_pointers[ii + num_large_medium_cores] = NULL;
   }
 
-  for(int ii = 0; ii < MAX_NUM_ACC; ii++)
-    delete m_acc_core_pointers[ii];
 }
 
 
@@ -680,8 +669,8 @@ int macsim_c::run_a_cycle()
     if (m_clock_internal % m_clock_divisor[CLOCK_L3] == 0) {
         m_memory->run_a_cycle();
 
-        if(!m_core_pointers[0]->m_active)
-            m_dma_core_pointer->run_a_cycle();
+        //if(!m_core_pointers[0]->m_active)
+            //m_dma_core_pointer->run_a_cycle();
     }
 
     // run dram controllers
@@ -695,14 +684,21 @@ int macsim_c::run_a_cycle()
     // core execution loop
     for (int kk = 0; kk < *KNOB(KNOB_NUM_SIM_CORES); ++kk) {
         // use pivot to randomize core run_cycle pattern
-        int ii = (kk+pivot) % *m_simBase->m_knobs->KNOB_NUM_SIM_CORES;
+        //int ii = (kk+pivot) % *m_simBase->m_knobs->KNOB_NUM_SIM_CORES;
+        
+        int ii = kk; // RR run pattern
 
         core_c *core = m_core_pointers[ii];
+
+        // Skip DMA or ACC cores if CPU is inactive
+        if(ii > 0 && m_core_pointers[0]->m_active)
+           continue; 
 
         string core_type = core->get_core_type();
         if (core_type == "ptx" && m_clock_internal % m_clock_divisor[CLOCK_GPU] != 0) {
             continue;
         }
+        // ska124 --  Add clock domain for DMA and ACC here
         else if (core_type != "ptx" && m_clock_internal % m_clock_divisor[CLOCK_CPU] != 0) {
             continue;
         }
@@ -713,6 +709,7 @@ int macsim_c::run_a_cycle()
 
         // core ended or not started
         if (m_sim_end[ii] || !m_core_started[ii]) {
+            //report("Core " << ii << " not started");
             continue;
         }
 
@@ -773,12 +770,12 @@ int macsim_c::run_a_cycle()
     }
 
     // Run accelerator if core is not active
-    if(!m_core_pointers[0]->m_active){
-        if (m_clock_internal % m_clock_divisor[CLOCK_ACC] == 0) {
-            for(int ii = 0; ii < MAX_NUM_ACC; ii++)
-                m_acc_core_pointers[ii]->run_a_cycle();
-        }
-    }
+    //if(!m_core_pointers[0]->m_active){
+        //if (m_clock_internal % m_clock_divisor[CLOCK_ACC] == 0) {
+            //for(int ii = 0; ii < MAX_NUM_ACC; ii++)
+                //m_acc_core_pointers[ii]->run_a_cycle();
+        //}
+    //}
 
 
 

@@ -905,7 +905,7 @@ void initialize(void)
         assert(false && "Unable to open accelerated function names file (default: accfunc.txt)");
 
     char name[256];
-    UINT32 counter = 0;
+    UINT32 counter = 2;
     while(funcfile.good())
     {
         funcfile.getline(name,256);
@@ -917,12 +917,12 @@ void initialize(void)
 
     // Create gzFile pointer for each file
     
-    FuncGZFiles = new gzFile[counter];
-    for(UINT32 i = 0; i < counter; i++)
+    FuncGZFiles = new gzFile[counter-2];
+    for(UINT32 i = 0; i < counter-2; i++)
     {
         stringstream ss;
         string filename;
-        ss << "acc_" << i << ".raw";
+        ss << "trace_" << i+2 << ".raw";
         ss >> filename;
         FuncGZFiles[i] = gzopen(filename.c_str(),WRITEM);
     }
@@ -1110,7 +1110,7 @@ VOID ImageLoad(IMG img,  VOID *v)
             // ska124 -- Note C++ benchmarks will need the mangled name in the acc file
             else if (AccFuncs.find(rtnName) != AccFuncs.end())
             {
-                std::cerr << "Instrumenting: " << rtnName << "\n";
+                std::cerr << "Instrumenting: " << rtnName << ":" << AccFuncs[rtnName] <<"\n";
                 RTN_Open(rtn);
                 RTN_InsertCall(rtn, IPOINT_BEFORE, (AFUNPTR) StartAcc, IARG_UINT32, (UINT32) AccFuncs[rtnName], IARG_END);
                 RTN_InsertCall(rtn, IPOINT_AFTER,  (AFUNPTR) EndAcc, IARG_END);
@@ -1134,7 +1134,7 @@ VOID StartAcc(UINT32 AccId)
     m.acc_id = AccId;
     gzwrite(currenTraceFile, &m, sizeof(m));
     // Change the trace dump file to the accelerator file
-    currenTraceFile = FuncGZFiles[AccId];
+    currenTraceFile = FuncGZFiles[AccId-2];
 }
 
 VOID EndAcc()

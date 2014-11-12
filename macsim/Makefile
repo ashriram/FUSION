@@ -36,8 +36,6 @@ POWEROBJS = \
   $(OBJDIR)/SENSORLIB_RNG.o
 
 COMMONOBJS = \
-  $(OBJDIR)/acc_core.o \
-  $(OBJDIR)/dma_core.o \
   $(OBJDIR)/all_knobs.o \
   $(OBJDIR)/all_stats.o \
   $(OBJDIR)/allocate.o \
