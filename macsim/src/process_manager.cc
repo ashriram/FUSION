@@ -233,7 +233,7 @@ process_manager_c::process_manager_c(macsim_c* simBase)
 
   // allocate queues
   m_thread_queue = new list<thread_trace_info_node_s *>;
-  m_block_queue  = new unordered_map<int, list<thread_trace_info_node_s *> *>;
+  m_block_queue  = new map<int, list<thread_trace_info_node_s *> *>;
   m_inst_hash_pool = new pool_c<hash_c<inst_info_s> >(1, "inst_hash_pool");
 }
 

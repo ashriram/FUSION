@@ -41,7 +41,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include <string>
 #include <functional>
-#include <unordered_map>
+#include <map>
 
 #include "macsim.h"
 #include "global_types.h"
@@ -158,9 +158,9 @@ class bp_data_c
     bp_dir_base_c     *m_bp; /**< branch predictor */
     bp_targ_c         *m_bp_targ_pred;   /**< BTB */ 
     
-    unordered_map<int, Counter>  m_bp_recovery_cycle; /**< bp recovery cycle per thread */
-    unordered_map<int, Counter>  m_bp_redirect_cycle; /**< bp recovery cycle per thread */
-    unordered_map<int, Counter>  m_bp_cause_op; /**< misprediction caused uop per thread */
+    map<int, Counter>  m_bp_recovery_cycle; /**< bp recovery cycle per thread */
+    map<int, Counter>  m_bp_redirect_cycle; /**< bp recovery cycle per thread */
+    map<int, Counter>  m_bp_cause_op; /**< misprediction caused uop per thread */
 
     
     // FIXME : implement BTB

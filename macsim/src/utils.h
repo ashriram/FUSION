@@ -46,7 +46,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <time.h>
 #include <string>
 #include <list>
-#include <unordered_map>
+#include <map>
 #include <fstream>
 
 #include "global_types.h"
@@ -357,7 +357,7 @@ class hash_c
     }
 
   private:
-    unordered_map<int64, T*> m_table; /**< hash table */
+    map<int64, T*> m_table; /**< hash table */
     pool_c<T>* m_pool; /**< hash table entry pool */
 };
 
@@ -397,7 +397,7 @@ class multi_key_map_c
     void delete_table(int key1);
 
   private:
-    unordered_map<int, unordered_map<int, int> *> m_table; /**< hash table */
+    map<int, map<int, int> *> m_table; /**< hash table */
     int m_size; /**< hash table size. to get unique id */
 };
 

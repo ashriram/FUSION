@@ -40,7 +40,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #define PREF_COMMON_H
 
 
-#include <unordered_map>
+#include <map>
 
 #include "memreq_info.h"
 
@@ -445,7 +445,7 @@ class hwp_common_c
     uns8 m_default_prefetcher; /**< default (best of hybrid) prefetcher */
     Counter m_last_update_time; /**< when did we update the default prefetcher last? */
 
-    unordered_map<int, Counter> m_last_inst_num; /**< train hardware pref once per inst. */
+    map<int, Counter> m_last_inst_num; /**< train hardware pref once per inst. */
 
     FILE * PREF_TRACE_OUT; /**< prefetch trace output stream */
     FILE * PREF_ACC_OUT; /**< prefetch accuracy information output stream */

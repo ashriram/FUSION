@@ -42,7 +42,6 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <string>
 #include <queue>
 #include <map>
-#include <unordered_set>
 
 #include "macsim.h"
 #include "global_defs.h"
@@ -157,7 +156,7 @@ class acc_core_c
     string                   m_core_type; /**< simulation core type (x86 or ptx) */
     Unit_Type                m_unit_type; /**< core type */
     int                      m_last_terminated_tid; /**< last terminated thread id */
-    unordered_map<int, bool> m_terminated_tid; /**< ids of terminated threads */
+    map<int, bool> m_terminated_tid; /**< ids of terminated threads */
     Counter                  m_unique_uop_num; /**< unique uop number */
     time_t                   m_sim_start_time; /**< simulation start time */
     Counter                  m_acc_core_cycle_count; /**< current core cycle */

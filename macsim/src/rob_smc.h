@@ -42,7 +42,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 #include <cassert>
-#include <unordered_map>
+#include <map>
 #include <vector>
 
 #include "global_types.h"
@@ -115,7 +115,7 @@ class smc_rob_c
     int             m_core_id;    /**< core id */
     Unit_Type       m_unit_type;  /**< core type */
     
-    unordered_map<int, int> m_thread_to_rob_map; /**< thread id to rob mapping */
+    map<int, int> m_thread_to_rob_map; /**< thread id to rob mapping */
 
     macsim_c* m_simBase;         /**< macsim_c base class for simulation globals */
    

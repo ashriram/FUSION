@@ -40,7 +40,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #define ROUTER_H
 
 #include <vector>
-#include <unordered_map>
+#include <map>
 #include <queue>
 #include <list>
 
@@ -289,7 +289,7 @@ class router_c
 
     // link
     router_c* m_link[5]; /**< links */
-    unordered_map<int, int> m_opposite_dir; /**< opposite direction map */
+    map<int, int> m_opposite_dir; /**< opposite direction map */
 
     // buffers
     list<mem_req_s*>* m_injection_buffer; /**< injection queue */

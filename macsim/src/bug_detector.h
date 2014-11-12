@@ -41,7 +41,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include <vector>
 #include <map>
-#include <unordered_map>
+#include <map>
 
 #include "macsim.h"
 #include "global_types.h"
@@ -102,7 +102,7 @@ class bug_detector_c
     uint64_t *m_latency_sum; /**< sum of each uop's execution latency */
     uint64_t *m_latency_count; /**< total uop count */
 
-    unordered_map<mem_req_s*, uint64_t>* m_packet_table; /**< memeory requests in noc */
+    map<mem_req_s*, uint64_t>* m_packet_table; /**< memeory requests in noc */
     
     macsim_c* m_simBase; /**< pointer to the simulation base class */
 };

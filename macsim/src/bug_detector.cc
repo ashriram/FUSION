@@ -72,7 +72,7 @@ bug_detector_c::bug_detector_c(macsim_c* simBase)
   std::fill_n(m_latency_count, m_num_core, 0);
 
   // noc request
-  m_packet_table = new unordered_map<mem_req_s*, uint64_t>; 
+  m_packet_table = new map<mem_req_s*, uint64_t>; 
 }
 
 

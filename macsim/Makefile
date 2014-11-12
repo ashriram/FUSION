@@ -6,7 +6,7 @@ SRCDIR=$(SIM_HOME)/src
 VPATH=$(SRCDIR): $(SRCDIR)/energy_introspector
 INCDIR=-I$(SRCDIR) -I$(GEMS_HOME)/ruby_clean/O3sim_ruby 
 
-CC = g++
+CC = g++-4.6
 #CWARN = -W -Wall -Wshadow -Wimplicit -Wreturn-type -Wcomment -Wtrigraphs -Wformat -Wparentheses -Wpointer-arith -Wuninitialized -O
 CFLAGS = $(INCDIR) -std=c++0x
 CWARD = -O3 

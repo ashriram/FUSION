@@ -42,7 +42,6 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <string>
 #include <queue>
 #include <map>
-#include <unordered_set>
 
 #include "macsim.h"
 #include "global_defs.h"

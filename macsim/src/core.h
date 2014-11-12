@@ -40,7 +40,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 #include <string>
-#include <unordered_map>
+#include <map>
 
 #include "macsim.h"
 #include "global_defs.h"
@@ -323,14 +323,14 @@ class core_c
     int m_running_thread_num;   /**< number of currently running threads */
 
     // current core stats per thread
-    unordered_map<int, bool> m_fetch_ended; /**< fetch ended */
-    unordered_map<int, bool> m_thread_reach_end; /**< thread reaches last instruction */
-    unordered_map<int, bool> m_thread_finished; /**< thread finished */
+    map<int, bool> m_fetch_ended; /**< fetch ended */
+    map<int, bool> m_thread_reach_end; /**< thread reaches last instruction */
+    map<int, bool> m_thread_finished; /**< thread finished */
     
     // additional fetch policies
-    unordered_map<int, Counter> m_inst_fetched; /**< last fetched cycle for the thread */
-    unordered_map<int, Counter> m_ops_to_be_dispatched; /**< number of uops to be scheduled */
-    unordered_map<int, Counter> m_last_fetch_cycle; /**< last fetched cycle */
+    map<int, Counter> m_inst_fetched; /**< last fetched cycle for the thread */
+    map<int, Counter> m_ops_to_be_dispatched; /**< number of uops to be scheduled */
+    map<int, Counter> m_last_fetch_cycle; /**< last fetched cycle */
     Counter                     m_max_inst_fetched; /**< maximum inst fetched */
 
     // ska124
@@ -343,7 +343,7 @@ class core_c
     string                   m_core_type; /**< simulation core type (x86 or ptx) */
     Unit_Type                m_unit_type; /**< core type */
     int                      m_last_terminated_tid; /**< last terminated thread id */
-    unordered_map<int, bool> m_terminated_tid; /**< ids of terminated threads */
+    map<int, bool> m_terminated_tid; /**< ids of terminated threads */
     Counter                  m_unique_uop_num; /**< unique uop number */
     time_t                   m_sim_start_time; /**< simulation start time */
     Counter                  m_core_cycle_count; /**< current core cycle */
@@ -375,7 +375,7 @@ class core_c
     bp_data_c*                      m_bp_data; /**< branch predictor */
     
     // heartbeat 
-    unordered_map<int, heartbeat_s*> m_heartbeat; /**< heartbeat per thread*/
+    map<int, heartbeat_s*> m_heartbeat; /**< heartbeat per thread*/
     time_t  m_heartbeat_last_time_core; /**< last heartbeat time */
     Counter m_heartbeat_last_cycle_count_core; /**< last heartbeat cycle */
     Counter m_heartbeat_last_inst_count_core; /**< last heartbeat inst. count */
@@ -388,11 +388,11 @@ class core_c
     macsim_c* m_simBase;         /**< macsim_c base class for simulation globals */
     
     // application id mapping
-    unordered_map<int, process_s *> m_tid_to_appl_map; /**< get application id with tid */
+    map<int, process_s *> m_tid_to_appl_map; /**< get application id with tid */
     int m_appl_id; /**< id of currently running application */
     
-    unordered_map<int, thread_s*> m_thread_trace_info; /**< thread trace information */
-    unordered_map<int, bp_recovery_info_c*>  m_bp_recovery_info; /**< thread bp recovery info */
+    map<int, thread_s*> m_thread_trace_info; /**< thread trace information */
+    map<int, bp_recovery_info_c*>  m_bp_recovery_info; /**< thread bp recovery info */
 
     // clock cycle
     Counter m_cycle; /**< clock cycle */

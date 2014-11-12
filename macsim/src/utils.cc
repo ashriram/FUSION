@@ -214,7 +214,7 @@ int multi_key_map_c::find(int key1, int key2)
     return -1;
   }
 
-  unordered_map<int, int> *sub_table = m_table[key1];
+  map<int, int> *sub_table = m_table[key1];
 
   if (sub_table->find(key2) == sub_table->end()) {
     return -1;
@@ -229,12 +229,12 @@ int multi_key_map_c::find(int key1, int key2)
 int multi_key_map_c::insert(int key1, int key2)
 {
   if (m_table.find(key1) == m_table.end()) {
-    unordered_map<int, int> *new_sub_table = new unordered_map<int, int>;
+    map<int, int> *new_sub_table = new map<int, int>;
     (*new_sub_table)[key2] = m_size;
     m_table[key1] = new_sub_table;
   }
   else {
-    unordered_map<int, int> *sub_table = m_table[key1];
+    map<int, int> *sub_table = m_table[key1];
     (*sub_table)[key2] = m_size;
   }
   ++m_size;
@@ -244,7 +244,7 @@ int multi_key_map_c::insert(int key1, int key2)
 
 void multi_key_map_c::delete_table(int key1)
 {
-  unordered_map<int, int>* sub_table = (*m_table.find(key1)).second;
+  map<int, int>* sub_table = (*m_table.find(key1)).second;
   sub_table->clear();
   delete sub_table;
 }

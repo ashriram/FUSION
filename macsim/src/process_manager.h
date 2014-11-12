@@ -45,7 +45,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <inttypes.h>
 #include <list>
 #include <zlib.h>
-#include <unordered_map>
+#include <map>
 
 #include "global_defs.h"
 #include "global_types.h"
@@ -372,10 +372,10 @@ class process_manager_c
 
   private:
     list<thread_trace_info_node_s *> *m_thread_queue; /**< thread queue */
-    unordered_map<int, list<thread_trace_info_node_s *> *> *m_block_queue; /**< block queue */
+    map<int, list<thread_trace_info_node_s *> *> *m_block_queue; /**< block queue */
     pool_c<hash_c<inst_info_s> >* m_inst_hash_pool; /**< instruction hash pool */
 
-    unordered_map<int, Counter> m_appl_cyccount_info; /**< per application cycle count info */
+    map<int, Counter> m_appl_cyccount_info; /**< per application cycle count info */
     macsim_c* m_simBase;         /**< macsim_c base class for simulation globals */
 };
 

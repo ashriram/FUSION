@@ -39,7 +39,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #define FACTORY_CLASS_H
 
 
-#include <unordered_map>
+#include <map>
 #include <functional>
 
 #include "assert.h"
@@ -70,7 +70,7 @@ POSSIBILITY OF SUCH DAMAGE.
       static name* instance; \
     \
     private: \
-      unordered_map<string, function<type (macsim_c*)> > m_func_table; \
+      map<string, function<type (macsim_c*)> > m_func_table; \
   };
 
 

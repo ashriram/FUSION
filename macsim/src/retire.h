@@ -42,7 +42,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include <inttypes.h>
 #include <queue>
-#include <unordered_map>
+#include <map>
 
 #include "global_types.h"
 #include "debug_macros.h"
@@ -213,8 +213,8 @@ class retire_c
     Counter                     m_cur_core_cycle; /**< current core cycle */ 
     uns16                       m_knob_width; /**< pipeline width */
     bool                        m_knob_ptx_sim; /**< gpu simulation */
-    unordered_map<int, Counter> m_insts_retired; /**< number of retired inst. per thread */
-    unordered_map<int, Counter> m_uops_retired; /**< number of retired uop per thread */
+    map<int, Counter> m_insts_retired; /**< number of retired inst. per thread */
+    map<int, Counter> m_uops_retired; /**< number of retired uop per thread */
 
     int m_period_inst_count; /**< counter for periodic logging number of retired inst. */
 

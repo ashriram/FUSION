@@ -39,7 +39,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #define EI_POWER_H_INCLUDED
 
 #include <string>
-#include <unordered_map>
+#include <map>
 
 #include "macsim.h"
 #include "global_defs.h"

@@ -39,7 +39,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #define MACSIM_H_INCLUDED
 
 
-#include <unordered_map>
+#include <map>
 #include <sstream>
 #include <sys/time.h>
 
@@ -248,10 +248,10 @@ class macsim_c
         pool_c<uop_c> *m_uop_pool; /**<  uop pool */
         uop_c *m_invalid_uop; /**<  invalide uop pointer (for uop pool maintenance) */
 
-        unordered_map<int, hash_c<inst_info_s>*> m_inst_info_hash; /**< decoded instruction map */
-        unordered_map<int, block_schedule_info_s*> m_block_schedule_info; /**< block schedule info */
-        unordered_map<int, process_s*> m_sim_processes; /**< process map */
-        unordered_map<int, thread_stat_s*> m_thread_stats; /**< thread stat map */
+        map<int, hash_c<inst_info_s>*> m_inst_info_hash; /**< decoded instruction map */
+        map<int, block_schedule_info_s*> m_block_schedule_info; /**< block schedule info */
+        map<int, process_s*> m_sim_processes; /**< process map */
+        map<int, thread_stat_s*> m_thread_stats; /**< thread stat map */
 
         struct timeval m_begin_sim; /**< simulation start time */
         struct timeval m_end_sim; /**< simulation termination time */
