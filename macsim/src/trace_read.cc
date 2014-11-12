@@ -380,8 +380,8 @@ bool trace_read_c::read_trace(int core_id, trace_info_s *trace_info, int sim_thr
  */
 void trace_read_c::dprint_inst(trace_info_s *t_info, int core_id, int thread_id)
 {
-  //if (dprint_count++ >= 50000 || !*KNOB(KNOB_DEBUG_PRINT_TRACE))
-    //return ;
+  if (dprint_count++ >= 50000 || !*KNOB(KNOB_DEBUG_PRINT_TRACE))
+    return ;
 
   *dprint_output << "*** begin of the data strcture *** " << endl;
   *dprint_output << "core_id:" << core_id << " thread_id:" << thread_id << endl;
@@ -411,6 +411,10 @@ void trace_read_c::dprint_inst(trace_info_s *t_info, int core_id, int thread_id)
   *dprint_output << "actually_taken: " << hex << (uint32_t)t_info->m_actually_taken << endl;
   *dprint_output << "write_flg: " << hex << (uint32_t)t_info->m_write_flg << endl;
   *dprint_output << "size: " << hex << (uint32_t) t_info->m_size << endl;
+  *dprint_output << "acc seg delim: " << (bool) t_info->acc_segment_delim << endl;
+  *dprint_output << "acc id: " << (uint32_t) t_info->acc_id << endl;
+  *dprint_output << "acc acc_heap_load: " << (bool) t_info->acc_heap_load << endl;
+  *dprint_output << "acc acc_heap_store: " << (bool) t_info->acc_heap_store << endl;
   *dprint_output << "*** end of the data strcture *** " << endl << endl;
 }
 
@@ -1396,23 +1400,7 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
             }
         }
 
-        
-
-        // ska124 -- Enqueue into the acc_core marker queue
-/*
- *        while( thread_trace_info->m_next_trace_info->ds_flag && read_success )
- *        {
- *            m_simBase->m_acc_core_pointer->push_marker( thread_trace_info->m_next_trace_info,
- *                                                        core_id);
- *
- *            read_success = read_trace(core_id,
- *                                      thread_trace_info->m_next_trace_info,
- *                                      sim_thread_id,
- *                                      &inst_read);
- *
- *        }
- */
-
+        // ska124
         if(thread_trace_info->m_next_trace_info->acc_segment_delim == true)
         {
             uint32_t Id = thread_trace_info->m_next_trace_info->acc_id;
@@ -1428,15 +1416,11 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
         // Copy current instruction to data structure
         memcpy( &trace_info, thread_trace_info->m_prev_trace_info, sizeof(trace_info_s));
 
-        dprint_inst(&trace_info,0,0);
-
         // Set next pc address
-        trace_info.m_instruction_next_addr =
-            thread_trace_info->m_next_trace_info->m_instruction_addr;
+        trace_info.m_instruction_next_addr = thread_trace_info->m_next_trace_info->m_instruction_addr;
 
         // Copy next instruction to current instruction field
-        memcpy(thread_trace_info->m_prev_trace_info, thread_trace_info->m_next_trace_info,
-               sizeof(trace_info_s));
+        memcpy(thread_trace_info->m_prev_trace_info, thread_trace_info->m_next_trace_info, sizeof(trace_info_s));
 
         DEBUG("trace_read nm core_id:%d thread_id:%d pc:%s opcode:%d inst_count:%lu\n",
               core_id, sim_thread_id, hexstr64s(trace_info.m_instruction_addr),
@@ -1461,23 +1445,6 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
         }
 
 
-        // GPU simulation : if we use common cache for the shared memory
-        // Set appropiriate opcode type (not using shared memory)
-        if (core->get_core_type() == "ptx" && *KNOB(KNOB_PTX_COMMON_CACHE)) {
-            switch (trace_info.m_opcode) {
-              case TR_MEM_LD_SM:
-                trace_info.m_opcode = TR_MEM_LD_LM;
-                break;
-              case TR_MEM_ST_SM:
-                trace_info.m_opcode = TR_MEM_ST_LM;
-                break;
-              case TR_DATA_XFER_SM:
-                trace_info.m_opcode = TR_DATA_XFER_LM;
-                break;
-            }
-        }
-
-
         // So far we have raw instruction format, so we need to MacSim specific trace format
         info = convert_pinuop_to_t_uop(&trace_info, thread_trace_info->m_trace_uop_array,
                                        core_id, sim_thread_id);
@@ -1497,8 +1464,7 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
     } // END EOM
     // read remaining uops from the same instruction
     else {
-        trace_uop                =
-            thread_trace_info->m_trace_uop_array[thread_trace_info->m_num_sending_uop];
+        trace_uop                = thread_trace_info->m_trace_uop_array[thread_trace_info->m_num_sending_uop];
         info                     = trace_uop->m_info;
         thread_trace_info->m_eom = trace_uop->m_eom;
         info->m_trace_info.m_bom = 0; // because of repeat instructions ....
@@ -1527,32 +1493,6 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
               core->m_inst_fetched[sim_thread_id]);
     }
 
-
-    /* BAR_FETCH */
-    if (core->get_core_type() == "ptx") {
-        if (trace_uop->m_bar_type == BAR_FETCH) { //only last uop with have BAR_FETCH set
-            frontend_c *frontend   = core->get_frontend();
-            frontend_s *fetch_data = core->get_trace_info(sim_thread_id)->m_fetch_data;
-
-            fetch_data->m_fetch_blocked = true;
-
-            bool new_entry = false;
-            sync_thread_s* sync_info = frontend->m_sync_info->hash_table_access_create(
-                                                                                       core->get_trace_info(sim_thread_id)->m_block_id, &new_entry);
-
-            // new synchronization information
-            if (new_entry) {
-                sync_info->m_block_id = core->get_trace_info(sim_thread_id)->m_block_id;
-                sync_info->m_sync_count = 0;
-                sync_info->m_num_threads_in_block =
-                    m_simBase->m_block_schedule_info[sync_info->m_block_id]->m_total_thread_num;
-            }
-
-            ++fetch_data->m_sync_count;
-            fetch_data->m_sync_wait_start = core->get_cycle_count();
-
-        }
-    }
 
 
     ///
@@ -1655,316 +1595,6 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
     uop->m_orig_thread_id   = ((core)->get_trace_info(sim_thread_id))->m_orig_thread_id;
 
 
-    ///
-    /// GPU simulation : handling uncoalesced accesses
-    ///
-    if ("ptx" == core->get_core_type() && (uop->m_mem_type != NOT_MEM)) {
-        int index                = thread_trace_info->m_num_sending_uop - 1;
-        bool multiple_mem_access = thread_trace_info->m_trace_uop_array[index]->m_mul_mem_uops;
-        bool coalesced;
-
-
-        if (multiple_mem_access) {
-            coalesced = false;
-            STAT_EVENT(UNCOAL_INST);
-        }
-        else {
-            coalesced = true;
-            STAT_EVENT(COAL_INST);
-        }
-
-        // update stats
-        switch (uop->m_mem_type) {
-          case MEM_ST_SM:
-          case MEM_LD_SM:
-            if (coalesced) STAT_EVENT(SM_COAL_INST); else STAT_EVENT(SM_UNCOAL_INST);
-            break;
-          case MEM_LD_CM:
-            if (coalesced) STAT_EVENT(CM_COAL_INST); else STAT_EVENT(CM_UNCOAL_INST);
-            break;
-          case MEM_LD_TM:
-            if (coalesced) STAT_EVENT(TM_COAL_INST); else STAT_EVENT(TM_UNCOAL_INST);
-            break;
-          default:
-            if (coalesced) STAT_EVENT(DM_COAL_INST); else STAT_EVENT(DM_UNCOAL_INST);
-            break;
-        }
-
-        Addr cache_line_addr;
-        int cache_line_size;
-        switch (uop->m_mem_type) {
-            // shared memory
-          case MEM_LD_SM:
-          case MEM_ST_SM:
-            cache_line_addr = core->get_shared_memory()->base_cache_line(uop->m_vaddr);
-            cache_line_size = core->get_shared_memory()->cache_line_size();
-            break;
-            // constant memory
-          case MEM_LD_CM:
-            cache_line_addr = core->get_const_cache()->base_cache_line(uop->m_vaddr);
-            cache_line_size = core->get_const_cache()->cache_line_size();
-            break;
-            // texture memory
-          case MEM_LD_TM:
-            cache_line_addr = core->get_texture_cache()->base_cache_line(uop->m_vaddr);
-            cache_line_size = core->get_texture_cache()->cache_line_size();
-            break;
-            // global memory, parameter memory
-          default:
-            if (*KNOB(KNOB_BYTE_LEVEL_ACCESS)) {
-                cache_line_addr = uop->m_vaddr;
-                cache_line_size = *KNOB(KNOB_MAX_TRANSACTION_SIZE);
-            }
-            else {
-                cache_line_addr = m_simBase->m_memory->base_addr(core_id, uop->m_vaddr);
-                cache_line_size = m_simBase->m_memory->line_size(core_id);
-            }
-            break;
-        }
-
-
-        // Even though all accesses are coalesced, based on the maximum transaction size,
-        // we may have multiple uops. This only happens in GPU simulation
-        int num_mem_req = ((uop->m_vaddr + uop->m_mem_size - cache_line_addr) +
-                           (cache_line_size - 1)) / cache_line_size;
-
-
-        // FIXME
-        // multiple transactions due to 1) uncoalesced accesses or 2) too large memory request
-        if (multiple_mem_access || num_mem_req > 1) {
-            // update stats
-            if (coalesced) {
-                STAT_EVENT(COAL_INST_MUL_TRANS);
-
-                switch (uop->m_mem_type) {
-                  case MEM_ST_SM:
-                  case MEM_LD_SM:
-                    STAT_EVENT(SM_COAL_INST_MUL_TRANS);
-                    break;
-                  case MEM_LD_CM:
-                    STAT_EVENT(CM_COAL_INST_MUL_TRANS);
-                    break;
-                  case MEM_LD_TM:
-                    STAT_EVENT(TM_COAL_INST_MUL_TRANS);
-                    break;
-                  default:
-                    STAT_EVENT(DM_COAL_INST_MUL_TRANS);
-                    break;
-                }
-            }
-            else {
-                STAT_EVENT(UNCOAL_INST_MUL_TRANS);
-            }
-
-
-            // FIXME
-            bool subsequent_mem = false;
-            if (multiple_mem_access) {
-                if (!thread_trace_info->m_trace_uop_array[index]->m_eom) {
-                    for (int i = 0; ; ++i) {
-                        ASSERT((index + 1) < MAX_PUP);
-                        if (thread_trace_info->m_trace_uop_array[++index]->m_mem_type) {
-                            subsequent_mem = true;
-                            break;
-                        }
-                        ASSERT((index + 1) < MAX_PUP);
-                        if (thread_trace_info->m_trace_uop_array[++index]->m_eom) {
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (multiple_mem_access && !thread_trace_info->m_trace_ended)
-                ASSERT(ungetch_trace(core_id, sim_thread_id, 1));
-
-            uop_c *child_mem_uop = NULL;
-            int mem_req_count    = 0;
-            uop_c *child_mem_reqs[128];
-
-            bool inst_read         = false;
-            bool last_inst         = false;
-            int num_inst_to_unread = 0;
-
-            do {
-                for (int i = 0; i < num_mem_req; ++i) {
-                    child_mem_uop = core->get_frontend()->get_uop_pool()->acquire_entry(m_simBase);
-                    child_mem_uop->allocate();
-                    ASSERT(child_mem_uop);
-
-                    memcpy(child_mem_uop, uop, sizeof(uop_c));
-
-                    child_mem_reqs[mem_req_count++] = child_mem_uop;
-                    child_mem_uop->m_parent_uop     = uop;
-
-                    child_mem_uop->m_vaddr    = cache_line_addr + i * cache_line_size;
-                    Addr vaddr = uop->m_vaddr + uop->m_mem_size;
-                    child_mem_uop->m_mem_size = (i != (num_mem_req - 1)) ?
-                        cache_line_size : (vaddr - cache_line_addr) - (num_mem_req - 1) * cache_line_size;
-                    child_mem_uop->m_uop_num    = thread_trace_info->m_temp_uop_count++;
-                    child_mem_uop->m_unique_num = core->inc_and_get_unique_uop_num();
-                    child_mem_uop->m_uncoalesced_flag = uop->m_uncoalesced_flag;
-                }
-
-                if (!multiple_mem_access || last_inst) {
-                    if (subsequent_mem) {
-                        //rewind trace
-                        ASSERT(ungetch_trace(core_id, sim_thread_id, num_inst_to_unread));
-                    }
-                    else {
-                        if (multiple_mem_access) {
-                            if (!thread_trace_info->m_trace_ended) {
-                                read_success = peek_trace(core_id, thread_trace_info->m_prev_trace_info,
-                                                          sim_thread_id, &inst_read);
-                                if (read_success) {
-                                    if (inst_read) {
-                                        uop->m_npc = thread_trace_info->m_prev_trace_info->m_instruction_addr;
-                                    }
-                                    else {
-                                        thread_trace_info->m_trace_ended = true;
-                                        DEBUG("trace ended core_id:%d thread_id:%d\n", core_id, sim_thread_id);
-                                    }
-                                }
-                                else {
-                                    ASSERT(0);
-                                }
-                            }
-                        }
-                        else {
-                            uop->m_npc = thread_trace_info->m_prev_trace_info->m_instruction_addr;
-                        }
-                    }
-
-
-                    // create children uops for uncoalcesed accesses
-                    uop->m_child_uops = new uop_c *[mem_req_count];
-
-                    uop->m_num_child_uops      = mem_req_count;
-                    uop->m_num_child_uops_done = 0;
-                    uop->m_pending_child_uops  = N_BIT_MASK(uop->m_num_child_uops);
-                    uop->m_vaddr               = 0;
-                    uop->m_mem_size            = 0;
-
-                    for (int ii = 0; ii < mem_req_count; ++ii) {
-                        uop->m_child_uops[ii] = child_mem_reqs[ii];
-                        child_mem_reqs[ii]    = NULL;
-                    }
-
-                    break;
-                } // end if (!multiple_mem_access || last_inst)
-
-
-                // we dont want the side-effects of read_trace()
-                read_success = peek_trace(core_id, &trace_info, sim_thread_id, &inst_read);
-                if (!read_success || (read_success && !inst_read)) {
-                    ASSERT(0);
-                }
-                ++num_inst_to_unread;
-
-                // has_immediate indicates whether the trace instruction is part of
-                // an uncoalesced memory access
-                last_inst = trace_info.m_has_immediate;
-
-                //TODO: not using active mask value - here and in other places as well
-                if (uop->m_mem_type == MEM_LD ||
-                    uop->m_mem_type == MEM_LD_LM ||
-                    uop->m_mem_type == MEM_LD_SM ||
-                    uop->m_mem_type == MEM_LD_CM ||
-                    uop->m_mem_type == MEM_LD_TM ||
-                    uop->m_mem_type == MEM_LD_PM) {
-                    uop->m_vaddr    = trace_info.m_ld_vaddr1;
-                    // BYTE
-                    uop->m_mem_size = trace_info.m_mem_read_size;
-                    ASSERTM(trace_info.m_mem_read_size > 0, "mem_type:%d\n", uop->m_mem_type);
-
-                    if (uop->m_mem_type != NOT_MEM && uop->m_mem_type != MEM_LD_SM &&
-                        uop->m_mem_type != MEM_ST_SM && uop->m_mem_type != MEM_LD_CM &&
-                        uop->m_mem_type != MEM_LD_TM) {
-                        int temp_num_req = (uop->m_mem_size + *KNOB(KNOB_MAX_TRANSACTION_SIZE) - 1) /
-                            *KNOB(KNOB_MAX_TRANSACTION_SIZE);
-                        ASSERTM(temp_num_req > 0, "size:%d max:%d num:%d type:%s\n",
-                                uop->m_mem_size, (int)*KNOB(KNOB_MAX_TRANSACTION_SIZE), temp_num_req,
-                                uop_c::g_mem_type_name[uop->m_mem_type]);
-
-                    }
-                }
-                else if (uop->m_mem_type == MEM_ST ||
-                         uop->m_mem_type == MEM_ST_LM ||
-                         uop->m_mem_type == MEM_ST_SM) {
-                    uop->m_vaddr    = trace_info.m_st_vaddr;
-                    // BYTE
-                    uop->m_mem_size = trace_info.m_mem_write_size;
-
-                    if (uop->m_mem_type != NOT_MEM && uop->m_mem_type != MEM_LD_SM &&
-                        uop->m_mem_type != MEM_ST_SM && uop->m_mem_type != MEM_LD_CM &&
-                        uop->m_mem_type != MEM_LD_TM) {
-                        int temp_num_req = (uop->m_mem_size + *KNOB(KNOB_MAX_TRANSACTION_SIZE) - 1) /
-                            *KNOB(KNOB_MAX_TRANSACTION_SIZE);
-                        ASSERTM(temp_num_req > 0, "size:%d max:%d num:%d type:%s\n",
-                                uop->m_mem_size, (int)*KNOB(KNOB_MAX_TRANSACTION_SIZE), temp_num_req,
-                                uop_c::g_mem_type_name[uop->m_mem_type]);
-                    }
-                }
-                else {
-                    ASSERT(0);
-                }
-
-                // address translation
-                int process_id = thread_trace_info->m_process->m_process_id;
-                unsigned long offset = UINT_MAX * process_id * 10;
-                uop->m_vaddr += m_simBase->m_memory->base_addr(core_id, offset);
-
-                switch (uop->m_mem_type) {
-                    // shared memory
-                  case MEM_LD_SM:
-                  case MEM_ST_SM:
-                    cache_line_addr = core->get_shared_memory()->base_cache_line(uop->m_vaddr);
-                    break;
-                    // constant memory
-                  case MEM_LD_CM:
-                    cache_line_addr = core->get_const_cache()->base_cache_line(uop->m_vaddr);
-                    break;
-                    // texture cache
-                  case MEM_LD_TM:
-                    cache_line_addr = core->get_texture_cache()->base_cache_line(uop->m_vaddr);
-                    break;
-                    // global memory, parameter memory
-                  default:
-                    if (*KNOB(KNOB_BYTE_LEVEL_ACCESS)) {
-                        cache_line_addr = uop->m_vaddr;
-                    }
-                    else {
-                        cache_line_addr = m_simBase->m_memory->base_addr(core_id, uop->m_vaddr);
-                    }
-                    break;
-                }
-                Addr vaddr = uop->m_vaddr + uop->m_mem_size;
-                num_mem_req = ((vaddr - cache_line_addr) + (cache_line_size - 1)) / cache_line_size;
-            } while (1);
-        } // MULTIPLE_TRANSACTION
-        else {
-            ASSERT(coalesced);
-
-            // update stats
-            STAT_EVENT(COAL_INST_SINGLE_TRANS);
-
-            switch (uop->m_mem_type) {
-              case MEM_LD_SM:
-              case MEM_ST_SM:
-                STAT_EVENT(SM_COAL_INST_SINGLE_TRANS);
-                break;
-              case MEM_LD_CM:
-                STAT_EVENT(CM_COAL_INST_SINGLE_TRANS);
-                break;
-              case MEM_LD_TM:
-                STAT_EVENT(TM_COAL_INST_SINGLE_TRANS);
-                break;
-              default:
-                STAT_EVENT(DM_COAL_INST_SINGLE_TRANS);
-                break;
-            }
-        }
-    }
 
     DEBUG("new uop: uop_num:%lld inst_num:%lld thread_id:%d unique_num:%lld \n",
           uop->m_uop_num, uop->m_inst_num, uop->m_thread_id, uop->m_unique_num);
