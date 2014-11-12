@@ -198,7 +198,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     TBETable L2_TBEs, template_hack="<L2TCache_TBE>";
 
-    CacheMemory L2cacheMemory, template_hack="<L2TCache_Entry>", constructor_hack='L2_CACHE_NUM_SETS_BITS,L2_CACHE_ASSOC,MachineType_L2TCache,int_to_string(i)';
+    CacheMemory L2cacheMemory, template_hack="<L2TCache_Entry>", constructor_hack='L2T_CACHE_NUM_SETS_BITS,L2T_CACHE_ASSOC,MachineType_L2TCache,int_to_string(i)';
 
     MessageBuffer L2ExpireTriggerQueue,  ordered="false";
 
@@ -367,7 +367,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
         if(L1RequestIntraChipL2Network_in.isReady()) {
             peek(L1RequestIntraChipL2Network_in,  RequestMsg) {
 
-                assert(machineIDToMachineType(in_msg.Requestor) == MachineType:L1Cache);
+                assert(machineIDToMachineType(in_msg.Requestor) == MachineType:L1TCache);
                 assert(in_msg.Destination.isElement(machineID));
 
                 if (L2cacheMemory.isTagPresent(in_msg.Address)) {
@@ -447,11 +447,11 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     action(a_issueFetchToMemory, "a", desc="fetch data from memory") {
       peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-        enqueue(requestCPUNetwork_out, RequestMsg, latency="L2_to_MEM_MSG_LATENCY") {
+        enqueue(requestCPUNetwork_out, RequestMsg, latency="L1_to_L2_MSG_LATENCY") {
           out_msg.Address := address;
           out_msg.Type := CoherenceRequestType:GETX;
           out_msg.Requestor := machineID;
-          out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+          out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
           out_msg.OriginalRequestorMachId := machineID;
           out_msg.MessageSize := MessageSizeType:Control;
         }
@@ -460,11 +460,11 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     action(a_issueFetchToMemoryForStore, "as", desc="fetch data from memory for store") {
       peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-        enqueue(requestCPUNetwork_out, RequestMsg, latency="L2_to_MEM_MSG_LATENCY") {
+        enqueue(requestCPUNetwork_out, RequestMsg, latency="L1_to_L2_MSG_LATENCY") {
           out_msg.Address := address;
           out_msg.Type := CoherenceRequestType:GETX;
           out_msg.Requestor := machineID;
-          out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+          out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
           out_msg.OriginalRequestorMachId := machineID;
           out_msg.MessageSize := MessageSizeType:Control;
         }
@@ -479,24 +479,24 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     action(c_exclusiveReplacement, "c", desc="send data to the L2 cache (PUTX)") {
         if (L2_TBEs[address].Dirty) 
         {
-            enqueue(responseCPUNetwork_out, ResponseMsg, latency="L1_to_L2_DATA_LATENCY") {
+            enqueue(responseCPUNetwork_out, ResponseMsg, latency="L2T_to_L1T_DATA_LATENCY") {
                 out_msg.Address := address;
-                out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
-                out_msg.Dirty := getL2CacheEntry(address).Dirty;
+                out_msg.DataBlk := L2_TBEs[address].DataBlk;
+                out_msg.Dirty := L2_TBEs[address].Dirty;
                 out_msg.Sender:= machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
                 out_msg.Type := CoherenceResponseType:DATA_ACC;
                 out_msg.MessageSize := MessageSizeType:Data;
             }
         }
         else
         {
-           enqueue(requestCPUNetwork_out, RequestMsg, latency="L1_to_L2_DATA_LATENCY") {
+           enqueue(requestCPUNetwork_out, RequestMsg, latency="L2T_to_L1T_DATA_LATENCY") {
                 out_msg.Address := address;
-                out_msg.DataBlk := getL2CacheEntry(address).DataBlk;
-                out_msg.Dirty := getL2CacheEntry(address).Dirty;
+                out_msg.DataBlk := L2_TBEs[address].DataBlk;
+                out_msg.Dirty := L2_TBEs[address].Dirty;
                 out_msg.Requestor:= machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L2TCacheMachId_to_L2Cache(address, machineID));
                 out_msg.Type := CoherenceRequestType:PUTX_ACC;
                 out_msg.MessageSize := MessageSizeType:Writeback_Control;
             }
@@ -519,7 +519,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     action(ds_sendDataToRequestor, "ds", desc="Send data+timestamp from cache to requestor in request queue") {
         peek(L1RequestIntraChipL2Network_in, RequestMsg) {
             assert(time_to_int(getL2CacheEntry(address).liveUntilTime) >= time_to_int(get_time()));
-            enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_DATA_LATENCY") {
+            enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2T_to_L1T_DATA_LATENCY") {
                 out_msg.Address := address;
                 out_msg.Type := CoherenceResponseType:DATA;
                 out_msg.Sender := machineID;
@@ -539,7 +539,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     action(dst_sendDataToGetSRequestors, "dst", desc="Send data+timestamp from cache to all GetS IDs from TBE") {
         assert(L2_TBEs[address].L1_GetS_IDs.count() > 0);
         assert(time_to_int(getL2CacheEntry(address).liveUntilTime) >= time_to_int(get_time()));
-        enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_DATA_LATENCY") {
+        enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2T_to_L1T_DATA_LATENCY") {
             out_msg.Address := address;
             out_msg.Type := CoherenceResponseType:DATA;
             out_msg.Sender := machineID;
@@ -557,7 +557,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     action(ds_sendAtomicDataGlobalToRequestor, "ds_a", desc="Send atomic data from cache to requestor in response queue") {
         peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-            enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_DATA_LATENCY") {
+            enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2T_to_L1T_DATA_LATENCY") {
                 out_msg.Address := address;
                 out_msg.Type := CoherenceResponseType:DATA_ATOMIC;
                 out_msg.Sender := machineID;
@@ -575,7 +575,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     }
 
     action(dst_sendAtomicDataToGetSRequestors, "dst_a", desc="Send atomic data + timestamp from cache to requestor from TBE") {
-        enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_DATA_LATENCY") {
+        enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2T_to_L1T_DATA_LATENCY") {
             out_msg.Address := address;
             out_msg.Type := CoherenceResponseType:DATA_ATOMIC;
             out_msg.Sender := machineID;
@@ -593,7 +593,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     action(wa_sendAckToRequestor, "wa", desc="Send Ack (non-global) from cache to requestor") {
         peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-            enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_MSG_LATENCY") {
+            enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L1_to_L2_MSG_LATENCY") {
                 out_msg.Address := address;
                 out_msg.Type := CoherenceResponseType:ACK;
                 out_msg.Sender := machineID;
@@ -608,7 +608,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     }
 
     action(wat_sendAckToRequestorFromTBE, "wat", desc="Send ack (non-global) from cache to requestor from TBE") {
-        enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_MSG_LATENCY") {
+        enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L1_to_L2_MSG_LATENCY") {
             out_msg.Address := address;
             out_msg.Type := CoherenceResponseType:ACK;
             out_msg.Sender := machineID;
@@ -634,6 +634,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
             L2_TBEs[address].RequestSize := in_msg.RequestSize;
             L2_TBEs[address].deltaRequested := in_msg.deltaRequested;
             L2_TBEs[address].memfetch := in_msg.memfetch;
+            L2_TBEs[address].pendingAcks := 0;
         }
     }
 
@@ -647,6 +648,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
             L2_TBEs[address].RequestSize := in_msg.RequestSize;
             L2_TBEs[address].Space := in_msg.Space;
             L2_TBEs[address].memfetch := in_msg.memfetch;
+            L2_TBEs[address].pendingAcks := 0;
         }
     }
 
@@ -657,6 +659,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
         L2_TBEs[address].DataBlk := getL2CacheEntry(address).DataBlk;
         L2_TBEs[address].Dirty := getL2CacheEntry(address).Dirty;
         L2_TBEs[address].liveUntilTime := getL2CacheEntry(address).liveUntilTime;
+        L2_TBEs[address].pendingAcks := 0;
     }
 
     action(it_insertL2ExpireTriggerQueue, "it", desc="Insert expire event into L2 expire trigger queue") {
@@ -676,12 +679,12 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     action(jj_popL1RequestQueue, "\j", desc="Pop incoming L1 request queue") {
         peek(L1RequestIntraChipL2Network_in,  RequestMsg) {
             if(in_msg.Type == CoherenceRequestType:GETS) {
-               profileBandwidth("L1_MSG", in_msg.MessageSize);
+               profileBandwidth("L1T_TO_L2T_MSG", in_msg.MessageSize);
             } else if (in_msg.Type == CoherenceRequestType:DATA ||
                        in_msg.Type == CoherenceRequestType:DATA_UPGRADE) {
-               profileBandwidth("L1_DATA", in_msg.MessageSize);
+               profileBandwidth("L1T_TO_L2T_DATA", in_msg.MessageSize);
             } else if (in_msg.Type == CoherenceRequestType:DATA_ATOMIC) {
-               profileBandwidth("L1_ATOMIC", in_msg.MessageSize);
+               profileBandwidth("L1T_TO_L2T_ATOMIC", in_msg.MessageSize);
             } else {
                error("Invalid CacheResponseType");
             }
@@ -691,10 +694,22 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
 
     action(o_popIncomingCPUResponseQueue, "or", desc="Pop Incoming Response queue") {
+        peek(responseCPUNetwork_in, ResponseMsg) {
+            if(in_msg.Type == CoherenceResponseType:DATA) {
+                profileBandwidth("L2_TO_L2T_DATA", in_msg.MessageSize);
+            } else if ((in_msg.Type == CoherenceResponseType:ACK) || (in_msg.Type == CoherenceResponseType:WB_ACK))
+            {
+                profileBandwidth("L2_TO_L2T_ACK", in_msg.MessageSize);
+            }
+        } 
         responseCPUNetwork_in.dequeue();
     }
 
     action(o_popIncomingCPURequestQueue, "os", desc="Pop Incoming Response queue") {
+         peek(requestCPUNetwork_in,  RequestMsg) {
+            profileBandwidth("L2_TO_L2T_MSG", in_msg.MessageSize);
+            } 
+
         requestCPUNetwork_in.dequeue();
     }
 
@@ -786,7 +801,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
 
     action(q_updateAckCount, "q", desc="Update ack count") {
-        peek(requestCPUNetwork_in, ResponseMsg) {
+        peek(responseCPUNetwork_in, ResponseMsg) {
             L2_TBEs[address].pendingAcks := L2_TBEs[address].pendingAcks - in_msg.AckCount;
             APPEND_TRANSITION_COMMENT(in_msg.AckCount);
             APPEND_TRANSITION_COMMENT(" p: ");
@@ -794,13 +809,9 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     }
   }
 
-    action(zz_recycleL1RequestQueue, "zz", desc="recycle L1 request queue") {
-        L1RequestIntraChipL2Network_in.recycle();
-    }
-
-    action(zc_recycleL1ResponseNetwork, "zc", desc="recycle L1 response queue") {
-       L1RequestIntraChipL2Network_in.recycle();
-    }
+ 
+  // Can't recycle writes in L1 request queue as they are unordered
+  // Can't recycle L1 response queue as that might lead to deadlock
 
     action(z_stall, "z", desc="stall - i.e. do nothing") {
     }
@@ -809,26 +820,26 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     action(pM_profileRequestMiss, "prM", desc="Profile a demand miss for request message") {
        peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, true);   // miss
+         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, true, machineID);   // miss
       }
     }
 
     action(pH_profileRequestHit, "prH", desc="Profile a demand hit for request message") {
        peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, false);  // hit
+         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, false, machineID);  // hit
       }
     }
 
 
     action(pM_profileResponseMiss, "pwM", desc="Profile a demand miss for response message") {
        peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, true);   // miss
+         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, true, machineID);   // miss
       }
     }
 
     action(pH_profileResponseHit, "pwH", desc="Profile a demand hit for response message") {
        peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, false);  // hit
+         profile_L2Cache_request_g(convertRequestToGenericType(in_msg.Type), in_msg.MessageSize, id, false, machineID);  // hit
       }
     }
 
@@ -1033,7 +1044,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     // Ignore CPU fwd requests as eventually I am going to send back to CPU anyway
     transition({MI,MI_Ack}, {Fwd_GETS,Fwd_GETX,Inv}) {
-        o_popIncomingCPUResponseQueue;
+        o_popIncomingCPURequestQueue;
     }
 
 
@@ -1050,6 +1061,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
     // Transitions on Interaction with CPU side msgs.
     transition({IM,IMA,IS,ISS}, Data) {
         m_writeDataToCache;
+        q_updateAckCount;
         d_markTBEDataReady;
         o_popIncomingCPUResponseQueue;
     }

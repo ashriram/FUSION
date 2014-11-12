@@ -114,6 +114,7 @@ private:
   void make2DTorus();
   void makePtToPt();
   void makeFileSpecified();
+  void makeFileSpecifiedAccs();
 
   void makeSwitchesPerChip(Vector< Vector < SwitchID > > &nodePairs, Vector<int> &latencies, Vector<int> &bw_multis, int numberOfChips);
 

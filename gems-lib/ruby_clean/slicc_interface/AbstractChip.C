@@ -76,7 +76,7 @@ AbstractChip::AbstractChip(NodeID id, Network* net_ptr) {
   m_L1Cache_sequencer_vec.setSize(0);
 
   // Acclerator Sequencer
-  m_L1TCache_sequencer_vec.setSize(0);
+  m_L1TCache_sequencerT_vec.setSize(0);
 }
 
 // still need to be defined for subclasses

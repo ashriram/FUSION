@@ -58,7 +58,7 @@
  */
 
 
-machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
+machine(L1TCache, "FUSION Lease v2 L1 Cache") {
 
     // NODE L1 CACHE
     // From this node's L1 cache TO the network
@@ -104,7 +104,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
     
     MessageBuffer mandatoryQueue, ordered="false", abstract_chip_ptr="true";
 
-    SequencerT sequencer, abstract_chip_ptr="true", constructor_hack="i";
+    SequencerT sequencerT, abstract_chip_ptr="true", constructor_hack="i";
 
     // TYPES
 
@@ -153,7 +153,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
 
     TBETable L1_TBEs, template_hack="<L1TCache_TBE>";
 
-    CacheMemory L1DcacheMemory, template_hack="<L1TCache_Entry>", constructor_hack='L1_CACHE_NUM_SETS_BITS,L1_CACHE_ASSOC,MachineType_L1TCache,int_to_string(i)+"_L1D"';
+    CacheMemory L1DcacheMemory, template_hack="<L1TCache_Entry>", constructor_hack='L1T_CACHE_NUM_SETS_BITS,L1T_CACHE_ASSOC,MachineType_L1TCache,int_to_string(i)+"_L1D"';
 
 
 
@@ -370,7 +370,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
                 out_msg.Address := address;
                 out_msg.Type := CoherenceRequestType:GETS;
                 out_msg.Requestor := machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L1TCacheMachId_to_L2TCache(address, machineID));
                 DEBUG_EXPR(address);
                 DEBUG_EXPR(out_msg.Destination);
                 out_msg.MessageSize := MessageSizeType:Control;
@@ -391,7 +391,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
                 out_msg.Address := address;
                 out_msg.Type := CoherenceRequestType:DATA_UPGRADE;
                 out_msg.Requestor := machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L1TCacheMachId_to_L2TCache(address, machineID));
                 out_msg.MessageSize := IntToMessageSizeType(in_msg.Size);   // only need to send dirty data
                 out_msg.Space := in_msg.Space;
                 out_msg.RequestSize := in_msg.Size;
@@ -410,7 +410,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
                 out_msg.Type := CoherenceRequestType:DATA;
                 out_msg.DataBlk := L1_TBEs[address].DataBlk;
                 out_msg.Requestor := machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L1TCacheMachId_to_L2TCache(address, machineID));
                 out_msg.MessageSize := IntToMessageSizeType(in_msg.Size);   // only need to send dirty data
                 out_msg.Space := in_msg.Space;
                 out_msg.RequestSize := in_msg.Size;
@@ -428,7 +428,7 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
                 out_msg.Type := CoherenceRequestType:DATA_ATOMIC;
                 out_msg.DataBlk := L1_TBEs[address].DataBlk;
                 out_msg.Requestor := machineID;
-                out_msg.Destination.add(map_L1CacheMachId_to_L2Cache(address, machineID));
+                out_msg.Destination.add(map_L1TCacheMachId_to_L2TCache(address, machineID));
                 out_msg.MessageSize := IntToMessageSizeType(in_msg.Size);   // only need to send dirty data
                 out_msg.Space := in_msg.Space;
                 out_msg.RequestSize := in_msg.Size;
@@ -441,13 +441,13 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
 
 
     action(h_load_hit, "h", desc="If not prefetch, notify sequencer the load completed.") {
-        sequencer.readCallback(address);
+        sequencerT.readCallback(address);
     }
 
     action(hh_store_hit, "\h", desc="If not prefetch, notify sequencer that store completed.") {
        peek(responseIntraChipL1Network_in, ResponseMsg) {
-          sequencer.writeCallback(in_msg.Address, in_msg.memfetch);
-          //sequencer.writeCallback(in_msg.Address);
+         // sequencerT.writeCallback(in_msg.Address, in_msg.memfetch);
+          sequencerT.writeCallback(in_msg.Address);
        }
     }
 
@@ -485,11 +485,11 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
         // Profile
         peek(responseIntraChipL1Network_in, ResponseMsg) {
             if(in_msg.Type == CoherenceResponseType:DATA) {
-               profileBandwidth("L2_DATA", in_msg.MessageSize);
+               profileBandwidth("L2T_TO_L1T_DATA", in_msg.MessageSize);
             } else if(in_msg.Type == CoherenceResponseType:ACK) {
-               profileBandwidth("L2_MSG", in_msg.MessageSize);
+               profileBandwidth("L2T_TO_L1T_MSG", in_msg.MessageSize);
             } else if(in_msg.Type == CoherenceResponseType:DATA_ATOMIC) {
-               profileBandwidth("L2_ATOMIC", in_msg.MessageSize);
+               profileBandwidth("L2T_TO_L1T_ATOMIC", in_msg.MessageSize);
             } else {
               error("Invalid L1 response type");
             }
@@ -517,10 +517,6 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
         }
     }
 
-    action(dt_writeDataToL1CacheFromTBE, "dt", desc="Write data to cache from TBE") {
-         assert(isL1CacheTagPresent(address));
-         getL1CacheEntry(address).DataBlk := L1_TBEs[address].DataBlk;
-    }
 
     action(ff_deallocateL1CacheBlock, "\f", desc="Deallocate L1 cache block.  Sets the cache to not present, allowing a replacement in parallel with a fetch.") {
         if (L1DcacheMemory.isTagPresent(address)) {
@@ -536,9 +532,14 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
         }
     }
 
-    action(z_recycleMandatoryQueue, "\zz", desc="recycle L1 request queue") {
-        mandatoryQueue_in.recycle();
-    }
+    // All msgs are handled. Writes are never stalled here but at the L2 if they can be handled.
+    // // This is bad only if you are trying to support TSO-like models 
+    // // In such cases a stalled write could block the entire queue since we can't recycle writes from the same CPU lest we violate PROGRAM ORDER
+    // //  
+
+   // action(z_recycleMandatoryQueue, "\zz", desc="recycle L1 request queue") {
+   //     mandatoryQueue_in.recycle();
+   // }
 
     action(z_stall, "z", desc="stall - i.e. do nothing") {
     }
@@ -547,14 +548,14 @@ machine(L1TCache, "FUSION Leasing v2 L1 Cache CMP") {
     action(pM_profileMiss, "pM", desc="Profile a demand miss") {
       peek(mandatoryQueue_in, CacheMsg) {
          assert(in_msg.profiled == false);
-         profile_L1Cache_request_g(in_msg, id, true /*miss*/);
+         profile_L1Cache_request_g(in_msg, id, true /*miss*/, machineID);
       }
     }
 
     action(pH_profileHit, "pH", desc="Profile a demand hit") {
       peek(mandatoryQueue_in, CacheMsg) {
          assert(in_msg.profiled == false);
-         profile_L1Cache_request_g(in_msg, id, false /*hit*/);
+         profile_L1Cache_request_g(in_msg, id, false /*hit*/, machineID);
       }
     }
 

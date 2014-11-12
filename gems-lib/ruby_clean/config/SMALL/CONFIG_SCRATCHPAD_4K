@@ -1,0 +1,39 @@
+// Always ACC = NUM processors as there is some logic inside memfetch etc that might break
+
+
+// set automatically
+g_NUM_PROCESSORS: 4
+g_PROCS_PER_CHIP: 4
+
+g_NUM_ACCS: 4
+g_ACCS_PER_CHIP: 4
+
+
+L1_CACHE_ASSOC: 4
+L1_CACHE_NUM_SETS_BITS: 8
+L2_CACHE_ASSOC: 16
+L2_CACHE_NUM_SETS_BITS: 16
+
+// Max associativity is 32 way.
+L1T_CACHE_ASSOC: 32
+L1T_CACHE_NUM_SETS_BITS: 2
+L2T_CACHE_ASSOC: 32
+L2T_CACHE_NUM_SETS_BITS: 16
+
+
+L1_to_L2_MSG_LATENCY: 1
+L2_to_L1_MSG_LATENCY: 1
+L2T_to_L1T_DATA_LATENCY: 2
+L1_to_L2_DATA_LATENCY: 2
+L2_to_L1_DATA_LATENCY: 8
+MEM_to_L2_MSG_LATENCY: 200
+MEM_to_L2_DATA_LATENCY: 200
+
+
+
+g_NETWORK_TOPOLOGY: ACC_NETWORK
+g_CACHE_DESIGN: FUSION  // specifies file prefix for FILE_SPECIFIED topology
+
+g_DATA_BLOCK_BYTES:32
+// Needs to be same as block size. Could be slightly bigger to accomodate fields
+g_DATA_MESSAGE_SIZE: 32
