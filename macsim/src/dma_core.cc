@@ -120,7 +120,10 @@ void dma_core_c::run_a_cycle(void)
         if(m_next != -1)
             m_simBase->m_acc_core_pointers[m_next]->m_active = true;
         else
+        {
+            m_simBase->m_core_pointers[0]->start_frontend();
             m_simBase->m_core_pointers[0]->m_active = true;
+        }
 
         m_active = false;
         m_done = false;

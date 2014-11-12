@@ -679,7 +679,9 @@ int macsim_c::run_a_cycle()
     //  run memory system - ska
     if (m_clock_internal % m_clock_divisor[CLOCK_L3] == 0) {
         m_memory->run_a_cycle();
-        m_dma_core_pointer->run_a_cycle();
+
+        if(!m_core_pointers[0]->m_active)
+            m_dma_core_pointer->run_a_cycle();
     }
 
     // run dram controllers
@@ -770,10 +772,12 @@ int macsim_c::run_a_cycle()
             core->check_heartbeat(true);
     }
 
-    // Run accelerator 
-    if (m_clock_internal % m_clock_divisor[CLOCK_ACC] == 0) {
-        for(int ii = 0; ii < MAX_NUM_ACC; ii++)
-            m_acc_core_pointers[ii]->run_a_cycle();
+    // Run accelerator if core is not active
+    if(!m_core_pointers[0]->m_active){
+        if (m_clock_internal % m_clock_divisor[CLOCK_ACC] == 0) {
+            for(int ii = 0; ii < MAX_NUM_ACC; ii++)
+                m_acc_core_pointers[ii]->run_a_cycle();
+        }
     }
 
 

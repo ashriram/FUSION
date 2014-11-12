@@ -139,6 +139,8 @@ void core_c::init(void)
     m_tid_to_appl_map.clear();
     m_thread_trace_info.clear();
     m_bp_recovery_info.clear();
+
+    start();
 }
 
 
@@ -373,9 +375,12 @@ void core_c::stop(void)
 void core_c::run_a_cycle(void)
 {
     if(!m_active)
+    {
+        ++m_cycle; 
         return;
+    }
 
-    start();
+    //start();
 
     // to simulate kernel invocation from host code
     if (*KNOB(KNOB_ENABLE_CONDITIONAL_EXECUTION)) {
@@ -405,9 +410,17 @@ void core_c::run_a_cycle(void)
         m_allocate->run_a_cycle();
     else
         m_gpu_allocate->run_a_cycle();
-    
+   
     m_frontend->run_a_cycle();
 
+
+    if(!m_frontend->is_running() && m_rob->entries() == 0)
+    {
+        //std::cerr << "Core stopping\n";
+        m_active = false;
+    }
+
+    
     ++m_cycle;
 }
 

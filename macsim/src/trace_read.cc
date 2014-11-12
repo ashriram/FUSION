@@ -1408,7 +1408,7 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
             // Activate ACC[N]
             // Deactivate calling core
             assert(Id >= 0 && Id <8 && "Invalid Acc Id from trace");
-            m_simBase->m_core_pointers[core_id]->m_active = false;
+            m_simBase->m_core_pointers[core_id]->stop_frontend();
             m_simBase->m_dma_core_pointer->m_active = true;
             m_simBase->m_dma_core_pointer->m_next = Id;
         }
