@@ -198,6 +198,9 @@ class macsim_c
         Counter m_core_cycle[MAX_NUM_CORES];/**< core cycle count */
         int m_end_simulation; /**< flag to end simulation */
 
+        //ska124
+        int m_active_core;
+
     // statistics
         all_stats_c*         m_allStats; /**< all statistics */
         ProcessorStatistics* m_ProcessorStats; /**< processor stats */

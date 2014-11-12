@@ -108,8 +108,6 @@
 #undef DEBUG
 #define DEBUG(args...)   _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_TRACE_READ, ## args)
 
-#define GET_CORE(x) (m_simBase->m_core_pointers[x])
-#define GET_CPU() (GET_CORE(0))
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -382,6 +380,13 @@ void core_c::stop(void)
 // In every cycle, run all pipeline stages
 void core_c::run_a_cycle(void)
 {
+    if(!m_active)
+    {
+        ++m_cycle; 
+        return;
+    }
+    m_simBase->m_active_core = m_core_id;
+
     // Accelerator or DMA Core
     if(m_unit_type == UNIT_MEDIUM)
     {
@@ -419,28 +424,36 @@ void core_c::run_a_cycle(void)
         }
         else
         {
-            std::cerr << "ACC " << m_core_id << "\n";
-            // Accelerator Core
-            if(!m_active)
-                return;
-
             std::cerr << "In ACC: " << m_core_id << "\n";
             m_simBase->m_core_pointers[1]->m_active = true;
             m_simBase->m_core_pointers[1]->m_next = -1;
             m_active = false;
             ++m_cycle;
             return;
+
+            /******************************************/
+
+            // run each pipeline stages in backwards
+
+            m_exec->run_a_cycle();
+            m_retire->run_a_cycle();
+            m_schedule->run_a_cycle();
+            m_allocate->run_a_cycle();
+            m_frontend->run_a_cycle();
+
+
+            if(!m_frontend->is_running() && m_rob->entries() == 0)
+            {
+                std::cerr << "Core Halt\n";
+                m_active = false;
+            }
+
         }
     }
     else
     {
         // This is the CPU core
 
-        if(!m_active)
-        {
-            ++m_cycle; 
-            return;
-        }
 
         // run each pipeline stages in backwards
 
@@ -471,10 +484,10 @@ void core_c::run_a_cycle(void)
             std::cerr << "Core Halt\n";
             m_active = false;
         }
-        
-        
+
+
         //if(!m_frontend->is_running() && m_rob->entries() != 0)
-            //std::cerr << "Frontend Stalled : Core Running\n";
+        //std::cerr << "Frontend Stalled : Core Running\n";
 
         ++m_cycle;
     }
