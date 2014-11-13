@@ -69,22 +69,55 @@ O3sim_ruby::O3sim_ruby( unsigned num_processors,
 O3sim_ruby::~O3sim_ruby() {
 }
 
+string O3sim_config_read()
+{
+
+ string command = "";
+
+  std::string config_file = std::string("CONFIG");
+
+  FILE *infile;
+  command = "";
+
+  infile = fopen(config_file.c_str(), "r");
+  assert (infile != NULL); 
+  char line [1000];
+  /* or other suitable maximum line size */
+  while ( fgets ( line, sizeof(line), infile ) != NULL ) /* read a line */
+  {
+
+      command = command + line;
+
+  }
+
+  fclose ( infile );
+
+  return command; 
+}
+
 void O3sim_ruby::initialize() {
    // printf("Ruby: initializing O3sim_ruby\n");
+   // 
+   // 
+  string command = O3sim_config_read();
+
+  const char* global_command_line_param = command.c_str();
 
    // Instantiating params in the order. Rubyconfig, Tester, and
    // O3sim. If there is any overlap the later config overrules earlier
    // config.
    int param_len = strlen( global_default_param ) +
                    strlen( global_default_tester_param ) +
-                   strlen( global_default_O3sim_param) + 1;
+                   strlen( global_default_O3sim_param) +
+                   strlen( global_command_line_param) + 1;
 
    char *default_param = (char *) malloc( sizeof(char) * param_len );
    my_default_param = default_param;
    strcpy( default_param, global_default_param );
    strcat( default_param, global_default_tester_param );
    strcat( default_param, global_default_O3sim_param );
-
+   strcat( default_param, global_command_line_param);
+  
    /** note: default_param is included twice in the tester:
     *       -once in init.C
     *       -again in this file
