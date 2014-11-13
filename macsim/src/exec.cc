@@ -229,7 +229,7 @@ bool exec_c::exec(int thread_id, int entry, uop_c* uop)
   // -------------------------------------
   if (type != NOT_MEM) { 
     // perfect dcache
-    if (*KNOB(KNOB_PERFECT_DCACHE)) {
+    if (*KNOB(KNOB_PERFECT_DCACHE) ) {
       uop_latency = 1;
     }
     else {

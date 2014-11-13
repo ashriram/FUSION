@@ -528,13 +528,16 @@ void dcu_c::run_a_cycle()
 void memory_c::process_mshr(int core_id)
 {
     int m_line_size = line_size(core_id);
-
+    
+    //report("Searching for Core: " << core_id);
     while(!m_ruby->RubyQueueEmpty(core_id))
     {
         Addr addr = m_ruby->RubyQueueTop(core_id);
         // Search the mshr for the request
         mem_req_s* matching_req = search_req(core_id, addr, m_line_size);
-        ASSERTM(matching_req != NULL, "Addr returned from Ruby not found in MacSim MSHR");
+        //if(matching_req == NULL) report("Not found Core ID: " << core_id << " Addr: " << hex << addr << dec << " Line Size: " << m_line_size);
+        ASSERTM(matching_req != NULL, "Addr returned from Ruby not found in MacSim MSHR\n");
+        //report("Found Core ID: " << core_id << " Addr: " << hex << addr << dec << " Line Size: " << m_line_size);
         for (auto I = m_mshr[core_id].begin(), E = m_mshr[core_id].end(); I != E; ++I) {
             if((*I) == matching_req)
             {
@@ -564,6 +567,7 @@ void memory_c::process_mshr(int core_id)
 
     for(auto I = free_list.begin(), E = free_list.end(); I!=E; ++I)
     {
+        //report("Free entry: " << hex << (*I)->m_addr << dec);
         m_simBase->m_memory->free_req((*I)->m_core_id, (*I));
     }
 
@@ -1341,7 +1345,7 @@ memory_c::memory_c(macsim_c* simBase)
     //                         8, 1, true, true, 1 ,"lsct","high","debug");
 
     m_ruby = new O3sim_ruby( 4, // [>1CPU, +1 for DMA, +8 for ACC but num procs needs to be ^2 <]
-                             1, *KNOB(KNOB_RUBY_NUM_BANKS), *KNOB(KNOB_RUBY_NUM_DIR), true, true, 1 ,"lC","med","/dev/null");
+                             1, *KNOB(KNOB_RUBY_NUM_BANKS), *KNOB(KNOB_RUBY_NUM_DIR), true, true, 1 ,"lC","med","ruby.trace");
     m_ruby->initialize();
 
     // allocate mshr
@@ -1669,6 +1673,8 @@ bool memory_c::new_mem_req(Mem_Req_Type type, Addr addr, uns size, uns delay, uo
         new_req->m_merged_req = matching_req;
         new_req->m_state = MEM_MERGED;
 
+        //report("Merged: " <<hex << matching_req->m_addr <<dec);
+
         // adjust priority
         //    if (matching_req->m_priority < priority)
         //      matching_req->m_priority = priority;
@@ -1945,8 +1951,11 @@ int memory_c::access(uop_c* uop)
             return 0;
         }
 
+        //report("New Mem Request: " << hex << req_addr << dec << " Size: " << req_size << " Core: " << uop->m_core_id << " ST: " << isWrite);
+
         if(isPrefetch)
         {
+            //report("Prefetch");
             m_ruby->send_prefetch(req_addr, req_size, uop->m_core_id, uop->m_thread_id, false, false, NULL);
         }
         else
@@ -1970,7 +1979,8 @@ int memory_c::access(uop_c* uop)
 // replace 63 with the cache line size
 Addr memory_c::base_addr(int core_id, Addr addr)
 {
-    return (addr & ~63);
+    //return (addr & ~63);
+    return (addr & ~31);
 }
 
 

@@ -364,7 +364,7 @@ bool  O3simInterface::isReady( unsigned long long addr, unsigned req_size, unsig
   } else  {
    cpuNumber = cpuNumber - g_PROC_NUM_ACC;
    SequencerT* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfAccsPerChip())->getSequencerT(cpuNumber%RubyConfig::numberOfAccsPerChip());     MemorySpaceType x = MemorySpaceType_NULL;
-   targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
+   targetSequencer_ptr->isReady(CacheMsg(Address( physicalAddr ),
                                             Address( physicalAddr ),
                                             req_type,
                                             Address(virtualPC),
@@ -415,6 +415,7 @@ void O3simInterface::hitCallbackT(NodeID proc, SubBlock& data, CacheRequestType 
 {
     unsigned long long addr = data.getAddress().getAddress();
     m_callbackT_queue[proc].push_back(addr);
+    //std::cerr << "HitCallBackT " << hex << addr << dec << " Proc: " << proc << "\n";
 }
 
 

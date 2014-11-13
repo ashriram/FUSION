@@ -807,8 +807,8 @@ bool SequencerT::isReady(const CacheMsg& request) const {
            m_readRequestTable_ptr[p]->exist(line_address(request.getAddress())) ){
          //cout << "OUTSTANDING REQUEST EXISTS " << p << " VER " << m_version << endl;
          //printProgress(cout);
-         //return false;
-         assert(0);     // GPGPU-Sim side MSHR should prevent this
+         return false;
+         //assert(0);     // GPGPU-Sim side MSHR should prevent this
        }
      }
   }
@@ -921,7 +921,7 @@ void SequencerT::issueSkipL1Request(const CacheMsg& request) {
    msg.getAddress() = line_address(request.getAddress()); // Make line address
 
    if (PROTOCOL_DEBUG_TRACE) {
-   g_system_ptr->getProfiler()->profileTransition("Seq", (m_chip_ptr->getID()*RubyConfig::numberOfProcsPerChip() + m_version), -1, msg.getAddress(),"", "Begin", "", CacheRequestType_to_string(request.getType()));
+   g_system_ptr->getProfiler()->profileTransition("SeqT", (m_chip_ptr->getID()*RubyConfig::numberOfProcsPerChip() + m_version), -1, msg.getAddress(),"", "Begin", "", CacheRequestType_to_string(request.getType()));
    }
 
    if (g_system_ptr->getTracer()->traceEnabled()) {
@@ -946,7 +946,7 @@ void SequencerT::issueRequest(const CacheMsg& request) {
     msg.getAddress() = line_address(request.getAddress()); // Make line address
 
     if (PROTOCOL_DEBUG_TRACE) {
-      g_system_ptr->getProfiler()->profileTransition("Seq", (m_chip_ptr->getID()*RubyConfig::numberOfProcsPerChip() + m_version), -1, msg.getAddress(),"", "Begin", "", CacheRequestType_to_string(request.getType()));
+      g_system_ptr->getProfiler()->profileTransition("SeqT", (m_chip_ptr->getID()*RubyConfig::numberOfProcsPerChip() + m_version), -1, msg.getAddress(),"", "Begin", "", CacheRequestType_to_string(request.getType()));
     }
 
     if (g_system_ptr->getTracer()->traceEnabled()) {

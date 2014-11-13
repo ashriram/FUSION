@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
 	Osim.send_request(0x400,16,4,0,false,false,NULL);
 	Osim.send_request(0x400,16,0,0,false,false,NULL);
 	
-	while (Osim.RubyQueueEmpty(4)||Osim.RubyQueueEmpty(0))
+	while (Osim.RubyQueueEmpty(4))
 	{
 		Osim.advance_time();
 	}

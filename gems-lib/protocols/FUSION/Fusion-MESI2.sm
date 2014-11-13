@@ -369,7 +369,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
       peek(responseIntraChipL2Network_in, ResponseMsg) {
         // test wether it's from a local L1 or an off chip source
         assert(in_msg.Destination.isElement(machineID));
-        if ((machineIDToMachineType(in_msg.Sender) == MachineType:L1Cache) ||  (machineIDToMachineType(in_msg.Sender) == MachineType:L2TCache))
+        if ((machineIDToMachineType(in_msg.Sender) == MachineType:L1Cache) )
  {
           if(in_msg.Type == CoherenceResponseType:DATA) {
             if (in_msg.Dirty) {
@@ -397,7 +397,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
               trigger(Event:DATA_ACC,in_msg.Address);
             } 
             else {
-              error("unknown message type");
+              error("unknown message type 2");
             }   
           }
         }
@@ -655,7 +655,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
     // Profile
     peek(L1RequestIntraChipL2Network_in,  RequestMsg) {
       assert ((machineIDToMachineType(in_msg.Requestor) == MachineType:L1Cache) ||  (machineIDToMachineType(in_msg.Requestor) == MachineType:L2TCache));
-      if(in_msg.Type == CoherenceRequestType:PUTX) {
+      if(in_msg.Type == CoherenceRequestType:PUTX ) {
          // PUTX is always data, L1 sends data even in E state (if data is clean)
          if(in_msg.Dirty) {
             profileBandwidth("L1_DATA_PX", in_msg.MessageSize);
@@ -693,7 +693,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
     peek(responseIntraChipL2Network_in, ResponseMsg) {
       if ((machineIDToMachineType(in_msg.Sender) == MachineType:L1Cache) ||  (machineIDToMachineType(in_msg.Sender) == MachineType:L2TCache))
       {
-        if(in_msg.Type == CoherenceResponseType:DATA) {
+        if((in_msg.Type == CoherenceResponseType:DATA) || (in_msg.Type == CoherenceResponseType:DATA_ACC)) {
            if(in_msg.Dirty) {
               profileBandwidth("L1_DATA_PX", in_msg.MessageSize);
               // Alternate profiling to see how much of the data written back is clean
@@ -706,7 +706,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
            // L1 has returned a recall ack
           profileBandwidth("L1_COHMSG_RCLACK", in_msg.MessageSize);
         } else {
-          error("unknown message type");
+          error("unknown message type 3");
         }
       }
     }
@@ -859,9 +859,9 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
   // }
 
   action(ll_clearSharers, "\l", desc="Remove all L1 sharers from list") {
-    peek(L1RequestIntraChipL2Network_in, RequestMsg) {
+    // peek(L1RequestIntraChipL2Network_in, RequestMsg) {
       L2cacheMemory[address].Sharers.clear();
-    }    
+    //}    
   }
 
   // action(mm_markExclusive, "\m", desc="set the exclusive owner") {

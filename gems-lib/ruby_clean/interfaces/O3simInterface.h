@@ -121,6 +121,7 @@ public:
     } else {
       core_id = core_id - g_PROC_NUM_ACC;
       assert(core_id < m_callbackT_queue.size());
+      //std::cerr << "Popping: " << hex << m_callbackT_queue[core_id].front() << dec << "\n";
       return m_callbackT_queue[core_id].pop_front();
     }
   }
