@@ -1014,10 +1014,10 @@ void Profiler::addL1RequestSample(const CacheMsg& msg, NodeID id, bool miss, Mac
 
 void Profiler::addL2RequestSample(const GenericRequestType& type, MessageSizeType size, NodeID id, bool miss, MachineID mid)
 {
-  if (mid.type == MachineType_L2TCache)
+  if (mid.type == MachineType_L2Cache)
   {
     m_L2_cache_profiler_ptr->addRequestSample(type, MessageSizeType_to_int(size), miss);
-  } else if (mid.type == MachineType_L2Cache) {
+  } else if (mid.type == MachineType_L2TCache) {
     m_L2T_cache_profiler_ptr->addRequestSample(type, MessageSizeType_to_int(size), miss);
   } else {
     ERROR_MSG ("Unknown Machine Type in profiling L2");
