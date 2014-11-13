@@ -439,8 +439,8 @@ void core_c::run_a_cycle(void)
             {
                 std::cerr << "Acc Halt\n";
                 m_active = false;
+                m_simBase->m_core_pointers[1]->m_active = true;
             }
-
         }
     }
     else
@@ -476,6 +476,7 @@ void core_c::run_a_cycle(void)
         {
             std::cerr << "Core Halt\n";
             m_active = false;
+            m_simBase->m_core_pointers[1]->m_active = true;
         }
 
 
