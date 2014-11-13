@@ -806,8 +806,8 @@ bool Sequencer::isReady(const CacheMsg& request) const {
            m_readRequestTable_ptr[p]->exist(line_address(request.getAddress())) ){
          //cout << "OUTSTANDING REQUEST EXISTS " << p << " VER " << m_version << endl;
          //printProgress(cout);
-         //return false;
-         assert(0);     // GPGPU-Sim side MSHR should prevent this
+         return false;
+         //assert(0);     // GPGPU-Sim side MSHR should prevent this
        }
      }
   }
