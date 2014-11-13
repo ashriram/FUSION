@@ -27,8 +27,11 @@ O3simInterface *O3simInterface::inst = NULL;
 
 //**************************************************************************
 O3simInterface::O3simInterface(System* sys_ptr)
-   : m_callback_queue(g_NUM_PROCESSORS),m_callbackT_queue(g_NUM_ACCS)
 {
+  //m_callback_queue(g_NUM_PROCESSORS),
+  //m_callbackT_queue(g_NUM_ACCS)
+  m_callback_queue = std::vector<callback_queue>(g_NUM_PROCESSORS, callback_queue(0));
+  m_callbackT_queue = std::vector<callback_queue>(g_NUM_ACCS, callback_queue(0));
   clearStats();
   ASSERT( inst == NULL );
   inst = this;
