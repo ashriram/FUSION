@@ -1340,10 +1340,9 @@ memory_c::memory_c(macsim_c* simBase)
     //                         *m_simBase->m_knobs->KNOB_MAX_THREADS_PER_CORE,
     //                         8, 1, true, true, 1 ,"lsct","high","debug");
 
-    //m_ruby = new O3sim_ruby( 1, [>1CPU, +1 for DMA, +8 for ACC but num procs needs to be ^2 <]
-                            //*m_simBase->m_knobs->KNOB_MAX_THREADS_PER_CORE,
-                            //*KNOB(KNOB_RUBY_NUM_BANKS), *KNOB(KNOB_RUBY_NUM_DIR), true, true, 1 ,"lC","med","/dev/null");
-    //m_ruby->initialize();
+    m_ruby = new O3sim_ruby( 4, // [>1CPU, +1 for DMA, +8 for ACC but num procs needs to be ^2 <]
+                             1, *KNOB(KNOB_RUBY_NUM_BANKS), *KNOB(KNOB_RUBY_NUM_DIR), true, true, 1 ,"lC","med","/dev/null");
+    m_ruby->initialize();
 
     // allocate mshr
     m_mshr = new list<mem_req_s*>[m_num_core];
@@ -1429,12 +1428,12 @@ memory_c::~memory_c()
     delete[] m_l3_cache;
 
 
-    //std::ofstream ruby_stat_file("ruby.stat.out", ios::out);
-    //m_ruby->print_stats(ruby_stat_file);
-    //ruby_stat_file.close();
+    std::ofstream ruby_stat_file("ruby.stat.out", ios::out);
+    m_ruby->print_stats(ruby_stat_file);
+    ruby_stat_file.close();
 
-    //m_ruby->destroy();
-    //delete m_ruby;
+    m_ruby->destroy();
+    delete m_ruby;
 }
 
 
@@ -2064,13 +2063,13 @@ void memory_c::run_a_cycle(void)
     //run_a_cycle_uncore();
     // Increment RubyTime here
 
-    //m_ruby->advance_time();
+    m_ruby->advance_time();
     ++m_cycle;
 }
 
 void memory_c::run_a_cycle_core(int core_id)
 {
-    //process_mshr(core_id);
+    process_mshr(core_id);
     m_l2_cache[core_id]->run_a_cycle();
     m_l1_cache[core_id]->run_a_cycle();
 }

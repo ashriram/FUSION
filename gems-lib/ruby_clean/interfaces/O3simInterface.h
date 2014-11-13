@@ -93,11 +93,11 @@ public:
   bool RubyQueueEmpty(unsigned core_id) {
     if (core_id < g_PROC_NUM_ACC)
     {  
-      assert(core_id < m_callback_queue.size());
+      ASSERT(core_id < m_callback_queue.size());
       return m_callback_queue[core_id].empty();
     } else {
       core_id = core_id - g_PROC_NUM_ACC;
-      assert(core_id < m_callbackT_queue.size());
+      ASSERT(core_id < m_callbackT_queue.size());
       return m_callbackT_queue[core_id].empty();
     }
   }
