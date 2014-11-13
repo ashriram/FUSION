@@ -87,7 +87,7 @@ public:
   // Public Methods
   virtual void get_network_config() {} 
   virtual void hitCallback(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch) = 0; // Called by sequencer
-  virtual void hitCallbackT(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch); // Called by sequencer
+  virtual void hitCallbackT(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch) {assert(0)}; // Called by sequencer
   virtual void memfenceCallback(NodeID proc, int thread) {assert(0)}; // Called by sequencer
   virtual void conflictCallback(NodeID proc, SubBlock& data, CacheRequestType type, int thread) { assert(0) }; // Called by sequencer
   virtual integer_t getInstructionCount(int procID) const { return 1; }
