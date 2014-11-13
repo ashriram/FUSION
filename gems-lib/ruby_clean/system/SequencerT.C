@@ -620,7 +620,7 @@ void SequencerT::hitCallback(const CacheMsg& request, DataBlock& data, GenericMa
     }
 
     // Call into the Driver (Tester or Simics) and let it read and/or modify the sub-block
-    g_system_ptr->getDriver()->hitCallback(m_chip_ptr->getID()*RubyConfig::numberOfProcsPerChip()+m_version, subblock, type, space, threadID, memfetch);
+    g_system_ptr->getDriver()->hitCallbackT(m_chip_ptr->getID()*RubyConfig::numberOfProcsPerChip()+m_version, subblock, type, space, threadID, memfetch);
 
     // If the request was a Store or Atomic, apply the changes in the SubBlock to the DataBlock
     // (This is only triggered for the non-TSO case)
