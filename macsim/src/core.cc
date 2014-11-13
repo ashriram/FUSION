@@ -417,13 +417,6 @@ void core_c::run_a_cycle(void)
         }
         else
         {
-            report("In ACC: " << m_core_id);
-            //m_simBase->m_core_pointers[1]->m_active = true;
-            //m_simBase->m_core_pointers[1]->m_next = 0; // Go to CPU
-            //m_active = false;
-            //++m_cycle;
-            //return;
-
             /******************************************/
 
             // run each pipeline stages in backwards
