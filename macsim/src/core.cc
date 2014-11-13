@@ -427,7 +427,6 @@ void core_c::run_a_cycle(void)
             m_allocate->run_a_cycle();
             m_frontend->run_a_cycle();
 
-
             if(!m_frontend->is_running() && m_rob->entries() == 0)
             {
                 std::cerr << "Acc Halt\n";

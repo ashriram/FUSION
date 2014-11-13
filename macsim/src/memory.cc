@@ -1936,7 +1936,7 @@ int memory_c::access(uop_c* uop)
         int result;
         result = new_mem_req(req_type, req_addr, req_size, m_latency, uop, done_func, uop->m_unique_num, NULL, uop->m_core_id,
                 uop->m_thread_id, m_ptx_sim);
-
+        
         // Pushing into Ruby from here -- ska
         if(!result)
         {
