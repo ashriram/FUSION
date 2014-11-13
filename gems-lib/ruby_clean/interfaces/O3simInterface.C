@@ -9,6 +9,7 @@
 #include "Chip.h"
 #include "RubyConfig.h"
 #include "Sequencer.h"
+#include "SequencerT.h"
 
 /*------------------------------------------------------------------------*/
 /* Forward declarations                                                   */
@@ -26,7 +27,7 @@ O3simInterface *O3simInterface::inst = NULL;
 
 //**************************************************************************
 O3simInterface::O3simInterface(System* sys_ptr)
-   : m_callback_queue(g_NUM_PROCESSORS)
+   : m_callback_queue(g_NUM_PROCESSORS),m_callbackT_queue(g_NUM_ACCS)
 {
   clearStats();
   ASSERT( inst == NULL );
@@ -52,14 +53,27 @@ void O3simInterface::printStats(ostream& out) const {
 
 void O3simInterface::callbackQueuePrint(unsigned core_id) const
 {
+ if (core_id < g_PROC_NUM_ACC)
+ {
    assert(core_id < m_callback_queue.size());
    printf("CallbackQueue[%u]:", core_id);
    for (callback_queue::const_iterator iCallback = m_callback_queue[core_id].begin();
-        iCallback != m_callback_queue[core_id].end(); ++iCallback)
+    iCallback != m_callback_queue[core_id].end(); ++iCallback)
    {
-      printf("%llx ", *iCallback);
+    printf("%llx ", *iCallback);
    }
    printf("\n");
+ } else {
+  core_id = core_id - g_PROC_NUM_ACC;
+  assert(core_id < m_callbackT_queue.size());
+  printf("CallbackQueueT[%u]:", core_id);
+  for (callback_queue::const_iterator iCallback = m_callbackT_queue[core_id].begin();
+    iCallback != m_callbackT_queue[core_id].end(); ++iCallback)
+  {
+    printf("%llx ", *iCallback);
+  }
+  printf("\n");
+ }
 }
 
 //**************************************************************************
@@ -123,10 +137,16 @@ unsigned long long O3simInterface::getTime( void ) {
 
 // print's Ruby outstanding request table
 void O3simInterface::printProgress(int cpuNumber){
-  Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
-  assert(targetSequencer_ptr != NULL);
 
-  targetSequencer_ptr->printProgress(cout);
+  if (cpuNumber < g_PROC_NUM_ACC)
+  {
+    Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
+    assert(targetSequencer_ptr != NULL);
+    targetSequencer_ptr->printProgress(cout);
+  } else {
+    cpuNumber = cpuNumber - g_PROC_NUM_ACC;
+    SequencerT* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfAccsPerChip())->getSequencerT(cpuNumber%RubyConfig::numberOfAccsPerChip());
+  }
 }
 
 
@@ -165,10 +185,12 @@ void  O3simInterface::makeRequest( unsigned long long addr, unsigned req_size, u
   req_type = is_write ? CacheRequestType_ST : CacheRequestType_LD;
 
   // Send request to sequencer
-  Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
+  if (cpuNumber < g_PROC_NUM_ACC)
+  {
+    Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
 
-  MemorySpaceType x = MemorySpaceType_NULL;
-  targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
+    MemorySpaceType x = MemorySpaceType_NULL;
+    targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
                                             Address( physicalAddr ),
                                             req_type,
                                             Address(virtualPC),
@@ -180,19 +202,57 @@ void  O3simInterface::makeRequest( unsigned long long addr, unsigned req_size, u
                                             thread,              // SMT thread
                                             0,          // TM specific - timestamp of memory request
                                             false,      // TM specific - whether request is part of escape action
-                                            x,
-                                            false,
-                                            0,
-                                            0
+                                            x,          // Memory space     
+                                            false,      // Profiled yet ? 
+                                            0,          // access mask for finding dirty bits       
+                                            0          // mf pointer. Used only for Fire-Forget Write
                                             )
                                    );
+
+  } else {  
+
+    cpuNumber = cpuNumber - g_PROC_NUM_ACC;
+    SequencerT* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfAccsPerChip())->getSequencerT(cpuNumber%RubyConfig::numberOfAccsPerChip());
+
+    MemorySpaceType x = MemorySpaceType_NULL;
+    targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
+                                            Address( physicalAddr ),
+                                            req_type,
+                                            Address(virtualPC),
+                                            access_mode,   // User/supervisor mode
+                                            requestSize,   // Size in bytes of request
+                                            PrefetchBit_No, // Not a prefetch
+                                            0,              // Version number
+                                            Address(logicalAddr),   // Virtual Address
+                                            thread,              // SMT thread
+                                            0,          // TM specific - timestamp of memory request
+                                            false,      // TM specific - whether request is part of escape action
+                                            x,          // Memory space     
+                                            false,      // Profiled yet ? 
+                                            0,          // access mask for finding dirty bits       
+                                            0          // mf pointer. Used only for Fire-Forget Write
+                                            )
+                                   );
+
+
+
+
+
+
+
+  }
 }
 
 
 //**************************************************************************
 void  O3simInterface::makePrefetch(int  cpuNumber, la_t logicalAddr, pa_t physicalAddr,
-                                  int  requestSize, OpalMemop_t typeOfRequest,
-                                  la_t virtualPC, int isPriv, int thread) {
+                                   int  requestSize, bool is_write, 
+                                  la_t virtualPC, int isPriv, int thread) 
+{
+
+  CacheRequestType req_type = CacheRequestType_NULL;
+
+
   DEBUG_MSG(SEQUENCER_COMP,MedPrio,"Making prefetch request");
 
   // Issue the request to the sequencer.
@@ -204,12 +264,18 @@ void  O3simInterface::makePrefetch(int  cpuNumber, la_t logicalAddr, pa_t physic
     access_mode = AccessModeType_UserMode;
   }
 
+  req_type = is_write ? CacheRequestType_ST : CacheRequestType_LD;
+
+
   // make the prefetch
-  Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
-  MemorySpaceType x = MemorySpaceType_NULL; 
-  targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
+
+  if (cpuNumber < g_PROC_NUM_ACC)
+  {
+   Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
+   MemorySpaceType x = MemorySpaceType_NULL; 
+   targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
                                             Address( physicalAddr ),
-                                            get_request_type(typeOfRequest),
+                                            req_type,
                                             Address(virtualPC),
                                             access_mode,
                                             requestSize,
@@ -219,12 +285,34 @@ void  O3simInterface::makePrefetch(int  cpuNumber, la_t logicalAddr, pa_t physic
                                             thread,              // SMT thread
                                             0,          // TM specific - timestamp of memory request
                                             false,      // TM specific - whether request is part of escape action
-                                             x,
-                                             false,  
-                                             0,
-                                             0  
-                                            )
-                                   );
+                                            x,          // Memory space                                            x,          // Memory space     
+                                            false,      // Profiled yet ? 
+                                            0,          // access mask for finding dirty bits       
+                                            0          // mf pointer. Used only for Fire-Forget Writes
+                                   ));
+  } else  {
+
+   cpuNumber = cpuNumber - g_PROC_NUM_ACC;    
+   SequencerT* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfAccsPerChip())->getSequencerT(cpuNumber%RubyConfig::numberOfAccsPerChip());  
+   MemorySpaceType x = MemorySpaceType_NULL; 
+   targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
+                                            Address( physicalAddr ),
+                                            req_type,
+                                            Address(virtualPC),
+                                            access_mode,
+                                            requestSize,
+                                            PrefetchBit_Yes, // True means this is a prefetch
+                                            0,              // Version number
+                                            Address(logicalAddr),   // Virtual Address
+                                            thread,              // SMT thread
+                                            0,          // TM specific - timestamp of memory request
+                                            false,      // TM specific - whether request is part of escape action
+                                            x,          // Memory space                                            x,          // Memory space     
+                                            false,      // Profiled yet ? 
+                                            0,          // access mask for finding dirty bits       
+                                            0          // mf pointer. Used only for Fire-Forget Writes
+                                   ));
+  }
   return;
 }
 
@@ -240,13 +328,15 @@ bool  O3simInterface::isReady( unsigned long long addr, unsigned req_size, unsig
   CacheRequestType req_type = is_write? CacheRequestType_ST : CacheRequestType_LD;
   unsigned requestSize = req_size;
 
+
+  if (cpuNumber < g_PROC_NUM_ACC)
+  {
   // Send request to sequencer
   Sequencer* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfProcsPerChip())->getSequencer(cpuNumber%RubyConfig::numberOfProcsPerChip());
 
   // FIXME - some of these fields have bogus values sinced isReady()
   // doesn't need them.  However, it would be cleaner if all of these
   // fields were exact.
-
   // if (cpuNumber == 0)
   //   printf("Ruby::isReady(proc=%d,addr=%llx,tid=%d)\n", cpuNumber, addr, thread);
   MemorySpaceType x = MemorySpaceType_NULL; 
@@ -268,6 +358,27 @@ bool  O3simInterface::isReady( unsigned long long addr, unsigned req_size, unsig
                                                 0
                                                 )
                                        ));
+  } else  {
+   cpuNumber = cpuNumber - g_PROC_NUM_ACC;    
+   SequencerT* targetSequencer_ptr = g_system_ptr->getChip(cpuNumber/RubyConfig::numberOfAccsPerChip())->getSequencerT(cpuNumber%RubyConfig::numberOfAccsPerChip());     MemorySpaceType x = MemorySpaceType_NULL; 
+   targetSequencer_ptr->makeRequest(CacheMsg(Address( physicalAddr ),
+                                            Address( physicalAddr ),
+                                            req_type,
+                                            Address(virtualPC),
+                                            AccessModeType_UserMode,
+                                            requestSize,
+                                            PrefetchBit_Yes, // True means this is a prefetch
+                                            0,              // Version number
+                                            Address(logicalAddr),   // Virtual Address
+                                            thread,              // SMT thread
+                                            0,          // TM specific - timestamp of memory request
+                                            false,      // TM specific - whether request is part of escape action
+                                            x,          // Memory space                                            x,          // Memory space     
+                                            false,      // Profiled yet ? 
+                                            0,          // access mask for finding dirty bits       
+                                            0          // mf pointer. Used only for Fire-Forget Writes
+                                   ));
+  }
 }
 
 
@@ -292,20 +403,16 @@ void O3simInterface::hitCallback(NodeID proc, SubBlock& data, CacheRequestType t
 
 void O3simInterface::hitCallback(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch)
 {
-  // Mark that we made progress
-  //m_last_progress_vector[proc] = g_eventQueue_ptr->getTime();
-  //g_callback_counter++;
-
-  //// This tells us our store has 'completed' or for a load gives us
-  //// back the data to make the check
-  //DEBUG_EXPR(TESTER_COMP, MedPrio, proc);
-  //DEBUG_EXPR(TESTER_COMP, MedPrio, data);
-  //Check* check_ptr = m_checkTable.getCheck(data.getAddress());
-  //assert(check_ptr != NULL);
-  //check_ptr->performCallback(proc, data);
-    cout <<"NEED TO DEFINE O3simInterface::hitCallback"<<endl;
+    unsigned long long addr = data.getAddress().getAddress();
+    m_callback_queue[proc].push_back(addr);
 }
 
+
+void O3simInterface::hitCallbackT(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch)
+{
+    unsigned long long addr = data.getAddress().getAddress();
+    m_callbackT_queue[proc].push_back(addr);
+}
 
 
 //**************************************************************************

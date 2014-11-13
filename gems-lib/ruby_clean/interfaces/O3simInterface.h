@@ -22,6 +22,8 @@ public:
   // Destructor
   // ~OpalInterface();
   virtual void hitCallback(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch); //nav
+
+  virtual void hitCallbackT(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch); //nav
   //void hitCallback( NodeID proc, SubBlock& data, CacheRequestType type, int thread ); nav
   void printStats(ostream& out) const;
   void clearStats();
@@ -66,7 +68,7 @@ public:
   /* prefetch a given block...
    */
   static void makePrefetch(int cpuNumber, la_t logicalAddr, pa_t physicalAddr,
-                           int requestSize, OpalMemop_t typeOfRequest,
+                           int requestSize, bool is_write,
                            la_t virtualPC, int isPriv, int thread);
 
 
@@ -89,19 +91,42 @@ public:
 
   // interaction with the callback queue - empty(), top(), pop()
   bool RubyQueueEmpty(unsigned core_id) {
-    assert(core_id < m_callback_queue.size());
-    return m_callback_queue[core_id].empty();
+    if (core_id < g_PROC_NUM_ACC)
+    {  
+      assert(core_id < m_callback_queue.size());
+      return m_callback_queue[core_id].empty();
+    } else {
+      core_id = core_id - g_PROC_NUM_ACC;
+      assert(core_id < m_callbackT_queue.size());
+      return m_callbackT_queue[core_id].empty();
+    }
   }
+  
   unsigned long long RubyQueueTop(unsigned core_id) {
-    assert(core_id < m_callback_queue.size());
-    return m_callback_queue[core_id].front();
+    if (core_id < g_PROC_NUM_ACC)
+    {  
+      assert(core_id < m_callback_queue.size());
+      return m_callback_queue[core_id].front();
+    } else {
+      core_id = core_id - g_PROC_NUM_ACC;
+      assert(core_id < m_callbackT_queue.size());
+      return m_callbackT_queue[core_id].front();
+    }
   }
   void RubyQueuePop(unsigned core_id) {
-    assert(core_id < m_callback_queue.size());
-    return m_callback_queue[core_id].pop_front();
+ if (core_id < g_PROC_NUM_ACC)
+    {  
+      assert(core_id < m_callback_queue.size());
+      return m_callback_queue[core_id].pop_front();
+    } else {
+      core_id = core_id - g_PROC_NUM_ACC;
+      assert(core_id < m_callbackT_queue.size());
+      return m_callbackT_queue[core_id].pop_front();
+    }
   }
-  void callbackQueuePrint(unsigned core_id) const;
 
+  
+  void callbackQueuePrint(unsigned core_id) const;
 
 
 private:
@@ -113,6 +138,7 @@ private:
   // queue storing the address assocated with each callback
   typedef std::list<unsigned long long> callback_queue;
   std::vector<callback_queue> m_callback_queue;
+  std::vector<callback_queue> m_callbackT_queue;
 
 };
 
