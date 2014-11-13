@@ -1407,11 +1407,11 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
             uint32_t Id = thread_trace_info->m_next_trace_info->acc_id;
             // Activate ACC[N]
             // Deactivate calling core
-            assert(Id >= 2 && Id <10 && "Invalid Acc Id from trace");
-            //report("Core " << core_id << " got acc_segment_delim marker");
+            //assert(Id >= 2 && Id <10 && "Invalid Acc Id from trace");
+            report("Core " << core_id << " got acc_segment_delim marker switching to : " << Id);
             m_simBase->m_core_pointers[core_id]->stop_frontend();
             // DMA core_id is 1, set as active and set next accid
-            m_simBase->m_core_pointers[1]->m_active = true;
+            //m_simBase->m_core_pointers[1]->m_active = true;
             m_simBase->m_core_pointers[1]->m_next = Id;
         }
 
