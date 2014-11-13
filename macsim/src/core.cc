@@ -417,7 +417,7 @@ void core_c::run_a_cycle(void)
         }
         else
         {
-            /******************************************/
+            /************  ACC CORE  ******************/
 
             // run each pipeline stages in backwards
 
@@ -438,8 +438,7 @@ void core_c::run_a_cycle(void)
     }
     else
     {
-        // This is the CPU core
-
+        /************  CPU CORE  ******************/
 
         // run each pipeline stages in backwards
 
