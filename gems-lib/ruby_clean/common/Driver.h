@@ -6,9 +6,9 @@
 
     --------------------------------------------------------------------
 
-    This file is part of the Ruby Multiprocessor Memory System Simulator, 
-    a component of the Multifacet GEMS (General Execution-driven 
-    Multiprocessor Simulator) software toolset originally developed at 
+    This file is part of the Ruby Multiprocessor Memory System Simulator,
+    a component of the Multifacet GEMS (General Execution-driven
+    Multiprocessor Simulator) software toolset originally developed at
     the University of Wisconsin-Madison.
 
     Ruby was originally developed primarily by Milo Martin and Daniel
@@ -19,7 +19,7 @@
     University of Wisconsin was performed by Alaa Alameldeen, Brad
     Beckmann, Jayaram Bobba, Ross Dickson, Dan Gibson, Pacia Harper,
     Derek Hower, Milo Martin, Michael Marty, Carl Mauer, Michelle Moravan,
-    Kevin Moore, Andrew Phelps, Manoj Plakal, Daniel Sorin, Haris Volos, 
+    Kevin Moore, Andrew Phelps, Manoj Plakal, Daniel Sorin, Haris Volos,
     Min Xu, and Luke Yen.
     --------------------------------------------------------------------
 
@@ -57,7 +57,7 @@
 /*
  * $Id$
  *
- * Description: 
+ * Description:
  *
  */
 
@@ -83,9 +83,9 @@ public:
 
   // Destructor
   virtual ~Driver() = 0;
-  
+
   // Public Methods
-  virtual void get_network_config() {} 
+  virtual void get_network_config() {}
   virtual void hitCallback(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch) = 0; // Called by sequencer
   virtual void hitCallbackT(NodeID proc, SubBlock& data, CacheRequestType type, MemorySpaceType space, int thread, uint64 memfetch) { assert(0); }; // Called by sequencer
   virtual void memfenceCallback(NodeID proc, int thread) {assert(0)}; // Called by sequencer
@@ -98,15 +98,15 @@ public:
   virtual void notifyReceiveNackFinal( int procID, const Address & addr) { assert(0); }; // Called by Sequencer
   virtual void notifyTrapStart( int procID, const Address & handlerPC, int threadID, int smtThread ) { assert(0); } //called by Sequencer
   virtual void notifyTrapComplete( int procID, const Address & newPC, int smtThread ) {assert(0);  }  // called by Sequencer
-  virtual int getOpalTransactionLevel(int procID, int thread) const { 
+  virtual int getOpalTransactionLevel(int procID, int thread) const {
     cout << "Driver.h getOpalTransactionLevel() " << endl;
    return 0; }  //called by Sequencer
   virtual void addThreadDependency(int procID, int requestor_thread, int conflict_thread) const { assert(0);}
   virtual uint64 getOpalTime(int procID) const{ return 0; }  //called by Sequencer
-  virtual uint64 getOpalTimestamp(int procID, int thread) const{ 
+  virtual uint64 getOpalTimestamp(int procID, int thread) const{
     cout << "Driver.h getOpalTimestamp " << endl;
  return 0; } // called by Sequencer
-  virtual int inTransaction(int procID, int thread ) const{ 
+  virtual int inTransaction(int procID, int thread ) const{
     cout << "Driver.h inTransaction " << endl;
 return false; } //called by Sequencer
   virtual void printDebug(){}  //called by Sequencer
@@ -120,7 +120,7 @@ return false; } //called by Sequencer
 
   virtual integer_t readPhysicalMemory(int procID, physical_address_t address,
                                        int len ){ ASSERT(0); return 0; }
-  
+
   virtual void writePhysicalMemory( int procID, physical_address_t address,
                                     integer_t value, int len ){ ASSERT(0); }
 

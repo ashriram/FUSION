@@ -1,0 +1,19 @@
+#include <iostream>
+#include "O3sim_ruby/O3sim_ruby.h"
+using namespace std;
+
+
+int main(int argc, char const *argv[])
+{
+	O3sim_ruby Osim (4,4,4,4,true,false,1,"lS","med","debugname");
+	Osim.initialize();
+	Osim.send_request(0x400,16,4,0,false,false,NULL);
+	Osim.send_request(0x400,16,0,0,false,false,NULL);
+	
+	while (Osim.RubyQueueEmpty(4)||Osim.RubyQueueEmpty(0))
+	{
+		Osim.advance_time();
+	}
+
+	return 0;
+}
