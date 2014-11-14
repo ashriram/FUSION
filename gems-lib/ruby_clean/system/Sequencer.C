@@ -334,7 +334,7 @@ void Sequencer::insertSkipL1Request(const CacheMsg& request) {
    m_skipL1RequestTable_ptr->lookup(request.getmemfetch()) = request;
    m_outstanding_count++;
 
-   g_system_ptr->getProfiler()->sequencerRequests(m_outstanding_count);
+   g_system_ptr->getProfiler()->sequencerRequests(m_outstanding_count,m_version);
 
    checkOutstandingRequests();
 }
@@ -373,7 +373,7 @@ bool Sequencer::insertRequest(const CacheMsg& request) {
     m_outstanding_count++;
   }
 
-  g_system_ptr->getProfiler()->sequencerRequests(m_outstanding_count);
+  g_system_ptr->getProfiler()->sequencerRequests(m_outstanding_count,m_version);
   checkOutstandingRequests();
   return false;
 }
@@ -534,8 +534,13 @@ void Sequencer::readCallback(const Address& address, DataBlock& data, GenericMac
          (request.getType() == CacheRequestType_IFETCH)
          );
 
-  hitCallback(request, data, respondingMach, thread);
-}
+if (m_version == g_DMA_PROC)  {
+    hitCallback(request, data, GenericMachineType_L1Cache, thread);
+    g_system_ptr->getProfiler()->profileBandwidthBytes("DMA",request.getSize(),true);
+  } else {
+    hitCallback(request, data, respondingMach, thread);
+  }
+} 
 
 void Sequencer::hitCallback(const CacheMsg& request, DataBlock& data, GenericMachineType respondingMach, int thread) {
   int size = request.getSize();
