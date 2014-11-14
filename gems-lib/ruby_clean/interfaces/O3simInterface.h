@@ -47,7 +47,7 @@ public:
      This implements "back-pressure" by which the processor knows
      not to issue more requests if the network or cache's limits are reached.
    */
-  static bool isReady( unsigned long long addr, unsigned req_size, unsigned sid, unsigned tid,
+  bool isReady( unsigned long long addr, unsigned req_size, unsigned sid, unsigned tid,
                       bool is_write, class mem_fetch * mf );
 
   /*

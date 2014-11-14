@@ -321,6 +321,7 @@ void SequencerT::checkOutstandingRequests() const {
 // Insert a skip L1 request
 void SequencerT::insertSkipL1Request(const CacheMsg& request) {
    // See if we should schedule a deadlock check
+   assert(0 && "SkipL1 requests should not be inserted");
    if (m_deadlock_check_scheduled == false) {
      g_eventQueue_ptr->scheduleEvent(this, g_DEADLOCK_THRESHOLD);
      m_deadlock_check_scheduled = true;
@@ -581,7 +582,7 @@ void SequencerT::hitCallback(const CacheMsg& request, DataBlock& data, GenericMa
   Time miss_latency = g_eventQueue_ptr->getTime() - issued_time;
 
   if (PROTOCOL_DEBUG_TRACE) {
-    g_system_ptr->getProfiler()->profileTransition("Seq", (m_chip_ptr->getID()*RubyConfig::numberOfProcsPerChip()+m_version), -1, request.getAddress(), "", "Done", "",
+    g_system_ptr->getProfiler()->profileTransition("SeqT", (m_chip_ptr->getID()*RubyConfig::numberOfProcsPerChip()+m_version), -1, request.getAddress(), "", "Done", "",
                                                    int_to_string(miss_latency)+" cycles "+GenericMachineType_to_string(respondingMach)+" "+CacheRequestType_to_string(request.getType())+" "+PrefetchBit_to_string(request.getPrefetch()));
   }
 
@@ -800,6 +801,7 @@ bool SequencerT::isReady(const CacheMsg& request) const {
         ( (request.getType()==CacheRequestType_ST || request.getType()==CacheRequestType_ATOMIC) and WRITES_STALL_AT_MSHR == false)
   ) {
      // skip the check
+     assert(0 && "Flags not set properly");
   } else {
      int smt_threads = RubyConfig::numberofSMTThreads();
      for(int p=0; p < smt_threads; ++p){

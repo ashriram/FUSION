@@ -239,7 +239,8 @@ void O3sim_ruby::RubyQueuePop(unsigned core_id)
 /*  */
 bool O3sim_ruby::isReady(unsigned long long addr, unsigned req_size, unsigned sid, unsigned tid, bool is_write, bool isPriv, class mem_fetch * mf)
 {
-   return O3simInterface::isReady(addr, req_size, sid, tid, is_write, mf);
+    
+   m_driver_ptr->isReady(addr, req_size, sid, tid, is_write, mf);
 }
 
 void O3sim_ruby::ForceUnlockBlock(unsigned long long addr, unsigned core_id)
