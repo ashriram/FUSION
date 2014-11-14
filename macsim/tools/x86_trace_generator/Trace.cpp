@@ -846,11 +846,14 @@ void finish(void)
     ofstream configFile;
 
     configFile.open(config_file_name.c_str());
-    configFile << thread_count << " x86" << endl;
-    for (unsigned int ii = 0; ii < thread_count; ++ii) {
-        // thread_id thread_inst_start_count (relative to main thread)
-        configFile << thread_info[ii].thread_id << " " << thread_info[ii].inst_count << endl;
-    }
+    //configFile << thread_count << " x86" << endl;
+    //for (unsigned int ii = 0; ii < thread_count; ++ii) {
+        //// thread_id thread_inst_start_count (relative to main thread)
+        //configFile << thread_info[ii].thread_id << " " << thread_info[ii].inst_count << endl;
+    //}
+    configFile << AccFuncs.size() + 1 << " x86" << endl;
+    for(unsigned ii = 0; ii < AccFuncs.size() + 1; ii++)
+        configFile << ii << " 0" << endl;
     configFile.close();
 
     // Close acc gzip trace files
@@ -926,6 +929,13 @@ void initialize(void)
         ss >> filename;
         FuncGZFiles[i] = gzopen(filename.c_str(),WRITEM);
     }
+
+    // Reminder
+    std::cerr << "*****************************************************\n";
+    std::cerr << "Function names in accfunc.txt should be in the\n";
+    std::cerr << "order they are invoked. This is to ensure correctness\n";
+    std::cerr << "of the DMA Trace. For other modes, any order is fine.\n";
+    std::cerr << "*****************************************************\n";
 
 }
 

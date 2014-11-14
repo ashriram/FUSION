@@ -1408,11 +1408,20 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
             // Activate ACC[N]
             // Deactivate calling core
             //assert(Id >= 2 && Id <10 && "Invalid Acc Id from trace");
-            report("Core " << core_id << " got acc_segment_delim marker switching to : " << Id);
+            //report("Core " << core_id << " got acc_segment_delim marker switching to : " << Id);
             m_simBase->m_core_pointers[core_id]->stop_frontend();
             // DMA core_id is 1, set as active and set next accid
             //m_simBase->m_core_pointers[1]->m_active = true;
             m_simBase->m_core_pointers[1]->m_next = Id;
+        }
+
+        if(thread_trace_info->m_next_trace_info->acc_window_delim == true)
+        {
+            ASSERTM(core_id >= 1, "Only DMA and ACC cores can have window delims");
+            if(core_id != 1) // If issued by ACC core then set next of DMA as self 
+                m_simBase->m_core_pointers[1]->m_next = core_id;
+
+            m_simBase->m_core_pointers[core_id]->stop_frontend();
         }
 
 

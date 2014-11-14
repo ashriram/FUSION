@@ -21,8 +21,18 @@ void processTrace(unsigned ScratchpadSize)
                 LoadInsts.insert(make_pair(II->ld_vaddr1,II));
                 loadSize += II->mem_read_size; 
                 CacheBlocks.insert(makeCacheAddr(II->ld_vaddr1));
+                DMALoadInsts.insert(make_pair(II->ld_vaddr1,II));
             }
         }
+
+        if(II->acc_heap_store)
+        {
+            if(DMAStoreInsts.count(II->st_vaddr) == 0)
+            {
+                DMAStoreInsts.insert(make_pair(II->st_vaddr,II));
+            }
+        }
+
         // Other insts including the load insts themselves
         OtherInsts.push_back(II);
 
@@ -31,6 +41,27 @@ void processTrace(unsigned ScratchpadSize)
         {
             //cerr << "Load Size: " << loadSize << "\n";
             //cerr << "Cache Size: " << CacheBlocks.size()*32 << "\n";
+            
+            // Write out DMALoads
+            for(auto &dl : DMALoadInsts)
+            {
+                gzwrite(DMATrace, dl.second, sizeof(Inst_info));
+            }
+            DMALoadInsts.clear();
+
+            // Write window delim
+            Inst_info delim;
+            memset((void *)&delim, 0, sizeof(Inst_info));
+            delim.acc_window_delim = true;
+            gzwrite(DMATrace, &delim, sizeof(Inst_info));
+
+            // Write out DMAStores
+            for(auto &dl : DMAStoreInsts)
+            {
+                gzwrite(DMATrace, dl.second, sizeof(Inst_info));
+            }
+            DMAStoreInsts.clear();
+            
             // Write out the load instructions
             for(auto &l : LoadInsts)
             {
@@ -60,6 +91,33 @@ void processTrace(unsigned ScratchpadSize)
     }
     free(inst);
 
+ 
+    // Write out DMALoads
+    for(auto &dl : DMALoadInsts)
+    {
+        gzwrite(DMATrace, dl.second, sizeof(Inst_info));
+    }
+    DMALoadInsts.clear();
+
+    // Write window delim
+    Inst_info delim;
+    memset((void *)&delim, 0, sizeof(Inst_info));
+    delim.acc_window_delim = true;
+    gzwrite(DMATrace, &delim, sizeof(Inst_info));
+
+    // Write out DMAStores
+    for(auto &dl : DMAStoreInsts)
+    {
+        gzwrite(DMATrace, dl.second, sizeof(Inst_info));
+    }
+    DMAStoreInsts.clear();
+
+    // Write segment delim
+    memset((void *)&delim, 0, sizeof(Inst_info));
+    delim.acc_segment_delim = true;
+    gzwrite(DMATrace, &delim, sizeof(Inst_info));
+
+
     // Drain Remaining insts
     for(auto &l : LoadInsts)
     {
@@ -74,35 +132,67 @@ void processTrace(unsigned ScratchpadSize)
         free(i);
     }
     OtherInsts.clear();
-
+    
+    // Segment delimiter should already be present in the OrigTrace
+    // as it is added by EndAcc in Pintool.
 }
 
 int main(int argc, char *argv[])
 {
-    if(argc != 3)    
+    if(argc != 2)    
     {
-        std::cerr << "Usage " << argv[0] << " <Acc Trace File Name> <Scratchpad Size>" << std::endl;
+        std::cerr << "Usage " << argv[0] << "<Scratchpad Size>" << std::endl;
         return 0; 
     }
 
-    OrigTrace = gzopen(argv[1], "rb");
-    NewTrace = gzopen((string("seg.")+string(argv[2])+string(".")+string(argv[1])).c_str(),"wb");
+    // Open trace.txt to find out the number of traces
 
-    if(!OrigTrace || !NewTrace)
+    ifstream traceTxt("trace.txt",ios::in);
+    if(!traceTxt.is_open())
     {
-        cerr << "Could not open trace files" << endl;
+        cerr << "Could not open trace.txt\n";
         return 0;
     }
 
-    unsigned ScratchpadSize = 0;
-    istringstream(argv[2]) >> ScratchpadSize;
+    int numTraces = 0;
+    traceTxt >> numTraces;
+    traceTxt.close();
 
-    assert(ScratchpadSize % 32 == 0 && "ScratchpadSize should be a multiple of 32");
+    assert(numTraces > 2 && numTraces < 8 && "Need 1 DMA trace and 6 or less ACC traces");
 
-    processTrace(ScratchpadSize);
+    //cerr << "numTraces: " << numTraces << "\n";
+    
+    DMATrace = gzopen("trace_1.raw","wb");
+    if(!DMATrace)
+    {
+        cerr << "Could not open trace file (trace_1.raw) for DMA Trace\n";
+        return 0;
+    }
 
-    gzclose(OrigTrace);
-    gzclose(NewTrace);
+    for(int i = 2; i < numTraces; i++)
+    {
+        string OrigFilename = string("trace_") + to_string(i) + string(".raw");
+        OrigTrace = gzopen(OrigFilename.c_str(), "rb");
+        string NewFilename = string("new.trace_") + to_string(i) + string(".raw");
+        NewTrace = gzopen(NewFilename.c_str(),"wb");
 
+        if(!OrigTrace || !NewTrace)
+        {
+            cerr << "Could not open trace files" << endl;
+            return 0;
+        }
+
+        unsigned ScratchpadSize = 0;
+        istringstream(argv[1]) >> ScratchpadSize;
+
+        assert(ScratchpadSize % 32 == 0 && "ScratchpadSize should be a multiple of 32");
+
+        processTrace(ScratchpadSize);
+
+        gzclose(OrigTrace);
+        gzclose(NewTrace);
+    }
+
+    gzclose(DMATrace);
     return 0;
 }

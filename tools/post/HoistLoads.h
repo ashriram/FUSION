@@ -7,6 +7,7 @@
 #include <map>
 #include <vector>
 #include <sstream>
+#include <fstream>
 #include <cassert>
 #include <set>
 
@@ -17,6 +18,7 @@ using namespace std;
 
 gzFile OrigTrace;
 gzFile NewTrace;
+gzFile DMATrace;
 
 struct Inst_info {
     uint8_t num_read_regs;      // 3-bits
@@ -49,6 +51,9 @@ struct Inst_info {
 map<uint32_t, Inst_info*> LoadInsts;
 vector<Inst_info *> OtherInsts;
 set<uint32_t> CacheBlocks;
+
+map<uint32_t, Inst_info*> DMALoadInsts;
+map<uint32_t, Inst_info*> DMAStoreInsts;
 
 enum TR_OPCODE_enum {
   TR_MUL = XED_CATEGORY_LAST ,
