@@ -536,7 +536,7 @@ void Sequencer::readCallback(const Address& address, DataBlock& data, GenericMac
 
 if (m_version == g_DMA_PROC)  {
     hitCallback(request, data, GenericMachineType_L1Cache, thread);
-    g_system_ptr->getProfiler()->profileBandwidthBytes("DMA",request.getSize(),true);
+    g_system_ptr->getProfiler()->profileBandwidthBytes("DMA",g_DATA_BLOCK_BYTES,true);
   } else {
     hitCallback(request, data, respondingMach, thread);
   }
