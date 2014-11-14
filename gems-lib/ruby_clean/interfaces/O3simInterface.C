@@ -129,7 +129,7 @@ static CacheRequestType get_request_type( OpalMemop_t opaltype ) {
 
 void O3simInterface::advanceTime( void ) {
 
-  g_eventQueue_ptr->triggerEvents(g_eventQueue_ptr->getTime()+100);
+  g_eventQueue_ptr->triggerEvents(g_eventQueue_ptr->getTime()+1);
 }
 
 // return ruby's time
