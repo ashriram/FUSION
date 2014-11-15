@@ -115,8 +115,8 @@ void processTrace(unsigned ScratchpadSize)
     // Write segment delim
     memset((void *)&delim, 0, sizeof(Inst_info));
     delim.acc_segment_delim = true;
+    delim.acc_id = 0;
     gzwrite(DMATrace, &delim, sizeof(Inst_info));
-
 
     // Drain Remaining insts
     for(auto &l : LoadInsts)
@@ -191,6 +191,10 @@ int main(int argc, char *argv[])
 
         gzclose(OrigTrace);
         gzclose(NewTrace);
+
+        string OldFilename = string("orig.") + OrigFilename;
+        system((string("mv ")+OrigFilename+string(" ")+OldFilename).c_str());
+        system((string("mv ")+NewFilename+string(" ")+OrigFilename).c_str());
     }
 
     gzclose(DMATrace);

@@ -1951,6 +1951,9 @@ int memory_c::access(uop_c* uop)
             return 0;
         }
 
+        //if(uop->m_core_id == 1)
+            //report("DMA: " << hex << req_addr << dec << " ST: " << isWrite);
+
         //report("New Mem Request: " << hex << req_addr << dec << " Size: " << req_size << " Core: " << uop->m_core_id << " ST: " << isWrite);
 
         if(isPrefetch)
