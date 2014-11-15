@@ -218,6 +218,9 @@ void uop_c::init()
   m_dcache_bank_id                    = 128;
   m_bypass_llc                        = false;
   m_skip_llc                          = false;
+
+  // ska124
+  m_acc_stack                         = false;
 }
 
 

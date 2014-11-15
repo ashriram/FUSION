@@ -228,9 +228,14 @@ bool exec_c::exec(int thread_id, int entry, uop_c* uop)
   // execute memory instructions
   // -------------------------------------
   if (type != NOT_MEM) { 
-    // perfect dcache
+    // perfect dcache for all accesses
     if (*KNOB(KNOB_PERFECT_DCACHE) ) {
       uop_latency = 1;
+    }
+    // perfect dcache for all stack accesses in the ACC trace
+    else if( m_core_id > 1 && uop->m_acc_stack)
+    {
+        uop_latency = 1;
     }
     else {
       // -------------------------------------

@@ -131,6 +131,8 @@ typedef struct trace_uop_s {
   uint32_t     m_taken_mask;    /**< branch taken mask */
   Addr         m_reconverge_addr; /**< address of reconvergence */
   bool         m_mul_mem_uops;  /**< multiple memory transactions */
+  // ska124
+  bool         m_acc_stack;
 } trace_uop_s;
 
 

@@ -365,7 +365,9 @@ class uop_c
     int               m_dcache_bank_id; /**< dcache bank id */
     bool              m_bypass_llc; /**< bypass last level cache */
     bool              m_skip_llc; /**< skip last level cache */
-
+    
+    // ska124
+    bool              m_acc_stack;
   private:
     macsim_c* m_simBase;         /**< macsim_c base class for simulation globals */
 

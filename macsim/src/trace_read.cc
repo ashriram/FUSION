@@ -781,6 +781,21 @@ inst_info_s* trace_read_c::convert_pinuop_to_t_uop(trace_info_s *pi, trace_uop_s
     trace_uop[0]->m_rep_uop_num = 0;
     trace_uop[0]->m_opcode = pi->m_opcode;
 
+    // If instruction has as load or a store AND heap_load and heap_store are BOTH false
+    // the it is a stack load or store. Also check core_id before setting ACC_Stack
+   
+    if(core_id > 1)
+    {
+        if((pi->m_num_ld || pi->m_has_st) && !(pi->acc_heap_load || pi->acc_heap_store))
+            trace_uop[0]->m_acc_stack = true; // 2FIX : uop and trace_uop are not the same
+        else
+            trace_uop[0]->m_acc_stack = false;
+    }
+    else
+    {
+        trace_uop[0]->m_acc_stack = false;
+    }
+
     // temporal register rules:
     // load->dest_reg (through tmp), load->store (through tmp), dest_reg->store (real reg)
     // load->cf (through tmp), dest_reg->cf (thought dest), st->cf (no dependency)
@@ -871,11 +886,13 @@ inst_info_s* trace_read_c::convert_pinuop_to_t_uop(trace_info_s *pi, trace_uop_s
       // first and last accesses of an uncoalesced memory instruction
       trace_uop[0]->m_mul_mem_uops = pi->m_has_immediate;
 
-
+      
       ///
       /// There are two load operations in an instruction. Note that now array index becomes 1
       ///
       if (pi->m_num_ld == 2) {
+
+
         trace_uop[1]->m_opcode = pi->m_opcode;
 
         switch (pi->m_opcode) {
@@ -1518,6 +1535,9 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
     uop->m_bar_type    = trace_uop->m_bar_type;
     uop->m_npc         = trace_uop->m_npc;
     uop->m_active_mask = trace_uop->m_active_mask;
+
+    //ska124
+    uop->m_acc_stack   = trace_uop->m_acc_stack;
 
     if (uop->m_cf_type) {
         uop->m_taken_mask      = trace_uop->m_taken_mask;
