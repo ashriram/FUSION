@@ -335,7 +335,7 @@ void SequencerT::insertSkipL1Request(const CacheMsg& request) {
    m_skipL1RequestTable_ptr->lookup(request.getmemfetch()) = request;
    m_outstanding_count++;
 
-   g_system_ptr->getProfiler()->sequencerRequests(m_outstanding_count);
+   g_system_ptr->getProfiler()->sequencerRequests(m_outstanding_count,g_NUM_PROCESSORS+m_version);
 
    checkOutstandingRequests();
 }
@@ -375,7 +375,7 @@ bool SequencerT::insertRequest(const CacheMsg& request) {
   }
     
   // 2FIX : Add function in profiler separately for ACC type
-  g_system_ptr->getProfiler()->sequencerRequests(m_outstanding_count);
+  g_system_ptr->getProfiler()->sequencerRequests(m_outstanding_count,g_NUM_PROCESSORS+m_version);
   checkOutstandingRequests();
   return false;
 }

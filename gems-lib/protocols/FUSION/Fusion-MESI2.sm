@@ -476,6 +476,8 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
   }
 
   action(ct_exclusiveReplacementFromTBE, "ct", desc="Send data to memory") {
+
+
     enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2_to_L1_DATA_LATENCY") {
       out_msg.Address := address;
       out_msg.Type := CoherenceResponseType:MEMORY_DATA;
@@ -484,6 +486,7 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
       out_msg.DataBlk := L2_TBEs[address].DataBlk;
       out_msg.Dirty := L2_TBEs[address].Dirty;
       out_msg.MessageSize := MessageSizeType:Response_Data;
+      profileBandwidth("L2_DATA",out_msg.MessageSize);
     }
   }
 
@@ -708,9 +711,15 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
         } else {
           error("unknown message type 3");
         }
+      } else {
+           if(in_msg.Type == CoherenceResponseType:MEMORY_DATA)
+           {
+            profileBandwidth("L2_DATA", in_msg.MessageSize);
+           } else {
+            profileBandwidth("L2_MSG", in_msg.MessageSize);
+           } 
       }
     }
-
     profileMsgDelay(3, responseIntraChipL2Network_in.dequeue_getDelayCycles());
   }
 

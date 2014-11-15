@@ -564,6 +564,21 @@ void Profiler::printStats(ostream& out, bool short_stats)
   }
 
 
+    out << "Sequencer  Requests (MLP)" << endl;
+    out << "------------------------------------" << endl;
+    out << "Sequencer Requests All" << endl;
+    out << "Sequencer_ALL : " << m_sequencer_requests;
+    out << endl;
+    
+    for(int i=0; i < m_sequencer_requests_per_proc.size(); i++) {
+      if (i < g_NUM_PROCESSORS) {
+         out << "Sequencer_" << i << ": " << m_sequencer_requests_per_proc[i] << endl;
+       } else{
+         out << "SequencerACC_" << i-g_NUM_PROCESSORS << ": " << m_sequencer_requests_per_proc[i] << endl;
+       }
+    }
+  
+  
   if (!short_stats) {
     out << "Request vs. System State Profile" << endl;
     out << "--------------------------------" << endl;
@@ -778,6 +793,16 @@ void Profiler::clearStats()
   m_allSWPrefetchLatencyHistogram.clear(200);
   m_SWPrefetchL2MissLatencyHistogram.clear(200);
 
+
+  m_sequencer_requests_per_proc.setSize(g_NUM_PROCESSORS+g_NUM_ACCS);
+  for(int i=0; i<m_sequencer_requests_per_proc.size(); i++) {
+    m_missLatencyHistograms[i].clear(10);
+  }
+  
+
+
+
+
   m_multicast_retry_histogram.clear();
 
   m_numtbeQuery = 0;
@@ -843,6 +868,7 @@ void Profiler::clearStats()
   m_profiling_bandwidth_alt->add("DATA_GX_C", 0);
   m_profiling_bandwidth_alt->add("DATA_PX_D", 0);
   m_profiling_bandwidth_alt->add("DATA_PX_C", 0);
+  m_profiling_bandwidth_alt->add("DMA", 0);
 
 
   // Profiling for Accelerators

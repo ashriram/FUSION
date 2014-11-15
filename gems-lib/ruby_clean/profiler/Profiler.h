@@ -146,7 +146,9 @@ public:
   void profileFilterAction(int action);
 
   void profileConflictingRequests(const Address& addr);
-  void profileOutstandingRequest(int outstanding) { m_outstanding_requests.add(outstanding); }
+  void profileOutstandingRequest(int outstanding) 
+  { m_outstanding_requests.add(outstanding); 
+  }
   void profileOutstandingPersistentRequest(int outstanding) { m_outstanding_persistent_requests.add(outstanding); }
   void profileAverageLatencyEstimate(int latency) { m_average_latency_estimate.add(latency); }
 
@@ -167,7 +169,12 @@ public:
   void L1tbeUsageSample(int num) { m_L1tbeProfile.add(num); }
   void L2tbeUsageSample(int num) { m_L2tbeProfile.add(num); }
   void tbeQueryProfile(bool available); 
-  void sequencerRequests(int num) { m_sequencer_requests.add(num); }
+  void sequencerRequests(int num, int m_version) 
+  { 
+   assert (m_version < (g_NUM_PROCESSORS + g_NUM_ACCS));
+   m_sequencer_requests_per_proc[m_version].add(num);
+   m_sequencer_requests.add(num); 
+ }
   void storeBuffer(int size, int blocks) { m_store_buffer_size.add(size); m_store_buffer_blocks.add(blocks);}
 
   void profileGetXMaskPrediction(const Set& pred_set);
@@ -393,6 +400,7 @@ private:
   int m_privateL1Evictions;                                 // For profiling private evictions
 
   Histogram m_outstanding_requests;
+  Vector<Histogram> m_sequencer_requests_per_proc; 
   Histogram m_outstanding_persistent_requests;
 
   Histogram m_average_latency_estimate;
