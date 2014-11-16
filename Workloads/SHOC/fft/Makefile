@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-c -Wall -O2 -fno-inline -I../../../libroi 
+CFLAGS=-c -Wall  -pg -O2 -fno-inline -I../../../libroi 
 LDFLAGS=
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
