@@ -27,16 +27,18 @@ void update(TYPE weights[][MAX_ROWS][MAX_COLS],
         TYPE *input,
         TYPE activations[][MAX_ROWS]){
     int i, j;
-
+//counter_update++;
+//printf("counter update :%d\n",counter_update);
     //initialize first activation layer to be the inputs to the nnet..
     u_1 : for(i = 0; i < layer_size[0]; i++){
         activations[0][i] = input[i];
     }
-
     //iterate over each weight layer...
     u_2 : for(i = 0; i < NUM_LAYERS - 1; i++){
         update_layer(layer_size[i], layer_size[i + 1], weights[i], activations[i], activations[i + 1]);
+        //size_x = size_x+ sizeof(layer_size[i]) +  sizeof(layer_size[i + 1]) + sizeof(weights[i]) + sizeof(activations[i]) + sizeof(activations[i + 1]);
     }
+//printf("X= %d",size_x);
 }
 
 void propagate_error_out(TYPE *activationsOut, TYPE *deltas, TYPE *targets){
@@ -48,7 +50,34 @@ void propagate_error_out(TYPE *activationsOut, TYPE *deltas, TYPE *targets){
     p_1 : for(i = 0; i < layer_size[NUM_LAYERS - 1]; i++){
         error = targets[i] - activationsOut[i];
         deltas[i] = sigmoid(activationsOut[i]) * error;
+        
+        //if( !find_index(matching_data_arr,curr_arr_index,&deltas[i])) {
+            matching_data_arr[curr_arr_index] =  &deltas[i];
+            curr_arr_index++;
+            size_x =  size_x + sizeof( deltas[i]);
+        //}
+        //if( !find_index(matching_data_arr,curr_arr_index,&activationsOut[i] )) {
+            matching_data_arr[curr_arr_index] = &activationsOut[i];
+            curr_arr_index++;
+            size_x = size_x +  sizeof(activationsOut[i]) ;
+        //}
+        //if( !find_index(matching_data_arr,curr_arr_index,&targets[i] )) {
+            matching_data_arr[curr_arr_index] = &targets[i];
+            curr_arr_index++;
+            size_x = size_x + sizeof(targets[i]);
+        //}
+
+
+
+
+          
     }
+    //int size_x =  2*(sizeof(activationsOut[0]) + sizeof( deltas[0] ) + sizeof(targets[0]));
+    
+    
+    printf("X= %d \t",size_x);
+    counter_update ++;
+    printf("counter update :%d\t  curr_arr_index : %d \n",counter_update,curr_arr_index);
 }
 
 
