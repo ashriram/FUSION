@@ -7,7 +7,6 @@ uint32_t makeCacheAddr(uint32_t addr)
 
 void processTrace(unsigned ScratchpadSize)
 {
-    unsigned loadSize = 0;
     Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
     while(gzread(OrigTrace, (void*)inst, sizeof(Inst_info)) > 0)
     {
@@ -16,20 +15,19 @@ void processTrace(unsigned ScratchpadSize)
 
         if(II->acc_heap_load)
         {
-            if(LoadInsts.count(II->ld_vaddr1) == 0)
+            if(LoadInsts.count(makeCacheAddr(II->ld_vaddr1)) == 0)
             {
-                LoadInsts.insert(make_pair(II->ld_vaddr1,II));
-                loadSize += II->mem_read_size; 
+                LoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr1),II));
                 CacheBlocks.insert(makeCacheAddr(II->ld_vaddr1));
-                DMALoadInsts.insert(make_pair(II->ld_vaddr1,II));
+                DMALoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr1),II));
             }
         }
 
         if(II->acc_heap_store)
         {
-            if(DMAStoreInsts.count(II->st_vaddr) == 0)
+            if(DMAStoreInsts.count(makeCacheAddr(II->st_vaddr)) == 0)
             {
-                DMAStoreInsts.insert(make_pair(II->st_vaddr,II));
+                DMAStoreInsts.insert(make_pair(makeCacheAddr(II->st_vaddr),II));
             }
         }
 
@@ -41,7 +39,7 @@ void processTrace(unsigned ScratchpadSize)
         {
             //cerr << "Load Size: " << loadSize << "\n";
             //cerr << "Cache Size: " << CacheBlocks.size()*32 << "\n";
-            
+
             // Write out DMALoads
             for(auto &dl : DMALoadInsts)
             {
@@ -61,7 +59,7 @@ void processTrace(unsigned ScratchpadSize)
                 gzwrite(DMATrace, dl.second, sizeof(Inst_info));
             }
             DMAStoreInsts.clear();
-            
+
             // Write out the load instructions
             for(auto &l : LoadInsts)
             {
@@ -85,13 +83,12 @@ void processTrace(unsigned ScratchpadSize)
             gzwrite(NewTrace, &t, sizeof(t));
 
             // Reset load size
-            loadSize = 0; 
             CacheBlocks.clear();
         }
     }
     free(inst);
 
- 
+
     // Write out DMALoads
     for(auto &dl : DMALoadInsts)
     {
@@ -132,7 +129,7 @@ void processTrace(unsigned ScratchpadSize)
         free(i);
     }
     OtherInsts.clear();
-    
+
     // Segment delimiter should already be present in the OrigTrace
     // as it is added by EndAcc in Pintool.
 }
@@ -161,7 +158,7 @@ int main(int argc, char *argv[])
     assert(numTraces > 2 && numTraces < 8 && "Need 1 DMA trace and 6 or less ACC traces");
 
     //cerr << "numTraces: " << numTraces << "\n";
-    
+
     DMATrace = gzopen("trace_1.raw","wb");
     if(!DMATrace)
     {
