@@ -1,0 +1,245 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 30.77      0.04     0.04       64     0.62     0.62  finalSAD
+ 23.08      0.07     0.03       64     0.47     0.47  findDisparity
+ 15.38      0.09     0.02       64     0.31     0.31  integralImage2D2D
+  7.69      0.10     0.01       64     0.16     0.16  computeSAD
+  7.69      0.11     0.01       64     0.16     1.41  correlateSAD_2D
+  7.69      0.12     0.01       64     0.16     0.16  padarray4
+  7.69      0.13     0.01        2     5.00     5.00  readImage
+  0.00      0.13     0.00       71     0.00     0.00  iFreeHandle
+  0.00      0.13     0.00       71     0.00     0.00  iMallocHandle
+  0.00      0.13     0.00        5     0.00     0.00  iSetArray
+  0.00      0.13     0.00        4     0.00     0.00  fFreeHandle
+  0.00      0.13     0.00        4     0.00     0.00  fMallocHandle
+  0.00      0.13     0.00        3     0.00     0.00  fSetArray
+  0.00      0.13     0.00        2     0.00     0.00  padarray2
+  0.00      0.13     0.00        1     0.00   120.00  getDisparity
+  0.00      0.13     0.00        1     0.00     0.00  photonEndTiming
+  0.00      0.13     0.00        1     0.00     0.00  photonPrintTiming
+  0.00      0.13     0.00        1     0.00     0.00  photonReportTiming
+  0.00      0.13     0.00        1     0.00     0.00  photonStartTiming
+  0.00      0.13     0.00        1     0.00     0.00  selfCheck
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 7.69% of 0.13 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]    100.0    0.00    0.13                 main [1]
+                0.00    0.12       1/1           getDisparity [2]
+                0.01    0.00       2/2           readImage [9]
+                0.00    0.00       3/71          iFreeHandle [10]
+                0.00    0.00       1/1           photonStartTiming [20]
+                0.00    0.00       1/1           photonEndTiming [17]
+                0.00    0.00       1/1           selfCheck [21]
+                0.00    0.00       1/1           photonReportTiming [19]
+                0.00    0.00       1/1           photonPrintTiming [18]
+-----------------------------------------------
+                0.00    0.12       1/1           main [1]
+[2]     92.3    0.00    0.12       1         getDisparity [2]
+                0.01    0.08      64/64          correlateSAD_2D [3]
+                0.03    0.00      64/64          findDisparity [5]
+                0.00    0.00      68/71          iFreeHandle [10]
+                0.00    0.00       4/4           fFreeHandle [13]
+                0.00    0.00       3/3           fSetArray [15]
+                0.00    0.00       3/5           iSetArray [12]
+                0.00    0.00       2/2           padarray2 [16]
+                0.00    0.00       1/4           fMallocHandle [14]
+-----------------------------------------------
+                0.01    0.08      64/64          getDisparity [2]
+[3]     69.2    0.01    0.08      64         correlateSAD_2D [3]
+                0.04    0.00      64/64          finalSAD [4]
+                0.02    0.00      64/64          integralImage2D2D [6]
+                0.01    0.00      64/64          padarray4 [8]
+                0.01    0.00      64/64          computeSAD [7]
+                0.00    0.00      64/71          iMallocHandle [11]
+-----------------------------------------------
+                0.04    0.00      64/64          correlateSAD_2D [3]
+[4]     30.8    0.04    0.00      64         finalSAD [4]
+-----------------------------------------------
+                0.03    0.00      64/64          getDisparity [2]
+[5]     23.1    0.03    0.00      64         findDisparity [5]
+-----------------------------------------------
+                0.02    0.00      64/64          correlateSAD_2D [3]
+[6]     15.4    0.02    0.00      64         integralImage2D2D [6]
+-----------------------------------------------
+                0.01    0.00      64/64          correlateSAD_2D [3]
+[7]      7.7    0.01    0.00      64         computeSAD [7]
+-----------------------------------------------
+                0.01    0.00      64/64          correlateSAD_2D [3]
+[8]      7.7    0.01    0.00      64         padarray4 [8]
+-----------------------------------------------
+                0.01    0.00       2/2           main [1]
+[9]      7.7    0.01    0.00       2         readImage [9]
+                0.00    0.00       2/71          iMallocHandle [11]
+-----------------------------------------------
+                0.00    0.00       3/71          main [1]
+                0.00    0.00      68/71          getDisparity [2]
+[10]     0.0    0.00    0.00      71         iFreeHandle [10]
+-----------------------------------------------
+                0.00    0.00       2/71          readImage [9]
+                0.00    0.00       5/71          iSetArray [12]
+                0.00    0.00      64/71          correlateSAD_2D [3]
+[11]     0.0    0.00    0.00      71         iMallocHandle [11]
+-----------------------------------------------
+                0.00    0.00       2/5           padarray2 [16]
+                0.00    0.00       3/5           getDisparity [2]
+[12]     0.0    0.00    0.00       5         iSetArray [12]
+                0.00    0.00       5/71          iMallocHandle [11]
+-----------------------------------------------
+                0.00    0.00       4/4           getDisparity [2]
+[13]     0.0    0.00    0.00       4         fFreeHandle [13]
+-----------------------------------------------
+                0.00    0.00       1/4           getDisparity [2]
+                0.00    0.00       3/4           fSetArray [15]
+[14]     0.0    0.00    0.00       4         fMallocHandle [14]
+-----------------------------------------------
+                0.00    0.00       3/3           getDisparity [2]
+[15]     0.0    0.00    0.00       3         fSetArray [15]
+                0.00    0.00       3/4           fMallocHandle [14]
+-----------------------------------------------
+                0.00    0.00       2/2           getDisparity [2]
+[16]     0.0    0.00    0.00       2         padarray2 [16]
+                0.00    0.00       2/5           iSetArray [12]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[17]     0.0    0.00    0.00       1         photonEndTiming [17]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[18]     0.0    0.00    0.00       1         photonPrintTiming [18]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[19]     0.0    0.00    0.00       1         photonReportTiming [19]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[20]     0.0    0.00    0.00       1         photonStartTiming [20]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[21]     0.0    0.00    0.00       1         selfCheck [21]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+
+Index by function name
+
+   [7] computeSAD              [2] getDisparity           [17] photonEndTiming
+   [3] correlateSAD_2D        [10] iFreeHandle            [18] photonPrintTiming
+  [13] fFreeHandle            [11] iMallocHandle          [19] photonReportTiming
+  [14] fMallocHandle          [12] iSetArray              [20] photonStartTiming
+  [15] fSetArray               [6] integralImage2D2D       [9] readImage
+   [4] finalSAD               [16] padarray2              [21] selfCheck
+   [5] findDisparity           [8] padarray4

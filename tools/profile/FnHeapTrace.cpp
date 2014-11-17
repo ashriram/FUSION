@@ -12,7 +12,8 @@
 /* ================================================================== */
 
 static string fnNames[] = {
-    "main","rec_rot","iter_rot","read_ppm","write_ppm"
+//    "main","rec_rot","iter_rot","read_ppm","write_ppm"
+"computeSAD",  "correlateSAD_2D"
 };
 
 /* ================================================================== */
