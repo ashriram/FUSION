@@ -360,6 +360,15 @@ void macsim_c::init_cores(int num_max_core)
             m_x86_core_pool.push(ii + total_core);
     }
 
+    // ska124
+    cache_lease_time[0] = 0;
+    cache_lease_time[1] = 1;
+    cache_lease_time[2] = *KNOB(KNOB_CL_LEASE_ACC2);
+    cache_lease_time[3] = *KNOB(KNOB_CL_LEASE_ACC3);
+    cache_lease_time[4] = *KNOB(KNOB_CL_LEASE_ACC4);
+    cache_lease_time[5] = *KNOB(KNOB_CL_LEASE_ACC5);
+    cache_lease_time[6] = *KNOB(KNOB_CL_LEASE_ACC6);
+    cache_lease_time[7] = *KNOB(KNOB_CL_LEASE_ACC7);
 }
 
 
@@ -557,10 +566,10 @@ void macsim_c::initialize(int argc, char** argv)
   init_cores(*KNOB(KNOB_NUM_SIM_CORES));
 
 
-  if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
-    report("Initializing new noc\n");
-    init_network();
-  }
+  //if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
+    //report("Initializing new noc\n");
+    //init_network();
+  //}
 
   // initialize clocks
   init_clock_domain();

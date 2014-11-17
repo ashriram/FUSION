@@ -47,26 +47,6 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "global_types.h"
 
 
-#ifdef IRIS
-#include "manifold/kernel/include/kernel/clock.h"
-
-#ifndef DONT_INCLUDE_MANIFOLD // to prevent circular link dependencies
-#include "manifold/models/iris/interfaces/topology.h"
-#include "manifold/models/iris/interfaces/irisInterface.h"
-#include "manifold/models/iris/interfaces/irisTerminal.h"
-#include "manifold/models/iris/iris_srcs/components/manifoldProcessor.h"
-#include "manifold/models/iris/iris_srcs/topology/ring.h"
-#include "manifold/models/iris/iris_srcs/topology/torus.h"
-#include "manifold/models/iris/iris_srcs/topology/mesh.h"
-#include "manifold/models/iris/iris_srcs/topology/spinalMesh.h"
-#include "manifold/kernel/include/kernel/manifold.h"
-#include "manifold/kernel/include/kernel/component.h"
-#include "manifold/models/iris/iris_srcs/components/ninterface.h"
-#include "manifold/models/iris/iris_srcs/components/simpleRouter.h"
-#endif
-
-class Topology;
-#endif
 
 
 #define CYCLE m_simBase->m_simulation_cycle
@@ -262,18 +242,6 @@ class macsim_c
         // interconnect
     router_wrapper_c* m_router; /**< NOC routers */
 
-#ifdef IRIS
-    // IRIS
-        vector<ManifoldProcessor*> m_macsim_terminals; /**< manifold terminals */
-        manifold::kernel::Clock* master_clock; /**< manifold clock - has to be global or static */
-        map<string, string> m_iris_params; /**< iris configurations */
-        Topology* m_iris_network; /**< iris topology */
-        Topology* tp; /**< topology */
-        uint no_nodes; /**< number of network nodes */
-        int Mytid; /**< tid used by IRIS */
-        FILE* log_file; /**< log file used by IRIS */
-        stringstream network_trace; /**< network trace */
-#endif
 
     // cache partitioning
     cache_partition_framework_c* m_PCL; /**< cache partitioning framework */
@@ -286,6 +254,7 @@ class macsim_c
         double total_energy; /**< total energy consumption */
         int total_packets; /**< number of packets */
 #endif
+        int cache_lease_time[8];
 
     private:
         macsim_c* m_simBase; /**< self-reference for macro usage */

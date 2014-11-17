@@ -1063,29 +1063,29 @@ router_c* router_wrapper_c::create_router(int type)
 void router_wrapper_c::init(void)
 {
   // topology - setting router links
-  m_topology = KNOB(KNOB_NOC_TOPOLOGY)->getValue();
-  if (m_topology == "mesh") {
-    int width = sqrt(m_num_router);
-    if ((width * width) != m_num_router) {
-      for (; m_num_router < (width+1)*(width+1) ; ++m_num_router) {
-        report("router:" << m_num_router << " type:dummy created");
+  //m_topology = KNOB(KNOB_NOC_TOPOLOGY)->getValue();
+  //if (m_topology == "mesh") {
+    //int width = sqrt(m_num_router);
+    //if ((width * width) != m_num_router) {
+      //for (; m_num_router < (width+1)*(width+1) ; ++m_num_router) {
+        //report("router:" << m_num_router << " type:dummy created");
 
-        router_c* new_router = new router_c(m_simBase, 0, m_num_router);
-        m_router.push_back(new_router);
-      }
-    }
-  }
+        //router_c* new_router = new router_c(m_simBase, 0, m_num_router);
+        //m_router.push_back(new_router);
+      //}
+    //}
+  //}
 
-  for (int ii = 0; ii < m_num_router; ++ii) {
-    m_router[ii]->init(m_num_router, &g_total_packet, m_flit_pool, m_credit_pool);
-  }
+  //for (int ii = 0; ii < m_num_router; ++ii) {
+    //m_router[ii]->init(m_num_router, &g_total_packet, m_flit_pool, m_credit_pool);
+  //}
 
-  if (m_topology == "ring")
-    init_ring();
-  else if (m_topology == "mesh")
-    init_mesh();
-  else
-    assert(0);
+  //if (m_topology == "ring")
+    //init_ring();
+  //else if (m_topology == "mesh")
+    //init_mesh();
+  //else
+    //assert(0);
 }
 
 

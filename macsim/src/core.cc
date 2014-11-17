@@ -400,6 +400,7 @@ void core_c::run_a_cycle(void)
                     m_simBase->m_core_pointers[m_next]->m_active = true;
                     m_simBase->m_core_pointers[m_next]->start_frontend();
                     m_active = false;
+                    return;
                 }
 
                 m_exec->run_a_cycle();
@@ -436,11 +437,15 @@ void core_c::run_a_cycle(void)
 
             if(!m_frontend->is_running() && m_rob->entries() == 0)
             {
-                std::cerr << "Acc Halt " << m_core_id << "\n";
+                report("ACC " << m_core_id << " halted after " << (m_cycle - m_start_cycle) << " cycles");
+                m_start_cycle = m_cycle;
                 m_active = false;
                 m_simBase->m_core_pointers[1]->m_active = true;
                 m_simBase->m_core_pointers[1]->start_frontend();
             }
+
+            ++m_cycle;
+            return;
         }
     }
     else
