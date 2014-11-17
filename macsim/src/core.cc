@@ -392,29 +392,16 @@ void core_c::run_a_cycle(void)
     {
         if(m_core_id == 1)
         {
-            // DMA Core
-            //if(m_dma_done)
-            //{
-                //std::cerr << "DMA Done\n";
-                //// Set the next acc/CPU to active
-                //std::cerr << "Activating " << m_next << "\n";
-                //m_simBase->m_core_pointers[m_next]->m_active = true;
-                //m_simBase->m_core_pointers[m_next]->start_frontend();
-
-                //m_active = false;
-                //m_dma_done = false;
-            //}
-
-            //if(m_active)
-            //{
-                //// Issue all the requests we need to 
-                //// Wait for them to come back
-                //std::cerr << "DMA Active\n";
-                //m_dma_done = true;     
-            //}
             
             if(m_active)
             {
+                if(!*KNOB(KNOB_ENABLE_DMA_CORE))
+                {
+                    m_simBase->m_core_pointers[m_next]->m_active = true;
+                    m_simBase->m_core_pointers[m_next]->start_frontend();
+                    m_active = false;
+                }
+
                 m_exec->run_a_cycle();
                 m_retire->run_a_cycle();
                 m_schedule->run_a_cycle();
@@ -449,7 +436,7 @@ void core_c::run_a_cycle(void)
 
             if(!m_frontend->is_running() && m_rob->entries() == 0)
             {
-                std::cerr << "Acc Halt\n";
+                std::cerr << "Acc Halt " << m_core_id << "\n";
                 m_active = false;
                 m_simBase->m_core_pointers[1]->m_active = true;
                 m_simBase->m_core_pointers[1]->start_frontend();
