@@ -1,7 +1,5 @@
 // Always ACC = NUM processors as there is some logic inside memfetch etc that might break
 
-g_GMEM_SKIP_L1D: false
-WRITES_STALL_AT_MSHR: true
 g_NUM_PROCESSORS: 4
 g_PROCS_PER_CHIP: 4
 
@@ -42,3 +40,5 @@ g_YAO_DRIVER:2
 
 g_DMA_PROC:1
 g_FLIT_SIZE:8
+g_GMEM_SKIP_L1D: false
+WRITES_STALL_AT_MSHR: true
