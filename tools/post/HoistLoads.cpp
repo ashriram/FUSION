@@ -13,6 +13,21 @@ void processTrace(unsigned ScratchpadSize)
         Inst_info *II = (Inst_info*)malloc(sizeof(Inst_info));
         memcpy((void *)II, (void *)inst, sizeof(Inst_info));
 
+        if(!(II->ld_vaddr1 || II->ld_vaddr2 || II->st_vaddr))
+        {
+            if(II->is_fp)
+                FPIns++;
+            else
+                INTIns++;
+        }
+        else
+        {
+            if(II->is_fp)
+                FPMEMIns++;
+            else
+                INTMEMIns++;
+        }
+
         if(II->acc_heap_load)
         {
             if(LoadInsts.count(makeCacheAddr(II->ld_vaddr1)) == 0)
@@ -185,6 +200,11 @@ int main(int argc, char *argv[])
         assert(ScratchpadSize % 32 == 0 && "ScratchpadSize should be a multiple of 32");
 
         processTrace(ScratchpadSize);
+
+        cerr << "Core " << i << " INT: " << INTIns << " FP: " << FPIns  << " FPMEM: " << FPMEMIns << " INTMEM: " << INTMEMIns << endl;
+
+        INTIns = 0;
+        FPIns = 0;
 
         gzclose(OrigTrace);
         gzclose(NewTrace);

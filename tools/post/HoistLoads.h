@@ -55,6 +55,11 @@ set<uint32_t> CacheBlocks;
 map<uint32_t, Inst_info*> DMALoadInsts;
 map<uint32_t, Inst_info*> DMAStoreInsts;
 
+unsigned long long INTIns = 0;
+unsigned long long FPIns = 0;
+unsigned long long FPMEMIns = 0;
+unsigned long long INTMEMIns = 0;
+
 enum TR_OPCODE_enum {
   TR_MUL = XED_CATEGORY_LAST ,
   TR_DIV,
