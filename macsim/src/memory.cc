@@ -1415,22 +1415,22 @@ memory_c::memory_c(macsim_c* simBase)
 memory_c::~memory_c()
 {
     for (int ii = 0; ii < m_num_core; ++ii) {
-        delete m_l1_cache[ii];
-        delete m_l2_cache[ii];
+        //delete m_l1_cache[ii];
+        //delete m_l2_cache[ii];
         m_mshr_free_list[ii].clear();
         m_mshr[ii].clear();
     }
 
-    for (int ii = 0; ii < m_num_l3; ++ii) {
-        delete m_l3_cache[ii];
-    }
+    //for (int ii = 0; ii < m_num_l3; ++ii) {
+        //delete m_l3_cache[ii];
+    //}
 
 
     delete[] m_mshr;
     delete[] m_mshr_free_list;
-    delete[] m_l1_cache;
-    delete[] m_l2_cache;
-    delete[] m_l3_cache;
+    //delete[] m_l1_cache;
+    //delete[] m_l2_cache;
+    //delete[] m_l3_cache;
 
 
     std::ofstream ruby_stat_file("ruby.stat.out", ios::out);
@@ -2272,14 +2272,14 @@ void l2_coupled_local_c::set_cache_id(mem_req_s* req)
 
 no_cache_c::no_cache_c(macsim_c* simBase) : memory_c(simBase)
 {
-    ASSERT(m_num_core == m_num_l3);
-    // next_id, next, prev_id, prev, done, coupled_up, doupled_down, disable
-    for (int ii = 0; ii < m_num_core; ++ii) {
-        //                   next_id, next,  prev_id, prev,  done,  cup,   cdown, disable
-        m_l1_cache[ii]->init(ii, -1, false, false, true,  true, false);
-        m_l2_cache[ii]->init(ii, ii, true,  true,  true,  true, true);
-        m_l3_cache[ii]->init(-1, ii, false, true,  false, true, true);
-    }
+    //ASSERT(m_num_core == m_num_l3);
+    //// next_id, next, prev_id, prev, done, coupled_up, doupled_down, disable
+    //for (int ii = 0; ii < m_num_core; ++ii) {
+        ////                   next_id, next,  prev_id, prev,  done,  cup,   cdown, disable
+        //m_l1_cache[ii]->init(ii, -1, false, false, true,  true, false);
+        //m_l2_cache[ii]->init(ii, ii, true,  true,  true,  true, true);
+        //m_l3_cache[ii]->init(-1, ii, false, true,  false, true, true);
+    //}
 }
 
 
