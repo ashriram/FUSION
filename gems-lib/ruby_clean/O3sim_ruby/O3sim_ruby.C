@@ -51,7 +51,7 @@ O3sim_ruby::O3sim_ruby( unsigned num_processors,
                         char *debug_verbosity_string,
                         char *debug_output_filename)
 {
-    //   printf("Ruby: constructed O3sim_ruby\n");
+   //   printf("Ruby: constructed O3sim_ruby\n");
    m_num_processors = num_processors;
    m_num_warps_per_processor = SMT;
    m_num_L2_banks = num_L2_banks;

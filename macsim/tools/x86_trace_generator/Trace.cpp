@@ -623,10 +623,7 @@ void instrument(INS ins)
         }
 
         if(!INS_IsStackRead(ins))
-        {
             info->acc_heap_load = true;
-            cout << hex << info->ld_vaddr1 << dec << endl;
-        }
     }
 
 
@@ -642,10 +639,7 @@ void instrument(INS ins)
                 IARG_THREAD_ID, IARG_END);
 
         if(!INS_IsStackWrite(ins))
-        {
             info->acc_heap_store = true;
-            cout << hex << info->st_vaddr << dec << endl;
-        }
     }
 
 
@@ -1151,7 +1145,6 @@ VOID StartAcc(UINT32 AccId)
     gzwrite(currenTraceFile, &m, sizeof(m));
     // Change the trace dump file to the accelerator file
     currenTraceFile = FuncGZFiles[AccId-2];
-    std::cout << "SWITCH\n";
 }
 
 VOID EndAcc()
@@ -1165,7 +1158,6 @@ VOID EndAcc()
     gzwrite(currenTraceFile, &m, sizeof(m));
     // Change the trace dump file back to the main trace -- assuming single thread
     currenTraceFile = trace_info_array[0]->trace_stream;
-    std::cout << "SWITCH\n";
 }
 
 VOID EnterROI()

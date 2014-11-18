@@ -100,6 +100,8 @@
 #include "schedule_smc.h"
 #include "debug_macros.h"
 
+#include "O3sim_ruby.h" // Required for cache_lease_time update from acc core
+
 #include "all_knobs.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -428,10 +430,6 @@ void core_c::run_a_cycle(void)
         {
             /************  ACC CORE  ******************/
 
-            // run each pipeline stages in backwards
-            
-            //if(m_core_id == 3) report ("3 is active");
-
             m_exec->run_a_cycle();
             m_retire->run_a_cycle();
             m_schedule->run_a_cycle();
@@ -445,6 +443,14 @@ void core_c::run_a_cycle(void)
                 m_active = false;
                 m_simBase->m_core_pointers[1]->m_active = true;
                 m_simBase->m_core_pointers[1]->start_frontend();
+            }
+
+            if(*KNOB(KNOB_ACC_LEASE_UPDATE))
+            {
+                int64_t remain = m_simBase->cache_lease_time[m_core_id] - m_cycle;
+                assert(remain > 0);
+                m_simBase->m_memory->m_ruby->setLease(remain);
+                
             }
 
             ++m_cycle;
@@ -481,7 +487,7 @@ void core_c::run_a_cycle(void)
 
         if(!m_frontend->is_running() && m_rob->entries() == 0)
         {
-            std::cerr << "Core Halt\n";
+            report("CPU Core Halt");
             m_active = false;
             m_simBase->m_core_pointers[1]->m_active = true;
             m_simBase->m_core_pointers[1]->start_frontend();
