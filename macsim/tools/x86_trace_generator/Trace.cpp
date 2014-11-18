@@ -154,6 +154,7 @@ map<string, UINT32> AccFuncs;
 gzFile *FuncGZFiles;
 gzFile currenTraceFile;
 bool InAccFunc = false;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // control handler for pinpoint (simpoint)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,7 +207,7 @@ void IncrementNumInstruction(THREADID threadid)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Detach(void *v)
 {
-    cout << "Detaching..." << endl;
+    cerr << "Detaching..." << endl;
     thread_end(0);
     finish();
 }
@@ -368,7 +369,7 @@ void write_inst(ADDRINT iaddr, THREADID threadid)
     // can we replace g_inst_count with trace_info->inst_count??
     // ----------------------------------------
     if (detach_inst != 0 && g_inst_count[tid] == detach_inst) {
-        cout << "Detaching after " << g_inst_count[tid] << " instructions." << endl;
+        cerr << "Detaching after " << g_inst_count[tid] << " instructions." << endl;
         PIN_Detach();
     }
 }
@@ -623,6 +624,8 @@ void instrument(INS ins)
 
         if(!INS_IsStackRead(ins))
             info->acc_heap_load = true;
+        else
+            cout << hex << info->ld_vaddr1 << dec << endl;
     }
 
 
@@ -639,6 +642,8 @@ void instrument(INS ins)
 
         if(!INS_IsStackWrite(ins))
             info->acc_heap_store = true;
+        else
+            cout << hex << info->st_vaddr << dec << endl;
 
     }
 
@@ -696,7 +701,7 @@ void Instruction(INS ins, void* v)
 /////////////////////////////////////////////////////////////////////////////////////////
 void ThreadStart(THREADID tid, CONTEXT *ctxt, INT32 flags, void *v)
 {
-    cout << "-> Thread[" << tid << "->" << threadMap[tid] << "] begins."<<endl;
+    cerr << "-> Thread[" << tid << "->" << threadMap[tid] << "] begins."<<endl;
     THREADID threadid = threadMap[tid];
 
     if (threadid == 100000)
@@ -862,11 +867,11 @@ void finish(void)
 
     /**< Final print to standard output */
     for (unsigned ii = 0; ii < thread_count; ++ii) {
-        cout << "-> tid " << thread_info[ii].thread_id << " inst count " << g_inst_count[ii]
+        cerr << "-> tid " << thread_info[ii].thread_id << " inst count " << g_inst_count[ii]
             << " (from " << thread_info[ii].inst_count << ")\n";
     }
-    cout << "-> Final icount: " << g_inst_count[0] << endl;
-    cout << "-> Exiting..." << endl;
+    cerr << "-> Final icount: " << g_inst_count[0] << endl;
+    cerr << "-> Exiting..." << endl;
 }
 
 
@@ -951,8 +956,8 @@ void sanity_check(void)
     // ----------------------------------------
     for (int ii = 0; ii < XED_CATEGORY_LAST; ++ii) {
         if (tr_opcode_names[ii] != CATEGORY_StringShort(ii)) {
-            cout << ii << " " << tr_opcode_names[ii] << " " << CATEGORY_StringShort(ii) << "\n";
-            cout << "-> Changes in XED_CATEGORY!\n";
+            cerr << ii << " " << tr_opcode_names[ii] << " " << CATEGORY_StringShort(ii) << "\n";
+            cerr << "-> Changes in XED_CATEGORY!\n";
             exit(0);
         }
     }
@@ -1016,39 +1021,39 @@ void dprint_inst(ADDRINT iaddr, string *disassemble_info, THREADID threadid)
     Inst_info *t_info = NULL;
     t_info = g_inst_storage[tid][iaddr];
 
-    cout << "\nInstruction count: " << g_inst_count[tid] << endl;
-    cout << "*** beginning of the data strcture *** " <<endl;
-    cout << "t_info->uop_opcode " <<tr_opcode_names[(uint32_t) t_info->opcode]  << endl;
-    cout << "t_info->num_read_regs: " << hex <<  (uint32_t) t_info->num_read_regs << endl;
-    cout << "t_info->num_dest_regs: " << hex << (uint32_t) t_info->num_dest_regs << endl;
+    cerr << "\nInstruction count: " << g_inst_count[tid] << endl;
+    cerr << "*** beginning of the data strcture *** " <<endl;
+    cerr << "t_info->uop_opcode " <<tr_opcode_names[(uint32_t) t_info->opcode]  << endl;
+    cerr << "t_info->num_read_regs: " << hex <<  (uint32_t) t_info->num_read_regs << endl;
+    cerr << "t_info->num_dest_regs: " << hex << (uint32_t) t_info->num_dest_regs << endl;
     for (UINT32 ii = 0; ii < 4; ++ii) {
         if (t_info->src[ii] != 0) {
-            cout << "t_info->src" << ii << ": " << hex << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->src[ii])) << endl;
+            cerr << "t_info->src" << ii << ": " << hex << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->src[ii])) << endl;
         }
     }
 
     for (UINT32 ii = 0; ii < 4; ++ii) {
         if (t_info->dst[ii] != 0) {
-            cout << "t_info->src" << ii << ": " << hex << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->dst[ii])) << endl;
+            cerr << "t_info->src" << ii << ": " << hex << LEVEL_BASE::REG_StringShort(static_cast<LEVEL_BASE::REG>(t_info->dst[ii])) << endl;
         }
     }
 
-    cout << "t_info->cf_type: " << hex << tr_cf_names[(uint32_t) t_info->cf_type] << endl;
-    cout << "t_info->has_immediate: " << hex << (uint32_t) t_info->has_immediate << endl;
-    cout << "t_info->r_dir:" << (uint32_t) t_info->rep_dir << endl;
-    cout << "t_info->has_st: " << hex << (uint32_t) t_info->has_st << endl;
-    cout << "t_info->num_ld: " << hex << (uint32_t) t_info->num_ld << endl;
-    cout << "t_info->mem_read_size: " << hex << (uint32_t) t_info->mem_read_size << endl;
-    cout << "t_info->mem_write_size: " << hex << (uint32_t) t_info->mem_write_size << endl;
-    cout << "t_info->is_fp: " << (uint32_t) t_info->is_fp << endl;
-    cout << "t_info->ld_vaddr1: " << hex << (uint32_t) t_info->ld_vaddr1 << endl;
-    cout << "t_info->ld_vaddr2: " << hex << (uint32_t) t_info->ld_vaddr2 << endl;
-    cout << "t_info->st_vaddr: " << hex << (uint32_t) t_info->st_vaddr << endl;
-    cout << "t_info->instruction_addr: " << hex << (uint32_t) t_info->instruction_addr << endl;
-    cout << "t_info->branch_target: " << hex << (uint32_t) t_info->branch_target << endl;
-    cout << "t_info->actually_taken: " << hex << (uint32_t) t_info->actually_taken << endl;
-    cout << "t_info->write_flg: " << hex << (uint32_t) t_info->write_flg << endl;
-    cout << "*** end of the data strcture *** " << endl;
+    cerr << "t_info->cf_type: " << hex << tr_cf_names[(uint32_t) t_info->cf_type] << endl;
+    cerr << "t_info->has_immediate: " << hex << (uint32_t) t_info->has_immediate << endl;
+    cerr << "t_info->r_dir:" << (uint32_t) t_info->rep_dir << endl;
+    cerr << "t_info->has_st: " << hex << (uint32_t) t_info->has_st << endl;
+    cerr << "t_info->num_ld: " << hex << (uint32_t) t_info->num_ld << endl;
+    cerr << "t_info->mem_read_size: " << hex << (uint32_t) t_info->mem_read_size << endl;
+    cerr << "t_info->mem_write_size: " << hex << (uint32_t) t_info->mem_write_size << endl;
+    cerr << "t_info->is_fp: " << (uint32_t) t_info->is_fp << endl;
+    cerr << "t_info->ld_vaddr1: " << hex << (uint32_t) t_info->ld_vaddr1 << endl;
+    cerr << "t_info->ld_vaddr2: " << hex << (uint32_t) t_info->ld_vaddr2 << endl;
+    cerr << "t_info->st_vaddr: " << hex << (uint32_t) t_info->st_vaddr << endl;
+    cerr << "t_info->instruction_addr: " << hex << (uint32_t) t_info->instruction_addr << endl;
+    cerr << "t_info->branch_target: " << hex << (uint32_t) t_info->branch_target << endl;
+    cerr << "t_info->actually_taken: " << hex << (uint32_t) t_info->actually_taken << endl;
+    cerr << "t_info->write_flg: " << hex << (uint32_t) t_info->write_flg << endl;
+    cerr << "*** end of the data strcture *** " << endl;
 }
 
 
@@ -1145,6 +1150,7 @@ VOID StartAcc(UINT32 AccId)
     gzwrite(currenTraceFile, &m, sizeof(m));
     // Change the trace dump file to the accelerator file
     currenTraceFile = FuncGZFiles[AccId-2];
+    std::cout << "SWITCH\n";
 }
 
 VOID EndAcc()
@@ -1158,18 +1164,19 @@ VOID EndAcc()
     gzwrite(currenTraceFile, &m, sizeof(m));
     // Change the trace dump file back to the main trace -- assuming single thread
     currenTraceFile = trace_info_array[0]->trace_stream;
+    std::cout << "SWITCH\n";
 }
 
 VOID EnterROI()
 {
     g_enable_instrument = true;
-    std::cout << "App ROI at: " << g_inst_count[0] << endl;
+    std::cerr << "App ROI at: " << g_inst_count[0] << endl;
 }
 
 VOID ExitROI()
 {
     g_enable_instrument = false;
-    std::cout << "Exit ROI at: " << g_inst_count[0] << endl;
+    std::cerr << "Exit ROI at: " << g_inst_count[0] << endl;
 }
 
 
