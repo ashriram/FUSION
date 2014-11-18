@@ -5,6 +5,7 @@ Author: Sravanthi Kota Venkata
 #include <stdio.h>
 #include <stdlib.h>
 #include "disparity.h"
+#include <roi.h>
 
 int main(int argc, char* argv[])
 {
@@ -48,7 +49,9 @@ int main(int argc, char* argv[])
 #endif
 
     start = photonStartTiming();
+    __app_roi_begin();
     retDisparity = getDisparity(imleft, imright, WIN_SZ, SHIFT);
+    __app_roi_end();
     endC = photonEndTiming();
 
     printf("Input size\t\t- (%dx%d)\n", rows, cols);

@@ -17,7 +17,7 @@ endif
 endif
 
 CC=gcc
-override CFLAGS += -DGCC -DCHECK -D$(INPUT)
+override CFLAGS += -DGCC -D$(INPUT) -m32 -I../../../../libroi
 
 COMMON_DIR := $(TOP_DIR)/common/c
 M_COMMON := $(TOP_DIR)/common/matlab
