@@ -97,6 +97,8 @@ void processTrace(unsigned ScratchpadSize)
             t.acc_window_delim = true;
             gzwrite(NewTrace, &t, sizeof(t));
 
+            numWindows++;
+
             // Reset load size
             CacheBlocks.clear();
         }
@@ -201,10 +203,13 @@ int main(int argc, char *argv[])
 
         processTrace(ScratchpadSize);
 
-        cerr << "Core " << i << " INT: " << INTIns << " FP: " << FPIns  << " FPMEM: " << FPMEMIns << " INTMEM: " << INTMEMIns << endl;
+        cerr << "Core " << i << " W: " << numWindows+1 << " INT: " << INTIns << " FP: " << FPIns  << " FPMEM: " << FPMEMIns << " INTMEM: " << INTMEMIns << endl;
 
         INTIns = 0;
         FPIns = 0;
+        FPMEMIns = 0;
+        INTMEMIns = 0;
+        numWindows = 0;
 
         gzclose(OrigTrace);
         gzclose(NewTrace);

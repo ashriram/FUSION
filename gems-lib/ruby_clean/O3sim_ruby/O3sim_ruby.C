@@ -217,6 +217,11 @@ void O3sim_ruby::advance_time()
    O3simInterface::advanceTime();
 }
 
+void O3sim_ruby::setLease(unsigned lease)
+{
+    CL_FIXED_LEASE = lease;
+}
+
 
 /*  */
 bool O3sim_ruby::RubyQueueEmpty(unsigned core_id)
@@ -243,7 +248,3 @@ bool O3sim_ruby::isReady(unsigned long long addr, unsigned req_size, unsigned si
    m_driver_ptr->isReady(addr, req_size, sid, tid, is_write, mf);
 }
 
-void O3sim_ruby::ForceUnlockBlock(unsigned long long addr, unsigned core_id)
-{
-
-}

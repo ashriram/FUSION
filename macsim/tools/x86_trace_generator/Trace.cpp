@@ -851,8 +851,8 @@ void finish(void)
         //// thread_id thread_inst_start_count (relative to main thread)
         //configFile << thread_info[ii].thread_id << " " << thread_info[ii].inst_count << endl;
     //}
-    configFile << AccFuncs.size() + 1 << " x86" << endl;
-    for(unsigned ii = 0; ii < AccFuncs.size() + 1; ii++)
+    configFile << AccFuncs.size() + 2 << " x86" << endl;
+    for(unsigned ii = 0; ii < AccFuncs.size() + 2; ii++)
         configFile << ii << " 0" << endl;
     configFile.close();
 

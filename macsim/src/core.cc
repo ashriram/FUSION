@@ -393,10 +393,11 @@ void core_c::run_a_cycle(void)
         if(m_core_id == 1)
         {
             
-            if(m_active)
+            //if(m_active)
             {
                 if(!*KNOB(KNOB_ENABLE_DMA_CORE))
                 {
+                    //report("Switching to " << m_next);
                     m_simBase->m_core_pointers[m_next]->m_active = true;
                     m_simBase->m_core_pointers[m_next]->start_frontend();
                     m_active = false;
@@ -428,6 +429,8 @@ void core_c::run_a_cycle(void)
             /************  ACC CORE  ******************/
 
             // run each pipeline stages in backwards
+            
+            //if(m_core_id == 3) report ("3 is active");
 
             m_exec->run_a_cycle();
             m_retire->run_a_cycle();

@@ -43,9 +43,7 @@ public:
 
     void RubyQueuePop(unsigned core_id);
 
-    // Hack to make sure stray blocks are unlocked
-    void ForceUnlockBlock(unsigned long long addr, unsigned core_id);
-
+    void setLease(unsigned lease);
 
     void print_stats(std::ostream& out);
 
