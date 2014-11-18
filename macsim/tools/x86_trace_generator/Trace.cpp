@@ -627,6 +627,8 @@ void instrument(INS ins)
             info->acc_heap_load = true;
             cout << hex << info->ld_vaddr1 << dec << endl;
         }
+        cout << "LOAD1: "<< hex << info->ld_vaddr1 << dec << endl;
+        cout << "LOAD2: "<< hex << info->ld_vaddr2 << dec << endl;
     }
 
 
@@ -646,6 +648,7 @@ void instrument(INS ins)
             info->acc_heap_store = true;
             cout << hex << info->st_vaddr << dec << endl;
         }
+        cout  << "STORE: " << hex << info->st_vaddr << dec << endl;
     }
 
 
