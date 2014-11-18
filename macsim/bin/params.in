@@ -1,8 +1,8 @@
 
 # Simulation Configuration
-num_sim_cores 4
+num_sim_cores 8
 num_sim_small_cores 0
-num_sim_medium_cores 3
+num_sim_medium_cores 7
 num_sim_large_cores 1
 core_type ptx
 medium_core_type x86
@@ -93,15 +93,15 @@ perfect_icache 1
 enable_cache_coherence 0
 dram_merge_requests 1
 mem_ooo_stores 0
-memory_type l3_decoupled_network
+memory_type no_cache 
 byte_level_access 0
 infinite_port 0
 mem_mshr_size 8
 meu_large_nlb 32
 meu_large_nsb 32
 
-ruby_num_banks 4
-ruby_num_dir 4
+ruby_num_banks 8
+ruby_num_dir 8
 
 # L3 Cache
 num_l3 4

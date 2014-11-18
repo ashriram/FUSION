@@ -215,7 +215,8 @@ void macsim_c::init_memory(void)
   m_invalid_uop->init();
 
   // main memory
-  string memory_type = m_simBase->m_knobs->KNOB_MEMORY_TYPE->getValue();
+  //string memory_type = m_simBase->m_knobs->KNOB_MEMORY_TYPE->getValue();
+  string memory_type = string("no_cache");
   m_memory = mem_factory_c::get()->allocate(memory_type, m_simBase);
 
   // dram controller
