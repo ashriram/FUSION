@@ -623,9 +623,10 @@ void instrument(INS ins)
         }
 
         if(!INS_IsStackRead(ins))
+        {
             info->acc_heap_load = true;
-        else
             cout << hex << info->ld_vaddr1 << dec << endl;
+        }
     }
 
 
@@ -641,10 +642,10 @@ void instrument(INS ins)
                 IARG_THREAD_ID, IARG_END);
 
         if(!INS_IsStackWrite(ins))
+        {
             info->acc_heap_store = true;
-        else
             cout << hex << info->st_vaddr << dec << endl;
-
+        }
     }
 
 
