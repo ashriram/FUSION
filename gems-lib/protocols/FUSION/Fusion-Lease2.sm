@@ -593,7 +593,7 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
 
     action(wa_sendAckToRequestor, "wa", desc="Send Ack (non-global) from cache to requestor") {
         peek(L1RequestIntraChipL2Network_in, RequestMsg) {
-            enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L1_to_L2_MSG_LATENCY") {
+            enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2T_to_L1T_DATA_LATENCY") {
                 out_msg.Address := address;
                 out_msg.Type := CoherenceResponseType:ACK;
                 out_msg.Sender := machineID;
@@ -606,9 +606,11 @@ machine(L2TCache, "FUSION Leasing v2 L2 Cache CMP") {
             }
         }
     }
-
+    // L2T_to_L1T_DATA_LATENCY should be used and not message latency 
+    // as they are sent on the same ordered network which can cause some messages with lower 
+    // latency to be popped later.
     action(wat_sendAckToRequestorFromTBE, "wat", desc="Send ack (non-global) from cache to requestor from TBE") {
-        enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L1_to_L2_MSG_LATENCY") {
+        enqueue(responseIntraChipL2Network_out, ResponseMsg, latency="L2T_to_L1T_DATA_LATENCY") {
             out_msg.Address := address;
             out_msg.Type := CoherenceResponseType:ACK;
             out_msg.Sender := machineID;

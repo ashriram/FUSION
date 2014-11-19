@@ -384,7 +384,7 @@ void core_c::run_a_cycle(void)
 {
     if(!m_active)
     {
-        ++m_cycle; 
+        //++m_cycle; 
         return;
     }
     m_simBase->m_active_core = m_core_id;
@@ -498,6 +498,7 @@ void core_c::run_a_cycle(void)
         //std::cerr << "Frontend Stalled : Core Running\n";
 
         ++m_cycle;
+        return;
     }
 }
 

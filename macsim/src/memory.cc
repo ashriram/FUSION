@@ -1346,7 +1346,7 @@ memory_c::memory_c(macsim_c* simBase)
     //                         8, 1, true, true, 1 ,"lsct","high","debug");
 
     m_ruby = new O3sim_ruby( *KNOB(KNOB_NUM_SIM_MEDIUM_CORES)+1, // [>1CPU, +1 for DMA, +8 for ACC but num procs needs to be ^2 <]
-                             1, *KNOB(KNOB_RUBY_NUM_BANKS), *KNOB(KNOB_RUBY_NUM_DIR), true, true, 1 ,"lC","med","/dev/null");
+                             1, *KNOB(KNOB_RUBY_NUM_BANKS), *KNOB(KNOB_RUBY_NUM_DIR), true, true, 1 ,"lq","high","/dev/null");
     m_ruby->initialize();
 
     // allocate mshr
