@@ -447,9 +447,11 @@ void core_c::run_a_cycle(void)
 
             if(*KNOB(KNOB_ACC_LEASE_UPDATE))
             {
-                int64_t remain = m_simBase->cache_lease_time[m_core_id] - m_cycle;
-                assert(remain > 0);
-                m_simBase->m_memory->m_ruby->setLease(remain);
+                int64_t lease = m_simBase->cache_lease_time[m_core_id];
+                int64_t remain =  lease - m_cycle;
+                if( remain <= 0 ) report("Core " << m_core_id << " cycle " << m_cycle << " lease " << lease);
+                //assert(remain > 0);
+                m_simBase->m_memory->m_ruby->setLease(lease);
                 
             }
 

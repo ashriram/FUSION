@@ -74,12 +74,12 @@ mem_medium_mshr_size 256
 l1_medium_line_size 32
 enable_dma_core 0
 acc_lease_update 0
-cl_lease_acc2 1000
-cl_lease_acc3 1000
-cl_lease_acc4 1000
-cl_lease_acc5 1000
-cl_lease_acc6 1000
-cl_lease_acc7 1000
+cl_lease_acc2 12000
+cl_lease_acc3 1700
+cl_lease_acc4 5350
+cl_lease_acc5 1700
+cl_lease_acc6 1700
+cl_lease_acc7 3450
 
 
 # Large Core Configuration
@@ -118,8 +118,8 @@ mem_mshr_size 8
 meu_large_nlb 32
 meu_large_nsb 32
 
-ruby_num_banks 8
-ruby_num_dir 8
+ruby_num_banks 4
+ruby_num_dir 4
 
 # L3 Cache
 num_l3 4
