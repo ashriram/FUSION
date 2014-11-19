@@ -1354,7 +1354,13 @@ memory_c::memory_c(macsim_c* simBase)
     m_mshr_free_list = new list<mem_req_s*>[m_num_core];
 
     for (int ii = 0; ii < m_num_core; ++ii) {
-        for (int jj = 0; jj < *m_simBase->m_knobs->KNOB_MEM_MSHR_SIZE; ++jj) {
+        int num_mshr = 0;
+        if(ii > 0)
+            num_mshr = *KNOB(KNOB_MEM_MEDIUM_MSHR_SIZE);
+        else
+            num_mshr = *KNOB(KNOB_MEM_MSHR_SIZE);
+
+        for (int jj = 0; jj < num_mshr; ++jj) {
             mem_req_s* entry = new mem_req_s(simBase);
             m_mshr_free_list[ii].push_back(entry);
         }
