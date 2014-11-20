@@ -5,28 +5,15 @@ uint32_t makeCacheAddr(uint32_t addr)
     return (addr >> 5) << 5;
 }
 
-void processTrace(unsigned ScratchpadSize)
+void processTrace(unsigned ScratchpadSize, int acc_id)
 {
+    cerr << "Processing ACC " << acc_id << " Segment " << SegmentCounter[acc_id] << endl;
     Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
-    while(gzread(OrigTrace, (void*)inst, sizeof(Inst_info)) > 0)
+    bool SegDrain = false;
+    while(gzread(OrigTrace[acc_id], (void*)inst, sizeof(Inst_info)) > 0 && !SegDrain)
     {
         Inst_info *II = (Inst_info*)malloc(sizeof(Inst_info));
         memcpy((void *)II, (void *)inst, sizeof(Inst_info));
-
-        if(!(II->ld_vaddr1 || II->ld_vaddr2 || II->st_vaddr))
-        {
-            if(II->is_fp)
-                FPIns++;
-            else
-                INTIns++;
-        }
-        else
-        {
-            if(II->is_fp)
-                FPMEMIns++;
-            else
-                INTMEMIns++;
-        }
 
         if(II->acc_heap_load)
         {
@@ -50,18 +37,15 @@ void processTrace(unsigned ScratchpadSize)
         // Other insts including the load insts themselves
         OtherInsts.push_back(II);
 
-        bool SegDrain = II->acc_segment_delim;
+        SegDrain = II->acc_segment_delim;
 
-        // If ScratchpadSize is exceeded, then drain
+        // If ScratchpadSize is exceeded or Segment delim seen 
         if(CacheBlocks.size()*32 == ScratchpadSize || SegDrain )
         {
-            //cerr << "Load Size: " << loadSize << "\n";
-            //cerr << "Cache Size: " << CacheBlocks.size()*32 << "\n";
-
             // Write out DMALoads
             for(auto &dl : DMALoadInsts)
             {
-                gzwrite(DMATrace, dl.second, sizeof(Inst_info));
+                gzwrite(NewTrace[1], dl.second, sizeof(Inst_info));
             }
             cerr << "DMALoad: " << DMALoadInsts.size() << endl;
             DMALoadInsts.clear();
@@ -71,14 +55,13 @@ void processTrace(unsigned ScratchpadSize)
             memset((void *)&delim, 0, sizeof(Inst_info));
             delim.opcode = TR_NOP;
             delim.acc_window_delim = true;
-            gzwrite(DMATrace, &delim, sizeof(Inst_info));
+            gzwrite(NewTrace[1], &delim, sizeof(Inst_info));
             cerr << "Write DMA delim" << endl;
-            DMAdelim++;
 
             // Write out DMAStores
             for(auto &dl : DMAStoreInsts)
             {
-                gzwrite(DMATrace, dl.second, sizeof(Inst_info));
+                gzwrite(NewTrace[1], dl.second, sizeof(Inst_info));
             }
             cerr << "DMAStore: " << DMAStoreInsts.size() << endl;
             DMAStoreInsts.clear();
@@ -86,15 +69,15 @@ void processTrace(unsigned ScratchpadSize)
             // Write out the load instructions
             for(auto &l : LoadInsts)
             {
-                gzwrite(NewTrace, l.second, sizeof(Inst_info));
+                gzwrite(NewTrace[acc_id], l.second, sizeof(Inst_info));
             }
             LoadInsts.clear();
 
             // Write out the other instructions 
             for(auto &i : OtherInsts)
             {
-                gzwrite(NewTrace, i, sizeof(Inst_info));
-                free(i);
+                gzwrite(NewTrace[acc_id], i, sizeof(Inst_info));
+                free(i); // Frees memory for II
             }
             OtherInsts.clear();
 
@@ -105,35 +88,42 @@ void processTrace(unsigned ScratchpadSize)
                 memset((void*)&t, 0, sizeof(t));
                 t.opcode = TR_NOP;
                 t.acc_window_delim = true;
-                gzwrite(NewTrace, &t, sizeof(t));
+                gzwrite(NewTrace[acc_id], &t, sizeof(t));
+            }
 
-                numWindows++;
-            }
-            else
-            {
-                numSegments++;
-            }
-            
             // Reset load size
             CacheBlocks.clear();
         }
     }
     free(inst);
-    
+
     assert(DMALoadInsts.size() == 0 && "DMALoadInsts not empty");
     assert(DMAStoreInsts.size() == 0 && "DMAStoreInsts not empty");
     assert(LoadInsts.size() == 0 && "LoadInsts not empty");
     assert(OtherInsts.size() == 0 && "OtherInsts not empty");
+    assert(CacheBlocks.size() == 0 && "CacheBlocks not empty");
 
     // Write window delim
     Inst_info delim;
     memset((void *)&delim, 0, sizeof(Inst_info));
     delim.opcode = TR_NOP;
     delim.acc_window_delim = true;
-    gzwrite(DMATrace, &delim, sizeof(Inst_info));
+    gzwrite(NewTrace[1], &delim, sizeof(Inst_info));
     cerr << "Write DMA delim" << endl;
-    DMAdelim++;
 
+    SegmentCounter[acc_id]++;
+}
+
+void processCPUTrace(unsigned ScratchpadSize)
+{
+    Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
+    while(gzread(OrigTrace[0], (void*)inst, sizeof(Inst_info)) > 0)
+    {
+        if(inst->acc_segment_delim)
+            processTrace(ScratchpadSize, inst->acc_id);
+
+    }
+    free(inst);
 }
 
 int main(int argc, char *argv[])
@@ -144,73 +134,58 @@ int main(int argc, char *argv[])
         return 0; 
     }
 
-    // Open trace.txt to find out the number of traces
 
-    ifstream traceTxt("trace.txt",ios::in);
-    if(!traceTxt.is_open())
+    for(int t = 0; t < 8; t++)
     {
-        cerr << "Could not open trace.txt\n";
-        return 0;
-    }
-
-    int numTraces = 0;
-    traceTxt >> numTraces;
-    traceTxt.close();
-
-    assert(numTraces > 2 && numTraces <= 8 && "Need 1 DMA trace and 6 or less ACC traces");
-
-    //cerr << "numTraces: " << numTraces << "\n";
-
-    DMATrace = gzopen("trace_1.raw","wb");
-    if(!DMATrace)
-    {
-        cerr << "Could not open trace file (trace_1.raw) for DMA Trace\n";
-        return 0;
-    }
-
-    for(int i = 2; i < numTraces; i++)
-    {
-        string OrigFilename = string("trace_") + to_string(i) + string(".raw");
-        OrigTrace = gzopen(OrigFilename.c_str(), "rb");
-        string NewFilename = string("new.trace_") + to_string(i) + string(".raw");
-        NewTrace = gzopen(NewFilename.c_str(),"wb");
-
-        if(!OrigTrace || !NewTrace)
+        if(t != 1) // Don't read a DMA Trace
         {
-            cerr << "Could not open trace files" << endl;
-            return 0;
+            string OrigFilename = string("trace_") + to_string(t) + string(".raw");
+            OrigTrace[t] = gzopen(OrigFilename.c_str(), "rb");
+            if(!OrigTrace[t])
+            {
+                cerr << "Could not open trace_" << t << ".raw" << endl;
+                return 1;
+            }
         }
 
-        unsigned ScratchpadSize = 0;
-        istringstream(argv[1]) >> ScratchpadSize;
+        if(t != 0) // Don't write a new CPU trace
+        {
+            string NewFilename = string("new.trace_") + to_string(t) + string(".raw");
+            NewTrace[t] = gzopen(NewFilename.c_str(),"wb");
+            if(!NewTrace[t])
+            {
+                cerr << "Could not open " << NewTrace[t] << endl;
+                return 1;
+            }
 
-        assert(ScratchpadSize % 32 == 0 && "ScratchpadSize should be a multiple of 32");
-
-        //cerr << " Core " << i << endl;
-
-        processTrace(ScratchpadSize);
-
-        cerr << "Core " << i << " W: " << numWindows+numSegments << " INT: " << INTIns << " FP: " << FPIns  << " FPMEM: " << FPMEMIns << " INTMEM: " << INTMEMIns << endl;
-        cerr << "DMA Delims: " << DMAdelim << endl;
-        cerr << "**********************************************************\n";
-
-        INTIns = 0;
-        FPIns = 0;
-        FPMEMIns = 0;
-        INTMEMIns = 0;
-        numWindows = 0;
-        numSegments = 0;
-
-        gzclose(OrigTrace);
-        gzclose(NewTrace);
-
-        string OldFilename = string("orig.") + OrigFilename;
-        system((string("mv ")+OrigFilename+string(" ")+OldFilename).c_str());
-        system((string("mv ")+NewFilename+string(" ")+OrigFilename).c_str());
+        }
     }
-    
-    cerr << "DMA Delims: " << DMAdelim << endl;
 
-    gzclose(DMATrace);
+    unsigned ScratchpadSize = 0;
+    istringstream(argv[1]) >> ScratchpadSize;
+
+    assert(ScratchpadSize % 32 == 0 && "ScratchpadSize should be a multiple of 32");
+
+    processCPUTrace(ScratchpadSize);
+
+    // Close files
+
+    for(int t = 0; t < 8; t++)
+    {
+        if(t != 1)
+            gzclose(OrigTrace[t]);
+        if(t != 0)
+            gzclose(NewTrace[t]);
+    }
+
+    // Rename
+    for(int t = 0; t < 8; t++)
+    {
+        if(t != 1 && t != 0)
+            system((string("mv ")+string("trace_")+to_string(t)+string(".raw orig.trace_")+to_string(t)+string(".raw")).c_str());
+        if(t != 0)
+            system((string("mv ")+string("new.trace_")+to_string(t)+string(".raw trace_")+to_string(t)+string(".raw")).c_str());
+    }
+
     return 0;
 }

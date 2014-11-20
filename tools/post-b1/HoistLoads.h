@@ -16,8 +16,9 @@
 
 using namespace std;
 
-gzFile OrigTraces[8];
+gzFile OrigTrace[8];
 gzFile NewTrace[8];
+unsigned SegmentCounter[8] = {0};
 
 struct Inst_info {
     uint8_t num_read_regs;      // 3-bits
@@ -53,14 +54,6 @@ set<uint32_t> CacheBlocks;
 
 map<uint32_t, Inst_info*> DMALoadInsts;
 map<uint32_t, Inst_info*> DMAStoreInsts;
-
-unsigned long long INTIns = 0;
-unsigned long long FPIns = 0;
-unsigned long long FPMEMIns = 0;
-unsigned long long INTMEMIns = 0;
-unsigned long long numWindows = 0;
-unsigned long long numSegments = 0;
-unsigned long long DMAdelim = 0;
 
 enum TR_OPCODE_enum {
   TR_MUL = XED_CATEGORY_LAST ,
