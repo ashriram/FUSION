@@ -9,7 +9,7 @@ float cal_learned_func(int k, F2D* a, float* b, int N, F2D* Y, F2D* X, int dim)
     float s, ret;
     int i, j, m, n;
     F2D *temp, *temp1;
-
+    printf("cal_learned_func   called \n");
     s=0;
     for(i=0; i<N; i++)
     {

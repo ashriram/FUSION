@@ -11,7 +11,7 @@ F2D* imageBlur(I2D* imageIn)
     float temp;
     I2D *kernel;
     int k, kernelSize, startCol, endCol, halfKernel, startRow, endRow, i, j, kernelSum;
-
+    printf("imageBlur \n");
     rows = imageIn->height;
     cols = imageIn->width;
 

@@ -13,7 +13,7 @@ F2D* imageResize(F2D* imageIn)
     int kernelSize, startCol, endCol, halfKernel, startRow, endRow, i, j, kernelSum;
     int outputRows, outputCols;
     F2D *temp;
-
+    printf("imageResize \n");
     rows = imageIn->height;
     cols = imageIn->width;
     

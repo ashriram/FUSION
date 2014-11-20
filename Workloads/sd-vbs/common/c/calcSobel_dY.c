@@ -13,7 +13,7 @@ F2D* calcSobel_dY(F2D* imageIn)
     int k, kernelSum_2, outputRows, outputCols;
     F2D *imageOut, *tempOut;
     float kernelSum_1;
-
+    printf("calcSobel_dY \n");
     rows = imageIn->height;
     cols = imageIn->width;
     

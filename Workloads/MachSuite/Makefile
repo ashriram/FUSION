@@ -19,6 +19,7 @@ BENCHMARKS=\
 	stencil/stencil3d \
 	viterbi/viterbi
 
+CFLAGS+= -m32 -pg -g  -I../../libroi/
 build:
 	@( for b in $(BENCHMARKS); do $(MAKE) CFLAGS="$(CFLAGS)" -C $$b || exit ; done )
 

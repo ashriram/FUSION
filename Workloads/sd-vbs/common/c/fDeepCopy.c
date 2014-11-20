@@ -9,7 +9,7 @@ F2D* fDeepCopy(F2D* in)
     int i, j;
     F2D* out;
     int rows, cols;
-    
+    //printf("fDeepCopy\n");    
     rows = in->height;
     cols = in->width;
 

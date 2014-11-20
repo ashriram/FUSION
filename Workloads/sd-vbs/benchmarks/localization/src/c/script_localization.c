@@ -5,7 +5,7 @@ Author: Sravanthi Kota Venkata
 #include <stdio.h>
 #include <stdlib.h>
 #include "localization.h"
-
+#include <roi.h>
 int main(int argc, char* argv[])
 {
     int n, i, j, k, icount=-1;
@@ -93,6 +93,7 @@ int main(int argc, char* argv[])
     /** Start Timing **/ 
     start = photonStartTiming(); 
  
+    __app_roi_begin();
     {
         F2D *eulAngle, *randn;
         eulAngle = fSetArray(n, 3, 0);
@@ -122,7 +123,7 @@ int main(int argc, char* argv[])
     index = iSetArray(1,1,-1);
     sType = iSetArray(1,1,-1);
     isEOF = iSetArray(1,1,-1);
-    
+    __app_roi_end(); 
     /** Timing utils **/   
     endC = photonEndTiming();
     elapsed = photonReportTiming(start, endC);
@@ -151,7 +152,8 @@ int main(int argc, char* argv[])
 
         /** Start Timing **/ 
         start = photonStartTiming(); 
-
+        
+        __app_roi_begin();  
         if( asubsref(sType,0) ==2)
         {
 
@@ -468,6 +470,7 @@ int main(int argc, char* argv[])
 
     }
 
+    __app_roi_end(); 
     /** Timing utils **/   
     endC = photonEndTiming();
     elt = photonReportTiming(start, endC);

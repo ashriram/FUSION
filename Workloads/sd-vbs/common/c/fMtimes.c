@@ -18,6 +18,7 @@ F2D* fMtimes(F2D* a, F2D* b)
 
     out = fMallocHandle(m,n);
 
+    printf("fMtimes called \n");
     for(i=0; i<m; i++)
     {
         for(j=0; j<n; j++)

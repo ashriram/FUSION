@@ -12,7 +12,7 @@ void integralImage2D2D(F2D* SAD, F2D* integralImg)
     
     nr = SAD->height;
     nc = SAD->width;
-    
+    printf("integralImage2D2D \n") ;    
     for(i=0; i<nc; i++)
         subsref(integralImg,0,i) = subsref(SAD,0,i);
     

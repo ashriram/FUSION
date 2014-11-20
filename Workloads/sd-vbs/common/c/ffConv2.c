@@ -9,7 +9,7 @@ F2D* ffConv2(F2D* a, F2D* b)
     F2D *c, *out;
     int ma, na, mb, nb, ci, cj, i, j, m, n, ri, mm, nn;
     int r_index, c_index;
-
+    //printf("ffConv2\n");
     ma = a->height;
     na = a->width;
 

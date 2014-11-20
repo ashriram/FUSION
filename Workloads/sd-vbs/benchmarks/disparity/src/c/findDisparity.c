@@ -9,7 +9,7 @@ Author: Sravanthi Kota Venkata
 void findDisparity(F2D* retSAD, F2D* minSAD, I2D* retDisp, int level, int nr, int nc)
 {
     int i, j, a, b;
-    
+    printf("findDisparity \n");    
     for(i=0; i<nr; i++)
     {
         for(j=0; j<nc; j++)

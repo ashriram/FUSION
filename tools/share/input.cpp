@@ -6,9 +6,9 @@ uint32_t makeCacheAddr(uint32_t addr)
     return (addr >> 5) << 5;
 }
 
-void processTrace()
+unsigned long long  processTrace()
 {
-    unsigned loadSize = 0;
+    unsigned long long  loadSize = 0;
     //unsigned storeSize = 0;
     Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
     while(gzread(OrigTrace, (void*)inst, sizeof(Inst_info)) > 0)
@@ -54,7 +54,7 @@ void processTrace()
 
     }
     free(inst);
-
+    return loadSize;
 }
 
 
@@ -62,7 +62,7 @@ void processTrace()
 void storeTrace( int i )
 {
 
-    string LdMemTraceFilename = string("bin/mem_trace_") + to_string(i) + string(".out");
+    string LdMemTraceFilename = string("mem_trace_") + to_string(i) + string(".out");
     //MemLoadFilename = gzopen(LdMemTraceFilename.c_str(), "wb");    
     ofstream myfile;
     myfile.open (LdMemTraceFilename);
@@ -139,7 +139,8 @@ void  countDatasharing(int i, int j)
     trace_i.close();
     trace_j.close();
     
-    cout <<"DATA sharing between " <<i <<"and "<<j << "=  "<<data_sharing_count<<endl;
+    cout <<"DATA sharing between " <<i <<"and "<<j << "=  "<<data_sharing_count<<"\n"<<endl;
+
     //free(inst_i);
 }
 
@@ -160,11 +161,11 @@ int main()
     cout<<"num of traces "<<numTraces<<"\n";
     traceTxt.close();
 
-    assert(numTraces > 2 && numTraces < 8 && "Need 1 DMA trace and 6 or less ACC traces");
+    assert(numTraces > 2 && numTraces < 9 && "Need 1 DMA trace and 6 or less ACC traces");
 
     //cerr << "numTraces: " << numTraces << "\n";
 
-    for(int i = 2; i < numTraces + 1 ; i++)
+    for(int i = 2; i < numTraces  ; i++)
     {
         string OrigFilename = string("trace_") + to_string(i) + string(".raw");
         OrigTrace = gzopen(OrigFilename.c_str(), "rb");
@@ -175,8 +176,8 @@ int main()
             cerr << "Could not open trace files  " <<OrigFilename <<endl;
             return 0;
         }
-
-        processTrace();
+        //unsigned long long  total_load_size =0;
+        cout<< "Total load + Store size for i=" <<i<<" is "<<processTrace()<<endl;
         storeTrace(i);
 
         gzclose(OrigTrace);

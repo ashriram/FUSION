@@ -5,6 +5,8 @@ Author: Sravanthi Kota Venkata
 #include "stitch.h"
 #include <math.h>
 
+#include <roi.h>
+
 #define min(a,b) (a<b)?a:b
 
 F2D* extractFeatures(I2D* I, F2D* x, F2D* y)
@@ -58,9 +60,13 @@ F2D* extractFeatures(I2D* I, F2D* x, F2D* y)
     vecF = fMallocHandle(n, 64);
     I1 = fiDeepCopy(I);
 
+    __app_roi_begin();
     Iconv = ffConv2(I1, g);
     fFreeHandle(I1);
     I1 = ffConv2(Iconv, g);
+    __app_roi_end();
+    
+    
     fFreeHandle(Iconv);
     Iconv = fDeepCopy(I1);
 

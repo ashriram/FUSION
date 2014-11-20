@@ -12,7 +12,7 @@ void padarray4(I2D* inMat, I2D* borderMat, int dir, I2D* paddedArray)
     int rows, cols, bRows, bCols, newRows, newCols;
     int i, j;
     int adir;
-   
+    printf("padarray4 \n ");   
     adir = abs(dir); 
     rows = inMat->height;
     cols = inMat->width;

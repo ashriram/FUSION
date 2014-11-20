@@ -8,7 +8,7 @@ F2D* ffVertcat(F2D* matrix1, F2D* matrix2)
 {
     F2D *outMatrix;
     int row1, col1, row2, col2, i, j, k;
-
+    //printf("ffVertcat called  \n ");
     row1 = matrix1->height;
     col1 = matrix1->width;
 
