@@ -30,7 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <roi.h>
 #define TYPE char
 
 #define N 128
@@ -44,6 +44,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /*void needwun(char seqA[N], char seqB[M], char allignedA[N+M], char allignedB[M+N]);*/
 
 void needwun(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
+             int A[dyn_size], char ptr[dyn_size]);
+
+//void needwun_1(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
+//             int A[dyn_size], char ptr[dyn_size]);
+void needwun_2(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
              int A[dyn_size], char ptr[dyn_size]);
 ////////////////////////////////////////////////////////////////////////////////
 // Test harness interface code.
@@ -60,7 +65,11 @@ int INPUT_SIZE = sizeof(struct bench_args_t);
 
 void run_benchmark( void *vargs ) {
   struct bench_args_t *args = (struct bench_args_t *)vargs;
+  __app_roi_begin();
   needwun( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
+ // needwun_1( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
+  needwun_2( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
+  __app_roi_end();
 }
 
 ////////////////////////////////////////////////////////////////////////////////

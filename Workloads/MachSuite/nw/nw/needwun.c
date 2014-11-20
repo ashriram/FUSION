@@ -33,14 +33,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 void needwun(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
              int A[dyn_size], char ptr[dyn_size]){
 
-    int score, match, mismatch, gap,
-        choice1, choice2, choice3, max,
-        i, j, i_t, j_t,
-        Mul1, Mul2, Mul3;
+    int mismatch, i,j,max;
 
-    match       = 1;
+    int score, match, gap,
+        choice1, choice2, choice3, 
+        Mul1, Mul2;//, Mul3;
+
+
     mismatch    = -1;
-    gap         = -1;
 
     init_row : for(i = 0; i < N1; i++){
         A[i]   = i * mismatch;
@@ -49,7 +49,9 @@ void needwun(char SEQA[N], char SEQB[M], char allignedA[sum_size], char alligned
     init_col : for(i = 0; i <M1; i++){
         A[i * N1] = i * mismatch;
     }
-
+    gap         = -1;
+    match  = 1;
+    mismatch    = -1;
     //matrix Filling Loop
     fill_out : for(i = 1; i < M1; i++){
         fill_in : for(j = 1; j < N1; j++){
@@ -59,7 +61,7 @@ void needwun(char SEQA[N], char SEQB[M], char allignedA[sum_size], char alligned
             else{
                 score = mismatch;
             }
-
+                  }
             Mul1 = (i-1) * N1;
             Mul2 = (i*N1);
 
@@ -90,11 +92,29 @@ void needwun(char SEQA[N], char SEQB[M], char allignedA[sum_size], char alligned
         }
     }
 
+void needwun_2(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
+    int A[dyn_size],char ptr[dyn_size]){
+    //ptr   SEQA  SEQB allignedA allignedB  
+    int  i, j, i_t, j_t;
     //TraceBack
     i = M;
     j = N;
     i_t = 0;
     j_t = 0;
+    int Mul3;
+    int mismatch = -1;
+ 
+    init_row : for(i = 0; i < N1; i++){
+        A[i]   = i * mismatch;
+    }
+
+    init_col : for(i = 0; i <M1; i++){
+        A[i * N1] = i * mismatch;
+    }
+
+
+
+
 
     trace : while(i > 0 || j > 0){
         Mul3 = j*M;

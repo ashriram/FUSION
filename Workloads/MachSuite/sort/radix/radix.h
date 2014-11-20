@@ -36,7 +36,7 @@ In Proceedings of the 3rd Workshop on General-Purpose Computation on Graphics Pr
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <roi.h>
 #define TYPE int
 
 #define N 2048
@@ -72,7 +72,9 @@ int INPUT_SIZE = sizeof(struct bench_args_t);
 
 void run_benchmark( void *vargs ) {
   struct bench_args_t *args = (struct bench_args_t *)vargs;
+__app_roi_begin();
   ss_sort( args->a, args->b, args->bucket, args->sum );
+  __app_roi_end();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
