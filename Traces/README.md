@@ -19,6 +19,11 @@
         a. enable_dma_core 0
         b. cl_lease_accN X (where N is accelerator core from 2 to 7 and X is the lease time in cycles)
         c. acc_lease_update 1
-4. b4 : Fusion protocol where the current acc will forward the shared data to the next acc. (PENDING)
+4. b4 : Fusion protocol where the current acc will forward the shared data to the next acc. 
+    1. DMA trace not required, but post processing tool needs to be run to move loads up.
+    2. Use same lease time as previous cases for each accelerated function
+    3. Configs to set in params.in
+        a. enable_dma_core 0
+        b. acc_lease_update 1
 
 LARGE configs will replace the 4K scratchpads/L0 with 8K and the shared L1 will be increased in size from 64K to 256K.
