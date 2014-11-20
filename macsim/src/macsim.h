@@ -179,7 +179,7 @@ class macsim_c
         int m_end_simulation; /**< flag to end simulation */
 
         //ska124
-        int m_active_core;
+        bool read_delim;
 
     // statistics
         all_stats_c*         m_allStats; /**< all statistics */

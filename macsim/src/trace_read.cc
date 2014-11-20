@@ -1437,6 +1437,9 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
                 // DMA core_id is 1, set as active and set next accid
                 //m_simBase->m_core_pointers[1]->m_active = true;
                 m_simBase->m_core_pointers[1]->m_next = Id;
+
+                // We have read a delimiter
+                m_simBase->read_delim = true;
             }
             else if(thread_trace_info->m_next_trace_info->acc_window_delim == true)
             {
@@ -1446,6 +1449,8 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
                     m_simBase->m_core_pointers[1]->m_next = core_id;
 
                 m_simBase->m_core_pointers[core_id]->stop_frontend();
+                // We have read a delimiter
+                m_simBase->read_delim = true;
             }
         //}
 
