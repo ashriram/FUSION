@@ -5,6 +5,7 @@ Author: Sravanthi Kota Venkata
 #include <stdio.h>
 #include <stdlib.h>
 #include "svm.h"
+#include <roi.h>
 
 int main(int argc, char* argv[])
 {
@@ -86,7 +87,7 @@ int main(int argc, char* argv[])
 
     /** Start timing **/
     start = photonStartTiming();
-
+    __app_roi_begin();
     alpha = getAlphaFromTrainSet(N, trn1, trn2, iter);
     a_result = alpha->a_result;
     b_result = alpha->b_result;
@@ -134,9 +135,9 @@ int main(int argc, char* argv[])
         asubsref(result,n) = maxs;
     }
 
+    __app_roi_end();
     /** Timing utils */
     stop = photonEndTiming();
-
 #ifdef CHECK   
     /** Self checking - use expected.txt from data directory  **/
     {

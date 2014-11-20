@@ -9,7 +9,7 @@ F2D* fDeepCopyRange(F2D* in, int startRow, int numberRows, int startCol, int num
     int i, j, k;
     F2D *out;
     int rows, cols;
-    
+    printf("fDeepCopyRange called \n");    
     rows = numberRows + startRow;
     cols = numberCols + startCol;
     out = fMallocHandle(numberRows, numberCols);

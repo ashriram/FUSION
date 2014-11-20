@@ -3,7 +3,7 @@ Author: Sravanthi Kota Venkata
 ********************************/
 
 #include "tracking.h"
-
+#include <roi.h>
 int main(int argc, char* argv[])
 {
     int i, j, k, N_FEA, WINSZ, LK_ITER, rows, cols;
@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
     
     /** Start Timing **/
     start = photonStartTiming();
-
+    __app_roi_begin();
     
     /** IMAGE PRE-PROCESSING **/
 
@@ -144,7 +144,9 @@ int main(int argc, char* argv[])
 		}
     } 
      
+    __app_roi_end();
     end = photonEndTiming();
+
     elapsed = photonReportTiming(start, end);
 
     fFreeHandle(verticalEdgeImage);

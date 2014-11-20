@@ -14,7 +14,7 @@ F2D* fillFeatures(F2D* lambda, int N_FEA, int win)
     int rows = lambda->height;
     int cols = lambda->width;
     F2D* features;
-
+    printf("fillFeatures \n");
 	features = fSetArray(3, N_FEA, 0);
 
 	/** init array **/

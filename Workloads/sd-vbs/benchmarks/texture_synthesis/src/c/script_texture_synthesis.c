@@ -3,6 +3,7 @@ Author: Sravanthi Kota Venkata
 ********************************/
 
 #include "texture.h"
+#include <roi.h>
 
 int WIDTHin,HEIGHTin;
 F2D *target, *result;
@@ -25,7 +26,9 @@ int  main(int argc, char **argv)
     init_params(data);
 
     start = photonStartTiming();
+    __app_roi_begin();
     create_texture(image, data);
+    __app_roi_end();
     end = photonEndTiming();
     elapsed = photonReportTiming(start, end);
 

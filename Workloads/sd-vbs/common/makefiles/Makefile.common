@@ -17,7 +17,7 @@ endif
 endif
 
 CC=gcc
-override CFLAGS += -DGCC -D$(INPUT) -m32 -I../../../../libroi
+override CFLAGS += -DGCC -D$(INPUT) -g  -m32 -pg -I../../../../libroi
 
 COMMON_DIR := $(TOP_DIR)/common/c
 M_COMMON := $(TOP_DIR)/common/matlab
@@ -53,7 +53,7 @@ COMMON_SRC := $(wildcard $(COMMON_DIR)/*.c)
 
 EXE =
 INCLUDES = -I$(COMMON_DIR) -I$(C_DIR)
-COMPILE_C = $(CC) $(CFLAGS) -lm -O2 $(INCLUDES)
+COMPILE_C = $(CC) $(CFLAGS) -lm  $(INCLUDES)
 #COMPILE_C = $(CC) $(CFLAGS) -DGENERATE_OUTPUT -lm -O2 $(INCLUDES)
 COMPILE_G = $(CC) $(CFLAGS) -g -lm $(INCLUDES)
 COMPILE_PG = $(COMPILE_G) -pg

@@ -13,7 +13,7 @@ void finalSAD(F2D* integralImg, int win_sz, F2D* retSAD)
     
     endR = integralImg->height;
     endC = integralImg->width;
-    
+    printf("finalSAD  \n") ;    
     k = 0;
     for(j=0; j<(endC-win_sz); j++)
     {

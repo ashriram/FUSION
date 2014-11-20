@@ -9,7 +9,7 @@ Author: Sravanthi Kota Venkata
 void computeSAD(I2D *Ileft, I2D* Iright_moved, F2D* SAD)
 {
     int rows, cols, i, j, diff;
-    
+    printf("computeSAD \n");    
     rows = Ileft->height;
     cols = Ileft->width;
 

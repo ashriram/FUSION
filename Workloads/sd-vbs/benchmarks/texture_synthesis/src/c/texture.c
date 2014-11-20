@@ -158,6 +158,7 @@ void create_texture(F2D *image, params *data)
 
 int create_candidates(int x,int y, params* data)
 {
+    printf("create_candidates \n");
     int address,i,j,k,n = 0;
     for(i=0;i<=data->localy/2;i++)
     {
@@ -358,7 +359,7 @@ double compare_rest(F2D *image,int x, int y, F2D *tar,int x1, int y1, params* da
 {
     double tmp,res = 0;
     int i,j,addr,addr1;
-
+    printf("compare_rest \n");
     for(i=(data->localy/2);i>0;i--)
     {
         for(j=-(data->localx/2);j<=data->localx/2;j++)

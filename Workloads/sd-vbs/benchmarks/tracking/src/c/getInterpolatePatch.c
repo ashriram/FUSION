@@ -14,7 +14,7 @@ F2D* getInterpolatePatch(F2D* src, int cols, float centerX, float centerY, int w
 
     a = centerX - floor(centerX);
     b = centerY - floor(centerY);
-
+    //printf("getInterpolatePatch \n") ;
     a11 = (1-a)*(1-b);
     a12 = a*(1-b);
     a21 = (1-a)*b;

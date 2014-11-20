@@ -3,42 +3,32 @@ Author: Sravanthi Kota Venkata
 ********************************/
 
 #include "stitch.h"
-
-F2D* getANMS (F2D *points, int r)
+F2D* getANMS_1 ( int r , F2D *srtdPnts)
 {
-  unsigned int MAX_LIMIT = 10000000;
-  F2D *suppressR;
-  float C_ROBUST = 0.9;
-  F2D *srtdPnts;
-  int n, k;
-  I2D *srtdVIdx, *supId;
-  float r_sq, t, t1;
-  F2D *tempF, *srtdV, *interestPnts;
-  int i, j, validCount=0, cnt, end;
-  F2D *v;
-    int iter, rows, cols;
+    int i; 
+    int validCount = 0;
+    int iter = 0;
+    F2D *interestPnts;
+    I2D *supId ;
+
+    float r_sq;//, t, t1;
+    r_sq = r * r * 1.0;
+    float t,t1;
+    float C_ROBUST = 0.9;
+    unsigned int MAX_LIMIT = 10000000;
     F2D* temp;
-    int supIdPtr = 0;
-
-  v = fMallocHandle(points->height, 1);
-  for(i=0; i<v->height; i++)
-      asubsref(v,i) = subsref(points,i,2);
-
-  r_sq = r * r * 1.0;
-  n = v->height;
-
-    srtdVIdx = fSortIndices (v, 1);
-    srtdPnts = fMallocHandle (srtdVIdx->height, points->width);
-
-    for (i = 0; i < srtdVIdx->height; i++)
-        for(j=0; j<points->width; j++)
-            subsref(srtdPnts,i,j) = subsref(points, asubsref(srtdVIdx,i), j);
-
+    int rows, cols;
+    F2D *suppressR;
     temp = fSetArray (1, 3, 0);
+
+    
+    int n ;
+    n = srtdPnts->height;
+    
     suppressR = fSetArray(n, 1, MAX_LIMIT);
 
-    validCount = 0;
-    iter = 0;
+
+
     for (i = 0; i < suppressR->height; i++)
     {
 	    if ( asubsref(suppressR,i) > r_sq)
@@ -47,7 +37,7 @@ F2D* getANMS (F2D *points, int r)
         }
     }
    
-    k = 0;
+    int k = 0;
     supId = iMallocHandle(validCount, 1);
     for (i = 0; i < (suppressR->height*suppressR->width); i++)
     {
@@ -69,7 +59,7 @@ F2D* getANMS (F2D *points, int r)
         else
         {
             tempp = fDeepCopy(interestPnts);
-            fFreeHandle(interestPnts); 
+            fFreeHandle(interestPnts);
             interestPnts = ffVertcat(tempp, temp);
             fFreeHandle(tempp);
         }
@@ -135,11 +125,45 @@ F2D* getANMS (F2D *points, int r)
     }
   
     iFreeHandle(supId);
-    iFreeHandle(srtdVIdx);
     fFreeHandle(srtdPnts);
     fFreeHandle(temp);
     fFreeHandle(suppressR);
-    fFreeHandle(v);
 
     return interestPnts;
 }
+
+
+
+F2D* getANMS (F2D *points, int r)
+{
+  //printf("getANMS\n");
+  F2D *srtdPnts;
+  //int n;//, k;
+  I2D *srtdVIdx;//, *supId;
+  F2D *tempF, *srtdV;//, *interestPnts;
+  int i, j;//, validCount=0, cnt, end;
+  F2D *v;
+    int supIdPtr = 0;
+
+  v = fMallocHandle(points->height, 1);
+  for(i=0; i<v->height; i++)
+      asubsref(v,i) = subsref(points,i,2);
+
+  //n = v->height;
+
+    srtdVIdx = fSortIndices (v, 1);
+    srtdPnts = fMallocHandle (srtdVIdx->height, points->width);
+
+    for (i = 0; i < srtdVIdx->height; i++)
+        for(j=0; j<points->width; j++)
+            subsref(srtdPnts,i,j) = subsref(points, asubsref(srtdVIdx,i), j);
+    //F2D*  x_suppressR;
+    //x_suppressR =  getANMS_1( r, srtdPnts );
+    
+
+    fFreeHandle(v);
+    iFreeHandle(srtdVIdx);
+    return srtdPnts;
+}
+
+
