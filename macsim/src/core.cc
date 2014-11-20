@@ -186,16 +186,8 @@ core_c::core_c (int c_id, macsim_c* simBase, Unit_Type type)
     }
 
     // frontend queue
-    if(c_id == 1)
-    {
-    m_q_frontend = new pqueue_c<int*>(256,
-            (m_knob_fetch_latency + m_knob_alloc_latency), "q_frontend", m_simBase);
-    }
-    else
-    {
     m_q_frontend = new pqueue_c<int*>(*m_simBase->m_knobs->KNOB_FE_SIZE,
             (m_knob_fetch_latency + m_knob_alloc_latency), "q_frontend", m_simBase);
-    }
 
     // allocation queue
     if (m_core_type == "ptx" && *m_simBase->m_knobs->KNOB_GPU_SCHED) {
