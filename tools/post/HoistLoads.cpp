@@ -60,11 +60,13 @@ void processTrace(unsigned ScratchpadSize)
             {
                 gzwrite(DMATrace, dl.second, sizeof(Inst_info));
             }
+            cerr << "DMALoad: " << DMALoadInsts.size() << endl;
             DMALoadInsts.clear();
 
             // Write window delim
             Inst_info delim;
             memset((void *)&delim, 0, sizeof(Inst_info));
+            delim.opcode = TR_NOP;
             delim.acc_window_delim = true;
             gzwrite(DMATrace, &delim, sizeof(Inst_info));
 
@@ -73,6 +75,7 @@ void processTrace(unsigned ScratchpadSize)
             {
                 gzwrite(DMATrace, dl.second, sizeof(Inst_info));
             }
+            cerr << "DMAStore: " << DMAStoreInsts.size() << endl;
             DMAStoreInsts.clear();
 
             // Write out the load instructions
@@ -111,11 +114,13 @@ void processTrace(unsigned ScratchpadSize)
     {
         gzwrite(DMATrace, dl.second, sizeof(Inst_info));
     }
+    cerr << "DMALoad: " << DMALoadInsts.size() << endl;
     DMALoadInsts.clear();
 
     // Write window delim
     Inst_info delim;
     memset((void *)&delim, 0, sizeof(Inst_info));
+    delim.opcode = TR_NOP;
     delim.acc_window_delim = true;
     gzwrite(DMATrace, &delim, sizeof(Inst_info));
 
@@ -124,12 +129,13 @@ void processTrace(unsigned ScratchpadSize)
     {
         gzwrite(DMATrace, dl.second, sizeof(Inst_info));
     }
+    cerr << "DMAStore: " << DMAStoreInsts.size() << endl;
     DMAStoreInsts.clear();
 
-    // Write segment delim
+    // Write window delim
     memset((void *)&delim, 0, sizeof(Inst_info));
-    delim.acc_segment_delim = true;
-    delim.acc_id = 0;
+    delim.opcode = TR_NOP;
+    delim.acc_window_delim = true;
     gzwrite(DMATrace, &delim, sizeof(Inst_info));
 
     // Drain Remaining insts
@@ -149,6 +155,8 @@ void processTrace(unsigned ScratchpadSize)
 
     // Segment delimiter should already be present in the OrigTrace
     // as it is added by EndAcc in Pintool.
+    
+    CacheBlocks.clear();
 }
 
 int main(int argc, char *argv[])
@@ -172,7 +180,7 @@ int main(int argc, char *argv[])
     traceTxt >> numTraces;
     traceTxt.close();
 
-    assert(numTraces > 2 && numTraces < 8 && "Need 1 DMA trace and 6 or less ACC traces");
+    assert(numTraces > 2 && numTraces <= 8 && "Need 1 DMA trace and 6 or less ACC traces");
 
     //cerr << "numTraces: " << numTraces << "\n";
 
@@ -200,6 +208,8 @@ int main(int argc, char *argv[])
         istringstream(argv[1]) >> ScratchpadSize;
 
         assert(ScratchpadSize % 32 == 0 && "ScratchpadSize should be a multiple of 32");
+
+        cerr << " Core " << i << endl;
 
         processTrace(ScratchpadSize);
 

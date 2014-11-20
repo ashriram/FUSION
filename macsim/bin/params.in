@@ -61,7 +61,7 @@ max_threads_per_medium_core 1
 medium_core_schedule ooo
 giaq_medium_size 1024
 fq_medium_size 1024
-medium_width 256
+medium_width 4
 fetch_medium_wdith 128
 isched_medium_rate 128
 msched_medium_rate 96
@@ -72,14 +72,14 @@ fsched_medium_size 64
 rob_medium_size 1024
 mem_medium_mshr_size 256
 l1_medium_line_size 32
-enable_dma_core 0
-acc_lease_update 0
-cl_lease_acc2 12000
+enable_dma_core 1
+acc_lease_update 1
+cl_lease_acc2 1000 
 cl_lease_acc3 1700
-cl_lease_acc4 5350
+cl_lease_acc4 1200
 cl_lease_acc5 1700
 cl_lease_acc6 1700
-cl_lease_acc7 3450
+cl_lease_acc7 1200
 
 
 # Large Core Configuration
