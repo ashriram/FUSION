@@ -20,7 +20,7 @@
 
 #define THREADS 64
 
-#define NUM_ITERS 1
+#define NUM_ITERS 32
 
 #define cmplx_M_x(a_x, a_y, b_x, b_y) (a_x*b_x - a_y *b_y)
 #define cmplx_M_y(a_x, a_y, b_x, b_y) (a_x*b_y + a_y *b_x)
