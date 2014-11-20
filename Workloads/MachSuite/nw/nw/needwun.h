@@ -39,7 +39,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define M1 (M+1)
 #define sum_size (M+N)
 #define dyn_size  (M+1) * (N+1)
+#include <time.h>
+#include <stdio.h>
 
+
+struct timespec timeDiff(struct timespec start, struct timespec end);
+double tsFloat(struct timespec time);
+void startLocalTimer();
+void stopLocalTimer();
+void startGlobalTimer();
+void stopGlobalTimer();
 
 /*void needwun(char seqA[N], char seqB[M], char allignedA[N+M], char allignedB[M+N]);*/
 
@@ -66,9 +75,14 @@ int INPUT_SIZE = sizeof(struct bench_args_t);
 void run_benchmark( void *vargs ) {
   struct bench_args_t *args = (struct bench_args_t *)vargs;
   __app_roi_begin();
+
+  startLocalTimer();    
   needwun( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
- // needwun_1( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
+  stopLocalTimer();
+  // needwun_1( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
+  startLocalTimer();
   needwun_2( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
+  stopLocalTimer();
   __app_roi_end();
 }
 

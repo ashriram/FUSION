@@ -29,7 +29,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "needwun.h"
-
 void needwun(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
              int A[dyn_size], char ptr[dyn_size]){
 
@@ -142,3 +141,79 @@ void needwun_2(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allign
         }
     }
 }
+
+
+
+
+
+
+
+struct timespec localStart, localStop, globalStart, globalStop, fullTime;
+unsigned long long startCycle = 0, stopCycle = 0;
+
+#define CYCLECOUNT
+
+#if defined(__i386__)
+
+static __inline__ unsigned long long rdtsc(void)
+{
+    unsigned long long int x;
+    __asm__ volatile (".byte 0x0f, 0x31" : "=A" (x));
+    return x;
+}
+
+#elif defined(__x86_64__)
+
+static __inline__ unsigned long long rdtsc(void)
+{
+    unsigned hi, lo;
+    __asm__ __volatile__ ("rdtsc" : "=a"(lo), "=d"(hi));
+    return ( (unsigned long long)lo)|( ((unsigned long long)hi)<<32 );
+}
+
+#endif
+
+struct timespec timeDiff(struct timespec start, struct timespec end)
+{
+    struct timespec temp;
+    if ((end.tv_nsec-start.tv_nsec)<0) 
+    {
+        temp.tv_sec = end.tv_sec-start.tv_sec-1;
+        temp.tv_nsec = 1000000000+end.tv_nsec-start.tv_nsec;
+    } else {
+        temp.tv_sec = end.tv_sec-start.tv_sec;
+        temp.tv_nsec = end.tv_nsec-start.tv_nsec;
+    }
+    return temp;
+}
+
+double tsFloat(struct timespec time)
+{
+    return ((double) time.tv_sec + (time.tv_nsec / 1000000000.0));
+}
+
+void startLocalTimer()
+{
+#ifndef CYCLECOUNT
+    clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &localStart);
+#else
+    startCycle = rdtsc();
+    /*printf("[Cycle] Start: %llu ",startCycle);*/
+#endif
+}
+
+
+void stopLocalTimer()
+{
+#ifndef CYCLECOUNT
+    clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &localStop);
+    fullTime = timeDiff(localStart,localStop);
+    printf("[Timer] Local: %f\n", tsFloat(fullTime));
+#else
+    stopCycle = rdtsc();
+    printf("[Cycle] Diff: %llu\n", stopCycle - startCycle);
+    startCycle = 0;
+    stopCycle = 0;
+#endif
+}
+
