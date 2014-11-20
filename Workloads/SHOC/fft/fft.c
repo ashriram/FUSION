@@ -281,10 +281,10 @@ int main(){
 
 #include "sincos.cpp"
 
-    TYPE DATA_x[THREADS*8];
-    TYPE DATA_y[THREADS*8];
-    TYPE data_x[ 8 ];
-    TYPE data_y[ 8 ];
+    TYPE DATA_x[THREADS*8*NUM_ITERS];
+    TYPE DATA_y[THREADS*8*NUM_ITERS];
+    TYPE data_x[ 8*NUM_ITERS ];
+    TYPE data_y[ 8*NUM_ITERS ];
     TYPE smem[8*8*9];
     int reversed[8] = {0,4,2,6,1,5,3,7};
 
@@ -298,27 +298,28 @@ int main(){
     memcpy(cos_64_h, cos_64, 448*sizeof(float));
     memcpy(cos_512_h, cos_512, 448*sizeof(float));
 
+    TYPE *a_x = (TYPE *)malloc(512*(sizeof(TYPE))*NUM_ITERS);
+    TYPE *a_y = (TYPE *)malloc(512*(sizeof(TYPE))*NUM_ITERS);
+
+    for( i = 0; i < 512*NUM_ITERS; i++){
+        a_x[i] = ((float)(random()%1000))/100;
+        a_y[i] = ((float)(random()%1000))/100;
+    }
     // loop
     for(k = 0; k < NUM_ITERS; k++)
     {
-        TYPE *a_x = (TYPE *)malloc(512*(sizeof(TYPE)));
-        TYPE *a_y = (TYPE *)malloc(512*(sizeof(TYPE)));
-
-        for( i = 0; i < 512; i++){
-            a_x[i] = ((float)(random()%1000))/100;
-            a_y[i] = ((float)(random()%1000))/100;
-        }
         __app_roi_begin();
-        fft1D_512(a_x, a_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64_h, sin_512_h, cos_64_h, cos_512_h);
+        fft1D_512(a_x+(k*512), a_y+(k*512), DATA_x + (k*THREADS*8), DATA_y+(k*THREADS*8), data_x+(k*8), data_y+(k*8), smem, reversed, sin_64_h, sin_512_h, cos_64_h, cos_512_h);
         __app_roi_end();
 
         for( i = 0; i < 2; i++){
-            printf("x = %i y = %i \n", a_x[i], a_y[i]);
+            printf("x = %i y = %i \n", a_x[i+k*512], a_y[i+k*512]);
         }
 
-        free(a_x);
-        free(a_y);
+
     }
+    free(a_x);
+    free(a_y);
     // endloop
     free(sin_64_h);
     free(sin_512_h);

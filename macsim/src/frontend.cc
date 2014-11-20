@@ -500,6 +500,12 @@ FRONTEND_MODE frontend_c::process_ifetch(unsigned int tid, frontend_s* fetch_dat
                 if (fetched_uops >= m_knob_width) {
                     break_fetch = BREAK_ISSUE_WIDTH;
                 }
+
+                if(m_simBase->read_delim == true)
+                {
+                    break_fetch = BREAK_ISSUE_WIDTH;
+                    m_simBase->read_delim = false;
+                }
             } // while ((m_q_frontend->space() > 0) && !break_fetch) 
 
             break_fetch = BREAK_LINE_END;

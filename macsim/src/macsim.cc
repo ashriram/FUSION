@@ -127,7 +127,8 @@ macsim_c::macsim_c()
     m_core0_inst_count = 0;
 
     // ska124
-    m_active_core = 0;
+    //m_active_core = 0;
+    read_delim = false;
 }
 
 

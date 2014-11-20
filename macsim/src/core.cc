@@ -186,8 +186,10 @@ core_c::core_c (int c_id, macsim_c* simBase, Unit_Type type)
     }
 
     // frontend queue
-    m_q_frontend = new pqueue_c<int*>(*m_simBase->m_knobs->KNOB_FE_SIZE,
-            (m_knob_fetch_latency + m_knob_alloc_latency), "q_frontend", m_simBase);
+    if(type == UNIT_MEDIUM) 
+        m_q_frontend = new pqueue_c<int*>(*m_simBase->m_knobs->KNOB_FE_SIZE, 1, "q_frontend", m_simBase);
+    else
+        m_q_frontend = new pqueue_c<int*>(*m_simBase->m_knobs->KNOB_FE_SIZE, (m_knob_fetch_latency + m_knob_alloc_latency), "q_frontend", m_simBase);
 
     // allocation queue
     if (m_core_type == "ptx" && *m_simBase->m_knobs->KNOB_GPU_SCHED) {
@@ -387,47 +389,53 @@ void core_c::run_a_cycle(void)
         //++m_cycle; 
         return;
     }
-    m_simBase->m_active_core = m_core_id;
+    //m_simBase->m_active_core = m_core_id;
 
     // Accelerator or DMA Core
     if(m_unit_type == UNIT_MEDIUM)
     {
         if(m_core_id == 1)
         {
-            
-            //if(m_active)
+            if(!*KNOB(KNOB_ENABLE_DMA_CORE))
             {
-                if(!*KNOB(KNOB_ENABLE_DMA_CORE))
-                {
-                    //report("Switching to " << m_next);
-                    m_simBase->m_core_pointers[m_next]->m_active = true;
-                    m_simBase->m_core_pointers[m_next]->start_frontend();
-                    m_active = false;
-                    return;
-                }
-
-                m_exec->run_a_cycle();
-                m_retire->run_a_cycle();
-                m_schedule->run_a_cycle();
-                m_allocate->run_a_cycle();
-                m_frontend->run_a_cycle();
-
-                if(!m_frontend->is_running() && m_rob->entries() == 0)
-                {
-                    std::cerr << "DMA Done\n";
-                    // Set the next acc/CPU to active
-                    std::cerr << "Activating " << m_next << "\n";
-                    m_simBase->m_core_pointers[m_next]->m_active = true;
-                    m_simBase->m_core_pointers[m_next]->start_frontend();
-                    m_active = false;
-                }
+                //report("Switching to " << m_next);
+                m_simBase->m_core_pointers[m_next]->m_active = true;
+                m_simBase->m_core_pointers[m_next]->start_frontend();
+                m_active = false;
+                return;
             }
+
             
+            //report("DMA Active");
+            m_exec->run_a_cycle();
+            m_retire->run_a_cycle();
+            m_schedule->run_a_cycle();
+            m_allocate->run_a_cycle();
+            m_frontend->run_a_cycle();
+            
+            // Make sure nothing is left in the frontend queue before stopping the core
+            if(!m_frontend->is_running() && m_rob->entries() == 0 && m_q_frontend->space() == *KNOB(KNOB_FE_SIZE))
+            {
+                // Set the next acc/CPU to active
+                report("DMA Done Activating " << m_next);
+                m_simBase->m_core_pointers[m_next]->m_active = true;
+                m_simBase->m_core_pointers[m_next]->start_frontend();
+                m_active = false;
+                report("DMA halted after " << (m_cycle - m_start_cycle) << " cycles");
+                m_start_cycle = m_cycle;
+            }
+                
             ++m_cycle;
             return;
         }
         else
         {
+            if(*KNOB(KNOB_ACC_LEASE_UPDATE))
+            {
+                int64_t lease = m_simBase->cache_lease_time[m_core_id];
+                m_simBase->m_memory->m_ruby->setLease(lease);
+            }
+
             /************  ACC CORE  ******************/
 
             m_exec->run_a_cycle();
@@ -436,7 +444,7 @@ void core_c::run_a_cycle(void)
             m_allocate->run_a_cycle();
             m_frontend->run_a_cycle();
 
-            if(!m_frontend->is_running() && m_rob->entries() == 0)
+            if(!m_frontend->is_running() && m_rob->entries() == 0 && m_q_frontend->space() == *KNOB(KNOB_FE_SIZE))
             {
                 report("ACC " << m_core_id << " halted after " << (m_cycle - m_start_cycle) << " cycles");
                 m_start_cycle = m_cycle;
@@ -444,15 +452,7 @@ void core_c::run_a_cycle(void)
                 m_simBase->m_core_pointers[1]->m_active = true;
                 m_simBase->m_core_pointers[1]->start_frontend();
             }
-
-            if(*KNOB(KNOB_ACC_LEASE_UPDATE))
-            {
-                int64_t remain = m_simBase->cache_lease_time[m_core_id] - m_cycle;
-                assert(remain > 0);
-                m_simBase->m_memory->m_ruby->setLease(remain);
-                
-            }
-
+            
             ++m_cycle;
             return;
         }
