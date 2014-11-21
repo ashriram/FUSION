@@ -1,0 +1,846 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 50.00      0.02     0.02    24000     0.00     0.00  encode_mcu_AC_first
+ 25.00      0.03     0.01    24000     0.00     0.00  encode_mcu_AC_refine
+ 25.00      0.04     0.01      480     0.02     0.02  rgb_ycc_convert
+  0.00      0.04     0.00   132156     0.00     0.00  emit_buffered_bits
+  0.00      0.04     0.00   112407     0.00     0.00  emit_eobrun
+  0.00      0.04     0.00     7200     0.00     0.00  jpeg_fdct_islow
+  0.00      0.04     0.00     2400     0.00     0.00  encode_mcu_DC_first
+  0.00      0.04     0.00     1200     0.00     0.00  encode_mcu_DC_refine
+  0.00      0.04     0.00      840     0.00     0.00  access_virt_barray
+  0.00      0.04     0.00      720     0.00     0.00  expand_right_edge
+  0.00      0.04     0.00      707     0.00     0.00  emit_byte
+  0.00      0.04     0.00      589     0.00     0.00  start_iMCU_row
+  0.00      0.04     0.00      570     0.00     0.05  compress_output
+  0.00      0.04     0.00      509     0.00     0.02  pre_process_data
+  0.00      0.04     0.00      480     0.00     0.00  get_raw_row
+  0.00      0.04     0.00      480     0.00     0.00  h2v2_downsample
+  0.00      0.04     0.00      480     0.00     0.02  jpeg_write_scanlines
+  0.00      0.04     0.00      480     0.00     0.02  process_data_simple_main
+  0.00      0.04     0.00      240     0.00     0.00  fullsize_downsample
+  0.00      0.04     0.00      240     0.00     0.00  jcopy_sample_rows
+  0.00      0.04     0.00      240     0.00     0.00  sep_downsample
+  0.00      0.04     0.00      120     0.00     0.00  forward_DCT
+  0.00      0.04     0.00       72     0.00     0.00  keymatch
+  0.00      0.04     0.00       41     0.00     0.00  alloc_small
+  0.00      0.04     0.00       30     0.00     0.05  compress_first_pass
+  0.00      0.04     0.00       28     0.00     0.00  emit_2bytes
+  0.00      0.04     0.00       26     0.00     0.00  emit_marker
+  0.00      0.04     0.00       19     0.00     0.00  finish_pass_master
+  0.00      0.04     0.00       19     0.00     0.00  prepare_for_pass
+  0.00      0.04     0.00       19     0.00     0.00  start_pass_coef
+  0.00      0.04     0.00       19     0.00     0.00  start_pass_phuff
+  0.00      0.04     0.00       17     0.00     0.00  jdiv_round_up
+  0.00      0.04     0.00       13     0.00     0.00  empty_output_buffer
+  0.00      0.04     0.00       13     0.00     0.00  pbm_getc
+  0.00      0.04     0.00       12     0.00     0.00  dump_buffer
+  0.00      0.04     0.00       11     0.00     0.00  emit_dht
+  0.00      0.04     0.00       11     0.00     0.00  jpeg_make_c_derived_tbl
+  0.00      0.04     0.00       10     0.00     0.00  finish_pass_phuff
+  0.00      0.04     0.00       10     0.00     0.00  flush_bits
+  0.00      0.04     0.00       10     0.00     0.00  jpeg_gen_optimal_table
+  0.00      0.04     0.00       10     0.00     0.00  per_scan_setup
+  0.00      0.04     0.00       10     0.00     0.00  select_scan_parameters
+  0.00      0.04     0.00       10     0.00     0.00  write_scan_header
+  0.00      0.04     0.00        9     0.00     0.00  alloc_large
+  0.00      0.04     0.00        9     0.00     0.00  finish_pass_gather_phuff
+  0.00      0.04     0.00        9     0.00     0.00  jpeg_free_large
+  0.00      0.04     0.00        9     0.00     0.00  jpeg_get_large
+  0.00      0.04     0.00        8     0.00     0.00  fill_a_scan
+  0.00      0.04     0.00        6     0.00     0.00  alloc_sarray
+  0.00      0.04     0.00        6     0.00     0.00  jpeg_free_small
+  0.00      0.04     0.00        6     0.00     0.00  jpeg_get_small
+  0.00      0.04     0.00        6     0.00     0.00  jround_up
+  0.00      0.04     0.00        4     0.00     0.00  add_huff_table
+  0.00      0.04     0.00        4     0.00     0.00  jpeg_add_quant_table
+  0.00      0.04     0.00        4     0.00     0.00  jpeg_alloc_huff_table
+  0.00      0.04     0.00        3     0.00     0.00  alloc_barray
+  0.00      0.04     0.00        3     0.00     0.00  emit_dqt
+  0.00      0.04     0.00        3     0.00     0.00  free_pool
+  0.00      0.04     0.00        3     0.00     0.00  read_pbm_integer
+  0.00      0.04     0.00        3     0.00     0.00  request_virt_barray
+  0.00      0.04     0.00        2     0.00     0.00  fill_dc_scans
+  0.00      0.04     0.00        2     0.00     0.00  jpeg_alloc_quant_table
+  0.00      0.04     0.00        2     0.00     0.00  jpeg_default_colorspace
+  0.00      0.04     0.00        2     0.00     0.00  jpeg_quality_scaling
+  0.00      0.04     0.00        2     0.00     0.00  jpeg_set_colorspace
+  0.00      0.04     0.00        2     0.00     0.00  jpeg_set_linear_quality
+  0.00      0.04     0.00        2     0.00     0.00  jpeg_set_quality
+  0.00      0.04     0.00        2     0.00     0.00  parse_switches
+  0.00      0.04     0.00        1     0.00     0.00  emit_message
+  0.00      0.04     0.00        1     0.00     0.00  emit_sof
+  0.00      0.04     0.00        1     0.00     0.00  finish_input_ppm
+  0.00      0.04     0.00        1     0.00     0.00  init_destination
+  0.00      0.04     0.00        1     0.00     0.00  jinit_c_coef_controller
+  0.00      0.04     0.00        1     0.00     0.00  jinit_c_main_controller
+  0.00      0.04     0.00        1     0.00     0.00  jinit_c_master_control
+  0.00      0.04     0.00        1     0.00     0.00  jinit_c_prep_controller
+  0.00      0.04     0.00        1     0.00     0.00  jinit_color_converter
+  0.00      0.04     0.00        1     0.00     0.00  jinit_compress_master
+  0.00      0.04     0.00        1     0.00     0.00  jinit_downsampler
+  0.00      0.04     0.00        1     0.00     0.00  jinit_forward_dct
+  0.00      0.04     0.00        1     0.00     0.00  jinit_marker_writer
+  0.00      0.04     0.00        1     0.00     0.00  jinit_memory_mgr
+  0.00      0.04     0.00        1     0.00     0.00  jinit_phuff_encoder
+  0.00      0.04     0.00        1     0.00     0.00  jinit_read_ppm
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_CreateCompress
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_abort
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_destroy
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_destroy_compress
+  0.00      0.04     0.00        1     0.00    28.42  jpeg_finish_compress
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_mem_available
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_mem_init
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_mem_term
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_set_defaults
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_simple_progression
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_start_compress
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_std_error
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_stdio_dest
+  0.00      0.04     0.00        1     0.00     0.00  jpeg_suppress_tables
+  0.00      0.04     0.00        1     0.00     0.00  realize_virt_arrays
+  0.00      0.04     0.00        1     0.00     0.00  reset_error_mgr
+  0.00      0.04     0.00        1     0.00     0.00  rgb_ycc_start
+  0.00      0.04     0.00        1     0.00     0.00  self_destruct
+  0.00      0.04     0.00        1     0.00     0.00  start_input_ppm
+  0.00      0.04     0.00        1     0.00     0.00  start_pass_downsample
+  0.00      0.04     0.00        1     0.00     0.00  start_pass_fdctmgr
+  0.00      0.04     0.00        1     0.00     0.00  start_pass_main
+  0.00      0.04     0.00        1     0.00     0.00  start_pass_prep
+  0.00      0.04     0.00        1     0.00     0.00  term_destination
+  0.00      0.04     0.00        1     0.00     0.00  validate_script
+  0.00      0.04     0.00        1     0.00     0.00  write_file_header
+  0.00      0.04     0.00        1     0.00     0.00  write_file_trailer
+  0.00      0.04     0.00        1     0.00     0.00  write_frame_header
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 25.00% of 0.04 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]    100.0    0.00    0.04                 main [1]
+                0.00    0.03       1/1           jpeg_finish_compress [3]
+                0.00    0.01     480/480         jpeg_write_scanlines [5]
+                0.00    0.00     480/480         get_raw_row [20]
+                0.00    0.00       2/2           parse_switches [70]
+                0.00    0.00       1/1           jpeg_std_error [97]
+                0.00    0.00       1/1           jpeg_CreateCompress [87]
+                0.00    0.00       1/1           jpeg_set_defaults [94]
+                0.00    0.00       1/1           jinit_read_ppm [86]
+                0.00    0.00       1/1           start_input_ppm [104]
+                0.00    0.00       1/2           jpeg_default_colorspace [65]
+                0.00    0.00       1/1           jpeg_stdio_dest [98]
+                0.00    0.00       1/1           jpeg_start_compress [96]
+                0.00    0.00       1/1           finish_input_ppm [73]
+                0.00    0.00       1/1           jpeg_destroy_compress [90]
+-----------------------------------------------
+                0.00    0.00      30/570         compress_first_pass [10]
+                0.00    0.03     540/570         jpeg_finish_compress [3]
+[2]     75.0    0.00    0.03     570         compress_output [2]
+                0.02    0.00   24000/24000       encode_mcu_AC_first [4]
+                0.01    0.00   24000/24000       encode_mcu_AC_refine [7]
+                0.00    0.00    2400/2400        encode_mcu_DC_first [14]
+                0.00    0.00    1200/1200        encode_mcu_DC_refine [15]
+                0.00    0.00     750/840         access_virt_barray [16]
+                0.00    0.00     570/589         start_iMCU_row [19]
+-----------------------------------------------
+                0.00    0.03       1/1           main [1]
+[3]     71.1    0.00    0.03       1         jpeg_finish_compress [3]
+                0.00    0.03     540/570         compress_output [2]
+                0.00    0.00      19/19          finish_pass_master [30]
+                0.00    0.00      18/19          prepare_for_pass [31]
+                0.00    0.00       1/1           write_file_trailer [112]
+                0.00    0.00       1/1           term_destination [109]
+                0.00    0.00       1/1           jpeg_abort [88]
+-----------------------------------------------
+                0.02    0.00   24000/24000       compress_output [2]
+[4]     50.0    0.02    0.00   24000         encode_mcu_AC_first [4]
+                0.00    0.00    9860/112407      emit_eobrun [12]
+                0.00    0.00       3/12          dump_buffer [37]
+-----------------------------------------------
+                0.00    0.01     480/480         main [1]
+[5]     28.9    0.00    0.01     480         jpeg_write_scanlines [5]
+                0.00    0.01     480/480         process_data_simple_main [6]
+-----------------------------------------------
+                0.00    0.01     480/480         jpeg_write_scanlines [5]
+[6]     28.9    0.00    0.01     480         process_data_simple_main [6]
+                0.00    0.01     509/509         pre_process_data [8]
+                0.00    0.00      30/30          compress_first_pass [10]
+-----------------------------------------------
+                0.01    0.00   24000/24000       compress_output [2]
+[7]     25.0    0.01    0.00   24000         encode_mcu_AC_refine [7]
+                0.00    0.00  102528/112407      emit_eobrun [12]
+                0.00    0.00  102528/132156      emit_buffered_bits [11]
+                0.00    0.00       3/12          dump_buffer [37]
+-----------------------------------------------
+                0.00    0.01     509/509         process_data_simple_main [6]
+[8]     25.0    0.00    0.01     509         pre_process_data [8]
+                0.01    0.00     480/480         rgb_ycc_convert [9]
+                0.00    0.00     240/240         sep_downsample [24]
+-----------------------------------------------
+                0.01    0.00     480/480         pre_process_data [8]
+[9]     25.0    0.01    0.00     480         rgb_ycc_convert [9]
+-----------------------------------------------
+                0.00    0.00      30/30          process_data_simple_main [6]
+[10]     3.9    0.00    0.00      30         compress_first_pass [10]
+                0.00    0.00      30/570         compress_output [2]
+                0.00    0.00     120/120         forward_DCT [25]
+                0.00    0.00      90/840         access_virt_barray [16]
+-----------------------------------------------
+                0.00    0.00   29628/132156      emit_eobrun [12]
+                0.00    0.00  102528/132156      encode_mcu_AC_refine [7]
+[11]     0.0    0.00    0.00  132156         emit_buffered_bits [11]
+                0.00    0.00       3/12          dump_buffer [37]
+-----------------------------------------------
+                0.00    0.00       9/112407      finish_pass_gather_phuff [47]
+                0.00    0.00      10/112407      finish_pass_phuff [40]
+                0.00    0.00    9860/112407      encode_mcu_AC_first [4]
+                0.00    0.00  102528/112407      encode_mcu_AC_refine [7]
+[12]     0.0    0.00    0.00  112407         emit_eobrun [12]
+                0.00    0.00   29628/132156      emit_buffered_bits [11]
+                0.00    0.00       2/12          dump_buffer [37]
+-----------------------------------------------
+                0.00    0.00    7200/7200        forward_DCT [25]
+[13]     0.0    0.00    0.00    7200         jpeg_fdct_islow [13]
+-----------------------------------------------
+                0.00    0.00    2400/2400        compress_output [2]
+[14]     0.0    0.00    0.00    2400         encode_mcu_DC_first [14]
+                0.00    0.00       1/12          dump_buffer [37]
+-----------------------------------------------
+                0.00    0.00    1200/1200        compress_output [2]
+[15]     0.0    0.00    0.00    1200         encode_mcu_DC_refine [15]
+-----------------------------------------------
+                0.00    0.00      90/840         compress_first_pass [10]
+                0.00    0.00     750/840         compress_output [2]
+[16]     0.0    0.00    0.00     840         access_virt_barray [16]
+-----------------------------------------------
+                0.00    0.00     240/720         fullsize_downsample [22]
+                0.00    0.00     480/720         h2v2_downsample [21]
+[17]     0.0    0.00    0.00     720         expand_right_edge [17]
+-----------------------------------------------
+                0.00    0.00      10/707         write_file_header [111]
+                0.00    0.00      11/707         emit_sof [72]
+                0.00    0.00      52/707         emit_marker [29]
+                0.00    0.00      56/707         emit_2bytes [28]
+                0.00    0.00      68/707         write_scan_header [45]
+                0.00    0.00     130/707         emit_dqt [59]
+                0.00    0.00     380/707         emit_dht [38]
+[18]     0.0    0.00    0.00     707         emit_byte [18]
+                0.00    0.00       1/13          empty_output_buffer [35]
+-----------------------------------------------
+                0.00    0.00      19/589         start_pass_coef [32]
+                0.00    0.00     570/589         compress_output [2]
+[19]     0.0    0.00    0.00     589         start_iMCU_row [19]
+-----------------------------------------------
+                0.00    0.00     480/480         main [1]
+[20]     0.0    0.00    0.00     480         get_raw_row [20]
+-----------------------------------------------
+                0.00    0.00     480/480         sep_downsample [24]
+[21]     0.0    0.00    0.00     480         h2v2_downsample [21]
+                0.00    0.00     480/720         expand_right_edge [17]
+-----------------------------------------------
+                0.00    0.00     240/240         sep_downsample [24]
+[22]     0.0    0.00    0.00     240         fullsize_downsample [22]
+                0.00    0.00     240/240         jcopy_sample_rows [23]
+                0.00    0.00     240/720         expand_right_edge [17]
+-----------------------------------------------
+                0.00    0.00     240/240         fullsize_downsample [22]
+[23]     0.0    0.00    0.00     240         jcopy_sample_rows [23]
+-----------------------------------------------
+                0.00    0.00     240/240         pre_process_data [8]
+[24]     0.0    0.00    0.00     240         sep_downsample [24]
+                0.00    0.00     480/480         h2v2_downsample [21]
+                0.00    0.00     240/240         fullsize_downsample [22]
+-----------------------------------------------
+                0.00    0.00     120/120         compress_first_pass [10]
+[25]     0.0    0.00    0.00     120         forward_DCT [25]
+                0.00    0.00    7200/7200        jpeg_fdct_islow [13]
+-----------------------------------------------
+                0.00    0.00      72/72          parse_switches [70]
+[26]     0.0    0.00    0.00      72         keymatch [26]
+-----------------------------------------------
+                0.00    0.00       1/41          jinit_read_ppm [86]
+                0.00    0.00       1/41          start_input_ppm [104]
+                0.00    0.00       1/41          jpeg_simple_progression [95]
+                0.00    0.00       1/41          jpeg_set_defaults [94]
+                0.00    0.00       1/41          init_destination [74]
+                0.00    0.00       1/41          jpeg_stdio_dest [98]
+                0.00    0.00       1/41          jinit_c_master_control [77]
+                0.00    0.00       1/41          jinit_marker_writer [83]
+                0.00    0.00       1/41          jinit_c_main_controller [76]
+                0.00    0.00       1/41          jinit_c_prep_controller [78]
+                0.00    0.00       1/41          jinit_c_coef_controller [75]
+                0.00    0.00       1/41          rgb_ycc_start [102]
+                0.00    0.00       1/41          jinit_color_converter [79]
+                0.00    0.00       1/41          jinit_downsampler [81]
+                0.00    0.00       1/41          jinit_phuff_encoder [85]
+                0.00    0.00       1/41          jinit_forward_dct [82]
+                0.00    0.00       2/41          jpeg_make_c_derived_tbl [39]
+                0.00    0.00       2/41          start_pass_fdctmgr [106]
+                0.00    0.00       2/41          jpeg_alloc_quant_table [64]
+                0.00    0.00       3/41          start_pass_phuff [33]
+                0.00    0.00       3/41          request_virt_barray [62]
+                0.00    0.00       3/41          alloc_barray [58]
+                0.00    0.00       4/41          jpeg_alloc_huff_table [57]
+                0.00    0.00       6/41          alloc_sarray [51]
+[27]     0.0    0.00    0.00      41         alloc_small [27]
+                0.00    0.00       5/6           jpeg_get_small [53]
+-----------------------------------------------
+                0.00    0.00       2/28          emit_dqt [59]
+                0.00    0.00       3/28          emit_sof [72]
+                0.00    0.00       3/28          write_file_header [111]
+                0.00    0.00      10/28          emit_dht [38]
+                0.00    0.00      10/28          write_scan_header [45]
+[28]     0.0    0.00    0.00      28         emit_2bytes [28]
+                0.00    0.00      56/707         emit_byte [18]
+-----------------------------------------------
+                0.00    0.00       1/26          emit_sof [72]
+                0.00    0.00       1/26          write_file_trailer [112]
+                0.00    0.00       2/26          emit_dqt [59]
+                0.00    0.00       2/26          write_file_header [111]
+                0.00    0.00      10/26          emit_dht [38]
+                0.00    0.00      10/26          write_scan_header [45]
+[29]     0.0    0.00    0.00      26         emit_marker [29]
+                0.00    0.00      52/707         emit_byte [18]
+-----------------------------------------------
+                0.00    0.00      19/19          jpeg_finish_compress [3]
+[30]     0.0    0.00    0.00      19         finish_pass_master [30]
+                0.00    0.00      10/10          finish_pass_phuff [40]
+                0.00    0.00       9/9           finish_pass_gather_phuff [47]
+-----------------------------------------------
+                0.00    0.00       1/19          jpeg_start_compress [96]
+                0.00    0.00      18/19          jpeg_finish_compress [3]
+[31]     0.0    0.00    0.00      19         prepare_for_pass [31]
+                0.00    0.00      19/19          start_pass_phuff [33]
+                0.00    0.00      19/19          start_pass_coef [32]
+                0.00    0.00      10/10          select_scan_parameters [44]
+                0.00    0.00      10/10          per_scan_setup [43]
+                0.00    0.00      10/10          write_scan_header [45]
+                0.00    0.00       1/1           rgb_ycc_start [102]
+                0.00    0.00       1/1           start_pass_downsample [105]
+                0.00    0.00       1/1           start_pass_prep [108]
+                0.00    0.00       1/1           start_pass_fdctmgr [106]
+                0.00    0.00       1/1           start_pass_main [107]
+                0.00    0.00       1/1           write_frame_header [113]
+-----------------------------------------------
+                0.00    0.00      19/19          prepare_for_pass [31]
+[32]     0.0    0.00    0.00      19         start_pass_coef [32]
+                0.00    0.00      19/589         start_iMCU_row [19]
+-----------------------------------------------
+                0.00    0.00      19/19          prepare_for_pass [31]
+[33]     0.0    0.00    0.00      19         start_pass_phuff [33]
+                0.00    0.00      11/11          jpeg_make_c_derived_tbl [39]
+                0.00    0.00       3/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       4/17          per_scan_setup [43]
+                0.00    0.00      13/17          jinit_c_master_control [77]
+[34]     0.0    0.00    0.00      17         jdiv_round_up [34]
+-----------------------------------------------
+                0.00    0.00       1/13          emit_byte [18]
+                0.00    0.00      12/13          dump_buffer [37]
+[35]     0.0    0.00    0.00      13         empty_output_buffer [35]
+-----------------------------------------------
+                0.00    0.00      13/13          read_pbm_integer [61]
+[36]     0.0    0.00    0.00      13         pbm_getc [36]
+-----------------------------------------------
+                0.00    0.00       1/12          encode_mcu_DC_first [14]
+                0.00    0.00       2/12          emit_eobrun [12]
+                0.00    0.00       3/12          emit_buffered_bits [11]
+                0.00    0.00       3/12          encode_mcu_AC_refine [7]
+                0.00    0.00       3/12          encode_mcu_AC_first [4]
+[37]     0.0    0.00    0.00      12         dump_buffer [37]
+                0.00    0.00      12/13          empty_output_buffer [35]
+-----------------------------------------------
+                0.00    0.00      11/11          write_scan_header [45]
+[38]     0.0    0.00    0.00      11         emit_dht [38]
+                0.00    0.00     380/707         emit_byte [18]
+                0.00    0.00      10/26          emit_marker [29]
+                0.00    0.00      10/28          emit_2bytes [28]
+-----------------------------------------------
+                0.00    0.00      11/11          start_pass_phuff [33]
+[39]     0.0    0.00    0.00      11         jpeg_make_c_derived_tbl [39]
+                0.00    0.00       2/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00      10/10          finish_pass_master [30]
+[40]     0.0    0.00    0.00      10         finish_pass_phuff [40]
+                0.00    0.00      10/112407      emit_eobrun [12]
+                0.00    0.00      10/10          flush_bits [41]
+-----------------------------------------------
+                0.00    0.00      10/10          finish_pass_phuff [40]
+[41]     0.0    0.00    0.00      10         flush_bits [41]
+-----------------------------------------------
+                0.00    0.00      10/10          finish_pass_gather_phuff [47]
+[42]     0.0    0.00    0.00      10         jpeg_gen_optimal_table [42]
+-----------------------------------------------
+                0.00    0.00      10/10          prepare_for_pass [31]
+[43]     0.0    0.00    0.00      10         per_scan_setup [43]
+                0.00    0.00       4/17          jdiv_round_up [34]
+-----------------------------------------------
+                0.00    0.00      10/10          prepare_for_pass [31]
+[44]     0.0    0.00    0.00      10         select_scan_parameters [44]
+-----------------------------------------------
+                0.00    0.00      10/10          prepare_for_pass [31]
+[45]     0.0    0.00    0.00      10         write_scan_header [45]
+                0.00    0.00      68/707         emit_byte [18]
+                0.00    0.00      11/11          emit_dht [38]
+                0.00    0.00      10/26          emit_marker [29]
+                0.00    0.00      10/28          emit_2bytes [28]
+-----------------------------------------------
+                0.00    0.00       3/9           alloc_barray [58]
+                0.00    0.00       6/9           alloc_sarray [51]
+[46]     0.0    0.00    0.00       9         alloc_large [46]
+                0.00    0.00       9/9           jpeg_get_large [49]
+-----------------------------------------------
+                0.00    0.00       9/9           finish_pass_master [30]
+[47]     0.0    0.00    0.00       9         finish_pass_gather_phuff [47]
+                0.00    0.00      10/10          jpeg_gen_optimal_table [42]
+                0.00    0.00       9/112407      emit_eobrun [12]
+-----------------------------------------------
+                0.00    0.00       9/9           free_pool [60]
+[48]     0.0    0.00    0.00       9         jpeg_free_large [48]
+-----------------------------------------------
+                0.00    0.00       9/9           alloc_large [46]
+[49]     0.0    0.00    0.00       9         jpeg_get_large [49]
+-----------------------------------------------
+                0.00    0.00       8/8           jpeg_simple_progression [95]
+[50]     0.0    0.00    0.00       8         fill_a_scan [50]
+-----------------------------------------------
+                0.00    0.00       3/6           jinit_c_main_controller [76]
+                0.00    0.00       3/6           jinit_c_prep_controller [78]
+[51]     0.0    0.00    0.00       6         alloc_sarray [51]
+                0.00    0.00       6/41          alloc_small [27]
+                0.00    0.00       6/9           alloc_large [46]
+-----------------------------------------------
+                0.00    0.00       1/6           self_destruct [103]
+                0.00    0.00       5/6           free_pool [60]
+[52]     0.0    0.00    0.00       6         jpeg_free_small [52]
+-----------------------------------------------
+                0.00    0.00       1/6           jinit_memory_mgr [84]
+                0.00    0.00       5/6           alloc_small [27]
+[53]     0.0    0.00    0.00       6         jpeg_get_small [53]
+-----------------------------------------------
+                0.00    0.00       6/6           jinit_c_coef_controller [75]
+[54]     0.0    0.00    0.00       6         jround_up [54]
+-----------------------------------------------
+                0.00    0.00       4/4           jpeg_set_defaults [94]
+[55]     0.0    0.00    0.00       4         add_huff_table [55]
+                0.00    0.00       4/4           jpeg_alloc_huff_table [57]
+-----------------------------------------------
+                0.00    0.00       4/4           jpeg_set_linear_quality [68]
+[56]     0.0    0.00    0.00       4         jpeg_add_quant_table [56]
+                0.00    0.00       2/2           jpeg_alloc_quant_table [64]
+-----------------------------------------------
+                0.00    0.00       4/4           add_huff_table [55]
+[57]     0.0    0.00    0.00       4         jpeg_alloc_huff_table [57]
+                0.00    0.00       4/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       3/3           realize_virt_arrays [100]
+[58]     0.0    0.00    0.00       3         alloc_barray [58]
+                0.00    0.00       3/41          alloc_small [27]
+                0.00    0.00       3/9           alloc_large [46]
+-----------------------------------------------
+                0.00    0.00       3/3           write_frame_header [113]
+[59]     0.0    0.00    0.00       3         emit_dqt [59]
+                0.00    0.00     130/707         emit_byte [18]
+                0.00    0.00       2/26          emit_marker [29]
+                0.00    0.00       2/28          emit_2bytes [28]
+-----------------------------------------------
+                0.00    0.00       1/3           jpeg_abort [88]
+                0.00    0.00       2/3           self_destruct [103]
+[60]     0.0    0.00    0.00       3         free_pool [60]
+                0.00    0.00       9/9           jpeg_free_large [48]
+                0.00    0.00       5/6           jpeg_free_small [52]
+-----------------------------------------------
+                0.00    0.00       3/3           start_input_ppm [104]
+[61]     0.0    0.00    0.00       3         read_pbm_integer [61]
+                0.00    0.00      13/13          pbm_getc [36]
+-----------------------------------------------
+                0.00    0.00       3/3           jinit_c_coef_controller [75]
+[62]     0.0    0.00    0.00       3         request_virt_barray [62]
+                0.00    0.00       3/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       2/2           jpeg_simple_progression [95]
+[63]     0.0    0.00    0.00       2         fill_dc_scans [63]
+-----------------------------------------------
+                0.00    0.00       2/2           jpeg_add_quant_table [56]
+[64]     0.0    0.00    0.00       2         jpeg_alloc_quant_table [64]
+                0.00    0.00       2/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/2           main [1]
+                0.00    0.00       1/2           jpeg_set_defaults [94]
+[65]     0.0    0.00    0.00       2         jpeg_default_colorspace [65]
+                0.00    0.00       2/2           jpeg_set_colorspace [67]
+-----------------------------------------------
+                0.00    0.00       2/2           jpeg_set_quality [69]
+[66]     0.0    0.00    0.00       2         jpeg_quality_scaling [66]
+-----------------------------------------------
+                0.00    0.00       2/2           jpeg_default_colorspace [65]
+[67]     0.0    0.00    0.00       2         jpeg_set_colorspace [67]
+-----------------------------------------------
+                0.00    0.00       2/2           jpeg_set_quality [69]
+[68]     0.0    0.00    0.00       2         jpeg_set_linear_quality [68]
+                0.00    0.00       4/4           jpeg_add_quant_table [56]
+-----------------------------------------------
+                0.00    0.00       1/2           parse_switches [70]
+                0.00    0.00       1/2           jpeg_set_defaults [94]
+[69]     0.0    0.00    0.00       2         jpeg_set_quality [69]
+                0.00    0.00       2/2           jpeg_quality_scaling [66]
+                0.00    0.00       2/2           jpeg_set_linear_quality [68]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[70]     0.0    0.00    0.00       2         parse_switches [70]
+                0.00    0.00      72/72          keymatch [26]
+                0.00    0.00       1/2           jpeg_set_quality [69]
+                0.00    0.00       1/1           jpeg_simple_progression [95]
+-----------------------------------------------
+                0.00    0.00       1/1           start_input_ppm [104]
+[71]     0.0    0.00    0.00       1         emit_message [71]
+-----------------------------------------------
+                0.00    0.00       1/1           write_frame_header [113]
+[72]     0.0    0.00    0.00       1         emit_sof [72]
+                0.00    0.00      11/707         emit_byte [18]
+                0.00    0.00       3/28          emit_2bytes [28]
+                0.00    0.00       1/26          emit_marker [29]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[73]     0.0    0.00    0.00       1         finish_input_ppm [73]
+-----------------------------------------------
+                0.00    0.00       1/1           jpeg_start_compress [96]
+[74]     0.0    0.00    0.00       1         init_destination [74]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[75]     0.0    0.00    0.00       1         jinit_c_coef_controller [75]
+                0.00    0.00       6/6           jround_up [54]
+                0.00    0.00       3/3           request_virt_barray [62]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[76]     0.0    0.00    0.00       1         jinit_c_main_controller [76]
+                0.00    0.00       3/6           alloc_sarray [51]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[77]     0.0    0.00    0.00       1         jinit_c_master_control [77]
+                0.00    0.00      13/17          jdiv_round_up [34]
+                0.00    0.00       1/41          alloc_small [27]
+                0.00    0.00       1/1           validate_script [110]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[78]     0.0    0.00    0.00       1         jinit_c_prep_controller [78]
+                0.00    0.00       3/6           alloc_sarray [51]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[79]     0.0    0.00    0.00       1         jinit_color_converter [79]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           jpeg_start_compress [96]
+[80]     0.0    0.00    0.00       1         jinit_compress_master [80]
+                0.00    0.00       1/1           jinit_c_master_control [77]
+                0.00    0.00       1/1           jinit_color_converter [79]
+                0.00    0.00       1/1           jinit_downsampler [81]
+                0.00    0.00       1/1           jinit_c_prep_controller [78]
+                0.00    0.00       1/1           jinit_forward_dct [82]
+                0.00    0.00       1/1           jinit_phuff_encoder [85]
+                0.00    0.00       1/1           jinit_c_coef_controller [75]
+                0.00    0.00       1/1           jinit_c_main_controller [76]
+                0.00    0.00       1/1           jinit_marker_writer [83]
+                0.00    0.00       1/1           realize_virt_arrays [100]
+                0.00    0.00       1/1           write_file_header [111]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[81]     0.0    0.00    0.00       1         jinit_downsampler [81]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[82]     0.0    0.00    0.00       1         jinit_forward_dct [82]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[83]     0.0    0.00    0.00       1         jinit_marker_writer [83]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           jpeg_CreateCompress [87]
+[84]     0.0    0.00    0.00       1         jinit_memory_mgr [84]
+                0.00    0.00       1/1           jpeg_mem_init [92]
+                0.00    0.00       1/6           jpeg_get_small [53]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[85]     0.0    0.00    0.00       1         jinit_phuff_encoder [85]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[86]     0.0    0.00    0.00       1         jinit_read_ppm [86]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[87]     0.0    0.00    0.00       1         jpeg_CreateCompress [87]
+                0.00    0.00       1/1           jinit_memory_mgr [84]
+-----------------------------------------------
+                0.00    0.00       1/1           jpeg_finish_compress [3]
+[88]     0.0    0.00    0.00       1         jpeg_abort [88]
+                0.00    0.00       1/3           free_pool [60]
+-----------------------------------------------
+                0.00    0.00       1/1           jpeg_destroy_compress [90]
+[89]     0.0    0.00    0.00       1         jpeg_destroy [89]
+                0.00    0.00       1/1           self_destruct [103]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[90]     0.0    0.00    0.00       1         jpeg_destroy_compress [90]
+                0.00    0.00       1/1           jpeg_destroy [89]
+-----------------------------------------------
+                0.00    0.00       1/1           realize_virt_arrays [100]
+[91]     0.0    0.00    0.00       1         jpeg_mem_available [91]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_memory_mgr [84]
+[92]     0.0    0.00    0.00       1         jpeg_mem_init [92]
+-----------------------------------------------
+                0.00    0.00       1/1           self_destruct [103]
+[93]     0.0    0.00    0.00       1         jpeg_mem_term [93]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[94]     0.0    0.00    0.00       1         jpeg_set_defaults [94]
+                0.00    0.00       4/4           add_huff_table [55]
+                0.00    0.00       1/41          alloc_small [27]
+                0.00    0.00       1/2           jpeg_set_quality [69]
+                0.00    0.00       1/2           jpeg_default_colorspace [65]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_switches [70]
+[95]     0.0    0.00    0.00       1         jpeg_simple_progression [95]
+                0.00    0.00       8/8           fill_a_scan [50]
+                0.00    0.00       2/2           fill_dc_scans [63]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[96]     0.0    0.00    0.00       1         jpeg_start_compress [96]
+                0.00    0.00       1/1           jpeg_suppress_tables [99]
+                0.00    0.00       1/1           reset_error_mgr [101]
+                0.00    0.00       1/1           init_destination [74]
+                0.00    0.00       1/1           jinit_compress_master [80]
+                0.00    0.00       1/19          prepare_for_pass [31]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[97]     0.0    0.00    0.00       1         jpeg_std_error [97]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[98]     0.0    0.00    0.00       1         jpeg_stdio_dest [98]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           jpeg_start_compress [96]
+[99]     0.0    0.00    0.00       1         jpeg_suppress_tables [99]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[100]    0.0    0.00    0.00       1         realize_virt_arrays [100]
+                0.00    0.00       3/3           alloc_barray [58]
+                0.00    0.00       1/1           jpeg_mem_available [91]
+-----------------------------------------------
+                0.00    0.00       1/1           jpeg_start_compress [96]
+[101]    0.0    0.00    0.00       1         reset_error_mgr [101]
+-----------------------------------------------
+                0.00    0.00       1/1           prepare_for_pass [31]
+[102]    0.0    0.00    0.00       1         rgb_ycc_start [102]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           jpeg_destroy [89]
+[103]    0.0    0.00    0.00       1         self_destruct [103]
+                0.00    0.00       2/3           free_pool [60]
+                0.00    0.00       1/6           jpeg_free_small [52]
+                0.00    0.00       1/1           jpeg_mem_term [93]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[104]    0.0    0.00    0.00       1         start_input_ppm [104]
+                0.00    0.00       3/3           read_pbm_integer [61]
+                0.00    0.00       1/1           emit_message [71]
+                0.00    0.00       1/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           prepare_for_pass [31]
+[105]    0.0    0.00    0.00       1         start_pass_downsample [105]
+-----------------------------------------------
+                0.00    0.00       1/1           prepare_for_pass [31]
+[106]    0.0    0.00    0.00       1         start_pass_fdctmgr [106]
+                0.00    0.00       2/41          alloc_small [27]
+-----------------------------------------------
+                0.00    0.00       1/1           prepare_for_pass [31]
+[107]    0.0    0.00    0.00       1         start_pass_main [107]
+-----------------------------------------------
+                0.00    0.00       1/1           prepare_for_pass [31]
+[108]    0.0    0.00    0.00       1         start_pass_prep [108]
+-----------------------------------------------
+                0.00    0.00       1/1           jpeg_finish_compress [3]
+[109]    0.0    0.00    0.00       1         term_destination [109]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_c_master_control [77]
+[110]    0.0    0.00    0.00       1         validate_script [110]
+-----------------------------------------------
+                0.00    0.00       1/1           jinit_compress_master [80]
+[111]    0.0    0.00    0.00       1         write_file_header [111]
+                0.00    0.00      10/707         emit_byte [18]
+                0.00    0.00       3/28          emit_2bytes [28]
+                0.00    0.00       2/26          emit_marker [29]
+-----------------------------------------------
+                0.00    0.00       1/1           jpeg_finish_compress [3]
+[112]    0.0    0.00    0.00       1         write_file_trailer [112]
+                0.00    0.00       1/26          emit_marker [29]
+-----------------------------------------------
+                0.00    0.00       1/1           prepare_for_pass [31]
+[113]    0.0    0.00    0.00       1         write_frame_header [113]
+                0.00    0.00       3/3           emit_dqt [59]
+                0.00    0.00       1/1           emit_sof [72]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+
+Index by function name
+
+  [16] access_virt_barray     [34] jdiv_round_up          [96] jpeg_start_compress
+  [55] add_huff_table         [75] jinit_c_coef_controller [97] jpeg_std_error
+  [58] alloc_barray           [76] jinit_c_main_controller [98] jpeg_stdio_dest
+  [46] alloc_large            [77] jinit_c_master_control [99] jpeg_suppress_tables
+  [51] alloc_sarray           [78] jinit_c_prep_controller [5] jpeg_write_scanlines
+  [27] alloc_small            [79] jinit_color_converter  [54] jround_up
+  [10] compress_first_pass    [80] jinit_compress_master  [26] keymatch
+   [2] compress_output        [81] jinit_downsampler      [70] parse_switches
+  [37] dump_buffer            [82] jinit_forward_dct      [36] pbm_getc
+  [28] emit_2bytes            [83] jinit_marker_writer    [43] per_scan_setup
+  [11] emit_buffered_bits     [84] jinit_memory_mgr        [8] pre_process_data
+  [18] emit_byte              [85] jinit_phuff_encoder    [31] prepare_for_pass
+  [38] emit_dht               [86] jinit_read_ppm          [6] process_data_simple_main
+  [59] emit_dqt               [87] jpeg_CreateCompress    [61] read_pbm_integer
+  [12] emit_eobrun            [88] jpeg_abort            [100] realize_virt_arrays
+  [29] emit_marker            [56] jpeg_add_quant_table   [62] request_virt_barray
+  [71] emit_message           [57] jpeg_alloc_huff_table [101] reset_error_mgr
+  [72] emit_sof               [64] jpeg_alloc_quant_table  [9] rgb_ycc_convert
+  [35] empty_output_buffer    [65] jpeg_default_colorspace [102] rgb_ycc_start
+   [4] encode_mcu_AC_first    [89] jpeg_destroy           [44] select_scan_parameters
+   [7] encode_mcu_AC_refine   [90] jpeg_destroy_compress [103] self_destruct
+  [14] encode_mcu_DC_first    [13] jpeg_fdct_islow        [24] sep_downsample
+  [15] encode_mcu_DC_refine    [3] jpeg_finish_compress   [19] start_iMCU_row
+  [17] expand_right_edge      [48] jpeg_free_large       [104] start_input_ppm
+  [50] fill_a_scan            [52] jpeg_free_small        [32] start_pass_coef
+  [63] fill_dc_scans          [42] jpeg_gen_optimal_table [105] start_pass_downsample
+  [73] finish_input_ppm       [49] jpeg_get_large        [106] start_pass_fdctmgr
+  [47] finish_pass_gather_phuff [53] jpeg_get_small      [107] start_pass_main
+  [30] finish_pass_master     [39] jpeg_make_c_derived_tbl [33] start_pass_phuff
+  [40] finish_pass_phuff      [91] jpeg_mem_available    [108] start_pass_prep
+  [41] flush_bits             [92] jpeg_mem_init         [109] term_destination
+  [25] forward_DCT            [93] jpeg_mem_term         [110] validate_script
+  [60] free_pool              [66] jpeg_quality_scaling  [111] write_file_header
+  [22] fullsize_downsample    [67] jpeg_set_colorspace   [112] write_file_trailer
+  [20] get_raw_row            [94] jpeg_set_defaults     [113] write_frame_header
+  [21] h2v2_downsample        [68] jpeg_set_linear_quality [45] write_scan_header
+  [74] init_destination       [69] jpeg_set_quality
+  [23] jcopy_sample_rows      [95] jpeg_simple_progression
