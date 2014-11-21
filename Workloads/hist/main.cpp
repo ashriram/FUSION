@@ -4,7 +4,7 @@
 // #include <cutil_inline.h>
 // #include <cuda_runtime.h>
 #include "hist-equ.h"
-
+#include <roi.h>
 void run_cpu_color_test(PPM_IMG img_in);
 void run_gpu_color_test(PPM_IMG img_in);
 void run_cpu_gray_test(PGM_IMG img_in);
@@ -23,7 +23,9 @@ int main(){
     
     printf("Running contrast enhancement for color images.\n");
     img_ibuf_c = read_ppm("in.ppm");
+    __app_roi_begin();
     run_cpu_color_test(img_ibuf_c);
+    __app_roi_end();
     // run_gpu_color_test(img_ibuf_c);
     free_ppm(img_ibuf_c);
     

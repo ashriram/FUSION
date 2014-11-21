@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "hist-equ.h"
-
 PGM_IMG contrast_enhancement_g(PGM_IMG img_in)
 {
     PGM_IMG result;

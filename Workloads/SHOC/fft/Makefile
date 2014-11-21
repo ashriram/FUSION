@@ -13,7 +13,7 @@ all: $(SOURCES) $(EXECUTABLE)
 	
 $(EXECUTABLE): $(OBJECTS)
 	@mkdir -p bin
-	$(CC) $(ARCH) $(LDFLAGS) $(OBJECTS) -o bin/$@
+	$(CC) $(ARCH) $(LDFLAGS) $(OBJECTS)  -pg -o bin/$@
 
 .c.o:
 	$(CC) $(CFLAGS) $(ARCH) $< -o $@

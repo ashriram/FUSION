@@ -260,17 +260,31 @@ void fft1D_512(TYPE work_x[512], TYPE work_y[512],
     stride = THREADS;
 
 
+startLocalTimer();
     step1(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);
     /*step2(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);*/
+stopLocalTimer();
+startLocalTimer();
     step3(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);
     /*step4(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);*/
+stopLocalTimer();
+startLocalTimer();
     step5(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);
     /*step6(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);*/
+stopLocalTimer();
+startLocalTimer();
     step7(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);
     /*step8(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);*/
+stopLocalTimer();
+startLocalTimer();
     step9(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);
     /*step10(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);*/
+ 
+stopLocalTimer();
+startLocalTimer();
     step11(work_x, work_y, DATA_x, DATA_y, data_x, data_y, smem, reversed, sin_64, cos_64, sin_512, cos_512);
+stopLocalTimer();
+
 }
 int main(){
     /*TYPE a_x[512];*/

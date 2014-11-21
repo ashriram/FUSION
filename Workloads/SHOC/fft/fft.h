@@ -4,6 +4,67 @@
 #include <roi.h>
 #include <string.h>
 
+#include <time.h>
+#include <stdio.h>
+
+#define CYCLECOUNT
+struct timespec localStart, localStop, globalStart, globalStop, fullTime;
+unsigned long long startCycle = 0, stopCycle = 0;
+
+
+#if defined(__i386__)
+
+static __inline__ unsigned long long rdtsc(void)
+{
+    unsigned long long int x;
+    __asm__ volatile (".byte 0x0f, 0x31" : "=A" (x));
+    return x;
+}
+
+#elif defined(__x86_64__)
+
+static __inline__ unsigned long long rdtsc(void)
+{
+    unsigned hi, lo;
+    __asm__ __volatile__ ("rdtsc" : "=a"(lo), "=d"(hi));
+    return ( (unsigned long long)lo)|( ((unsigned long long)hi)<<32 );
+}
+
+#endif
+
+
+struct timespec timeDiff(struct timespec start, struct timespec end);
+double tsFloat(struct timespec time);
+void startLocalTimer();
+void stopLocalTimer();
+
+
+void startLocalTimer()
+{
+#ifndef CYCLECOUNT
+    clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &localStart);
+#else
+    startCycle = rdtsc();
+    /*printf("[Cycle] Start: %llu ",startCycle);*/
+#endif
+}
+
+
+void stopLocalTimer()
+{
+#ifndef CYCLECOUNT
+    clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &localStop);
+    fullTime = timeDiff(localStart,localStop);
+    printf("[Timer] Local: %f\n", tsFloat(fullTime));
+#else
+    stopCycle = rdtsc();
+    printf("[Cycle] Diff: %llu\n", stopCycle - startCycle);
+    startCycle = 0;
+    stopCycle = 0;
+#endif
+}
+
+
 #define THREADS 64
 
 //#define TYPE double
