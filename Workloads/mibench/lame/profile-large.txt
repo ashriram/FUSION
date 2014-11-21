@@ -1,0 +1,707 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  us/call  us/call  name    
+ 24.39      0.10     0.10     2300    43.48    43.48  fft_long
+ 17.07      0.17     0.07     1150    60.87   113.05  mdct_sub48
+ 14.64      0.23     0.06    41400     1.45     1.45  window_subband
+ 12.20      0.28     0.05     2300    21.74    21.74  fft_short
+  7.32      0.31     0.03     1150    26.09    69.57  iteration_loop
+  7.32      0.34     0.03     2300    13.04    78.27  L3psycho_anal
+  4.88      0.36     0.02     8634     2.32     2.32  quantize_xrpow_ISO
+  4.88      0.38     0.02     1150    17.39    17.39  get_audio
+  2.44      0.39     0.01    25716     0.39     0.39  ix_max
+  2.44      0.40     0.01    25616     0.39     0.78  choose_table
+  2.44      0.41     0.01     8640     1.16     5.79  count_bits
+  0.00      0.41     0.00   932051     0.00     0.00  BF_addEntry
+  0.00      0.41     0.00   862220     0.00     0.00  abs_and_sign
+  0.00      0.41     0.00   654289     0.00     0.00  BF_addElement
+  0.00      0.41     0.00   603574     0.00     0.00  putMyBits
+  0.00      0.41     0.00   603574     0.00     0.00  putbits
+  0.00      0.41     0.00   550825     0.00     0.00  WriteMainDataBits
+  0.00      0.41     0.00   422864     0.00     0.00  HuffmanCode
+  0.00      0.41     0.00    47182     0.00     0.00  CRC_BF_addEntry
+  0.00      0.41     0.00    12080     0.00     0.00  count_bit_noESC2
+  0.00      0.41     0.00     8050     0.00     0.00  writePartMainData
+  0.00      0.41     0.00     5750     0.00     0.00  BF_LoadHolderFromBitstreamPart
+  0.00      0.41     0.00     5750     0.00     0.00  BF_PartLength
+  0.00      0.41     0.00     5750     0.00     0.00  writePartSideInfo
+  0.00      0.41     0.00     4123     0.00     0.00  L3_huffman_coder_count1
+  0.00      0.41     0.00     2527     0.00     0.00  calc_noise1
+  0.00      0.41     0.00     2300     0.00     0.00  Huffmancodebits
+  0.00      0.41     0.00     2300     0.00     0.00  ResvAdjust
+  0.00      0.41     0.00     2300     0.00     0.00  ResvMaxBits
+  0.00      0.41     0.00     2300     0.00     0.00  best_scalefac_store
+  0.00      0.41     0.00     2300     0.00     0.00  getframebits
+  0.00      0.41     0.00     2300     0.00     0.00  init_outer_loop
+  0.00      0.41     0.00     2300     0.00     0.00  on_pe
+  0.00      0.41     0.00     2299     0.00    18.26  bin_search_StepSize2
+  0.00      0.41     0.00     2299     0.00     0.00  calc_xmin
+  0.00      0.41     0.00     2299     0.00    21.75  outer_loop
+  0.00      0.41     0.00     1313     0.00     6.11  inner_loop
+  0.00      0.41     0.00     1151     0.00     0.00  copy_buffer
+  0.00      0.41     0.00     1151     0.00     0.00  empty_buffer
+  0.00      0.41     0.00     1151     0.00   338.86  lame_encode_buffer
+  0.00      0.41     0.00     1150     0.00     0.00  BF_BitstreamFrame
+  0.00      0.41     0.00     1150     0.00     0.00  III_format_bitstream
+  0.00      0.41     0.00     1150     0.00     0.00  ResvFrameBegin
+  0.00      0.41     0.00     1150     0.00     0.00  ResvFrameEnd
+  0.00      0.41     0.00     1150     0.00     0.00  fill_buffer
+  0.00      0.41     0.00     1150     0.00     0.00  iteration_init
+  0.00      0.41     0.00     1150     0.00   339.16  lame_encode_frame
+  0.00      0.41     0.00     1150     0.00    17.39  lame_readframe
+  0.00      0.41     0.00     1150     0.00     0.00  read_samples_pcm
+  0.00      0.41     0.00     1150     0.00     0.00  write_side_info
+  0.00      0.41     0.00      554     0.00     0.00  ATHformula
+  0.00      0.41     0.00      251     0.00     0.00  scale_bitcount
+  0.00      0.41     0.00      230     0.00     0.00  amp_scalefac_bands
+  0.00      0.41     0.00      230     0.00     0.00  loop_break
+  0.00      0.41     0.00      228     0.00     0.00  quant_compare
+  0.00      0.41     0.00      100     0.00     0.39  choose_table_short
+  0.00      0.41     0.00       46     0.00     0.00  ts_calc_times
+  0.00      0.41     0.00       33     0.00     0.00  BF_newPartHolder
+  0.00      0.41     0.00       24     0.00     0.00  timestatus
+  0.00      0.41     0.00       24     0.00     0.00  ts_process_time
+  0.00      0.41     0.00       24     0.00     0.00  ts_real_time
+  0.00      0.41     0.00       12     0.00     0.00  BF_freePartHolder
+  0.00      0.41     0.00       12     0.00     0.00  Read16BitsLowHigh
+  0.00      0.41     0.00       10     0.00     0.00  Read16BitsHighLow
+  0.00      0.41     0.00        5     0.00     0.00  Read32BitsHighLow
+  0.00      0.41     0.00        4     0.00     0.00  Read32Bits
+  0.00      0.41     0.00        2     0.00     0.00  BF_resizePartHolder
+  0.00      0.41     0.00        2     0.00     0.00  GetSndSamples
+  0.00      0.41     0.00        2     0.00     0.00  free_side_info_link
+  0.00      0.41     0.00        1     0.00     0.00  BF_FlushBitstream
+  0.00      0.41     0.00        1     0.00     0.00  BitrateIndex
+  0.00      0.41     0.00        1     0.00     0.00  CloseSndFile
+  0.00      0.41     0.00        1     0.00     0.00  DetermineByteOrder
+  0.00      0.41     0.00        1     0.00     0.00  GetSndChannels
+  0.00      0.41     0.00        1     0.00     0.00  GetSndSampleRate
+  0.00      0.41     0.00        1     0.00     0.00  III_FlushBitstream
+  0.00      0.41     0.00        1     0.00     0.00  InitFormatBitStream
+  0.00      0.41     0.00        1     0.00     0.00  L3para_read
+  0.00      0.41     0.00        1     0.00     0.00  OpenSndFile
+  0.00      0.41     0.00        1     0.00     0.00  SmpFrqIndex
+  0.00      0.41     0.00        1     0.00     0.00  alloc_buffer
+  0.00      0.41     0.00        1     0.00     0.00  compute_ath
+  0.00      0.41     0.00        1     0.00     0.00  desalloc_buffer
+  0.00      0.41     0.00        1     0.00     0.00  get_lame_version
+  0.00      0.41     0.00        1     0.00     0.00  get_psy_version
+  0.00      0.41     0.00        1     0.00     0.00  id3_inittag
+  0.00      0.41     0.00        1     0.00     0.00  init_bit_stream_w
+  0.00      0.41     0.00        1     0.00     0.00  init_fft
+  0.00      0.41     0.00        1     0.00     0.00  lame_close_infile
+  0.00      0.41     0.00        1     0.00   338.86  lame_encode
+  0.00      0.41     0.00        1     0.00   338.86  lame_encode_finish
+  0.00      0.41     0.00        1     0.00     0.00  lame_init
+  0.00      0.41     0.00        1     0.00     0.00  lame_init_infile
+  0.00      0.41     0.00        1     0.00     0.00  lame_init_params
+  0.00      0.41     0.00        1     0.00     0.00  lame_mp3_tags
+  0.00      0.41     0.00        1     0.00     0.00  lame_parse_args
+  0.00      0.41     0.00        1     0.00     0.00  lame_print_config
+  0.00      0.41     0.00        1     0.00     0.00  lame_print_version
+  0.00      0.41     0.00        1     0.00     0.00  mdct_init48
+  0.00      0.41     0.00        1     0.00     0.00  mem_alloc
+  0.00      0.41     0.00        1     0.00     0.00  parse_file_header
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 2.44% of 0.41 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]    100.0    0.00    0.41                 main [1]
+                0.00    0.39    1150/1151        lame_encode_buffer [2]
+                0.00    0.02    1150/1150        lame_readframe [15]
+                0.00    0.00       1/1           lame_encode_finish [20]
+                0.00    0.00       1/1           lame_init [93]
+                0.00    0.00       1/1           lame_parse_args [97]
+                0.00    0.00       1/1           lame_init_params [95]
+                0.00    0.00       1/1           lame_init_infile [94]
+                0.00    0.00       1/1           lame_print_config [98]
+                0.00    0.00       1/1           lame_close_infile [92]
+                0.00    0.00       1/1           lame_mp3_tags [96]
+-----------------------------------------------
+                0.00    0.00       1/1151        lame_encode [19]
+                0.00    0.39    1150/1151        main [1]
+[2]     95.1    0.00    0.39    1151         lame_encode_buffer [2]
+                0.00    0.39    1150/1150        lame_encode_frame [3]
+                0.00    0.00    1150/1150        fill_buffer [51]
+-----------------------------------------------
+                0.00    0.39    1150/1150        lame_encode_buffer [2]
+[3]     95.1    0.00    0.39    1150         lame_encode_frame [3]
+                0.03    0.15    2300/2300        L3psycho_anal [4]
+                0.07    0.06    1150/1150        mdct_sub48 [5]
+                0.03    0.05    1150/1150        iteration_loop [7]
+                0.00    0.00    1150/2300        getframebits [41]
+                0.00    0.00    1150/1150        III_format_bitstream [48]
+                0.00    0.00    1150/1151        copy_buffer [45]
+                0.00    0.00      23/24          timestatus [62]
+-----------------------------------------------
+                0.03    0.15    2300/2300        lame_encode_frame [3]
+[4]     43.9    0.03    0.15    2300         L3psycho_anal [4]
+                0.10    0.00    2300/2300        fft_long [6]
+                0.05    0.00    2300/2300        fft_short [10]
+                0.00    0.00       1/1           L3para_read [81]
+                0.00    0.00       1/1           init_fft [91]
+-----------------------------------------------
+                0.07    0.06    1150/1150        lame_encode_frame [3]
+[5]     31.7    0.07    0.06    1150         mdct_sub48 [5]
+                0.06    0.00   41400/41400       window_subband [8]
+                0.00    0.00       1/1           mdct_init48 [100]
+-----------------------------------------------
+                0.10    0.00    2300/2300        L3psycho_anal [4]
+[6]     24.4    0.10    0.00    2300         fft_long [6]
+-----------------------------------------------
+                0.03    0.05    1150/1150        lame_encode_frame [3]
+[7]     19.5    0.03    0.05    1150         iteration_loop [7]
+                0.00    0.05    2299/2299        outer_loop [11]
+                0.00    0.00    2300/2300        on_pe [43]
+                0.00    0.00    2300/2300        init_outer_loop [42]
+                0.00    0.00    2300/2300        best_scalefac_store [40]
+                0.00    0.00    2300/2300        ResvAdjust [38]
+                0.00    0.00    2299/2299        calc_xmin [44]
+                0.00    0.00    1150/1150        iteration_init [52]
+                0.00    0.00    1150/2300        getframebits [41]
+                0.00    0.00    1150/1150        ResvFrameBegin [49]
+                0.00    0.00    1150/1150        ResvFrameEnd [50]
+-----------------------------------------------
+                0.06    0.00   41400/41400       mdct_sub48 [5]
+[8]     14.6    0.06    0.00   41400         window_subband [8]
+-----------------------------------------------
+                0.00    0.01    1387/8640        inner_loop [18]
+                0.01    0.03    7253/8640        bin_search_StepSize2 [12]
+[9]     12.2    0.01    0.04    8640         count_bits [9]
+                0.02    0.00    8634/8634        quantize_xrpow_ISO [13]
+                0.01    0.01   25616/25616       choose_table [16]
+                0.00    0.00     100/100         choose_table_short [21]
+-----------------------------------------------
+                0.05    0.00    2300/2300        L3psycho_anal [4]
+[10]    12.2    0.05    0.00    2300         fft_short [10]
+-----------------------------------------------
+                0.00    0.05    2299/2299        iteration_loop [7]
+[11]    12.2    0.00    0.05    2299         outer_loop [11]
+                0.00    0.04    2299/2299        bin_search_StepSize2 [12]
+                0.00    0.01    1313/1313        inner_loop [18]
+                0.00    0.00    2527/2527        calc_noise1 [36]
+                0.00    0.00     230/230         amp_scalefac_bands [57]
+                0.00    0.00     230/230         loop_break [58]
+                0.00    0.00     230/251         scale_bitcount [56]
+                0.00    0.00     228/228         quant_compare [59]
+-----------------------------------------------
+                0.00    0.04    2299/2299        outer_loop [11]
+[12]    10.2    0.00    0.04    2299         bin_search_StepSize2 [12]
+                0.01    0.03    7253/8640        count_bits [9]
+-----------------------------------------------
+                0.02    0.00    8634/8634        count_bits [9]
+[13]     4.9    0.02    0.00    8634         quantize_xrpow_ISO [13]
+-----------------------------------------------
+                0.02    0.00    1150/1150        lame_readframe [15]
+[14]     4.9    0.02    0.00    1150         get_audio [14]
+                0.00    0.00    1150/1150        read_samples_pcm [53]
+                0.00    0.00       1/2           GetSndSamples [71]
+-----------------------------------------------
+                0.00    0.02    1150/1150        main [1]
+[15]     4.9    0.00    0.02    1150         lame_readframe [15]
+                0.02    0.00    1150/1150        get_audio [14]
+-----------------------------------------------
+                0.01    0.01   25616/25616       count_bits [9]
+[16]     4.9    0.01    0.01   25616         choose_table [16]
+                0.01    0.00   25616/25716       ix_max [17]
+                0.00    0.00   12073/12080       count_bit_noESC2 [30]
+-----------------------------------------------
+                0.00    0.00     100/25716       choose_table_short [21]
+                0.01    0.00   25616/25716       choose_table [16]
+[17]     2.4    0.01    0.00   25716         ix_max [17]
+-----------------------------------------------
+                0.00    0.01    1313/1313        outer_loop [11]
+[18]     2.0    0.00    0.01    1313         inner_loop [18]
+                0.00    0.01    1387/8640        count_bits [9]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_encode_finish [20]
+[19]     0.1    0.00    0.00       1         lame_encode [19]
+                0.00    0.00       1/1151        lame_encode_buffer [2]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[20]     0.1    0.00    0.00       1         lame_encode_finish [20]
+                0.00    0.00       1/1           lame_encode [19]
+                0.00    0.00       1/24          timestatus [62]
+                0.00    0.00       1/1           III_FlushBitstream [79]
+                0.00    0.00       1/1151        copy_buffer [45]
+                0.00    0.00       1/1           desalloc_buffer [86]
+-----------------------------------------------
+                0.00    0.00     100/100         count_bits [9]
+[21]     0.0    0.00    0.00     100         choose_table_short [21]
+                0.00    0.00     100/25716       ix_max [17]
+                0.00    0.00       7/12080       count_bit_noESC2 [30]
+-----------------------------------------------
+                0.00    0.00    8246/932051      L3_huffman_coder_count1 [35]
+                0.00    0.00   30895/932051      III_format_bitstream [48]
+                0.00    0.00   47182/932051      CRC_BF_addEntry [29]
+                0.00    0.00  845728/932051      Huffmancodebits [37]
+[22]     0.0    0.00    0.00  932051         BF_addEntry [22]
+                0.00    0.00  602507/654289      BF_addElement [24]
+-----------------------------------------------
+                0.00    0.00   16492/862220      L3_huffman_coder_count1 [35]
+                0.00    0.00  845728/862220      HuffmanCode [28]
+[23]     0.0    0.00    0.00  862220         abs_and_sign [23]
+-----------------------------------------------
+                0.00    0.00   51782/654289      BF_LoadHolderFromBitstreamPart [32]
+                0.00    0.00  602507/654289      BF_addEntry [22]
+[24]     0.0    0.00    0.00  654289         BF_addElement [24]
+                0.00    0.00       2/2           BF_resizePartHolder [70]
+-----------------------------------------------
+                0.00    0.00   51782/603574      writePartSideInfo [34]
+                0.00    0.00  551792/603574      WriteMainDataBits [27]
+[25]     0.0    0.00    0.00  603574         putMyBits [25]
+                0.00    0.00  603574/603574      putbits [26]
+-----------------------------------------------
+                0.00    0.00  603574/603574      putMyBits [25]
+[26]     0.0    0.00    0.00  603574         putbits [26]
+-----------------------------------------------
+                0.00    0.00     100/550825      BF_FlushBitstream [73]
+                0.00    0.00  550725/550825      writePartMainData [31]
+[27]     0.0    0.00    0.00  550825         WriteMainDataBits [27]
+                0.00    0.00  551792/603574      putMyBits [25]
+                0.00    0.00    1150/1150        write_side_info [54]
+-----------------------------------------------
+                0.00    0.00  422864/422864      Huffmancodebits [37]
+[28]     0.0    0.00    0.00  422864         HuffmanCode [28]
+                0.00    0.00  845728/862220      abs_and_sign [23]
+-----------------------------------------------
+                0.00    0.00   47182/47182       III_format_bitstream [48]
+[29]     0.0    0.00    0.00   47182         CRC_BF_addEntry [29]
+                0.00    0.00   47182/932051      BF_addEntry [22]
+-----------------------------------------------
+                0.00    0.00       7/12080       choose_table_short [21]
+                0.00    0.00   12073/12080       choose_table [16]
+[30]     0.0    0.00    0.00   12080         count_bit_noESC2 [30]
+-----------------------------------------------
+                0.00    0.00    8050/8050        BF_BitstreamFrame [47]
+[31]     0.0    0.00    0.00    8050         writePartMainData [31]
+                0.00    0.00  550725/550825      WriteMainDataBits [27]
+-----------------------------------------------
+                0.00    0.00    5750/5750        BF_BitstreamFrame [47]
+[32]     0.0    0.00    0.00    5750         BF_LoadHolderFromBitstreamPart [32]
+                0.00    0.00   51782/654289      BF_addElement [24]
+-----------------------------------------------
+                0.00    0.00    5750/5750        BF_BitstreamFrame [47]
+[33]     0.0    0.00    0.00    5750         BF_PartLength [33]
+-----------------------------------------------
+                0.00    0.00    5750/5750        write_side_info [54]
+[34]     0.0    0.00    0.00    5750         writePartSideInfo [34]
+                0.00    0.00   51782/603574      putMyBits [25]
+-----------------------------------------------
+                0.00    0.00    4123/4123        Huffmancodebits [37]
+[35]     0.0    0.00    0.00    4123         L3_huffman_coder_count1 [35]
+                0.00    0.00   16492/862220      abs_and_sign [23]
+                0.00    0.00    8246/932051      BF_addEntry [22]
+-----------------------------------------------
+                0.00    0.00    2527/2527        outer_loop [11]
+[36]     0.0    0.00    0.00    2527         calc_noise1 [36]
+-----------------------------------------------
+                0.00    0.00    2300/2300        III_format_bitstream [48]
+[37]     0.0    0.00    0.00    2300         Huffmancodebits [37]
+                0.00    0.00  845728/932051      BF_addEntry [22]
+                0.00    0.00  422864/422864      HuffmanCode [28]
+                0.00    0.00    4123/4123        L3_huffman_coder_count1 [35]
+-----------------------------------------------
+                0.00    0.00    2300/2300        iteration_loop [7]
+[38]     0.0    0.00    0.00    2300         ResvAdjust [38]
+-----------------------------------------------
+                0.00    0.00    2300/2300        on_pe [43]
+[39]     0.0    0.00    0.00    2300         ResvMaxBits [39]
+-----------------------------------------------
+                0.00    0.00    2300/2300        iteration_loop [7]
+[40]     0.0    0.00    0.00    2300         best_scalefac_store [40]
+                0.00    0.00      21/251         scale_bitcount [56]
+-----------------------------------------------
+                0.00    0.00    1150/2300        lame_encode_frame [3]
+                0.00    0.00    1150/2300        iteration_loop [7]
+[41]     0.0    0.00    0.00    2300         getframebits [41]
+-----------------------------------------------
+                0.00    0.00    2300/2300        iteration_loop [7]
+[42]     0.0    0.00    0.00    2300         init_outer_loop [42]
+-----------------------------------------------
+                0.00    0.00    2300/2300        iteration_loop [7]
+[43]     0.0    0.00    0.00    2300         on_pe [43]
+                0.00    0.00    2300/2300        ResvMaxBits [39]
+-----------------------------------------------
+                0.00    0.00    2299/2299        iteration_loop [7]
+[44]     0.0    0.00    0.00    2299         calc_xmin [44]
+-----------------------------------------------
+                0.00    0.00       1/1151        lame_encode_finish [20]
+                0.00    0.00    1150/1151        lame_encode_frame [3]
+[45]     0.0    0.00    0.00    1151         copy_buffer [45]
+                0.00    0.00    1151/1151        empty_buffer [46]
+-----------------------------------------------
+                0.00    0.00    1151/1151        copy_buffer [45]
+[46]     0.0    0.00    0.00    1151         empty_buffer [46]
+-----------------------------------------------
+                0.00    0.00    1150/1150        III_format_bitstream [48]
+[47]     0.0    0.00    0.00    1150         BF_BitstreamFrame [47]
+                0.00    0.00    8050/8050        writePartMainData [31]
+                0.00    0.00    5750/5750        BF_LoadHolderFromBitstreamPart [32]
+                0.00    0.00    5750/5750        BF_PartLength [33]
+                0.00    0.00      10/33          BF_newPartHolder [61]
+-----------------------------------------------
+                0.00    0.00    1150/1150        lame_encode_frame [3]
+[48]     0.0    0.00    0.00    1150         III_format_bitstream [48]
+                0.00    0.00   47182/47182       CRC_BF_addEntry [29]
+                0.00    0.00   30895/932051      BF_addEntry [22]
+                0.00    0.00    2300/2300        Huffmancodebits [37]
+                0.00    0.00    1150/1150        BF_BitstreamFrame [47]
+                0.00    0.00      21/33          BF_newPartHolder [61]
+-----------------------------------------------
+                0.00    0.00    1150/1150        iteration_loop [7]
+[49]     0.0    0.00    0.00    1150         ResvFrameBegin [49]
+-----------------------------------------------
+                0.00    0.00    1150/1150        iteration_loop [7]
+[50]     0.0    0.00    0.00    1150         ResvFrameEnd [50]
+-----------------------------------------------
+                0.00    0.00    1150/1150        lame_encode_buffer [2]
+[51]     0.0    0.00    0.00    1150         fill_buffer [51]
+-----------------------------------------------
+                0.00    0.00    1150/1150        iteration_loop [7]
+[52]     0.0    0.00    0.00    1150         iteration_init [52]
+                0.00    0.00       1/1           compute_ath [85]
+-----------------------------------------------
+                0.00    0.00    1150/1150        get_audio [14]
+[53]     0.0    0.00    0.00    1150         read_samples_pcm [53]
+                0.00    0.00       1/1           DetermineByteOrder [76]
+-----------------------------------------------
+                0.00    0.00    1150/1150        WriteMainDataBits [27]
+[54]     0.0    0.00    0.00    1150         write_side_info [54]
+                0.00    0.00    5750/5750        writePartSideInfo [34]
+-----------------------------------------------
+                0.00    0.00     554/554         compute_ath [85]
+[55]     0.0    0.00    0.00     554         ATHformula [55]
+-----------------------------------------------
+                0.00    0.00      21/251         best_scalefac_store [40]
+                0.00    0.00     230/251         outer_loop [11]
+[56]     0.0    0.00    0.00     251         scale_bitcount [56]
+-----------------------------------------------
+                0.00    0.00     230/230         outer_loop [11]
+[57]     0.0    0.00    0.00     230         amp_scalefac_bands [57]
+-----------------------------------------------
+                0.00    0.00     230/230         outer_loop [11]
+[58]     0.0    0.00    0.00     230         loop_break [58]
+-----------------------------------------------
+                0.00    0.00     228/228         outer_loop [11]
+[59]     0.0    0.00    0.00     228         quant_compare [59]
+-----------------------------------------------
+                0.00    0.00      46/46          timestatus [62]
+[60]     0.0    0.00    0.00      46         ts_calc_times [60]
+-----------------------------------------------
+                0.00    0.00       2/33          BF_resizePartHolder [70]
+                0.00    0.00      10/33          BF_BitstreamFrame [47]
+                0.00    0.00      21/33          III_format_bitstream [48]
+[61]     0.0    0.00    0.00      33         BF_newPartHolder [61]
+-----------------------------------------------
+                0.00    0.00       1/24          lame_encode_finish [20]
+                0.00    0.00      23/24          lame_encode_frame [3]
+[62]     0.0    0.00    0.00      24         timestatus [62]
+                0.00    0.00      46/46          ts_calc_times [60]
+                0.00    0.00      24/24          ts_real_time [64]
+                0.00    0.00      24/24          ts_process_time [63]
+-----------------------------------------------
+                0.00    0.00      24/24          timestatus [62]
+[63]     0.0    0.00    0.00      24         ts_process_time [63]
+-----------------------------------------------
+                0.00    0.00      24/24          timestatus [62]
+[64]     0.0    0.00    0.00      24         ts_real_time [64]
+-----------------------------------------------
+                0.00    0.00       2/12          BF_resizePartHolder [70]
+                0.00    0.00      10/12          free_side_info_link [72]
+[65]     0.0    0.00    0.00      12         BF_freePartHolder [65]
+-----------------------------------------------
+                0.00    0.00       4/12          parse_file_header [102]
+                0.00    0.00       8/12          Read32Bits [69]
+[66]     0.0    0.00    0.00      12         Read16BitsLowHigh [66]
+-----------------------------------------------
+                0.00    0.00      10/10          Read32BitsHighLow [68]
+[67]     0.0    0.00    0.00      10         Read16BitsHighLow [67]
+-----------------------------------------------
+                0.00    0.00       5/5           parse_file_header [102]
+[68]     0.0    0.00    0.00       5         Read32BitsHighLow [68]
+                0.00    0.00      10/10          Read16BitsHighLow [67]
+-----------------------------------------------
+                0.00    0.00       4/4           parse_file_header [102]
+[69]     0.0    0.00    0.00       4         Read32Bits [69]
+                0.00    0.00       8/12          Read16BitsLowHigh [66]
+-----------------------------------------------
+                0.00    0.00       2/2           BF_addElement [24]
+[70]     0.0    0.00    0.00       2         BF_resizePartHolder [70]
+                0.00    0.00       2/33          BF_newPartHolder [61]
+                0.00    0.00       2/12          BF_freePartHolder [65]
+-----------------------------------------------
+                0.00    0.00       1/2           get_audio [14]
+                0.00    0.00       1/2           lame_init_infile [94]
+[71]     0.0    0.00    0.00       2         GetSndSamples [71]
+-----------------------------------------------
+                0.00    0.00       2/2           BF_FlushBitstream [73]
+[72]     0.0    0.00    0.00       2         free_side_info_link [72]
+                0.00    0.00      10/12          BF_freePartHolder [65]
+-----------------------------------------------
+                0.00    0.00       1/1           III_FlushBitstream [79]
+[73]     0.0    0.00    0.00       1         BF_FlushBitstream [73]
+                0.00    0.00     100/550825      WriteMainDataBits [27]
+                0.00    0.00       2/2           free_side_info_link [72]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_init_params [95]
+[74]     0.0    0.00    0.00       1         BitrateIndex [74]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_close_infile [92]
+[75]     0.0    0.00    0.00       1         CloseSndFile [75]
+-----------------------------------------------
+                0.00    0.00       1/1           read_samples_pcm [53]
+[76]     0.0    0.00    0.00       1         DetermineByteOrder [76]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_init_infile [94]
+[77]     0.0    0.00    0.00       1         GetSndChannels [77]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_init_infile [94]
+[78]     0.0    0.00    0.00       1         GetSndSampleRate [78]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_encode_finish [20]
+[79]     0.0    0.00    0.00       1         III_FlushBitstream [79]
+                0.00    0.00       1/1           BF_FlushBitstream [73]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_init_params [95]
+[80]     0.0    0.00    0.00       1         InitFormatBitStream [80]
+-----------------------------------------------
+                0.00    0.00       1/1           L3psycho_anal [4]
+[81]     0.0    0.00    0.00       1         L3para_read [81]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_init_infile [94]
+[82]     0.0    0.00    0.00       1         OpenSndFile [82]
+                0.00    0.00       1/1           parse_file_header [102]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_init_params [95]
+[83]     0.0    0.00    0.00       1         SmpFrqIndex [83]
+-----------------------------------------------
+                0.00    0.00       1/1           init_bit_stream_w [90]
+[84]     0.0    0.00    0.00       1         alloc_buffer [84]
+                0.00    0.00       1/1           mem_alloc [101]
+-----------------------------------------------
+                0.00    0.00       1/1           iteration_init [52]
+[85]     0.0    0.00    0.00       1         compute_ath [85]
+                0.00    0.00     554/554         ATHformula [55]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_encode_finish [20]
+[86]     0.0    0.00    0.00       1         desalloc_buffer [86]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_print_version [99]
+[87]     0.0    0.00    0.00       1         get_lame_version [87]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_print_version [99]
+[88]     0.0    0.00    0.00       1         get_psy_version [88]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_parse_args [97]
+[89]     0.0    0.00    0.00       1         id3_inittag [89]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_init_params [95]
+[90]     0.0    0.00    0.00       1         init_bit_stream_w [90]
+                0.00    0.00       1/1           alloc_buffer [84]
+-----------------------------------------------
+                0.00    0.00       1/1           L3psycho_anal [4]
+[91]     0.0    0.00    0.00       1         init_fft [91]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[92]     0.0    0.00    0.00       1         lame_close_infile [92]
+                0.00    0.00       1/1           CloseSndFile [75]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[93]     0.0    0.00    0.00       1         lame_init [93]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[94]     0.0    0.00    0.00       1         lame_init_infile [94]
+                0.00    0.00       1/1           GetSndSampleRate [78]
+                0.00    0.00       1/1           OpenSndFile [82]
+                0.00    0.00       1/1           GetSndChannels [77]
+                0.00    0.00       1/2           GetSndSamples [71]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[95]     0.0    0.00    0.00       1         lame_init_params [95]
+                0.00    0.00       1/1           InitFormatBitStream [80]
+                0.00    0.00       1/1           SmpFrqIndex [83]
+                0.00    0.00       1/1           BitrateIndex [74]
+                0.00    0.00       1/1           init_bit_stream_w [90]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[96]     0.0    0.00    0.00       1         lame_mp3_tags [96]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[97]     0.0    0.00    0.00       1         lame_parse_args [97]
+                0.00    0.00       1/1           id3_inittag [89]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[98]     0.0    0.00    0.00       1         lame_print_config [98]
+                0.00    0.00       1/1           lame_print_version [99]
+-----------------------------------------------
+                0.00    0.00       1/1           lame_print_config [98]
+[99]     0.0    0.00    0.00       1         lame_print_version [99]
+                0.00    0.00       1/1           get_lame_version [87]
+                0.00    0.00       1/1           get_psy_version [88]
+-----------------------------------------------
+                0.00    0.00       1/1           mdct_sub48 [5]
+[100]    0.0    0.00    0.00       1         mdct_init48 [100]
+-----------------------------------------------
+                0.00    0.00       1/1           alloc_buffer [84]
+[101]    0.0    0.00    0.00       1         mem_alloc [101]
+-----------------------------------------------
+                0.00    0.00       1/1           OpenSndFile [82]
+[102]    0.0    0.00    0.00       1         parse_file_header [102]
+                0.00    0.00       5/5           Read32BitsHighLow [68]
+                0.00    0.00       4/4           Read32Bits [69]
+                0.00    0.00       4/12          Read16BitsLowHigh [66]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+
+Index by function name
+
+  [55] ATHformula             [83] SmpFrqIndex            [19] lame_encode
+  [47] BF_BitstreamFrame      [27] WriteMainDataBits       [2] lame_encode_buffer
+  [73] BF_FlushBitstream      [23] abs_and_sign           [20] lame_encode_finish
+  [32] BF_LoadHolderFromBitstreamPart [84] alloc_buffer    [3] lame_encode_frame
+  [33] BF_PartLength          [57] amp_scalefac_bands     [93] lame_init
+  [24] BF_addElement          [40] best_scalefac_store    [94] lame_init_infile
+  [22] BF_addEntry            [12] bin_search_StepSize2   [95] lame_init_params
+  [65] BF_freePartHolder      [36] calc_noise1            [96] lame_mp3_tags
+  [61] BF_newPartHolder       [44] calc_xmin              [97] lame_parse_args
+  [70] BF_resizePartHolder    [16] choose_table           [98] lame_print_config
+  [74] BitrateIndex           [21] choose_table_short     [99] lame_print_version
+  [29] CRC_BF_addEntry        [85] compute_ath            [15] lame_readframe
+  [75] CloseSndFile           [45] copy_buffer            [58] loop_break
+  [76] DetermineByteOrder     [30] count_bit_noESC2      [100] mdct_init48
+  [77] GetSndChannels          [9] count_bits              [5] mdct_sub48
+  [78] GetSndSampleRate       [86] desalloc_buffer       [101] mem_alloc
+  [71] GetSndSamples          [46] empty_buffer           [43] on_pe
+  [28] HuffmanCode             [6] fft_long               [11] outer_loop
+  [37] Huffmancodebits        [10] fft_short             [102] parse_file_header
+  [79] III_FlushBitstream     [51] fill_buffer            [25] putMyBits
+  [48] III_format_bitstream   [72] free_side_info_link    [26] putbits
+  [80] InitFormatBitStream    [14] get_audio              [59] quant_compare
+  [35] L3_huffman_coder_count1 [87] get_lame_version      [13] quantize_xrpow_ISO
+  [81] L3para_read            [88] get_psy_version        [53] read_samples_pcm
+   [4] L3psycho_anal          [41] getframebits           [56] scale_bitcount
+  [82] OpenSndFile            [89] id3_inittag            [62] timestatus
+  [67] Read16BitsHighLow      [90] init_bit_stream_w      [60] ts_calc_times
+  [66] Read16BitsLowHigh      [91] init_fft               [63] ts_process_time
+  [69] Read32Bits             [42] init_outer_loop        [64] ts_real_time
+  [68] Read32BitsHighLow      [18] inner_loop              [8] window_subband
+  [38] ResvAdjust             [52] iteration_init         [31] writePartMainData
+  [49] ResvFrameBegin          [7] iteration_loop         [34] writePartSideInfo
+  [50] ResvFrameEnd           [17] ix_max                 [54] write_side_info
+  [39] ResvMaxBits            [92] lame_close_infile
