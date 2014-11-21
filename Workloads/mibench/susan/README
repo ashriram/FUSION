@@ -1,0 +1,7 @@
+Hardcoded to run mode 3 (New mode)
+Performs smoothing on the image first, then corner detection followed by edge detection.
+
+Use input_scout.pgm, runtime can be reduced by reducing the number of edges/corners to look for. 
+Input sizes -- scout > vga > large
+
+./susan input_scout.pgm output.pgm -s
