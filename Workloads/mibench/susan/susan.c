@@ -2120,9 +2120,9 @@ CORNER_LIST corner_list;
         memset (mid,100,x_size * y_size); /* note not set to zero */
     __app_roi_begin();
       setup_brightness_lut(&bp,bt,6);
-      susan_smoothing(three_by_three,in,dt,x_size,y_size,bp);
+      susan_smoothing(0,in,dt,x_size,y_size,bp);
       susan_corners(in,r1,bp,max_no_corners,corner_list,x_size,y_size);
-      susan_edges(in,r2,mid,bp,max_no_edges,x_size,y_size);
+      susan_edges(in,r1,mid,bp,max_no_edges,x_size,y_size);
     __app_roi_end();
       break;
 
