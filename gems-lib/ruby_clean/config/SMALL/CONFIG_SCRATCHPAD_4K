@@ -1,15 +1,22 @@
+
 // Always ACC = NUM processors as there is some logic inside memfetch etc that might break
 
 
 // set automatically
-g_NUM_PROCESSORS: 4
-g_PROCS_PER_CHIP: 4
+g_NUM_PROCESSORS: 8
+g_PROCS_PER_CHIP: 8
 
-g_NUM_ACCS: 4
-g_ACCS_PER_CHIP: 4
+g_NUM_ACCS: 8
+g_ACCS_PER_CHIP: 8
+
+g_PROC_NUM_ACC: 2
 
 
-L1_CACHE_ASSOC: 4
+g_NUM_L2_BANKS: 4
+g_NUM_L2T_BANKS: 4
+g_NUM_MEMORIES: 4
+
+L1_CACHE_ASSOC: 8
 L1_CACHE_NUM_SETS_BITS: 8
 L2_CACHE_ASSOC: 16
 L2_CACHE_NUM_SETS_BITS: 16
@@ -38,6 +45,8 @@ g_CACHE_DESIGN: FUSION  // specifies file prefix for FILE_SPECIFIED topology
 g_DATA_BLOCK_BYTES:32
 // Needs to be same as block size. Could be slightly bigger to accomodate fields
 g_DATA_MESSAGE_SIZE: 32
+NUMBER_OF_VIRTUAL_NETWORKS: 8
+g_YAO_DRIVER: 2
 g_DMA_PROC:1
 g_FLIT_SIZE:8
 g_GMEM_SKIP_L1D: false
