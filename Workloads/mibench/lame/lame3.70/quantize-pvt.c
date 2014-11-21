@@ -888,7 +888,7 @@ bin_search_StepSize2 (lame_global_flags *gfp,int desired_rate, int start, int *i
 
 
 #if (defined(__GNUC__) && defined(__i386__))
-#define USE_GNUC_ASM
+/*#define USE_GNUC_ASM*/
 #endif
 #ifdef _MSC_VER
 #define USE_MSC_ASM
