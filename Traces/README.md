@@ -1,6 +1,6 @@
 ### Baselines (SMALL)
 1. b1 : A DMA style system with 4K scratchpad where the CPU will copy the data for each window into the scratchpad of the accelerator. Requires:
-    1. Run the post process tool to generate the DMA trace.
+    1. Run the post process tool to generate the DMA trace. (post-b1)
     2. Profile the running time of accelerator first to obtain the average lease time for each invocation. 
     3. Configs to set in params.in
         a. enable_dma_core 1
@@ -20,7 +20,7 @@
         b. cl_lease_accN X (where N is accelerator core from 2 to 7 and X is the lease time in cycles)
         c. acc_lease_update 1
 4. b4 : Fusion protocol where the current acc will forward the shared data to the next acc. 
-    1. DMA trace not required, but post processing tool needs to be run to move loads up.
+    1. DMA trace not required, but post processing tool needs to be run to move loads up. (post-b2)
     2. Use same lease time as previous cases for each accelerated function
     3. Configs to set in params.in
         a. enable_dma_core 0
