@@ -29,7 +29,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "needwun.h"
-void needwun(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
+void needwun1(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
              int A[dyn_size], char ptr[dyn_size]){
 
     int mismatch, i,j,max;
@@ -91,7 +91,7 @@ void needwun(char SEQA[N], char SEQB[M], char allignedA[sum_size], char alligned
         }
     }
 
-void needwun_2(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
+void needwun2(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
     int A[dyn_size],char ptr[dyn_size]){
     //ptr   SEQA  SEQB allignedA allignedB  
     int  i, j, i_t, j_t;
