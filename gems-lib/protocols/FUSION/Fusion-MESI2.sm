@@ -1164,7 +1164,8 @@ machine(L2Cache, "MESI Directory L2 Cache CMP") {
 
   transition(MT, {DATA_ACC}, M) {
     ll_clearSharers;
-    mr_writeDataToCacheFromRequest;
+    m_writeDataToCache;
+    // mr_writeDataToCacheFromRequest;
     ta_sendWBAck;
     o_popIncomingResponseQueue;
   }
