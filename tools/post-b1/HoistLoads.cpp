@@ -123,6 +123,12 @@ unsigned processTrace(unsigned ScratchpadSize, int acc_id)
 
 void processCPUTrace(unsigned ScratchpadSize)
 {
+    // Write Good Luck NOPs
+    Inst_info delim;
+    memset((void *)&delim, 0, sizeof(Inst_info));
+    delim.opcode = TR_NOP;
+    gzwrite(NewTrace[1], &delim, sizeof(Inst_info));
+
     Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
     while(gzread(OrigTrace[0], (void*)inst, sizeof(Inst_info)) > 0)
     {
