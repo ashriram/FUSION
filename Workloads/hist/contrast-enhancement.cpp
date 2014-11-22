@@ -72,15 +72,22 @@ PPM_IMG contrast_enhancement_c_hsl(PPM_IMG img_in)
     int hist[256];
 
     hsl_med = rgb2hsl(img_in);
-    l_equ = (unsigned char *)malloc(hsl_med.height*hsl_med.width*sizeof(unsigned char));
 
+    l_equ = (unsigned char *)malloc(hsl_med.height*hsl_med.width*sizeof(unsigned char));
     histogram(hist, hsl_med.l, hsl_med.height * hsl_med.width, 256);
     histogram_equalization(l_equ, hsl_med.l,hist,hsl_med.width*hsl_med.height, 256);
     
     free(hsl_med.l);
     hsl_med.l = l_equ;
 
-    result = hsl2rgb(hsl_med);
+    result.w = hsl_med.width;
+    result.h = hsl_med.height;
+    result.img_r = (unsigned char *)malloc(result.w * result.h * sizeof(unsigned char));
+    result.img_g = (unsigned char *)malloc(result.w * result.h * sizeof(unsigned char));
+    result.img_b = (unsigned char *)malloc(result.w * result.h * sizeof(unsigned char));
+
+    result = hsl2rgb(hsl_med,result);
+
     free(hsl_med.h);
     free(hsl_med.s);
     free(hsl_med.l);
@@ -167,16 +174,9 @@ float Hue_2_RGB( float v1, float v2, float vH )             //Function Hue_2_RGB
 
 //Convert HSL to RGB, assume H, S in [0.0, 1.0] and L in [0, 255]
 //Output R,G,B in [0, 255]
-PPM_IMG hsl2rgb(HSL_IMG img_in)
+PPM_IMG hsl2rgb(HSL_IMG img_in, PPM_IMG result)
 {
     int i;
-    PPM_IMG result;
-    
-    result.w = img_in.width;
-    result.h = img_in.height;
-    result.img_r = (unsigned char *)malloc(result.w * result.h * sizeof(unsigned char));
-    result.img_g = (unsigned char *)malloc(result.w * result.h * sizeof(unsigned char));
-    result.img_b = (unsigned char *)malloc(result.w * result.h * sizeof(unsigned char));
     
     for(i = 0; i < img_in.width*img_in.height; i ++){
         float H = img_in.h[i];

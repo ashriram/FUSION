@@ -56,6 +56,7 @@ void run_cpu_color_test(PPM_IMG img_in)
     // cutilCheckError(cutCreateTimer(&timer));
     // cutilCheckError(cutStartTimer(timer));
     img_obuf_hsl = contrast_enhancement_c_hsl(img_in);
+    return;
     // cutilCheckError(cutStopTimer(timer));
     // printf("HSL processing time: %f (ms)\n", cutGetTimerValue(timer));
     // cutilCheckError(cutDeleteTimer(timer));
@@ -64,7 +65,7 @@ void run_cpu_color_test(PPM_IMG img_in)
 
     // cutilCheckError(cutCreateTimer(&timer));
     // cutilCheckError(cutStartTimer(timer));
-    img_obuf_yuv = contrast_enhancement_c_yuv(img_in);
+    //img_obuf_yuv = contrast_enhancement_c_yuv(img_in);
     // cutilCheckError(cutStopTimer(timer));
     // printf("YUV processing time: %f (ms)\n", cutGetTimerValue(timer));
     // cutilCheckError(cutDeleteTimer(timer));

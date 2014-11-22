@@ -44,7 +44,7 @@ void write_pgm(PGM_IMG img, const char * path);
 void free_pgm(PGM_IMG img);
 
 HSL_IMG rgb2hsl(PPM_IMG img_in);
-PPM_IMG hsl2rgb(HSL_IMG img_in);
+PPM_IMG hsl2rgb(HSL_IMG img_in, PPM_IMG result);
 
 YUV_IMG rgb2yuv(PPM_IMG img_in);
 PPM_IMG yuv2rgb(YUV_IMG img_in);    
