@@ -7,6 +7,7 @@ uint32_t makeCacheAddr(uint32_t addr)
 
 unsigned processTrace(unsigned ScratchpadSize, int acc_id)
 {
+    assert(acc_id > 1 && acc_id < 8 && "Invalid ACC_ID");
     cerr << "Processing ACC " << acc_id << " Segment " << SegmentCounter[acc_id] << endl;
     Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
     bool SegDrain = false;

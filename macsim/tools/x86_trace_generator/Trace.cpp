@@ -1135,32 +1135,45 @@ VOID ImageLoad(IMG img,  VOID *v)
 
 VOID StartAcc(UINT32 AccId)
 {
+    if(g_enable_instrument)
+    {
+        assert(!InAccFunc && "Nested Acc funcs not supported");
+        InAccFunc = true;
 
-    assert(!InAccFunc && "Nested Acc funcs not supported");
-    InAccFunc = true;
-
-    // Write a jump marker in main trace
-    Inst_info m;
-    memset((void*)&m,0,sizeof(m));
-    m.opcode = TR_NOP;
-    m.acc_segment_delim = true;
-    m.acc_id = AccId;
-    gzwrite(currenTraceFile, &m, sizeof(m));
-    // Change the trace dump file to the accelerator file
-    currenTraceFile = FuncGZFiles[AccId-2];
+        // Write a jump marker in main trace
+        Inst_info m;
+        memset((void*)&m,0,sizeof(m));
+        m.opcode = TR_NOP;
+        m.acc_segment_delim = true;
+        m.acc_id = AccId;
+        gzwrite(currenTraceFile, &m, sizeof(m));
+        // Change the trace dump file to the accelerator file
+        currenTraceFile = FuncGZFiles[AccId-2];
+    }
+    else
+    {
+        cerr << "ACC function called outside ROI\n";
+    }
 }
 
 VOID EndAcc()
 {
-    InAccFunc = false;
-    Inst_info m;
-    memset((void*)&m,0,sizeof(m));
-    m.opcode = TR_NOP;
-    m.acc_segment_delim = true;
-    m.acc_id = 0; // Go back to CPU
-    gzwrite(currenTraceFile, &m, sizeof(m));
-    // Change the trace dump file back to the main trace -- assuming single thread
-    currenTraceFile = trace_info_array[0]->trace_stream;
+    if(g_enable_instrument)
+    {
+        InAccFunc = false;
+        Inst_info m;
+        memset((void*)&m,0,sizeof(m));
+        m.opcode = TR_NOP;
+        m.acc_segment_delim = true;
+        m.acc_id = 0; // Go back to CPU
+        gzwrite(currenTraceFile, &m, sizeof(m));
+        // Change the trace dump file back to the main trace -- assuming single thread
+        currenTraceFile = trace_info_array[0]->trace_stream;
+    }
+    else
+    {
+        cerr << "ACC function called outside ROI\n";
+    }
 }
 
 VOID EnterROI()

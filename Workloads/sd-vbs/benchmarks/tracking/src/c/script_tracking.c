@@ -118,6 +118,8 @@ int main(int argc, char* argv[])
     verticalEdgeImage = calcSobel_dX(blurredImage);
     horizontalEdgeImage = calcSobel_dY(blurredImage);
 
+    __app_roi_end();
+    return 0;
     /** Edge images are used for feature detection. So, using the verticalEdgeImage and horizontalEdgeImage images, we compute feature strength
         across all pixels. Lambda matrix is the feature strength matrix returned by calcGoodFeature **/
     
@@ -144,7 +146,6 @@ int main(int argc, char* argv[])
 		}
     } 
      
-    __app_roi_end();
     end = photonEndTiming();
 
     elapsed = photonReportTiming(start, end);
