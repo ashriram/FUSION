@@ -323,12 +323,10 @@ int main(int c, char **v)
 	if (size < 0) size = 1;
  
 	in = read_ppm(v[2]);
-	__app_roi_begin();
-    startLocalTimer();
     image out  = img_new(in->w,in->h); 
 	image out2 = img_new(in->w, in->h);
-	stopLocalTimer();
 
+    __app_roi_begin();
     startLocalTimer();
     median_filter(in,size,out);
 	stopLocalTimer();
