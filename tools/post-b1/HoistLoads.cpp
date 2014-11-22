@@ -5,11 +5,12 @@ uint32_t makeCacheAddr(uint32_t addr)
     return (addr >> 5) << 5;
 }
 
-void processTrace(unsigned ScratchpadSize, int acc_id)
+unsigned processTrace(unsigned ScratchpadSize, int acc_id)
 {
     cerr << "Processing ACC " << acc_id << " Segment " << SegmentCounter[acc_id] << endl;
     Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
     bool SegDrain = false;
+    unsigned writeCount = 0;
     while(gzread(OrigTrace[acc_id], (void*)inst, sizeof(Inst_info)) > 0 && !SegDrain)
     {
         Inst_info *II = (Inst_info*)malloc(sizeof(Inst_info));
@@ -22,6 +23,7 @@ void processTrace(unsigned ScratchpadSize, int acc_id)
                 LoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr1),II));
                 CacheBlocks.insert(makeCacheAddr(II->ld_vaddr1));
                 DMALoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr1),II));
+                assert(II->acc_segment_delim == 0 && "LD should not have acc_segment_delim flag");
             }
         }
 
@@ -31,6 +33,7 @@ void processTrace(unsigned ScratchpadSize, int acc_id)
             {
                 DMAStoreInsts.insert(make_pair(makeCacheAddr(II->st_vaddr),II));
                 CacheBlocks.insert(makeCacheAddr(II->st_vaddr));
+                assert(II->acc_segment_delim == 0 && "ST should not have acc_segment_delim flag");
             }
         }
 
@@ -70,6 +73,7 @@ void processTrace(unsigned ScratchpadSize, int acc_id)
             for(auto &l : LoadInsts)
             {
                 gzwrite(NewTrace[acc_id], l.second, sizeof(Inst_info));
+                writeCount++;
             }
             LoadInsts.clear();
 
@@ -77,6 +81,7 @@ void processTrace(unsigned ScratchpadSize, int acc_id)
             for(auto &i : OtherInsts)
             {
                 gzwrite(NewTrace[acc_id], i, sizeof(Inst_info));
+                writeCount++;
                 free(i); // Frees memory for II
             }
             OtherInsts.clear();
@@ -112,6 +117,8 @@ void processTrace(unsigned ScratchpadSize, int acc_id)
     cerr << "Write DMA delim" << endl;
 
     SegmentCounter[acc_id]++;
+
+    return writeCount;
 }
 
 void processCPUTrace(unsigned ScratchpadSize)
@@ -120,7 +127,7 @@ void processCPUTrace(unsigned ScratchpadSize)
     while(gzread(OrigTrace[0], (void*)inst, sizeof(Inst_info)) > 0)
     {
         if(inst->acc_segment_delim)
-            processTrace(ScratchpadSize, inst->acc_id);
+            assert(processTrace(ScratchpadSize, inst->acc_id) && "No write");
 
     }
     free(inst);
