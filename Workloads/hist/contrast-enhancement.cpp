@@ -65,13 +65,19 @@ PPM_IMG contrast_enhancement_c_yuv(PPM_IMG img_in)
 
 PPM_IMG contrast_enhancement_c_hsl(PPM_IMG img_in)
 {
-    HSL_IMG hsl_med;
     PPM_IMG result;
     
     unsigned char * l_equ;
     int hist[256];
 
-    hsl_med = rgb2hsl(img_in);
+    HSL_IMG hsl_med;
+    hsl_med.width  = img_in.w;
+    hsl_med.height = img_in.h;
+    hsl_med.h = (float *)malloc(img_in.w * img_in.h * sizeof(float));
+    hsl_med.s = (float *)malloc(img_in.w * img_in.h * sizeof(float));
+    hsl_med.l = (unsigned char *)malloc(img_in.w * img_in.h * sizeof(unsigned char));
+
+    hsl_med = rgb2hsl(img_in,hsl_med);
 
     l_equ = (unsigned char *)malloc(hsl_med.height*hsl_med.width*sizeof(unsigned char));
     histogram(hist, hsl_med.l, hsl_med.height * hsl_med.width, 256);
@@ -97,16 +103,10 @@ PPM_IMG contrast_enhancement_c_hsl(PPM_IMG img_in)
 
 //Convert RGB to HSL, assume R,G,B in [0, 255]
 //Output H, S in [0.0, 1.0] and L in [0, 255]
-HSL_IMG rgb2hsl(PPM_IMG img_in)
+HSL_IMG rgb2hsl(PPM_IMG img_in, HSL_IMG img_out)
 {
     int i;
     float H, S, L;
-    HSL_IMG img_out;// = (HSL_IMG *)malloc(sizeof(HSL_IMG));
-    img_out.width  = img_in.w;
-    img_out.height = img_in.h;
-    img_out.h = (float *)malloc(img_in.w * img_in.h * sizeof(float));
-    img_out.s = (float *)malloc(img_in.w * img_in.h * sizeof(float));
-    img_out.l = (unsigned char *)malloc(img_in.w * img_in.h * sizeof(unsigned char));
     
     for(i = 0; i < img_in.w*img_in.h; i ++){
         
