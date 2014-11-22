@@ -107,7 +107,7 @@ INT64 g_start_inst_count[MAX_THREADS] = {-1};
 map<THREADID, THREADID> threadMap;
 THREADID main_thread_id;
 Thread_info thread_info[MAX_THREADS];
-UINT64 InstCount = 0;
+//UINT64 InstCount = 0;
 UINT64 detach_inst = 0;
 bool print_inst=false;
 UINT32 thread_count = 0;
@@ -195,7 +195,7 @@ void IncrementNumInstruction(THREADID threadid)
 
 
     g_inst_count[tid]++;
-    InstCount++;
+    //InstCount++;
 
     if (!g_enable_thread_instrument[tid])
         return ;
@@ -328,7 +328,7 @@ void write_inst(ADDRINT iaddr, THREADID threadid)
     t_info->mem_read_size  = trace_info->mem_read_size;
     t_info->mem_write_size = trace_info->mem_write_size;
     t_info->rep_dir        = (trace_info->eflags & (0x400)) >> 10;
-    t_info->acc_inst_count = InstCount;
+    //t_info->acc_inst_count = InstCount;
 
     trace_info->vaddr1         = 0;
     trace_info->vaddr2         = 0;

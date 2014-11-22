@@ -3,4 +3,3 @@ int32_t acc_id;
 bool acc_heap_load;
 bool acc_heap_store;
 bool acc_window_delim;
-uint64_t acc_inst_count;
