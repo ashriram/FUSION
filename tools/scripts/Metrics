@@ -1,0 +1,65 @@
+Metrics
+
+
+Misses
+--------
+L1D_cache_total_requests
+L1D_cache_total_misses
+L1D_cache_request_type_LD
+
+L1T_cache_total_requests
+L1T_cache_total_misses
+L1T_cache_request_type_LD
+
+L2_cache_total_requests
+L2_cache_total_misses
+L2_cache_request_type_LD
+
+
+L2T_cache_total_requests
+L2T_cache_total_misses
+L2T_cache_request_type_LD
+
+sequencer_requests_outstanding
+
+miss_latency_L1Cache (DMA)
+
+miss_latency_NULL (Other accesses)
+
+
+Bandwidth
+~~~~~~~~~
+
+L2T_TO_L1T_MSG
+L1T_TO_L2T_MSG
+L2T_TO_L1T_DATA
+L1T_TO_L2T_DATA
+L1T_TO_L2T_ATOMIC
+L2T_TO_L1T_ATOMIC
+
+L2_TO_L2T_DATA
+
+L2_DATA (memory to L2)
+
+-------------------------
+
+L1_COHMSG
+L2_DATA_S (L2-L1 Data)
+L1_DATA_GX (L2-L1 Data for GETX)
+L1_DATA_F (L1-L1 data)
+L2_COHMSG (Fwd, Acks, etc)
+L1_COHMSG_INVACK (Inv Ack)
+
+total_flits_messages
+
+DMA (bandwidth consumed by DMA)
+
+
+MLP (outstanding requests)
+---------------------------
+SequencerACC_0...SequencerACC_7 (max: and avg:)
+Sequencer_1 (DMA core -- g_DMA_PROC)
+
+Requests from the CPU side to L1T
+---------------------------------
+Look at counts of FWD_GETX/GETS or DATA_ACC responses to L2
