@@ -60,7 +60,7 @@ void run_cpu_color_test(PPM_IMG img_in)
     // printf("HSL processing time: %f (ms)\n", cutGetTimerValue(timer));
     // cutilCheckError(cutDeleteTimer(timer));
     
-    write_ppm(img_obuf_hsl, "out_hsl.ppm");
+    //write_ppm(img_obuf_hsl, "out_hsl.ppm");
 
     // cutilCheckError(cutCreateTimer(&timer));
     // cutilCheckError(cutStartTimer(timer));
@@ -69,7 +69,7 @@ void run_cpu_color_test(PPM_IMG img_in)
     // printf("YUV processing time: %f (ms)\n", cutGetTimerValue(timer));
     // cutilCheckError(cutDeleteTimer(timer));
     
-    write_ppm(img_obuf_yuv, "out_yuv.ppm");
+    //write_ppm(img_obuf_yuv, "out_yuv.ppm");
     
     free_ppm(img_obuf_hsl);
     free_ppm(img_obuf_yuv);
