@@ -100,7 +100,7 @@ CC_VERSION=3.4.4
 ifeq ($(HOST_TYPE),amd64-linux)
   CC =  g++
   #CC =  /usr/bin/g++
-  OPT_FLAGS = -m64 -march=barcelona -fPIC -Wno-deprecated
+  OPT_FLAGS = -m64 -march=native -fPIC -Wno-deprecated
   LDFLAGS += -ggdb -g3 -Wl,-R/s/gcc-3.4.4/lib64 
   MODULE_LDFLAGS += -Wl,-R/s/gcc-3.4.4/lib64
 
@@ -137,7 +137,7 @@ OPT_FLAGS += -g -ggdb -g3
 #OPT_FLAGS += -O1
 #OPT_FLAGS += -O2 -finline-functions 
 
-OPT_FLAGS += -O0 -finline-functions -DNO_VECTOR_BOUNDS_CHECKS -DMULTIFACET_NO_OPT_WARN
+OPT_FLAGS += -O3 -finline-functions -DNO_VECTOR_BOUNDS_CHECKS -DMULTIFACET_NO_OPT_WARN
 
 CP := /bin/cp -f 
 MV := /bin/mv -f 

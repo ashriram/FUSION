@@ -14,8 +14,8 @@ CDBG = -g $(CWARN) -fno-inline -DCHECK_REGISTER_FILE
 DFLAGS = -g $(CWARN) -fno-inline -DDEBUG=1
 
 # Uncomment for full Debug mode
-#CFLAGS += $(CWARD)
-CFLAGS += $(DFLAGS) 
+CFLAGS += $(CWARD)
+#CFLAGS += $(DFLAGS) 
 
 
 CTAG = etags
@@ -88,7 +88,7 @@ DBGOBJS = $(COMMONOBJS)
 RUBY_PROTOCOLS = Fusion 
 
 %.rubyprotocol_build:
-	$(MAKE) -C $(GEMS_HOME)/ruby_clean PROTOCOL=$* PROTOCOL_ROOT=../protocols/FUSION NOTESTER=1 DEBUG=1 -j 8
+	$(MAKE) -C $(GEMS_HOME)/ruby_clean PROTOCOL=$* PROTOCOL_ROOT=../protocols/FUSION NOTESTER=1 -j 8 # DEBUG=1
 	if [ ! -d $(OBJDIR)/ruby/$* ]; then mkdir -p $(OBJDIR)/ruby/$*; fi;
 	cp $(GEMS_HOME)/ruby_clean/amd64-linux/generated/$*/lib/*.so $(OBJDIR)/ruby/$*/
 	if [ -L "$(BINDIR)/libruby.so" ]; then rm -f $(BINDIR)/libruby.so; fi; 
