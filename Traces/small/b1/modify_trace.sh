@@ -1,4 +1,4 @@
-for x in {1..8}; do
+for x in {1..7}; do
     if [ ! -f "trace_${x}.raw" ]; then
         touch trace_${x}.raw
         gzip trace_${x}.raw
