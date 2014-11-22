@@ -52,12 +52,12 @@ void stopGlobalTimer();
 
 /*void needwun(char seqA[N], char seqB[M], char allignedA[N+M], char allignedB[M+N]);*/
 
-void needwun(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
+void needwun1(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
              int A[dyn_size], char ptr[dyn_size]);
 
 //void needwun_1(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
 //             int A[dyn_size], char ptr[dyn_size]);
-void needwun_2(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
+void needwun2(char SEQA[N], char SEQB[M], char allignedA[sum_size], char allignedB[sum_size], 
              int A[dyn_size], char ptr[dyn_size]);
 ////////////////////////////////////////////////////////////////////////////////
 // Test harness interface code.
@@ -77,11 +77,11 @@ void run_benchmark( void *vargs ) {
   __app_roi_begin();
 
   startLocalTimer();    
-  needwun( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
+  needwun1( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
   stopLocalTimer();
   // needwun_1( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
   startLocalTimer();
-  needwun_2( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
+  needwun2( args->seqA, args->seqB, args->allignedA, args->allignedB, args->A, args->ptr);
   stopLocalTimer();
   __app_roi_end();
 }
