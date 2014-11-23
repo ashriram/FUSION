@@ -22,7 +22,8 @@ do
         #./ooo-sim>std_out  2>std_err &        
         #------ to Calculate CPU -- DMA --- ACC Cycles ----
         
-        echo -e grep "CPU halted after"  std_out | awk '{ sum+=$7} END {print sum}'>>../../../app-cycle/${APPS[i]}-cycles.csv
+        grep "CPU halted after"  std_out | awk '{ sum+=$7} END {print sum}'>>../../../app-cycle/${APPS[i]}-cycles.csv
+        
         if [ "${x}" == "b1"  ] 
         then
             DMA=`grep "DMA halted after"  std_out | awk '{ sum+=$7} END {print sum}'`

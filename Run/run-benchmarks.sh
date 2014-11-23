@@ -17,22 +17,23 @@ do
         #echo "$(pwd)"
         cd ${APPS[$i]} 
         cwd=$(pwd)
-        echo -e "$cwd">>../../../cycles.csv
+        echo -e "$cwd"
         #--- To Run BENCH MARK--------------------------
         #./ooo-sim>std_out  2>std_err &        
         #------ to Calculate CPU -- DMA --- ACC Cycles ----
         
-        echo -e grep "CPU halted after"  std_out | awk '{ sum+=$7} END {print sum}'>>../../../cycles.csv
+        grep "CPU halted after"  std_out | awk '{ sum+=$7} END {print sum}'
+        
         if [ "${x}" == "b1"  ] 
         then
             DMA=`grep "DMA halted after"  std_out | awk '{ sum+=$7} END {print sum}'`
             DMA2=`echo "$DMA+40"|bc -l`
-            echo -e "$DMA2">>../../../cycles.csv
+            echo -e "$DMA2"
         else
-            echo -e "0">>../../../cycles.csv
+            echo -e "0"
         fi
         
-        grep "ACC\s[2-7]\shalted after"  std_out | awk '{ sum+=$8} END {print sum}'>>../../../cycles.csv 
+        grep "ACC\s[2-7]\shalted after"  std_out | awk '{ sum+=$8} END {print sum}' 
         
         #-----------------------------------------------------
         cd ..
