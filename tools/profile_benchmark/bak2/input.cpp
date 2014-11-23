@@ -1,0 +1,162 @@
+#include "HoistLoads.h"
+
+uint32_t makeCacheAddr(uint32_t addr)
+{
+    return (addr >> 5) << 5;
+}
+
+void processTrace()
+{
+    unsigned loadSize = 0;
+    //unsigned storeSize = 0;
+    Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
+    while(gzread(OrigTrace, (void*)inst, sizeof(Inst_info)) > 0)
+    {
+        Inst_info *II = (Inst_info*)malloc(sizeof(Inst_info));
+        memcpy((void *)II, (void *)inst, sizeof(Inst_info));
+
+        if(II->acc_heap_load || II->acc_heap_store)
+        {
+            if(LoadInsts.count(II->ld_vaddr1) == 0)
+            {
+                // Assuming Byte  addresable memory. Hence EA used for matching is [4:0]  
+                LoadInsts.insert(make_pair(II->ld_vaddr1%32,II));
+                loadSize += II->mem_read_size; 
+            }
+        }
+
+//        if(II->acc_heap_store)
+//        {
+//             if(StoreInsts.count(II->st_vaddr) == 0)
+//            {
+//                 //Assuming Byte  addresable memory. Hence EA used for matching is [4:0]  
+//                StoreInsts.insert(make_pair(II->st_vaddr%32,II));
+//                storeSize += II->mem_write_size;
+//
+//            }
+//        }
+
+    }
+    free(inst);
+
+}
+//----------------------------
+void  countDatasharing(int i, int j)
+{
+    int data_sharing_count= 0;
+    unsigned int memSize = 0;
+    Inst_info *inst_i = (Inst_info *)malloc(sizeof(Inst_info));    
+    while(gzread(trace_i, (void*)inst_i, sizeof(Inst_info)) > 0)
+    {
+ 
+
+        Inst_info *inst_j = (Inst_info *)malloc(sizeof(Inst_info));    
+        while(gzread(trace_j, (void*)inst_j, sizeof(Inst_info)) > 0)
+        {
+            cout<<inst_i<<"\t"<<inst_j<<endl;
+            if (inst_i==inst_j)    
+                data_sharing_count++; 
+            //memSize += inst_j->mem_read_size; 
+        }
+        free(inst_j);
+    }
+    cout <<"DATA sharing between " <<i <<"and "<<j << "=  "<<data_sharing_count<<endl;
+    free(inst_i);
+}
+
+
+
+
+//----------------------------
+void storeTrace( int i )
+{
+    string LdMemTraceFilename = string("mem_trace_") + to_string(i) + string(".out");
+    MemLoadFilename = gzopen(LdMemTraceFilename.c_str(), "wb");    
+
+    for(auto &dl : LoadInsts)
+            {
+                gzwrite(MemLoadFilename, dl.second, sizeof(Inst_info));
+            }
+    
+    LoadInsts.clear();
+    gzclose(MemLoadFilename);
+
+//
+//    string StMemTraceFilename = string("st_trace_") + to_string(i) + string(".out");
+//    MemStoreFilename = gzopen(StMemTraceFilename.c_str(), "wb");    
+//
+//    for(auto &dl : StoreInsts)
+//            {
+//                gzwrite(MemStoreFilename, dl.second, sizeof(Inst_info));
+//            }
+//    
+//    StoreInsts.clear();
+//    gzclose(MemStoreFilename);
+
+
+}
+
+int main()
+{
+       // Open trace.txt to find out the number of traces
+
+    ifstream traceTxt("trace.txt",ios::in);
+    if(!traceTxt.is_open())
+    {
+        cerr << "Could not open trace.txt\n";
+        return 0;
+    }
+
+    int numTraces = 0;
+    traceTxt >> numTraces;
+    cout<<"num of traces "<<numTraces<<"\n";
+    traceTxt.close();
+
+    assert(numTraces > 2 && numTraces < 8 && "Need 1 DMA trace and 6 or less ACC traces");
+
+    //cerr << "numTraces: " << numTraces << "\n";
+
+    for(int i = 2; i < numTraces + 1; i++)
+    {
+        string OrigFilename = string("trace_") + to_string(i) + string(".raw");
+        OrigTrace = gzopen(OrigFilename.c_str(), "rb");
+        
+
+        if(!OrigTrace )
+        {
+            cerr << "Could not open trace files" << endl;
+            return 0;
+        }
+
+        processTrace();
+        storeTrace(i);
+
+
+        gzclose(OrigTrace);
+
+    }
+
+    for(int i = 2; i < numTraces; i++)
+    {
+        string traceFilename_i = string("mem_trace_") + to_string(i) + string(".out");
+        trace_i = gzopen(traceFilename_i.c_str(), "rb");
+        int j;
+        j=i+1;
+        // comparing 2->3  | 2-> 4  if numTrace=4
+        while(j< numTraces + 1)
+        {
+        
+            string traceFilename_i_1 = string("mem_trace_") + to_string(j) + string(".out");
+            trace_j = gzopen(traceFilename_i_1.c_str(), "rb");
+            countDatasharing(i,j);
+            j++;
+            gzclose(trace_j);
+        }
+        gzclose(trace_i);
+//        string OldFilename = string("orig.") + OrigFilename;
+//        system((string("mv ")+OrigFilename+string(" ")+OldFilename).c_str());
+//        system((string("mv ")+NewFilename+string(" ")+OrigFilename).c_str());
+    }
+
+    return 0;
+}

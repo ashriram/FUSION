@@ -1,0 +1,34 @@
+#include <iostream>
+
+int *A;
+void foo()
+{
+
+for (int i=0; i < 100; i++)
+    A[i]= i;
+
+}
+
+
+void bar()
+{
+
+for (int i=0; i < 100; i++)
+    A[i]= i;
+  
+
+
+}
+
+
+
+int main()
+{
+
+  A = new int[200];
+
+  foo();
+  bar();
+
+  return 0;
+}
