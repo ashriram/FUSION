@@ -18,7 +18,10 @@ do
         cd ${APPS[$i]} 
         cwd=$(pwd)
         echo "$cwd"
-        ./ooo-sim>std_out  2>std_err &        
+        grep "enable_dma_core" params.in 
+        grep "acc_lease_update" params.in
+        grep "cl_lease_acc" params.in
+
         cd ..
     done
     cd ..

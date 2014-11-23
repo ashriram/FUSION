@@ -11,7 +11,7 @@ CC = g++-4.6
 CFLAGS = $(INCDIR) -std=c++0x
 CWARD = -O3 
 CDBG = -g $(CWARN) -fno-inline -DCHECK_REGISTER_FILE
-DFLAGS = -g $(CWARN) -fno-inline -DDEBUG=1
+DFLAGS = -g $(CWARN) -fno-inline -DDEBUG=0
 
 # Uncomment for full Debug mode
 CFLAGS += $(CWARD)
