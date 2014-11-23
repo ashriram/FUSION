@@ -27,7 +27,9 @@ do
         if [ "${x}" == "b1"  ] 
         then
             DMA=`grep "DMA halted after"  std_out | awk '{ sum+=$7} END {print sum}'`
-            DMA2=`echo "$DMA+40"|bc -l`
+            numDMA=`grep "DMA halted after"  std_out | wc -l`
+            
+            DMA2=`echo "$DMA + ${numDMA}*40"|bc -l`
             echo -e "$DMA2">>../../../app-cycle/${APPS[i]}-cycles.csv
         else
             echo -e "0">>../../../app-cycle/${APPS[i]}-cycles.csv
