@@ -18,7 +18,22 @@ do
         cd ${APPS[$i]} 
         cwd=$(pwd)
         echo "$cwd"
-        ./ooo-sim>std_out  2>std_err &        
+        #./ooo-sim>std_out  2>std_err &        
+        #------ to Calculate CPU -- DMA --- ACC Cycles ----
+        
+        grep "CPU halted after"  std_out | awk '{ sum+=$7} END {print sum}'
+        if [ "${x}" == "b1"  ] 
+        then
+            DMA=`grep "DMA halted after"  std_out | awk '{ sum+=$7} END {print sum}'`
+            DMA2=`echo "$DMA+40"|bc -l`
+            echo "$DMA2"
+        else
+            echo  "0"
+        fi
+        
+        grep "ACC\s[2-7]\shalted after"  std_out | awk '{ sum+=$8} END {print sum}' 
+        
+        #-----------------------------------------------------
         cd ..
     done
     cd ..
