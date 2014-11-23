@@ -300,6 +300,7 @@ core_c::core_c (int c_id, macsim_c* simBase, Unit_Type type)
 
     // clock cycle
     m_cycle = 0;
+    m_start_cycle = 0;
 
     // Active for CPU, false for DMA and ACC 
     if(m_unit_type == UNIT_LARGE)
@@ -487,7 +488,8 @@ void core_c::run_a_cycle(void)
 
         if(!m_frontend->is_running() && m_rob->entries() == 0)
         {
-            report("CPU Core Halt");
+            report("CPU halted after " << (m_cycle - m_start_cycle) << " cycles");
+            m_start_cycle = m_cycle;
             m_active = false;
             m_simBase->m_core_pointers[1]->m_active = true;
             m_simBase->m_core_pointers[1]->start_frontend();

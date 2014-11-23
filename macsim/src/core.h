@@ -339,7 +339,7 @@ class core_c
     void start_frontend();
     bool m_dma_done;
     int  m_next;
-    int m_start_cycle; // Change this to Counter type to cause program exit ?
+    int m_start_cycle; // Change this to Counter type to cause program exit ? (Memort corruption)
 
   private:
     int                      m_core_id; /**< core id */
