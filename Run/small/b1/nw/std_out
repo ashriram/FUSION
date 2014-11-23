@@ -20,7 +20,7 @@ Ruby initialization complete
 Ruby Configuration
 ------------------
 protocol: Fusion
-compiled_at: 17:29:31, Nov 22 2014
+compiled_at: 19:31:35, Nov 22 2014
 RUBY_DEBUG: false
 hostname: cs-amoeba-n4
 g_RANDOM_SEED: 1
@@ -178,7 +178,7 @@ SEQUENCER_TO_CONTROLLER_LATENCY: 4
 L1CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
 L2CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
 DIRECTORY_TRANSITIONS_PER_RUBY_CYCLE: 32
-g_SEQUENCER_OUTSTANDING_REQUESTS: 16
+g_SEQUENCER_OUTSTANDING_REQUESTS: 256
 NUMBER_OF_TBES: 128
 NUMBER_OF_L1_TBES: 128
 NUMBER_OF_L2_TBES: 256
@@ -261,7 +261,7 @@ L1TCache_mandatoryQueue numberPerChip: 8
 
 L1TCache_sequencerT numberPerChip: 8
 SequencerT: SequencerT - SC
-  max_outstanding_requests: 16
+  max_outstanding_requests: 256
 
 L1TCache_L1_TBEs numberPerChip: 8
 TBEs_per_TBETable: 128
@@ -341,7 +341,7 @@ L1Cache_mandatoryQueue numberPerChip: 8
 
 L1Cache_sequencer numberPerChip: 8
 sequencer: Sequencer - SC
-  max_outstanding_requests: 16
+  max_outstanding_requests: 256
 
 Directory_directory numberPerChip: 4
 Memory config:
@@ -1266,50 +1266,50 @@ src/core.cc:425: (I=18  C=644):  DMA halted after 4 cycles
 src/trace_read.cc:1447: (I=18  C=8101):  Core 2 got acc_window_delim marker
 src/core.cc:450: (I=18  C=8678):  ACC 2 halted after 8034 cycles
 src/trace_read.cc:1447: (I=18  C=8679):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=18  C=13575):  DMA Done Activating 2
-src/core.cc:425: (I=18  C=13575):  DMA halted after 4897 cycles
-src/trace_read.cc:1447: (I=18  C=520078):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=18  C=521244):  ACC 2 halted after 507670 cycles
-src/trace_read.cc:1447: (I=18  C=521245):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=18  C=525511):  DMA Done Activating 2
-src/core.cc:425: (I=18  C=525511):  DMA halted after 4267 cycles
-src/trace_read.cc:1447: (I=18  C=1113855):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=18  C=1114909):  ACC 2 halted after 589399 cycles
-src/trace_read.cc:1447: (I=18  C=1114910):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=18  C=1117307):  DMA Done Activating 2
-src/core.cc:425: (I=18  C=1117307):  DMA halted after 2398 cycles
-src/trace_read.cc:1435: (I=18  C=1347394):  Core 2 got acc_segment_delim marker switching to : 0
-src/core.cc:450: (I=18  C=1348815):  ACC 2 halted after 231509 cycles
-src/trace_read.cc:1447: (I=18  C=1348816):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=18  C=1349535):  DMA Done Activating 0
-src/core.cc:425: (I=18  C=1349535):  DMA halted after 720 cycles
-src/trace_read.cc:1435: (I=18  C=1349543):  Core 0 got acc_segment_delim marker switching to : 3
-src/core.cc:491: (I=41  C=1349867):  CPU halted after 332 cycles
-src/trace_read.cc:1447: (I=41  C=1349867):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=41  C=1349871):  DMA Done Activating 3
-src/core.cc:425: (I=41  C=1349871):  DMA halted after 5 cycles
-src/trace_read.cc:1447: (I=41  C=1356938):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=41  C=1357707):  ACC 3 halted after 7836 cycles
-src/trace_read.cc:1447: (I=41  C=1357712):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=41  C=1359353):  DMA Done Activating 3
-src/core.cc:425: (I=41  C=1359353):  DMA halted after 1646 cycles
-src/trace_read.cc:1447: (I=41  C=1379280):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=41  C=1380923):  ACC 3 halted after 21571 cycles
-src/trace_read.cc:1447: (I=41  C=1380924):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=41  C=1382364):  DMA Done Activating 3
-src/core.cc:425: (I=41  C=1382364):  DMA halted after 1441 cycles
-src/trace_read.cc:1435: (I=41  C=1390326):  Core 3 got acc_segment_delim marker switching to : 0
-src/core.cc:450: (I=41  C=1391984):  ACC 3 halted after 9621 cycles
-src/trace_read.cc:1447: (I=41  C=1391985):  Core 1 got acc_window_delim marker
-**Core 1 Thread 0 Finished:   insts:872         cycles:1391158     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.02 KHz) 
-src/core.cc:421: (I=41  C=1392128):  DMA Done Activating 0
-src/core.cc:425: (I=41  C=1392128):  DMA halted after 144 cycles
-**Core 1 Core_Total  Finished:   insts:872         cycles:1391158     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.02 KHz)
-**Core 0 Thread 0 Finished:   insts:43          cycles:1393067     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
-**Core 0 Core_Total  Finished:   insts:43          cycles:1393067     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
+src/core.cc:421: (I=18  C=12186):  DMA Done Activating 2
+src/core.cc:425: (I=18  C=12186):  DMA halted after 3508 cycles
+src/trace_read.cc:1447: (I=18  C=518756):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=18  C=519897):  ACC 2 halted after 507712 cycles
+src/trace_read.cc:1447: (I=18  C=519898):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=18  C=524001):  DMA Done Activating 2
+src/core.cc:425: (I=18  C=524001):  DMA halted after 4104 cycles
+src/trace_read.cc:1447: (I=18  C=1112623):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=18  C=1113584):  ACC 2 halted after 589584 cycles
+src/trace_read.cc:1447: (I=18  C=1113585):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=18  C=1115933):  DMA Done Activating 2
+src/core.cc:425: (I=18  C=1115933):  DMA halted after 2349 cycles
+src/trace_read.cc:1435: (I=18  C=1346026):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=18  C=1347447):  ACC 2 halted after 231515 cycles
+src/trace_read.cc:1447: (I=18  C=1347448):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=18  C=1348167):  DMA Done Activating 0
+src/core.cc:425: (I=18  C=1348167):  DMA halted after 720 cycles
+src/trace_read.cc:1435: (I=18  C=1348175):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=41  C=1348499):  CPU halted after 332 cycles
+src/trace_read.cc:1447: (I=41  C=1348499):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=41  C=1348503):  DMA Done Activating 3
+src/core.cc:425: (I=41  C=1348503):  DMA halted after 5 cycles
+src/trace_read.cc:1447: (I=41  C=1355570):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=41  C=1356339):  ACC 3 halted after 7836 cycles
+src/trace_read.cc:1447: (I=41  C=1356344):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=41  C=1357976):  DMA Done Activating 3
+src/core.cc:425: (I=41  C=1357976):  DMA halted after 1637 cycles
+src/trace_read.cc:1447: (I=41  C=1377903):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=41  C=1379543):  ACC 3 halted after 21568 cycles
+src/trace_read.cc:1447: (I=41  C=1379544):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=41  C=1380987):  DMA Done Activating 3
+src/core.cc:425: (I=41  C=1380987):  DMA halted after 1444 cycles
+src/trace_read.cc:1435: (I=41  C=1388940):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=41  C=1390598):  ACC 3 halted after 9612 cycles
+src/trace_read.cc:1447: (I=41  C=1390599):  Core 1 got acc_window_delim marker
+**Core 1 Thread 0 Finished:   insts:872         cycles:1389774     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.02 KHz) 
+src/core.cc:421: (I=41  C=1390744):  DMA Done Activating 0
+src/core.cc:425: (I=41  C=1390744):  DMA halted after 146 cycles
+**Core 1 Core_Total  Finished:   insts:872         cycles:1389774     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.02 KHz)
+**Core 0 Thread 0 Finished:   insts:43          cycles:1391681     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
+**Core 0 Core_Total  Finished:   insts:43          cycles:1391681     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
 Deleting system...
 Deleting system done
 Deleting event queue...
 Deleting event queue done
-src/macsim.cc:496: (I=43  C=1393068):  finalize simulation
-src/macsim.cc:502: (I=43  C=1393068):  elapsed time:50.9 seconds
+src/macsim.cc:496: (I=43  C=1391682):  finalize simulation
+src/macsim.cc:502: (I=43  C=1391682):  elapsed time:51.0 seconds

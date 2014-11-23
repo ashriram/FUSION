@@ -20,7 +20,7 @@ Ruby initialization complete
 Ruby Configuration
 ------------------
 protocol: Fusion
-compiled_at: 17:29:31, Nov 22 2014
+compiled_at: 19:31:35, Nov 22 2014
 RUBY_DEBUG: false
 hostname: cs-amoeba-n4
 g_RANDOM_SEED: 1
@@ -178,7 +178,7 @@ SEQUENCER_TO_CONTROLLER_LATENCY: 4
 L1CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
 L2CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
 DIRECTORY_TRANSITIONS_PER_RUBY_CYCLE: 32
-g_SEQUENCER_OUTSTANDING_REQUESTS: 16
+g_SEQUENCER_OUTSTANDING_REQUESTS: 256
 NUMBER_OF_TBES: 128
 NUMBER_OF_L1_TBES: 128
 NUMBER_OF_L2_TBES: 256
@@ -261,7 +261,7 @@ L1TCache_mandatoryQueue numberPerChip: 8
 
 L1TCache_sequencerT numberPerChip: 8
 SequencerT: SequencerT - SC
-  max_outstanding_requests: 16
+  max_outstanding_requests: 256
 
 L1TCache_L1_TBEs numberPerChip: 8
 TBEs_per_TBETable: 128
@@ -341,7 +341,7 @@ L1Cache_mandatoryQueue numberPerChip: 8
 
 L1Cache_sequencer numberPerChip: 8
 sequencer: Sequencer - SC
-  max_outstanding_requests: 16
+  max_outstanding_requests: 256
 
 Directory_directory numberPerChip: 4
 Memory config:
@@ -1268,43 +1268,43 @@ src/trace_read.cc:1435: (I=56369  C=7463748):  Core 3 got acc_segment_delim mark
 src/core.cc:450: (I=56369  C=7464091):  ACC 3 halted after 1235980 cycles
 src/trace_read.cc:1435: (I=56372  C=7464098):  Core 0 got acc_segment_delim marker switching to : 2
 src/core.cc:491: (I=56395  C=7464282):  CPU halted after 190 cycles
-** Heartbeat for core[2]:        insts:1000000     cycles:7832869     seconds:170   -- 0.13 IPC (0.13 IPC) -- 0.00 KIPS (5.88 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:1000000     cycles:7832869     seconds:170   -- 0.13 IPC (0.13 IPC) -- 0.00 KIPS (5.88 KIPS)
+** Heartbeat for core[2]:        insts:1000000     cycles:7832869     seconds:157   -- 0.13 IPC (0.13 IPC) -- 0.00 KIPS (6.37 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:1000000     cycles:7832869     seconds:157   -- 0.13 IPC (0.13 IPC) -- 0.00 KIPS (6.37 KIPS)
 src/trace_read.cc:1435: (I=56395  C=10040861):  Core 2 got acc_segment_delim marker switching to : 0
 src/core.cc:450: (I=56395  C=10041354):  ACC 2 halted after 2577073 cycles
 src/trace_read.cc:1435: (I=112750  C=10216068):  Core 0 got acc_segment_delim marker switching to : 3
 src/core.cc:491: (I=112750  C=10216068):  CPU halted after 174713 cycles
-** Heartbeat for core[3]:        insts:1000000     cycles:11803049    seconds:234   -- 0.08 IPC (0.08 IPC) -- 0.00 KIPS (4.27 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:11803049    seconds:234   -- 0.08 IPC (0.08 IPC) -- 0.00 KIPS (4.27 KIPS)
+** Heartbeat for core[3]:        insts:1000000     cycles:11803049    seconds:222   -- 0.08 IPC (0.08 IPC) -- 0.00 KIPS (4.50 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:11803049    seconds:222   -- 0.08 IPC (0.08 IPC) -- 0.00 KIPS (4.50 KIPS)
 src/trace_read.cc:1435: (I=112750  C=14243652):  Core 3 got acc_segment_delim marker switching to : 0
 src/core.cc:450: (I=112750  C=14245230):  ACC 3 halted after 4029163 cycles
 src/trace_read.cc:1435: (I=112753  C=14245237):  Core 0 got acc_segment_delim marker switching to : 2
 src/core.cc:491: (I=112775  C=14247447):  CPU halted after 2216 cycles
-** Heartbeat for core[2]:        insts:2000000     cycles:14995637    seconds:286   -- 0.14 IPC (0.13 IPC) -- 8.62 KIPS (6.99 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:2000000     cycles:14995637    seconds:286   -- 0.14 IPC (0.13 IPC) -- 8.62 KIPS (6.99 KIPS)
+** Heartbeat for core[2]:        insts:2000000     cycles:14995637    seconds:275   -- 0.14 IPC (0.13 IPC) -- 8.47 KIPS (7.27 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:2000000     cycles:14995637    seconds:275   -- 0.14 IPC (0.13 IPC) -- 8.47 KIPS (7.27 KIPS)
 src/trace_read.cc:1435: (I=112775  C=16831461):  Core 2 got acc_segment_delim marker switching to : 0
 src/core.cc:450: (I=112775  C=16832055):  ACC 2 halted after 2584609 cycles
 src/trace_read.cc:1435: (I=169128  C=17009176):  Core 0 got acc_segment_delim marker switching to : 3
 src/core.cc:491: (I=169128  C=17009176):  CPU halted after 177120 cycles
-** Heartbeat for core[3]:        insts:2000000     cycles:20378413    seconds:439   -- 0.12 IPC (0.10 IPC) -- 4.88 KIPS (4.56 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:2000000     cycles:20378413    seconds:439   -- 0.12 IPC (0.10 IPC) -- 4.88 KIPS (4.56 KIPS)
+** Heartbeat for core[3]:        insts:2000000     cycles:20378413    seconds:366   -- 0.12 IPC (0.10 IPC) -- 6.94 KIPS (5.46 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:2000000     cycles:20378413    seconds:366   -- 0.12 IPC (0.10 IPC) -- 6.94 KIPS (5.46 KIPS)
 src/trace_read.cc:1435: (I=169128  C=21044686):  Core 3 got acc_segment_delim marker switching to : 0
 src/core.cc:450: (I=169128  C=21046224):  ACC 3 halted after 4037049 cycles
 src/trace_read.cc:1435: (I=169130  C=21046231):  Core 0 got acc_segment_delim marker switching to : 2
 src/core.cc:491: (I=169152  C=21046898):  CPU halted after 673 cycles
-** Heartbeat for core[2]:        insts:3000000     cycles:22155901    seconds:483   -- 0.14 IPC (0.14 IPC) -- 5.08 KIPS (6.21 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:3000000     cycles:22155901    seconds:483   -- 0.14 IPC (0.14 IPC) -- 5.08 KIPS (6.21 KIPS)
+** Heartbeat for core[2]:        insts:3000000     cycles:22155901    seconds:392   -- 0.14 IPC (0.14 IPC) -- 8.55 KIPS (7.65 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:3000000     cycles:22155901    seconds:392   -- 0.14 IPC (0.14 IPC) -- 8.55 KIPS (7.65 KIPS)
 src/trace_read.cc:1435: (I=169152  C=23619863):  Core 2 got acc_segment_delim marker switching to : 0
 src/core.cc:450: (I=169152  C=23620414):  ACC 2 halted after 2573517 cycles
 src/trace_read.cc:1435: (I=225505  C=23797535):  Core 0 got acc_segment_delim marker switching to : 3
 src/core.cc:491: (I=225505  C=23797535):  CPU halted after 177120 cycles
 src/trace_read.cc:1435: (I=225505  C=27832957):  Core 3 got acc_segment_delim marker switching to : 0
 src/core.cc:450: (I=225505  C=27834187):  ACC 3 halted after 4036653 cycles
-**Core 0 Thread 0 Finished:   insts:225516      cycles:27834512    seconds:569   -- 0.01 IPC (0.01 IPC) --  N/A  KHz (0.40 KHz) 
-**Core 0 Core_Total  Finished:   insts:225516      cycles:27834512    seconds:569   -- 0.01 IPC (0.01 IPC) --  N/A  KHz (0.40 KHz)
+**Core 0 Thread 0 Finished:   insts:225516      cycles:27834512    seconds:478   -- 0.01 IPC (0.01 IPC) --  N/A  KHz (0.47 KHz) 
+**Core 0 Core_Total  Finished:   insts:225516      cycles:27834512    seconds:478   -- 0.01 IPC (0.01 IPC) --  N/A  KHz (0.47 KHz)
 Deleting system...
 Deleting system done
 Deleting event queue...
 Deleting event queue done
 src/macsim.cc:496: (I=225516  C=27834513):  finalize simulation
-src/macsim.cc:502: (I=225516  C=27834513):  elapsed time:569.6 seconds
+src/macsim.cc:502: (I=225516  C=27834513):  elapsed time:478.5 seconds
