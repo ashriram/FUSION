@@ -1,29 +1,11 @@
-src/macsim.cc:148: (I=0  C=0):  initialize knobs
+src/macsim.cc:149: (I=0  C=0):  initialize knobs
 number of cores8
-src/macsim.cc:394: (I=0  C=0):  initialize simulation
+src/macsim.cc:395: (I=0  C=0):  initialize simulation
 src/memory.cc:1330: (I=0  C=0):  Memory system(no_cache) has been initialized.
 error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_DRAM_SIZE_PER_CONTROLLER" not found. unable to set value.
 error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_PF_NUM_STREAMS" not found. unable to set value.
 error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_PF_TRAIN" not found. unable to set value.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: ABORT_RETRY_TIME is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: BENCHMARK_CONTAINS_MEMBAR is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: CL_PRED_GLOBAL_EXPIREHIT_CREDIT is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: CL_PRED_GLOBAL_L2EVICT_PENALTY is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: CL_PRED_GLOBAL_WRITEUNEXPIRED_PENALTY is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: CL_PRED_PCADAPTIVE_EXPIREHIT_CREDIT is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: CL_PRED_PCADAPTIVE_L2EVICT_PENALTY is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: CL_PRED_PCADAPTIVE_WRITEUNEXPIRED_PENALTY is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: CL_PRED_PERL2_EXPIREHIT_CREDIT is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: CL_PRED_PERL2_L2EVICT_PENALTY is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: CL_PRED_PERL2_WRITEUNEXPIRED_PENALTY is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: LIFETIMETRACE_ENABLED is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: LIFETIME_PROFILER_PERADDR_OUTMODE is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: LIFETIME_PROFILER_PERPC_OUTMODE is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: XACT_LENGTH is not set in configuration file.
-Debug: in fn void confio_t::checkInitialization() in ../common/ioutil/confio.C:412:     warning: XACT_SIZE is not set in configuration file.
 Ruby Timing Mode
-  Debug: Adding to filter: 'l' (SLICC)
-  Debug: Adding to filter: 'q' (Queue)
 Creating event queue...
 Creating event queue done
 Creating system...
@@ -38,8 +20,8 @@ Ruby initialization complete
 Ruby Configuration
 ------------------
 protocol: Fusion
-compiled_at: 18:46:09, Nov 20 2014
-RUBY_DEBUG: true
+compiled_at: 17:29:31, Nov 22 2014
+RUBY_DEBUG: false
 hostname: cs-amoeba-n4
 g_RANDOM_SEED: 1
 g_YAO_DRIVER: 2
@@ -1266,31 +1248,181 @@ LifetimeTrace Configuration
 ================ End System Configuration Print ================
 
 Testing clear stats...Done.
-src/macsim.cc:315: (I=0  C=0):  initialize cores (1/7/0)
-src/macsim.cc:637: (I=0  C=0):  Clock LCM           : 2
-src/macsim.cc:638: (I=0  C=0):  CPU clock frequency : 2 GHz 1
-src/macsim.cc:639: (I=0  C=0):  GPU clock frequency : 2 GHz 1
-src/macsim.cc:640: (I=0  C=0):  L3  clock frequency : 2 GHz 1
-src/macsim.cc:641: (I=0  C=0):  NOC clock frequency : 2 GHz 1
-src/macsim.cc:642: (I=0  C=0):  MC  clock frequency : 2 GHz 1
-src/macsim.cc:643: (I=0  C=0):  ACC  clock frequency : 2 GHz 1
+src/macsim.cc:316: (I=0  C=0):  initialize cores (1/7/0)
+src/macsim.cc:638: (I=0  C=0):  Clock LCM           : 2
+src/macsim.cc:639: (I=0  C=0):  CPU clock frequency : 2 GHz 1
+src/macsim.cc:640: (I=0  C=0):  GPU clock frequency : 2 GHz 1
+src/macsim.cc:641: (I=0  C=0):  L3  clock frequency : 2 GHz 1
+src/macsim.cc:642: (I=0  C=0):  NOC clock frequency : 2 GHz 1
+src/macsim.cc:643: (I=0  C=0):  MC  clock frequency : 2 GHz 1
+src/macsim.cc:644: (I=0  C=0):  ACC  clock frequency : 2 GHz 1
 src/process_manager.cc:434: (I=0  C=0):  setup_process:0 ../../../../Traces/small/b2/disparity/trace.txt current_index:0 (1)
 src/process_manager.cc:496: (I=0  C=0):  thread_count:8
 src/trace_read.cc:1435: (I=227482  C=976007):  Core 0 got acc_segment_delim marker switching to : 2
-src/core.cc:490: (I=227482  C=976007):  CPU Core Halt
+src/core.cc:491: (I=227482  C=976007):  CPU halted after 976007 cycles
 src/trace_read.cc:1435: (I=227482  C=1034830):  Core 2 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=227482  C=1035514):  ACC 2 halted after 59507 cycles
+src/core.cc:450: (I=227482  C=1035514):  ACC 2 halted after 59507 cycles
 src/trace_read.cc:1435: (I=227482  C=1035518):  Core 0 got acc_segment_delim marker switching to : 3
-src/core.cc:490: (I=227496  C=1035677):  CPU Core Halt
+src/core.cc:491: (I=227496  C=1035677):  CPU halted after 162 cycles
 src/trace_read.cc:1435: (I=227496  C=1306379):  Core 3 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=227496  C=1308290):  ACC 3 halted after 272613 cycles
+src/core.cc:450: (I=227496  C=1308290):  ACC 3 halted after 272613 cycles
 src/trace_read.cc:1435: (I=227496  C=1308294):  Core 0 got acc_segment_delim marker switching to : 4
-src/core.cc:490: (I=227496  C=1308294):  CPU Core Halt
+src/core.cc:491: (I=227496  C=1308294):  CPU halted after 3 cycles
 src/trace_read.cc:1435: (I=227496  C=1562597):  Core 4 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=227496  C=1565759):  ACC 4 halted after 257465 cycles
+src/core.cc:450: (I=227496  C=1565759):  ACC 4 halted after 257465 cycles
 src/trace_read.cc:1435: (I=227496  C=1565763):  Core 0 got acc_segment_delim marker switching to : 5
-src/core.cc:490: (I=227509  C=1565929):  CPU Core Halt
+src/core.cc:491: (I=227509  C=1565929):  CPU halted after 169 cycles
 src/trace_read.cc:1435: (I=227509  C=2044471):  Core 5 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=227509  C=2045127):  ACC 5 halted after 479198 cycles
+src/core.cc:450: (I=227509  C=2045127):  ACC 5 halted after 479198 cycles
 src/trace_read.cc:1435: (I=227545  C=2046278):  Core 0 got acc_segment_delim marker switching to : 6
-src/core.cc:490: (I=227568  C=2046415):  CPU Core Halt
+src/core.cc:491: (I=227568  C=2046415):  CPU halted after 1287 cycles
+src/trace_read.cc:1435: (I=227568  C=3289909):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=227568  C=3293508):  ACC 6 halted after 1247093 cycles
+src/trace_read.cc:1435: (I=245196  C=3340571):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=245275  C=3340853):  CPU halted after 47344 cycles
+src/trace_read.cc:1435: (I=245275  C=3345453):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=245275  C=3345504):  ACC 2 halted after 4652 cycles
+src/trace_read.cc:1435: (I=245275  C=3345508):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=245275  C=3345508):  CPU halted after 3 cycles
+src/trace_read.cc:1435: (I=245275  C=3353371):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=245275  C=3353445):  ACC 3 halted after 7938 cycles
+src/trace_read.cc:1435: (I=245275  C=3353449):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=245287  C=3353614):  CPU halted after 168 cycles
+src/trace_read.cc:1435: (I=245287  C=3369098):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=245287  C=3369281):  ACC 4 halted after 15668 cycles
+src/trace_read.cc:1435: (I=245287  C=3369285):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=245287  C=3369285):  CPU halted after 3 cycles
+src/trace_read.cc:1435: (I=245287  C=3381775):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=245287  C=3381838):  ACC 5 halted after 12554 cycles
+src/trace_read.cc:1435: (I=245334  C=3381940):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=245352  C=3381978):  CPU halted after 139 cycles
+src/trace_read.cc:1435: (I=245352  C=3392032):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=245352  C=3392084):  ACC 6 halted after 10107 cycles
+src/trace_read.cc:1435: (I=263052  C=3409868):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=263052  C=3409868):  CPU halted after 17783 cycles
+src/trace_read.cc:1435: (I=263052  C=3414433):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=263052  C=3414487):  ACC 2 halted after 4620 cycles
+src/trace_read.cc:1435: (I=263052  C=3414491):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=263066  C=3414524):  CPU halted after 36 cycles
+src/trace_read.cc:1435: (I=263066  C=3422388):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=263066  C=3422462):  ACC 3 halted after 7939 cycles
+src/trace_read.cc:1435: (I=263066  C=3422466):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=263066  C=3422466):  CPU halted after 3 cycles
+src/trace_read.cc:1435: (I=263066  C=3437950):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=263066  C=3438133):  ACC 4 halted after 15668 cycles
+src/trace_read.cc:1435: (I=263066  C=3438137):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=263079  C=3438304):  CPU halted after 170 cycles
+src/trace_read.cc:1435: (I=263079  C=3450794):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=263079  C=3450857):  ACC 5 halted after 12554 cycles
+src/trace_read.cc:1435: (I=263118  C=3450954):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=263136  C=3450992):  CPU halted after 134 cycles
+src/trace_read.cc:1435: (I=263136  C=3460872):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=263136  C=3460917):  ACC 6 halted after 9926 cycles
+src/trace_read.cc:1435: (I=280836  C=3478701):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=280836  C=3478701):  CPU halted after 17783 cycles
+src/trace_read.cc:1435: (I=280836  C=3483106):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=280836  C=3483163):  ACC 2 halted after 4463 cycles
+src/trace_read.cc:1435: (I=280836  C=3483167):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=280850  C=3483200):  CPU halted after 36 cycles
+src/trace_read.cc:1435: (I=280850  C=3491064):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=280850  C=3491138):  ACC 3 halted after 7939 cycles
+src/trace_read.cc:1435: (I=280850  C=3491142):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=280850  C=3491142):  CPU halted after 3 cycles
+src/trace_read.cc:1435: (I=280850  C=3506626):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=280850  C=3506809):  ACC 4 halted after 15668 cycles
+src/trace_read.cc:1435: (I=280850  C=3506813):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=280863  C=3506980):  CPU halted after 170 cycles
+src/trace_read.cc:1435: (I=280863  C=3519470):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=280863  C=3519533):  ACC 5 halted after 12554 cycles
+src/trace_read.cc:1435: (I=280902  C=3519630):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=280920  C=3519668):  CPU halted after 134 cycles
+src/trace_read.cc:1435: (I=280920  C=3529396):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=280920  C=3529450):  ACC 6 halted after 9783 cycles
+src/trace_read.cc:1435: (I=298620  C=3547234):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=298620  C=3547234):  CPU halted after 17783 cycles
+src/trace_read.cc:1435: (I=298620  C=3551711):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=298620  C=3551717):  ACC 2 halted after 4484 cycles
+src/trace_read.cc:1435: (I=298620  C=3551721):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=298634  C=3551754):  CPU halted after 36 cycles
+src/trace_read.cc:1435: (I=298634  C=3559617):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=298634  C=3559691):  ACC 3 halted after 7938 cycles
+src/trace_read.cc:1435: (I=298634  C=3559695):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=298634  C=3559695):  CPU halted after 3 cycles
+src/trace_read.cc:1435: (I=298634  C=3575179):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=298634  C=3575362):  ACC 4 halted after 15668 cycles
+src/trace_read.cc:1435: (I=298634  C=3575366):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=298647  C=3575531):  CPU halted after 168 cycles
+src/trace_read.cc:1435: (I=298647  C=3588021):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=298647  C=3588084):  ACC 5 halted after 12554 cycles
+src/trace_read.cc:1435: (I=298686  C=3588181):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=298704  C=3588219):  CPU halted after 134 cycles
+src/trace_read.cc:1435: (I=298704  C=3597755):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=298704  C=3597813):  ACC 6 halted after 9595 cycles
+src/trace_read.cc:1435: (I=316404  C=3615597):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=316404  C=3615597):  CPU halted after 17783 cycles
+src/trace_read.cc:1435: (I=316404  C=3619937):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=316404  C=3619985):  ACC 2 halted after 4389 cycles
+src/trace_read.cc:1435: (I=316404  C=3619989):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=316418  C=3620022):  CPU halted after 36 cycles
+src/trace_read.cc:1435: (I=316418  C=3627886):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=316418  C=3627960):  ACC 3 halted after 7939 cycles
+src/trace_read.cc:1435: (I=316418  C=3627964):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=316418  C=3627964):  CPU halted after 3 cycles
+src/trace_read.cc:1435: (I=316418  C=3643448):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=316418  C=3643631):  ACC 4 halted after 15668 cycles
+src/trace_read.cc:1435: (I=316418  C=3643635):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=316431  C=3643802):  CPU halted after 170 cycles
+src/trace_read.cc:1435: (I=316431  C=3656292):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=316431  C=3656355):  ACC 5 halted after 12554 cycles
+src/trace_read.cc:1435: (I=316470  C=3656452):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=316488  C=3656490):  CPU halted after 134 cycles
+src/trace_read.cc:1435: (I=316488  C=3666039):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=316488  C=3666093):  ACC 6 halted after 9604 cycles
+src/trace_read.cc:1435: (I=334188  C=3683877):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=334188  C=3683877):  CPU halted after 17783 cycles
+src/trace_read.cc:1435: (I=334188  C=3688054):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=334188  C=3688099):  ACC 2 halted after 4223 cycles
+src/trace_read.cc:1435: (I=334188  C=3688103):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=334202  C=3688136):  CPU halted after 36 cycles
+src/trace_read.cc:1435: (I=334202  C=3696000):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=334202  C=3696074):  ACC 3 halted after 7939 cycles
+src/trace_read.cc:1435: (I=334202  C=3696078):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=334202  C=3696078):  CPU halted after 3 cycles
+src/trace_read.cc:1435: (I=334202  C=3711562):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=334202  C=3711745):  ACC 4 halted after 15668 cycles
+src/trace_read.cc:1435: (I=334202  C=3711749):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=334215  C=3711916):  CPU halted after 170 cycles
+src/trace_read.cc:1435: (I=334215  C=3724406):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=334215  C=3724469):  ACC 5 halted after 12554 cycles
+src/trace_read.cc:1435: (I=334254  C=3724566):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=334272  C=3724604):  CPU halted after 134 cycles
+src/trace_read.cc:1435: (I=334272  C=3734162):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=334272  C=3734217):  ACC 6 halted after 9614 cycles
+src/trace_read.cc:1435: (I=351972  C=3752001):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=351972  C=3752001):  CPU halted after 17783 cycles
+src/trace_read.cc:1435: (I=351972  C=3756093):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=351972  C=3756136):  ACC 2 halted after 4136 cycles
+src/trace_read.cc:1435: (I=351972  C=3756140):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=351986  C=3756173):  CPU halted after 36 cycles
+src/trace_read.cc:1435: (I=351986  C=3764037):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=351986  C=3764111):  ACC 3 halted after 7939 cycles
+src/trace_read.cc:1435: (I=351986  C=3764115):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=351986  C=3764115):  CPU halted after 3 cycles
+src/trace_read.cc:1435: (I=351986  C=3779599):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=351986  C=3779782):  ACC 4 halted after 15668 cycles
+src/trace_read.cc:1435: (I=351986  C=3779786):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=351999  C=3779953):  CPU halted after 170 cycles
+src/trace_read.cc:1435: (I=351999  C=3792443):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=351999  C=3792506):  ACC 5 halted after 12554 cycles
+src/trace_read.cc:1435: (I=352038  C=3792603):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=352056  C=3792641):  CPU halted after 134 cycles
+src/trace_read.cc:1435: (I=352056  C=3802142):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=352056  C=3802192):  ACC 6 halted after 9552 cycles
+**Core 0 Thread 0 Finished:   insts:352636      cycles:3805996     seconds:107   -- 0.09 IPC (0.09 IPC) --  N/A  KHz (3.30 KHz) 
+**Core 0 Core_Total  Finished:   insts:352636      cycles:3805996     seconds:107   -- 0.09 IPC (0.09 IPC) --  N/A  KHz (3.30 KHz)
+Deleting system...
+Deleting system done
+Deleting event queue...
+Deleting event queue done
+src/macsim.cc:496: (I=352636  C=3805997):  finalize simulation
+src/macsim.cc:502: (I=352636  C=3805997):  elapsed time:107.3 seconds

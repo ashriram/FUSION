@@ -1,6 +1,6 @@
-src/macsim.cc:148: (I=0  C=0):  initialize knobs
+src/macsim.cc:149: (I=0  C=0):  initialize knobs
 number of cores8
-src/macsim.cc:394: (I=0  C=0):  initialize simulation
+src/macsim.cc:395: (I=0  C=0):  initialize simulation
 src/memory.cc:1330: (I=0  C=0):  Memory system(no_cache) has been initialized.
 error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_DRAM_SIZE_PER_CONTROLLER" not found. unable to set value.
 error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_PF_NUM_STREAMS" not found. unable to set value.
@@ -20,7 +20,7 @@ Ruby initialization complete
 Ruby Configuration
 ------------------
 protocol: Fusion
-compiled_at: 23:48:51, Nov 21 2014
+compiled_at: 17:29:31, Nov 22 2014
 RUBY_DEBUG: false
 hostname: cs-amoeba-n4
 g_RANDOM_SEED: 1
@@ -1248,29 +1248,29 @@ LifetimeTrace Configuration
 ================ End System Configuration Print ================
 
 Testing clear stats...Done.
-src/macsim.cc:315: (I=0  C=0):  initialize cores (1/7/0)
-src/macsim.cc:637: (I=0  C=0):  Clock LCM           : 2
-src/macsim.cc:638: (I=0  C=0):  CPU clock frequency : 2 GHz 1
-src/macsim.cc:639: (I=0  C=0):  GPU clock frequency : 2 GHz 1
-src/macsim.cc:640: (I=0  C=0):  L3  clock frequency : 2 GHz 1
-src/macsim.cc:641: (I=0  C=0):  NOC clock frequency : 2 GHz 1
-src/macsim.cc:642: (I=0  C=0):  MC  clock frequency : 2 GHz 1
-src/macsim.cc:643: (I=0  C=0):  ACC  clock frequency : 2 GHz 1
+src/macsim.cc:316: (I=0  C=0):  initialize cores (1/7/0)
+src/macsim.cc:638: (I=0  C=0):  Clock LCM           : 2
+src/macsim.cc:639: (I=0  C=0):  CPU clock frequency : 2 GHz 1
+src/macsim.cc:640: (I=0  C=0):  GPU clock frequency : 2 GHz 1
+src/macsim.cc:641: (I=0  C=0):  L3  clock frequency : 2 GHz 1
+src/macsim.cc:642: (I=0  C=0):  NOC clock frequency : 2 GHz 1
+src/macsim.cc:643: (I=0  C=0):  MC  clock frequency : 2 GHz 1
+src/macsim.cc:644: (I=0  C=0):  ACC  clock frequency : 2 GHz 1
 src/process_manager.cc:434: (I=0  C=0):  setup_process:0 ../../../../Traces/small/b3/nw/trace.txt current_index:0 (1)
 src/process_manager.cc:496: (I=0  C=0):  thread_count:4
 src/trace_read.cc:1435: (I=1  C=15):  Core 0 got acc_segment_delim marker switching to : 2
-src/core.cc:490: (I=44  C=641):  CPU Core Halt
-src/trace_read.cc:1435: (I=44  C=1345403):  Core 2 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=44  C=1346577):  ACC 2 halted after 1345936 cycles
-src/trace_read.cc:1435: (I=2616  C=1360133):  Core 0 got acc_segment_delim marker switching to : 3
-src/core.cc:490: (I=2667  C=1360453):  CPU Core Halt
-src/trace_read.cc:1435: (I=2667  C=1384283):  Core 3 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=2667  C=1385261):  ACC 3 halted after 24808 cycles
-**Core 0 Thread 0 Finished:   insts:4063        cycles:1388188     seconds:21    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.19 KHz) 
-**Core 0 Core_Total  Finished:   insts:4063        cycles:1388188     seconds:21    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.19 KHz)
+src/core.cc:491: (I=44  C=641):  CPU halted after 641 cycles
+src/trace_read.cc:1435: (I=44  C=1240111):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=44  C=1241253):  ACC 2 halted after 1240612 cycles
+src/trace_read.cc:1435: (I=2616  C=1255194):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=2667  C=1255513):  CPU halted after 14259 cycles
+src/trace_read.cc:1435: (I=2667  C=1281081):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2667  C=1282094):  ACC 3 halted after 26581 cycles
+**Core 0 Thread 0 Finished:   insts:4063        cycles:1285127     seconds:35    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.12 KHz) 
+**Core 0 Core_Total  Finished:   insts:4063        cycles:1285127     seconds:35    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.12 KHz)
 Deleting system...
 Deleting system done
 Deleting event queue...
 Deleting event queue done
-src/macsim.cc:495: (I=4063  C=1388189):  finalize simulation
-src/macsim.cc:501: (I=4063  C=1388189):  elapsed time:20.9 seconds
+src/macsim.cc:496: (I=4063  C=1285128):  finalize simulation
+src/macsim.cc:502: (I=4063  C=1285128):  elapsed time:34.7 seconds

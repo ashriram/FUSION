@@ -1,6 +1,6 @@
-src/macsim.cc:148: (I=0  C=0):  initialize knobs
+src/macsim.cc:149: (I=0  C=0):  initialize knobs
 number of cores8
-src/macsim.cc:394: (I=0  C=0):  initialize simulation
+src/macsim.cc:395: (I=0  C=0):  initialize simulation
 src/memory.cc:1330: (I=0  C=0):  Memory system(no_cache) has been initialized.
 error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_DRAM_SIZE_PER_CONTROLLER" not found. unable to set value.
 error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_PF_NUM_STREAMS" not found. unable to set value.
@@ -20,7 +20,7 @@ Ruby initialization complete
 Ruby Configuration
 ------------------
 protocol: Fusion
-compiled_at: 23:48:51, Nov 21 2014
+compiled_at: 17:29:31, Nov 22 2014
 RUBY_DEBUG: false
 hostname: cs-amoeba-n4
 g_RANDOM_SEED: 1
@@ -1248,71 +1248,71 @@ LifetimeTrace Configuration
 ================ End System Configuration Print ================
 
 Testing clear stats...Done.
-src/macsim.cc:315: (I=0  C=0):  initialize cores (1/7/0)
-src/macsim.cc:637: (I=0  C=0):  Clock LCM           : 2
-src/macsim.cc:638: (I=0  C=0):  CPU clock frequency : 2 GHz 1
-src/macsim.cc:639: (I=0  C=0):  GPU clock frequency : 2 GHz 1
-src/macsim.cc:640: (I=0  C=0):  L3  clock frequency : 2 GHz 1
-src/macsim.cc:641: (I=0  C=0):  NOC clock frequency : 2 GHz 1
-src/macsim.cc:642: (I=0  C=0):  MC  clock frequency : 2 GHz 1
-src/macsim.cc:643: (I=0  C=0):  ACC  clock frequency : 2 GHz 1
+src/macsim.cc:316: (I=0  C=0):  initialize cores (1/7/0)
+src/macsim.cc:638: (I=0  C=0):  Clock LCM           : 2
+src/macsim.cc:639: (I=0  C=0):  CPU clock frequency : 2 GHz 1
+src/macsim.cc:640: (I=0  C=0):  GPU clock frequency : 2 GHz 1
+src/macsim.cc:641: (I=0  C=0):  L3  clock frequency : 2 GHz 1
+src/macsim.cc:642: (I=0  C=0):  NOC clock frequency : 2 GHz 1
+src/macsim.cc:643: (I=0  C=0):  MC  clock frequency : 2 GHz 1
+src/macsim.cc:644: (I=0  C=0):  ACC  clock frequency : 2 GHz 1
 src/process_manager.cc:434: (I=0  C=0):  setup_process:0 ../../../../Traces/small/b2/tracking/trace.txt current_index:0 (1)
 src/process_manager.cc:496: (I=0  C=0):  thread_count:8
 src/trace_read.cc:1435: (I=0  C=0):  Core 0 got acc_segment_delim marker switching to : 2
-src/core.cc:490: (I=0  C=0):  CPU Core Halt
-** Heartbeat for core[2]:        insts:1000000     cycles:6421593     seconds:93    -- 0.16 IPC (0.16 IPC) -- 0.00 KIPS (10.75 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:1000000     cycles:6421593     seconds:93    -- 0.16 IPC (0.16 IPC) -- 0.00 KIPS (10.75 KIPS)
-** Heartbeat for core[2]:        insts:2000000     cycles:7434973     seconds:105   -- 0.99 IPC (0.27 IPC) -- 83.33 KIPS (19.05 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:2000000     cycles:7434973     seconds:105   -- 0.99 IPC (0.27 IPC) -- 83.33 KIPS (19.05 KIPS)
-** Heartbeat for core[2]:        insts:3000000     cycles:8448404     seconds:116   -- 0.99 IPC (0.36 IPC) -- 90.91 KIPS (25.86 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:3000000     cycles:8448404     seconds:116   -- 0.99 IPC (0.36 IPC) -- 90.91 KIPS (25.86 KIPS)
-** Heartbeat for core[2]:        insts:4000000     cycles:9461827     seconds:128   -- 0.99 IPC (0.42 IPC) -- 83.33 KIPS (31.25 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:4000000     cycles:9461827     seconds:128   -- 0.99 IPC (0.42 IPC) -- 83.33 KIPS (31.25 KIPS)
-** Heartbeat for core[2]:        insts:5000000     cycles:10542340    seconds:140   -- 0.93 IPC (0.47 IPC) -- 83.33 KIPS (35.71 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:5000000     cycles:10542340    seconds:140   -- 0.93 IPC (0.47 IPC) -- 83.33 KIPS (35.71 KIPS)
-** Heartbeat for core[2]:        insts:6000000     cycles:11627167    seconds:152   -- 0.92 IPC (0.52 IPC) -- 83.33 KIPS (39.47 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:6000000     cycles:11627167    seconds:152   -- 0.92 IPC (0.52 IPC) -- 83.33 KIPS (39.47 KIPS)
-** Heartbeat for core[2]:        insts:7000000     cycles:12712551    seconds:164   -- 0.92 IPC (0.55 IPC) -- 83.33 KIPS (42.68 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:7000000     cycles:12712551    seconds:164   -- 0.92 IPC (0.55 IPC) -- 83.33 KIPS (42.68 KIPS)
+src/core.cc:491: (I=0  C=0):  CPU halted after 0 cycles
+** Heartbeat for core[2]:        insts:1000000     cycles:6421593     seconds:116   -- 0.16 IPC (0.16 IPC) -- 0.00 KIPS (8.62 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:1000000     cycles:6421593     seconds:116   -- 0.16 IPC (0.16 IPC) -- 0.00 KIPS (8.62 KIPS)
+** Heartbeat for core[2]:        insts:2000000     cycles:7434973     seconds:128   -- 0.99 IPC (0.27 IPC) -- 83.33 KIPS (15.63 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:2000000     cycles:7434973     seconds:128   -- 0.99 IPC (0.27 IPC) -- 83.33 KIPS (15.63 KIPS)
+** Heartbeat for core[2]:        insts:3000000     cycles:8448404     seconds:140   -- 0.99 IPC (0.36 IPC) -- 83.33 KIPS (21.43 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:3000000     cycles:8448404     seconds:140   -- 0.99 IPC (0.36 IPC) -- 83.33 KIPS (21.43 KIPS)
+** Heartbeat for core[2]:        insts:4000000     cycles:9461827     seconds:152   -- 0.99 IPC (0.42 IPC) -- 83.33 KIPS (26.32 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:4000000     cycles:9461827     seconds:152   -- 0.99 IPC (0.42 IPC) -- 83.33 KIPS (26.32 KIPS)
+** Heartbeat for core[2]:        insts:5000000     cycles:10542340    seconds:164   -- 0.93 IPC (0.47 IPC) -- 83.33 KIPS (30.49 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:5000000     cycles:10542340    seconds:164   -- 0.93 IPC (0.47 IPC) -- 83.33 KIPS (30.49 KIPS)
+** Heartbeat for core[2]:        insts:6000000     cycles:11627167    seconds:176   -- 0.92 IPC (0.52 IPC) -- 83.33 KIPS (34.09 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:6000000     cycles:11627167    seconds:176   -- 0.92 IPC (0.52 IPC) -- 83.33 KIPS (34.09 KIPS)
+** Heartbeat for core[2]:        insts:7000000     cycles:12712551    seconds:189   -- 0.92 IPC (0.55 IPC) -- 76.92 KIPS (37.04 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:7000000     cycles:12712551    seconds:189   -- 0.92 IPC (0.55 IPC) -- 76.92 KIPS (37.04 KIPS)
 src/trace_read.cc:1435: (I=0  C=13391218):  Core 2 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=0  C=13391945):  ACC 2 halted after 13391945 cycles
+src/core.cc:450: (I=0  C=13391945):  ACC 2 halted after 13391945 cycles
 src/trace_read.cc:1435: (I=0  C=13391949):  Core 0 got acc_segment_delim marker switching to : 3
-src/core.cc:490: (I=11  C=13392599):  CPU Core Halt
-** Heartbeat for core[3]:        insts:1000000     cycles:14998437    seconds:188   -- 0.07 IPC (0.07 IPC) -- 0.00 KIPS (5.32 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:14998437    seconds:188   -- 0.07 IPC (0.07 IPC) -- 0.00 KIPS (5.32 KIPS)
-** Heartbeat for core[3]:        insts:2000000     cycles:16275337    seconds:201   -- 0.78 IPC (0.12 IPC) -- 76.92 KIPS (9.95 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:2000000     cycles:16275337    seconds:201   -- 0.78 IPC (0.12 IPC) -- 76.92 KIPS (9.95 KIPS)
+src/core.cc:491: (I=11  C=13392599):  CPU halted after 653 cycles
+** Heartbeat for core[3]:        insts:1000000     cycles:14998437    seconds:214   -- 0.07 IPC (0.07 IPC) -- 0.00 KIPS (4.67 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:14998437    seconds:214   -- 0.07 IPC (0.07 IPC) -- 0.00 KIPS (4.67 KIPS)
+** Heartbeat for core[3]:        insts:2000000     cycles:16275337    seconds:228   -- 0.78 IPC (0.12 IPC) -- 71.43 KIPS (8.77 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:2000000     cycles:16275337    seconds:228   -- 0.78 IPC (0.12 IPC) -- 71.43 KIPS (8.77 KIPS)
 src/trace_read.cc:1435: (I=11  C=17231928):  Core 3 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=11  C=17232118):  ACC 3 halted after 3839519 cycles
-** Heartbeat for core[0]:        insts:1000000     cycles:20580163    seconds:246   -- 0.05 IPC (0.05 IPC) -- 0.00 KIPS (4.07 KIPS)
-** Heartbeat for core[0]:  Thread:0      insts:1000000     cycles:20580163    seconds:246   -- 0.05 IPC (0.05 IPC) -- 0.00 KIPS (4.07 KIPS)
-** Heartbeat for core[0]:        insts:2000000     cycles:22402703    seconds:269   -- 0.55 IPC (0.09 IPC) -- 43.48 KIPS (7.43 KIPS)
-** Heartbeat for core[0]:  Thread:0      insts:2000000     cycles:22402703    seconds:269   -- 0.55 IPC (0.09 IPC) -- 43.48 KIPS (7.43 KIPS)
-** Heartbeat for core[0]:        insts:3000000     cycles:24165578    seconds:291   -- 0.57 IPC (0.12 IPC) -- 45.45 KIPS (10.31 KIPS)
-** Heartbeat for core[0]:  Thread:0      insts:3000000     cycles:24165578    seconds:291   -- 0.57 IPC (0.12 IPC) -- 45.45 KIPS (10.31 KIPS)
-** Heartbeat for core[0]:        insts:4000000     cycles:25812516    seconds:313   -- 0.61 IPC (0.15 IPC) -- 45.45 KIPS (12.78 KIPS)
-** Heartbeat for core[0]:  Thread:0      insts:4000000     cycles:25812516    seconds:313   -- 0.61 IPC (0.15 IPC) -- 45.45 KIPS (12.78 KIPS)
-** Heartbeat for core[0]:        insts:5000000     cycles:27460981    seconds:336   -- 0.61 IPC (0.18 IPC) -- 43.48 KIPS (14.88 KIPS)
-** Heartbeat for core[0]:  Thread:0      insts:5000000     cycles:27460981    seconds:336   -- 0.61 IPC (0.18 IPC) -- 43.48 KIPS (14.88 KIPS)
+src/core.cc:450: (I=11  C=17232118):  ACC 3 halted after 3839519 cycles
+** Heartbeat for core[0]:        insts:1000000     cycles:20580163    seconds:272   -- 0.05 IPC (0.05 IPC) -- 0.00 KIPS (3.68 KIPS)
+** Heartbeat for core[0]:  Thread:0      insts:1000000     cycles:20580163    seconds:272   -- 0.05 IPC (0.05 IPC) -- 0.00 KIPS (3.68 KIPS)
+** Heartbeat for core[0]:        insts:2000000     cycles:22402703    seconds:296   -- 0.55 IPC (0.09 IPC) -- 41.67 KIPS (6.76 KIPS)
+** Heartbeat for core[0]:  Thread:0      insts:2000000     cycles:22402703    seconds:296   -- 0.55 IPC (0.09 IPC) -- 41.67 KIPS (6.76 KIPS)
+** Heartbeat for core[0]:        insts:3000000     cycles:24165578    seconds:319   -- 0.57 IPC (0.12 IPC) -- 43.48 KIPS (9.40 KIPS)
+** Heartbeat for core[0]:  Thread:0      insts:3000000     cycles:24165578    seconds:319   -- 0.57 IPC (0.12 IPC) -- 43.48 KIPS (9.40 KIPS)
+** Heartbeat for core[0]:        insts:4000000     cycles:25812516    seconds:342   -- 0.61 IPC (0.15 IPC) -- 43.48 KIPS (11.70 KIPS)
+** Heartbeat for core[0]:  Thread:0      insts:4000000     cycles:25812516    seconds:342   -- 0.61 IPC (0.15 IPC) -- 43.48 KIPS (11.70 KIPS)
+** Heartbeat for core[0]:        insts:5000000     cycles:27460981    seconds:365   -- 0.61 IPC (0.18 IPC) -- 43.48 KIPS (13.70 KIPS)
+** Heartbeat for core[0]:  Thread:0      insts:5000000     cycles:27460981    seconds:365   -- 0.61 IPC (0.18 IPC) -- 43.48 KIPS (13.70 KIPS)
 src/trace_read.cc:1435: (I=5089074  C=27608373):  Core 0 got acc_segment_delim marker switching to : 4
-src/core.cc:490: (I=5089092  C=27608550):  CPU Core Halt
-** Heartbeat for core[4]:        insts:1000000     cycles:19320686    seconds:360   -- 0.05 IPC (0.05 IPC) -- 0.00 KIPS (2.78 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:1000000     cycles:19320686    seconds:360   -- 0.05 IPC (0.05 IPC) -- 0.00 KIPS (2.78 KIPS)
-** Heartbeat for core[4]:        insts:2000000     cycles:20515282    seconds:374   -- 0.84 IPC (0.10 IPC) -- 71.43 KIPS (5.35 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:2000000     cycles:20515282    seconds:374   -- 0.84 IPC (0.10 IPC) -- 71.43 KIPS (5.35 KIPS)
-** Heartbeat for core[4]:        insts:3000000     cycles:21709819    seconds:388   -- 0.84 IPC (0.14 IPC) -- 71.43 KIPS (7.73 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:3000000     cycles:21709819    seconds:388   -- 0.84 IPC (0.14 IPC) -- 71.43 KIPS (7.73 KIPS)
-** Heartbeat for core[4]:        insts:4000000     cycles:22929249    seconds:402   -- 0.82 IPC (0.17 IPC) -- 71.43 KIPS (9.95 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:4000000     cycles:22929249    seconds:402   -- 0.82 IPC (0.17 IPC) -- 71.43 KIPS (9.95 KIPS)
-** Heartbeat for core[4]:        insts:5000000     cycles:24148905    seconds:416   -- 0.82 IPC (0.21 IPC) -- 71.43 KIPS (12.02 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:5000000     cycles:24148905    seconds:416   -- 0.82 IPC (0.21 IPC) -- 71.43 KIPS (12.02 KIPS)
+src/core.cc:491: (I=5089092  C=27608550):  CPU halted after 10376431 cycles
+** Heartbeat for core[4]:        insts:1000000     cycles:19320686    seconds:390   -- 0.05 IPC (0.05 IPC) -- 0.00 KIPS (2.56 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:1000000     cycles:19320686    seconds:390   -- 0.05 IPC (0.05 IPC) -- 0.00 KIPS (2.56 KIPS)
+** Heartbeat for core[4]:        insts:2000000     cycles:20515282    seconds:404   -- 0.84 IPC (0.10 IPC) -- 71.43 KIPS (4.95 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:2000000     cycles:20515282    seconds:404   -- 0.84 IPC (0.10 IPC) -- 71.43 KIPS (4.95 KIPS)
+** Heartbeat for core[4]:        insts:3000000     cycles:21709819    seconds:419   -- 0.84 IPC (0.14 IPC) -- 66.67 KIPS (7.16 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:3000000     cycles:21709819    seconds:419   -- 0.84 IPC (0.14 IPC) -- 66.67 KIPS (7.16 KIPS)
+** Heartbeat for core[4]:        insts:4000000     cycles:22929249    seconds:434   -- 0.82 IPC (0.17 IPC) -- 66.67 KIPS (9.22 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:4000000     cycles:22929249    seconds:434   -- 0.82 IPC (0.17 IPC) -- 66.67 KIPS (9.22 KIPS)
+** Heartbeat for core[4]:        insts:5000000     cycles:24148905    seconds:449   -- 0.82 IPC (0.21 IPC) -- 66.67 KIPS (11.14 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:5000000     cycles:24148905    seconds:449   -- 0.82 IPC (0.21 IPC) -- 66.67 KIPS (11.14 KIPS)
 src/trace_read.cc:1435: (I=5089092  C=34966209):  Core 4 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=5089092  C=34967156):  ACC 4 halted after 7358606 cycles
-**Core 0 Thread 0 Finished:   insts:5089095     cycles:34967177    seconds:421   -- 0.15 IPC (0.15 IPC) --  N/A  KHz (12.09 KHz) 
-**Core 0 Core_Total  Finished:   insts:5089095     cycles:34967177    seconds:421   -- 0.15 IPC (0.15 IPC) --  N/A  KHz (12.09 KHz)
+src/core.cc:450: (I=5089092  C=34967156):  ACC 4 halted after 7358606 cycles
+**Core 0 Thread 0 Finished:   insts:5089095     cycles:34967177    seconds:454   -- 0.15 IPC (0.15 IPC) --  N/A  KHz (11.21 KHz) 
+**Core 0 Core_Total  Finished:   insts:5089095     cycles:34967177    seconds:454   -- 0.15 IPC (0.15 IPC) --  N/A  KHz (11.21 KHz)
 Deleting system...
 Deleting system done
 Deleting event queue...
 Deleting event queue done
-src/macsim.cc:495: (I=5089095  C=34967178):  finalize simulation
-src/macsim.cc:501: (I=5089095  C=34967178):  elapsed time:421.4 seconds
+src/macsim.cc:496: (I=5089095  C=34967178):  finalize simulation
+src/macsim.cc:502: (I=5089095  C=34967178):  elapsed time:454.1 seconds

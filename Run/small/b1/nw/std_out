@@ -1,6 +1,6 @@
-src/macsim.cc:148: (I=0  C=0):  initialize knobs
+src/macsim.cc:149: (I=0  C=0):  initialize knobs
 number of cores8
-src/macsim.cc:394: (I=0  C=0):  initialize simulation
+src/macsim.cc:395: (I=0  C=0):  initialize simulation
 src/memory.cc:1330: (I=0  C=0):  Memory system(no_cache) has been initialized.
 error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_DRAM_SIZE_PER_CONTROLLER" not found. unable to set value.
 error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_PF_NUM_STREAMS" not found. unable to set value.
@@ -20,7 +20,7 @@ Ruby initialization complete
 Ruby Configuration
 ------------------
 protocol: Fusion
-compiled_at: 23:48:51, Nov 21 2014
+compiled_at: 17:29:31, Nov 22 2014
 RUBY_DEBUG: false
 hostname: cs-amoeba-n4
 g_RANDOM_SEED: 1
@@ -1248,68 +1248,68 @@ LifetimeTrace Configuration
 ================ End System Configuration Print ================
 
 Testing clear stats...Done.
-src/macsim.cc:315: (I=0  C=0):  initialize cores (1/7/0)
-src/macsim.cc:637: (I=0  C=0):  Clock LCM           : 2
-src/macsim.cc:638: (I=0  C=0):  CPU clock frequency : 2 GHz 1
-src/macsim.cc:639: (I=0  C=0):  GPU clock frequency : 2 GHz 1
-src/macsim.cc:640: (I=0  C=0):  L3  clock frequency : 2 GHz 1
-src/macsim.cc:641: (I=0  C=0):  NOC clock frequency : 2 GHz 1
-src/macsim.cc:642: (I=0  C=0):  MC  clock frequency : 2 GHz 1
-src/macsim.cc:643: (I=0  C=0):  ACC  clock frequency : 2 GHz 1
+src/macsim.cc:316: (I=0  C=0):  initialize cores (1/7/0)
+src/macsim.cc:638: (I=0  C=0):  Clock LCM           : 2
+src/macsim.cc:639: (I=0  C=0):  CPU clock frequency : 2 GHz 1
+src/macsim.cc:640: (I=0  C=0):  GPU clock frequency : 2 GHz 1
+src/macsim.cc:641: (I=0  C=0):  L3  clock frequency : 2 GHz 1
+src/macsim.cc:642: (I=0  C=0):  NOC clock frequency : 2 GHz 1
+src/macsim.cc:643: (I=0  C=0):  MC  clock frequency : 2 GHz 1
+src/macsim.cc:644: (I=0  C=0):  ACC  clock frequency : 2 GHz 1
 src/process_manager.cc:434: (I=0  C=0):  setup_process:0 ../../../../Traces/small/b1/nw/trace.txt current_index:0 (1)
 src/process_manager.cc:496: (I=0  C=0):  thread_count:4
 src/trace_read.cc:1435: (I=0  C=4):  Core 0 got acc_segment_delim marker switching to : 2
-src/core.cc:490: (I=18  C=640):  CPU Core Halt
+src/core.cc:491: (I=18  C=640):  CPU halted after 640 cycles
 src/trace_read.cc:1447: (I=18  C=640):  Core 1 got acc_window_delim marker
-src/core.cc:420: (I=18  C=644):  DMA Done Activating 2
-src/core.cc:424: (I=18  C=644):  DMA halted after 4 cycles
+src/core.cc:421: (I=18  C=644):  DMA Done Activating 2
+src/core.cc:425: (I=18  C=644):  DMA halted after 4 cycles
 src/trace_read.cc:1447: (I=18  C=8101):  Core 2 got acc_window_delim marker
-src/core.cc:449: (I=18  C=8678):  ACC 2 halted after 8034 cycles
+src/core.cc:450: (I=18  C=8678):  ACC 2 halted after 8034 cycles
 src/trace_read.cc:1447: (I=18  C=8679):  Core 1 got acc_window_delim marker
-src/core.cc:420: (I=18  C=13575):  DMA Done Activating 2
-src/core.cc:424: (I=18  C=13575):  DMA halted after 4897 cycles
+src/core.cc:421: (I=18  C=13575):  DMA Done Activating 2
+src/core.cc:425: (I=18  C=13575):  DMA halted after 4897 cycles
 src/trace_read.cc:1447: (I=18  C=520078):  Core 2 got acc_window_delim marker
-src/core.cc:449: (I=18  C=521244):  ACC 2 halted after 507670 cycles
+src/core.cc:450: (I=18  C=521244):  ACC 2 halted after 507670 cycles
 src/trace_read.cc:1447: (I=18  C=521245):  Core 1 got acc_window_delim marker
-src/core.cc:420: (I=18  C=525511):  DMA Done Activating 2
-src/core.cc:424: (I=18  C=525511):  DMA halted after 4267 cycles
+src/core.cc:421: (I=18  C=525511):  DMA Done Activating 2
+src/core.cc:425: (I=18  C=525511):  DMA halted after 4267 cycles
 src/trace_read.cc:1447: (I=18  C=1113855):  Core 2 got acc_window_delim marker
-src/core.cc:449: (I=18  C=1114909):  ACC 2 halted after 589399 cycles
+src/core.cc:450: (I=18  C=1114909):  ACC 2 halted after 589399 cycles
 src/trace_read.cc:1447: (I=18  C=1114910):  Core 1 got acc_window_delim marker
-src/core.cc:420: (I=18  C=1117307):  DMA Done Activating 2
-src/core.cc:424: (I=18  C=1117307):  DMA halted after 2398 cycles
+src/core.cc:421: (I=18  C=1117307):  DMA Done Activating 2
+src/core.cc:425: (I=18  C=1117307):  DMA halted after 2398 cycles
 src/trace_read.cc:1435: (I=18  C=1347394):  Core 2 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=18  C=1348815):  ACC 2 halted after 231509 cycles
+src/core.cc:450: (I=18  C=1348815):  ACC 2 halted after 231509 cycles
 src/trace_read.cc:1447: (I=18  C=1348816):  Core 1 got acc_window_delim marker
-src/core.cc:420: (I=18  C=1349535):  DMA Done Activating 0
-src/core.cc:424: (I=18  C=1349535):  DMA halted after 720 cycles
+src/core.cc:421: (I=18  C=1349535):  DMA Done Activating 0
+src/core.cc:425: (I=18  C=1349535):  DMA halted after 720 cycles
 src/trace_read.cc:1435: (I=18  C=1349543):  Core 0 got acc_segment_delim marker switching to : 3
-src/core.cc:490: (I=41  C=1349867):  CPU Core Halt
+src/core.cc:491: (I=41  C=1349867):  CPU halted after 332 cycles
 src/trace_read.cc:1447: (I=41  C=1349867):  Core 1 got acc_window_delim marker
-src/core.cc:420: (I=41  C=1349871):  DMA Done Activating 3
-src/core.cc:424: (I=41  C=1349871):  DMA halted after 5 cycles
+src/core.cc:421: (I=41  C=1349871):  DMA Done Activating 3
+src/core.cc:425: (I=41  C=1349871):  DMA halted after 5 cycles
 src/trace_read.cc:1447: (I=41  C=1356938):  Core 3 got acc_window_delim marker
-src/core.cc:449: (I=41  C=1357707):  ACC 3 halted after 7836 cycles
+src/core.cc:450: (I=41  C=1357707):  ACC 3 halted after 7836 cycles
 src/trace_read.cc:1447: (I=41  C=1357712):  Core 1 got acc_window_delim marker
-src/core.cc:420: (I=41  C=1359353):  DMA Done Activating 3
-src/core.cc:424: (I=41  C=1359353):  DMA halted after 1646 cycles
+src/core.cc:421: (I=41  C=1359353):  DMA Done Activating 3
+src/core.cc:425: (I=41  C=1359353):  DMA halted after 1646 cycles
 src/trace_read.cc:1447: (I=41  C=1379280):  Core 3 got acc_window_delim marker
-src/core.cc:449: (I=41  C=1380923):  ACC 3 halted after 21571 cycles
+src/core.cc:450: (I=41  C=1380923):  ACC 3 halted after 21571 cycles
 src/trace_read.cc:1447: (I=41  C=1380924):  Core 1 got acc_window_delim marker
-src/core.cc:420: (I=41  C=1382364):  DMA Done Activating 3
-src/core.cc:424: (I=41  C=1382364):  DMA halted after 1441 cycles
+src/core.cc:421: (I=41  C=1382364):  DMA Done Activating 3
+src/core.cc:425: (I=41  C=1382364):  DMA halted after 1441 cycles
 src/trace_read.cc:1435: (I=41  C=1390326):  Core 3 got acc_segment_delim marker switching to : 0
-src/core.cc:449: (I=41  C=1391984):  ACC 3 halted after 9621 cycles
+src/core.cc:450: (I=41  C=1391984):  ACC 3 halted after 9621 cycles
 src/trace_read.cc:1447: (I=41  C=1391985):  Core 1 got acc_window_delim marker
-**Core 1 Thread 0 Finished:   insts:872         cycles:1391158     seconds:22    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.04 KHz) 
-src/core.cc:420: (I=41  C=1392128):  DMA Done Activating 0
-src/core.cc:424: (I=41  C=1392128):  DMA halted after 144 cycles
-**Core 1 Core_Total  Finished:   insts:872         cycles:1391158     seconds:22    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.04 KHz)
-**Core 0 Thread 0 Finished:   insts:43          cycles:1393067     seconds:22    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
-**Core 0 Core_Total  Finished:   insts:43          cycles:1393067     seconds:22    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
+**Core 1 Thread 0 Finished:   insts:872         cycles:1391158     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.02 KHz) 
+src/core.cc:421: (I=41  C=1392128):  DMA Done Activating 0
+src/core.cc:425: (I=41  C=1392128):  DMA halted after 144 cycles
+**Core 1 Core_Total  Finished:   insts:872         cycles:1391158     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.02 KHz)
+**Core 0 Thread 0 Finished:   insts:43          cycles:1393067     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
+**Core 0 Core_Total  Finished:   insts:43          cycles:1393067     seconds:44    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
 Deleting system...
 Deleting system done
 Deleting event queue...
 Deleting event queue done
-src/macsim.cc:495: (I=43  C=1393068):  finalize simulation
-src/macsim.cc:501: (I=43  C=1393068):  elapsed time:27.2 seconds
+src/macsim.cc:496: (I=43  C=1393068):  finalize simulation
+src/macsim.cc:502: (I=43  C=1393068):  elapsed time:50.9 seconds
