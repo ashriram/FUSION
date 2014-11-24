@@ -38,8 +38,7 @@ run_baseline_1 () {
     FINAL_CORE_PJ=`echo "${NUM_INT_ADD}*${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
 
     L1T_TOT_STORES=`grep "^L1_WThru" ruby.stat.out | awk '{print $2}'`  #Since we are faking L1T and L2T behaves as the actual Scratchpad 
-    L1T_HIT=`grep "^S\ \ L1_WThru" ruby.stat.out | awk '{print $3}'`
-
+    L1T_HIT=`grep -A19 "\-\-\- L1TCache \-\-\-" ruby.stat.out | grep "^S\ \ Load" | awk '{print $3}'`
     FINAL_SP_PJ=`echo "${L1T_SP_ACCESS_PJ}*(${L1T_HIT} + ${L1T_TOT_STORES})"|bc -l`
 
     echo "$FINAL_CORE_PJ"
@@ -63,7 +62,6 @@ run_baseline_2 () {
 
     L2T_MISS=`grep "L2T_cache_total_misses:" ruby.stat.out | awk '{print $2}'`    
     L2T_TOTAL_REQ=`grep "L2T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
-    #L2T_HIT=`echo "${L2T_TOTAL_REQ} - ${L2T_MISS}" |bc -l`
     L2_TO_L2T_DATA=`grep "L2_TO_L2T_DATA" ruby.stat.out |  awk '{print $3}'`
     L2T_TO_L1T_DATA=`grep "L2T_TO_L1T_DATA" ruby.stat.out | awk '{print $3}'`
     L1T_TO_L2T_MSG=`grep "L1T_TO_L2T_MSG" ruby.stat.out | awk '{print $3}'`
@@ -105,14 +103,12 @@ run_baseline_3 () {
         exit
     fi
     L2T_MISS=`grep "L2T_cache_total_misses:" ruby.stat.out | awk '{print $2}'`    
-    L2T_TO_L1T_DATA=`grep "L2T_TO_L1T_DATA" ruby.stat.out | awk '{print $3}'`
-    
-    LINK_PJ=`echo "($L2T_MISS + $L2T_TO_L1T_DATA)*8*$L2T_TO_L2_LINK_PJ_BYTE" |bc -l` 
+    L2_TO_L2T_DATA=`grep "L2_TO_L2T_DATA" ruby.stat.out |  awk '{print $3}'` 
+    LINK_PJ=`echo "($L2T_MISS + $L2_TO_L2T_DATA)*8*$L2T_TO_L2_LINK_PJ_BYTE" |bc -l` 
     L2_ACCESS_PJ=`echo " $L2T_MISS*$L2_ACCESS_PJ" | bc -l`
     FINAL_L2_PJ=`echo " $L2_ACCESS_PJ + $LINK_PJ" | bc -l`
 
     L2T_TOTAL_REQ=`grep "L2T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
-    #L2T_HIT=`echo "${L2T_TOTAL_REQ} - ${L2T_MISS}" |bc -l`
     L2T_TO_L1T_DATA=`grep "L2T_TO_L1T_DATA" ruby.stat.out | awk '{print $3}'`
     L1T_TO_L2T_MSG=`grep "L1T_TO_L2T_MSG" ruby.stat.out | awk '{print $3}'`
     FINAL_L2T_PJ=`echo "$L2T_TOTAL_REQ * $L2T_ACCESS_PJ +  8*$L1T_TO_L2T_LINK_PJ_BYTE*( $L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG )" | bc -l`
@@ -147,7 +143,9 @@ else
 fi    
     
 
-
-
+# For b4  Assume total data forwarded between AXC1 and Axc2 is X  then 
+# TOTAL ENERGY IS equal to :- 
+# L2T_ENERGY = L2T_B3 - 2X * 32 * 0.4
+# L1T_ENERGY = L1T_B3 + X * 0.1 * 32  - X* 8 * 0.4
 #-----------------------------------------------
-
+#
