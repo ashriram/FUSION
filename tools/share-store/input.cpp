@@ -21,6 +21,7 @@ unsigned long long  processTrace()
             {
                 LoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr1),II));
                 loadSize += II->mem_read_size; 
+                LoadOrder.push_back(II->ld_vaddr1);
             }
  
         
@@ -28,13 +29,13 @@ unsigned long long  processTrace()
             {
                 LoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr2),II));
                 loadSize += II->mem_read_size; 
+                LoadOrder.push_back(II->ld_vaddr2);
             }
          
             if(II->acc_heap_store && LoadInsts.count(makeCacheAddr(II->st_vaddr)) == 0)
             {
                 StoreInsts.insert(make_pair(II->st_vaddr,II));
                 storeSize += II->mem_write_size;
-
             }
 
 
@@ -51,16 +52,15 @@ void storeTrace( int i )
     string LdMemTraceFilename = string("Ld_mem_trace_") + to_string(i) + string(".out");
     ofstream myfile;
     myfile.open (LdMemTraceFilename);
-    for(auto &dl : LoadInsts)
+    for(auto &dl : LoadOrder)
     {
-        //gzwrite(MemLoadFilename, dl.second, sizeof(Inst_info));
-        uint32_t  x = dl.first;
+        uint32_t  x = dl;
         myfile <<hex<<x<<dec<<endl;
-
     }
     
     myfile.close();
     LoadInsts.clear();
+    LoadOrder.clear();
 
 
 

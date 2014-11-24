@@ -60,6 +60,8 @@ set<uint32_t> CacheBlocks;
 map<uint32_t, Inst_info*> DMALoadInsts;
 map<uint32_t, Inst_info*> DMAStoreInsts;
 
+vector<uint32_t> LoadOrder;
+
 enum TR_OPCODE_enum {
   TR_MUL = XED_CATEGORY_LAST ,
   TR_DIV,
