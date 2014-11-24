@@ -20,7 +20,7 @@ Ruby initialization complete
 Ruby Configuration
 ------------------
 protocol: Fusion
-compiled_at: 17:29:31, Nov 22 2014
+compiled_at: 19:31:35, Nov 22 2014
 RUBY_DEBUG: false
 hostname: cs-amoeba-n4
 g_RANDOM_SEED: 1
@@ -178,7 +178,7 @@ SEQUENCER_TO_CONTROLLER_LATENCY: 4
 L1CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
 L2CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
 DIRECTORY_TRANSITIONS_PER_RUBY_CYCLE: 32
-g_SEQUENCER_OUTSTANDING_REQUESTS: 16
+g_SEQUENCER_OUTSTANDING_REQUESTS: 256
 NUMBER_OF_TBES: 128
 NUMBER_OF_L1_TBES: 128
 NUMBER_OF_L2_TBES: 256
@@ -261,7 +261,7 @@ L1TCache_mandatoryQueue numberPerChip: 8
 
 L1TCache_sequencerT numberPerChip: 8
 SequencerT: SequencerT - SC
-  max_outstanding_requests: 16
+  max_outstanding_requests: 256
 
 L1TCache_L1_TBEs numberPerChip: 8
 TBEs_per_TBETable: 128
@@ -341,7 +341,7 @@ L1Cache_mandatoryQueue numberPerChip: 8
 
 L1Cache_sequencer numberPerChip: 8
 sequencer: Sequencer - SC
-  max_outstanding_requests: 16
+  max_outstanding_requests: 256
 
 Directory_directory numberPerChip: 4
 Memory config:
@@ -1260,871 +1260,871 @@ src/process_manager.cc:434: (I=0  C=0):  setup_process:0 ../../../../Traces/smal
 src/process_manager.cc:496: (I=0  C=0):  thread_count:8
 src/trace_read.cc:1435: (I=133  C=1963):  Core 0 got acc_segment_delim marker switching to : 2
 src/core.cc:491: (I=171  C=2014):  CPU halted after 2014 cycles
-src/trace_read.cc:1447: (I=171  C=544214):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=544818):  ACC 2 halted after 542804 cycles
-src/trace_read.cc:1447: (I=171  C=1011233):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=1011356):  ACC 2 halted after 466538 cycles
-src/trace_read.cc:1447: (I=171  C=1137773):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=1137896):  ACC 2 halted after 126540 cycles
-** Heartbeat for core[2]:        insts:1000000     cycles:1237969     seconds:41    -- 0.81 IPC (0.81 IPC) -- 0.00 KIPS (24.39 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:1000000     cycles:1237969     seconds:41    -- 0.81 IPC (0.81 IPC) -- 0.00 KIPS (24.39 KIPS)
-src/trace_read.cc:1447: (I=171  C=1264239):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=1264362):  ACC 2 halted after 126466 cycles
-src/trace_read.cc:1447: (I=171  C=1390757):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=1390880):  ACC 2 halted after 126518 cycles
-src/trace_read.cc:1447: (I=171  C=1517233):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=1517356):  ACC 2 halted after 126476 cycles
-src/trace_read.cc:1447: (I=171  C=1643911):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=1644034):  ACC 2 halted after 126678 cycles
-** Heartbeat for core[2]:        insts:2000000     cycles:1719043     seconds:52    -- 2.08 IPC (1.16 IPC) -- 90.91 KIPS (38.46 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:2000000     cycles:1719043     seconds:52    -- 2.08 IPC (1.16 IPC) -- 90.91 KIPS (38.46 KIPS)
-src/trace_read.cc:1447: (I=171  C=1770729):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=1770852):  ACC 2 halted after 126818 cycles
-src/trace_read.cc:1447: (I=171  C=1897382):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=1897514):  ACC 2 halted after 126662 cycles
-src/trace_read.cc:1447: (I=171  C=2024065):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=2024188):  ACC 2 halted after 126674 cycles
-src/trace_read.cc:1447: (I=171  C=2150755):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=2150878):  ACC 2 halted after 126690 cycles
-** Heartbeat for core[2]:        insts:3000000     cycles:2199873     seconds:62    -- 2.08 IPC (1.36 IPC) -- 100.00 KIPS (48.39 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:3000000     cycles:2199873     seconds:62    -- 2.08 IPC (1.36 IPC) -- 100.00 KIPS (48.39 KIPS)
-src/trace_read.cc:1447: (I=171  C=2277415):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=2277538):  ACC 2 halted after 126660 cycles
-src/trace_read.cc:1447: (I=171  C=2404117):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=2404240):  ACC 2 halted after 126702 cycles
-src/trace_read.cc:1447: (I=171  C=2531247):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=2531370):  ACC 2 halted after 127130 cycles
-src/trace_read.cc:1447: (I=171  C=2657891):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=2658014):  ACC 2 halted after 126644 cycles
-** Heartbeat for core[2]:        insts:4000000     cycles:2680428     seconds:73    -- 2.08 IPC (1.49 IPC) -- 90.91 KIPS (54.79 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:4000000     cycles:2680428     seconds:73    -- 2.08 IPC (1.49 IPC) -- 90.91 KIPS (54.79 KIPS)
-src/trace_read.cc:1447: (I=171  C=2784603):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=2784726):  ACC 2 halted after 126712 cycles
-src/trace_read.cc:1447: (I=171  C=2925633):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=2926487):  ACC 2 halted after 141761 cycles
-src/trace_read.cc:1447: (I=171  C=3508944):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=3509553):  ACC 2 halted after 583066 cycles
-** Heartbeat for core[2]:        insts:5000000     cycles:4097886     seconds:124   -- 0.71 IPC (1.22 IPC) -- 19.61 KIPS (40.32 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:5000000     cycles:4097886     seconds:124   -- 0.71 IPC (1.22 IPC) -- 19.61 KIPS (40.32 KIPS)
-src/trace_read.cc:1447: (I=171  C=4110541):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=4111128):  ACC 2 halted after 601575 cycles
-src/trace_read.cc:1447: (I=171  C=4691906):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=4692493):  ACC 2 halted after 581365 cycles
-src/trace_read.cc:1447: (I=171  C=5274141):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=5274731):  ACC 2 halted after 582238 cycles
-src/trace_read.cc:1447: (I=171  C=5855850):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=5856437):  ACC 2 halted after 581706 cycles
-** Heartbeat for core[2]:        insts:6000000     cycles:6316558     seconds:210   -- 0.45 IPC (0.95 IPC) -- 11.63 KIPS (28.57 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:6000000     cycles:6316558     seconds:210   -- 0.45 IPC (0.95 IPC) -- 11.63 KIPS (28.57 KIPS)
-src/trace_read.cc:1447: (I=171  C=6456371):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=6456958):  ACC 2 halted after 600521 cycles
-src/trace_read.cc:1447: (I=171  C=7038152):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=7038735):  ACC 2 halted after 581777 cycles
-src/trace_read.cc:1447: (I=171  C=7620132):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=7620719):  ACC 2 halted after 581984 cycles
-src/trace_read.cc:1447: (I=171  C=8226455):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=8227037):  ACC 2 halted after 606318 cycles
-** Heartbeat for core[2]:        insts:7000000     cycles:8573055     seconds:296   -- 0.44 IPC (0.82 IPC) -- 11.63 KIPS (23.65 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:7000000     cycles:8573055     seconds:296   -- 0.44 IPC (0.82 IPC) -- 11.63 KIPS (23.65 KIPS)
-src/trace_read.cc:1447: (I=171  C=8810237):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=8810825):  ACC 2 halted after 583788 cycles
-src/trace_read.cc:1447: (I=171  C=9392633):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=9393216):  ACC 2 halted after 582391 cycles
-src/trace_read.cc:1447: (I=171  C=9974520):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=9975128):  ACC 2 halted after 581912 cycles
-src/trace_read.cc:1447: (I=171  C=10578766):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=10579370):  ACC 2 halted after 604242 cycles
-** Heartbeat for core[2]:        insts:8000000     cycles:10812753    seconds:382   -- 0.45 IPC (0.74 IPC) -- 11.63 KIPS (20.94 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:8000000     cycles:10812753    seconds:382   -- 0.45 IPC (0.74 IPC) -- 11.63 KIPS (20.94 KIPS)
-src/trace_read.cc:1447: (I=171  C=11159900):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=11160506):  ACC 2 halted after 581136 cycles
-src/trace_read.cc:1447: (I=171  C=11741205):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=11741871):  ACC 2 halted after 581365 cycles
-src/trace_read.cc:1447: (I=171  C=12341580):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=12342209):  ACC 2 halted after 600338 cycles
-src/trace_read.cc:1447: (I=171  C=12929486):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=12930089):  ACC 2 halted after 587880 cycles
-** Heartbeat for core[2]:        insts:9000000     cycles:13041317    seconds:468   -- 0.45 IPC (0.69 IPC) -- 11.63 KIPS (19.23 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:9000000     cycles:13041317    seconds:468   -- 0.45 IPC (0.69 IPC) -- 11.63 KIPS (19.23 KIPS)
-src/trace_read.cc:1447: (I=171  C=13511238):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=13511846):  ACC 2 halted after 581757 cycles
-src/trace_read.cc:1447: (I=171  C=14092057):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=14092687):  ACC 2 halted after 580841 cycles
-src/trace_read.cc:1447: (I=171  C=14700579):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=14701196):  ACC 2 halted after 608509 cycles
-** Heartbeat for core[2]:        insts:10000000    cycles:15210674    seconds:552   -- 0.46 IPC (0.66 IPC) -- 11.90 KIPS (18.12 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:10000000    cycles:15210674    seconds:552   -- 0.46 IPC (0.66 IPC) -- 11.90 KIPS (18.12 KIPS)
-src/trace_read.cc:1447: (I=171  C=15282313):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=15282923):  ACC 2 halted after 581727 cycles
-src/trace_read.cc:1447: (I=171  C=15865507):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=15866115):  ACC 2 halted after 583192 cycles
-src/trace_read.cc:1447: (I=171  C=16466328):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=16466936):  ACC 2 halted after 600821 cycles
-src/trace_read.cc:1447: (I=171  C=17065101):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=17065718):  ACC 2 halted after 598782 cycles
-** Heartbeat for core[2]:        insts:11000000    cycles:17457857    seconds:600   -- 0.44 IPC (0.63 IPC) -- 20.83 KIPS (18.33 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:11000000    cycles:17457857    seconds:600   -- 0.44 IPC (0.63 IPC) -- 20.83 KIPS (18.33 KIPS)
-src/trace_read.cc:1447: (I=171  C=17648847):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=17649464):  ACC 2 halted after 583746 cycles
-src/trace_read.cc:1447: (I=171  C=18232813):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=18233430):  ACC 2 halted after 583966 cycles
-src/trace_read.cc:1447: (I=171  C=18837992):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=18838600):  ACC 2 halted after 605170 cycles
-src/trace_read.cc:1447: (I=171  C=19421720):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=19422361):  ACC 2 halted after 583761 cycles
-** Heartbeat for core[2]:        insts:12000000    cycles:19694759    seconds:647   -- 0.45 IPC (0.61 IPC) -- 21.28 KIPS (18.55 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:12000000    cycles:19694759    seconds:647   -- 0.45 IPC (0.61 IPC) -- 21.28 KIPS (18.55 KIPS)
-src/trace_read.cc:1447: (I=171  C=20005650):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=20006258):  ACC 2 halted after 583897 cycles
-src/trace_read.cc:1447: (I=171  C=20595624):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=20596270):  ACC 2 halted after 590012 cycles
-src/trace_read.cc:1447: (I=171  C=21189930):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=21190548):  ACC 2 halted after 594278 cycles
-src/trace_read.cc:1447: (I=171  C=21772289):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=21772906):  ACC 2 halted after 582358 cycles
-** Heartbeat for core[2]:        insts:13000000    cycles:21917388    seconds:695   -- 0.45 IPC (0.59 IPC) -- 20.83 KIPS (18.71 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:13000000    cycles:21917388    seconds:695   -- 0.45 IPC (0.59 IPC) -- 20.83 KIPS (18.71 KIPS)
-src/trace_read.cc:1447: (I=171  C=22356277):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=22356969):  ACC 2 halted after 584063 cycles
-src/trace_read.cc:1447: (I=171  C=22952049):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=22952679):  ACC 2 halted after 595710 cycles
-src/trace_read.cc:1447: (I=171  C=23536540):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=23537148):  ACC 2 halted after 584469 cycles
-** Heartbeat for core[2]:        insts:14000000    cycles:24092894    seconds:742   -- 0.46 IPC (0.58 IPC) -- 21.28 KIPS (18.87 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:14000000    cycles:24092894    seconds:742   -- 0.46 IPC (0.58 IPC) -- 21.28 KIPS (18.87 KIPS)
-src/trace_read.cc:1447: (I=171  C=24119401):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=24119891):  ACC 2 halted after 582743 cycles
-src/trace_read.cc:1447: (I=171  C=24703920):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=24704528):  ACC 2 halted after 584637 cycles
-src/trace_read.cc:1447: (I=171  C=25308647):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=25309255):  ACC 2 halted after 604727 cycles
-src/trace_read.cc:1447: (I=171  C=25890377):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=25890985):  ACC 2 halted after 581730 cycles
-** Heartbeat for core[2]:        insts:15000100    cycles:26320239    seconds:790   -- 0.45 IPC (0.57 IPC) -- 20.84 KIPS (18.99 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:15000100    cycles:26320239    seconds:790   -- 0.45 IPC (0.57 IPC) -- 20.84 KIPS (18.99 KIPS)
-src/trace_read.cc:1447: (I=171  C=26472568):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=26473177):  ACC 2 halted after 582192 cycles
-src/trace_read.cc:1447: (I=171  C=27080592):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=27081201):  ACC 2 halted after 608024 cycles
-src/trace_read.cc:1447: (I=171  C=27664618):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=27665226):  ACC 2 halted after 584025 cycles
-src/trace_read.cc:1447: (I=171  C=28246470):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=28247074):  ACC 2 halted after 581848 cycles
-** Heartbeat for core[2]:        insts:16000000    cycles:28545067    seconds:838   -- 0.45 IPC (0.56 IPC) -- 20.83 KIPS (19.09 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:16000000    cycles:28545067    seconds:838   -- 0.45 IPC (0.56 IPC) -- 20.83 KIPS (19.09 KIPS)
-src/trace_read.cc:1447: (I=171  C=28831649):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=28832253):  ACC 2 halted after 585179 cycles
-src/trace_read.cc:1447: (I=171  C=29436636):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=29437283):  ACC 2 halted after 605030 cycles
-src/trace_read.cc:1447: (I=171  C=30019042):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=30019646):  ACC 2 halted after 582363 cycles
-src/trace_read.cc:1447: (I=171  C=30600279):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=30600887):  ACC 2 halted after 581241 cycles
-** Heartbeat for core[2]:        insts:17000000    cycles:30787617    seconds:886   -- 0.45 IPC (0.55 IPC) -- 20.83 KIPS (19.19 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:17000000    cycles:30787617    seconds:886   -- 0.45 IPC (0.55 IPC) -- 20.83 KIPS (19.19 KIPS)
-src/trace_read.cc:1447: (I=171  C=31205033):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=31205660):  ACC 2 halted after 604773 cycles
-src/trace_read.cc:1447: (I=171  C=31797634):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=31798237):  ACC 2 halted after 592577 cycles
-src/trace_read.cc:1447: (I=171  C=32380606):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=32381201):  ACC 2 halted after 582964 cycles
-src/trace_read.cc:1447: (I=171  C=32966287):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=32966875):  ACC 2 halted after 585674 cycles
-** Heartbeat for core[2]:        insts:18000000    cycles:33026909    seconds:934   -- 0.45 IPC (0.55 IPC) -- 20.83 KIPS (19.27 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:18000000    cycles:33026909    seconds:934   -- 0.45 IPC (0.55 IPC) -- 20.83 KIPS (19.27 KIPS)
-src/trace_read.cc:1447: (I=171  C=33573523):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=33574106):  ACC 2 halted after 607231 cycles
-src/trace_read.cc:1447: (I=171  C=34155631):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=34156219):  ACC 2 halted after 582113 cycles
-src/trace_read.cc:1447: (I=171  C=34737551):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=34738138):  ACC 2 halted after 581919 cycles
-** Heartbeat for core[2]:        insts:19000000    cycles:35225712    seconds:982   -- 0.45 IPC (0.54 IPC) -- 20.83 KIPS (19.35 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:19000000    cycles:35225712    seconds:982   -- 0.45 IPC (0.54 IPC) -- 20.83 KIPS (19.35 KIPS)
-src/trace_read.cc:1447: (I=171  C=35329341):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=35329928):  ACC 2 halted after 591790 cycles
-src/trace_read.cc:1447: (I=171  C=35922190):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=35922786):  ACC 2 halted after 592858 cycles
-src/trace_read.cc:1447: (I=171  C=36504763):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=36505321):  ACC 2 halted after 582535 cycles
-src/trace_read.cc:1447: (I=171  C=37086942):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=37087522):  ACC 2 halted after 582201 cycles
-** Heartbeat for core[2]:        insts:20000000    cycles:37459376    seconds:1030  -- 0.45 IPC (0.53 IPC) -- 20.83 KIPS (19.42 KIPS)
-** Heartbeat for core[2]:  Thread:0      insts:20000000    cycles:37459376    seconds:1030  -- 0.45 IPC (0.53 IPC) -- 20.83 KIPS (19.42 KIPS)
-src/trace_read.cc:1447: (I=171  C=37699481):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=37700061):  ACC 2 halted after 612539 cycles
-src/trace_read.cc:1447: (I=171  C=38281119):  Core 2 got acc_window_delim marker
-src/core.cc:450: (I=171  C=38281706):  ACC 2 halted after 581645 cycles
-src/trace_read.cc:1435: (I=171  C=38439718):  Core 2 got acc_segment_delim marker switching to : 0
-src/core.cc:450: (I=171  C=38440522):  ACC 2 halted after 158816 cycles
-src/trace_read.cc:1435: (I=171  C=38440533):  Core 0 got acc_segment_delim marker switching to : 3
-src/core.cc:491: (I=203  C=38443193):  CPU halted after 2670 cycles
-src/trace_read.cc:1447: (I=203  C=38585956):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=38586601):  ACC 3 halted after 143408 cycles
-src/trace_read.cc:1447: (I=203  C=38697662):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=38698297):  ACC 3 halted after 111696 cycles
-src/trace_read.cc:1447: (I=203  C=38809380):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=38809993):  ACC 3 halted after 111696 cycles
-src/trace_read.cc:1447: (I=203  C=38924276):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=38924761):  ACC 3 halted after 114768 cycles
-src/trace_read.cc:1447: (I=203  C=39038222):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=39038859):  ACC 3 halted after 114098 cycles
-src/trace_read.cc:1447: (I=203  C=39148542):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=39149177):  ACC 3 halted after 110318 cycles
-src/trace_read.cc:1447: (I=203  C=39259236):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=39259849):  ACC 3 halted after 110672 cycles
-src/trace_read.cc:1447: (I=203  C=39369915):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=39370521):  ACC 3 halted after 110672 cycles
-src/trace_read.cc:1447: (I=203  C=39480612):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=39481193):  ACC 3 halted after 110672 cycles
-src/trace_read.cc:1447: (I=203  C=39589275):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=39589817):  ACC 3 halted after 108624 cycles
-src/trace_read.cc:1447: (I=203  C=39699908):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=39700489):  ACC 3 halted after 110672 cycles
-src/trace_read.cc:1447: (I=203  C=39810553):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=39811161):  ACC 3 halted after 110672 cycles
-src/trace_read.cc:1447: (I=203  C=39920233):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=39920809):  ACC 3 halted after 109648 cycles
-src/trace_read.cc:1447: (I=203  C=40028884):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=40029433):  ACC 3 halted after 108624 cycles
-src/trace_read.cc:1447: (I=203  C=40138505):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=40139081):  ACC 3 halted after 109648 cycles
-src/trace_read.cc:1447: (I=203  C=40247161):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=40247705):  ACC 3 halted after 108624 cycles
-src/trace_read.cc:1447: (I=203  C=40356779):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=40357353):  ACC 3 halted after 109648 cycles
-src/trace_read.cc:1447: (I=203  C=40467444):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=40468025):  ACC 3 halted after 110672 cycles
-src/trace_read.cc:1447: (I=203  C=40579086):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=40579721):  ACC 3 halted after 111696 cycles
-** Heartbeat for core[3]:        insts:1000000     cycles:40593134    seconds:1084  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.92 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:40593134    seconds:1084  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.92 KIPS)
-src/trace_read.cc:1447: (I=203  C=40689786):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=40690393):  ACC 3 halted after 110672 cycles
-src/trace_read.cc:1447: (I=203  C=40803659):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=40804137):  ACC 3 halted after 113744 cycles
-src/trace_read.cc:1447: (I=203  C=40919417):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=40919929):  ACC 3 halted after 115792 cycles
-src/trace_read.cc:1447: (I=203  C=41034187):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=41034697):  ACC 3 halted after 114768 cycles
-src/trace_read.cc:1447: (I=203  C=41146779):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=41147417):  ACC 3 halted after 112720 cycles
-src/trace_read.cc:1447: (I=203  C=41254500):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=41255017):  ACC 3 halted after 107600 cycles
-src/trace_read.cc:1447: (I=203  C=41362078):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=41362617):  ACC 3 halted after 107600 cycles
-src/trace_read.cc:1447: (I=203  C=41469700):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=41470217):  ACC 3 halted after 107600 cycles
-src/trace_read.cc:1447: (I=203  C=41577277):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=41577817):  ACC 3 halted after 107600 cycles
-src/trace_read.cc:1447: (I=203  C=41685869):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=203  C=41686441):  ACC 3 halted after 108624 cycles
-src/trace_read.cc:1435: (I=203  C=41720633):  Core 3 got acc_segment_delim marker switching to : 0
-src/core.cc:450: (I=203  C=41721271):  ACC 3 halted after 34830 cycles
-src/trace_read.cc:1435: (I=203  C=41721277):  Core 0 got acc_segment_delim marker switching to : 4
-src/core.cc:491: (I=217  C=41721435):  CPU halted after 163 cycles
-src/trace_read.cc:1447: (I=217  C=41809658):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=41809941):  ACC 4 halted after 88506 cycles
-src/trace_read.cc:1447: (I=217  C=41922320):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=41922667):  ACC 4 halted after 112726 cycles
-src/trace_read.cc:1447: (I=217  C=42033791):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=42034138):  ACC 4 halted after 111471 cycles
-src/trace_read.cc:1447: (I=217  C=42148565):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=42148912):  ACC 4 halted after 114774 cycles
-src/trace_read.cc:1447: (I=217  C=42263150):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=42263497):  ACC 4 halted after 114585 cycles
-src/trace_read.cc:1447: (I=217  C=42375876):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=42376223):  ACC 4 halted after 112726 cycles
-src/trace_read.cc:1447: (I=217  C=42486554):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=42486901):  ACC 4 halted after 110678 cycles
-src/trace_read.cc:1447: (I=217  C=42597232):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=42597579):  ACC 4 halted after 110678 cycles
-src/trace_read.cc:1447: (I=217  C=42706886):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=42707233):  ACC 4 halted after 109654 cycles
-src/trace_read.cc:1447: (I=217  C=42816540):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=42816887):  ACC 4 halted after 109654 cycles
-src/trace_read.cc:1447: (I=217  C=42927218):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=42927565):  ACC 4 halted after 110678 cycles
-** Heartbeat for core[4]:        insts:1000000     cycles:43008423    seconds:1120  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.89 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:1000000     cycles:43008423    seconds:1120  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.89 KIPS)
-src/trace_read.cc:1447: (I=217  C=43037665):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=43038012):  ACC 4 halted after 110447 cycles
-src/trace_read.cc:1447: (I=217  C=43149367):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=43149714):  ACC 4 halted after 111702 cycles
-src/trace_read.cc:1447: (I=217  C=43257997):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=43258344):  ACC 4 halted after 108630 cycles
-src/trace_read.cc:1447: (I=217  C=43366748):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=43367095):  ACC 4 halted after 108751 cycles
-src/trace_read.cc:1447: (I=217  C=43475982):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=43476329):  ACC 4 halted after 109234 cycles
-src/trace_read.cc:1447: (I=217  C=43584402):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=43584749):  ACC 4 halted after 108420 cycles
-src/trace_read.cc:1447: (I=217  C=43695080):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=43695427):  ACC 4 halted after 110678 cycles
-src/trace_read.cc:1447: (I=217  C=43806782):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=43807129):  ACC 4 halted after 111702 cycles
-src/trace_read.cc:1447: (I=217  C=43917040):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=43917387):  ACC 4 halted after 110258 cycles
-src/trace_read.cc:1447: (I=217  C=44027718):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=44028065):  ACC 4 halted after 110678 cycles
-src/trace_read.cc:1447: (I=217  C=44141468):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=44141815):  ACC 4 halted after 113750 cycles
-src/trace_read.cc:1447: (I=217  C=44256615):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=44256962):  ACC 4 halted after 115147 cycles
-** Heartbeat for core[4]:        insts:2000000     cycles:44284175    seconds:1138  -- 0.78 IPC (0.05 IPC) -- 55.56 KIPS (1.76 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:2000000     cycles:44284175    seconds:1138  -- 0.78 IPC (0.05 IPC) -- 55.56 KIPS (1.76 KIPS)
-src/trace_read.cc:1447: (I=217  C=44370155):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=44370502):  ACC 4 halted after 113540 cycles
-src/trace_read.cc:1447: (I=217  C=44476737):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=44477084):  ACC 4 halted after 106582 cycles
-src/trace_read.cc:1447: (I=217  C=44584238):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=44584564):  ACC 4 halted after 107480 cycles
-src/trace_read.cc:1447: (I=217  C=44690337):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=44690684):  ACC 4 halted after 106120 cycles
-src/trace_read.cc:1447: (I=217  C=44796268):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=44796615):  ACC 4 halted after 105931 cycles
-src/trace_read.cc:1447: (I=217  C=44904898):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=217  C=44905245):  ACC 4 halted after 108630 cycles
-src/trace_read.cc:1435: (I=217  C=44989738):  Core 4 got acc_segment_delim marker switching to : 0
-src/core.cc:450: (I=217  C=44990085):  ACC 4 halted after 84840 cycles
-src/trace_read.cc:1435: (I=277  C=44990614):  Core 0 got acc_segment_delim marker switching to : 5
-src/core.cc:491: (I=335  C=44990695):  CPU halted after 609 cycles
-src/trace_read.cc:1447: (I=335  C=45260539):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=45261497):  ACC 5 halted after 270802 cycles
-src/trace_read.cc:1447: (I=335  C=45623756):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=45624539):  ACC 5 halted after 363042 cycles
-src/trace_read.cc:1447: (I=335  C=45974560):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=45975394):  ACC 5 halted after 350855 cycles
-src/trace_read.cc:1447: (I=335  C=46342003):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=46342965):  ACC 5 halted after 367571 cycles
-src/trace_read.cc:1447: (I=335  C=46702574):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=46703433):  ACC 5 halted after 360468 cycles
-src/trace_read.cc:1447: (I=335  C=46869264):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=46869434):  ACC 5 halted after 166001 cycles
-src/trace_read.cc:1447: (I=335  C=46943480):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=46943653):  ACC 5 halted after 74219 cycles
-src/trace_read.cc:1447: (I=335  C=47018391):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47018563):  ACC 5 halted after 74910 cycles
-** Heartbeat for core[5]:        insts:1000000     cycles:47023411    seconds:1192  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.84 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:1000000     cycles:47023411    seconds:1192  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.84 KIPS)
-src/trace_read.cc:1447: (I=335  C=47093653):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47093826):  ACC 5 halted after 75263 cycles
-src/trace_read.cc:1447: (I=335  C=47167522):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47167696):  ACC 5 halted after 73870 cycles
-src/trace_read.cc:1447: (I=335  C=47242726):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47242956):  ACC 5 halted after 75260 cycles
-src/trace_read.cc:1447: (I=335  C=47317004):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47317175):  ACC 5 halted after 74219 cycles
-src/trace_read.cc:1447: (I=335  C=47391909):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47392083):  ACC 5 halted after 74908 cycles
-src/trace_read.cc:1447: (I=335  C=47467174):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47467346):  ACC 5 halted after 75263 cycles
-src/trace_read.cc:1447: (I=335  C=47541047):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47541217):  ACC 5 halted after 73871 cycles
-src/trace_read.cc:1447: (I=335  C=47616304):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47616477):  ACC 5 halted after 75260 cycles
-** Heartbeat for core[5]:        insts:2000000     cycles:47632461    seconds:1203  -- 1.64 IPC (0.04 IPC) -- 90.91 KIPS (1.66 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:2000000     cycles:47632461    seconds:1203  -- 1.64 IPC (0.04 IPC) -- 90.91 KIPS (1.66 KIPS)
-src/trace_read.cc:1447: (I=335  C=47690524):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47690696):  ACC 5 halted after 74219 cycles
-src/trace_read.cc:1447: (I=335  C=47765431):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47765605):  ACC 5 halted after 74909 cycles
-src/trace_read.cc:1447: (I=335  C=47840638):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47840868):  ACC 5 halted after 75263 cycles
-src/trace_read.cc:1447: (I=335  C=47914565):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47914739):  ACC 5 halted after 73871 cycles
-src/trace_read.cc:1447: (I=335  C=47989828):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=47989999):  ACC 5 halted after 75260 cycles
-src/trace_read.cc:1447: (I=335  C=48064047):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48064219):  ACC 5 halted after 74220 cycles
-src/trace_read.cc:1447: (I=335  C=48138898):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48139128):  ACC 5 halted after 74909 cycles
-src/trace_read.cc:1447: (I=335  C=48214217):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48214391):  ACC 5 halted after 75263 cycles
-** Heartbeat for core[5]:        insts:3000000     cycles:48239945    seconds:1213  -- 1.65 IPC (0.06 IPC) -- 100.00 KIPS (2.47 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:3000000     cycles:48239945    seconds:1213  -- 1.65 IPC (0.06 IPC) -- 100.00 KIPS (2.47 KIPS)
-src/trace_read.cc:1447: (I=335  C=48288090):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48288262):  ACC 5 halted after 73871 cycles
-src/trace_read.cc:1447: (I=335  C=48363350):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48363522):  ACC 5 halted after 75260 cycles
-src/trace_read.cc:1447: (I=335  C=48437571):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48437741):  ACC 5 halted after 74219 cycles
-src/trace_read.cc:1447: (I=335  C=48512478):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48512650):  ACC 5 halted after 74909 cycles
-src/trace_read.cc:1447: (I=335  C=48587683):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48587913):  ACC 5 halted after 75263 cycles
-src/trace_read.cc:1447: (I=335  C=48661611):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48661784):  ACC 5 halted after 73871 cycles
-src/trace_read.cc:1447: (I=335  C=48736818):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48737048):  ACC 5 halted after 75264 cycles
-src/trace_read.cc:1447: (I=335  C=48811097):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48811267):  ACC 5 halted after 74219 cycles
-** Heartbeat for core[5]:        insts:4000000     cycles:48847835    seconds:1223  -- 1.65 IPC (0.08 IPC) -- 100.00 KIPS (3.27 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:4000000     cycles:48847835    seconds:1223  -- 1.65 IPC (0.08 IPC) -- 100.00 KIPS (3.27 KIPS)
-src/trace_read.cc:1447: (I=335  C=48886004):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48886176):  ACC 5 halted after 74909 cycles
-src/trace_read.cc:1447: (I=335  C=48961209):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=48961439):  ACC 5 halted after 75263 cycles
-src/trace_read.cc:1447: (I=335  C=49035137):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49035310):  ACC 5 halted after 73871 cycles
-src/trace_read.cc:1447: (I=335  C=49110400):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49110574):  ACC 5 halted after 75264 cycles
-src/trace_read.cc:1447: (I=335  C=49184619):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49184793):  ACC 5 halted after 74219 cycles
-src/trace_read.cc:1447: (I=335  C=49259528):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49259702):  ACC 5 halted after 74909 cycles
-src/trace_read.cc:1447: (I=335  C=49334794):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49334965):  ACC 5 halted after 75263 cycles
-src/trace_read.cc:1447: (I=335  C=49408667):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49408837):  ACC 5 halted after 73872 cycles
-** Heartbeat for core[5]:        insts:5000000     cycles:49455529    seconds:1234  -- 1.65 IPC (0.10 IPC) -- 90.90 KIPS (4.05 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:5000000     cycles:49455529    seconds:1234  -- 1.65 IPC (0.10 IPC) -- 90.90 KIPS (4.05 KIPS)
-src/trace_read.cc:1447: (I=335  C=49483956):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49484126):  ACC 5 halted after 75289 cycles
-src/trace_read.cc:1447: (I=335  C=49558172):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49558345):  ACC 5 halted after 74219 cycles
-src/trace_read.cc:1447: (I=335  C=49633081):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49633253):  ACC 5 halted after 74908 cycles
-src/trace_read.cc:1447: (I=335  C=49708345):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49708516):  ACC 5 halted after 75263 cycles
-src/trace_read.cc:1447: (I=335  C=49782216):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49782386):  ACC 5 halted after 73870 cycles
-src/trace_read.cc:1447: (I=335  C=49857475):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49857646):  ACC 5 halted after 75260 cycles
-src/trace_read.cc:1447: (I=335  C=49931692):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=49931864):  ACC 5 halted after 74218 cycles
-src/trace_read.cc:1447: (I=335  C=50006600):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=50006773):  ACC 5 halted after 74909 cycles
-** Heartbeat for core[5]:        insts:6000000     cycles:50063762    seconds:1244  -- 1.64 IPC (0.12 IPC) -- 100.00 KIPS (4.82 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:6000000     cycles:50063762    seconds:1244  -- 1.64 IPC (0.12 IPC) -- 100.00 KIPS (4.82 KIPS)
-src/trace_read.cc:1447: (I=335  C=50081863):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=50082035):  ACC 5 halted after 75262 cycles
-src/trace_read.cc:1447: (I=335  C=50155736):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=50155906):  ACC 5 halted after 73871 cycles
-src/trace_read.cc:1447: (I=335  C=50230993):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=50231166):  ACC 5 halted after 75260 cycles
-src/trace_read.cc:1447: (I=335  C=50330871):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=50331964):  ACC 5 halted after 100798 cycles
-src/trace_read.cc:1447: (I=335  C=50693292):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=50694288):  ACC 5 halted after 362324 cycles
-src/trace_read.cc:1447: (I=335  C=51064458):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=51065423):  ACC 5 halted after 371135 cycles
-src/trace_read.cc:1447: (I=335  C=51423398):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=51424448):  ACC 5 halted after 359025 cycles
-src/trace_read.cc:1447: (I=335  C=51793508):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=51794474):  ACC 5 halted after 370026 cycles
-** Heartbeat for core[5]:        insts:7000000     cycles:52141058    seconds:1290  -- 0.48 IPC (0.13 IPC) -- 21.74 KIPS (5.43 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:7000000     cycles:52141058    seconds:1290  -- 0.48 IPC (0.13 IPC) -- 21.74 KIPS (5.43 KIPS)
-src/trace_read.cc:1447: (I=335  C=52155225):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=52156010):  ACC 5 halted after 361536 cycles
-src/trace_read.cc:1447: (I=335  C=52521728):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=52522478):  ACC 5 halted after 366468 cycles
-src/trace_read.cc:1447: (I=335  C=52885607):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=52886437):  ACC 5 halted after 363959 cycles
-src/trace_read.cc:1447: (I=335  C=53243897):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=53244825):  ACC 5 halted after 358388 cycles
-src/trace_read.cc:1447: (I=335  C=53602962):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=53603714):  ACC 5 halted after 358889 cycles
-src/trace_read.cc:1447: (I=335  C=53969826):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=53970718):  ACC 5 halted after 367004 cycles
-src/trace_read.cc:1447: (I=335  C=54342283):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=54343035):  ACC 5 halted after 372317 cycles
-src/trace_read.cc:1447: (I=335  C=54705635):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=54706463):  ACC 5 halted after 363428 cycles
-src/trace_read.cc:1447: (I=335  C=55060762):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=55061816):  ACC 5 halted after 355353 cycles
-** Heartbeat for core[5]:        insts:8000000     cycles:55109685    seconds:1355  -- 0.34 IPC (0.15 IPC) -- 15.38 KIPS (5.90 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:8000000     cycles:55109685    seconds:1355  -- 0.34 IPC (0.15 IPC) -- 15.38 KIPS (5.90 KIPS)
-src/trace_read.cc:1447: (I=335  C=55430620):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=55431374):  ACC 5 halted after 369558 cycles
-src/trace_read.cc:1447: (I=335  C=55787150):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=55787929):  ACC 5 halted after 356555 cycles
-src/trace_read.cc:1447: (I=335  C=56151556):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=56152425):  ACC 5 halted after 364496 cycles
-src/trace_read.cc:1447: (I=335  C=56524655):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=56525404):  ACC 5 halted after 372979 cycles
-src/trace_read.cc:1447: (I=335  C=56883174):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=56884165):  ACC 5 halted after 358761 cycles
-src/trace_read.cc:1447: (I=335  C=57245047):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=57246022):  ACC 5 halted after 361857 cycles
-src/trace_read.cc:1447: (I=335  C=57608289):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=57609067):  ACC 5 halted after 363045 cycles
-src/trace_read.cc:1447: (I=335  C=57966776):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=57967786):  ACC 5 halted after 358719 cycles
-** Heartbeat for core[5]:        insts:9000000     cycles:58058763    seconds:1421  -- 0.34 IPC (0.16 IPC) -- 15.15 KIPS (6.33 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:9000000     cycles:58058763    seconds:1421  -- 0.34 IPC (0.16 IPC) -- 15.15 KIPS (6.33 KIPS)
-src/trace_read.cc:1447: (I=335  C=58327666):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=58328631):  ACC 5 halted after 360845 cycles
-src/trace_read.cc:1447: (I=335  C=58696371):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=58697153):  ACC 5 halted after 368522 cycles
-src/trace_read.cc:1447: (I=335  C=59061739):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=59062610):  ACC 5 halted after 365457 cycles
-src/trace_read.cc:1447: (I=335  C=59410759):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=59411838):  ACC 5 halted after 349228 cycles
-src/trace_read.cc:1447: (I=335  C=59776673):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=59777574):  ACC 5 halted after 365736 cycles
-src/trace_read.cc:1447: (I=335  C=60149960):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=60150810):  ACC 5 halted after 373236 cycles
-src/trace_read.cc:1447: (I=335  C=60505919):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=60506742):  ACC 5 halted after 355932 cycles
-src/trace_read.cc:1447: (I=335  C=60872854):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=60873748):  ACC 5 halted after 367006 cycles
-** Heartbeat for core[5]:        insts:10000000    cycles:61019584    seconds:1487  -- 0.34 IPC (0.16 IPC) -- 15.15 KIPS (6.72 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:10000000    cycles:61019584    seconds:1487  -- 0.34 IPC (0.16 IPC) -- 15.15 KIPS (6.72 KIPS)
-src/trace_read.cc:1447: (I=335  C=61246668):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=61247496):  ACC 5 halted after 373748 cycles
-src/trace_read.cc:1447: (I=335  C=61601241):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=61602110):  ACC 5 halted after 354614 cycles
-src/trace_read.cc:1447: (I=335  C=61975415):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=61976244):  ACC 5 halted after 374134 cycles
-src/trace_read.cc:1447: (I=335  C=62343826):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=62344712):  ACC 5 halted after 368468 cycles
-src/trace_read.cc:1447: (I=335  C=62697878):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=62698740):  ACC 5 halted after 354028 cycles
-src/trace_read.cc:1447: (I=335  C=63069573):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=63070355):  ACC 5 halted after 371615 cycles
-src/trace_read.cc:1447: (I=335  C=63437884):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=63438636):  ACC 5 halted after 368281 cycles
-src/trace_read.cc:1447: (I=335  C=63794645):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=63795672):  ACC 5 halted after 357036 cycles
-** Heartbeat for core[5]:        insts:11000000    cycles:63978183    seconds:1553  -- 0.34 IPC (0.17 IPC) -- 15.15 KIPS (7.08 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:11000000    cycles:63978183    seconds:1553  -- 0.34 IPC (0.17 IPC) -- 15.15 KIPS (7.08 KIPS)
-src/trace_read.cc:1447: (I=335  C=64155677):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=64156728):  ACC 5 halted after 361056 cycles
-src/trace_read.cc:1447: (I=335  C=64522716):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=64523612):  ACC 5 halted after 366884 cycles
-src/trace_read.cc:1447: (I=335  C=64880369):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=64881232):  ACC 5 halted after 357620 cycles
-src/trace_read.cc:1447: (I=335  C=65241155):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=65242024):  ACC 5 halted after 360792 cycles
-src/trace_read.cc:1447: (I=335  C=65620614):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=65621587):  ACC 5 halted after 379563 cycles
-src/trace_read.cc:1447: (I=335  C=65974096):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=65974874):  ACC 5 halted after 353287 cycles
-src/trace_read.cc:1447: (I=335  C=66339940):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=66340724):  ACC 5 halted after 365850 cycles
-src/trace_read.cc:1447: (I=335  C=66708072):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=66708940):  ACC 5 halted after 368216 cycles
-** Heartbeat for core[5]:        insts:12000000    cycles:66915135    seconds:1619  -- 0.34 IPC (0.18 IPC) -- 15.15 KIPS (7.41 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:12000000    cycles:66915135    seconds:1619  -- 0.34 IPC (0.18 IPC) -- 15.15 KIPS (7.41 KIPS)
-src/trace_read.cc:1447: (I=335  C=67068268):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=67069259):  ACC 5 halted after 360319 cycles
-src/trace_read.cc:1447: (I=335  C=67442089):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=67443110):  ACC 5 halted after 373851 cycles
-src/trace_read.cc:1447: (I=335  C=67803277):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=67804356):  ACC 5 halted after 361246 cycles
-src/trace_read.cc:1447: (I=335  C=68164839):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=68165665):  ACC 5 halted after 361309 cycles
-src/trace_read.cc:1447: (I=335  C=68525100):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=68525926):  ACC 5 halted after 360261 cycles
-src/trace_read.cc:1447: (I=335  C=68889371):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=68890265):  ACC 5 halted after 364339 cycles
-src/trace_read.cc:1447: (I=335  C=69250868):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=69251892):  ACC 5 halted after 361627 cycles
-src/trace_read.cc:1447: (I=335  C=69609330):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=69610229):  ACC 5 halted after 358337 cycles
-** Heartbeat for core[5]:        insts:13000000    cycles:69860938    seconds:1685  -- 0.34 IPC (0.19 IPC) -- 15.15 KIPS (7.72 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:13000000    cycles:69860938    seconds:1685  -- 0.34 IPC (0.19 IPC) -- 15.15 KIPS (7.72 KIPS)
-src/trace_read.cc:1447: (I=335  C=69987280):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=69988253):  ACC 5 halted after 378024 cycles
-src/trace_read.cc:1447: (I=335  C=70340780):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=70341564):  ACC 5 halted after 353311 cycles
-src/trace_read.cc:1447: (I=335  C=70703557):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=70704550):  ACC 5 halted after 362986 cycles
-src/trace_read.cc:1447: (I=335  C=71074884):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=71075907):  ACC 5 halted after 371357 cycles
-src/trace_read.cc:1447: (I=335  C=71431606):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=71432601):  ACC 5 halted after 356694 cycles
-src/trace_read.cc:1447: (I=335  C=71799162):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=71799996):  ACC 5 halted after 367395 cycles
-src/trace_read.cc:1447: (I=335  C=72162740):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=72163630):  ACC 5 halted after 363634 cycles
-src/trace_read.cc:1447: (I=335  C=72534468):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=72535361):  ACC 5 halted after 371731 cycles
-** Heartbeat for core[5]:        insts:14000000    cycles:72758828    seconds:1749  -- 0.35 IPC (0.19 IPC) -- 15.62 KIPS (8.00 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:14000000    cycles:72758828    seconds:1749  -- 0.35 IPC (0.19 IPC) -- 15.62 KIPS (8.00 KIPS)
-src/trace_read.cc:1447: (I=335  C=72895803):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=72896631):  ACC 5 halted after 361270 cycles
-src/trace_read.cc:1447: (I=335  C=73260717):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=73261531):  ACC 5 halted after 364900 cycles
-src/trace_read.cc:1447: (I=335  C=73627566):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=73628560):  ACC 5 halted after 367029 cycles
-src/trace_read.cc:1447: (I=335  C=73978732):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=73979811):  ACC 5 halted after 351251 cycles
-src/trace_read.cc:1447: (I=335  C=74355484):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=74356453):  ACC 5 halted after 376642 cycles
-src/trace_read.cc:1447: (I=335  C=74715267):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=74716318):  ACC 5 halted after 359865 cycles
-src/trace_read.cc:1447: (I=335  C=75062512):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=75063379):  ACC 5 halted after 347061 cycles
-src/trace_read.cc:1447: (I=335  C=75433095):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=75433840):  ACC 5 halted after 370461 cycles
-** Heartbeat for core[5]:        insts:15000000    cycles:75661492    seconds:1813  -- 0.34 IPC (0.20 IPC) -- 15.62 KIPS (8.27 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:15000000    cycles:75661492    seconds:1813  -- 0.34 IPC (0.20 IPC) -- 15.62 KIPS (8.27 KIPS)
-src/trace_read.cc:1447: (I=335  C=75796082):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=75797086):  ACC 5 halted after 363246 cycles
-src/trace_read.cc:1447: (I=335  C=76151769):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=76152626):  ACC 5 halted after 355540 cycles
-src/trace_read.cc:1447: (I=335  C=76511069):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=76512034):  ACC 5 halted after 359408 cycles
-src/trace_read.cc:1447: (I=335  C=76885431):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=76886481):  ACC 5 halted after 374447 cycles
-src/trace_read.cc:1447: (I=335  C=77239784):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=77240677):  ACC 5 halted after 354196 cycles
-src/trace_read.cc:1447: (I=335  C=77605456):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=77606458):  ACC 5 halted after 365781 cycles
-src/trace_read.cc:1447: (I=335  C=77975434):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=77976291):  ACC 5 halted after 369833 cycles
-src/trace_read.cc:1447: (I=335  C=78333642):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=78334621):  ACC 5 halted after 358330 cycles
-** Heartbeat for core[5]:        insts:16000000    cycles:78622160    seconds:1877  -- 0.34 IPC (0.20 IPC) -- 15.62 KIPS (8.52 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:16000000    cycles:78622160    seconds:1877  -- 0.34 IPC (0.20 IPC) -- 15.62 KIPS (8.52 KIPS)
-src/trace_read.cc:1447: (I=335  C=78707777):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=78708772):  ACC 5 halted after 374151 cycles
-src/trace_read.cc:1447: (I=335  C=79065886):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=79066785):  ACC 5 halted after 358013 cycles
-src/trace_read.cc:1447: (I=335  C=79417451):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=79418513):  ACC 5 halted after 351728 cycles
-src/trace_read.cc:1447: (I=335  C=79782862):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=79783731):  ACC 5 halted after 365218 cycles
-src/trace_read.cc:1447: (I=335  C=80151311):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=80152170):  ACC 5 halted after 368439 cycles
-src/trace_read.cc:1447: (I=335  C=80500668):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=80501592):  ACC 5 halted after 349422 cycles
-src/trace_read.cc:1447: (I=335  C=80861545):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=80862444):  ACC 5 halted after 360852 cycles
-src/trace_read.cc:1447: (I=335  C=81230299):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=81231226):  ACC 5 halted after 368782 cycles
-** Heartbeat for core[5]:        insts:17000000    cycles:81521449    seconds:1941  -- 0.34 IPC (0.21 IPC) -- 15.63 KIPS (8.76 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:17000000    cycles:81521449    seconds:1941  -- 0.34 IPC (0.21 IPC) -- 15.63 KIPS (8.76 KIPS)
-src/trace_read.cc:1447: (I=335  C=81585882):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=81586709):  ACC 5 halted after 355483 cycles
-src/trace_read.cc:1447: (I=335  C=81946918):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=81947751):  ACC 5 halted after 361042 cycles
-src/trace_read.cc:1447: (I=335  C=82309653):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=82310552):  ACC 5 halted after 362801 cycles
-src/trace_read.cc:1447: (I=335  C=82667334):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=82668303):  ACC 5 halted after 357751 cycles
-src/trace_read.cc:1447: (I=335  C=83031744):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=83032739):  ACC 5 halted after 364436 cycles
-src/trace_read.cc:1447: (I=335  C=83394398):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=83395232):  ACC 5 halted after 362493 cycles
-src/trace_read.cc:1447: (I=335  C=83756495):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=83757452):  ACC 5 halted after 362220 cycles
-src/trace_read.cc:1447: (I=335  C=84114935):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=84115757):  ACC 5 halted after 358305 cycles
-** Heartbeat for core[5]:        insts:18000000    cycles:84431514    seconds:2005  -- 0.34 IPC (0.21 IPC) -- 15.62 KIPS (8.98 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:18000000    cycles:84431514    seconds:2005  -- 0.34 IPC (0.21 IPC) -- 15.62 KIPS (8.98 KIPS)
-src/trace_read.cc:1447: (I=335  C=84476556):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=84477524):  ACC 5 halted after 361767 cycles
-src/trace_read.cc:1447: (I=335  C=84834864):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=84835731):  ACC 5 halted after 358207 cycles
-src/trace_read.cc:1447: (I=335  C=85191462):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=85192295):  ACC 5 halted after 356564 cycles
-src/trace_read.cc:1447: (I=335  C=85564057):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=85565014):  ACC 5 halted after 372719 cycles
-src/trace_read.cc:1447: (I=335  C=85924053):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=85924985):  ACC 5 halted after 359971 cycles
-src/trace_read.cc:1447: (I=335  C=86290978):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=86291939):  ACC 5 halted after 366954 cycles
-src/trace_read.cc:1447: (I=335  C=86653070):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=86653936):  ACC 5 halted after 361997 cycles
-src/trace_read.cc:1447: (I=335  C=87017473):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=87018396):  ACC 5 halted after 364460 cycles
-** Heartbeat for core[5]:        insts:19000000    cycles:87353726    seconds:2069  -- 0.34 IPC (0.22 IPC) -- 15.63 KIPS (9.18 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:19000000    cycles:87353726    seconds:2069  -- 0.34 IPC (0.22 IPC) -- 15.63 KIPS (9.18 KIPS)
-src/trace_read.cc:1447: (I=335  C=87382511):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=87383304):  ACC 5 halted after 364908 cycles
-src/trace_read.cc:1447: (I=335  C=87746408):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=87747231):  ACC 5 halted after 363927 cycles
-src/trace_read.cc:1447: (I=335  C=88118678):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=88119471):  ACC 5 halted after 372240 cycles
-src/trace_read.cc:1447: (I=335  C=88467539):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=88468391):  ACC 5 halted after 348920 cycles
-src/trace_read.cc:1447: (I=335  C=88829033):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=88829863):  ACC 5 halted after 361472 cycles
-src/trace_read.cc:1447: (I=335  C=89190094):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=89190922):  ACC 5 halted after 361059 cycles
-src/trace_read.cc:1447: (I=335  C=89538296):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=89539350):  ACC 5 halted after 348428 cycles
-src/trace_read.cc:1447: (I=335  C=89915710):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=89916541):  ACC 5 halted after 377191 cycles
-** Heartbeat for core[5]:        insts:20000000    cycles:90252514    seconds:2132  -- 0.34 IPC (0.22 IPC) -- 15.87 KIPS (9.38 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:20000000    cycles:90252514    seconds:2132  -- 0.34 IPC (0.22 IPC) -- 15.87 KIPS (9.38 KIPS)
-src/trace_read.cc:1447: (I=335  C=90283647):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=90284516):  ACC 5 halted after 367975 cycles
-src/trace_read.cc:1447: (I=335  C=90637459):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=90638365):  ACC 5 halted after 353849 cycles
-src/trace_read.cc:1447: (I=335  C=90998916):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=90999806):  ACC 5 halted after 361441 cycles
-src/trace_read.cc:1447: (I=335  C=91359200):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=91360132):  ACC 5 halted after 360326 cycles
-src/trace_read.cc:1447: (I=335  C=91716171):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=91717096):  ACC 5 halted after 356964 cycles
-src/trace_read.cc:1447: (I=335  C=92075977):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=92076868):  ACC 5 halted after 359772 cycles
-src/trace_read.cc:1447: (I=335  C=92448869):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=92449609):  ACC 5 halted after 372741 cycles
-src/trace_read.cc:1447: (I=335  C=92803104):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=92804131):  ACC 5 halted after 354522 cycles
-** Heartbeat for core[5]:        insts:21000000    cycles:93148017    seconds:2196  -- 0.35 IPC (0.23 IPC) -- 15.63 KIPS (9.56 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:21000000    cycles:93148017    seconds:2196  -- 0.35 IPC (0.23 IPC) -- 15.63 KIPS (9.56 KIPS)
-src/trace_read.cc:1447: (I=335  C=93168103):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=93168963):  ACC 5 halted after 364832 cycles
-src/trace_read.cc:1447: (I=335  C=93533507):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=93534478):  ACC 5 halted after 365515 cycles
-src/trace_read.cc:1447: (I=335  C=93882645):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=93887486):  ACC 5 halted after 353008 cycles
-src/trace_read.cc:1447: (I=335  C=94259489):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=94260346):  ACC 5 halted after 372860 cycles
-src/trace_read.cc:1447: (I=335  C=94617201):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=94618161):  ACC 5 halted after 357815 cycles
-src/trace_read.cc:1447: (I=335  C=94973593):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=94974485):  ACC 5 halted after 356324 cycles
-src/trace_read.cc:1447: (I=335  C=95340076):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=95340910):  ACC 5 halted after 366425 cycles
-src/trace_read.cc:1447: (I=335  C=95700407):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=95701350):  ACC 5 halted after 360440 cycles
-** Heartbeat for core[5]:        insts:22000000    cycles:96044586    seconds:2259  -- 0.35 IPC (0.23 IPC) -- 15.87 KIPS (9.74 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:22000000    cycles:96044586    seconds:2259  -- 0.35 IPC (0.23 IPC) -- 15.87 KIPS (9.74 KIPS)
-src/trace_read.cc:1447: (I=335  C=96057311):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=96058329):  ACC 5 halted after 356979 cycles
-src/trace_read.cc:1447: (I=335  C=96416944):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=96417777):  ACC 5 halted after 359448 cycles
-src/trace_read.cc:1447: (I=335  C=96781731):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=96782454):  ACC 5 halted after 364677 cycles
-src/trace_read.cc:1447: (I=335  C=97135042):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=97136000):  ACC 5 halted after 353546 cycles
-src/trace_read.cc:1447: (I=335  C=97497007):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=97497833):  ACC 5 halted after 361833 cycles
-src/trace_read.cc:1447: (I=335  C=97868019):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=97868988):  ACC 5 halted after 371155 cycles
-src/trace_read.cc:1447: (I=335  C=98234850):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=98235544):  ACC 5 halted after 366556 cycles
-src/trace_read.cc:1447: (I=335  C=98601343):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=98602267):  ACC 5 halted after 366723 cycles
-** Heartbeat for core[5]:        insts:23000000    cycles:98957286    seconds:2323  -- 0.34 IPC (0.23 IPC) -- 15.62 KIPS (9.90 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:23000000    cycles:98957286    seconds:2323  -- 0.34 IPC (0.23 IPC) -- 15.62 KIPS (9.90 KIPS)
-src/trace_read.cc:1447: (I=335  C=98968940):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=98969693):  ACC 5 halted after 367426 cycles
-src/trace_read.cc:1447: (I=335  C=99325171):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=99326163):  ACC 5 halted after 356470 cycles
-src/trace_read.cc:1447: (I=335  C=99685919):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=99686758):  ACC 5 halted after 360595 cycles
-src/trace_read.cc:1447: (I=335  C=100057441):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=100058259):  ACC 5 halted after 371501 cycles
-src/trace_read.cc:1447: (I=335  C=100423798):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=100424657):  ACC 5 halted after 366398 cycles
-src/trace_read.cc:1447: (I=335  C=100786085):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=100787043):  ACC 5 halted after 362386 cycles
-src/trace_read.cc:1447: (I=335  C=101156073):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=101157127):  ACC 5 halted after 370084 cycles
-src/trace_read.cc:1447: (I=335  C=101527178):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=101527971):  ACC 5 halted after 370844 cycles
-src/trace_read.cc:1447: (I=335  C=101897710):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=101898546):  ACC 5 halted after 370575 cycles
-** Heartbeat for core[5]:        insts:24000000    cycles:101928050   seconds:2387  -- 0.34 IPC (0.24 IPC) -- 15.63 KIPS (10.05 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:24000000    cycles:101928050   seconds:2387  -- 0.34 IPC (0.24 IPC) -- 15.63 KIPS (10.05 KIPS)
-src/trace_read.cc:1447: (I=335  C=102259254):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=102260037):  ACC 5 halted after 361491 cycles
-src/trace_read.cc:1447: (I=335  C=102631662):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=102632632):  ACC 5 halted after 372595 cycles
-src/trace_read.cc:1447: (I=335  C=102986735):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=102987513):  ACC 5 halted after 354881 cycles
-src/trace_read.cc:1447: (I=335  C=103351177):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=103352045):  ACC 5 halted after 364532 cycles
-src/trace_read.cc:1447: (I=335  C=103724518):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=103725355):  ACC 5 halted after 373310 cycles
-src/trace_read.cc:1447: (I=335  C=104071160):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=104072091):  ACC 5 halted after 346736 cycles
-src/trace_read.cc:1447: (I=335  C=104442290):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=104443258):  ACC 5 halted after 371167 cycles
-src/trace_read.cc:1447: (I=335  C=104810093):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=104810983):  ACC 5 halted after 367725 cycles
-** Heartbeat for core[5]:        insts:25000000    cycles:104858905   seconds:2451  -- 0.34 IPC (0.24 IPC) -- 15.62 KIPS (10.20 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:25000000    cycles:104858905   seconds:2451  -- 0.34 IPC (0.24 IPC) -- 15.62 KIPS (10.20 KIPS)
-src/trace_read.cc:1447: (I=335  C=105163895):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=105164866):  ACC 5 halted after 353883 cycles
-src/trace_read.cc:1447: (I=335  C=105540591):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=105541421):  ACC 5 halted after 376555 cycles
-src/trace_read.cc:1447: (I=335  C=105900662):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=105901594):  ACC 5 halted after 360173 cycles
-src/trace_read.cc:1447: (I=335  C=106252784):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=106253529):  ACC 5 halted after 351935 cycles
-src/trace_read.cc:1447: (I=335  C=106622980):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=106623977):  ACC 5 halted after 370448 cycles
-src/trace_read.cc:1447: (I=335  C=106994163):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=106995057):  ACC 5 halted after 371080 cycles
-src/trace_read.cc:1447: (I=335  C=107347164):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=107348122):  ACC 5 halted after 353065 cycles
-src/trace_read.cc:1447: (I=335  C=107708634):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=107709456):  ACC 5 halted after 361334 cycles
-** Heartbeat for core[5]:        insts:26000000    cycles:107796311   seconds:2514  -- 0.34 IPC (0.24 IPC) -- 15.87 KIPS (10.34 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:26000000    cycles:107796311   seconds:2514  -- 0.34 IPC (0.24 IPC) -- 15.87 KIPS (10.34 KIPS)
-src/trace_read.cc:1447: (I=335  C=108079822):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=108080865):  ACC 5 halted after 371409 cycles
-src/trace_read.cc:1447: (I=335  C=108429803):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=108430675):  ACC 5 halted after 349810 cycles
-src/trace_read.cc:1447: (I=335  C=108794762):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=108795606):  ACC 5 halted after 364931 cycles
-src/trace_read.cc:1447: (I=335  C=109170542):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=109171437):  ACC 5 halted after 375831 cycles
-src/trace_read.cc:1447: (I=335  C=109529981):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=109530876):  ACC 5 halted after 359439 cycles
-src/trace_read.cc:1447: (I=335  C=109903157):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=109904115):  ACC 5 halted after 373239 cycles
-src/trace_read.cc:1447: (I=335  C=110263205):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=110264132):  ACC 5 halted after 360017 cycles
-src/trace_read.cc:1447: (I=335  C=110625734):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=110626722):  ACC 5 halted after 362590 cycles
-** Heartbeat for core[5]:        insts:27000000    cycles:110736667   seconds:2578  -- 0.34 IPC (0.24 IPC) -- 15.62 KIPS (10.47 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:27000000    cycles:110736667   seconds:2578  -- 0.34 IPC (0.24 IPC) -- 15.62 KIPS (10.47 KIPS)
-src/trace_read.cc:1447: (I=335  C=110996654):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=110997481):  ACC 5 halted after 370759 cycles
-src/trace_read.cc:1447: (I=335  C=111359284):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=111360215):  ACC 5 halted after 362734 cycles
-src/trace_read.cc:1447: (I=335  C=111720342):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=111721332):  ACC 5 halted after 361117 cycles
-src/trace_read.cc:1447: (I=335  C=112081133):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=112082045):  ACC 5 halted after 360713 cycles
-src/trace_read.cc:1447: (I=335  C=112457653):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=112458552):  ACC 5 halted after 376507 cycles
-src/trace_read.cc:1447: (I=335  C=112820830):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=112821799):  ACC 5 halted after 363247 cycles
-src/trace_read.cc:1447: (I=335  C=113182411):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=113183193):  ACC 5 halted after 361394 cycles
-src/trace_read.cc:1447: (I=335  C=113550972):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=113551830):  ACC 5 halted after 368637 cycles
-** Heartbeat for core[5]:        insts:28000000    cycles:113683418   seconds:2643  -- 0.34 IPC (0.25 IPC) -- 15.39 KIPS (10.59 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:28000000    cycles:113683418   seconds:2643  -- 0.34 IPC (0.25 IPC) -- 15.39 KIPS (10.59 KIPS)
-src/trace_read.cc:1447: (I=335  C=113904040):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=113904930):  ACC 5 halted after 353100 cycles
-src/trace_read.cc:1447: (I=335  C=114269036):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=114270073):  ACC 5 halted after 365143 cycles
-src/trace_read.cc:1447: (I=335  C=114635687):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=114636439):  ACC 5 halted after 366366 cycles
-src/trace_read.cc:1447: (I=335  C=114987224):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=114988088):  ACC 5 halted after 351649 cycles
-src/trace_read.cc:1447: (I=335  C=115349472):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=115350514):  ACC 5 halted after 362426 cycles
-src/trace_read.cc:1447: (I=335  C=115717520):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=115718298):  ACC 5 halted after 367784 cycles
-src/trace_read.cc:1447: (I=335  C=116077746):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=116078714):  ACC 5 halted after 360416 cycles
-src/trace_read.cc:1447: (I=335  C=116438522):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=116439361):  ACC 5 halted after 360647 cycles
-** Heartbeat for core[5]:        insts:29000000    cycles:116590026   seconds:2703  -- 0.34 IPC (0.25 IPC) -- 16.67 KIPS (10.73 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:29000000    cycles:116590026   seconds:2703  -- 0.34 IPC (0.25 IPC) -- 16.67 KIPS (10.73 KIPS)
-src/trace_read.cc:1447: (I=335  C=116806764):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=116807579):  ACC 5 halted after 368218 cycles
-src/trace_read.cc:1447: (I=335  C=117173418):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=335  C=117174408):  ACC 5 halted after 366829 cycles
-src/trace_read.cc:1435: (I=335  C=117318503):  Core 5 got acc_segment_delim marker switching to : 0
-src/core.cc:450: (I=335  C=117319299):  ACC 5 halted after 144891 cycles
-**Core 0 Thread 0 Finished:   insts:385         cycles:117324166   seconds:2719  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
-**Core 0 Core_Total  Finished:   insts:385         cycles:117324166   seconds:2719  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
+src/trace_read.cc:1447: (I=171  C=553228):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=553868):  ACC 2 halted after 551854 cycles
+src/trace_read.cc:1447: (I=171  C=1033883):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=1034006):  ACC 2 halted after 480138 cycles
+src/trace_read.cc:1447: (I=171  C=1160423):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=1160546):  ACC 2 halted after 126540 cycles
+** Heartbeat for core[2]:        insts:1000000     cycles:1260619     seconds:47    -- 0.79 IPC (0.79 IPC) -- 0.00 KIPS (21.28 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:1000000     cycles:1260619     seconds:47    -- 0.79 IPC (0.79 IPC) -- 0.00 KIPS (21.28 KIPS)
+src/trace_read.cc:1447: (I=171  C=1286889):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=1287012):  ACC 2 halted after 126466 cycles
+src/trace_read.cc:1447: (I=171  C=1413407):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=1413530):  ACC 2 halted after 126518 cycles
+src/trace_read.cc:1447: (I=171  C=1539883):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=1540006):  ACC 2 halted after 126476 cycles
+src/trace_read.cc:1447: (I=171  C=1666561):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=1666684):  ACC 2 halted after 126678 cycles
+** Heartbeat for core[2]:        insts:2000000     cycles:1741693     seconds:58    -- 2.08 IPC (1.15 IPC) -- 90.91 KIPS (34.48 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:2000000     cycles:1741693     seconds:58    -- 2.08 IPC (1.15 IPC) -- 90.91 KIPS (34.48 KIPS)
+src/trace_read.cc:1447: (I=171  C=1793379):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=1793502):  ACC 2 halted after 126818 cycles
+src/trace_read.cc:1447: (I=171  C=1920032):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=1920164):  ACC 2 halted after 126662 cycles
+src/trace_read.cc:1447: (I=171  C=2046715):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=2046838):  ACC 2 halted after 126674 cycles
+src/trace_read.cc:1447: (I=171  C=2173405):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=2173528):  ACC 2 halted after 126690 cycles
+** Heartbeat for core[2]:        insts:3000000     cycles:2222523     seconds:69    -- 2.08 IPC (1.35 IPC) -- 90.91 KIPS (43.48 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:3000000     cycles:2222523     seconds:69    -- 2.08 IPC (1.35 IPC) -- 90.91 KIPS (43.48 KIPS)
+src/trace_read.cc:1447: (I=171  C=2300065):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=2300188):  ACC 2 halted after 126660 cycles
+src/trace_read.cc:1447: (I=171  C=2426767):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=2426890):  ACC 2 halted after 126702 cycles
+src/trace_read.cc:1447: (I=171  C=2553897):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=2554020):  ACC 2 halted after 127130 cycles
+src/trace_read.cc:1447: (I=171  C=2680541):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=2680664):  ACC 2 halted after 126644 cycles
+** Heartbeat for core[2]:        insts:4000000     cycles:2703078     seconds:80    -- 2.08 IPC (1.48 IPC) -- 90.91 KIPS (50.00 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:4000000     cycles:2703078     seconds:80    -- 2.08 IPC (1.48 IPC) -- 90.91 KIPS (50.00 KIPS)
+src/trace_read.cc:1447: (I=171  C=2807253):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=2807376):  ACC 2 halted after 126712 cycles
+src/trace_read.cc:1447: (I=171  C=2949143):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=2949997):  ACC 2 halted after 142621 cycles
+src/trace_read.cc:1447: (I=171  C=3557175):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=3557788):  ACC 2 halted after 607791 cycles
+** Heartbeat for core[2]:        insts:5000000     cycles:4153685     seconds:133   -- 0.69 IPC (1.20 IPC) -- 18.87 KIPS (37.59 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:5000000     cycles:4153685     seconds:133   -- 0.69 IPC (1.20 IPC) -- 18.87 KIPS (37.59 KIPS)
+src/trace_read.cc:1447: (I=171  C=4166928):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=4167553):  ACC 2 halted after 609765 cycles
+src/trace_read.cc:1447: (I=171  C=4773440):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=4774226):  ACC 2 halted after 606673 cycles
+src/trace_read.cc:1447: (I=171  C=5381614):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=5382259):  ACC 2 halted after 608033 cycles
+src/trace_read.cc:1447: (I=171  C=5988142):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=5988765):  ACC 2 halted after 606506 cycles
+** Heartbeat for core[2]:        insts:6000000     cycles:6457999     seconds:225   -- 0.43 IPC (0.93 IPC) -- 10.87 KIPS (26.67 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:6000000     cycles:6457999     seconds:225   -- 0.43 IPC (0.93 IPC) -- 10.87 KIPS (26.67 KIPS)
+src/trace_read.cc:1447: (I=171  C=6595695):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=6596350):  ACC 2 halted after 607585 cycles
+src/trace_read.cc:1447: (I=171  C=7202200):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=7202826):  ACC 2 halted after 606476 cycles
+src/trace_read.cc:1447: (I=171  C=7808957):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=7809570):  ACC 2 halted after 606744 cycles
+src/trace_read.cc:1447: (I=171  C=8417616):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=8418241):  ACC 2 halted after 608671 cycles
+** Heartbeat for core[2]:        insts:7000000     cycles:8775504     seconds:307   -- 0.43 IPC (0.80 IPC) -- 12.20 KIPS (22.80 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:7000000     cycles:8775504     seconds:307   -- 0.43 IPC (0.80 IPC) -- 12.20 KIPS (22.80 KIPS)
+src/trace_read.cc:1447: (I=171  C=9023510):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=9024126):  ACC 2 halted after 605885 cycles
+src/trace_read.cc:1447: (I=171  C=9630265):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=9630891):  ACC 2 halted after 606765 cycles
+src/trace_read.cc:1447: (I=171  C=10237411):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=10238057):  ACC 2 halted after 607166 cycles
+src/trace_read.cc:1447: (I=171  C=10846575):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=10847374):  ACC 2 halted after 609317 cycles
+** Heartbeat for core[2]:        insts:8000000     cycles:11089740    seconds:358   -- 0.43 IPC (0.72 IPC) -- 19.61 KIPS (22.35 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:8000000     cycles:11089740    seconds:358   -- 0.43 IPC (0.72 IPC) -- 19.61 KIPS (22.35 KIPS)
+src/trace_read.cc:1447: (I=171  C=11453835):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=11454451):  ACC 2 halted after 607077 cycles
+src/trace_read.cc:1447: (I=171  C=12062093):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=12062797):  ACC 2 halted after 608346 cycles
+src/trace_read.cc:1447: (I=171  C=12670143):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=12670825):  ACC 2 halted after 608028 cycles
+src/trace_read.cc:1447: (I=171  C=13277559):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=13278188):  ACC 2 halted after 607363 cycles
+** Heartbeat for core[2]:        insts:9000000     cycles:13392752    seconds:408   -- 0.43 IPC (0.67 IPC) -- 20.00 KIPS (22.06 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:9000000     cycles:13392752    seconds:408   -- 0.43 IPC (0.67 IPC) -- 20.00 KIPS (22.06 KIPS)
+src/trace_read.cc:1447: (I=171  C=13885390):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=13886043):  ACC 2 halted after 607855 cycles
+src/trace_read.cc:1447: (I=171  C=14492216):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=14492854):  ACC 2 halted after 606811 cycles
+src/trace_read.cc:1447: (I=171  C=15102406):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=15103039):  ACC 2 halted after 610185 cycles
+** Heartbeat for core[2]:        insts:10000000    cycles:15634681    seconds:470   -- 0.45 IPC (0.64 IPC) -- 16.13 KIPS (21.28 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:10000000    cycles:15634681    seconds:470   -- 0.45 IPC (0.64 IPC) -- 16.13 KIPS (21.28 KIPS)
+src/trace_read.cc:1447: (I=171  C=15709752):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=15710388):  ACC 2 halted after 607349 cycles
+src/trace_read.cc:1447: (I=171  C=16317038):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=16317884):  ACC 2 halted after 607496 cycles
+src/trace_read.cc:1447: (I=171  C=16928665):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=16929298):  ACC 2 halted after 611414 cycles
+src/trace_read.cc:1447: (I=171  C=17538016):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=17538649):  ACC 2 halted after 609351 cycles
+** Heartbeat for core[2]:        insts:11000000    cycles:17946454    seconds:521   -- 0.43 IPC (0.61 IPC) -- 19.61 KIPS (21.11 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:11000000    cycles:17946454    seconds:521   -- 0.43 IPC (0.61 IPC) -- 19.61 KIPS (21.11 KIPS)
+src/trace_read.cc:1447: (I=171  C=18146383):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=18147071):  ACC 2 halted after 608422 cycles
+src/trace_read.cc:1447: (I=171  C=18754941):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=18755631):  ACC 2 halted after 608560 cycles
+src/trace_read.cc:1447: (I=171  C=19367235):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=19367910):  ACC 2 halted after 612279 cycles
+src/trace_read.cc:1447: (I=171  C=19976059):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=19976676):  ACC 2 halted after 608766 cycles
+** Heartbeat for core[2]:        insts:12000000    cycles:20259286    seconds:573   -- 0.43 IPC (0.59 IPC) -- 19.23 KIPS (20.94 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:12000000    cycles:20259286    seconds:573   -- 0.43 IPC (0.59 IPC) -- 19.23 KIPS (20.94 KIPS)
+src/trace_read.cc:1447: (I=171  C=20584973):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=20585780):  ACC 2 halted after 609104 cycles
+src/trace_read.cc:1447: (I=171  C=21194260):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=21194928):  ACC 2 halted after 609148 cycles
+src/trace_read.cc:1447: (I=171  C=21804965):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=21805611):  ACC 2 halted after 610683 cycles
+src/trace_read.cc:1447: (I=171  C=22412203):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=22413007):  ACC 2 halted after 607396 cycles
+** Heartbeat for core[2]:        insts:13000000    cycles:22562420    seconds:624   -- 0.43 IPC (0.58 IPC) -- 19.61 KIPS (20.83 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:13000000    cycles:22562420    seconds:624   -- 0.43 IPC (0.58 IPC) -- 19.61 KIPS (20.83 KIPS)
+src/trace_read.cc:1447: (I=171  C=23021648):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=23022287):  ACC 2 halted after 609280 cycles
+src/trace_read.cc:1447: (I=171  C=23631890):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=23632761):  ACC 2 halted after 610474 cycles
+src/trace_read.cc:1447: (I=171  C=24241287):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=24242140):  ACC 2 halted after 609379 cycles
+** Heartbeat for core[2]:        insts:14000000    cycles:24821880    seconds:675   -- 0.44 IPC (0.56 IPC) -- 19.61 KIPS (20.74 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:14000000    cycles:24821880    seconds:675   -- 0.44 IPC (0.56 IPC) -- 19.61 KIPS (20.74 KIPS)
+src/trace_read.cc:1447: (I=171  C=24849489):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=24849969):  ACC 2 halted after 607829 cycles
+src/trace_read.cc:1447: (I=171  C=25459804):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=25460459):  ACC 2 halted after 610490 cycles
+src/trace_read.cc:1447: (I=171  C=26069049):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=26069680):  ACC 2 halted after 609221 cycles
+src/trace_read.cc:1447: (I=171  C=26676894):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=26677694):  ACC 2 halted after 608014 cycles
+** Heartbeat for core[2]:        insts:15000100    cycles:27125223    seconds:727   -- 0.43 IPC (0.55 IPC) -- 19.23 KIPS (20.63 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:15000100    cycles:27125223    seconds:727   -- 0.43 IPC (0.55 IPC) -- 19.23 KIPS (20.63 KIPS)
+src/trace_read.cc:1447: (I=171  C=27284875):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=27285503):  ACC 2 halted after 607809 cycles
+src/trace_read.cc:1447: (I=171  C=27896871):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=27897537):  ACC 2 halted after 612034 cycles
+src/trace_read.cc:1447: (I=171  C=28505355):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=28506030):  ACC 2 halted after 608493 cycles
+src/trace_read.cc:1447: (I=171  C=29113912):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=29114584):  ACC 2 halted after 608554 cycles
+** Heartbeat for core[2]:        insts:16000000    cycles:29422459    seconds:779   -- 0.44 IPC (0.54 IPC) -- 19.23 KIPS (20.54 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:16000000    cycles:29422459    seconds:779   -- 0.44 IPC (0.54 IPC) -- 19.23 KIPS (20.54 KIPS)
+src/trace_read.cc:1447: (I=171  C=29721189):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=29721825):  ACC 2 halted after 607241 cycles
+src/trace_read.cc:1447: (I=171  C=30329845):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=30330550):  ACC 2 halted after 608725 cycles
+src/trace_read.cc:1447: (I=171  C=30937338):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=30937997):  ACC 2 halted after 607447 cycles
+src/trace_read.cc:1447: (I=171  C=31544651):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=31545301):  ACC 2 halted after 607304 cycles
+** Heartbeat for core[2]:        insts:17000000    cycles:31725145    seconds:830   -- 0.43 IPC (0.54 IPC) -- 19.61 KIPS (20.48 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:17000000    cycles:31725145    seconds:830   -- 0.43 IPC (0.54 IPC) -- 19.61 KIPS (20.48 KIPS)
+src/trace_read.cc:1447: (I=171  C=32155928):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=32157047):  ACC 2 halted after 611746 cycles
+src/trace_read.cc:1447: (I=171  C=32765147):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=32765790):  ACC 2 halted after 608743 cycles
+src/trace_read.cc:1447: (I=171  C=33373381):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=33373989):  ACC 2 halted after 608199 cycles
+src/trace_read.cc:1447: (I=171  C=33981631):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=33982241):  ACC 2 halted after 608252 cycles
+** Heartbeat for core[2]:        insts:18000000    cycles:34043139    seconds:882   -- 0.43 IPC (0.53 IPC) -- 19.23 KIPS (20.41 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:18000000    cycles:34043139    seconds:882   -- 0.43 IPC (0.53 IPC) -- 19.23 KIPS (20.41 KIPS)
+src/trace_read.cc:1447: (I=171  C=34590147):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=34590770):  ACC 2 halted after 608529 cycles
+src/trace_read.cc:1447: (I=171  C=35198588):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=35199201):  ACC 2 halted after 608431 cycles
+src/trace_read.cc:1447: (I=171  C=35805815):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=35806496):  ACC 2 halted after 607295 cycles
+** Heartbeat for core[2]:        insts:19000000    cycles:36306870    seconds:933   -- 0.44 IPC (0.52 IPC) -- 19.61 KIPS (20.36 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:19000000    cycles:36306870    seconds:933   -- 0.44 IPC (0.52 IPC) -- 19.61 KIPS (20.36 KIPS)
+src/trace_read.cc:1447: (I=171  C=36414930):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=36415584):  ACC 2 halted after 609088 cycles
+src/trace_read.cc:1447: (I=171  C=37022826):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=37023612):  ACC 2 halted after 608028 cycles
+src/trace_read.cc:1447: (I=171  C=37629895):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=37630570):  ACC 2 halted after 606958 cycles
+src/trace_read.cc:1447: (I=171  C=38238024):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=38238670):  ACC 2 halted after 608100 cycles
+** Heartbeat for core[2]:        insts:20000000    cycles:38611152    seconds:984   -- 0.43 IPC (0.52 IPC) -- 19.61 KIPS (20.33 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:20000000    cycles:38611152    seconds:984   -- 0.43 IPC (0.52 IPC) -- 19.61 KIPS (20.33 KIPS)
+src/trace_read.cc:1447: (I=171  C=38848670):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=38849266):  ACC 2 halted after 610596 cycles
+src/trace_read.cc:1447: (I=171  C=39457582):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=39458184):  ACC 2 halted after 608918 cycles
+src/trace_read.cc:1435: (I=171  C=39623700):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=171  C=39624524):  ACC 2 halted after 166340 cycles
+src/trace_read.cc:1435: (I=171  C=39624535):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=203  C=39624915):  CPU halted after 390 cycles
+src/trace_read.cc:1447: (I=203  C=39767491):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=39768136):  ACC 3 halted after 143221 cycles
+src/trace_read.cc:1447: (I=203  C=39879197):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=39879832):  ACC 3 halted after 111696 cycles
+src/trace_read.cc:1447: (I=203  C=39990915):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=39991528):  ACC 3 halted after 111696 cycles
+src/trace_read.cc:1447: (I=203  C=40105811):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=40106296):  ACC 3 halted after 114768 cycles
+src/trace_read.cc:1447: (I=203  C=40219757):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=40220394):  ACC 3 halted after 114098 cycles
+src/trace_read.cc:1447: (I=203  C=40330077):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=40330712):  ACC 3 halted after 110318 cycles
+src/trace_read.cc:1447: (I=203  C=40440771):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=40441384):  ACC 3 halted after 110672 cycles
+src/trace_read.cc:1447: (I=203  C=40551450):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=40552056):  ACC 3 halted after 110672 cycles
+src/trace_read.cc:1447: (I=203  C=40662147):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=40662728):  ACC 3 halted after 110672 cycles
+src/trace_read.cc:1447: (I=203  C=40770810):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=40771352):  ACC 3 halted after 108624 cycles
+src/trace_read.cc:1447: (I=203  C=40881443):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=40882024):  ACC 3 halted after 110672 cycles
+src/trace_read.cc:1447: (I=203  C=40992088):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=40992696):  ACC 3 halted after 110672 cycles
+src/trace_read.cc:1447: (I=203  C=41101768):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=41102344):  ACC 3 halted after 109648 cycles
+src/trace_read.cc:1447: (I=203  C=41210419):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=41210968):  ACC 3 halted after 108624 cycles
+src/trace_read.cc:1447: (I=203  C=41320040):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=41320616):  ACC 3 halted after 109648 cycles
+src/trace_read.cc:1447: (I=203  C=41428696):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=41429240):  ACC 3 halted after 108624 cycles
+src/trace_read.cc:1447: (I=203  C=41538314):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=41538888):  ACC 3 halted after 109648 cycles
+src/trace_read.cc:1447: (I=203  C=41648979):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=41649560):  ACC 3 halted after 110672 cycles
+src/trace_read.cc:1447: (I=203  C=41760621):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=41761256):  ACC 3 halted after 111696 cycles
+** Heartbeat for core[3]:        insts:1000000     cycles:41776949    seconds:1039  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.96 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:41776949    seconds:1039  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.96 KIPS)
+src/trace_read.cc:1447: (I=203  C=41871321):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=41871928):  ACC 3 halted after 110672 cycles
+src/trace_read.cc:1447: (I=203  C=41985194):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=41985672):  ACC 3 halted after 113744 cycles
+src/trace_read.cc:1447: (I=203  C=42100952):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=42101464):  ACC 3 halted after 115792 cycles
+src/trace_read.cc:1447: (I=203  C=42215722):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=42216232):  ACC 3 halted after 114768 cycles
+src/trace_read.cc:1447: (I=203  C=42328314):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=42328952):  ACC 3 halted after 112720 cycles
+src/trace_read.cc:1447: (I=203  C=42436035):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=42436552):  ACC 3 halted after 107600 cycles
+src/trace_read.cc:1447: (I=203  C=42543613):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=42544152):  ACC 3 halted after 107600 cycles
+src/trace_read.cc:1447: (I=203  C=42651235):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=42651752):  ACC 3 halted after 107600 cycles
+src/trace_read.cc:1447: (I=203  C=42758812):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=42759352):  ACC 3 halted after 107600 cycles
+src/trace_read.cc:1447: (I=203  C=42867404):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=42867976):  ACC 3 halted after 108624 cycles
+src/trace_read.cc:1435: (I=203  C=42902168):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=203  C=42902806):  ACC 3 halted after 34830 cycles
+src/trace_read.cc:1435: (I=203  C=42902812):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=217  C=42902970):  CPU halted after 163 cycles
+src/trace_read.cc:1447: (I=217  C=42991193):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=42991476):  ACC 4 halted after 88506 cycles
+src/trace_read.cc:1447: (I=217  C=43103855):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=43104202):  ACC 4 halted after 112726 cycles
+src/trace_read.cc:1447: (I=217  C=43215326):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=43215673):  ACC 4 halted after 111471 cycles
+src/trace_read.cc:1447: (I=217  C=43330100):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=43330447):  ACC 4 halted after 114774 cycles
+src/trace_read.cc:1447: (I=217  C=43444685):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=43445032):  ACC 4 halted after 114585 cycles
+src/trace_read.cc:1447: (I=217  C=43557411):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=43557758):  ACC 4 halted after 112726 cycles
+src/trace_read.cc:1447: (I=217  C=43668089):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=43668436):  ACC 4 halted after 110678 cycles
+src/trace_read.cc:1447: (I=217  C=43778767):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=43779114):  ACC 4 halted after 110678 cycles
+src/trace_read.cc:1447: (I=217  C=43888421):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=43888768):  ACC 4 halted after 109654 cycles
+src/trace_read.cc:1447: (I=217  C=43998075):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=43998422):  ACC 4 halted after 109654 cycles
+src/trace_read.cc:1447: (I=217  C=44108753):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=44109100):  ACC 4 halted after 110678 cycles
+** Heartbeat for core[4]:        insts:1000000     cycles:44192238    seconds:1074  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.93 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:1000000     cycles:44192238    seconds:1074  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.93 KIPS)
+src/trace_read.cc:1447: (I=217  C=44219200):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=44219547):  ACC 4 halted after 110447 cycles
+src/trace_read.cc:1447: (I=217  C=44330902):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=44331249):  ACC 4 halted after 111702 cycles
+src/trace_read.cc:1447: (I=217  C=44439532):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=44439879):  ACC 4 halted after 108630 cycles
+src/trace_read.cc:1447: (I=217  C=44548283):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=44548630):  ACC 4 halted after 108751 cycles
+src/trace_read.cc:1447: (I=217  C=44657517):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=44657864):  ACC 4 halted after 109234 cycles
+src/trace_read.cc:1447: (I=217  C=44765937):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=44766284):  ACC 4 halted after 108420 cycles
+src/trace_read.cc:1447: (I=217  C=44876615):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=44876962):  ACC 4 halted after 110678 cycles
+src/trace_read.cc:1447: (I=217  C=44988317):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=44988664):  ACC 4 halted after 111702 cycles
+src/trace_read.cc:1447: (I=217  C=45098575):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=45098922):  ACC 4 halted after 110258 cycles
+src/trace_read.cc:1447: (I=217  C=45209253):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=45209600):  ACC 4 halted after 110678 cycles
+src/trace_read.cc:1447: (I=217  C=45323003):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=45323350):  ACC 4 halted after 113750 cycles
+src/trace_read.cc:1447: (I=217  C=45438150):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=45438497):  ACC 4 halted after 115147 cycles
+** Heartbeat for core[4]:        insts:2000000     cycles:45467990    seconds:1093  -- 0.78 IPC (0.04 IPC) -- 52.63 KIPS (1.83 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:2000000     cycles:45467990    seconds:1093  -- 0.78 IPC (0.04 IPC) -- 52.63 KIPS (1.83 KIPS)
+src/trace_read.cc:1447: (I=217  C=45551690):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=45552037):  ACC 4 halted after 113540 cycles
+src/trace_read.cc:1447: (I=217  C=45658272):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=45658619):  ACC 4 halted after 106582 cycles
+src/trace_read.cc:1447: (I=217  C=45765773):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=45766099):  ACC 4 halted after 107480 cycles
+src/trace_read.cc:1447: (I=217  C=45871872):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=45872219):  ACC 4 halted after 106120 cycles
+src/trace_read.cc:1447: (I=217  C=45977803):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=45978150):  ACC 4 halted after 105931 cycles
+src/trace_read.cc:1447: (I=217  C=46086433):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=46086780):  ACC 4 halted after 108630 cycles
+src/trace_read.cc:1435: (I=217  C=46171273):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=217  C=46171620):  ACC 4 halted after 84840 cycles
+src/trace_read.cc:1435: (I=277  C=46172139):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=335  C=46172220):  CPU halted after 599 cycles
+src/trace_read.cc:1447: (I=335  C=46446650):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=46447658):  ACC 5 halted after 275438 cycles
+src/trace_read.cc:1447: (I=335  C=46809984):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=46810846):  ACC 5 halted after 363188 cycles
+src/trace_read.cc:1447: (I=335  C=47175035):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=47176053):  ACC 5 halted after 365207 cycles
+src/trace_read.cc:1447: (I=335  C=47543044):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=47544062):  ACC 5 halted after 368009 cycles
+src/trace_read.cc:1447: (I=335  C=47904360):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=47905406):  ACC 5 halted after 361344 cycles
+src/trace_read.cc:1447: (I=335  C=48074281):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48074451):  ACC 5 halted after 169045 cycles
+src/trace_read.cc:1447: (I=335  C=48148497):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48148670):  ACC 5 halted after 74219 cycles
+src/trace_read.cc:1447: (I=335  C=48223408):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48223580):  ACC 5 halted after 74910 cycles
+** Heartbeat for core[5]:        insts:1000000     cycles:48230718    seconds:1149  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.87 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:1000000     cycles:48230718    seconds:1149  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.87 KIPS)
+src/trace_read.cc:1447: (I=335  C=48298670):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48298843):  ACC 5 halted after 75263 cycles
+src/trace_read.cc:1447: (I=335  C=48372539):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48372713):  ACC 5 halted after 73870 cycles
+src/trace_read.cc:1447: (I=335  C=48447743):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48447973):  ACC 5 halted after 75260 cycles
+src/trace_read.cc:1447: (I=335  C=48522021):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48522192):  ACC 5 halted after 74219 cycles
+src/trace_read.cc:1447: (I=335  C=48596926):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48597100):  ACC 5 halted after 74908 cycles
+src/trace_read.cc:1447: (I=335  C=48672191):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48672363):  ACC 5 halted after 75263 cycles
+src/trace_read.cc:1447: (I=335  C=48746064):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48746234):  ACC 5 halted after 73871 cycles
+src/trace_read.cc:1447: (I=335  C=48821321):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48821494):  ACC 5 halted after 75260 cycles
+** Heartbeat for core[5]:        insts:2000000     cycles:48839768    seconds:1159  -- 1.64 IPC (0.04 IPC) -- 100.00 KIPS (1.73 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:2000000     cycles:48839768    seconds:1159  -- 1.64 IPC (0.04 IPC) -- 100.00 KIPS (1.73 KIPS)
+src/trace_read.cc:1447: (I=335  C=48895541):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48895713):  ACC 5 halted after 74219 cycles
+src/trace_read.cc:1447: (I=335  C=48970448):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=48970622):  ACC 5 halted after 74909 cycles
+src/trace_read.cc:1447: (I=335  C=49045655):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49045885):  ACC 5 halted after 75263 cycles
+src/trace_read.cc:1447: (I=335  C=49119582):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49119756):  ACC 5 halted after 73871 cycles
+src/trace_read.cc:1447: (I=335  C=49194845):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49195016):  ACC 5 halted after 75260 cycles
+src/trace_read.cc:1447: (I=335  C=49269064):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49269236):  ACC 5 halted after 74220 cycles
+src/trace_read.cc:1447: (I=335  C=49343915):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49344145):  ACC 5 halted after 74909 cycles
+src/trace_read.cc:1447: (I=335  C=49419234):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49419408):  ACC 5 halted after 75263 cycles
+** Heartbeat for core[5]:        insts:3000000     cycles:49447252    seconds:1170  -- 1.65 IPC (0.06 IPC) -- 90.91 KIPS (2.56 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:3000000     cycles:49447252    seconds:1170  -- 1.65 IPC (0.06 IPC) -- 90.91 KIPS (2.56 KIPS)
+src/trace_read.cc:1447: (I=335  C=49493107):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49493279):  ACC 5 halted after 73871 cycles
+src/trace_read.cc:1447: (I=335  C=49568367):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49568539):  ACC 5 halted after 75260 cycles
+src/trace_read.cc:1447: (I=335  C=49642588):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49642758):  ACC 5 halted after 74219 cycles
+src/trace_read.cc:1447: (I=335  C=49717495):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49717667):  ACC 5 halted after 74909 cycles
+src/trace_read.cc:1447: (I=335  C=49792700):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49792930):  ACC 5 halted after 75263 cycles
+src/trace_read.cc:1447: (I=335  C=49866628):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49866801):  ACC 5 halted after 73871 cycles
+src/trace_read.cc:1447: (I=335  C=49941838):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=49942068):  ACC 5 halted after 75267 cycles
+src/trace_read.cc:1447: (I=335  C=50016117):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50016287):  ACC 5 halted after 74219 cycles
+** Heartbeat for core[5]:        insts:4000000     cycles:50055145    seconds:1180  -- 1.65 IPC (0.08 IPC) -- 100.00 KIPS (3.39 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:4000000     cycles:50055145    seconds:1180  -- 1.65 IPC (0.08 IPC) -- 100.00 KIPS (3.39 KIPS)
+src/trace_read.cc:1447: (I=335  C=50091024):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50091196):  ACC 5 halted after 74909 cycles
+src/trace_read.cc:1447: (I=335  C=50166229):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50166459):  ACC 5 halted after 75263 cycles
+src/trace_read.cc:1447: (I=335  C=50240157):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50240330):  ACC 5 halted after 73871 cycles
+src/trace_read.cc:1447: (I=335  C=50315423):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50315597):  ACC 5 halted after 75267 cycles
+src/trace_read.cc:1447: (I=335  C=50389642):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50389816):  ACC 5 halted after 74219 cycles
+src/trace_read.cc:1447: (I=335  C=50464551):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50464725):  ACC 5 halted after 74909 cycles
+src/trace_read.cc:1447: (I=335  C=50539817):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50539988):  ACC 5 halted after 75263 cycles
+src/trace_read.cc:1447: (I=335  C=50613690):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50613860):  ACC 5 halted after 73872 cycles
+** Heartbeat for core[5]:        insts:5000000     cycles:50662842    seconds:1191  -- 1.65 IPC (0.10 IPC) -- 90.90 KIPS (4.20 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:5000000     cycles:50662842    seconds:1191  -- 1.65 IPC (0.10 IPC) -- 90.90 KIPS (4.20 KIPS)
+src/trace_read.cc:1447: (I=335  C=50688979):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50689149):  ACC 5 halted after 75289 cycles
+src/trace_read.cc:1447: (I=335  C=50763195):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50763368):  ACC 5 halted after 74219 cycles
+src/trace_read.cc:1447: (I=335  C=50838104):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50838276):  ACC 5 halted after 74908 cycles
+src/trace_read.cc:1447: (I=335  C=50913368):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50913539):  ACC 5 halted after 75263 cycles
+src/trace_read.cc:1447: (I=335  C=50987239):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=50987409):  ACC 5 halted after 73870 cycles
+src/trace_read.cc:1447: (I=335  C=51062498):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=51062669):  ACC 5 halted after 75260 cycles
+src/trace_read.cc:1447: (I=335  C=51136715):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=51136887):  ACC 5 halted after 74218 cycles
+src/trace_read.cc:1447: (I=335  C=51211623):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=51211796):  ACC 5 halted after 74909 cycles
+** Heartbeat for core[5]:        insts:6000000     cycles:51271075    seconds:1201  -- 1.64 IPC (0.12 IPC) -- 100.00 KIPS (5.00 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:6000000     cycles:51271075    seconds:1201  -- 1.64 IPC (0.12 IPC) -- 100.00 KIPS (5.00 KIPS)
+src/trace_read.cc:1447: (I=335  C=51286886):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=51287058):  ACC 5 halted after 75262 cycles
+src/trace_read.cc:1447: (I=335  C=51360759):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=51360929):  ACC 5 halted after 73871 cycles
+src/trace_read.cc:1447: (I=335  C=51436016):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=51436189):  ACC 5 halted after 75260 cycles
+src/trace_read.cc:1447: (I=335  C=51537316):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=51538611):  ACC 5 halted after 102422 cycles
+src/trace_read.cc:1447: (I=335  C=51903258):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=51904285):  ACC 5 halted after 365674 cycles
+src/trace_read.cc:1447: (I=335  C=52271526):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=52272534):  ACC 5 halted after 368249 cycles
+src/trace_read.cc:1447: (I=335  C=52631965):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=52633070):  ACC 5 halted after 360536 cycles
+src/trace_read.cc:1447: (I=335  C=52999427):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=53000199):  ACC 5 halted after 367129 cycles
+** Heartbeat for core[5]:        insts:7000000     cycles:53349404    seconds:1249  -- 0.48 IPC (0.13 IPC) -- 20.83 KIPS (5.60 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:7000000     cycles:53349404    seconds:1249  -- 0.48 IPC (0.13 IPC) -- 20.83 KIPS (5.60 KIPS)
+src/trace_read.cc:1447: (I=335  C=53361694):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=53362523):  ACC 5 halted after 362324 cycles
+src/trace_read.cc:1447: (I=335  C=53725752):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=53726821):  ACC 5 halted after 364298 cycles
+src/trace_read.cc:1447: (I=335  C=54092748):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=54093731):  ACC 5 halted after 366910 cycles
+src/trace_read.cc:1447: (I=335  C=54453113):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=54454196):  ACC 5 halted after 360465 cycles
+src/trace_read.cc:1447: (I=335  C=54819082):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=54820152):  ACC 5 halted after 365956 cycles
+src/trace_read.cc:1447: (I=335  C=55182966):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=55183869):  ACC 5 halted after 363717 cycles
+src/trace_read.cc:1447: (I=335  C=55549816):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=55550802):  ACC 5 halted after 366933 cycles
+src/trace_read.cc:1447: (I=335  C=55917251):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=55918095):  ACC 5 halted after 367293 cycles
+src/trace_read.cc:1447: (I=335  C=56278700):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=56279738):  ACC 5 halted after 361643 cycles
+** Heartbeat for core[5]:        insts:8000000     cycles:56325139    seconds:1319  -- 0.34 IPC (0.14 IPC) -- 14.29 KIPS (6.07 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:8000000     cycles:56325139    seconds:1319  -- 0.34 IPC (0.14 IPC) -- 14.29 KIPS (6.07 KIPS)
+src/trace_read.cc:1447: (I=335  C=56646722):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=56647730):  ACC 5 halted after 367992 cycles
+src/trace_read.cc:1447: (I=335  C=57009100):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=57010171):  ACC 5 halted after 362441 cycles
+src/trace_read.cc:1447: (I=335  C=57375240):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=57376309):  ACC 5 halted after 366138 cycles
+src/trace_read.cc:1447: (I=335  C=57743174):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=57744221):  ACC 5 halted after 367912 cycles
+src/trace_read.cc:1447: (I=335  C=58103807):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=58104781):  ACC 5 halted after 360560 cycles
+src/trace_read.cc:1447: (I=335  C=58471025):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=58471908):  ACC 5 halted after 367127 cycles
+src/trace_read.cc:1447: (I=335  C=58833546):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=58834549):  ACC 5 halted after 362641 cycles
+src/trace_read.cc:1447: (I=335  C=59199114):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=59200066):  ACC 5 halted after 365517 cycles
+** Heartbeat for core[5]:        insts:9000000     cycles:59292073    seconds:1388  -- 0.34 IPC (0.15 IPC) -- 14.49 KIPS (6.48 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:9000000     cycles:59292073    seconds:1388  -- 0.34 IPC (0.15 IPC) -- 14.49 KIPS (6.48 KIPS)
+src/trace_read.cc:1447: (I=335  C=59566837):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=59567845):  ACC 5 halted after 367779 cycles
+src/trace_read.cc:1447: (I=335  C=59928822):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=59929922):  ACC 5 halted after 362077 cycles
+src/trace_read.cc:1447: (I=335  C=60297145):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=60298039):  ACC 5 halted after 368117 cycles
+src/trace_read.cc:1447: (I=335  C=60659961):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=60660793):  ACC 5 halted after 362754 cycles
+src/trace_read.cc:1447: (I=335  C=61025872):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=61026729):  ACC 5 halted after 365936 cycles
+src/trace_read.cc:1447: (I=335  C=61393699):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=61394707):  ACC 5 halted after 367978 cycles
+src/trace_read.cc:1447: (I=335  C=61755185):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=61756227):  ACC 5 halted after 361520 cycles
+src/trace_read.cc:1447: (I=335  C=62123551):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=62124559):  ACC 5 halted after 368332 cycles
+** Heartbeat for core[5]:        insts:10000000    cycles:62266136    seconds:1458  -- 0.34 IPC (0.16 IPC) -- 14.29 KIPS (6.86 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:10000000    cycles:62266136    seconds:1458  -- 0.34 IPC (0.16 IPC) -- 14.29 KIPS (6.86 KIPS)
+src/trace_read.cc:1447: (I=335  C=62487254):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=62488105):  ACC 5 halted after 363546 cycles
+src/trace_read.cc:1447: (I=335  C=62852816):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=62853770):  ACC 5 halted after 365665 cycles
+src/trace_read.cc:1447: (I=335  C=63221300):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=63222311):  ACC 5 halted after 368541 cycles
+src/trace_read.cc:1447: (I=335  C=63583673):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=63584770):  ACC 5 halted after 362459 cycles
+src/trace_read.cc:1447: (I=335  C=63951426):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=63952434):  ACC 5 halted after 367664 cycles
+src/trace_read.cc:1447: (I=335  C=64315304):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=64316133):  ACC 5 halted after 363699 cycles
+src/trace_read.cc:1447: (I=335  C=64681394):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=64682404):  ACC 5 halted after 366271 cycles
+src/trace_read.cc:1447: (I=335  C=65048911):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=65049858):  ACC 5 halted after 367454 cycles
+** Heartbeat for core[5]:        insts:11000000    cycles:65237222    seconds:1528  -- 0.34 IPC (0.17 IPC) -- 14.29 KIPS (7.20 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:11000000    cycles:65237222    seconds:1528  -- 0.34 IPC (0.17 IPC) -- 14.29 KIPS (7.20 KIPS)
+src/trace_read.cc:1447: (I=335  C=65410547):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=65411586):  ACC 5 halted after 361728 cycles
+src/trace_read.cc:1447: (I=335  C=65778430):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=65779441):  ACC 5 halted after 367855 cycles
+src/trace_read.cc:1447: (I=335  C=66142062):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=66143004):  ACC 5 halted after 363563 cycles
+src/trace_read.cc:1447: (I=335  C=66508986):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=66509836):  ACC 5 halted after 366832 cycles
+src/trace_read.cc:1447: (I=335  C=66877554):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=66878413):  ACC 5 halted after 368577 cycles
+src/trace_read.cc:1447: (I=335  C=67239588):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=67240569):  ACC 5 halted after 362156 cycles
+src/trace_read.cc:1447: (I=335  C=67608203):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=67609190):  ACC 5 halted after 368621 cycles
+src/trace_read.cc:1447: (I=335  C=67973216):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=67974104):  ACC 5 halted after 364914 cycles
+** Heartbeat for core[5]:        insts:12000000    cycles:68186604    seconds:1597  -- 0.34 IPC (0.18 IPC) -- 14.49 KIPS (7.51 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:12000000    cycles:68186604    seconds:1597  -- 0.34 IPC (0.18 IPC) -- 14.49 KIPS (7.51 KIPS)
+src/trace_read.cc:1447: (I=335  C=68339994):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=68340948):  ACC 5 halted after 366844 cycles
+src/trace_read.cc:1447: (I=335  C=68708556):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=68709576):  ACC 5 halted after 368628 cycles
+src/trace_read.cc:1447: (I=335  C=69070059):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=69071097):  ACC 5 halted after 361521 cycles
+src/trace_read.cc:1447: (I=335  C=69437750):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=69438521):  ACC 5 halted after 367424 cycles
+src/trace_read.cc:1447: (I=335  C=69801914):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=69802984):  ACC 5 halted after 364463 cycles
+src/trace_read.cc:1447: (I=335  C=70167715):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=70168665):  ACC 5 halted after 365681 cycles
+src/trace_read.cc:1447: (I=335  C=70535065):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=70536009):  ACC 5 halted after 367344 cycles
+src/trace_read.cc:1447: (I=335  C=70895625):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=70896722):  ACC 5 halted after 360713 cycles
+** Heartbeat for core[5]:        insts:13000000    cycles:71142554    seconds:1666  -- 0.34 IPC (0.18 IPC) -- 14.49 KIPS (7.80 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:13000000    cycles:71142554    seconds:1666  -- 0.34 IPC (0.18 IPC) -- 14.49 KIPS (7.80 KIPS)
+src/trace_read.cc:1447: (I=335  C=71264696):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=71265721):  ACC 5 halted after 368999 cycles
+src/trace_read.cc:1447: (I=335  C=71628240):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=71629076):  ACC 5 halted after 363355 cycles
+src/trace_read.cc:1447: (I=335  C=71995265):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=71996173):  ACC 5 halted after 367097 cycles
+src/trace_read.cc:1447: (I=335  C=72364409):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=72365458):  ACC 5 halted after 369285 cycles
+src/trace_read.cc:1447: (I=335  C=72726784):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=72727662):  ACC 5 halted after 362204 cycles
+src/trace_read.cc:1447: (I=335  C=73096473):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=73097499):  ACC 5 halted after 369837 cycles
+src/trace_read.cc:1447: (I=335  C=73461300):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=73462247):  ACC 5 halted after 364748 cycles
+src/trace_read.cc:1447: (I=335  C=73829124):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=73830007):  ACC 5 halted after 367760 cycles
+** Heartbeat for core[5]:        insts:14000000    cycles:74058339    seconds:1733  -- 0.34 IPC (0.19 IPC) -- 14.93 KIPS (8.08 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:14000000    cycles:74058339    seconds:1733  -- 0.34 IPC (0.19 IPC) -- 14.93 KIPS (8.08 KIPS)
+src/trace_read.cc:1447: (I=335  C=74198553):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=74199608):  ACC 5 halted after 369601 cycles
+src/trace_read.cc:1447: (I=335  C=74561499):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=74562396):  ACC 5 halted after 362788 cycles
+src/trace_read.cc:1447: (I=335  C=74931323):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=74932335):  ACC 5 halted after 369939 cycles
+src/trace_read.cc:1447: (I=335  C=75295552):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=75296414):  ACC 5 halted after 364079 cycles
+src/trace_read.cc:1447: (I=335  C=75663411):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=75664189):  ACC 5 halted after 367775 cycles
+src/trace_read.cc:1447: (I=335  C=76031595):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=76032445):  ACC 5 halted after 368256 cycles
+src/trace_read.cc:1447: (I=335  C=76393169):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=76394222):  ACC 5 halted after 361777 cycles
+src/trace_read.cc:1447: (I=335  C=76761866):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=76762874):  ACC 5 halted after 368652 cycles
+** Heartbeat for core[5]:        insts:15000000    cycles:76996048    seconds:1800  -- 0.34 IPC (0.19 IPC) -- 14.93 KIPS (8.33 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:15000000    cycles:76996048    seconds:1800  -- 0.34 IPC (0.19 IPC) -- 14.93 KIPS (8.33 KIPS)
+src/trace_read.cc:1447: (I=335  C=77125129):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=77126186):  ACC 5 halted after 363312 cycles
+src/trace_read.cc:1447: (I=335  C=77490645):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=77491564):  ACC 5 halted after 365378 cycles
+src/trace_read.cc:1447: (I=335  C=77857667):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=77858734):  ACC 5 halted after 367170 cycles
+src/trace_read.cc:1447: (I=335  C=78219714):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=78220691):  ACC 5 halted after 361957 cycles
+src/trace_read.cc:1447: (I=335  C=78586167):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=78587174):  ACC 5 halted after 366483 cycles
+src/trace_read.cc:1447: (I=335  C=78949243):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=78950060):  ACC 5 halted after 362886 cycles
+src/trace_read.cc:1447: (I=335  C=79315883):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=79316793):  ACC 5 halted after 366733 cycles
+src/trace_read.cc:1447: (I=335  C=79682819):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=79683848):  ACC 5 halted after 367055 cycles
+** Heartbeat for core[5]:        insts:16000000    cycles:79957458    seconds:1868  -- 0.34 IPC (0.20 IPC) -- 14.71 KIPS (8.57 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:16000000    cycles:79957458    seconds:1868  -- 0.34 IPC (0.20 IPC) -- 14.71 KIPS (8.57 KIPS)
+src/trace_read.cc:1447: (I=335  C=80044515):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=80045489):  ACC 5 halted after 361641 cycles
+src/trace_read.cc:1447: (I=335  C=80411863):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=80412719):  ACC 5 halted after 367230 cycles
+src/trace_read.cc:1447: (I=335  C=80774343):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=80775410):  ACC 5 halted after 362691 cycles
+src/trace_read.cc:1447: (I=335  C=81139859):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=81140931):  ACC 5 halted after 365521 cycles
+src/trace_read.cc:1447: (I=335  C=81508088):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=81508979):  ACC 5 halted after 368048 cycles
+src/trace_read.cc:1447: (I=335  C=81870078):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=81871053):  ACC 5 halted after 362074 cycles
+src/trace_read.cc:1447: (I=335  C=82237555):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=82238503):  ACC 5 halted after 367450 cycles
+src/trace_read.cc:1447: (I=335  C=82601480):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=82602356):  ACC 5 halted after 363853 cycles
+** Heartbeat for core[5]:        insts:17000000    cycles:82906923    seconds:1936  -- 0.34 IPC (0.21 IPC) -- 14.71 KIPS (8.78 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:17000000    cycles:82906923    seconds:1936  -- 0.34 IPC (0.21 IPC) -- 14.71 KIPS (8.78 KIPS)
+src/trace_read.cc:1447: (I=335  C=82966731):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=82967751):  ACC 5 halted after 365395 cycles
+src/trace_read.cc:1447: (I=335  C=83335192):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=83336052):  ACC 5 halted after 368301 cycles
+src/trace_read.cc:1447: (I=335  C=83698195):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=83698995):  ACC 5 halted after 362943 cycles
+src/trace_read.cc:1447: (I=335  C=84064748):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=84065604):  ACC 5 halted after 366609 cycles
+src/trace_read.cc:1447: (I=335  C=84428728):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=84429586):  ACC 5 halted after 363982 cycles
+src/trace_read.cc:1447: (I=335  C=84796447):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=84797230):  ACC 5 halted after 367644 cycles
+src/trace_read.cc:1447: (I=335  C=85164762):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=85165770):  ACC 5 halted after 368540 cycles
+src/trace_read.cc:1447: (I=335  C=85527216):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=85528314):  ACC 5 halted after 362544 cycles
+** Heartbeat for core[5]:        insts:18000000    cycles:85851412    seconds:2004  -- 0.34 IPC (0.21 IPC) -- 14.71 KIPS (8.98 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:18000000    cycles:85851412    seconds:2004  -- 0.34 IPC (0.21 IPC) -- 14.71 KIPS (8.98 KIPS)
+src/trace_read.cc:1447: (I=335  C=85896148):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=85896969):  ACC 5 halted after 368655 cycles
+src/trace_read.cc:1447: (I=335  C=86259313):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=86260291):  ACC 5 halted after 363322 cycles
+src/trace_read.cc:1447: (I=335  C=86626420):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=86627201):  ACC 5 halted after 366910 cycles
+src/trace_read.cc:1447: (I=335  C=86995664):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=86996518):  ACC 5 halted after 369317 cycles
+src/trace_read.cc:1447: (I=335  C=87356850):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=87357889):  ACC 5 halted after 361371 cycles
+src/trace_read.cc:1447: (I=335  C=87724722):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=87725737):  ACC 5 halted after 367848 cycles
+src/trace_read.cc:1447: (I=335  C=88088100):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=88089042):  ACC 5 halted after 363305 cycles
+src/trace_read.cc:1447: (I=335  C=88453887):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=88454708):  ACC 5 halted after 365666 cycles
+** Heartbeat for core[5]:        insts:19000000    cycles:88794981    seconds:2072  -- 0.34 IPC (0.21 IPC) -- 14.71 KIPS (9.17 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:19000000    cycles:88794981    seconds:2072  -- 0.34 IPC (0.21 IPC) -- 14.71 KIPS (9.17 KIPS)
+src/trace_read.cc:1447: (I=335  C=88822278):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=88823261):  ACC 5 halted after 368553 cycles
+src/trace_read.cc:1447: (I=335  C=89184196):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=89185078):  ACC 5 halted after 361817 cycles
+src/trace_read.cc:1447: (I=335  C=89552748):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=89553550):  ACC 5 halted after 368472 cycles
+src/trace_read.cc:1447: (I=335  C=89916277):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=89917094):  ACC 5 halted after 363544 cycles
+src/trace_read.cc:1447: (I=335  C=90283145):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=90284003):  ACC 5 halted after 366909 cycles
+src/trace_read.cc:1447: (I=335  C=90652637):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=90653456):  ACC 5 halted after 369453 cycles
+src/trace_read.cc:1447: (I=335  C=91014010):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=91015056):  ACC 5 halted after 361600 cycles
+src/trace_read.cc:1447: (I=335  C=91383787):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=91384649):  ACC 5 halted after 369593 cycles
+** Heartbeat for core[5]:        insts:20000000    cycles:91727223    seconds:2139  -- 0.34 IPC (0.22 IPC) -- 14.93 KIPS (9.35 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:20000000    cycles:91727223    seconds:2139  -- 0.34 IPC (0.22 IPC) -- 14.93 KIPS (9.35 KIPS)
+src/trace_read.cc:1447: (I=335  C=91748922):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=91749723):  ACC 5 halted after 365074 cycles
+src/trace_read.cc:1447: (I=335  C=92114990):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=92115939):  ACC 5 halted after 366216 cycles
+src/trace_read.cc:1447: (I=335  C=92484029):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=92485040):  ACC 5 halted after 369101 cycles
+src/trace_read.cc:1447: (I=335  C=92846017):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=92847004):  ACC 5 halted after 361964 cycles
+src/trace_read.cc:1447: (I=335  C=93215237):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=93216293):  ACC 5 halted after 369289 cycles
+src/trace_read.cc:1447: (I=335  C=93580091):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=93580931):  ACC 5 halted after 364638 cycles
+src/trace_read.cc:1447: (I=335  C=93947476):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=93948223):  ACC 5 halted after 367292 cycles
+src/trace_read.cc:1447: (I=335  C=94315451):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=94316248):  ACC 5 halted after 368025 cycles
+** Heartbeat for core[5]:        insts:21000000    cycles:94659287    seconds:2207  -- 0.34 IPC (0.22 IPC) -- 14.71 KIPS (9.52 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:21000000    cycles:94659287    seconds:2207  -- 0.34 IPC (0.22 IPC) -- 14.71 KIPS (9.52 KIPS)
+src/trace_read.cc:1447: (I=335  C=94677968):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=94678866):  ACC 5 halted after 362618 cycles
+src/trace_read.cc:1447: (I=335  C=95046730):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=95047584):  ACC 5 halted after 368718 cycles
+src/trace_read.cc:1447: (I=335  C=95408744):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=95409616):  ACC 5 halted after 362032 cycles
+src/trace_read.cc:1447: (I=335  C=95775358):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=95776369):  ACC 5 halted after 366753 cycles
+src/trace_read.cc:1447: (I=335  C=96143035):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=96143959):  ACC 5 halted after 367590 cycles
+src/trace_read.cc:1447: (I=335  C=96505673):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=96506470):  ACC 5 halted after 362511 cycles
+src/trace_read.cc:1447: (I=335  C=96875755):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=96876564):  ACC 5 halted after 370094 cycles
+src/trace_read.cc:1447: (I=335  C=97239558):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=97240477):  ACC 5 halted after 363913 cycles
+** Heartbeat for core[5]:        insts:22000000    cycles:97595184    seconds:2275  -- 0.34 IPC (0.23 IPC) -- 14.71 KIPS (9.67 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:22000000    cycles:97595184    seconds:2275  -- 0.34 IPC (0.23 IPC) -- 14.71 KIPS (9.67 KIPS)
+src/trace_read.cc:1447: (I=335  C=97606012):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=97606960):  ACC 5 halted after 366483 cycles
+src/trace_read.cc:1447: (I=335  C=97974995):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=97975881):  ACC 5 halted after 368921 cycles
+src/trace_read.cc:1447: (I=335  C=98338810):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=98339704):  ACC 5 halted after 363823 cycles
+src/trace_read.cc:1447: (I=335  C=98707434):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=98708445):  ACC 5 halted after 368741 cycles
+src/trace_read.cc:1447: (I=335  C=99071287):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=99072401):  ACC 5 halted after 363956 cycles
+src/trace_read.cc:1447: (I=335  C=99438685):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=99439533):  ACC 5 halted after 367132 cycles
+src/trace_read.cc:1447: (I=335  C=99806367):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=99807257):  ACC 5 halted after 367724 cycles
+src/trace_read.cc:1447: (I=335  C=100169574):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=100170421):  ACC 5 halted after 363164 cycles
+** Heartbeat for core[5]:        insts:23000000    cycles:100528519   seconds:2342  -- 0.34 IPC (0.23 IPC) -- 14.93 KIPS (9.82 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:23000000    cycles:100528519   seconds:2342  -- 0.34 IPC (0.23 IPC) -- 14.93 KIPS (9.82 KIPS)
+src/trace_read.cc:1447: (I=335  C=100538170):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=100538950):  ACC 5 halted after 368529 cycles
+src/trace_read.cc:1447: (I=335  C=100900500):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=100901502):  ACC 5 halted after 362552 cycles
+src/trace_read.cc:1447: (I=335  C=101266989):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=101267876):  ACC 5 halted after 366374 cycles
+src/trace_read.cc:1447: (I=335  C=101635445):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=101636512):  ACC 5 halted after 368636 cycles
+src/trace_read.cc:1447: (I=335  C=101998354):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=101999392):  ACC 5 halted after 362880 cycles
+src/trace_read.cc:1447: (I=335  C=102367159):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=102368174):  ACC 5 halted after 368782 cycles
+src/trace_read.cc:1447: (I=335  C=102731556):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=102732560):  ACC 5 halted after 364386 cycles
+src/trace_read.cc:1447: (I=335  C=103098537):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=103099356):  ACC 5 halted after 366796 cycles
+src/trace_read.cc:1447: (I=335  C=103467938):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=103468798):  ACC 5 halted after 369442 cycles
+** Heartbeat for core[5]:        insts:24000000    cycles:103496727   seconds:2410  -- 0.34 IPC (0.23 IPC) -- 14.71 KIPS (9.96 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:24000000    cycles:103496727   seconds:2410  -- 0.34 IPC (0.23 IPC) -- 14.71 KIPS (9.96 KIPS)
+src/trace_read.cc:1447: (I=335  C=103830794):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=103831627):  ACC 5 halted after 362829 cycles
+src/trace_read.cc:1447: (I=335  C=104200046):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=104200900):  ACC 5 halted after 369273 cycles
+src/trace_read.cc:1447: (I=335  C=104564416):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=104565245):  ACC 5 halted after 364345 cycles
+src/trace_read.cc:1447: (I=335  C=104930474):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=104931345):  ACC 5 halted after 366100 cycles
+src/trace_read.cc:1447: (I=335  C=105300709):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=105301566):  ACC 5 halted after 370221 cycles
+src/trace_read.cc:1447: (I=335  C=105662281):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=105663262):  ACC 5 halted after 361696 cycles
+src/trace_read.cc:1447: (I=335  C=106030091):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=106031038):  ACC 5 halted after 367776 cycles
+src/trace_read.cc:1447: (I=335  C=106394547):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=106395458):  ACC 5 halted after 364420 cycles
+** Heartbeat for core[5]:        insts:25000000    cycles:106443735   seconds:2477  -- 0.34 IPC (0.23 IPC) -- 14.93 KIPS (10.09 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:25000000    cycles:106443735   seconds:2477  -- 0.34 IPC (0.23 IPC) -- 14.93 KIPS (10.09 KIPS)
+src/trace_read.cc:1447: (I=335  C=106759707):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=106760566):  ACC 5 halted after 365108 cycles
+src/trace_read.cc:1447: (I=335  C=107128109):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=107129056):  ACC 5 halted after 368490 cycles
+src/trace_read.cc:1447: (I=335  C=107489689):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=107490737):  ACC 5 halted after 361681 cycles
+src/trace_read.cc:1447: (I=335  C=107856732):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=107857740):  ACC 5 halted after 367003 cycles
+src/trace_read.cc:1447: (I=335  C=108220514):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=108221496):  ACC 5 halted after 363756 cycles
+src/trace_read.cc:1447: (I=335  C=108586090):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=108586945):  ACC 5 halted after 365449 cycles
+src/trace_read.cc:1447: (I=335  C=108954069):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=108955076):  ACC 5 halted after 368131 cycles
+src/trace_read.cc:1447: (I=335  C=109315864):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=109316902):  ACC 5 halted after 361826 cycles
+** Heartbeat for core[5]:        insts:26000000    cycles:109405300   seconds:2546  -- 0.34 IPC (0.24 IPC) -- 14.49 KIPS (10.21 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:26000000    cycles:109405300   seconds:2546  -- 0.34 IPC (0.24 IPC) -- 14.49 KIPS (10.21 KIPS)
+src/trace_read.cc:1447: (I=335  C=109684421):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=109685431):  ACC 5 halted after 368529 cycles
+src/trace_read.cc:1447: (I=335  C=110047487):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=110048400):  ACC 5 halted after 362969 cycles
+src/trace_read.cc:1447: (I=335  C=110414710):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=110415558):  ACC 5 halted after 367158 cycles
+src/trace_read.cc:1447: (I=335  C=110784165):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=110785173):  ACC 5 halted after 369615 cycles
+src/trace_read.cc:1447: (I=335  C=111145722):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=111146830):  ACC 5 halted after 361657 cycles
+src/trace_read.cc:1447: (I=335  C=111514931):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=111515944):  ACC 5 halted after 369114 cycles
+src/trace_read.cc:1447: (I=335  C=111879327):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=111880203):  ACC 5 halted after 364259 cycles
+src/trace_read.cc:1447: (I=335  C=112244801):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=112245747):  ACC 5 halted after 365544 cycles
+** Heartbeat for core[5]:        insts:27000000    cycles:112357642   seconds:2614  -- 0.34 IPC (0.24 IPC) -- 14.71 KIPS (10.33 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:27000000    cycles:112357642   seconds:2614  -- 0.34 IPC (0.24 IPC) -- 14.71 KIPS (10.33 KIPS)
+src/trace_read.cc:1447: (I=335  C=112613316):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=112614169):  ACC 5 halted after 368422 cycles
+src/trace_read.cc:1447: (I=335  C=112974410):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=112975507):  ACC 5 halted after 361338 cycles
+src/trace_read.cc:1447: (I=335  C=113341978):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=113342996):  ACC 5 halted after 367489 cycles
+src/trace_read.cc:1447: (I=335  C=113706044):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=113706927):  ACC 5 halted after 363931 cycles
+src/trace_read.cc:1447: (I=335  C=114073318):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=114074329):  ACC 5 halted after 367402 cycles
+src/trace_read.cc:1447: (I=335  C=114440683):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=114441741):  ACC 5 halted after 367412 cycles
+src/trace_read.cc:1447: (I=335  C=114803630):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=114804433):  ACC 5 halted after 362692 cycles
+src/trace_read.cc:1447: (I=335  C=115171689):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=115172711):  ACC 5 halted after 368278 cycles
+** Heartbeat for core[5]:        insts:28000000    cycles:115312019   seconds:2683  -- 0.34 IPC (0.24 IPC) -- 14.49 KIPS (10.44 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:28000000    cycles:115312019   seconds:2683  -- 0.34 IPC (0.24 IPC) -- 14.49 KIPS (10.44 KIPS)
+src/trace_read.cc:1447: (I=335  C=115535121):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=115536103):  ACC 5 halted after 363392 cycles
+src/trace_read.cc:1447: (I=335  C=115902268):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=115903188):  ACC 5 halted after 367085 cycles
+src/trace_read.cc:1447: (I=335  C=116269792):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=116270810):  ACC 5 halted after 367622 cycles
+src/trace_read.cc:1447: (I=335  C=116631654):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=116632603):  ACC 5 halted after 361793 cycles
+src/trace_read.cc:1447: (I=335  C=117000025):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=117001094):  ACC 5 halted after 368491 cycles
+src/trace_read.cc:1447: (I=335  C=117363492):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=117364495):  ACC 5 halted after 363401 cycles
+src/trace_read.cc:1447: (I=335  C=117730495):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=117731404):  ACC 5 halted after 366909 cycles
+src/trace_read.cc:1447: (I=335  C=118099272):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=118100155):  ACC 5 halted after 368751 cycles
+** Heartbeat for core[5]:        insts:29000000    cycles:118249969   seconds:2750  -- 0.34 IPC (0.25 IPC) -- 14.92 KIPS (10.55 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:29000000    cycles:118249969   seconds:2750  -- 0.34 IPC (0.25 IPC) -- 14.92 KIPS (10.55 KIPS)
+src/trace_read.cc:1447: (I=335  C=118463145):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=118464049):  ACC 5 halted after 363894 cycles
+src/trace_read.cc:1447: (I=335  C=118832192):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=118832966):  ACC 5 halted after 368917 cycles
+src/trace_read.cc:1435: (I=335  C=118983213):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=335  C=118983983):  ACC 5 halted after 151017 cycles
+**Core 0 Thread 0 Finished:   insts:385         cycles:118984637   seconds:2766  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
+**Core 0 Core_Total  Finished:   insts:385         cycles:118984637   seconds:2766  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
 Deleting system...
 Deleting system done
 Deleting event queue...
 Deleting event queue done
-src/macsim.cc:496: (I=385  C=117324167):  finalize simulation
-src/macsim.cc:502: (I=385  C=117324167):  elapsed time:2719.4 seconds
+src/macsim.cc:496: (I=385  C=118984638):  finalize simulation
+src/macsim.cc:502: (I=385  C=118984638):  elapsed time:2766.1 seconds

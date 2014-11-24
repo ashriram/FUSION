@@ -20,7 +20,7 @@ Ruby initialization complete
 Ruby Configuration
 ------------------
 protocol: Fusion
-compiled_at: 17:29:31, Nov 22 2014
+compiled_at: 19:31:35, Nov 22 2014
 RUBY_DEBUG: false
 hostname: cs-amoeba-n4
 g_RANDOM_SEED: 1
@@ -178,7 +178,7 @@ SEQUENCER_TO_CONTROLLER_LATENCY: 4
 L1CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
 L2CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
 DIRECTORY_TRANSITIONS_PER_RUBY_CYCLE: 32
-g_SEQUENCER_OUTSTANDING_REQUESTS: 16
+g_SEQUENCER_OUTSTANDING_REQUESTS: 256
 NUMBER_OF_TBES: 128
 NUMBER_OF_L1_TBES: 128
 NUMBER_OF_L2_TBES: 256
@@ -261,7 +261,7 @@ L1TCache_mandatoryQueue numberPerChip: 8
 
 L1TCache_sequencerT numberPerChip: 8
 SequencerT: SequencerT - SC
-  max_outstanding_requests: 16
+  max_outstanding_requests: 256
 
 L1TCache_L1_TBEs numberPerChip: 8
 TBEs_per_TBETable: 128
@@ -341,7 +341,7 @@ L1Cache_mandatoryQueue numberPerChip: 8
 
 L1Cache_sequencer numberPerChip: 8
 sequencer: Sequencer - SC
-  max_outstanding_requests: 16
+  max_outstanding_requests: 256
 
 Directory_directory numberPerChip: 4
 Memory config:
@@ -1418,11 +1418,11 @@ src/trace_read.cc:1435: (I=352038  C=3792603):  Core 0 got acc_segment_delim mar
 src/core.cc:491: (I=352056  C=3792641):  CPU halted after 134 cycles
 src/trace_read.cc:1435: (I=352056  C=3802142):  Core 6 got acc_segment_delim marker switching to : 0
 src/core.cc:450: (I=352056  C=3802192):  ACC 6 halted after 9552 cycles
-**Core 0 Thread 0 Finished:   insts:352636      cycles:3805996     seconds:107   -- 0.09 IPC (0.09 IPC) --  N/A  KHz (3.30 KHz) 
-**Core 0 Core_Total  Finished:   insts:352636      cycles:3805996     seconds:107   -- 0.09 IPC (0.09 IPC) --  N/A  KHz (3.30 KHz)
+**Core 0 Thread 0 Finished:   insts:352636      cycles:3805996     seconds:99    -- 0.09 IPC (0.09 IPC) --  N/A  KHz (3.56 KHz) 
+**Core 0 Core_Total  Finished:   insts:352636      cycles:3805996     seconds:99    -- 0.09 IPC (0.09 IPC) --  N/A  KHz (3.56 KHz)
 Deleting system...
 Deleting system done
 Deleting event queue...
 Deleting event queue done
 src/macsim.cc:496: (I=352636  C=3805997):  finalize simulation
-src/macsim.cc:502: (I=352636  C=3805997):  elapsed time:107.3 seconds
+src/macsim.cc:502: (I=352636  C=3805997):  elapsed time:99.4 seconds

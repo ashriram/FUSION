@@ -20,7 +20,7 @@ Ruby initialization complete
 Ruby Configuration
 ------------------
 protocol: Fusion
-compiled_at: 17:29:31, Nov 22 2014
+compiled_at: 19:31:35, Nov 22 2014
 RUBY_DEBUG: false
 hostname: cs-amoeba-n4
 g_RANDOM_SEED: 1
@@ -178,7 +178,7 @@ SEQUENCER_TO_CONTROLLER_LATENCY: 4
 L1CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
 L2CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
 DIRECTORY_TRANSITIONS_PER_RUBY_CYCLE: 32
-g_SEQUENCER_OUTSTANDING_REQUESTS: 16
+g_SEQUENCER_OUTSTANDING_REQUESTS: 256
 NUMBER_OF_TBES: 128
 NUMBER_OF_L1_TBES: 128
 NUMBER_OF_L2_TBES: 256
@@ -261,7 +261,7 @@ L1TCache_mandatoryQueue numberPerChip: 8
 
 L1TCache_sequencerT numberPerChip: 8
 SequencerT: SequencerT - SC
-  max_outstanding_requests: 16
+  max_outstanding_requests: 256
 
 L1TCache_L1_TBEs numberPerChip: 8
 TBEs_per_TBETable: 128
@@ -341,7 +341,7 @@ L1Cache_mandatoryQueue numberPerChip: 8
 
 L1Cache_sequencer numberPerChip: 8
 sequencer: Sequencer - SC
-  max_outstanding_requests: 16
+  max_outstanding_requests: 256
 
 Directory_directory numberPerChip: 4
 Memory config:
@@ -1264,67 +1264,67 @@ src/trace_read.cc:1435: (I=0  C=18571):  Core 2 got acc_segment_delim marker swi
 src/core.cc:450: (I=0  C=18710):  ACC 2 halted after 18709 cycles
 src/trace_read.cc:1435: (I=0  C=18716):  Core 0 got acc_segment_delim marker switching to : 3
 src/core.cc:491: (I=20  C=19151):  CPU halted after 440 cycles
-** Heartbeat for core[3]:        insts:1000000     cycles:3307915     seconds:86    -- 0.30 IPC (0.30 IPC) -- 0.00 KIPS (11.63 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:3307915     seconds:86    -- 0.30 IPC (0.30 IPC) -- 0.00 KIPS (11.63 KIPS)
-** Heartbeat for core[3]:        insts:2000000     cycles:6712627     seconds:174   -- 0.29 IPC (0.30 IPC) -- 11.36 KIPS (11.49 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:2000000     cycles:6712627     seconds:174   -- 0.29 IPC (0.30 IPC) -- 11.36 KIPS (11.49 KIPS)
-** Heartbeat for core[3]:        insts:3000000     cycles:10117372    seconds:262   -- 0.29 IPC (0.30 IPC) -- 11.36 KIPS (11.45 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:3000000     cycles:10117372    seconds:262   -- 0.29 IPC (0.30 IPC) -- 11.36 KIPS (11.45 KIPS)
-** Heartbeat for core[3]:        insts:4000000     cycles:13522088    seconds:350   -- 0.29 IPC (0.30 IPC) -- 11.36 KIPS (11.43 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:4000000     cycles:13522088    seconds:350   -- 0.29 IPC (0.30 IPC) -- 11.36 KIPS (11.43 KIPS)
-** Heartbeat for core[3]:        insts:5000000     cycles:16926804    seconds:430   -- 0.29 IPC (0.30 IPC) -- 12.50 KIPS (11.63 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:5000000     cycles:16926804    seconds:430   -- 0.29 IPC (0.30 IPC) -- 12.50 KIPS (11.63 KIPS)
-** Heartbeat for core[3]:        insts:6000000     cycles:20331520    seconds:477   -- 0.29 IPC (0.30 IPC) -- 21.28 KIPS (12.58 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:6000000     cycles:20331520    seconds:477   -- 0.29 IPC (0.30 IPC) -- 21.28 KIPS (12.58 KIPS)
-** Heartbeat for core[3]:        insts:7000000     cycles:23736236    seconds:525   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (13.33 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:7000000     cycles:23736236    seconds:525   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (13.33 KIPS)
-** Heartbeat for core[3]:        insts:8000000     cycles:27140778    seconds:573   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (13.96 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:8000000     cycles:27140778    seconds:573   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (13.96 KIPS)
-** Heartbeat for core[3]:        insts:9000000     cycles:30545523    seconds:621   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (14.49 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:9000000     cycles:30545523    seconds:621   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (14.49 KIPS)
-** Heartbeat for core[3]:        insts:10000000    cycles:33950181    seconds:669   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (14.95 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:10000000    cycles:33950181    seconds:669   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (14.95 KIPS)
-** Heartbeat for core[3]:        insts:11000000    cycles:37354897    seconds:716   -- 0.29 IPC (0.29 IPC) -- 21.28 KIPS (15.36 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:11000000    cycles:37354897    seconds:716   -- 0.29 IPC (0.29 IPC) -- 21.28 KIPS (15.36 KIPS)
-** Heartbeat for core[3]:        insts:12000000    cycles:40759671    seconds:764   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (15.71 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:12000000    cycles:40759671    seconds:764   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (15.71 KIPS)
-** Heartbeat for core[3]:        insts:13000000    cycles:44164387    seconds:812   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (16.01 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:13000000    cycles:44164387    seconds:812   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (16.01 KIPS)
-** Heartbeat for core[3]:        insts:14000000    cycles:47568871    seconds:860   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (16.28 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:14000000    cycles:47568871    seconds:860   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (16.28 KIPS)
-** Heartbeat for core[3]:        insts:15000000    cycles:50973616    seconds:907   -- 0.29 IPC (0.29 IPC) -- 21.28 KIPS (16.54 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:15000000    cycles:50973616    seconds:907   -- 0.29 IPC (0.29 IPC) -- 21.28 KIPS (16.54 KIPS)
-** Heartbeat for core[3]:        insts:16000000    cycles:54378332    seconds:955   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (16.75 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:16000000    cycles:54378332    seconds:955   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (16.75 KIPS)
-** Heartbeat for core[3]:        insts:17000000    cycles:57783019    seconds:1003  -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (16.95 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:17000000    cycles:57783019    seconds:1003  -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (16.95 KIPS)
-** Heartbeat for core[3]:        insts:18000000    cycles:61187764    seconds:1051  -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (17.13 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:18000000    cycles:61187764    seconds:1051  -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (17.13 KIPS)
+** Heartbeat for core[3]:        insts:1000000     cycles:3307915     seconds:76    -- 0.30 IPC (0.30 IPC) -- 0.00 KIPS (13.16 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:3307915     seconds:76    -- 0.30 IPC (0.30 IPC) -- 0.00 KIPS (13.16 KIPS)
+** Heartbeat for core[3]:        insts:2000000     cycles:6712627     seconds:124   -- 0.29 IPC (0.30 IPC) -- 20.83 KIPS (16.13 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:2000000     cycles:6712627     seconds:124   -- 0.29 IPC (0.30 IPC) -- 20.83 KIPS (16.13 KIPS)
+** Heartbeat for core[3]:        insts:3000000     cycles:10117372    seconds:172   -- 0.29 IPC (0.30 IPC) -- 20.83 KIPS (17.44 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:3000000     cycles:10117372    seconds:172   -- 0.29 IPC (0.30 IPC) -- 20.83 KIPS (17.44 KIPS)
+** Heartbeat for core[3]:        insts:4000000     cycles:13522088    seconds:219   -- 0.29 IPC (0.30 IPC) -- 21.28 KIPS (18.26 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:4000000     cycles:13522088    seconds:219   -- 0.29 IPC (0.30 IPC) -- 21.28 KIPS (18.26 KIPS)
+** Heartbeat for core[3]:        insts:5000000     cycles:16926804    seconds:267   -- 0.29 IPC (0.30 IPC) -- 20.83 KIPS (18.73 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:5000000     cycles:16926804    seconds:267   -- 0.29 IPC (0.30 IPC) -- 20.83 KIPS (18.73 KIPS)
+** Heartbeat for core[3]:        insts:6000000     cycles:20331520    seconds:315   -- 0.29 IPC (0.30 IPC) -- 20.83 KIPS (19.05 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:6000000     cycles:20331520    seconds:315   -- 0.29 IPC (0.30 IPC) -- 20.83 KIPS (19.05 KIPS)
+** Heartbeat for core[3]:        insts:7000000     cycles:23736236    seconds:362   -- 0.29 IPC (0.29 IPC) -- 21.28 KIPS (19.34 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:7000000     cycles:23736236    seconds:362   -- 0.29 IPC (0.29 IPC) -- 21.28 KIPS (19.34 KIPS)
+** Heartbeat for core[3]:        insts:8000000     cycles:27140778    seconds:410   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.51 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:8000000     cycles:27140778    seconds:410   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.51 KIPS)
+** Heartbeat for core[3]:        insts:9000000     cycles:30545523    seconds:477   -- 0.29 IPC (0.29 IPC) -- 14.93 KIPS (18.87 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:9000000     cycles:30545523    seconds:477   -- 0.29 IPC (0.29 IPC) -- 14.93 KIPS (18.87 KIPS)
+** Heartbeat for core[3]:        insts:10000000    cycles:33950181    seconds:537   -- 0.29 IPC (0.29 IPC) -- 16.67 KIPS (18.62 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:10000000    cycles:33950181    seconds:537   -- 0.29 IPC (0.29 IPC) -- 16.67 KIPS (18.62 KIPS)
+** Heartbeat for core[3]:        insts:11000000    cycles:37354897    seconds:585   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (18.80 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:11000000    cycles:37354897    seconds:585   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (18.80 KIPS)
+** Heartbeat for core[3]:        insts:12000000    cycles:40759671    seconds:632   -- 0.29 IPC (0.29 IPC) -- 21.28 KIPS (18.99 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:12000000    cycles:40759671    seconds:632   -- 0.29 IPC (0.29 IPC) -- 21.28 KIPS (18.99 KIPS)
+** Heartbeat for core[3]:        insts:13000000    cycles:44164387    seconds:680   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.12 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:13000000    cycles:44164387    seconds:680   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.12 KIPS)
+** Heartbeat for core[3]:        insts:14000000    cycles:47568871    seconds:729   -- 0.29 IPC (0.29 IPC) -- 20.41 KIPS (19.20 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:14000000    cycles:47568871    seconds:729   -- 0.29 IPC (0.29 IPC) -- 20.41 KIPS (19.20 KIPS)
+** Heartbeat for core[3]:        insts:15000000    cycles:50973616    seconds:777   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.31 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:15000000    cycles:50973616    seconds:777   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.31 KIPS)
+** Heartbeat for core[3]:        insts:16000000    cycles:54378332    seconds:825   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.39 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:16000000    cycles:54378332    seconds:825   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.39 KIPS)
+** Heartbeat for core[3]:        insts:17000000    cycles:57783019    seconds:873   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.47 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:17000000    cycles:57783019    seconds:873   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.47 KIPS)
+** Heartbeat for core[3]:        insts:18000000    cycles:61187764    seconds:921   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.54 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:18000000    cycles:61187764    seconds:921   -- 0.29 IPC (0.29 IPC) -- 20.83 KIPS (19.54 KIPS)
 src/trace_read.cc:1435: (I=20  C=61515325):  Core 3 got acc_segment_delim marker switching to : 0
 src/core.cc:450: (I=20  C=61516107):  ACC 3 halted after 61496956 cycles
 src/trace_read.cc:1435: (I=20  C=61516114):  Core 0 got acc_segment_delim marker switching to : 4
 src/core.cc:491: (I=37  C=61516265):  CPU halted after 157 cycles
-** Heartbeat for core[4]:        insts:1000000     cycles:64886456    seconds:1104  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.91 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:1000000     cycles:64886456    seconds:1104  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.91 KIPS)
-** Heartbeat for core[4]:        insts:2000000     cycles:67796526    seconds:1144  -- 0.34 IPC (0.03 IPC) -- 25.00 KIPS (1.75 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:2000000     cycles:67796526    seconds:1144  -- 0.34 IPC (0.03 IPC) -- 25.00 KIPS (1.75 KIPS)
+** Heartbeat for core[4]:        insts:1000000     cycles:64886456    seconds:973   -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (1.03 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:1000000     cycles:64886456    seconds:973   -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (1.03 KIPS)
+** Heartbeat for core[4]:        insts:2000000     cycles:67796526    seconds:1012  -- 0.34 IPC (0.03 IPC) -- 25.64 KIPS (1.98 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:2000000     cycles:67796526    seconds:1012  -- 0.34 IPC (0.03 IPC) -- 25.64 KIPS (1.98 KIPS)
 src/trace_read.cc:1435: (I=37  C=68522842):  Core 4 got acc_segment_delim marker switching to : 0
 src/core.cc:450: (I=37  C=68523967):  ACC 4 halted after 7007702 cycles
 src/trace_read.cc:1435: (I=37  C=68523974):  Core 0 got acc_segment_delim marker switching to : 5
 src/core.cc:491: (I=54  C=68524106):  CPU halted after 138 cycles
-** Heartbeat for core[5]:        insts:1000000     cycles:72464864    seconds:1219  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.82 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:1000000     cycles:72464864    seconds:1219  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.82 KIPS)
-** Heartbeat for core[5]:        insts:2000000     cycles:85897081    seconds:1428  -- 0.07 IPC (0.02 IPC) -- 4.78 KIPS (1.40 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:2000000     cycles:85897081    seconds:1428  -- 0.07 IPC (0.02 IPC) -- 4.78 KIPS (1.40 KIPS)
-** Heartbeat for core[5]:        insts:3000000     cycles:100326672   seconds:1651  -- 0.07 IPC (0.03 IPC) -- 4.48 KIPS (1.82 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:3000000     cycles:100326672   seconds:1651  -- 0.07 IPC (0.03 IPC) -- 4.48 KIPS (1.82 KIPS)
+** Heartbeat for core[5]:        insts:1000000     cycles:72464864    seconds:1086  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.92 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:1000000     cycles:72464864    seconds:1086  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.92 KIPS)
+** Heartbeat for core[5]:        insts:2000000     cycles:85897081    seconds:1292  -- 0.07 IPC (0.02 IPC) -- 4.85 KIPS (1.55 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:2000000     cycles:85897081    seconds:1292  -- 0.07 IPC (0.02 IPC) -- 4.85 KIPS (1.55 KIPS)
+** Heartbeat for core[5]:        insts:3000000     cycles:100326672   seconds:1515  -- 0.07 IPC (0.03 IPC) -- 4.48 KIPS (1.98 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:3000000     cycles:100326672   seconds:1515  -- 0.07 IPC (0.03 IPC) -- 4.48 KIPS (1.98 KIPS)
 src/trace_read.cc:1435: (I=54  C=104361814):  Core 5 got acc_segment_delim marker switching to : 0
 src/core.cc:450: (I=54  C=104364775):  ACC 5 halted after 35840669 cycles
-**Core 0 Thread 0 Finished:   insts:56          cycles:104364902   seconds:1712  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
-**Core 0 Core_Total  Finished:   insts:56          cycles:104364902   seconds:1712  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
+**Core 0 Thread 0 Finished:   insts:56          cycles:104364902   seconds:1578  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
+**Core 0 Core_Total  Finished:   insts:56          cycles:104364902   seconds:1578  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
 Deleting system...
 Deleting system done
 Deleting event queue...
 Deleting event queue done
 src/macsim.cc:496: (I=56  C=104364903):  finalize simulation
-src/macsim.cc:502: (I=56  C=104364903):  elapsed time:1711.5 seconds
+src/macsim.cc:502: (I=56  C=104364903):  elapsed time:1578.2 seconds

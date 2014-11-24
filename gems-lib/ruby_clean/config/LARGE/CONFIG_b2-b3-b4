@@ -1,3 +1,4 @@
+//USED FOR ONLY b2 b3  b4
 // Always ACC = NUM processors as there is some logic inside memfetch etc that might break
 
 
@@ -7,34 +8,39 @@ g_PROCS_PER_CHIP: 8
 
 g_NUM_ACCS: 8
 g_ACCS_PER_CHIP: 8
+// Baseline number where accelerator index starts. 0--g_PROC_NUM_ACC-1 is processors. 
 g_PROC_NUM_ACC: 2
+
 
 g_NUM_L2_BANKS: 4
 g_NUM_L2T_BANKS: 4
 g_NUM_MEMORIES: 4
+
 
 L1_CACHE_ASSOC: 8
 L1_CACHE_NUM_SETS_BITS: 8
 L2_CACHE_ASSOC: 16
 L2_CACHE_NUM_SETS_BITS: 13
 
-// Max associativity is 32 way.
-L1T_CACHE_ASSOC: 64
-L1T_CACHE_NUM_SETS_BITS: 2
-L2T_CACHE_ASSOC: 32
-L2T_CACHE_NUM_SETS_BITS: 16
+
+// L1T 4 way, 32 sets  (8KB)
+// L2T 8 way, 256 sets (64KB)
+L1T_CACHE_ASSOC: 4
+L1T_CACHE_NUM_SETS_BITS: 6
+L2T_CACHE_ASSOC: 16
+L2T_CACHE_NUM_SETS_BITS: 9
+
+
 
 L1_to_L2_MSG_LATENCY: 2
 L2_to_L1_MSG_LATENCY: 2
-// L2T_to_L1T increased to 5 for larger L2T (256K)
 L2T_to_L1T_DATA_LATENCY: 6
 L1_to_L2_DATA_LATENCY: 2
 L2_to_L1_DATA_LATENCY: 8
 MEM_to_L2_MSG_LATENCY: 200
 MEM_to_L2_DATA_LATENCY: 200
 
-// Set it to avg latency of accelerators. Common across all accelerators
-CL_FIXED_LEASE: 1000
+
 
 g_NETWORK_TOPOLOGY: ACC_NETWORK
 g_CACHE_DESIGN: FUSION  // specifies file prefix for FILE_SPECIFIED topology
@@ -42,7 +48,14 @@ g_CACHE_DESIGN: FUSION  // specifies file prefix for FILE_SPECIFIED topology
 g_DATA_BLOCK_BYTES:32
 // Needs to be same as block size. Could be slightly bigger to accomodate fields
 g_DATA_MESSAGE_SIZE: 32
+
 NUMBER_OF_VIRTUAL_NETWORKS: 8
+
+g_YAO_DRIVER: 2
+
+// Set it to avg of accelerators. 
+CL_FIXED_LEASE: 1000
+
 g_DMA_PROC:1
 g_FLIT_SIZE:8
 g_GMEM_SKIP_L1D: false
