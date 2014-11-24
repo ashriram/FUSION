@@ -1,0 +1,1742 @@
+src/macsim.cc:149: (I=0  C=0):  initialize knobs
+number of cores8
+src/macsim.cc:395: (I=0  C=0):  initialize simulation
+src/memory.cc:1330: (I=0  C=0):  Memory system(no_cache) has been initialized.
+error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_DRAM_SIZE_PER_CONTROLLER" not found. unable to set value.
+error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_PF_NUM_STREAMS" not found. unable to set value.
+error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_PF_TRAIN" not found. unable to set value.
+Ruby Timing Mode
+Creating event queue...
+Creating event queue done
+Creating system...
+  Processors: 8
+CONTROL_MESSAGE_SIZE=8
+DATA_MESSAGE_SIZE=32
+Creating system done
+Ruby initialization complete
+
+================ Begin System Configuration Print ================
+
+Ruby Configuration
+------------------
+protocol: Fusion
+compiled_at: 19:31:35, Nov 22 2014
+RUBY_DEBUG: false
+hostname: cs-amoeba-n4
+g_RANDOM_SEED: 1
+g_YAO_DRIVER: 2
+g_DEADLOCK_THRESHOLD: 500000
+RANDOMIZATION: false
+g_SYNTHETIC_DRIVER: false
+g_DETERMINISTIC_DRIVER: false
+g_FILTERING_ENABLED: false
+g_DISTRIBUTED_PERSISTENT_ENABLED: true
+g_DYNAMIC_TIMEOUT_ENABLED: true
+g_RETRY_THRESHOLD: 1
+g_FIXED_TIMEOUT_LATENCY: 300
+g_trace_warmup_length: 1000000
+g_bash_bandwidth_adaptive_threshold: 0.75
+g_tester_length: 0
+g_synthetic_locks: 2048
+g_deterministic_addrs: 1
+g_SpecifiedGenerator: DetermInvGenerator
+g_callback_counter: 0
+g_NUM_COMPLETIONS_BEFORE_PASS: 0
+g_NUM_SMT_THREADS: 1
+g_think_time: 5
+g_hold_time: 5
+g_wait_time: 5
+PROTOCOL_DEBUG_TRACE: true
+DEBUG_FILTER_STRING: lq
+DEBUG_VERBOSITY_STRING: high
+DEBUG_START_TIME: 1
+DEBUG_OUTPUT_FILENAME: /dev/null
+SIMICS_RUBY_MULTIPLIER: 4
+OPAL_RUBY_MULTIPLIER: 1
+TRANSACTION_TRACE_ENABLED: true
+USER_MODE_DATA_ONLY: false
+PROFILE_HOT_LINES: false
+PROFILE_ALL_INSTRUCTIONS: false
+PRINT_INSTRUCTION_TRACE: false
+g_DEBUG_CYCLE: 0
+BLOCK_STC: false
+PERFECT_MEMORY_SYSTEM: false
+PERFECT_MEMORY_SYSTEM_LATENCY: 0
+DATA_BLOCK: false
+REMOVE_SINGLE_CYCLE_DCACHE_FAST_PATH: true
+g_SIMICS: false
+L1_CACHE_ASSOC: 8
+L1_CACHE_NUM_SETS_BITS: 8
+L2_CACHE_ASSOC: 16
+L2_CACHE_NUM_SETS_BITS: 11
+L2_DIRECTORY_ASSOC: 8
+L2_DIRECTORY_NUM_SETS_BITS: 9
+L1T_CACHE_NUM_SETS_BITS: 6
+L1T_CACHE_ASSOC: 4
+L2T_CACHE_NUM_SETS_BITS: 9
+L2T_CACHE_ASSOC: 16
+g_MEMORY_SIZE_BYTES: 281474976710656
+g_DATA_BLOCK_BYTES: 32
+g_PAGE_SIZE_BYTES: 4096
+g_REPLACEMENT_POLICY: LRU
+g_DATA_MESSAGE_SIZE: 32
+g_NUM_PROCESSORS: 8
+g_NUM_L2_BANKS: 4
+g_NUM_MEMORIES: 4
+g_PROCS_PER_CHIP: 8
+g_PROC_NUM_ACC: 2
+g_DMA_PROC: 1
+g_NUM_ACCS: 8
+g_ACCS_PER_CHIP: 8
+g_NUM_L2T_BANKS: 4
+g_NUM_CHIPS: 1
+g_NUM_CHIP_BITS: 0
+g_MEMORY_SIZE_BITS: 48
+g_DATA_BLOCK_BITS: 5
+g_PAGE_SIZE_BITS: 12
+g_NUM_PROCESSORS_BITS: 3
+g_PROCS_PER_CHIP_BITS: 3
+g_NUM_L2_BANKS_BITS: 2
+g_NUM_L2_BANKS_PER_CHIP_BITS: 2
+g_NUM_L2_BANKS_PER_CHIP: 4
+g_NUM_MEMORIES_BITS: 2
+g_NUM_MEMORIES_PER_CHIP: 4
+g_MEMORY_MODULE_BITS: 41
+g_MEMORY_MODULE_BLOCKS: 2199023255552
+g_NUM_ACCS_BITS: 3
+g_ACCS_PER_CHIP_BITS: 3
+g_NUM_L2T_BANKS_BITS: 2
+g_NUM_L2T_BANKS_PER_CHIP_BITS: 2
+g_NUM_L2T_BANKS_PER_CHIP: 4
+MAP_L2BANKS_TO_LOWEST_BITS: false
+L1_to_L2_MSG_LATENCY: 2
+L1_to_L2_DATA_LATENCY: 2
+L2_to_L1_MSG_LATENCY: 2
+L2_to_L1_DATA_LATENCY: 8
+L2T_to_L1T_DATA_LATENCY: 5
+L2_to_MEM_MSG_LATENCY: 100
+L2_to_MEM_DATA_LATENCY: 100
+MEM_to_L2_MSG_LATENCY: 200
+MEM_to_L2_DATA_LATENCY: 200
+DIRECTORY_CACHE_LATENCY: 6
+NULL_LATENCY: 1
+ISSUE_LATENCY: 2
+CACHE_RESPONSE_LATENCY: 12
+L2_RESPONSE_LATENCY: 6
+L2_TAG_LATENCY: 6
+L1_RESPONSE_LATENCY: 3
+MEMORY_RESPONSE_LATENCY_MINUS_2: 1
+DIRECTORY_LATENCY: 80
+NETWORK_LINK_LATENCY: 1
+COPY_HEAD_LATENCY: 4
+ON_CHIP_LINK_LATENCY: 1
+RECYCLE_LATENCY: 10
+L2_RECYCLE_LATENCY: 5
+TIMER_LATENCY: 10000
+TBE_RESPONSE_LATENCY: 1
+PERIODIC_TIMER_WAKEUPS: true
+PROFILE_EXCEPTIONS: false
+PROFILE_XACT: true
+PROFILE_NONXACT: false
+XACT_DEBUG: true
+XACT_DEBUG_LEVEL: 1
+XACT_MEMORY: false
+XACT_ENABLE_TOURMALINE: false
+XACT_NUM_CURRENT: 0
+XACT_LAST_UPDATE: 0
+XACT_ISOLATION_CHECK: false
+PERFECT_FILTER: true
+READ_WRITE_FILTER: Perfect_
+PERFECT_VIRTUAL_FILTER: true
+VIRTUAL_READ_WRITE_FILTER: Perfect_
+PERFECT_SUMMARY_FILTER: true
+SUMMARY_READ_WRITE_FILTER: Perfect_
+XACT_EAGER_CD: true
+XACT_LAZY_VM: false
+XACT_CONFLICT_RES: BASE
+XACT_VISUALIZER: false
+XACT_COMMIT_TOKEN_LATENCY: 0
+XACT_NO_BACKOFF: false
+XACT_LOG_BUFFER_SIZE: 0
+XACT_STORE_PREDICTOR_HISTORY: 256
+XACT_STORE_PREDICTOR_ENTRIES: 256
+XACT_STORE_PREDICTOR_THRESHOLD: 4
+XACT_FIRST_ACCESS_COST: 0
+XACT_FIRST_PAGE_ACCESS_COST: 0
+ENABLE_MAGIC_WAITING: false
+ENABLE_WATCHPOINT: false
+XACT_ENABLE_VIRTUALIZATION_LOGTM_SE: false
+ATMTP_ENABLED: false
+ATMTP_ABORT_ON_NON_XACT_INST: false
+ATMTP_ALLOW_SAVE_RESTORE_IN_XACT: false
+ATMTP_XACT_MAX_STORES: 32
+ATMTP_DEBUG_LEVEL: 0
+L1_REQUEST_LATENCY: 2
+L2_REQUEST_LATENCY: 4
+SINGLE_ACCESS_L2_BANKS: true
+SEQUENCER_TO_CONTROLLER_LATENCY: 4
+L1CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
+L2CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
+DIRECTORY_TRANSITIONS_PER_RUBY_CYCLE: 32
+g_SEQUENCER_OUTSTANDING_REQUESTS: 256
+NUMBER_OF_TBES: 128
+NUMBER_OF_L1_TBES: 128
+NUMBER_OF_L2_TBES: 256
+FINITE_BUFFERING: false
+FINITE_BUFFER_SIZE: 3
+PROCESSOR_BUFFER_SIZE: 10
+PROTOCOL_BUFFER_SIZE: 32
+TSO: false
+g_NETWORK_TOPOLOGY: ACC_NETWORK
+g_CACHE_DESIGN: FUSION
+g_endpoint_bandwidth: 10000
+g_adaptive_routing: false
+NUMBER_OF_VIRTUAL_NETWORKS: 8
+FAN_OUT_DEGREE: 4
+g_PRINT_TOPOLOGY: true
+g_PROCS_PER_CLUSTER: 4
+XACT_LENGTH: 0
+XACT_SIZE: 0
+ABORT_RETRY_TIME: 0
+g_GARNET_NETWORK: true
+g_DETAIL_NETWORK: true
+g_NETWORK_TESTING: false
+g_FLIT_SIZE: 8
+g_NUM_PIPE_STAGES: 4
+g_VCS_PER_CLASS: 4
+g_BUFFER_SIZE: 4
+MEM_BUS_CYCLE_MULTIPLIER: 10
+BANKS_PER_RANK: 8
+RANKS_PER_DIMM: 2
+DIMMS_PER_CHANNEL: 2
+BANK_BIT_0: 8
+RANK_BIT_0: 11
+DIMM_BIT_0: 12
+BANK_QUEUE_SIZE: 12
+BANK_BUSY_TIME: 11
+RANK_RANK_DELAY: 1
+READ_WRITE_DELAY: 2
+BASIC_BUS_BUSY_TIME: 2
+MEM_CTL_LATENCY: 12
+REFRESH_PERIOD: 1560
+TFAW: 0
+MEM_RANDOM_ARBITRATE: 0
+MEM_FIXED_DELAY: 0
+g_GMEM_SKIP_L1D: false
+WRITES_STALL_AT_MSHR: true
+CL_FIXED_LEASE: 1000
+CL_PREDICTOR_TYPE: 0
+CL_PREDICTOR_TYPE_FIXED: 0
+CL_PREDICTOR_TYPE_GLOBAL: 1
+CL_PREDICTOR_TYPE_PERL2: 2
+CL_PREDICTOR_TYPE_PCFIXED: 3
+CL_PREDICTOR_TYPE_PCADAPTIVE: 4
+CL_PREDICTOR_TYPE_ADDRFIXED: 5
+CL_PREDICTOR_TYPE_ORACLE: 6
+CL_PREDICTOR_TYPE_PCSAMPLER: 7
+CL_PRED_GLOBAL_WRITEUNEXPIRED_PENALTY: 0
+CL_PRED_GLOBAL_L2EVICT_PENALTY: 0
+CL_PRED_GLOBAL_EXPIREHIT_CREDIT: 0
+CL_PRED_PERL2_WRITEUNEXPIRED_PENALTY: 0
+CL_PRED_PERL2_L2EVICT_PENALTY: 0
+CL_PRED_PERL2_EXPIREHIT_CREDIT: 0
+CL_PRED_PCADAPTIVE_WRITEUNEXPIRED_PENALTY: 0
+CL_PRED_PCADAPTIVE_L2EVICT_PENALTY: 0
+CL_PRED_PCADAPTIVE_EXPIREHIT_CREDIT: 0
+CL_PRED_PCFIXED_INFILE: DUMMY
+CL_PRED_ADDRFIXED_INFILE: DUMMY
+LIFETIME_PROFILER_PERPC_OUTMODE: 0
+LIFETIME_PROFILER_PERPC_OUTFILE: DUMMY
+LIFETIME_PROFILER_PERADDR_OUTMODE: 0
+LIFETIME_PROFILER_PERADDR_OUTFILE: DUMMY
+LIFETIMETRACE_ENABLED: false
+LIFETIMETRACE_OUTFILE: DUMMY
+BENCHMARK_CONTAINS_MEMBAR: false
+
+Chip Config
+-----------
+Total_Chips: 1
+
+L1TCache_mandatoryQueue numberPerChip: 8
+
+L1TCache_sequencerT numberPerChip: 8
+SequencerT: SequencerT - SC
+  max_outstanding_requests: 256
+
+L1TCache_L1_TBEs numberPerChip: 8
+TBEs_per_TBETable: 128
+
+L1TCache_L1DcacheMemory numberPerChip: 8
+Cache config: L1TCache_0_L1D
+  cache_associativity: 4
+  num_cache_sets_bits: 6
+  num_cache_sets: 64
+  cache_set_size_bytes: 2048
+  cache_set_size_Kbytes: 2
+  cache_set_size_Mbytes: 0.00195312
+  cache_size_bytes: 8192
+  cache_size_Kbytes: 8
+  cache_size_Mbytes: 0.0078125
+
+L2TCache_L2_TBEs numberPerChip: 4
+TBEs_per_TBETable: 128
+
+L2TCache_L2cacheMemory numberPerChip: 4
+Cache config: L2TCache_0
+  cache_associativity: 16
+  num_cache_sets_bits: 9
+  num_cache_sets: 512
+  cache_set_size_bytes: 16384
+  cache_set_size_Kbytes: 16
+  cache_set_size_Mbytes: 0.015625
+  cache_size_bytes: 262144
+  cache_size_Kbytes: 256
+  cache_size_Mbytes: 0.25
+
+L2TCache_L2ExpireTriggerQueue numberPerChip: 4
+
+L2Cache_L2_TBEs numberPerChip: 4
+TBEs_per_TBETable: 128
+
+L2Cache_L2cacheMemory numberPerChip: 4
+Cache config: L2Cache_0
+  cache_associativity: 16
+  num_cache_sets_bits: 11
+  num_cache_sets: 2048
+  cache_set_size_bytes: 65536
+  cache_set_size_Kbytes: 64
+  cache_set_size_Mbytes: 0.0625
+  cache_size_bytes: 1048576
+  cache_size_Kbytes: 1024
+  cache_size_Mbytes: 1
+
+L1Cache_L1_TBEs numberPerChip: 8
+TBEs_per_TBETable: 128
+
+L1Cache_L1IcacheMemory numberPerChip: 8
+Cache config: L1Cache_0_L1I
+  cache_associativity: 8
+  num_cache_sets_bits: 8
+  num_cache_sets: 256
+  cache_set_size_bytes: 8192
+  cache_set_size_Kbytes: 8
+  cache_set_size_Mbytes: 0.0078125
+  cache_size_bytes: 65536
+  cache_size_Kbytes: 64
+  cache_size_Mbytes: 0.0625
+
+L1Cache_L1DcacheMemory numberPerChip: 8
+Cache config: L1Cache_0_L1D
+  cache_associativity: 8
+  num_cache_sets_bits: 8
+  num_cache_sets: 256
+  cache_set_size_bytes: 8192
+  cache_set_size_Kbytes: 8
+  cache_set_size_Mbytes: 0.0078125
+  cache_size_bytes: 65536
+  cache_size_Kbytes: 64
+  cache_size_Mbytes: 0.0625
+
+L1Cache_mandatoryQueue numberPerChip: 8
+
+L1Cache_sequencer numberPerChip: 8
+sequencer: Sequencer - SC
+  max_outstanding_requests: 256
+
+Directory_directory numberPerChip: 4
+Memory config:
+  memory_bits: 48
+  memory_size_bytes: 281474976710656
+  memory_size_Kbytes: 2.74878e+11
+  memory_size_Mbytes: 2.68435e+08
+  memory_size_Gbytes: 262144
+  module_bits: 41
+  module_size_lines: 2199023255552
+  module_size_bytes: 70368744177664
+  module_size_Kbytes: 6.87195e+10
+  module_size_Mbytes: 6.71089e+07
+
+
+Network Configuration
+---------------------
+network: GarnetNetwork_d
+topology: ACC_NETWORK
+
+virtual_net_0: active, unordered
+virtual_net_1: active, unordered
+virtual_net_2: active, unordered
+virtual_net_3: active, unordered
+virtual_net_4: active, unordered
+virtual_net_5: active, ordered
+virtual_net_6: active, ordered
+virtual_net_7: inactive
+
+[Network Interface 0] - [inLink 53] - [outLink 0]
+[Network Interface 1] - [inLink 54] - [outLink 1]
+[Network Interface 2] - [inLink 55] - [outLink 2]
+[Network Interface 3] - [inLink 56] - [outLink 3]
+[Network Interface 4] - [inLink 57] - [outLink 4]
+[Network Interface 5] - [inLink 58] - [outLink 5]
+[Network Interface 6] - [inLink 59] - [outLink 6]
+[Network Interface 7] - [inLink 60] - [outLink 7]
+[Network Interface 8] - [inLink 61] - [outLink 8]
+[Network Interface 9] - [inLink 62] - [outLink 9]
+[Network Interface 10] - [inLink 63] - [outLink 10]
+[Network Interface 11] - [inLink 64] - [outLink 11]
+[Network Interface 12] - [inLink 28] - [outLink 12]
+[Network Interface 13] - [inLink 33] - [outLink 13]
+[Network Interface 14] - [inLink 38] - [outLink 14]
+[Network Interface 15] - [inLink 43] - [outLink 15]
+[Network Interface 16] - [inLink 29] - [outLink 16]
+[Network Interface 17] - [inLink 34] - [outLink 17]
+[Network Interface 18] - [inLink 39] - [outLink 18]
+[Network Interface 19] - [inLink 44] - [outLink 19]
+[Network Interface 20] - [inLink 30] - [outLink 20]
+[Network Interface 21] - [inLink 35] - [outLink 21]
+[Network Interface 22] - [inLink 40] - [outLink 22]
+[Network Interface 23] - [inLink 45] - [outLink 23]
+[Network Interface 24] - [inLink 31] - [outLink 24]
+[Network Interface 25] - [inLink 36] - [outLink 25]
+[Network Interface 26] - [inLink 41] - [outLink 26]
+[Network Interface 27] - [inLink 46] - [outLink 27]
+[Router 0] :: 
+[inLink - 12 - 16 - 20 - 24 - 48 - ]
+[outLink - 28 - 29 - 30 - 31 - 32 - ]
+[Router 1] :: 
+[inLink - 13 - 17 - 21 - 25 - 49 - ]
+[outLink - 33 - 34 - 35 - 36 - 37 - ]
+[Router 2] :: 
+[inLink - 14 - 18 - 22 - 26 - 50 - ]
+[outLink - 38 - 39 - 40 - 41 - 42 - ]
+[Router 3] :: 
+[inLink - 15 - 19 - 23 - 27 - 51 - ]
+[outLink - 43 - 44 - 45 - 46 - 47 - ]
+[Router 4] :: 
+[inLink - 32 - 37 - 42 - 47 - 65 - ]
+[outLink - 48 - 49 - 50 - 51 - 52 - ]
+[Router 5] :: 
+[inLink - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 - 11 - 52 - ]
+[outLink - 53 - 54 - 55 - 56 - 57 - 58 - 59 - 60 - 61 - 62 - 63 - 64 - 65 - ]
+--- Begin Topology Print ---
+
+Topology print ONLY indicates the _NETWORK_ latency between two machines
+It does NOT include the latency within the machines
+
+L1TCache-0 Network Latencies
+  L1TCache-0 -> L1TCache-1 net_lat: 3
+  L1TCache-0 -> L1TCache-2 net_lat: 3
+  L1TCache-0 -> L1TCache-3 net_lat: 3
+  L1TCache-0 -> L1TCache-4 net_lat: 3
+  L1TCache-0 -> L1TCache-5 net_lat: 3
+  L1TCache-0 -> L1TCache-6 net_lat: 3
+  L1TCache-0 -> L1TCache-7 net_lat: 3
+  L1TCache-0 -> L2TCache-0 net_lat: 3
+  L1TCache-0 -> L2TCache-1 net_lat: 3
+  L1TCache-0 -> L2TCache-2 net_lat: 3
+  L1TCache-0 -> L2TCache-3 net_lat: 3
+  L1TCache-0 -> L2Cache-0 net_lat: 18
+  L1TCache-0 -> L2Cache-1 net_lat: 18
+  L1TCache-0 -> L2Cache-2 net_lat: 18
+  L1TCache-0 -> L2Cache-3 net_lat: 18
+  L1TCache-0 -> L1Cache-0 net_lat: 18
+  L1TCache-0 -> L1Cache-1 net_lat: 16
+  L1TCache-0 -> L1Cache-2 net_lat: 18
+  L1TCache-0 -> L1Cache-3 net_lat: 18
+  L1TCache-0 -> L1Cache-4 net_lat: 18
+  L1TCache-0 -> L1Cache-5 net_lat: 18
+  L1TCache-0 -> L1Cache-6 net_lat: 18
+  L1TCache-0 -> L1Cache-7 net_lat: 18
+  L1TCache-0 -> Directory-0 net_lat: 16
+  L1TCache-0 -> Directory-1 net_lat: 16
+  L1TCache-0 -> Directory-2 net_lat: 16
+  L1TCache-0 -> Directory-3 net_lat: 16
+
+L1TCache-1 Network Latencies
+  L1TCache-1 -> L1TCache-0 net_lat: 3
+  L1TCache-1 -> L1TCache-2 net_lat: 3
+  L1TCache-1 -> L1TCache-3 net_lat: 3
+  L1TCache-1 -> L1TCache-4 net_lat: 3
+  L1TCache-1 -> L1TCache-5 net_lat: 3
+  L1TCache-1 -> L1TCache-6 net_lat: 3
+  L1TCache-1 -> L1TCache-7 net_lat: 3
+  L1TCache-1 -> L2TCache-0 net_lat: 3
+  L1TCache-1 -> L2TCache-1 net_lat: 3
+  L1TCache-1 -> L2TCache-2 net_lat: 3
+  L1TCache-1 -> L2TCache-3 net_lat: 3
+  L1TCache-1 -> L2Cache-0 net_lat: 18
+  L1TCache-1 -> L2Cache-1 net_lat: 18
+  L1TCache-1 -> L2Cache-2 net_lat: 18
+  L1TCache-1 -> L2Cache-3 net_lat: 18
+  L1TCache-1 -> L1Cache-0 net_lat: 18
+  L1TCache-1 -> L1Cache-1 net_lat: 16
+  L1TCache-1 -> L1Cache-2 net_lat: 18
+  L1TCache-1 -> L1Cache-3 net_lat: 18
+  L1TCache-1 -> L1Cache-4 net_lat: 18
+  L1TCache-1 -> L1Cache-5 net_lat: 18
+  L1TCache-1 -> L1Cache-6 net_lat: 18
+  L1TCache-1 -> L1Cache-7 net_lat: 18
+  L1TCache-1 -> Directory-0 net_lat: 16
+  L1TCache-1 -> Directory-1 net_lat: 16
+  L1TCache-1 -> Directory-2 net_lat: 16
+  L1TCache-1 -> Directory-3 net_lat: 16
+
+L1TCache-2 Network Latencies
+  L1TCache-2 -> L1TCache-0 net_lat: 3
+  L1TCache-2 -> L1TCache-1 net_lat: 3
+  L1TCache-2 -> L1TCache-3 net_lat: 3
+  L1TCache-2 -> L1TCache-4 net_lat: 3
+  L1TCache-2 -> L1TCache-5 net_lat: 3
+  L1TCache-2 -> L1TCache-6 net_lat: 3
+  L1TCache-2 -> L1TCache-7 net_lat: 3
+  L1TCache-2 -> L2TCache-0 net_lat: 3
+  L1TCache-2 -> L2TCache-1 net_lat: 3
+  L1TCache-2 -> L2TCache-2 net_lat: 3
+  L1TCache-2 -> L2TCache-3 net_lat: 3
+  L1TCache-2 -> L2Cache-0 net_lat: 18
+  L1TCache-2 -> L2Cache-1 net_lat: 18
+  L1TCache-2 -> L2Cache-2 net_lat: 18
+  L1TCache-2 -> L2Cache-3 net_lat: 18
+  L1TCache-2 -> L1Cache-0 net_lat: 18
+  L1TCache-2 -> L1Cache-1 net_lat: 16
+  L1TCache-2 -> L1Cache-2 net_lat: 18
+  L1TCache-2 -> L1Cache-3 net_lat: 18
+  L1TCache-2 -> L1Cache-4 net_lat: 18
+  L1TCache-2 -> L1Cache-5 net_lat: 18
+  L1TCache-2 -> L1Cache-6 net_lat: 18
+  L1TCache-2 -> L1Cache-7 net_lat: 18
+  L1TCache-2 -> Directory-0 net_lat: 16
+  L1TCache-2 -> Directory-1 net_lat: 16
+  L1TCache-2 -> Directory-2 net_lat: 16
+  L1TCache-2 -> Directory-3 net_lat: 16
+
+L1TCache-3 Network Latencies
+  L1TCache-3 -> L1TCache-0 net_lat: 3
+  L1TCache-3 -> L1TCache-1 net_lat: 3
+  L1TCache-3 -> L1TCache-2 net_lat: 3
+  L1TCache-3 -> L1TCache-4 net_lat: 3
+  L1TCache-3 -> L1TCache-5 net_lat: 3
+  L1TCache-3 -> L1TCache-6 net_lat: 3
+  L1TCache-3 -> L1TCache-7 net_lat: 3
+  L1TCache-3 -> L2TCache-0 net_lat: 3
+  L1TCache-3 -> L2TCache-1 net_lat: 3
+  L1TCache-3 -> L2TCache-2 net_lat: 3
+  L1TCache-3 -> L2TCache-3 net_lat: 3
+  L1TCache-3 -> L2Cache-0 net_lat: 18
+  L1TCache-3 -> L2Cache-1 net_lat: 18
+  L1TCache-3 -> L2Cache-2 net_lat: 18
+  L1TCache-3 -> L2Cache-3 net_lat: 18
+  L1TCache-3 -> L1Cache-0 net_lat: 18
+  L1TCache-3 -> L1Cache-1 net_lat: 16
+  L1TCache-3 -> L1Cache-2 net_lat: 18
+  L1TCache-3 -> L1Cache-3 net_lat: 18
+  L1TCache-3 -> L1Cache-4 net_lat: 18
+  L1TCache-3 -> L1Cache-5 net_lat: 18
+  L1TCache-3 -> L1Cache-6 net_lat: 18
+  L1TCache-3 -> L1Cache-7 net_lat: 18
+  L1TCache-3 -> Directory-0 net_lat: 16
+  L1TCache-3 -> Directory-1 net_lat: 16
+  L1TCache-3 -> Directory-2 net_lat: 16
+  L1TCache-3 -> Directory-3 net_lat: 16
+
+L1TCache-4 Network Latencies
+  L1TCache-4 -> L1TCache-0 net_lat: 3
+  L1TCache-4 -> L1TCache-1 net_lat: 3
+  L1TCache-4 -> L1TCache-2 net_lat: 3
+  L1TCache-4 -> L1TCache-3 net_lat: 3
+  L1TCache-4 -> L1TCache-5 net_lat: 3
+  L1TCache-4 -> L1TCache-6 net_lat: 3
+  L1TCache-4 -> L1TCache-7 net_lat: 3
+  L1TCache-4 -> L2TCache-0 net_lat: 3
+  L1TCache-4 -> L2TCache-1 net_lat: 3
+  L1TCache-4 -> L2TCache-2 net_lat: 3
+  L1TCache-4 -> L2TCache-3 net_lat: 3
+  L1TCache-4 -> L2Cache-0 net_lat: 18
+  L1TCache-4 -> L2Cache-1 net_lat: 18
+  L1TCache-4 -> L2Cache-2 net_lat: 18
+  L1TCache-4 -> L2Cache-3 net_lat: 18
+  L1TCache-4 -> L1Cache-0 net_lat: 18
+  L1TCache-4 -> L1Cache-1 net_lat: 16
+  L1TCache-4 -> L1Cache-2 net_lat: 18
+  L1TCache-4 -> L1Cache-3 net_lat: 18
+  L1TCache-4 -> L1Cache-4 net_lat: 18
+  L1TCache-4 -> L1Cache-5 net_lat: 18
+  L1TCache-4 -> L1Cache-6 net_lat: 18
+  L1TCache-4 -> L1Cache-7 net_lat: 18
+  L1TCache-4 -> Directory-0 net_lat: 16
+  L1TCache-4 -> Directory-1 net_lat: 16
+  L1TCache-4 -> Directory-2 net_lat: 16
+  L1TCache-4 -> Directory-3 net_lat: 16
+
+L1TCache-5 Network Latencies
+  L1TCache-5 -> L1TCache-0 net_lat: 3
+  L1TCache-5 -> L1TCache-1 net_lat: 3
+  L1TCache-5 -> L1TCache-2 net_lat: 3
+  L1TCache-5 -> L1TCache-3 net_lat: 3
+  L1TCache-5 -> L1TCache-4 net_lat: 3
+  L1TCache-5 -> L1TCache-6 net_lat: 3
+  L1TCache-5 -> L1TCache-7 net_lat: 3
+  L1TCache-5 -> L2TCache-0 net_lat: 3
+  L1TCache-5 -> L2TCache-1 net_lat: 3
+  L1TCache-5 -> L2TCache-2 net_lat: 3
+  L1TCache-5 -> L2TCache-3 net_lat: 3
+  L1TCache-5 -> L2Cache-0 net_lat: 18
+  L1TCache-5 -> L2Cache-1 net_lat: 18
+  L1TCache-5 -> L2Cache-2 net_lat: 18
+  L1TCache-5 -> L2Cache-3 net_lat: 18
+  L1TCache-5 -> L1Cache-0 net_lat: 18
+  L1TCache-5 -> L1Cache-1 net_lat: 16
+  L1TCache-5 -> L1Cache-2 net_lat: 18
+  L1TCache-5 -> L1Cache-3 net_lat: 18
+  L1TCache-5 -> L1Cache-4 net_lat: 18
+  L1TCache-5 -> L1Cache-5 net_lat: 18
+  L1TCache-5 -> L1Cache-6 net_lat: 18
+  L1TCache-5 -> L1Cache-7 net_lat: 18
+  L1TCache-5 -> Directory-0 net_lat: 16
+  L1TCache-5 -> Directory-1 net_lat: 16
+  L1TCache-5 -> Directory-2 net_lat: 16
+  L1TCache-5 -> Directory-3 net_lat: 16
+
+L1TCache-6 Network Latencies
+  L1TCache-6 -> L1TCache-0 net_lat: 3
+  L1TCache-6 -> L1TCache-1 net_lat: 3
+  L1TCache-6 -> L1TCache-2 net_lat: 3
+  L1TCache-6 -> L1TCache-3 net_lat: 3
+  L1TCache-6 -> L1TCache-4 net_lat: 3
+  L1TCache-6 -> L1TCache-5 net_lat: 3
+  L1TCache-6 -> L1TCache-7 net_lat: 3
+  L1TCache-6 -> L2TCache-0 net_lat: 3
+  L1TCache-6 -> L2TCache-1 net_lat: 3
+  L1TCache-6 -> L2TCache-2 net_lat: 3
+  L1TCache-6 -> L2TCache-3 net_lat: 3
+  L1TCache-6 -> L2Cache-0 net_lat: 18
+  L1TCache-6 -> L2Cache-1 net_lat: 18
+  L1TCache-6 -> L2Cache-2 net_lat: 18
+  L1TCache-6 -> L2Cache-3 net_lat: 18
+  L1TCache-6 -> L1Cache-0 net_lat: 18
+  L1TCache-6 -> L1Cache-1 net_lat: 16
+  L1TCache-6 -> L1Cache-2 net_lat: 18
+  L1TCache-6 -> L1Cache-3 net_lat: 18
+  L1TCache-6 -> L1Cache-4 net_lat: 18
+  L1TCache-6 -> L1Cache-5 net_lat: 18
+  L1TCache-6 -> L1Cache-6 net_lat: 18
+  L1TCache-6 -> L1Cache-7 net_lat: 18
+  L1TCache-6 -> Directory-0 net_lat: 16
+  L1TCache-6 -> Directory-1 net_lat: 16
+  L1TCache-6 -> Directory-2 net_lat: 16
+  L1TCache-6 -> Directory-3 net_lat: 16
+
+L1TCache-7 Network Latencies
+  L1TCache-7 -> L1TCache-0 net_lat: 3
+  L1TCache-7 -> L1TCache-1 net_lat: 3
+  L1TCache-7 -> L1TCache-2 net_lat: 3
+  L1TCache-7 -> L1TCache-3 net_lat: 3
+  L1TCache-7 -> L1TCache-4 net_lat: 3
+  L1TCache-7 -> L1TCache-5 net_lat: 3
+  L1TCache-7 -> L1TCache-6 net_lat: 3
+  L1TCache-7 -> L2TCache-0 net_lat: 3
+  L1TCache-7 -> L2TCache-1 net_lat: 3
+  L1TCache-7 -> L2TCache-2 net_lat: 3
+  L1TCache-7 -> L2TCache-3 net_lat: 3
+  L1TCache-7 -> L2Cache-0 net_lat: 18
+  L1TCache-7 -> L2Cache-1 net_lat: 18
+  L1TCache-7 -> L2Cache-2 net_lat: 18
+  L1TCache-7 -> L2Cache-3 net_lat: 18
+  L1TCache-7 -> L1Cache-0 net_lat: 18
+  L1TCache-7 -> L1Cache-1 net_lat: 16
+  L1TCache-7 -> L1Cache-2 net_lat: 18
+  L1TCache-7 -> L1Cache-3 net_lat: 18
+  L1TCache-7 -> L1Cache-4 net_lat: 18
+  L1TCache-7 -> L1Cache-5 net_lat: 18
+  L1TCache-7 -> L1Cache-6 net_lat: 18
+  L1TCache-7 -> L1Cache-7 net_lat: 18
+  L1TCache-7 -> Directory-0 net_lat: 16
+  L1TCache-7 -> Directory-1 net_lat: 16
+  L1TCache-7 -> Directory-2 net_lat: 16
+  L1TCache-7 -> Directory-3 net_lat: 16
+
+L2TCache-0 Network Latencies
+  L2TCache-0 -> L1TCache-0 net_lat: 3
+  L2TCache-0 -> L1TCache-1 net_lat: 3
+  L2TCache-0 -> L1TCache-2 net_lat: 3
+  L2TCache-0 -> L1TCache-3 net_lat: 3
+  L2TCache-0 -> L1TCache-4 net_lat: 3
+  L2TCache-0 -> L1TCache-5 net_lat: 3
+  L2TCache-0 -> L1TCache-6 net_lat: 3
+  L2TCache-0 -> L1TCache-7 net_lat: 3
+  L2TCache-0 -> L2TCache-1 net_lat: 3
+  L2TCache-0 -> L2TCache-2 net_lat: 3
+  L2TCache-0 -> L2TCache-3 net_lat: 3
+  L2TCache-0 -> L2Cache-0 net_lat: 18
+  L2TCache-0 -> L2Cache-1 net_lat: 18
+  L2TCache-0 -> L2Cache-2 net_lat: 18
+  L2TCache-0 -> L2Cache-3 net_lat: 18
+  L2TCache-0 -> L1Cache-0 net_lat: 18
+  L2TCache-0 -> L1Cache-1 net_lat: 16
+  L2TCache-0 -> L1Cache-2 net_lat: 18
+  L2TCache-0 -> L1Cache-3 net_lat: 18
+  L2TCache-0 -> L1Cache-4 net_lat: 18
+  L2TCache-0 -> L1Cache-5 net_lat: 18
+  L2TCache-0 -> L1Cache-6 net_lat: 18
+  L2TCache-0 -> L1Cache-7 net_lat: 18
+  L2TCache-0 -> Directory-0 net_lat: 16
+  L2TCache-0 -> Directory-1 net_lat: 16
+  L2TCache-0 -> Directory-2 net_lat: 16
+  L2TCache-0 -> Directory-3 net_lat: 16
+
+L2TCache-1 Network Latencies
+  L2TCache-1 -> L1TCache-0 net_lat: 3
+  L2TCache-1 -> L1TCache-1 net_lat: 3
+  L2TCache-1 -> L1TCache-2 net_lat: 3
+  L2TCache-1 -> L1TCache-3 net_lat: 3
+  L2TCache-1 -> L1TCache-4 net_lat: 3
+  L2TCache-1 -> L1TCache-5 net_lat: 3
+  L2TCache-1 -> L1TCache-6 net_lat: 3
+  L2TCache-1 -> L1TCache-7 net_lat: 3
+  L2TCache-1 -> L2TCache-0 net_lat: 3
+  L2TCache-1 -> L2TCache-2 net_lat: 3
+  L2TCache-1 -> L2TCache-3 net_lat: 3
+  L2TCache-1 -> L2Cache-0 net_lat: 18
+  L2TCache-1 -> L2Cache-1 net_lat: 18
+  L2TCache-1 -> L2Cache-2 net_lat: 18
+  L2TCache-1 -> L2Cache-3 net_lat: 18
+  L2TCache-1 -> L1Cache-0 net_lat: 18
+  L2TCache-1 -> L1Cache-1 net_lat: 16
+  L2TCache-1 -> L1Cache-2 net_lat: 18
+  L2TCache-1 -> L1Cache-3 net_lat: 18
+  L2TCache-1 -> L1Cache-4 net_lat: 18
+  L2TCache-1 -> L1Cache-5 net_lat: 18
+  L2TCache-1 -> L1Cache-6 net_lat: 18
+  L2TCache-1 -> L1Cache-7 net_lat: 18
+  L2TCache-1 -> Directory-0 net_lat: 16
+  L2TCache-1 -> Directory-1 net_lat: 16
+  L2TCache-1 -> Directory-2 net_lat: 16
+  L2TCache-1 -> Directory-3 net_lat: 16
+
+L2TCache-2 Network Latencies
+  L2TCache-2 -> L1TCache-0 net_lat: 3
+  L2TCache-2 -> L1TCache-1 net_lat: 3
+  L2TCache-2 -> L1TCache-2 net_lat: 3
+  L2TCache-2 -> L1TCache-3 net_lat: 3
+  L2TCache-2 -> L1TCache-4 net_lat: 3
+  L2TCache-2 -> L1TCache-5 net_lat: 3
+  L2TCache-2 -> L1TCache-6 net_lat: 3
+  L2TCache-2 -> L1TCache-7 net_lat: 3
+  L2TCache-2 -> L2TCache-0 net_lat: 3
+  L2TCache-2 -> L2TCache-1 net_lat: 3
+  L2TCache-2 -> L2TCache-3 net_lat: 3
+  L2TCache-2 -> L2Cache-0 net_lat: 18
+  L2TCache-2 -> L2Cache-1 net_lat: 18
+  L2TCache-2 -> L2Cache-2 net_lat: 18
+  L2TCache-2 -> L2Cache-3 net_lat: 18
+  L2TCache-2 -> L1Cache-0 net_lat: 18
+  L2TCache-2 -> L1Cache-1 net_lat: 16
+  L2TCache-2 -> L1Cache-2 net_lat: 18
+  L2TCache-2 -> L1Cache-3 net_lat: 18
+  L2TCache-2 -> L1Cache-4 net_lat: 18
+  L2TCache-2 -> L1Cache-5 net_lat: 18
+  L2TCache-2 -> L1Cache-6 net_lat: 18
+  L2TCache-2 -> L1Cache-7 net_lat: 18
+  L2TCache-2 -> Directory-0 net_lat: 16
+  L2TCache-2 -> Directory-1 net_lat: 16
+  L2TCache-2 -> Directory-2 net_lat: 16
+  L2TCache-2 -> Directory-3 net_lat: 16
+
+L2TCache-3 Network Latencies
+  L2TCache-3 -> L1TCache-0 net_lat: 3
+  L2TCache-3 -> L1TCache-1 net_lat: 3
+  L2TCache-3 -> L1TCache-2 net_lat: 3
+  L2TCache-3 -> L1TCache-3 net_lat: 3
+  L2TCache-3 -> L1TCache-4 net_lat: 3
+  L2TCache-3 -> L1TCache-5 net_lat: 3
+  L2TCache-3 -> L1TCache-6 net_lat: 3
+  L2TCache-3 -> L1TCache-7 net_lat: 3
+  L2TCache-3 -> L2TCache-0 net_lat: 3
+  L2TCache-3 -> L2TCache-1 net_lat: 3
+  L2TCache-3 -> L2TCache-2 net_lat: 3
+  L2TCache-3 -> L2Cache-0 net_lat: 18
+  L2TCache-3 -> L2Cache-1 net_lat: 18
+  L2TCache-3 -> L2Cache-2 net_lat: 18
+  L2TCache-3 -> L2Cache-3 net_lat: 18
+  L2TCache-3 -> L1Cache-0 net_lat: 18
+  L2TCache-3 -> L1Cache-1 net_lat: 16
+  L2TCache-3 -> L1Cache-2 net_lat: 18
+  L2TCache-3 -> L1Cache-3 net_lat: 18
+  L2TCache-3 -> L1Cache-4 net_lat: 18
+  L2TCache-3 -> L1Cache-5 net_lat: 18
+  L2TCache-3 -> L1Cache-6 net_lat: 18
+  L2TCache-3 -> L1Cache-7 net_lat: 18
+  L2TCache-3 -> Directory-0 net_lat: 16
+  L2TCache-3 -> Directory-1 net_lat: 16
+  L2TCache-3 -> Directory-2 net_lat: 16
+  L2TCache-3 -> Directory-3 net_lat: 16
+
+L2Cache-0 Network Latencies
+  L2Cache-0 -> L1TCache-0 net_lat: 18
+  L2Cache-0 -> L1TCache-1 net_lat: 18
+  L2Cache-0 -> L1TCache-2 net_lat: 18
+  L2Cache-0 -> L1TCache-3 net_lat: 18
+  L2Cache-0 -> L1TCache-4 net_lat: 18
+  L2Cache-0 -> L1TCache-5 net_lat: 18
+  L2Cache-0 -> L1TCache-6 net_lat: 18
+  L2Cache-0 -> L1TCache-7 net_lat: 18
+  L2Cache-0 -> L2TCache-0 net_lat: 18
+  L2Cache-0 -> L2TCache-1 net_lat: 18
+  L2Cache-0 -> L2TCache-2 net_lat: 18
+  L2Cache-0 -> L2TCache-3 net_lat: 18
+  L2Cache-0 -> L2Cache-1 net_lat: 11
+  L2Cache-0 -> L2Cache-2 net_lat: 11
+  L2Cache-0 -> L2Cache-3 net_lat: 11
+  L2Cache-0 -> L1Cache-0 net_lat: 7
+  L2Cache-0 -> L1Cache-1 net_lat: 9
+  L2Cache-0 -> L1Cache-2 net_lat: 11
+  L2Cache-0 -> L1Cache-3 net_lat: 11
+  L2Cache-0 -> L1Cache-4 net_lat: 7
+  L2Cache-0 -> L1Cache-5 net_lat: 11
+  L2Cache-0 -> L1Cache-6 net_lat: 11
+  L2Cache-0 -> L1Cache-7 net_lat: 11
+  L2Cache-0 -> Directory-0 net_lat: 5
+  L2Cache-0 -> Directory-1 net_lat: 9
+  L2Cache-0 -> Directory-2 net_lat: 9
+  L2Cache-0 -> Directory-3 net_lat: 9
+
+L2Cache-1 Network Latencies
+  L2Cache-1 -> L1TCache-0 net_lat: 18
+  L2Cache-1 -> L1TCache-1 net_lat: 18
+  L2Cache-1 -> L1TCache-2 net_lat: 18
+  L2Cache-1 -> L1TCache-3 net_lat: 18
+  L2Cache-1 -> L1TCache-4 net_lat: 18
+  L2Cache-1 -> L1TCache-5 net_lat: 18
+  L2Cache-1 -> L1TCache-6 net_lat: 18
+  L2Cache-1 -> L1TCache-7 net_lat: 18
+  L2Cache-1 -> L2TCache-0 net_lat: 18
+  L2Cache-1 -> L2TCache-1 net_lat: 18
+  L2Cache-1 -> L2TCache-2 net_lat: 18
+  L2Cache-1 -> L2TCache-3 net_lat: 18
+  L2Cache-1 -> L2Cache-0 net_lat: 11
+  L2Cache-1 -> L2Cache-2 net_lat: 11
+  L2Cache-1 -> L2Cache-3 net_lat: 11
+  L2Cache-1 -> L1Cache-0 net_lat: 11
+  L2Cache-1 -> L1Cache-1 net_lat: 5
+  L2Cache-1 -> L1Cache-2 net_lat: 11
+  L2Cache-1 -> L1Cache-3 net_lat: 11
+  L2Cache-1 -> L1Cache-4 net_lat: 11
+  L2Cache-1 -> L1Cache-5 net_lat: 7
+  L2Cache-1 -> L1Cache-6 net_lat: 11
+  L2Cache-1 -> L1Cache-7 net_lat: 11
+  L2Cache-1 -> Directory-0 net_lat: 9
+  L2Cache-1 -> Directory-1 net_lat: 5
+  L2Cache-1 -> Directory-2 net_lat: 9
+  L2Cache-1 -> Directory-3 net_lat: 9
+
+L2Cache-2 Network Latencies
+  L2Cache-2 -> L1TCache-0 net_lat: 18
+  L2Cache-2 -> L1TCache-1 net_lat: 18
+  L2Cache-2 -> L1TCache-2 net_lat: 18
+  L2Cache-2 -> L1TCache-3 net_lat: 18
+  L2Cache-2 -> L1TCache-4 net_lat: 18
+  L2Cache-2 -> L1TCache-5 net_lat: 18
+  L2Cache-2 -> L1TCache-6 net_lat: 18
+  L2Cache-2 -> L1TCache-7 net_lat: 18
+  L2Cache-2 -> L2TCache-0 net_lat: 18
+  L2Cache-2 -> L2TCache-1 net_lat: 18
+  L2Cache-2 -> L2TCache-2 net_lat: 18
+  L2Cache-2 -> L2TCache-3 net_lat: 18
+  L2Cache-2 -> L2Cache-0 net_lat: 11
+  L2Cache-2 -> L2Cache-1 net_lat: 11
+  L2Cache-2 -> L2Cache-3 net_lat: 11
+  L2Cache-2 -> L1Cache-0 net_lat: 11
+  L2Cache-2 -> L1Cache-1 net_lat: 9
+  L2Cache-2 -> L1Cache-2 net_lat: 7
+  L2Cache-2 -> L1Cache-3 net_lat: 11
+  L2Cache-2 -> L1Cache-4 net_lat: 11
+  L2Cache-2 -> L1Cache-5 net_lat: 11
+  L2Cache-2 -> L1Cache-6 net_lat: 7
+  L2Cache-2 -> L1Cache-7 net_lat: 11
+  L2Cache-2 -> Directory-0 net_lat: 9
+  L2Cache-2 -> Directory-1 net_lat: 9
+  L2Cache-2 -> Directory-2 net_lat: 5
+  L2Cache-2 -> Directory-3 net_lat: 9
+
+L2Cache-3 Network Latencies
+  L2Cache-3 -> L1TCache-0 net_lat: 18
+  L2Cache-3 -> L1TCache-1 net_lat: 18
+  L2Cache-3 -> L1TCache-2 net_lat: 18
+  L2Cache-3 -> L1TCache-3 net_lat: 18
+  L2Cache-3 -> L1TCache-4 net_lat: 18
+  L2Cache-3 -> L1TCache-5 net_lat: 18
+  L2Cache-3 -> L1TCache-6 net_lat: 18
+  L2Cache-3 -> L1TCache-7 net_lat: 18
+  L2Cache-3 -> L2TCache-0 net_lat: 18
+  L2Cache-3 -> L2TCache-1 net_lat: 18
+  L2Cache-3 -> L2TCache-2 net_lat: 18
+  L2Cache-3 -> L2TCache-3 net_lat: 18
+  L2Cache-3 -> L2Cache-0 net_lat: 11
+  L2Cache-3 -> L2Cache-1 net_lat: 11
+  L2Cache-3 -> L2Cache-2 net_lat: 11
+  L2Cache-3 -> L1Cache-0 net_lat: 11
+  L2Cache-3 -> L1Cache-1 net_lat: 9
+  L2Cache-3 -> L1Cache-2 net_lat: 11
+  L2Cache-3 -> L1Cache-3 net_lat: 7
+  L2Cache-3 -> L1Cache-4 net_lat: 11
+  L2Cache-3 -> L1Cache-5 net_lat: 11
+  L2Cache-3 -> L1Cache-6 net_lat: 11
+  L2Cache-3 -> L1Cache-7 net_lat: 7
+  L2Cache-3 -> Directory-0 net_lat: 9
+  L2Cache-3 -> Directory-1 net_lat: 9
+  L2Cache-3 -> Directory-2 net_lat: 9
+  L2Cache-3 -> Directory-3 net_lat: 5
+
+L1Cache-0 Network Latencies
+  L1Cache-0 -> L1TCache-0 net_lat: 18
+  L1Cache-0 -> L1TCache-1 net_lat: 18
+  L1Cache-0 -> L1TCache-2 net_lat: 18
+  L1Cache-0 -> L1TCache-3 net_lat: 18
+  L1Cache-0 -> L1TCache-4 net_lat: 18
+  L1Cache-0 -> L1TCache-5 net_lat: 18
+  L1Cache-0 -> L1TCache-6 net_lat: 18
+  L1Cache-0 -> L1TCache-7 net_lat: 18
+  L1Cache-0 -> L2TCache-0 net_lat: 18
+  L1Cache-0 -> L2TCache-1 net_lat: 18
+  L1Cache-0 -> L2TCache-2 net_lat: 18
+  L1Cache-0 -> L2TCache-3 net_lat: 18
+  L1Cache-0 -> L2Cache-0 net_lat: 7
+  L1Cache-0 -> L2Cache-1 net_lat: 11
+  L1Cache-0 -> L2Cache-2 net_lat: 11
+  L1Cache-0 -> L2Cache-3 net_lat: 11
+  L1Cache-0 -> L1Cache-1 net_lat: 9
+  L1Cache-0 -> L1Cache-2 net_lat: 11
+  L1Cache-0 -> L1Cache-3 net_lat: 11
+  L1Cache-0 -> L1Cache-4 net_lat: 7
+  L1Cache-0 -> L1Cache-5 net_lat: 11
+  L1Cache-0 -> L1Cache-6 net_lat: 11
+  L1Cache-0 -> L1Cache-7 net_lat: 11
+  L1Cache-0 -> Directory-0 net_lat: 5
+  L1Cache-0 -> Directory-1 net_lat: 9
+  L1Cache-0 -> Directory-2 net_lat: 9
+  L1Cache-0 -> Directory-3 net_lat: 9
+
+L1Cache-1 Network Latencies
+  L1Cache-1 -> L1TCache-0 net_lat: 16
+  L1Cache-1 -> L1TCache-1 net_lat: 16
+  L1Cache-1 -> L1TCache-2 net_lat: 16
+  L1Cache-1 -> L1TCache-3 net_lat: 16
+  L1Cache-1 -> L1TCache-4 net_lat: 16
+  L1Cache-1 -> L1TCache-5 net_lat: 16
+  L1Cache-1 -> L1TCache-6 net_lat: 16
+  L1Cache-1 -> L1TCache-7 net_lat: 16
+  L1Cache-1 -> L2TCache-0 net_lat: 16
+  L1Cache-1 -> L2TCache-1 net_lat: 16
+  L1Cache-1 -> L2TCache-2 net_lat: 16
+  L1Cache-1 -> L2TCache-3 net_lat: 16
+  L1Cache-1 -> L2Cache-0 net_lat: 9
+  L1Cache-1 -> L2Cache-1 net_lat: 5
+  L1Cache-1 -> L2Cache-2 net_lat: 9
+  L1Cache-1 -> L2Cache-3 net_lat: 9
+  L1Cache-1 -> L1Cache-0 net_lat: 9
+  L1Cache-1 -> L1Cache-2 net_lat: 9
+  L1Cache-1 -> L1Cache-3 net_lat: 9
+  L1Cache-1 -> L1Cache-4 net_lat: 9
+  L1Cache-1 -> L1Cache-5 net_lat: 5
+  L1Cache-1 -> L1Cache-6 net_lat: 9
+  L1Cache-1 -> L1Cache-7 net_lat: 9
+  L1Cache-1 -> Directory-0 net_lat: 7
+  L1Cache-1 -> Directory-1 net_lat: 3
+  L1Cache-1 -> Directory-2 net_lat: 7
+  L1Cache-1 -> Directory-3 net_lat: 7
+
+L1Cache-2 Network Latencies
+  L1Cache-2 -> L1TCache-0 net_lat: 18
+  L1Cache-2 -> L1TCache-1 net_lat: 18
+  L1Cache-2 -> L1TCache-2 net_lat: 18
+  L1Cache-2 -> L1TCache-3 net_lat: 18
+  L1Cache-2 -> L1TCache-4 net_lat: 18
+  L1Cache-2 -> L1TCache-5 net_lat: 18
+  L1Cache-2 -> L1TCache-6 net_lat: 18
+  L1Cache-2 -> L1TCache-7 net_lat: 18
+  L1Cache-2 -> L2TCache-0 net_lat: 18
+  L1Cache-2 -> L2TCache-1 net_lat: 18
+  L1Cache-2 -> L2TCache-2 net_lat: 18
+  L1Cache-2 -> L2TCache-3 net_lat: 18
+  L1Cache-2 -> L2Cache-0 net_lat: 11
+  L1Cache-2 -> L2Cache-1 net_lat: 11
+  L1Cache-2 -> L2Cache-2 net_lat: 7
+  L1Cache-2 -> L2Cache-3 net_lat: 11
+  L1Cache-2 -> L1Cache-0 net_lat: 11
+  L1Cache-2 -> L1Cache-1 net_lat: 9
+  L1Cache-2 -> L1Cache-3 net_lat: 11
+  L1Cache-2 -> L1Cache-4 net_lat: 11
+  L1Cache-2 -> L1Cache-5 net_lat: 11
+  L1Cache-2 -> L1Cache-6 net_lat: 7
+  L1Cache-2 -> L1Cache-7 net_lat: 11
+  L1Cache-2 -> Directory-0 net_lat: 9
+  L1Cache-2 -> Directory-1 net_lat: 9
+  L1Cache-2 -> Directory-2 net_lat: 5
+  L1Cache-2 -> Directory-3 net_lat: 9
+
+L1Cache-3 Network Latencies
+  L1Cache-3 -> L1TCache-0 net_lat: 18
+  L1Cache-3 -> L1TCache-1 net_lat: 18
+  L1Cache-3 -> L1TCache-2 net_lat: 18
+  L1Cache-3 -> L1TCache-3 net_lat: 18
+  L1Cache-3 -> L1TCache-4 net_lat: 18
+  L1Cache-3 -> L1TCache-5 net_lat: 18
+  L1Cache-3 -> L1TCache-6 net_lat: 18
+  L1Cache-3 -> L1TCache-7 net_lat: 18
+  L1Cache-3 -> L2TCache-0 net_lat: 18
+  L1Cache-3 -> L2TCache-1 net_lat: 18
+  L1Cache-3 -> L2TCache-2 net_lat: 18
+  L1Cache-3 -> L2TCache-3 net_lat: 18
+  L1Cache-3 -> L2Cache-0 net_lat: 11
+  L1Cache-3 -> L2Cache-1 net_lat: 11
+  L1Cache-3 -> L2Cache-2 net_lat: 11
+  L1Cache-3 -> L2Cache-3 net_lat: 7
+  L1Cache-3 -> L1Cache-0 net_lat: 11
+  L1Cache-3 -> L1Cache-1 net_lat: 9
+  L1Cache-3 -> L1Cache-2 net_lat: 11
+  L1Cache-3 -> L1Cache-4 net_lat: 11
+  L1Cache-3 -> L1Cache-5 net_lat: 11
+  L1Cache-3 -> L1Cache-6 net_lat: 11
+  L1Cache-3 -> L1Cache-7 net_lat: 7
+  L1Cache-3 -> Directory-0 net_lat: 9
+  L1Cache-3 -> Directory-1 net_lat: 9
+  L1Cache-3 -> Directory-2 net_lat: 9
+  L1Cache-3 -> Directory-3 net_lat: 5
+
+L1Cache-4 Network Latencies
+  L1Cache-4 -> L1TCache-0 net_lat: 18
+  L1Cache-4 -> L1TCache-1 net_lat: 18
+  L1Cache-4 -> L1TCache-2 net_lat: 18
+  L1Cache-4 -> L1TCache-3 net_lat: 18
+  L1Cache-4 -> L1TCache-4 net_lat: 18
+  L1Cache-4 -> L1TCache-5 net_lat: 18
+  L1Cache-4 -> L1TCache-6 net_lat: 18
+  L1Cache-4 -> L1TCache-7 net_lat: 18
+  L1Cache-4 -> L2TCache-0 net_lat: 18
+  L1Cache-4 -> L2TCache-1 net_lat: 18
+  L1Cache-4 -> L2TCache-2 net_lat: 18
+  L1Cache-4 -> L2TCache-3 net_lat: 18
+  L1Cache-4 -> L2Cache-0 net_lat: 7
+  L1Cache-4 -> L2Cache-1 net_lat: 11
+  L1Cache-4 -> L2Cache-2 net_lat: 11
+  L1Cache-4 -> L2Cache-3 net_lat: 11
+  L1Cache-4 -> L1Cache-0 net_lat: 7
+  L1Cache-4 -> L1Cache-1 net_lat: 9
+  L1Cache-4 -> L1Cache-2 net_lat: 11
+  L1Cache-4 -> L1Cache-3 net_lat: 11
+  L1Cache-4 -> L1Cache-5 net_lat: 11
+  L1Cache-4 -> L1Cache-6 net_lat: 11
+  L1Cache-4 -> L1Cache-7 net_lat: 11
+  L1Cache-4 -> Directory-0 net_lat: 5
+  L1Cache-4 -> Directory-1 net_lat: 9
+  L1Cache-4 -> Directory-2 net_lat: 9
+  L1Cache-4 -> Directory-3 net_lat: 9
+
+L1Cache-5 Network Latencies
+  L1Cache-5 -> L1TCache-0 net_lat: 18
+  L1Cache-5 -> L1TCache-1 net_lat: 18
+  L1Cache-5 -> L1TCache-2 net_lat: 18
+  L1Cache-5 -> L1TCache-3 net_lat: 18
+  L1Cache-5 -> L1TCache-4 net_lat: 18
+  L1Cache-5 -> L1TCache-5 net_lat: 18
+  L1Cache-5 -> L1TCache-6 net_lat: 18
+  L1Cache-5 -> L1TCache-7 net_lat: 18
+  L1Cache-5 -> L2TCache-0 net_lat: 18
+  L1Cache-5 -> L2TCache-1 net_lat: 18
+  L1Cache-5 -> L2TCache-2 net_lat: 18
+  L1Cache-5 -> L2TCache-3 net_lat: 18
+  L1Cache-5 -> L2Cache-0 net_lat: 11
+  L1Cache-5 -> L2Cache-1 net_lat: 7
+  L1Cache-5 -> L2Cache-2 net_lat: 11
+  L1Cache-5 -> L2Cache-3 net_lat: 11
+  L1Cache-5 -> L1Cache-0 net_lat: 11
+  L1Cache-5 -> L1Cache-1 net_lat: 5
+  L1Cache-5 -> L1Cache-2 net_lat: 11
+  L1Cache-5 -> L1Cache-3 net_lat: 11
+  L1Cache-5 -> L1Cache-4 net_lat: 11
+  L1Cache-5 -> L1Cache-6 net_lat: 11
+  L1Cache-5 -> L1Cache-7 net_lat: 11
+  L1Cache-5 -> Directory-0 net_lat: 9
+  L1Cache-5 -> Directory-1 net_lat: 5
+  L1Cache-5 -> Directory-2 net_lat: 9
+  L1Cache-5 -> Directory-3 net_lat: 9
+
+L1Cache-6 Network Latencies
+  L1Cache-6 -> L1TCache-0 net_lat: 18
+  L1Cache-6 -> L1TCache-1 net_lat: 18
+  L1Cache-6 -> L1TCache-2 net_lat: 18
+  L1Cache-6 -> L1TCache-3 net_lat: 18
+  L1Cache-6 -> L1TCache-4 net_lat: 18
+  L1Cache-6 -> L1TCache-5 net_lat: 18
+  L1Cache-6 -> L1TCache-6 net_lat: 18
+  L1Cache-6 -> L1TCache-7 net_lat: 18
+  L1Cache-6 -> L2TCache-0 net_lat: 18
+  L1Cache-6 -> L2TCache-1 net_lat: 18
+  L1Cache-6 -> L2TCache-2 net_lat: 18
+  L1Cache-6 -> L2TCache-3 net_lat: 18
+  L1Cache-6 -> L2Cache-0 net_lat: 11
+  L1Cache-6 -> L2Cache-1 net_lat: 11
+  L1Cache-6 -> L2Cache-2 net_lat: 7
+  L1Cache-6 -> L2Cache-3 net_lat: 11
+  L1Cache-6 -> L1Cache-0 net_lat: 11
+  L1Cache-6 -> L1Cache-1 net_lat: 9
+  L1Cache-6 -> L1Cache-2 net_lat: 7
+  L1Cache-6 -> L1Cache-3 net_lat: 11
+  L1Cache-6 -> L1Cache-4 net_lat: 11
+  L1Cache-6 -> L1Cache-5 net_lat: 11
+  L1Cache-6 -> L1Cache-7 net_lat: 11
+  L1Cache-6 -> Directory-0 net_lat: 9
+  L1Cache-6 -> Directory-1 net_lat: 9
+  L1Cache-6 -> Directory-2 net_lat: 5
+  L1Cache-6 -> Directory-3 net_lat: 9
+
+L1Cache-7 Network Latencies
+  L1Cache-7 -> L1TCache-0 net_lat: 18
+  L1Cache-7 -> L1TCache-1 net_lat: 18
+  L1Cache-7 -> L1TCache-2 net_lat: 18
+  L1Cache-7 -> L1TCache-3 net_lat: 18
+  L1Cache-7 -> L1TCache-4 net_lat: 18
+  L1Cache-7 -> L1TCache-5 net_lat: 18
+  L1Cache-7 -> L1TCache-6 net_lat: 18
+  L1Cache-7 -> L1TCache-7 net_lat: 18
+  L1Cache-7 -> L2TCache-0 net_lat: 18
+  L1Cache-7 -> L2TCache-1 net_lat: 18
+  L1Cache-7 -> L2TCache-2 net_lat: 18
+  L1Cache-7 -> L2TCache-3 net_lat: 18
+  L1Cache-7 -> L2Cache-0 net_lat: 11
+  L1Cache-7 -> L2Cache-1 net_lat: 11
+  L1Cache-7 -> L2Cache-2 net_lat: 11
+  L1Cache-7 -> L2Cache-3 net_lat: 7
+  L1Cache-7 -> L1Cache-0 net_lat: 11
+  L1Cache-7 -> L1Cache-1 net_lat: 9
+  L1Cache-7 -> L1Cache-2 net_lat: 11
+  L1Cache-7 -> L1Cache-3 net_lat: 7
+  L1Cache-7 -> L1Cache-4 net_lat: 11
+  L1Cache-7 -> L1Cache-5 net_lat: 11
+  L1Cache-7 -> L1Cache-6 net_lat: 11
+  L1Cache-7 -> Directory-0 net_lat: 9
+  L1Cache-7 -> Directory-1 net_lat: 9
+  L1Cache-7 -> Directory-2 net_lat: 9
+  L1Cache-7 -> Directory-3 net_lat: 5
+
+Directory-0 Network Latencies
+  Directory-0 -> L1TCache-0 net_lat: 16
+  Directory-0 -> L1TCache-1 net_lat: 16
+  Directory-0 -> L1TCache-2 net_lat: 16
+  Directory-0 -> L1TCache-3 net_lat: 16
+  Directory-0 -> L1TCache-4 net_lat: 16
+  Directory-0 -> L1TCache-5 net_lat: 16
+  Directory-0 -> L1TCache-6 net_lat: 16
+  Directory-0 -> L1TCache-7 net_lat: 16
+  Directory-0 -> L2TCache-0 net_lat: 16
+  Directory-0 -> L2TCache-1 net_lat: 16
+  Directory-0 -> L2TCache-2 net_lat: 16
+  Directory-0 -> L2TCache-3 net_lat: 16
+  Directory-0 -> L2Cache-0 net_lat: 5
+  Directory-0 -> L2Cache-1 net_lat: 9
+  Directory-0 -> L2Cache-2 net_lat: 9
+  Directory-0 -> L2Cache-3 net_lat: 9
+  Directory-0 -> L1Cache-0 net_lat: 5
+  Directory-0 -> L1Cache-1 net_lat: 7
+  Directory-0 -> L1Cache-2 net_lat: 9
+  Directory-0 -> L1Cache-3 net_lat: 9
+  Directory-0 -> L1Cache-4 net_lat: 5
+  Directory-0 -> L1Cache-5 net_lat: 9
+  Directory-0 -> L1Cache-6 net_lat: 9
+  Directory-0 -> L1Cache-7 net_lat: 9
+  Directory-0 -> Directory-1 net_lat: 7
+  Directory-0 -> Directory-2 net_lat: 7
+  Directory-0 -> Directory-3 net_lat: 7
+
+Directory-1 Network Latencies
+  Directory-1 -> L1TCache-0 net_lat: 16
+  Directory-1 -> L1TCache-1 net_lat: 16
+  Directory-1 -> L1TCache-2 net_lat: 16
+  Directory-1 -> L1TCache-3 net_lat: 16
+  Directory-1 -> L1TCache-4 net_lat: 16
+  Directory-1 -> L1TCache-5 net_lat: 16
+  Directory-1 -> L1TCache-6 net_lat: 16
+  Directory-1 -> L1TCache-7 net_lat: 16
+  Directory-1 -> L2TCache-0 net_lat: 16
+  Directory-1 -> L2TCache-1 net_lat: 16
+  Directory-1 -> L2TCache-2 net_lat: 16
+  Directory-1 -> L2TCache-3 net_lat: 16
+  Directory-1 -> L2Cache-0 net_lat: 9
+  Directory-1 -> L2Cache-1 net_lat: 5
+  Directory-1 -> L2Cache-2 net_lat: 9
+  Directory-1 -> L2Cache-3 net_lat: 9
+  Directory-1 -> L1Cache-0 net_lat: 9
+  Directory-1 -> L1Cache-1 net_lat: 3
+  Directory-1 -> L1Cache-2 net_lat: 9
+  Directory-1 -> L1Cache-3 net_lat: 9
+  Directory-1 -> L1Cache-4 net_lat: 9
+  Directory-1 -> L1Cache-5 net_lat: 5
+  Directory-1 -> L1Cache-6 net_lat: 9
+  Directory-1 -> L1Cache-7 net_lat: 9
+  Directory-1 -> Directory-0 net_lat: 7
+  Directory-1 -> Directory-2 net_lat: 7
+  Directory-1 -> Directory-3 net_lat: 7
+
+Directory-2 Network Latencies
+  Directory-2 -> L1TCache-0 net_lat: 16
+  Directory-2 -> L1TCache-1 net_lat: 16
+  Directory-2 -> L1TCache-2 net_lat: 16
+  Directory-2 -> L1TCache-3 net_lat: 16
+  Directory-2 -> L1TCache-4 net_lat: 16
+  Directory-2 -> L1TCache-5 net_lat: 16
+  Directory-2 -> L1TCache-6 net_lat: 16
+  Directory-2 -> L1TCache-7 net_lat: 16
+  Directory-2 -> L2TCache-0 net_lat: 16
+  Directory-2 -> L2TCache-1 net_lat: 16
+  Directory-2 -> L2TCache-2 net_lat: 16
+  Directory-2 -> L2TCache-3 net_lat: 16
+  Directory-2 -> L2Cache-0 net_lat: 9
+  Directory-2 -> L2Cache-1 net_lat: 9
+  Directory-2 -> L2Cache-2 net_lat: 5
+  Directory-2 -> L2Cache-3 net_lat: 9
+  Directory-2 -> L1Cache-0 net_lat: 9
+  Directory-2 -> L1Cache-1 net_lat: 7
+  Directory-2 -> L1Cache-2 net_lat: 5
+  Directory-2 -> L1Cache-3 net_lat: 9
+  Directory-2 -> L1Cache-4 net_lat: 9
+  Directory-2 -> L1Cache-5 net_lat: 9
+  Directory-2 -> L1Cache-6 net_lat: 5
+  Directory-2 -> L1Cache-7 net_lat: 9
+  Directory-2 -> Directory-0 net_lat: 7
+  Directory-2 -> Directory-1 net_lat: 7
+  Directory-2 -> Directory-3 net_lat: 7
+
+Directory-3 Network Latencies
+  Directory-3 -> L1TCache-0 net_lat: 16
+  Directory-3 -> L1TCache-1 net_lat: 16
+  Directory-3 -> L1TCache-2 net_lat: 16
+  Directory-3 -> L1TCache-3 net_lat: 16
+  Directory-3 -> L1TCache-4 net_lat: 16
+  Directory-3 -> L1TCache-5 net_lat: 16
+  Directory-3 -> L1TCache-6 net_lat: 16
+  Directory-3 -> L1TCache-7 net_lat: 16
+  Directory-3 -> L2TCache-0 net_lat: 16
+  Directory-3 -> L2TCache-1 net_lat: 16
+  Directory-3 -> L2TCache-2 net_lat: 16
+  Directory-3 -> L2TCache-3 net_lat: 16
+  Directory-3 -> L2Cache-0 net_lat: 9
+  Directory-3 -> L2Cache-1 net_lat: 9
+  Directory-3 -> L2Cache-2 net_lat: 9
+  Directory-3 -> L2Cache-3 net_lat: 5
+  Directory-3 -> L1Cache-0 net_lat: 9
+  Directory-3 -> L1Cache-1 net_lat: 7
+  Directory-3 -> L1Cache-2 net_lat: 9
+  Directory-3 -> L1Cache-3 net_lat: 5
+  Directory-3 -> L1Cache-4 net_lat: 9
+  Directory-3 -> L1Cache-5 net_lat: 9
+  Directory-3 -> L1Cache-6 net_lat: 9
+  Directory-3 -> L1Cache-7 net_lat: 5
+  Directory-3 -> Directory-0 net_lat: 7
+  Directory-3 -> Directory-1 net_lat: 7
+  Directory-3 -> Directory-2 net_lat: 7
+
+--- End Topology Print ---
+O3sim_ruby_multiplier: 1
+
+
+Profiler Configuration
+----------------------
+periodic_stats_period: 1000000
+LifetimeTrace Configuration
+----------------------
+----------------------
+
+================ End System Configuration Print ================
+
+Testing clear stats...Done.
+src/macsim.cc:316: (I=0  C=0):  initialize cores (1/7/0)
+src/macsim.cc:638: (I=0  C=0):  Clock LCM           : 2
+src/macsim.cc:639: (I=0  C=0):  CPU clock frequency : 2 GHz 1
+src/macsim.cc:640: (I=0  C=0):  GPU clock frequency : 2 GHz 1
+src/macsim.cc:641: (I=0  C=0):  L3  clock frequency : 2 GHz 1
+src/macsim.cc:642: (I=0  C=0):  NOC clock frequency : 2 GHz 1
+src/macsim.cc:643: (I=0  C=0):  MC  clock frequency : 2 GHz 1
+src/macsim.cc:644: (I=0  C=0):  ACC  clock frequency : 2 GHz 1
+src/process_manager.cc:434: (I=0  C=0):  setup_process:0 ../../../../Traces/large/b4/histogram/trace.txt current_index:0 (1)
+src/process_manager.cc:496: (I=0  C=0):  thread_count:8
+src/trace_read.cc:1435: (I=133  C=1963):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=171  C=2014):  CPU halted after 2014 cycles
+src/trace_read.cc:1447: (I=171  C=1062646):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=1062769):  ACC 2 halted after 1060755 cycles
+** Heartbeat for core[2]:        insts:1000000     cycles:2170976     seconds:63    -- 0.46 IPC (0.46 IPC) -- 0.00 KIPS (15.87 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:1000000     cycles:2170976     seconds:63    -- 0.46 IPC (0.46 IPC) -- 0.00 KIPS (15.87 KIPS)
+src/trace_read.cc:1447: (I=171  C=2333344):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=2334094):  ACC 2 halted after 1271325 cycles
+src/trace_read.cc:1447: (I=171  C=3600221):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=3600866):  ACC 2 halted after 1266772 cycles
+** Heartbeat for core[2]:        insts:2000000     cycles:4545996     seconds:116   -- 0.42 IPC (0.44 IPC) -- 18.87 KIPS (17.24 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:2000000     cycles:4545996     seconds:116   -- 0.42 IPC (0.44 IPC) -- 18.87 KIPS (17.24 KIPS)
+src/trace_read.cc:1447: (I=171  C=4870528):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=4871191):  ACC 2 halted after 1270325 cycles
+src/trace_read.cc:1447: (I=171  C=6140395):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=6141137):  ACC 2 halted after 1269946 cycles
+** Heartbeat for core[2]:        insts:3000000     cycles:6801613     seconds:165   -- 0.44 IPC (0.44 IPC) -- 20.41 KIPS (18.18 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:3000000     cycles:6801613     seconds:165   -- 0.44 IPC (0.44 IPC) -- 20.41 KIPS (18.18 KIPS)
+src/trace_read.cc:1447: (I=171  C=6909981):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=6910108):  ACC 2 halted after 768971 cycles
+src/trace_read.cc:1447: (I=171  C=7169295):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=7169418):  ACC 2 halted after 259310 cycles
+** Heartbeat for core[2]:        insts:4000000     cycles:7282268     seconds:172   -- 2.08 IPC (0.55 IPC) -- 142.86 KIPS (23.26 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:4000000     cycles:7282268     seconds:172   -- 2.08 IPC (0.55 IPC) -- 142.86 KIPS (23.26 KIPS)
+src/trace_read.cc:1447: (I=171  C=7428105):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=7428236):  ACC 2 halted after 258818 cycles
+src/trace_read.cc:1447: (I=171  C=8345616):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=8346496):  ACC 2 halted after 918260 cycles
+** Heartbeat for core[2]:        insts:5000000     cycles:8788107     seconds:203   -- 0.66 IPC (0.57 IPC) -- 32.26 KIPS (24.63 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:5000000     cycles:8788107     seconds:203   -- 0.66 IPC (0.57 IPC) -- 32.26 KIPS (24.63 KIPS)
+src/trace_read.cc:1447: (I=171  C=9614809):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=9615450):  ACC 2 halted after 1268954 cycles
+src/trace_read.cc:1447: (I=171  C=10885047):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=10885783):  ACC 2 halted after 1270333 cycles
+** Heartbeat for core[2]:        insts:6000000     cycles:11151780    seconds:256   -- 0.42 IPC (0.54 IPC) -- 18.87 KIPS (23.44 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:6000000     cycles:11151780    seconds:256   -- 0.42 IPC (0.54 IPC) -- 18.87 KIPS (23.44 KIPS)
+src/trace_read.cc:1447: (I=171  C=12150930):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=12151544):  ACC 2 halted after 1265761 cycles
+src/trace_read.cc:1447: (I=171  C=13420689):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=13421370):  ACC 2 halted after 1269826 cycles
+** Heartbeat for core[2]:        insts:7000000     cycles:13527283    seconds:308   -- 0.42 IPC (0.52 IPC) -- 19.23 KIPS (22.73 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:7000000     cycles:13527283    seconds:308   -- 0.42 IPC (0.52 IPC) -- 19.23 KIPS (22.73 KIPS)
+src/trace_read.cc:1447: (I=171  C=14691682):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=14692403):  ACC 2 halted after 1271033 cycles
+** Heartbeat for core[2]:        insts:8000000     cycles:15811844    seconds:360   -- 0.44 IPC (0.51 IPC) -- 19.23 KIPS (22.22 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:8000000     cycles:15811844    seconds:360   -- 0.44 IPC (0.51 IPC) -- 19.23 KIPS (22.22 KIPS)
+src/trace_read.cc:1447: (I=171  C=15959546):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=15960234):  ACC 2 halted after 1267831 cycles
+src/trace_read.cc:1447: (I=171  C=17230345):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=17230980):  ACC 2 halted after 1270746 cycles
+** Heartbeat for core[2]:        insts:9000000     cycles:18172751    seconds:414   -- 0.42 IPC (0.50 IPC) -- 18.52 KIPS (21.74 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:9000000     cycles:18172751    seconds:414   -- 0.42 IPC (0.50 IPC) -- 18.52 KIPS (21.74 KIPS)
+src/trace_read.cc:1447: (I=171  C=18501689):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=18502350):  ACC 2 halted after 1271370 cycles
+src/trace_read.cc:1447: (I=171  C=19768712):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=19769408):  ACC 2 halted after 1267058 cycles
+** Heartbeat for core[2]:        insts:10000000    cycles:20515897    seconds:466   -- 0.43 IPC (0.49 IPC) -- 19.23 KIPS (21.46 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:10000000    cycles:20515897    seconds:466   -- 0.43 IPC (0.49 IPC) -- 19.23 KIPS (21.46 KIPS)
+src/trace_read.cc:1447: (I=171  C=21040307):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=21040944):  ACC 2 halted after 1271536 cycles
+src/trace_read.cc:1447: (I=171  C=22313401):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=22314115):  ACC 2 halted after 1273171 cycles
+** Heartbeat for core[2]:        insts:11000000    cycles:22882934    seconds:519   -- 0.42 IPC (0.48 IPC) -- 18.87 KIPS (21.19 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:11000000    cycles:22882934    seconds:519   -- 0.42 IPC (0.48 IPC) -- 18.87 KIPS (21.19 KIPS)
+src/trace_read.cc:1447: (I=171  C=23581634):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=23582332):  ACC 2 halted after 1268217 cycles
+src/trace_read.cc:1447: (I=171  C=24855557):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=24856256):  ACC 2 halted after 1273924 cycles
+** Heartbeat for core[2]:        insts:12000000    cycles:25251136    seconds:571   -- 0.42 IPC (0.48 IPC) -- 19.23 KIPS (21.02 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:12000000    cycles:25251136    seconds:571   -- 0.42 IPC (0.48 IPC) -- 19.23 KIPS (21.02 KIPS)
+src/trace_read.cc:1447: (I=171  C=26126970):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=26127617):  ACC 2 halted after 1271361 cycles
+src/trace_read.cc:1447: (I=171  C=27396694):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=27397352):  ACC 2 halted after 1269735 cycles
+** Heartbeat for core[2]:        insts:13000000    cycles:27609471    seconds:623   -- 0.42 IPC (0.47 IPC) -- 19.23 KIPS (20.87 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:13000000    cycles:27609471    seconds:623   -- 0.42 IPC (0.47 IPC) -- 19.23 KIPS (20.87 KIPS)
+src/trace_read.cc:1447: (I=171  C=28667824):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=28668571):  ACC 2 halted after 1271219 cycles
+** Heartbeat for core[2]:        insts:14000000    cycles:29877715    seconds:675   -- 0.44 IPC (0.47 IPC) -- 19.23 KIPS (20.74 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:14000000    cycles:29877715    seconds:675   -- 0.44 IPC (0.47 IPC) -- 19.23 KIPS (20.74 KIPS)
+src/trace_read.cc:1447: (I=171  C=29941269):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=29941950):  ACC 2 halted after 1273379 cycles
+src/trace_read.cc:1447: (I=171  C=31209963):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=31210599):  ACC 2 halted after 1268649 cycles
+** Heartbeat for core[2]:        insts:15000000    cycles:32235905    seconds:727   -- 0.42 IPC (0.47 IPC) -- 19.23 KIPS (20.63 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:15000000    cycles:32235905    seconds:727   -- 0.42 IPC (0.47 IPC) -- 19.23 KIPS (20.63 KIPS)
+src/trace_read.cc:1447: (I=171  C=32480373):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=32480989):  ACC 2 halted after 1270390 cycles
+src/trace_read.cc:1447: (I=171  C=33754205):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=33754982):  ACC 2 halted after 1273993 cycles
+** Heartbeat for core[2]:        insts:16000000    cycles:34589385    seconds:779   -- 0.42 IPC (0.46 IPC) -- 19.23 KIPS (20.54 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:16000000    cycles:34589385    seconds:779   -- 0.42 IPC (0.46 IPC) -- 19.23 KIPS (20.54 KIPS)
+src/trace_read.cc:1447: (I=171  C=35023752):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=35024423):  ACC 2 halted after 1269441 cycles
+src/trace_read.cc:1447: (I=171  C=36294429):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=36295064):  ACC 2 halted after 1270641 cycles
+** Heartbeat for core[2]:        insts:17000000    cycles:36951439    seconds:831   -- 0.42 IPC (0.46 IPC) -- 19.23 KIPS (20.46 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:17000000    cycles:36951439    seconds:831   -- 0.42 IPC (0.46 IPC) -- 19.23 KIPS (20.46 KIPS)
+src/trace_read.cc:1447: (I=171  C=37567995):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=37568665):  ACC 2 halted after 1273601 cycles
+src/trace_read.cc:1447: (I=171  C=38835968):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=38836613):  ACC 2 halted after 1267948 cycles
+** Heartbeat for core[2]:        insts:18000000    cycles:39326358    seconds:884   -- 0.42 IPC (0.46 IPC) -- 18.87 KIPS (20.36 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:18000000    cycles:39326358    seconds:884   -- 0.42 IPC (0.46 IPC) -- 18.87 KIPS (20.36 KIPS)
+src/trace_read.cc:1447: (I=171  C=40108515):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=40109190):  ACC 2 halted after 1272577 cycles
+src/trace_read.cc:1447: (I=171  C=41379516):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=41380278):  ACC 2 halted after 1271088 cycles
+** Heartbeat for core[2]:        insts:19000000    cycles:41691231    seconds:937   -- 0.42 IPC (0.46 IPC) -- 18.87 KIPS (20.28 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:19000000    cycles:41691231    seconds:937   -- 0.42 IPC (0.46 IPC) -- 18.87 KIPS (20.28 KIPS)
+src/trace_read.cc:1447: (I=171  C=42648316):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=42648935):  ACC 2 halted after 1268657 cycles
+src/trace_read.cc:1447: (I=171  C=43922180):  Core 2 got acc_window_delim marker
+src/core.cc:450: (I=171  C=43922867):  ACC 2 halted after 1273932 cycles
+** Heartbeat for core[2]:        insts:20000100    cycles:44043933    seconds:989   -- 0.43 IPC (0.45 IPC) -- 19.23 KIPS (20.22 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:20000100    cycles:44043933    seconds:989   -- 0.43 IPC (0.45 IPC) -- 19.23 KIPS (20.22 KIPS)
+src/trace_read.cc:1435: (I=171  C=45021859):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=171  C=45022669):  ACC 2 halted after 1099802 cycles
+src/trace_read.cc:1435: (I=171  C=45022680):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=203  C=45023067):  CPU halted after 397 cycles
+src/trace_read.cc:1447: (I=203  C=45312838):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=45313432):  ACC 3 halted after 290365 cycles
+src/trace_read.cc:1447: (I=203  C=45563353):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=45563912):  ACC 3 halted after 250480 cycles
+src/trace_read.cc:1447: (I=203  C=45812777):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=45813336):  ACC 3 halted after 249424 cycles
+src/trace_read.cc:1447: (I=203  C=46062204):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=46062760):  ACC 3 halted after 249424 cycles
+src/trace_read.cc:1447: (I=203  C=46309579):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=46310072):  ACC 3 halted after 247312 cycles
+src/trace_read.cc:1447: (I=203  C=46557912):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=46558440):  ACC 3 halted after 248368 cycles
+src/trace_read.cc:1447: (I=203  C=46805229):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=46805752):  ACC 3 halted after 247312 cycles
+src/trace_read.cc:1447: (I=203  C=47052538):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=47053064):  ACC 3 halted after 247312 cycles
+** Heartbeat for core[3]:        insts:1000000     cycles:47250611    seconds:1043  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.96 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:47250611    seconds:1043  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.96 KIPS)
+src/trace_read.cc:1447: (I=203  C=47301960):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=47302488):  ACC 3 halted after 249424 cycles
+src/trace_read.cc:1447: (I=203  C=47551346):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=47551912):  ACC 3 halted after 249424 cycles
+src/trace_read.cc:1447: (I=203  C=47802823):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=47803448):  ACC 3 halted after 251536 cycles
+src/trace_read.cc:1447: (I=203  C=48049237):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=48049704):  ACC 3 halted after 246256 cycles
+src/trace_read.cc:1447: (I=203  C=48295460):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=203  C=48295960):  ACC 3 halted after 246256 cycles
+src/trace_read.cc:1435: (I=203  C=48410486):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=203  C=48411144):  ACC 3 halted after 115184 cycles
+src/trace_read.cc:1435: (I=203  C=48411150):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=217  C=48411309):  CPU halted after 164 cycles
+src/trace_read.cc:1447: (I=217  C=48640680):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=48640972):  ACC 4 halted after 229663 cycles
+src/trace_read.cc:1447: (I=217  C=48891100):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=48891458):  ACC 4 halted after 250486 cycles
+src/trace_read.cc:1447: (I=217  C=49140110):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=49140468):  ACC 4 halted after 249010 cycles
+src/trace_read.cc:1447: (I=217  C=49388484):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=49388842):  ACC 4 halted after 248374 cycles
+src/trace_read.cc:1447: (I=217  C=49636396):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=49636754):  ACC 4 halted after 247912 cycles
+** Heartbeat for core[4]:        insts:1000000     cycles:49743959    seconds:1077  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.93 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:1000000     cycles:49743959    seconds:1077  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.93 KIPS)
+src/trace_read.cc:1447: (I=217  C=49885826):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=49886184):  ACC 4 halted after 249430 cycles
+src/trace_read.cc:1447: (I=217  C=50132556):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=50132914):  ACC 4 halted after 246730 cycles
+src/trace_read.cc:1447: (I=217  C=50379433):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=50379791):  ACC 4 halted after 246877 cycles
+src/trace_read.cc:1447: (I=217  C=50628863):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=50629221):  ACC 4 halted after 249430 cycles
+src/trace_read.cc:1447: (I=217  C=50878293):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=50878651):  ACC 4 halted after 249430 cycles
+** Heartbeat for core[4]:        insts:2000000     cycles:51061246    seconds:1095  -- 0.76 IPC (0.04 IPC) -- 55.56 KIPS (1.83 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:2000000     cycles:51061246    seconds:1095  -- 0.76 IPC (0.04 IPC) -- 55.56 KIPS (1.83 KIPS)
+src/trace_read.cc:1447: (I=217  C=51130219):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=51130577):  ACC 4 halted after 251926 cycles
+src/trace_read.cc:1447: (I=217  C=51375425):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=51375783):  ACC 4 halted after 245206 cycles
+src/trace_read.cc:1447: (I=217  C=51620043):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=217  C=51620380):  ACC 4 halted after 244597 cycles
+src/trace_read.cc:1435: (I=217  C=51786401):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=217  C=51786693):  ACC 4 halted after 166313 cycles
+src/trace_read.cc:1435: (I=277  C=51787216):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=335  C=51787297):  CPU halted after 603 cycles
+src/trace_read.cc:1447: (I=335  C=52459487):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=52460394):  ACC 5 halted after 673097 cycles
+src/trace_read.cc:1447: (I=335  C=53227221):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=53228222):  ACC 5 halted after 767828 cycles
+src/trace_read.cc:1447: (I=335  C=53751091):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=53751270):  ACC 5 halted after 523048 cycles
+** Heartbeat for core[5]:        insts:1000000     cycles:53899690    seconds:1153  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.87 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:1000000     cycles:53899690    seconds:1153  -- 0.02 IPC (0.02 IPC) -- 0.00 KIPS (0.87 KIPS)
+src/trace_read.cc:1447: (I=335  C=53910787):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=53910967):  ACC 5 halted after 159697 cycles
+src/trace_read.cc:1447: (I=335  C=54069413):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=54069590):  ACC 5 halted after 158623 cycles
+src/trace_read.cc:1447: (I=335  C=54229475):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=54229655):  ACC 5 halted after 160065 cycles
+src/trace_read.cc:1447: (I=335  C=54388101):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=54388278):  ACC 5 halted after 158623 cycles
+** Heartbeat for core[5]:        insts:2000000     cycles:54529866    seconds:1163  -- 1.59 IPC (0.04 IPC) -- 100.00 KIPS (1.72 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:2000000     cycles:54529866    seconds:1163  -- 1.59 IPC (0.04 IPC) -- 100.00 KIPS (1.72 KIPS)
+src/trace_read.cc:1447: (I=335  C=54547085):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=54547263):  ACC 5 halted after 158985 cycles
+src/trace_read.cc:1447: (I=335  C=54706783):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=54706960):  ACC 5 halted after 159697 cycles
+src/trace_read.cc:1447: (I=335  C=54865405):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=54865583):  ACC 5 halted after 158623 cycles
+src/trace_read.cc:1447: (I=335  C=55025466):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=55025643):  ACC 5 halted after 160060 cycles
+** Heartbeat for core[5]:        insts:3000000     cycles:55158409    seconds:1174  -- 1.59 IPC (0.05 IPC) -- 90.91 KIPS (2.56 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:3000000     cycles:55158409    seconds:1174  -- 1.59 IPC (0.05 IPC) -- 90.91 KIPS (2.56 KIPS)
+src/trace_read.cc:1447: (I=335  C=55184090):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=55184266):  ACC 5 halted after 158623 cycles
+src/trace_read.cc:1447: (I=335  C=55343067):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=55343246):  ACC 5 halted after 158980 cycles
+src/trace_read.cc:1447: (I=335  C=55502763):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=55502943):  ACC 5 halted after 159697 cycles
+src/trace_read.cc:1447: (I=335  C=55661387):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=55661566):  ACC 5 halted after 158623 cycles
+** Heartbeat for core[5]:        insts:4000000     cycles:55787434    seconds:1184  -- 1.59 IPC (0.07 IPC) -- 100.00 KIPS (3.38 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:4000000     cycles:55787434    seconds:1184  -- 1.59 IPC (0.07 IPC) -- 100.00 KIPS (3.38 KIPS)
+src/trace_read.cc:1447: (I=335  C=55821393):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=55821631):  ACC 5 halted after 160065 cycles
+src/trace_read.cc:1447: (I=335  C=55980076):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=55980254):  ACC 5 halted after 158623 cycles
+src/trace_read.cc:1447: (I=335  C=56139056):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=56139234):  ACC 5 halted after 158980 cycles
+src/trace_read.cc:1447: (I=335  C=56298693):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=56298931):  ACC 5 halted after 159697 cycles
+** Heartbeat for core[5]:        insts:5000000     cycles:56416187    seconds:1194  -- 1.59 IPC (0.09 IPC) -- 100.00 KIPS (4.19 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:5000000     cycles:56416187    seconds:1194  -- 1.59 IPC (0.09 IPC) -- 100.00 KIPS (4.19 KIPS)
+src/trace_read.cc:1447: (I=335  C=56457405):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=56457584):  ACC 5 halted after 158653 cycles
+src/trace_read.cc:1447: (I=335  C=56617407):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=56617645):  ACC 5 halted after 160061 cycles
+src/trace_read.cc:1447: (I=335  C=56776091):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=56776268):  ACC 5 halted after 158623 cycles
+src/trace_read.cc:1447: (I=335  C=56935077):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=56935253):  ACC 5 halted after 158985 cycles
+** Heartbeat for core[5]:        insts:6000000     cycles:57045513    seconds:1205  -- 1.59 IPC (0.11 IPC) -- 90.91 KIPS (4.98 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:6000000     cycles:57045513    seconds:1205  -- 1.59 IPC (0.11 IPC) -- 90.91 KIPS (4.98 KIPS)
+src/trace_read.cc:1447: (I=335  C=57094712):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=57094950):  ACC 5 halted after 159697 cycles
+src/trace_read.cc:1447: (I=335  C=57253397):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=57253573):  ACC 5 halted after 158623 cycles
+src/trace_read.cc:1447: (I=335  C=57879100):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=57880040):  ACC 5 halted after 626467 cycles
+src/trace_read.cc:1447: (I=335  C=58637627):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=58638668):  ACC 5 halted after 758628 cycles
+** Heartbeat for core[5]:        insts:7000000     cycles:59145154    seconds:1253  -- 0.48 IPC (0.12 IPC) -- 20.83 KIPS (5.59 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:7000000     cycles:59145154    seconds:1253  -- 0.48 IPC (0.12 IPC) -- 20.83 KIPS (5.59 KIPS)
+src/trace_read.cc:1447: (I=335  C=59396513):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=59397613):  ACC 5 halted after 758945 cycles
+src/trace_read.cc:1447: (I=335  C=60159572):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=60160609):  ACC 5 halted after 762996 cycles
+src/trace_read.cc:1447: (I=335  C=60926260):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=60927335):  ACC 5 halted after 766726 cycles
+src/trace_read.cc:1447: (I=335  C=61695957):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=61697054):  ACC 5 halted after 769719 cycles
+** Heartbeat for core[5]:        insts:8000000     cycles:62159058    seconds:1324  -- 0.33 IPC (0.13 IPC) -- 14.08 KIPS (6.04 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:8000000     cycles:62159058    seconds:1324  -- 0.33 IPC (0.13 IPC) -- 14.08 KIPS (6.04 KIPS)
+src/trace_read.cc:1447: (I=335  C=62454800):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=62455858):  ACC 5 halted after 758804 cycles
+src/trace_read.cc:1447: (I=335  C=63215575):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=63216732):  ACC 5 halted after 760874 cycles
+src/trace_read.cc:1447: (I=335  C=63982485):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=63983584):  ACC 5 halted after 766852 cycles
+src/trace_read.cc:1447: (I=335  C=64750858):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=64751925):  ACC 5 halted after 768341 cycles
+** Heartbeat for core[5]:        insts:9000000     cycles:65182417    seconds:1395  -- 0.33 IPC (0.14 IPC) -- 14.08 KIPS (6.45 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:9000000     cycles:65182417    seconds:1395  -- 0.33 IPC (0.14 IPC) -- 14.08 KIPS (6.45 KIPS)
+src/trace_read.cc:1447: (I=335  C=65516735):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=65517838):  ACC 5 halted after 765913 cycles
+src/trace_read.cc:1447: (I=335  C=66276343):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=66277413):  ACC 5 halted after 759575 cycles
+src/trace_read.cc:1447: (I=335  C=67038025):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=67039112):  ACC 5 halted after 761699 cycles
+src/trace_read.cc:1447: (I=335  C=67809569):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=67810604):  ACC 5 halted after 771492 cycles
+** Heartbeat for core[5]:        insts:10000000    cycles:68210440    seconds:1466  -- 0.33 IPC (0.15 IPC) -- 14.08 KIPS (6.82 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:10000000    cycles:68210440    seconds:1466  -- 0.33 IPC (0.15 IPC) -- 14.08 KIPS (6.82 KIPS)
+src/trace_read.cc:1447: (I=335  C=68574667):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=68575489):  ACC 5 halted after 764885 cycles
+src/trace_read.cc:1447: (I=335  C=69338903):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=69339913):  ACC 5 halted after 764424 cycles
+src/trace_read.cc:1447: (I=335  C=70098586):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=70099653):  ACC 5 halted after 759740 cycles
+src/trace_read.cc:1447: (I=335  C=70860848):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=70861778):  ACC 5 halted after 762125 cycles
+** Heartbeat for core[5]:        insts:11000000    cycles:71221356    seconds:1537  -- 0.33 IPC (0.15 IPC) -- 14.08 KIPS (7.16 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:11000000    cycles:71221356    seconds:1537  -- 0.33 IPC (0.15 IPC) -- 14.08 KIPS (7.16 KIPS)
+src/trace_read.cc:1447: (I=335  C=71625147):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=71626164):  ACC 5 halted after 764386 cycles
+src/trace_read.cc:1447: (I=335  C=72383415):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=72384486):  ACC 5 halted after 758322 cycles
+src/trace_read.cc:1447: (I=335  C=73143421):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=73144431):  ACC 5 halted after 759945 cycles
+src/trace_read.cc:1447: (I=335  C=73894307):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=73895374):  ACC 5 halted after 750943 cycles
+** Heartbeat for core[5]:        insts:12000000    cycles:74183172    seconds:1606  -- 0.34 IPC (0.16 IPC) -- 14.49 KIPS (7.47 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:12000000    cycles:74183172    seconds:1606  -- 0.34 IPC (0.16 IPC) -- 14.49 KIPS (7.47 KIPS)
+src/trace_read.cc:1447: (I=335  C=74649080):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=74649932):  ACC 5 halted after 754558 cycles
+src/trace_read.cc:1447: (I=335  C=75405079):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=75406114):  ACC 5 halted after 756182 cycles
+src/trace_read.cc:1447: (I=335  C=76157153):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=76158279):  ACC 5 halted after 752165 cycles
+src/trace_read.cc:1447: (I=335  C=76914366):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=76915205):  ACC 5 halted after 756926 cycles
+** Heartbeat for core[5]:        insts:13000000    cycles:77148345    seconds:1675  -- 0.34 IPC (0.17 IPC) -- 14.49 KIPS (7.76 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:13000000    cycles:77148345    seconds:1675  -- 0.34 IPC (0.17 IPC) -- 14.49 KIPS (7.76 KIPS)
+src/trace_read.cc:1447: (I=335  C=77667165):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=77668071):  ACC 5 halted after 752866 cycles
+src/trace_read.cc:1447: (I=335  C=78422320):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=78423220):  ACC 5 halted after 755149 cycles
+src/trace_read.cc:1447: (I=335  C=79191893):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=79192773):  ACC 5 halted after 769553 cycles
+src/trace_read.cc:1447: (I=335  C=79950789):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=79951731):  ACC 5 halted after 758958 cycles
+** Heartbeat for core[5]:        insts:14000000    cycles:80085712    seconds:1743  -- 0.34 IPC (0.17 IPC) -- 14.71 KIPS (8.03 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:14000000    cycles:80085712    seconds:1743  -- 0.34 IPC (0.17 IPC) -- 14.71 KIPS (8.03 KIPS)
+src/trace_read.cc:1447: (I=335  C=80711227):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=80712237):  ACC 5 halted after 760506 cycles
+src/trace_read.cc:1447: (I=335  C=81463847):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=81464794):  ACC 5 halted after 752557 cycles
+src/trace_read.cc:1447: (I=335  C=82221610):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=82222615):  ACC 5 halted after 757821 cycles
+src/trace_read.cc:1447: (I=335  C=82988549):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=82989562):  ACC 5 halted after 766947 cycles
+** Heartbeat for core[5]:        insts:15000000    cycles:83051143    seconds:1812  -- 0.34 IPC (0.18 IPC) -- 14.49 KIPS (8.28 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:15000000    cycles:83051143    seconds:1812  -- 0.34 IPC (0.18 IPC) -- 14.49 KIPS (8.28 KIPS)
+src/trace_read.cc:1447: (I=335  C=83748475):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=83749542):  ACC 5 halted after 759980 cycles
+src/trace_read.cc:1447: (I=335  C=84506320):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=84507330):  ACC 5 halted after 757788 cycles
+src/trace_read.cc:1447: (I=335  C=85262351):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=85263221):  ACC 5 halted after 755891 cycles
+src/trace_read.cc:1447: (I=335  C=86024849):  Core 5 got acc_window_delim marker
+** Heartbeat for core[5]:        insts:16000000    cycles:86022440    seconds:1881  -- 0.34 IPC (0.19 IPC) -- 14.49 KIPS (8.51 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:16000000    cycles:86022440    seconds:1881  -- 0.34 IPC (0.19 IPC) -- 14.49 KIPS (8.51 KIPS)
+src/core.cc:450: (I=335  C=86025701):  ACC 5 halted after 762480 cycles
+src/trace_read.cc:1447: (I=335  C=86783602):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=86784642):  ACC 5 halted after 758941 cycles
+src/trace_read.cc:1447: (I=335  C=87535672):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=87536713):  ACC 5 halted after 752071 cycles
+src/trace_read.cc:1447: (I=335  C=88294716):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=88295765):  ACC 5 halted after 759052 cycles
+** Heartbeat for core[5]:        insts:17000100    cycles:89004052    seconds:1951  -- 0.34 IPC (0.19 IPC) -- 14.29 KIPS (8.71 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:17000100    cycles:89004052    seconds:1951  -- 0.34 IPC (0.19 IPC) -- 14.29 KIPS (8.71 KIPS)
+src/trace_read.cc:1447: (I=335  C=89063443):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=89064518):  ACC 5 halted after 768753 cycles
+src/trace_read.cc:1447: (I=335  C=89836049):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=89836949):  ACC 5 halted after 772431 cycles
+src/trace_read.cc:1447: (I=335  C=90601926):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=90602758):  ACC 5 halted after 765809 cycles
+src/trace_read.cc:1447: (I=335  C=91365580):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=91366516):  ACC 5 halted after 763758 cycles
+** Heartbeat for core[5]:        insts:18000000    cycles:92005705    seconds:2020  -- 0.33 IPC (0.20 IPC) -- 14.49 KIPS (8.91 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:18000000    cycles:92005705    seconds:2020  -- 0.33 IPC (0.20 IPC) -- 14.49 KIPS (8.91 KIPS)
+src/trace_read.cc:1447: (I=335  C=92136961):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=92137846):  ACC 5 halted after 771330 cycles
+src/trace_read.cc:1447: (I=335  C=92908258):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=92909299):  ACC 5 halted after 771453 cycles
+src/trace_read.cc:1447: (I=335  C=93677213):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=93678297):  ACC 5 halted after 768998 cycles
+src/trace_read.cc:1447: (I=335  C=94442884):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=94443925):  ACC 5 halted after 765628 cycles
+** Heartbeat for core[5]:        insts:19000000    cycles:95010566    seconds:2089  -- 0.33 IPC (0.20 IPC) -- 14.49 KIPS (9.10 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:19000000    cycles:95010566    seconds:2089  -- 0.33 IPC (0.20 IPC) -- 14.49 KIPS (9.10 KIPS)
+src/trace_read.cc:1447: (I=335  C=95204338):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=95205210):  ACC 5 halted after 761285 cycles
+src/trace_read.cc:1447: (I=335  C=95978001):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=95979040):  ACC 5 halted after 773830 cycles
+src/trace_read.cc:1447: (I=335  C=96750668):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=96751493):  ACC 5 halted after 772453 cycles
+src/trace_read.cc:1447: (I=335  C=97516175):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=97517273):  ACC 5 halted after 765780 cycles
+** Heartbeat for core[5]:        insts:20000000    cycles:98004678    seconds:2159  -- 0.33 IPC (0.20 IPC) -- 14.29 KIPS (9.26 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:20000000    cycles:98004678    seconds:2159  -- 0.33 IPC (0.20 IPC) -- 14.29 KIPS (9.26 KIPS)
+src/trace_read.cc:1447: (I=335  C=98283318):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=98284287):  ACC 5 halted after 767014 cycles
+src/trace_read.cc:1447: (I=335  C=99045596):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=99046663):  ACC 5 halted after 762376 cycles
+src/trace_read.cc:1447: (I=335  C=99814449):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=99815385):  ACC 5 halted after 768722 cycles
+src/trace_read.cc:1447: (I=335  C=100577960):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=100578896):  ACC 5 halted after 763511 cycles
+** Heartbeat for core[5]:        insts:21000000    cycles:100981209   seconds:2228  -- 0.34 IPC (0.21 IPC) -- 14.49 KIPS (9.43 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:21000000    cycles:100981209   seconds:2228  -- 0.34 IPC (0.21 IPC) -- 14.49 KIPS (9.43 KIPS)
+src/trace_read.cc:1447: (I=335  C=101340628):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=101341659):  ACC 5 halted after 762763 cycles
+src/trace_read.cc:1447: (I=335  C=102105572):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=102106597):  ACC 5 halted after 764938 cycles
+src/trace_read.cc:1447: (I=335  C=102865413):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=102866322):  ACC 5 halted after 759725 cycles
+src/trace_read.cc:1447: (I=335  C=103630470):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=103631440):  ACC 5 halted after 765118 cycles
+** Heartbeat for core[5]:        insts:22000000    cycles:103955374   seconds:2296  -- 0.34 IPC (0.21 IPC) -- 14.71 KIPS (9.58 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:22000000    cycles:103955374   seconds:2296  -- 0.34 IPC (0.21 IPC) -- 14.71 KIPS (9.58 KIPS)
+src/trace_read.cc:1447: (I=335  C=104393795):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=104394660):  ACC 5 halted after 763220 cycles
+src/trace_read.cc:1447: (I=335  C=105155116):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=105156020):  ACC 5 halted after 761360 cycles
+src/trace_read.cc:1447: (I=335  C=105914349):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=105915293):  ACC 5 halted after 759273 cycles
+src/trace_read.cc:1447: (I=335  C=106669604):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=106670605):  ACC 5 halted after 755312 cycles
+** Heartbeat for core[5]:        insts:23000000    cycles:106910872   seconds:2364  -- 0.34 IPC (0.22 IPC) -- 14.71 KIPS (9.73 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:23000000    cycles:106910872   seconds:2364  -- 0.34 IPC (0.22 IPC) -- 14.71 KIPS (9.73 KIPS)
+src/trace_read.cc:1447: (I=335  C=107432621):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=107433716):  ACC 5 halted after 763111 cycles
+src/trace_read.cc:1447: (I=335  C=108193537):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=108194538):  ACC 5 halted after 760822 cycles
+src/trace_read.cc:1447: (I=335  C=108952662):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=108953601):  ACC 5 halted after 759063 cycles
+src/trace_read.cc:1447: (I=335  C=109711103):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=109712073):  ACC 5 halted after 758472 cycles
+** Heartbeat for core[5]:        insts:24000000    cycles:109882623   seconds:2433  -- 0.34 IPC (0.22 IPC) -- 14.49 KIPS (9.86 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:24000000    cycles:109882623   seconds:2433  -- 0.34 IPC (0.22 IPC) -- 14.49 KIPS (9.86 KIPS)
+src/trace_read.cc:1447: (I=335  C=110464817):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=110465727):  ACC 5 halted after 753654 cycles
+src/trace_read.cc:1447: (I=335  C=111224566):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=111225510):  ACC 5 halted after 759783 cycles
+src/trace_read.cc:1447: (I=335  C=111980715):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=111981576):  ACC 5 halted after 756066 cycles
+src/trace_read.cc:1447: (I=335  C=112736294):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=112737146):  ACC 5 halted after 755570 cycles
+** Heartbeat for core[5]:        insts:25000000    cycles:112849493   seconds:2501  -- 0.34 IPC (0.22 IPC) -- 14.71 KIPS (10.00 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:25000000    cycles:112849493   seconds:2501  -- 0.34 IPC (0.22 IPC) -- 14.71 KIPS (10.00 KIPS)
+src/trace_read.cc:1447: (I=335  C=113499535):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=113500374):  ACC 5 halted after 763228 cycles
+src/trace_read.cc:1447: (I=335  C=114260037):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=114261163):  ACC 5 halted after 760789 cycles
+src/trace_read.cc:1447: (I=335  C=115026511):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=115027393):  ACC 5 halted after 766230 cycles
+src/trace_read.cc:1447: (I=335  C=115787033):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=115788034):  ACC 5 halted after 760641 cycles
+** Heartbeat for core[5]:        insts:26000000    cycles:115858377   seconds:2569  -- 0.33 IPC (0.22 IPC) -- 14.71 KIPS (10.12 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:26000000    cycles:115858377   seconds:2569  -- 0.33 IPC (0.22 IPC) -- 14.71 KIPS (10.12 KIPS)
+src/trace_read.cc:1447: (I=335  C=116553557):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=116554389):  ACC 5 halted after 766355 cycles
+src/trace_read.cc:1447: (I=335  C=117327945):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=117328921):  ACC 5 halted after 774532 cycles
+src/trace_read.cc:1447: (I=335  C=118097451):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=118098366):  ACC 5 halted after 769445 cycles
+** Heartbeat for core[5]:        insts:27000000    cycles:118847111   seconds:2639  -- 0.33 IPC (0.23 IPC) -- 14.29 KIPS (10.23 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:27000000    cycles:118847111   seconds:2639  -- 0.33 IPC (0.23 IPC) -- 14.29 KIPS (10.23 KIPS)
+src/trace_read.cc:1447: (I=335  C=118865573):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=118866546):  ACC 5 halted after 768180 cycles
+src/trace_read.cc:1447: (I=335  C=119626877):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=119627640):  ACC 5 halted after 761094 cycles
+src/trace_read.cc:1447: (I=335  C=120390649):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=120391530):  ACC 5 halted after 763890 cycles
+src/trace_read.cc:1447: (I=335  C=121166321):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=121167201):  ACC 5 halted after 775671 cycles
+** Heartbeat for core[5]:        insts:28000000    cycles:121862763   seconds:2707  -- 0.33 IPC (0.23 IPC) -- 14.71 KIPS (10.34 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:28000000    cycles:121862763   seconds:2707  -- 0.33 IPC (0.23 IPC) -- 14.71 KIPS (10.34 KIPS)
+src/trace_read.cc:1447: (I=335  C=121933317):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=121934445):  ACC 5 halted after 767244 cycles
+src/trace_read.cc:1447: (I=335  C=122693673):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=122694708):  ACC 5 halted after 760263 cycles
+src/trace_read.cc:1447: (I=335  C=123452545):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=123453626):  ACC 5 halted after 758918 cycles
+src/trace_read.cc:1447: (I=335  C=124221575):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=124222551):  ACC 5 halted after 768925 cycles
+** Heartbeat for core[5]:        insts:29000000    cycles:124849251   seconds:2774  -- 0.33 IPC (0.23 IPC) -- 14.93 KIPS (10.45 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:29000000    cycles:124849251   seconds:2774  -- 0.33 IPC (0.23 IPC) -- 14.93 KIPS (10.45 KIPS)
+src/trace_read.cc:1447: (I=335  C=124997839):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=335  C=124998719):  ACC 5 halted after 776168 cycles
+src/trace_read.cc:1435: (I=335  C=125598146):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=335  C=125598969):  ACC 5 halted after 600250 cycles
+**Core 0 Thread 0 Finished:   insts:385         cycles:125599612   seconds:2792  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
+**Core 0 Core_Total  Finished:   insts:385         cycles:125599612   seconds:2792  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
+Deleting system...
+Deleting system done
+Deleting event queue...
+Deleting event queue done
+src/macsim.cc:496: (I=385  C=125599613):  finalize simulation
+src/macsim.cc:502: (I=385  C=125599613):  elapsed time:2792.4 seconds
