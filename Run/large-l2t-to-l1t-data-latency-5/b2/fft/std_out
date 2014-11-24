@@ -1,0 +1,2042 @@
+src/macsim.cc:149: (I=0  C=0):  initialize knobs
+number of cores8
+src/macsim.cc:395: (I=0  C=0):  initialize simulation
+src/memory.cc:1330: (I=0  C=0):  Memory system(no_cache) has been initialized.
+error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_DRAM_SIZE_PER_CONTROLLER" not found. unable to set value.
+error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_PF_NUM_STREAMS" not found. unable to set value.
+error: in fn int confio_t::applyConfiguration(attr_value_t*) in ../common/ioutil/confio.C:470: error: "g_PF_TRAIN" not found. unable to set value.
+Ruby Timing Mode
+Creating event queue...
+Creating event queue done
+Creating system...
+  Processors: 8
+CONTROL_MESSAGE_SIZE=8
+DATA_MESSAGE_SIZE=32
+Creating system done
+Ruby initialization complete
+
+================ Begin System Configuration Print ================
+
+Ruby Configuration
+------------------
+protocol: Fusion
+compiled_at: 19:31:35, Nov 22 2014
+RUBY_DEBUG: false
+hostname: cs-amoeba-n4
+g_RANDOM_SEED: 1
+g_YAO_DRIVER: 2
+g_DEADLOCK_THRESHOLD: 500000
+RANDOMIZATION: false
+g_SYNTHETIC_DRIVER: false
+g_DETERMINISTIC_DRIVER: false
+g_FILTERING_ENABLED: false
+g_DISTRIBUTED_PERSISTENT_ENABLED: true
+g_DYNAMIC_TIMEOUT_ENABLED: true
+g_RETRY_THRESHOLD: 1
+g_FIXED_TIMEOUT_LATENCY: 300
+g_trace_warmup_length: 1000000
+g_bash_bandwidth_adaptive_threshold: 0.75
+g_tester_length: 0
+g_synthetic_locks: 2048
+g_deterministic_addrs: 1
+g_SpecifiedGenerator: DetermInvGenerator
+g_callback_counter: 0
+g_NUM_COMPLETIONS_BEFORE_PASS: 0
+g_NUM_SMT_THREADS: 1
+g_think_time: 5
+g_hold_time: 5
+g_wait_time: 5
+PROTOCOL_DEBUG_TRACE: true
+DEBUG_FILTER_STRING: lq
+DEBUG_VERBOSITY_STRING: high
+DEBUG_START_TIME: 1
+DEBUG_OUTPUT_FILENAME: /dev/null
+SIMICS_RUBY_MULTIPLIER: 4
+OPAL_RUBY_MULTIPLIER: 1
+TRANSACTION_TRACE_ENABLED: true
+USER_MODE_DATA_ONLY: false
+PROFILE_HOT_LINES: false
+PROFILE_ALL_INSTRUCTIONS: false
+PRINT_INSTRUCTION_TRACE: false
+g_DEBUG_CYCLE: 0
+BLOCK_STC: false
+PERFECT_MEMORY_SYSTEM: false
+PERFECT_MEMORY_SYSTEM_LATENCY: 0
+DATA_BLOCK: false
+REMOVE_SINGLE_CYCLE_DCACHE_FAST_PATH: true
+g_SIMICS: false
+L1_CACHE_ASSOC: 8
+L1_CACHE_NUM_SETS_BITS: 8
+L2_CACHE_ASSOC: 16
+L2_CACHE_NUM_SETS_BITS: 11
+L2_DIRECTORY_ASSOC: 8
+L2_DIRECTORY_NUM_SETS_BITS: 9
+L1T_CACHE_NUM_SETS_BITS: 6
+L1T_CACHE_ASSOC: 4
+L2T_CACHE_NUM_SETS_BITS: 9
+L2T_CACHE_ASSOC: 16
+g_MEMORY_SIZE_BYTES: 281474976710656
+g_DATA_BLOCK_BYTES: 32
+g_PAGE_SIZE_BYTES: 4096
+g_REPLACEMENT_POLICY: LRU
+g_DATA_MESSAGE_SIZE: 32
+g_NUM_PROCESSORS: 8
+g_NUM_L2_BANKS: 4
+g_NUM_MEMORIES: 4
+g_PROCS_PER_CHIP: 8
+g_PROC_NUM_ACC: 2
+g_DMA_PROC: 1
+g_NUM_ACCS: 8
+g_ACCS_PER_CHIP: 8
+g_NUM_L2T_BANKS: 4
+g_NUM_CHIPS: 1
+g_NUM_CHIP_BITS: 0
+g_MEMORY_SIZE_BITS: 48
+g_DATA_BLOCK_BITS: 5
+g_PAGE_SIZE_BITS: 12
+g_NUM_PROCESSORS_BITS: 3
+g_PROCS_PER_CHIP_BITS: 3
+g_NUM_L2_BANKS_BITS: 2
+g_NUM_L2_BANKS_PER_CHIP_BITS: 2
+g_NUM_L2_BANKS_PER_CHIP: 4
+g_NUM_MEMORIES_BITS: 2
+g_NUM_MEMORIES_PER_CHIP: 4
+g_MEMORY_MODULE_BITS: 41
+g_MEMORY_MODULE_BLOCKS: 2199023255552
+g_NUM_ACCS_BITS: 3
+g_ACCS_PER_CHIP_BITS: 3
+g_NUM_L2T_BANKS_BITS: 2
+g_NUM_L2T_BANKS_PER_CHIP_BITS: 2
+g_NUM_L2T_BANKS_PER_CHIP: 4
+MAP_L2BANKS_TO_LOWEST_BITS: false
+L1_to_L2_MSG_LATENCY: 2
+L1_to_L2_DATA_LATENCY: 2
+L2_to_L1_MSG_LATENCY: 2
+L2_to_L1_DATA_LATENCY: 8
+L2T_to_L1T_DATA_LATENCY: 5
+L2_to_MEM_MSG_LATENCY: 100
+L2_to_MEM_DATA_LATENCY: 100
+MEM_to_L2_MSG_LATENCY: 200
+MEM_to_L2_DATA_LATENCY: 200
+DIRECTORY_CACHE_LATENCY: 6
+NULL_LATENCY: 1
+ISSUE_LATENCY: 2
+CACHE_RESPONSE_LATENCY: 12
+L2_RESPONSE_LATENCY: 6
+L2_TAG_LATENCY: 6
+L1_RESPONSE_LATENCY: 3
+MEMORY_RESPONSE_LATENCY_MINUS_2: 1
+DIRECTORY_LATENCY: 80
+NETWORK_LINK_LATENCY: 1
+COPY_HEAD_LATENCY: 4
+ON_CHIP_LINK_LATENCY: 1
+RECYCLE_LATENCY: 10
+L2_RECYCLE_LATENCY: 5
+TIMER_LATENCY: 10000
+TBE_RESPONSE_LATENCY: 1
+PERIODIC_TIMER_WAKEUPS: true
+PROFILE_EXCEPTIONS: false
+PROFILE_XACT: true
+PROFILE_NONXACT: false
+XACT_DEBUG: true
+XACT_DEBUG_LEVEL: 1
+XACT_MEMORY: false
+XACT_ENABLE_TOURMALINE: false
+XACT_NUM_CURRENT: 0
+XACT_LAST_UPDATE: 0
+XACT_ISOLATION_CHECK: false
+PERFECT_FILTER: true
+READ_WRITE_FILTER: Perfect_
+PERFECT_VIRTUAL_FILTER: true
+VIRTUAL_READ_WRITE_FILTER: Perfect_
+PERFECT_SUMMARY_FILTER: true
+SUMMARY_READ_WRITE_FILTER: Perfect_
+XACT_EAGER_CD: true
+XACT_LAZY_VM: false
+XACT_CONFLICT_RES: BASE
+XACT_VISUALIZER: false
+XACT_COMMIT_TOKEN_LATENCY: 0
+XACT_NO_BACKOFF: false
+XACT_LOG_BUFFER_SIZE: 0
+XACT_STORE_PREDICTOR_HISTORY: 256
+XACT_STORE_PREDICTOR_ENTRIES: 256
+XACT_STORE_PREDICTOR_THRESHOLD: 4
+XACT_FIRST_ACCESS_COST: 0
+XACT_FIRST_PAGE_ACCESS_COST: 0
+ENABLE_MAGIC_WAITING: false
+ENABLE_WATCHPOINT: false
+XACT_ENABLE_VIRTUALIZATION_LOGTM_SE: false
+ATMTP_ENABLED: false
+ATMTP_ABORT_ON_NON_XACT_INST: false
+ATMTP_ALLOW_SAVE_RESTORE_IN_XACT: false
+ATMTP_XACT_MAX_STORES: 32
+ATMTP_DEBUG_LEVEL: 0
+L1_REQUEST_LATENCY: 2
+L2_REQUEST_LATENCY: 4
+SINGLE_ACCESS_L2_BANKS: true
+SEQUENCER_TO_CONTROLLER_LATENCY: 4
+L1CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
+L2CACHE_TRANSITIONS_PER_RUBY_CYCLE: 32
+DIRECTORY_TRANSITIONS_PER_RUBY_CYCLE: 32
+g_SEQUENCER_OUTSTANDING_REQUESTS: 256
+NUMBER_OF_TBES: 128
+NUMBER_OF_L1_TBES: 128
+NUMBER_OF_L2_TBES: 256
+FINITE_BUFFERING: false
+FINITE_BUFFER_SIZE: 3
+PROCESSOR_BUFFER_SIZE: 10
+PROTOCOL_BUFFER_SIZE: 32
+TSO: false
+g_NETWORK_TOPOLOGY: ACC_NETWORK
+g_CACHE_DESIGN: FUSION
+g_endpoint_bandwidth: 10000
+g_adaptive_routing: false
+NUMBER_OF_VIRTUAL_NETWORKS: 8
+FAN_OUT_DEGREE: 4
+g_PRINT_TOPOLOGY: true
+g_PROCS_PER_CLUSTER: 4
+XACT_LENGTH: 0
+XACT_SIZE: 0
+ABORT_RETRY_TIME: 0
+g_GARNET_NETWORK: true
+g_DETAIL_NETWORK: true
+g_NETWORK_TESTING: false
+g_FLIT_SIZE: 8
+g_NUM_PIPE_STAGES: 4
+g_VCS_PER_CLASS: 4
+g_BUFFER_SIZE: 4
+MEM_BUS_CYCLE_MULTIPLIER: 10
+BANKS_PER_RANK: 8
+RANKS_PER_DIMM: 2
+DIMMS_PER_CHANNEL: 2
+BANK_BIT_0: 8
+RANK_BIT_0: 11
+DIMM_BIT_0: 12
+BANK_QUEUE_SIZE: 12
+BANK_BUSY_TIME: 11
+RANK_RANK_DELAY: 1
+READ_WRITE_DELAY: 2
+BASIC_BUS_BUSY_TIME: 2
+MEM_CTL_LATENCY: 12
+REFRESH_PERIOD: 1560
+TFAW: 0
+MEM_RANDOM_ARBITRATE: 0
+MEM_FIXED_DELAY: 0
+g_GMEM_SKIP_L1D: false
+WRITES_STALL_AT_MSHR: true
+CL_FIXED_LEASE: 1000
+CL_PREDICTOR_TYPE: 0
+CL_PREDICTOR_TYPE_FIXED: 0
+CL_PREDICTOR_TYPE_GLOBAL: 1
+CL_PREDICTOR_TYPE_PERL2: 2
+CL_PREDICTOR_TYPE_PCFIXED: 3
+CL_PREDICTOR_TYPE_PCADAPTIVE: 4
+CL_PREDICTOR_TYPE_ADDRFIXED: 5
+CL_PREDICTOR_TYPE_ORACLE: 6
+CL_PREDICTOR_TYPE_PCSAMPLER: 7
+CL_PRED_GLOBAL_WRITEUNEXPIRED_PENALTY: 0
+CL_PRED_GLOBAL_L2EVICT_PENALTY: 0
+CL_PRED_GLOBAL_EXPIREHIT_CREDIT: 0
+CL_PRED_PERL2_WRITEUNEXPIRED_PENALTY: 0
+CL_PRED_PERL2_L2EVICT_PENALTY: 0
+CL_PRED_PERL2_EXPIREHIT_CREDIT: 0
+CL_PRED_PCADAPTIVE_WRITEUNEXPIRED_PENALTY: 0
+CL_PRED_PCADAPTIVE_L2EVICT_PENALTY: 0
+CL_PRED_PCADAPTIVE_EXPIREHIT_CREDIT: 0
+CL_PRED_PCFIXED_INFILE: DUMMY
+CL_PRED_ADDRFIXED_INFILE: DUMMY
+LIFETIME_PROFILER_PERPC_OUTMODE: 0
+LIFETIME_PROFILER_PERPC_OUTFILE: DUMMY
+LIFETIME_PROFILER_PERADDR_OUTMODE: 0
+LIFETIME_PROFILER_PERADDR_OUTFILE: DUMMY
+LIFETIMETRACE_ENABLED: false
+LIFETIMETRACE_OUTFILE: DUMMY
+BENCHMARK_CONTAINS_MEMBAR: false
+
+Chip Config
+-----------
+Total_Chips: 1
+
+L1TCache_mandatoryQueue numberPerChip: 8
+
+L1TCache_sequencerT numberPerChip: 8
+SequencerT: SequencerT - SC
+  max_outstanding_requests: 256
+
+L1TCache_L1_TBEs numberPerChip: 8
+TBEs_per_TBETable: 128
+
+L1TCache_L1DcacheMemory numberPerChip: 8
+Cache config: L1TCache_0_L1D
+  cache_associativity: 4
+  num_cache_sets_bits: 6
+  num_cache_sets: 64
+  cache_set_size_bytes: 2048
+  cache_set_size_Kbytes: 2
+  cache_set_size_Mbytes: 0.00195312
+  cache_size_bytes: 8192
+  cache_size_Kbytes: 8
+  cache_size_Mbytes: 0.0078125
+
+L2TCache_L2_TBEs numberPerChip: 4
+TBEs_per_TBETable: 128
+
+L2TCache_L2cacheMemory numberPerChip: 4
+Cache config: L2TCache_0
+  cache_associativity: 16
+  num_cache_sets_bits: 9
+  num_cache_sets: 512
+  cache_set_size_bytes: 16384
+  cache_set_size_Kbytes: 16
+  cache_set_size_Mbytes: 0.015625
+  cache_size_bytes: 262144
+  cache_size_Kbytes: 256
+  cache_size_Mbytes: 0.25
+
+L2TCache_L2ExpireTriggerQueue numberPerChip: 4
+
+L2Cache_L2_TBEs numberPerChip: 4
+TBEs_per_TBETable: 128
+
+L2Cache_L2cacheMemory numberPerChip: 4
+Cache config: L2Cache_0
+  cache_associativity: 16
+  num_cache_sets_bits: 11
+  num_cache_sets: 2048
+  cache_set_size_bytes: 65536
+  cache_set_size_Kbytes: 64
+  cache_set_size_Mbytes: 0.0625
+  cache_size_bytes: 1048576
+  cache_size_Kbytes: 1024
+  cache_size_Mbytes: 1
+
+L1Cache_L1_TBEs numberPerChip: 8
+TBEs_per_TBETable: 128
+
+L1Cache_L1IcacheMemory numberPerChip: 8
+Cache config: L1Cache_0_L1I
+  cache_associativity: 8
+  num_cache_sets_bits: 8
+  num_cache_sets: 256
+  cache_set_size_bytes: 8192
+  cache_set_size_Kbytes: 8
+  cache_set_size_Mbytes: 0.0078125
+  cache_size_bytes: 65536
+  cache_size_Kbytes: 64
+  cache_size_Mbytes: 0.0625
+
+L1Cache_L1DcacheMemory numberPerChip: 8
+Cache config: L1Cache_0_L1D
+  cache_associativity: 8
+  num_cache_sets_bits: 8
+  num_cache_sets: 256
+  cache_set_size_bytes: 8192
+  cache_set_size_Kbytes: 8
+  cache_set_size_Mbytes: 0.0078125
+  cache_size_bytes: 65536
+  cache_size_Kbytes: 64
+  cache_size_Mbytes: 0.0625
+
+L1Cache_mandatoryQueue numberPerChip: 8
+
+L1Cache_sequencer numberPerChip: 8
+sequencer: Sequencer - SC
+  max_outstanding_requests: 256
+
+Directory_directory numberPerChip: 4
+Memory config:
+  memory_bits: 48
+  memory_size_bytes: 281474976710656
+  memory_size_Kbytes: 2.74878e+11
+  memory_size_Mbytes: 2.68435e+08
+  memory_size_Gbytes: 262144
+  module_bits: 41
+  module_size_lines: 2199023255552
+  module_size_bytes: 70368744177664
+  module_size_Kbytes: 6.87195e+10
+  module_size_Mbytes: 6.71089e+07
+
+
+Network Configuration
+---------------------
+network: GarnetNetwork_d
+topology: ACC_NETWORK
+
+virtual_net_0: active, unordered
+virtual_net_1: active, unordered
+virtual_net_2: active, unordered
+virtual_net_3: active, unordered
+virtual_net_4: active, unordered
+virtual_net_5: active, ordered
+virtual_net_6: active, ordered
+virtual_net_7: inactive
+
+[Network Interface 0] - [inLink 53] - [outLink 0]
+[Network Interface 1] - [inLink 54] - [outLink 1]
+[Network Interface 2] - [inLink 55] - [outLink 2]
+[Network Interface 3] - [inLink 56] - [outLink 3]
+[Network Interface 4] - [inLink 57] - [outLink 4]
+[Network Interface 5] - [inLink 58] - [outLink 5]
+[Network Interface 6] - [inLink 59] - [outLink 6]
+[Network Interface 7] - [inLink 60] - [outLink 7]
+[Network Interface 8] - [inLink 61] - [outLink 8]
+[Network Interface 9] - [inLink 62] - [outLink 9]
+[Network Interface 10] - [inLink 63] - [outLink 10]
+[Network Interface 11] - [inLink 64] - [outLink 11]
+[Network Interface 12] - [inLink 28] - [outLink 12]
+[Network Interface 13] - [inLink 33] - [outLink 13]
+[Network Interface 14] - [inLink 38] - [outLink 14]
+[Network Interface 15] - [inLink 43] - [outLink 15]
+[Network Interface 16] - [inLink 29] - [outLink 16]
+[Network Interface 17] - [inLink 34] - [outLink 17]
+[Network Interface 18] - [inLink 39] - [outLink 18]
+[Network Interface 19] - [inLink 44] - [outLink 19]
+[Network Interface 20] - [inLink 30] - [outLink 20]
+[Network Interface 21] - [inLink 35] - [outLink 21]
+[Network Interface 22] - [inLink 40] - [outLink 22]
+[Network Interface 23] - [inLink 45] - [outLink 23]
+[Network Interface 24] - [inLink 31] - [outLink 24]
+[Network Interface 25] - [inLink 36] - [outLink 25]
+[Network Interface 26] - [inLink 41] - [outLink 26]
+[Network Interface 27] - [inLink 46] - [outLink 27]
+[Router 0] :: 
+[inLink - 12 - 16 - 20 - 24 - 48 - ]
+[outLink - 28 - 29 - 30 - 31 - 32 - ]
+[Router 1] :: 
+[inLink - 13 - 17 - 21 - 25 - 49 - ]
+[outLink - 33 - 34 - 35 - 36 - 37 - ]
+[Router 2] :: 
+[inLink - 14 - 18 - 22 - 26 - 50 - ]
+[outLink - 38 - 39 - 40 - 41 - 42 - ]
+[Router 3] :: 
+[inLink - 15 - 19 - 23 - 27 - 51 - ]
+[outLink - 43 - 44 - 45 - 46 - 47 - ]
+[Router 4] :: 
+[inLink - 32 - 37 - 42 - 47 - 65 - ]
+[outLink - 48 - 49 - 50 - 51 - 52 - ]
+[Router 5] :: 
+[inLink - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 - 11 - 52 - ]
+[outLink - 53 - 54 - 55 - 56 - 57 - 58 - 59 - 60 - 61 - 62 - 63 - 64 - 65 - ]
+--- Begin Topology Print ---
+
+Topology print ONLY indicates the _NETWORK_ latency between two machines
+It does NOT include the latency within the machines
+
+L1TCache-0 Network Latencies
+  L1TCache-0 -> L1TCache-1 net_lat: 3
+  L1TCache-0 -> L1TCache-2 net_lat: 3
+  L1TCache-0 -> L1TCache-3 net_lat: 3
+  L1TCache-0 -> L1TCache-4 net_lat: 3
+  L1TCache-0 -> L1TCache-5 net_lat: 3
+  L1TCache-0 -> L1TCache-6 net_lat: 3
+  L1TCache-0 -> L1TCache-7 net_lat: 3
+  L1TCache-0 -> L2TCache-0 net_lat: 3
+  L1TCache-0 -> L2TCache-1 net_lat: 3
+  L1TCache-0 -> L2TCache-2 net_lat: 3
+  L1TCache-0 -> L2TCache-3 net_lat: 3
+  L1TCache-0 -> L2Cache-0 net_lat: 18
+  L1TCache-0 -> L2Cache-1 net_lat: 18
+  L1TCache-0 -> L2Cache-2 net_lat: 18
+  L1TCache-0 -> L2Cache-3 net_lat: 18
+  L1TCache-0 -> L1Cache-0 net_lat: 18
+  L1TCache-0 -> L1Cache-1 net_lat: 16
+  L1TCache-0 -> L1Cache-2 net_lat: 18
+  L1TCache-0 -> L1Cache-3 net_lat: 18
+  L1TCache-0 -> L1Cache-4 net_lat: 18
+  L1TCache-0 -> L1Cache-5 net_lat: 18
+  L1TCache-0 -> L1Cache-6 net_lat: 18
+  L1TCache-0 -> L1Cache-7 net_lat: 18
+  L1TCache-0 -> Directory-0 net_lat: 16
+  L1TCache-0 -> Directory-1 net_lat: 16
+  L1TCache-0 -> Directory-2 net_lat: 16
+  L1TCache-0 -> Directory-3 net_lat: 16
+
+L1TCache-1 Network Latencies
+  L1TCache-1 -> L1TCache-0 net_lat: 3
+  L1TCache-1 -> L1TCache-2 net_lat: 3
+  L1TCache-1 -> L1TCache-3 net_lat: 3
+  L1TCache-1 -> L1TCache-4 net_lat: 3
+  L1TCache-1 -> L1TCache-5 net_lat: 3
+  L1TCache-1 -> L1TCache-6 net_lat: 3
+  L1TCache-1 -> L1TCache-7 net_lat: 3
+  L1TCache-1 -> L2TCache-0 net_lat: 3
+  L1TCache-1 -> L2TCache-1 net_lat: 3
+  L1TCache-1 -> L2TCache-2 net_lat: 3
+  L1TCache-1 -> L2TCache-3 net_lat: 3
+  L1TCache-1 -> L2Cache-0 net_lat: 18
+  L1TCache-1 -> L2Cache-1 net_lat: 18
+  L1TCache-1 -> L2Cache-2 net_lat: 18
+  L1TCache-1 -> L2Cache-3 net_lat: 18
+  L1TCache-1 -> L1Cache-0 net_lat: 18
+  L1TCache-1 -> L1Cache-1 net_lat: 16
+  L1TCache-1 -> L1Cache-2 net_lat: 18
+  L1TCache-1 -> L1Cache-3 net_lat: 18
+  L1TCache-1 -> L1Cache-4 net_lat: 18
+  L1TCache-1 -> L1Cache-5 net_lat: 18
+  L1TCache-1 -> L1Cache-6 net_lat: 18
+  L1TCache-1 -> L1Cache-7 net_lat: 18
+  L1TCache-1 -> Directory-0 net_lat: 16
+  L1TCache-1 -> Directory-1 net_lat: 16
+  L1TCache-1 -> Directory-2 net_lat: 16
+  L1TCache-1 -> Directory-3 net_lat: 16
+
+L1TCache-2 Network Latencies
+  L1TCache-2 -> L1TCache-0 net_lat: 3
+  L1TCache-2 -> L1TCache-1 net_lat: 3
+  L1TCache-2 -> L1TCache-3 net_lat: 3
+  L1TCache-2 -> L1TCache-4 net_lat: 3
+  L1TCache-2 -> L1TCache-5 net_lat: 3
+  L1TCache-2 -> L1TCache-6 net_lat: 3
+  L1TCache-2 -> L1TCache-7 net_lat: 3
+  L1TCache-2 -> L2TCache-0 net_lat: 3
+  L1TCache-2 -> L2TCache-1 net_lat: 3
+  L1TCache-2 -> L2TCache-2 net_lat: 3
+  L1TCache-2 -> L2TCache-3 net_lat: 3
+  L1TCache-2 -> L2Cache-0 net_lat: 18
+  L1TCache-2 -> L2Cache-1 net_lat: 18
+  L1TCache-2 -> L2Cache-2 net_lat: 18
+  L1TCache-2 -> L2Cache-3 net_lat: 18
+  L1TCache-2 -> L1Cache-0 net_lat: 18
+  L1TCache-2 -> L1Cache-1 net_lat: 16
+  L1TCache-2 -> L1Cache-2 net_lat: 18
+  L1TCache-2 -> L1Cache-3 net_lat: 18
+  L1TCache-2 -> L1Cache-4 net_lat: 18
+  L1TCache-2 -> L1Cache-5 net_lat: 18
+  L1TCache-2 -> L1Cache-6 net_lat: 18
+  L1TCache-2 -> L1Cache-7 net_lat: 18
+  L1TCache-2 -> Directory-0 net_lat: 16
+  L1TCache-2 -> Directory-1 net_lat: 16
+  L1TCache-2 -> Directory-2 net_lat: 16
+  L1TCache-2 -> Directory-3 net_lat: 16
+
+L1TCache-3 Network Latencies
+  L1TCache-3 -> L1TCache-0 net_lat: 3
+  L1TCache-3 -> L1TCache-1 net_lat: 3
+  L1TCache-3 -> L1TCache-2 net_lat: 3
+  L1TCache-3 -> L1TCache-4 net_lat: 3
+  L1TCache-3 -> L1TCache-5 net_lat: 3
+  L1TCache-3 -> L1TCache-6 net_lat: 3
+  L1TCache-3 -> L1TCache-7 net_lat: 3
+  L1TCache-3 -> L2TCache-0 net_lat: 3
+  L1TCache-3 -> L2TCache-1 net_lat: 3
+  L1TCache-3 -> L2TCache-2 net_lat: 3
+  L1TCache-3 -> L2TCache-3 net_lat: 3
+  L1TCache-3 -> L2Cache-0 net_lat: 18
+  L1TCache-3 -> L2Cache-1 net_lat: 18
+  L1TCache-3 -> L2Cache-2 net_lat: 18
+  L1TCache-3 -> L2Cache-3 net_lat: 18
+  L1TCache-3 -> L1Cache-0 net_lat: 18
+  L1TCache-3 -> L1Cache-1 net_lat: 16
+  L1TCache-3 -> L1Cache-2 net_lat: 18
+  L1TCache-3 -> L1Cache-3 net_lat: 18
+  L1TCache-3 -> L1Cache-4 net_lat: 18
+  L1TCache-3 -> L1Cache-5 net_lat: 18
+  L1TCache-3 -> L1Cache-6 net_lat: 18
+  L1TCache-3 -> L1Cache-7 net_lat: 18
+  L1TCache-3 -> Directory-0 net_lat: 16
+  L1TCache-3 -> Directory-1 net_lat: 16
+  L1TCache-3 -> Directory-2 net_lat: 16
+  L1TCache-3 -> Directory-3 net_lat: 16
+
+L1TCache-4 Network Latencies
+  L1TCache-4 -> L1TCache-0 net_lat: 3
+  L1TCache-4 -> L1TCache-1 net_lat: 3
+  L1TCache-4 -> L1TCache-2 net_lat: 3
+  L1TCache-4 -> L1TCache-3 net_lat: 3
+  L1TCache-4 -> L1TCache-5 net_lat: 3
+  L1TCache-4 -> L1TCache-6 net_lat: 3
+  L1TCache-4 -> L1TCache-7 net_lat: 3
+  L1TCache-4 -> L2TCache-0 net_lat: 3
+  L1TCache-4 -> L2TCache-1 net_lat: 3
+  L1TCache-4 -> L2TCache-2 net_lat: 3
+  L1TCache-4 -> L2TCache-3 net_lat: 3
+  L1TCache-4 -> L2Cache-0 net_lat: 18
+  L1TCache-4 -> L2Cache-1 net_lat: 18
+  L1TCache-4 -> L2Cache-2 net_lat: 18
+  L1TCache-4 -> L2Cache-3 net_lat: 18
+  L1TCache-4 -> L1Cache-0 net_lat: 18
+  L1TCache-4 -> L1Cache-1 net_lat: 16
+  L1TCache-4 -> L1Cache-2 net_lat: 18
+  L1TCache-4 -> L1Cache-3 net_lat: 18
+  L1TCache-4 -> L1Cache-4 net_lat: 18
+  L1TCache-4 -> L1Cache-5 net_lat: 18
+  L1TCache-4 -> L1Cache-6 net_lat: 18
+  L1TCache-4 -> L1Cache-7 net_lat: 18
+  L1TCache-4 -> Directory-0 net_lat: 16
+  L1TCache-4 -> Directory-1 net_lat: 16
+  L1TCache-4 -> Directory-2 net_lat: 16
+  L1TCache-4 -> Directory-3 net_lat: 16
+
+L1TCache-5 Network Latencies
+  L1TCache-5 -> L1TCache-0 net_lat: 3
+  L1TCache-5 -> L1TCache-1 net_lat: 3
+  L1TCache-5 -> L1TCache-2 net_lat: 3
+  L1TCache-5 -> L1TCache-3 net_lat: 3
+  L1TCache-5 -> L1TCache-4 net_lat: 3
+  L1TCache-5 -> L1TCache-6 net_lat: 3
+  L1TCache-5 -> L1TCache-7 net_lat: 3
+  L1TCache-5 -> L2TCache-0 net_lat: 3
+  L1TCache-5 -> L2TCache-1 net_lat: 3
+  L1TCache-5 -> L2TCache-2 net_lat: 3
+  L1TCache-5 -> L2TCache-3 net_lat: 3
+  L1TCache-5 -> L2Cache-0 net_lat: 18
+  L1TCache-5 -> L2Cache-1 net_lat: 18
+  L1TCache-5 -> L2Cache-2 net_lat: 18
+  L1TCache-5 -> L2Cache-3 net_lat: 18
+  L1TCache-5 -> L1Cache-0 net_lat: 18
+  L1TCache-5 -> L1Cache-1 net_lat: 16
+  L1TCache-5 -> L1Cache-2 net_lat: 18
+  L1TCache-5 -> L1Cache-3 net_lat: 18
+  L1TCache-5 -> L1Cache-4 net_lat: 18
+  L1TCache-5 -> L1Cache-5 net_lat: 18
+  L1TCache-5 -> L1Cache-6 net_lat: 18
+  L1TCache-5 -> L1Cache-7 net_lat: 18
+  L1TCache-5 -> Directory-0 net_lat: 16
+  L1TCache-5 -> Directory-1 net_lat: 16
+  L1TCache-5 -> Directory-2 net_lat: 16
+  L1TCache-5 -> Directory-3 net_lat: 16
+
+L1TCache-6 Network Latencies
+  L1TCache-6 -> L1TCache-0 net_lat: 3
+  L1TCache-6 -> L1TCache-1 net_lat: 3
+  L1TCache-6 -> L1TCache-2 net_lat: 3
+  L1TCache-6 -> L1TCache-3 net_lat: 3
+  L1TCache-6 -> L1TCache-4 net_lat: 3
+  L1TCache-6 -> L1TCache-5 net_lat: 3
+  L1TCache-6 -> L1TCache-7 net_lat: 3
+  L1TCache-6 -> L2TCache-0 net_lat: 3
+  L1TCache-6 -> L2TCache-1 net_lat: 3
+  L1TCache-6 -> L2TCache-2 net_lat: 3
+  L1TCache-6 -> L2TCache-3 net_lat: 3
+  L1TCache-6 -> L2Cache-0 net_lat: 18
+  L1TCache-6 -> L2Cache-1 net_lat: 18
+  L1TCache-6 -> L2Cache-2 net_lat: 18
+  L1TCache-6 -> L2Cache-3 net_lat: 18
+  L1TCache-6 -> L1Cache-0 net_lat: 18
+  L1TCache-6 -> L1Cache-1 net_lat: 16
+  L1TCache-6 -> L1Cache-2 net_lat: 18
+  L1TCache-6 -> L1Cache-3 net_lat: 18
+  L1TCache-6 -> L1Cache-4 net_lat: 18
+  L1TCache-6 -> L1Cache-5 net_lat: 18
+  L1TCache-6 -> L1Cache-6 net_lat: 18
+  L1TCache-6 -> L1Cache-7 net_lat: 18
+  L1TCache-6 -> Directory-0 net_lat: 16
+  L1TCache-6 -> Directory-1 net_lat: 16
+  L1TCache-6 -> Directory-2 net_lat: 16
+  L1TCache-6 -> Directory-3 net_lat: 16
+
+L1TCache-7 Network Latencies
+  L1TCache-7 -> L1TCache-0 net_lat: 3
+  L1TCache-7 -> L1TCache-1 net_lat: 3
+  L1TCache-7 -> L1TCache-2 net_lat: 3
+  L1TCache-7 -> L1TCache-3 net_lat: 3
+  L1TCache-7 -> L1TCache-4 net_lat: 3
+  L1TCache-7 -> L1TCache-5 net_lat: 3
+  L1TCache-7 -> L1TCache-6 net_lat: 3
+  L1TCache-7 -> L2TCache-0 net_lat: 3
+  L1TCache-7 -> L2TCache-1 net_lat: 3
+  L1TCache-7 -> L2TCache-2 net_lat: 3
+  L1TCache-7 -> L2TCache-3 net_lat: 3
+  L1TCache-7 -> L2Cache-0 net_lat: 18
+  L1TCache-7 -> L2Cache-1 net_lat: 18
+  L1TCache-7 -> L2Cache-2 net_lat: 18
+  L1TCache-7 -> L2Cache-3 net_lat: 18
+  L1TCache-7 -> L1Cache-0 net_lat: 18
+  L1TCache-7 -> L1Cache-1 net_lat: 16
+  L1TCache-7 -> L1Cache-2 net_lat: 18
+  L1TCache-7 -> L1Cache-3 net_lat: 18
+  L1TCache-7 -> L1Cache-4 net_lat: 18
+  L1TCache-7 -> L1Cache-5 net_lat: 18
+  L1TCache-7 -> L1Cache-6 net_lat: 18
+  L1TCache-7 -> L1Cache-7 net_lat: 18
+  L1TCache-7 -> Directory-0 net_lat: 16
+  L1TCache-7 -> Directory-1 net_lat: 16
+  L1TCache-7 -> Directory-2 net_lat: 16
+  L1TCache-7 -> Directory-3 net_lat: 16
+
+L2TCache-0 Network Latencies
+  L2TCache-0 -> L1TCache-0 net_lat: 3
+  L2TCache-0 -> L1TCache-1 net_lat: 3
+  L2TCache-0 -> L1TCache-2 net_lat: 3
+  L2TCache-0 -> L1TCache-3 net_lat: 3
+  L2TCache-0 -> L1TCache-4 net_lat: 3
+  L2TCache-0 -> L1TCache-5 net_lat: 3
+  L2TCache-0 -> L1TCache-6 net_lat: 3
+  L2TCache-0 -> L1TCache-7 net_lat: 3
+  L2TCache-0 -> L2TCache-1 net_lat: 3
+  L2TCache-0 -> L2TCache-2 net_lat: 3
+  L2TCache-0 -> L2TCache-3 net_lat: 3
+  L2TCache-0 -> L2Cache-0 net_lat: 18
+  L2TCache-0 -> L2Cache-1 net_lat: 18
+  L2TCache-0 -> L2Cache-2 net_lat: 18
+  L2TCache-0 -> L2Cache-3 net_lat: 18
+  L2TCache-0 -> L1Cache-0 net_lat: 18
+  L2TCache-0 -> L1Cache-1 net_lat: 16
+  L2TCache-0 -> L1Cache-2 net_lat: 18
+  L2TCache-0 -> L1Cache-3 net_lat: 18
+  L2TCache-0 -> L1Cache-4 net_lat: 18
+  L2TCache-0 -> L1Cache-5 net_lat: 18
+  L2TCache-0 -> L1Cache-6 net_lat: 18
+  L2TCache-0 -> L1Cache-7 net_lat: 18
+  L2TCache-0 -> Directory-0 net_lat: 16
+  L2TCache-0 -> Directory-1 net_lat: 16
+  L2TCache-0 -> Directory-2 net_lat: 16
+  L2TCache-0 -> Directory-3 net_lat: 16
+
+L2TCache-1 Network Latencies
+  L2TCache-1 -> L1TCache-0 net_lat: 3
+  L2TCache-1 -> L1TCache-1 net_lat: 3
+  L2TCache-1 -> L1TCache-2 net_lat: 3
+  L2TCache-1 -> L1TCache-3 net_lat: 3
+  L2TCache-1 -> L1TCache-4 net_lat: 3
+  L2TCache-1 -> L1TCache-5 net_lat: 3
+  L2TCache-1 -> L1TCache-6 net_lat: 3
+  L2TCache-1 -> L1TCache-7 net_lat: 3
+  L2TCache-1 -> L2TCache-0 net_lat: 3
+  L2TCache-1 -> L2TCache-2 net_lat: 3
+  L2TCache-1 -> L2TCache-3 net_lat: 3
+  L2TCache-1 -> L2Cache-0 net_lat: 18
+  L2TCache-1 -> L2Cache-1 net_lat: 18
+  L2TCache-1 -> L2Cache-2 net_lat: 18
+  L2TCache-1 -> L2Cache-3 net_lat: 18
+  L2TCache-1 -> L1Cache-0 net_lat: 18
+  L2TCache-1 -> L1Cache-1 net_lat: 16
+  L2TCache-1 -> L1Cache-2 net_lat: 18
+  L2TCache-1 -> L1Cache-3 net_lat: 18
+  L2TCache-1 -> L1Cache-4 net_lat: 18
+  L2TCache-1 -> L1Cache-5 net_lat: 18
+  L2TCache-1 -> L1Cache-6 net_lat: 18
+  L2TCache-1 -> L1Cache-7 net_lat: 18
+  L2TCache-1 -> Directory-0 net_lat: 16
+  L2TCache-1 -> Directory-1 net_lat: 16
+  L2TCache-1 -> Directory-2 net_lat: 16
+  L2TCache-1 -> Directory-3 net_lat: 16
+
+L2TCache-2 Network Latencies
+  L2TCache-2 -> L1TCache-0 net_lat: 3
+  L2TCache-2 -> L1TCache-1 net_lat: 3
+  L2TCache-2 -> L1TCache-2 net_lat: 3
+  L2TCache-2 -> L1TCache-3 net_lat: 3
+  L2TCache-2 -> L1TCache-4 net_lat: 3
+  L2TCache-2 -> L1TCache-5 net_lat: 3
+  L2TCache-2 -> L1TCache-6 net_lat: 3
+  L2TCache-2 -> L1TCache-7 net_lat: 3
+  L2TCache-2 -> L2TCache-0 net_lat: 3
+  L2TCache-2 -> L2TCache-1 net_lat: 3
+  L2TCache-2 -> L2TCache-3 net_lat: 3
+  L2TCache-2 -> L2Cache-0 net_lat: 18
+  L2TCache-2 -> L2Cache-1 net_lat: 18
+  L2TCache-2 -> L2Cache-2 net_lat: 18
+  L2TCache-2 -> L2Cache-3 net_lat: 18
+  L2TCache-2 -> L1Cache-0 net_lat: 18
+  L2TCache-2 -> L1Cache-1 net_lat: 16
+  L2TCache-2 -> L1Cache-2 net_lat: 18
+  L2TCache-2 -> L1Cache-3 net_lat: 18
+  L2TCache-2 -> L1Cache-4 net_lat: 18
+  L2TCache-2 -> L1Cache-5 net_lat: 18
+  L2TCache-2 -> L1Cache-6 net_lat: 18
+  L2TCache-2 -> L1Cache-7 net_lat: 18
+  L2TCache-2 -> Directory-0 net_lat: 16
+  L2TCache-2 -> Directory-1 net_lat: 16
+  L2TCache-2 -> Directory-2 net_lat: 16
+  L2TCache-2 -> Directory-3 net_lat: 16
+
+L2TCache-3 Network Latencies
+  L2TCache-3 -> L1TCache-0 net_lat: 3
+  L2TCache-3 -> L1TCache-1 net_lat: 3
+  L2TCache-3 -> L1TCache-2 net_lat: 3
+  L2TCache-3 -> L1TCache-3 net_lat: 3
+  L2TCache-3 -> L1TCache-4 net_lat: 3
+  L2TCache-3 -> L1TCache-5 net_lat: 3
+  L2TCache-3 -> L1TCache-6 net_lat: 3
+  L2TCache-3 -> L1TCache-7 net_lat: 3
+  L2TCache-3 -> L2TCache-0 net_lat: 3
+  L2TCache-3 -> L2TCache-1 net_lat: 3
+  L2TCache-3 -> L2TCache-2 net_lat: 3
+  L2TCache-3 -> L2Cache-0 net_lat: 18
+  L2TCache-3 -> L2Cache-1 net_lat: 18
+  L2TCache-3 -> L2Cache-2 net_lat: 18
+  L2TCache-3 -> L2Cache-3 net_lat: 18
+  L2TCache-3 -> L1Cache-0 net_lat: 18
+  L2TCache-3 -> L1Cache-1 net_lat: 16
+  L2TCache-3 -> L1Cache-2 net_lat: 18
+  L2TCache-3 -> L1Cache-3 net_lat: 18
+  L2TCache-3 -> L1Cache-4 net_lat: 18
+  L2TCache-3 -> L1Cache-5 net_lat: 18
+  L2TCache-3 -> L1Cache-6 net_lat: 18
+  L2TCache-3 -> L1Cache-7 net_lat: 18
+  L2TCache-3 -> Directory-0 net_lat: 16
+  L2TCache-3 -> Directory-1 net_lat: 16
+  L2TCache-3 -> Directory-2 net_lat: 16
+  L2TCache-3 -> Directory-3 net_lat: 16
+
+L2Cache-0 Network Latencies
+  L2Cache-0 -> L1TCache-0 net_lat: 18
+  L2Cache-0 -> L1TCache-1 net_lat: 18
+  L2Cache-0 -> L1TCache-2 net_lat: 18
+  L2Cache-0 -> L1TCache-3 net_lat: 18
+  L2Cache-0 -> L1TCache-4 net_lat: 18
+  L2Cache-0 -> L1TCache-5 net_lat: 18
+  L2Cache-0 -> L1TCache-6 net_lat: 18
+  L2Cache-0 -> L1TCache-7 net_lat: 18
+  L2Cache-0 -> L2TCache-0 net_lat: 18
+  L2Cache-0 -> L2TCache-1 net_lat: 18
+  L2Cache-0 -> L2TCache-2 net_lat: 18
+  L2Cache-0 -> L2TCache-3 net_lat: 18
+  L2Cache-0 -> L2Cache-1 net_lat: 11
+  L2Cache-0 -> L2Cache-2 net_lat: 11
+  L2Cache-0 -> L2Cache-3 net_lat: 11
+  L2Cache-0 -> L1Cache-0 net_lat: 7
+  L2Cache-0 -> L1Cache-1 net_lat: 9
+  L2Cache-0 -> L1Cache-2 net_lat: 11
+  L2Cache-0 -> L1Cache-3 net_lat: 11
+  L2Cache-0 -> L1Cache-4 net_lat: 7
+  L2Cache-0 -> L1Cache-5 net_lat: 11
+  L2Cache-0 -> L1Cache-6 net_lat: 11
+  L2Cache-0 -> L1Cache-7 net_lat: 11
+  L2Cache-0 -> Directory-0 net_lat: 5
+  L2Cache-0 -> Directory-1 net_lat: 9
+  L2Cache-0 -> Directory-2 net_lat: 9
+  L2Cache-0 -> Directory-3 net_lat: 9
+
+L2Cache-1 Network Latencies
+  L2Cache-1 -> L1TCache-0 net_lat: 18
+  L2Cache-1 -> L1TCache-1 net_lat: 18
+  L2Cache-1 -> L1TCache-2 net_lat: 18
+  L2Cache-1 -> L1TCache-3 net_lat: 18
+  L2Cache-1 -> L1TCache-4 net_lat: 18
+  L2Cache-1 -> L1TCache-5 net_lat: 18
+  L2Cache-1 -> L1TCache-6 net_lat: 18
+  L2Cache-1 -> L1TCache-7 net_lat: 18
+  L2Cache-1 -> L2TCache-0 net_lat: 18
+  L2Cache-1 -> L2TCache-1 net_lat: 18
+  L2Cache-1 -> L2TCache-2 net_lat: 18
+  L2Cache-1 -> L2TCache-3 net_lat: 18
+  L2Cache-1 -> L2Cache-0 net_lat: 11
+  L2Cache-1 -> L2Cache-2 net_lat: 11
+  L2Cache-1 -> L2Cache-3 net_lat: 11
+  L2Cache-1 -> L1Cache-0 net_lat: 11
+  L2Cache-1 -> L1Cache-1 net_lat: 5
+  L2Cache-1 -> L1Cache-2 net_lat: 11
+  L2Cache-1 -> L1Cache-3 net_lat: 11
+  L2Cache-1 -> L1Cache-4 net_lat: 11
+  L2Cache-1 -> L1Cache-5 net_lat: 7
+  L2Cache-1 -> L1Cache-6 net_lat: 11
+  L2Cache-1 -> L1Cache-7 net_lat: 11
+  L2Cache-1 -> Directory-0 net_lat: 9
+  L2Cache-1 -> Directory-1 net_lat: 5
+  L2Cache-1 -> Directory-2 net_lat: 9
+  L2Cache-1 -> Directory-3 net_lat: 9
+
+L2Cache-2 Network Latencies
+  L2Cache-2 -> L1TCache-0 net_lat: 18
+  L2Cache-2 -> L1TCache-1 net_lat: 18
+  L2Cache-2 -> L1TCache-2 net_lat: 18
+  L2Cache-2 -> L1TCache-3 net_lat: 18
+  L2Cache-2 -> L1TCache-4 net_lat: 18
+  L2Cache-2 -> L1TCache-5 net_lat: 18
+  L2Cache-2 -> L1TCache-6 net_lat: 18
+  L2Cache-2 -> L1TCache-7 net_lat: 18
+  L2Cache-2 -> L2TCache-0 net_lat: 18
+  L2Cache-2 -> L2TCache-1 net_lat: 18
+  L2Cache-2 -> L2TCache-2 net_lat: 18
+  L2Cache-2 -> L2TCache-3 net_lat: 18
+  L2Cache-2 -> L2Cache-0 net_lat: 11
+  L2Cache-2 -> L2Cache-1 net_lat: 11
+  L2Cache-2 -> L2Cache-3 net_lat: 11
+  L2Cache-2 -> L1Cache-0 net_lat: 11
+  L2Cache-2 -> L1Cache-1 net_lat: 9
+  L2Cache-2 -> L1Cache-2 net_lat: 7
+  L2Cache-2 -> L1Cache-3 net_lat: 11
+  L2Cache-2 -> L1Cache-4 net_lat: 11
+  L2Cache-2 -> L1Cache-5 net_lat: 11
+  L2Cache-2 -> L1Cache-6 net_lat: 7
+  L2Cache-2 -> L1Cache-7 net_lat: 11
+  L2Cache-2 -> Directory-0 net_lat: 9
+  L2Cache-2 -> Directory-1 net_lat: 9
+  L2Cache-2 -> Directory-2 net_lat: 5
+  L2Cache-2 -> Directory-3 net_lat: 9
+
+L2Cache-3 Network Latencies
+  L2Cache-3 -> L1TCache-0 net_lat: 18
+  L2Cache-3 -> L1TCache-1 net_lat: 18
+  L2Cache-3 -> L1TCache-2 net_lat: 18
+  L2Cache-3 -> L1TCache-3 net_lat: 18
+  L2Cache-3 -> L1TCache-4 net_lat: 18
+  L2Cache-3 -> L1TCache-5 net_lat: 18
+  L2Cache-3 -> L1TCache-6 net_lat: 18
+  L2Cache-3 -> L1TCache-7 net_lat: 18
+  L2Cache-3 -> L2TCache-0 net_lat: 18
+  L2Cache-3 -> L2TCache-1 net_lat: 18
+  L2Cache-3 -> L2TCache-2 net_lat: 18
+  L2Cache-3 -> L2TCache-3 net_lat: 18
+  L2Cache-3 -> L2Cache-0 net_lat: 11
+  L2Cache-3 -> L2Cache-1 net_lat: 11
+  L2Cache-3 -> L2Cache-2 net_lat: 11
+  L2Cache-3 -> L1Cache-0 net_lat: 11
+  L2Cache-3 -> L1Cache-1 net_lat: 9
+  L2Cache-3 -> L1Cache-2 net_lat: 11
+  L2Cache-3 -> L1Cache-3 net_lat: 7
+  L2Cache-3 -> L1Cache-4 net_lat: 11
+  L2Cache-3 -> L1Cache-5 net_lat: 11
+  L2Cache-3 -> L1Cache-6 net_lat: 11
+  L2Cache-3 -> L1Cache-7 net_lat: 7
+  L2Cache-3 -> Directory-0 net_lat: 9
+  L2Cache-3 -> Directory-1 net_lat: 9
+  L2Cache-3 -> Directory-2 net_lat: 9
+  L2Cache-3 -> Directory-3 net_lat: 5
+
+L1Cache-0 Network Latencies
+  L1Cache-0 -> L1TCache-0 net_lat: 18
+  L1Cache-0 -> L1TCache-1 net_lat: 18
+  L1Cache-0 -> L1TCache-2 net_lat: 18
+  L1Cache-0 -> L1TCache-3 net_lat: 18
+  L1Cache-0 -> L1TCache-4 net_lat: 18
+  L1Cache-0 -> L1TCache-5 net_lat: 18
+  L1Cache-0 -> L1TCache-6 net_lat: 18
+  L1Cache-0 -> L1TCache-7 net_lat: 18
+  L1Cache-0 -> L2TCache-0 net_lat: 18
+  L1Cache-0 -> L2TCache-1 net_lat: 18
+  L1Cache-0 -> L2TCache-2 net_lat: 18
+  L1Cache-0 -> L2TCache-3 net_lat: 18
+  L1Cache-0 -> L2Cache-0 net_lat: 7
+  L1Cache-0 -> L2Cache-1 net_lat: 11
+  L1Cache-0 -> L2Cache-2 net_lat: 11
+  L1Cache-0 -> L2Cache-3 net_lat: 11
+  L1Cache-0 -> L1Cache-1 net_lat: 9
+  L1Cache-0 -> L1Cache-2 net_lat: 11
+  L1Cache-0 -> L1Cache-3 net_lat: 11
+  L1Cache-0 -> L1Cache-4 net_lat: 7
+  L1Cache-0 -> L1Cache-5 net_lat: 11
+  L1Cache-0 -> L1Cache-6 net_lat: 11
+  L1Cache-0 -> L1Cache-7 net_lat: 11
+  L1Cache-0 -> Directory-0 net_lat: 5
+  L1Cache-0 -> Directory-1 net_lat: 9
+  L1Cache-0 -> Directory-2 net_lat: 9
+  L1Cache-0 -> Directory-3 net_lat: 9
+
+L1Cache-1 Network Latencies
+  L1Cache-1 -> L1TCache-0 net_lat: 16
+  L1Cache-1 -> L1TCache-1 net_lat: 16
+  L1Cache-1 -> L1TCache-2 net_lat: 16
+  L1Cache-1 -> L1TCache-3 net_lat: 16
+  L1Cache-1 -> L1TCache-4 net_lat: 16
+  L1Cache-1 -> L1TCache-5 net_lat: 16
+  L1Cache-1 -> L1TCache-6 net_lat: 16
+  L1Cache-1 -> L1TCache-7 net_lat: 16
+  L1Cache-1 -> L2TCache-0 net_lat: 16
+  L1Cache-1 -> L2TCache-1 net_lat: 16
+  L1Cache-1 -> L2TCache-2 net_lat: 16
+  L1Cache-1 -> L2TCache-3 net_lat: 16
+  L1Cache-1 -> L2Cache-0 net_lat: 9
+  L1Cache-1 -> L2Cache-1 net_lat: 5
+  L1Cache-1 -> L2Cache-2 net_lat: 9
+  L1Cache-1 -> L2Cache-3 net_lat: 9
+  L1Cache-1 -> L1Cache-0 net_lat: 9
+  L1Cache-1 -> L1Cache-2 net_lat: 9
+  L1Cache-1 -> L1Cache-3 net_lat: 9
+  L1Cache-1 -> L1Cache-4 net_lat: 9
+  L1Cache-1 -> L1Cache-5 net_lat: 5
+  L1Cache-1 -> L1Cache-6 net_lat: 9
+  L1Cache-1 -> L1Cache-7 net_lat: 9
+  L1Cache-1 -> Directory-0 net_lat: 7
+  L1Cache-1 -> Directory-1 net_lat: 3
+  L1Cache-1 -> Directory-2 net_lat: 7
+  L1Cache-1 -> Directory-3 net_lat: 7
+
+L1Cache-2 Network Latencies
+  L1Cache-2 -> L1TCache-0 net_lat: 18
+  L1Cache-2 -> L1TCache-1 net_lat: 18
+  L1Cache-2 -> L1TCache-2 net_lat: 18
+  L1Cache-2 -> L1TCache-3 net_lat: 18
+  L1Cache-2 -> L1TCache-4 net_lat: 18
+  L1Cache-2 -> L1TCache-5 net_lat: 18
+  L1Cache-2 -> L1TCache-6 net_lat: 18
+  L1Cache-2 -> L1TCache-7 net_lat: 18
+  L1Cache-2 -> L2TCache-0 net_lat: 18
+  L1Cache-2 -> L2TCache-1 net_lat: 18
+  L1Cache-2 -> L2TCache-2 net_lat: 18
+  L1Cache-2 -> L2TCache-3 net_lat: 18
+  L1Cache-2 -> L2Cache-0 net_lat: 11
+  L1Cache-2 -> L2Cache-1 net_lat: 11
+  L1Cache-2 -> L2Cache-2 net_lat: 7
+  L1Cache-2 -> L2Cache-3 net_lat: 11
+  L1Cache-2 -> L1Cache-0 net_lat: 11
+  L1Cache-2 -> L1Cache-1 net_lat: 9
+  L1Cache-2 -> L1Cache-3 net_lat: 11
+  L1Cache-2 -> L1Cache-4 net_lat: 11
+  L1Cache-2 -> L1Cache-5 net_lat: 11
+  L1Cache-2 -> L1Cache-6 net_lat: 7
+  L1Cache-2 -> L1Cache-7 net_lat: 11
+  L1Cache-2 -> Directory-0 net_lat: 9
+  L1Cache-2 -> Directory-1 net_lat: 9
+  L1Cache-2 -> Directory-2 net_lat: 5
+  L1Cache-2 -> Directory-3 net_lat: 9
+
+L1Cache-3 Network Latencies
+  L1Cache-3 -> L1TCache-0 net_lat: 18
+  L1Cache-3 -> L1TCache-1 net_lat: 18
+  L1Cache-3 -> L1TCache-2 net_lat: 18
+  L1Cache-3 -> L1TCache-3 net_lat: 18
+  L1Cache-3 -> L1TCache-4 net_lat: 18
+  L1Cache-3 -> L1TCache-5 net_lat: 18
+  L1Cache-3 -> L1TCache-6 net_lat: 18
+  L1Cache-3 -> L1TCache-7 net_lat: 18
+  L1Cache-3 -> L2TCache-0 net_lat: 18
+  L1Cache-3 -> L2TCache-1 net_lat: 18
+  L1Cache-3 -> L2TCache-2 net_lat: 18
+  L1Cache-3 -> L2TCache-3 net_lat: 18
+  L1Cache-3 -> L2Cache-0 net_lat: 11
+  L1Cache-3 -> L2Cache-1 net_lat: 11
+  L1Cache-3 -> L2Cache-2 net_lat: 11
+  L1Cache-3 -> L2Cache-3 net_lat: 7
+  L1Cache-3 -> L1Cache-0 net_lat: 11
+  L1Cache-3 -> L1Cache-1 net_lat: 9
+  L1Cache-3 -> L1Cache-2 net_lat: 11
+  L1Cache-3 -> L1Cache-4 net_lat: 11
+  L1Cache-3 -> L1Cache-5 net_lat: 11
+  L1Cache-3 -> L1Cache-6 net_lat: 11
+  L1Cache-3 -> L1Cache-7 net_lat: 7
+  L1Cache-3 -> Directory-0 net_lat: 9
+  L1Cache-3 -> Directory-1 net_lat: 9
+  L1Cache-3 -> Directory-2 net_lat: 9
+  L1Cache-3 -> Directory-3 net_lat: 5
+
+L1Cache-4 Network Latencies
+  L1Cache-4 -> L1TCache-0 net_lat: 18
+  L1Cache-4 -> L1TCache-1 net_lat: 18
+  L1Cache-4 -> L1TCache-2 net_lat: 18
+  L1Cache-4 -> L1TCache-3 net_lat: 18
+  L1Cache-4 -> L1TCache-4 net_lat: 18
+  L1Cache-4 -> L1TCache-5 net_lat: 18
+  L1Cache-4 -> L1TCache-6 net_lat: 18
+  L1Cache-4 -> L1TCache-7 net_lat: 18
+  L1Cache-4 -> L2TCache-0 net_lat: 18
+  L1Cache-4 -> L2TCache-1 net_lat: 18
+  L1Cache-4 -> L2TCache-2 net_lat: 18
+  L1Cache-4 -> L2TCache-3 net_lat: 18
+  L1Cache-4 -> L2Cache-0 net_lat: 7
+  L1Cache-4 -> L2Cache-1 net_lat: 11
+  L1Cache-4 -> L2Cache-2 net_lat: 11
+  L1Cache-4 -> L2Cache-3 net_lat: 11
+  L1Cache-4 -> L1Cache-0 net_lat: 7
+  L1Cache-4 -> L1Cache-1 net_lat: 9
+  L1Cache-4 -> L1Cache-2 net_lat: 11
+  L1Cache-4 -> L1Cache-3 net_lat: 11
+  L1Cache-4 -> L1Cache-5 net_lat: 11
+  L1Cache-4 -> L1Cache-6 net_lat: 11
+  L1Cache-4 -> L1Cache-7 net_lat: 11
+  L1Cache-4 -> Directory-0 net_lat: 5
+  L1Cache-4 -> Directory-1 net_lat: 9
+  L1Cache-4 -> Directory-2 net_lat: 9
+  L1Cache-4 -> Directory-3 net_lat: 9
+
+L1Cache-5 Network Latencies
+  L1Cache-5 -> L1TCache-0 net_lat: 18
+  L1Cache-5 -> L1TCache-1 net_lat: 18
+  L1Cache-5 -> L1TCache-2 net_lat: 18
+  L1Cache-5 -> L1TCache-3 net_lat: 18
+  L1Cache-5 -> L1TCache-4 net_lat: 18
+  L1Cache-5 -> L1TCache-5 net_lat: 18
+  L1Cache-5 -> L1TCache-6 net_lat: 18
+  L1Cache-5 -> L1TCache-7 net_lat: 18
+  L1Cache-5 -> L2TCache-0 net_lat: 18
+  L1Cache-5 -> L2TCache-1 net_lat: 18
+  L1Cache-5 -> L2TCache-2 net_lat: 18
+  L1Cache-5 -> L2TCache-3 net_lat: 18
+  L1Cache-5 -> L2Cache-0 net_lat: 11
+  L1Cache-5 -> L2Cache-1 net_lat: 7
+  L1Cache-5 -> L2Cache-2 net_lat: 11
+  L1Cache-5 -> L2Cache-3 net_lat: 11
+  L1Cache-5 -> L1Cache-0 net_lat: 11
+  L1Cache-5 -> L1Cache-1 net_lat: 5
+  L1Cache-5 -> L1Cache-2 net_lat: 11
+  L1Cache-5 -> L1Cache-3 net_lat: 11
+  L1Cache-5 -> L1Cache-4 net_lat: 11
+  L1Cache-5 -> L1Cache-6 net_lat: 11
+  L1Cache-5 -> L1Cache-7 net_lat: 11
+  L1Cache-5 -> Directory-0 net_lat: 9
+  L1Cache-5 -> Directory-1 net_lat: 5
+  L1Cache-5 -> Directory-2 net_lat: 9
+  L1Cache-5 -> Directory-3 net_lat: 9
+
+L1Cache-6 Network Latencies
+  L1Cache-6 -> L1TCache-0 net_lat: 18
+  L1Cache-6 -> L1TCache-1 net_lat: 18
+  L1Cache-6 -> L1TCache-2 net_lat: 18
+  L1Cache-6 -> L1TCache-3 net_lat: 18
+  L1Cache-6 -> L1TCache-4 net_lat: 18
+  L1Cache-6 -> L1TCache-5 net_lat: 18
+  L1Cache-6 -> L1TCache-6 net_lat: 18
+  L1Cache-6 -> L1TCache-7 net_lat: 18
+  L1Cache-6 -> L2TCache-0 net_lat: 18
+  L1Cache-6 -> L2TCache-1 net_lat: 18
+  L1Cache-6 -> L2TCache-2 net_lat: 18
+  L1Cache-6 -> L2TCache-3 net_lat: 18
+  L1Cache-6 -> L2Cache-0 net_lat: 11
+  L1Cache-6 -> L2Cache-1 net_lat: 11
+  L1Cache-6 -> L2Cache-2 net_lat: 7
+  L1Cache-6 -> L2Cache-3 net_lat: 11
+  L1Cache-6 -> L1Cache-0 net_lat: 11
+  L1Cache-6 -> L1Cache-1 net_lat: 9
+  L1Cache-6 -> L1Cache-2 net_lat: 7
+  L1Cache-6 -> L1Cache-3 net_lat: 11
+  L1Cache-6 -> L1Cache-4 net_lat: 11
+  L1Cache-6 -> L1Cache-5 net_lat: 11
+  L1Cache-6 -> L1Cache-7 net_lat: 11
+  L1Cache-6 -> Directory-0 net_lat: 9
+  L1Cache-6 -> Directory-1 net_lat: 9
+  L1Cache-6 -> Directory-2 net_lat: 5
+  L1Cache-6 -> Directory-3 net_lat: 9
+
+L1Cache-7 Network Latencies
+  L1Cache-7 -> L1TCache-0 net_lat: 18
+  L1Cache-7 -> L1TCache-1 net_lat: 18
+  L1Cache-7 -> L1TCache-2 net_lat: 18
+  L1Cache-7 -> L1TCache-3 net_lat: 18
+  L1Cache-7 -> L1TCache-4 net_lat: 18
+  L1Cache-7 -> L1TCache-5 net_lat: 18
+  L1Cache-7 -> L1TCache-6 net_lat: 18
+  L1Cache-7 -> L1TCache-7 net_lat: 18
+  L1Cache-7 -> L2TCache-0 net_lat: 18
+  L1Cache-7 -> L2TCache-1 net_lat: 18
+  L1Cache-7 -> L2TCache-2 net_lat: 18
+  L1Cache-7 -> L2TCache-3 net_lat: 18
+  L1Cache-7 -> L2Cache-0 net_lat: 11
+  L1Cache-7 -> L2Cache-1 net_lat: 11
+  L1Cache-7 -> L2Cache-2 net_lat: 11
+  L1Cache-7 -> L2Cache-3 net_lat: 7
+  L1Cache-7 -> L1Cache-0 net_lat: 11
+  L1Cache-7 -> L1Cache-1 net_lat: 9
+  L1Cache-7 -> L1Cache-2 net_lat: 11
+  L1Cache-7 -> L1Cache-3 net_lat: 7
+  L1Cache-7 -> L1Cache-4 net_lat: 11
+  L1Cache-7 -> L1Cache-5 net_lat: 11
+  L1Cache-7 -> L1Cache-6 net_lat: 11
+  L1Cache-7 -> Directory-0 net_lat: 9
+  L1Cache-7 -> Directory-1 net_lat: 9
+  L1Cache-7 -> Directory-2 net_lat: 9
+  L1Cache-7 -> Directory-3 net_lat: 5
+
+Directory-0 Network Latencies
+  Directory-0 -> L1TCache-0 net_lat: 16
+  Directory-0 -> L1TCache-1 net_lat: 16
+  Directory-0 -> L1TCache-2 net_lat: 16
+  Directory-0 -> L1TCache-3 net_lat: 16
+  Directory-0 -> L1TCache-4 net_lat: 16
+  Directory-0 -> L1TCache-5 net_lat: 16
+  Directory-0 -> L1TCache-6 net_lat: 16
+  Directory-0 -> L1TCache-7 net_lat: 16
+  Directory-0 -> L2TCache-0 net_lat: 16
+  Directory-0 -> L2TCache-1 net_lat: 16
+  Directory-0 -> L2TCache-2 net_lat: 16
+  Directory-0 -> L2TCache-3 net_lat: 16
+  Directory-0 -> L2Cache-0 net_lat: 5
+  Directory-0 -> L2Cache-1 net_lat: 9
+  Directory-0 -> L2Cache-2 net_lat: 9
+  Directory-0 -> L2Cache-3 net_lat: 9
+  Directory-0 -> L1Cache-0 net_lat: 5
+  Directory-0 -> L1Cache-1 net_lat: 7
+  Directory-0 -> L1Cache-2 net_lat: 9
+  Directory-0 -> L1Cache-3 net_lat: 9
+  Directory-0 -> L1Cache-4 net_lat: 5
+  Directory-0 -> L1Cache-5 net_lat: 9
+  Directory-0 -> L1Cache-6 net_lat: 9
+  Directory-0 -> L1Cache-7 net_lat: 9
+  Directory-0 -> Directory-1 net_lat: 7
+  Directory-0 -> Directory-2 net_lat: 7
+  Directory-0 -> Directory-3 net_lat: 7
+
+Directory-1 Network Latencies
+  Directory-1 -> L1TCache-0 net_lat: 16
+  Directory-1 -> L1TCache-1 net_lat: 16
+  Directory-1 -> L1TCache-2 net_lat: 16
+  Directory-1 -> L1TCache-3 net_lat: 16
+  Directory-1 -> L1TCache-4 net_lat: 16
+  Directory-1 -> L1TCache-5 net_lat: 16
+  Directory-1 -> L1TCache-6 net_lat: 16
+  Directory-1 -> L1TCache-7 net_lat: 16
+  Directory-1 -> L2TCache-0 net_lat: 16
+  Directory-1 -> L2TCache-1 net_lat: 16
+  Directory-1 -> L2TCache-2 net_lat: 16
+  Directory-1 -> L2TCache-3 net_lat: 16
+  Directory-1 -> L2Cache-0 net_lat: 9
+  Directory-1 -> L2Cache-1 net_lat: 5
+  Directory-1 -> L2Cache-2 net_lat: 9
+  Directory-1 -> L2Cache-3 net_lat: 9
+  Directory-1 -> L1Cache-0 net_lat: 9
+  Directory-1 -> L1Cache-1 net_lat: 3
+  Directory-1 -> L1Cache-2 net_lat: 9
+  Directory-1 -> L1Cache-3 net_lat: 9
+  Directory-1 -> L1Cache-4 net_lat: 9
+  Directory-1 -> L1Cache-5 net_lat: 5
+  Directory-1 -> L1Cache-6 net_lat: 9
+  Directory-1 -> L1Cache-7 net_lat: 9
+  Directory-1 -> Directory-0 net_lat: 7
+  Directory-1 -> Directory-2 net_lat: 7
+  Directory-1 -> Directory-3 net_lat: 7
+
+Directory-2 Network Latencies
+  Directory-2 -> L1TCache-0 net_lat: 16
+  Directory-2 -> L1TCache-1 net_lat: 16
+  Directory-2 -> L1TCache-2 net_lat: 16
+  Directory-2 -> L1TCache-3 net_lat: 16
+  Directory-2 -> L1TCache-4 net_lat: 16
+  Directory-2 -> L1TCache-5 net_lat: 16
+  Directory-2 -> L1TCache-6 net_lat: 16
+  Directory-2 -> L1TCache-7 net_lat: 16
+  Directory-2 -> L2TCache-0 net_lat: 16
+  Directory-2 -> L2TCache-1 net_lat: 16
+  Directory-2 -> L2TCache-2 net_lat: 16
+  Directory-2 -> L2TCache-3 net_lat: 16
+  Directory-2 -> L2Cache-0 net_lat: 9
+  Directory-2 -> L2Cache-1 net_lat: 9
+  Directory-2 -> L2Cache-2 net_lat: 5
+  Directory-2 -> L2Cache-3 net_lat: 9
+  Directory-2 -> L1Cache-0 net_lat: 9
+  Directory-2 -> L1Cache-1 net_lat: 7
+  Directory-2 -> L1Cache-2 net_lat: 5
+  Directory-2 -> L1Cache-3 net_lat: 9
+  Directory-2 -> L1Cache-4 net_lat: 9
+  Directory-2 -> L1Cache-5 net_lat: 9
+  Directory-2 -> L1Cache-6 net_lat: 5
+  Directory-2 -> L1Cache-7 net_lat: 9
+  Directory-2 -> Directory-0 net_lat: 7
+  Directory-2 -> Directory-1 net_lat: 7
+  Directory-2 -> Directory-3 net_lat: 7
+
+Directory-3 Network Latencies
+  Directory-3 -> L1TCache-0 net_lat: 16
+  Directory-3 -> L1TCache-1 net_lat: 16
+  Directory-3 -> L1TCache-2 net_lat: 16
+  Directory-3 -> L1TCache-3 net_lat: 16
+  Directory-3 -> L1TCache-4 net_lat: 16
+  Directory-3 -> L1TCache-5 net_lat: 16
+  Directory-3 -> L1TCache-6 net_lat: 16
+  Directory-3 -> L1TCache-7 net_lat: 16
+  Directory-3 -> L2TCache-0 net_lat: 16
+  Directory-3 -> L2TCache-1 net_lat: 16
+  Directory-3 -> L2TCache-2 net_lat: 16
+  Directory-3 -> L2TCache-3 net_lat: 16
+  Directory-3 -> L2Cache-0 net_lat: 9
+  Directory-3 -> L2Cache-1 net_lat: 9
+  Directory-3 -> L2Cache-2 net_lat: 9
+  Directory-3 -> L2Cache-3 net_lat: 5
+  Directory-3 -> L1Cache-0 net_lat: 9
+  Directory-3 -> L1Cache-1 net_lat: 7
+  Directory-3 -> L1Cache-2 net_lat: 9
+  Directory-3 -> L1Cache-3 net_lat: 5
+  Directory-3 -> L1Cache-4 net_lat: 9
+  Directory-3 -> L1Cache-5 net_lat: 9
+  Directory-3 -> L1Cache-6 net_lat: 9
+  Directory-3 -> L1Cache-7 net_lat: 5
+  Directory-3 -> Directory-0 net_lat: 7
+  Directory-3 -> Directory-1 net_lat: 7
+  Directory-3 -> Directory-2 net_lat: 7
+
+--- End Topology Print ---
+O3sim_ruby_multiplier: 1
+
+
+Profiler Configuration
+----------------------
+periodic_stats_period: 1000000
+LifetimeTrace Configuration
+----------------------
+----------------------
+
+================ End System Configuration Print ================
+
+Testing clear stats...Done.
+src/macsim.cc:316: (I=0  C=0):  initialize cores (1/7/0)
+src/macsim.cc:638: (I=0  C=0):  Clock LCM           : 2
+src/macsim.cc:639: (I=0  C=0):  CPU clock frequency : 2 GHz 1
+src/macsim.cc:640: (I=0  C=0):  GPU clock frequency : 2 GHz 1
+src/macsim.cc:641: (I=0  C=0):  L3  clock frequency : 2 GHz 1
+src/macsim.cc:642: (I=0  C=0):  NOC clock frequency : 2 GHz 1
+src/macsim.cc:643: (I=0  C=0):  MC  clock frequency : 2 GHz 1
+src/macsim.cc:644: (I=0  C=0):  ACC  clock frequency : 2 GHz 1
+src/process_manager.cc:434: (I=0  C=0):  setup_process:0 ../../../../Traces/large/b2/fft/trace.txt current_index:0 (1)
+src/process_manager.cc:496: (I=0  C=0):  thread_count:8
+src/trace_read.cc:1435: (I=0  C=20):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=80  C=699):  CPU halted after 699 cycles
+src/trace_read.cc:1435: (I=80  C=265472):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=80  C=266599):  ACC 2 halted after 265900 cycles
+src/trace_read.cc:1435: (I=80  C=266607):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=104  C=266752):  CPU halted after 152 cycles
+src/trace_read.cc:1435: (I=104  C=310098):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=104  C=311025):  ACC 3 halted after 44273 cycles
+src/trace_read.cc:1435: (I=104  C=311033):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=128  C=311178):  CPU halted after 152 cycles
+src/trace_read.cc:1435: (I=128  C=577867):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=128  C=580380):  ACC 4 halted after 269202 cycles
+src/trace_read.cc:1435: (I=128  C=580388):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=152  C=580533):  CPU halted after 152 cycles
+src/trace_read.cc:1435: (I=152  C=647554):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=152  C=648663):  ACC 5 halted after 68130 cycles
+src/trace_read.cc:1435: (I=152  C=648671):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=176  C=648816):  CPU halted after 152 cycles
+src/trace_read.cc:1435: (I=176  C=715821):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=176  C=716956):  ACC 6 halted after 68140 cycles
+src/trace_read.cc:1435: (I=176  C=716967):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=205  C=717093):  CPU halted after 136 cycles
+src/trace_read.cc:1435: (I=205  C=909230):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=205  C=910882):  ACC 7 halted after 193789 cycles
+src/trace_read.cc:1435: (I=206  C=910906):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=288  C=911204):  CPU halted after 321 cycles
+src/trace_read.cc:1435: (I=288  C=922922):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=288  C=923043):  ACC 2 halted after 11840 cycles
+src/trace_read.cc:1435: (I=288  C=923051):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=312  C=923092):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=312  C=927195):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=312  C=927317):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=312  C=927325):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=336  C=927366):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=336  C=937294):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=336  C=937360):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=336  C=937368):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=360  C=937409):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=360  C=943249):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=360  C=943369):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=360  C=943377):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=384  C=943418):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=384  C=949258):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=384  C=949378):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=384  C=949389):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=413  C=949442):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=413  C=958197):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=413  C=958303):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=422  C=958327):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=496  C=958492):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=496  C=970426):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=496  C=970547):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=496  C=970555):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=520  C=970596):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=520  C=974699):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=520  C=974821):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=520  C=974829):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=544  C=974870):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=544  C=984795):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=544  C=984861):  ACC 4 halted after 9992 cycles
+src/trace_read.cc:1435: (I=544  C=984869):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=568  C=984910):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=568  C=990750):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=568  C=990870):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=568  C=990878):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=592  C=990919):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=592  C=996759):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=592  C=996879):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=592  C=996890):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=621  C=996943):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=621  C=1005698):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=621  C=1005804):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=630  C=1005828):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=704  C=1005993):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=704  C=1017927):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=704  C=1018048):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=704  C=1018056):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=728  C=1018097):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=728  C=1022200):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=728  C=1022322):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=728  C=1022330):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=752  C=1022371):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=752  C=1032299):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=752  C=1032365):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=752  C=1032373):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=776  C=1032414):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=776  C=1038254):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=776  C=1038374):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=776  C=1038382):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=800  C=1038423):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=800  C=1044263):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=800  C=1044383):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=800  C=1044394):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=829  C=1044447):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=829  C=1053202):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=829  C=1053308):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=838  C=1053332):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=912  C=1053497):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=912  C=1065431):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=912  C=1065552):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=912  C=1065560):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=936  C=1065601):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=936  C=1069704):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=936  C=1069826):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=936  C=1069834):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=960  C=1069875):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=960  C=1079799):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=960  C=1079869):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=960  C=1079877):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=984  C=1079918):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=984  C=1085758):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=984  C=1085878):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=984  C=1085886):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=1008  C=1085927):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1008  C=1091767):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1008  C=1091887):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=1008  C=1091898):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=1037  C=1091951):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=1037  C=1100706):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1037  C=1100812):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=1046  C=1100836):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=1120  C=1101001):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=1120  C=1112719):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1120  C=1112840):  ACC 2 halted after 11840 cycles
+src/trace_read.cc:1435: (I=1120  C=1112848):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=1144  C=1112889):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1144  C=1116992):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1144  C=1117114):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=1144  C=1117122):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=1168  C=1117163):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1168  C=1127092):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1168  C=1127158):  ACC 4 halted after 9996 cycles
+src/trace_read.cc:1435: (I=1168  C=1127166):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=1192  C=1127207):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1192  C=1133047):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1192  C=1133167):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=1192  C=1133175):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=1216  C=1133216):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1216  C=1139056):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1216  C=1139176):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=1216  C=1139187):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=1245  C=1139240):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=1245  C=1147995):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1245  C=1148101):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=1254  C=1148125):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=1328  C=1148290):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=1328  C=1160224):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1328  C=1160345):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=1328  C=1160353):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=1352  C=1160394):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1352  C=1164497):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1352  C=1164619):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=1352  C=1164627):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=1376  C=1164668):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1376  C=1174592):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1376  C=1174658):  ACC 4 halted after 9991 cycles
+src/trace_read.cc:1435: (I=1376  C=1174666):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=1400  C=1174707):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1400  C=1180547):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1400  C=1180667):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=1400  C=1180675):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=1424  C=1180716):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1424  C=1186556):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1424  C=1186676):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=1424  C=1186687):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=1453  C=1186740):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=1453  C=1195495):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1453  C=1195601):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=1462  C=1195625):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=1536  C=1195790):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=1536  C=1207724):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1536  C=1207845):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=1536  C=1207853):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=1560  C=1207894):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1560  C=1211997):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1560  C=1212119):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=1560  C=1212127):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=1584  C=1212168):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1584  C=1222096):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1584  C=1222162):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=1584  C=1222170):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=1608  C=1222211):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1608  C=1228051):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1608  C=1228171):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=1608  C=1228179):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=1632  C=1228220):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1632  C=1234060):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1632  C=1234180):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=1632  C=1234191):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=1661  C=1234244):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=1661  C=1242999):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1661  C=1243105):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=1670  C=1243129):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=1744  C=1243294):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=1744  C=1255228):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1744  C=1255349):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=1744  C=1255357):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=1768  C=1255398):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1768  C=1259501):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1768  C=1259623):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=1768  C=1259631):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=1792  C=1259672):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1792  C=1269596):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1792  C=1269666):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=1792  C=1269674):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=1816  C=1269715):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1816  C=1275555):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1816  C=1275675):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=1816  C=1275683):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=1840  C=1275724):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1840  C=1281564):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1840  C=1281684):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=1840  C=1281695):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=1869  C=1281748):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=1869  C=1290503):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1869  C=1290609):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=1878  C=1290633):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=1952  C=1290798):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=1952  C=1302516):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1952  C=1302637):  ACC 2 halted after 11840 cycles
+src/trace_read.cc:1435: (I=1952  C=1302645):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=1976  C=1302686):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=1976  C=1306789):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=1976  C=1306911):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=1976  C=1306919):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=2000  C=1306960):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2000  C=1316889):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2000  C=1316955):  ACC 4 halted after 9996 cycles
+src/trace_read.cc:1435: (I=2000  C=1316963):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=2024  C=1317004):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2024  C=1322844):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2024  C=1322964):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=2024  C=1322972):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=2048  C=1323013):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2048  C=1328853):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2048  C=1328973):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=2048  C=1328984):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=2077  C=1329037):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=2077  C=1337792):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2077  C=1337898):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=2086  C=1337922):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=2160  C=1338087):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=2160  C=1350021):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2160  C=1350142):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=2160  C=1350150):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=2184  C=1350191):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2184  C=1354294):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2184  C=1354416):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=2184  C=1354424):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=2208  C=1354465):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2208  C=1364389):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2208  C=1364455):  ACC 4 halted after 9991 cycles
+src/trace_read.cc:1435: (I=2208  C=1364463):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=2232  C=1364504):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2232  C=1370344):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2232  C=1370464):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=2232  C=1370472):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=2256  C=1370513):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2256  C=1376353):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2256  C=1376473):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=2256  C=1376484):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=2285  C=1376537):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=2285  C=1385292):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2285  C=1385398):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=2294  C=1385422):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=2368  C=1385587):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=2368  C=1397521):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2368  C=1397642):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=2368  C=1397650):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=2392  C=1397691):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2392  C=1401794):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2392  C=1401916):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=2392  C=1401924):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=2416  C=1401965):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2416  C=1411893):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2416  C=1411959):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=2416  C=1411967):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=2440  C=1412008):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2440  C=1417848):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2440  C=1417968):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=2440  C=1417976):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=2464  C=1418017):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2464  C=1423857):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2464  C=1423977):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=2464  C=1423988):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=2493  C=1424041):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=2493  C=1432796):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2493  C=1432902):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=2502  C=1432926):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=2576  C=1433091):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=2576  C=1445025):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2576  C=1445146):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=2576  C=1445154):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=2600  C=1445195):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2600  C=1449298):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2600  C=1449420):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=2600  C=1449428):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=2624  C=1449469):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2624  C=1459394):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2624  C=1459464):  ACC 4 halted after 9996 cycles
+src/trace_read.cc:1435: (I=2624  C=1459472):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=2648  C=1459513):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2648  C=1465353):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2648  C=1465473):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=2648  C=1465481):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=2672  C=1465522):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2672  C=1471362):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2672  C=1471482):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=2672  C=1471493):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=2701  C=1471546):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=2701  C=1480301):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2701  C=1480407):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=2710  C=1480431):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=2784  C=1480596):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=2784  C=1492314):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2784  C=1492435):  ACC 2 halted after 11840 cycles
+src/trace_read.cc:1435: (I=2784  C=1492443):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=2808  C=1492484):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2808  C=1496587):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2808  C=1496709):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=2808  C=1496717):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=2832  C=1496758):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2832  C=1506686):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2832  C=1506752):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=2832  C=1506760):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=2856  C=1506801):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2856  C=1512641):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2856  C=1512761):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=2856  C=1512769):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=2880  C=1512810):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=2880  C=1518650):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2880  C=1518770):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=2880  C=1518781):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=2909  C=1518834):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=2909  C=1527589):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2909  C=1527695):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=2918  C=1527719):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=2992  C=1527884):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=2992  C=1539818):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=2992  C=1539939):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=2992  C=1539947):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=3016  C=1539988):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3016  C=1544091):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3016  C=1544213):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=3016  C=1544221):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=3040  C=1544262):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3040  C=1554186):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3040  C=1554252):  ACC 4 halted after 9991 cycles
+src/trace_read.cc:1435: (I=3040  C=1554260):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=3064  C=1554301):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3064  C=1560141):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3064  C=1560261):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=3064  C=1560269):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=3088  C=1560310):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3088  C=1566150):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3088  C=1566270):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=3088  C=1566281):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=3117  C=1566334):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=3117  C=1575089):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3117  C=1575195):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=3126  C=1575219):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=3200  C=1575384):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=3200  C=1587318):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3200  C=1587439):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=3200  C=1587447):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=3224  C=1587488):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3224  C=1591591):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3224  C=1591713):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=3224  C=1591721):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=3248  C=1591762):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3248  C=1601690):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3248  C=1601756):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=3248  C=1601764):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=3272  C=1601805):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3272  C=1607645):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3272  C=1607765):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=3272  C=1607773):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=3296  C=1607814):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3296  C=1613654):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3296  C=1613774):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=3296  C=1613785):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=3325  C=1613838):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=3325  C=1622593):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3325  C=1622699):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=3334  C=1622723):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=3408  C=1622888):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=3408  C=1634822):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3408  C=1634943):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=3408  C=1634951):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=3432  C=1634992):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3432  C=1639095):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3432  C=1639217):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=3432  C=1639225):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=3456  C=1639266):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3456  C=1649191):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3456  C=1649261):  ACC 4 halted after 9996 cycles
+src/trace_read.cc:1435: (I=3456  C=1649269):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=3480  C=1649310):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3480  C=1655150):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3480  C=1655270):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=3480  C=1655278):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=3504  C=1655319):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3504  C=1661159):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3504  C=1661279):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=3504  C=1661290):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=3533  C=1661343):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=3533  C=1670098):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3533  C=1670204):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=3542  C=1670228):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=3616  C=1670393):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=3616  C=1682111):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3616  C=1682232):  ACC 2 halted after 11840 cycles
+src/trace_read.cc:1435: (I=3616  C=1682240):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=3640  C=1682281):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3640  C=1686384):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3640  C=1686506):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=3640  C=1686514):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=3664  C=1686555):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3664  C=1696483):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3664  C=1696549):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=3664  C=1696557):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=3688  C=1696598):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3688  C=1702438):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3688  C=1702558):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=3688  C=1702566):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=3712  C=1702607):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3712  C=1708447):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3712  C=1708567):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=3712  C=1708578):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=3741  C=1708631):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=3741  C=1717386):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3741  C=1717492):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=3750  C=1717516):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=3824  C=1717681):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=3824  C=1729615):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3824  C=1729736):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=3824  C=1729744):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=3848  C=1729785):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3848  C=1733888):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3848  C=1734010):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=3848  C=1734018):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=3872  C=1734059):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3872  C=1743983):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3872  C=1744049):  ACC 4 halted after 9991 cycles
+src/trace_read.cc:1435: (I=3872  C=1744057):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=3896  C=1744098):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3896  C=1749938):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3896  C=1750058):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=3896  C=1750066):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=3920  C=1750107):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=3920  C=1755947):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3920  C=1756067):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=3920  C=1756078):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=3949  C=1756131):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=3949  C=1764886):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=3949  C=1764992):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=3958  C=1765016):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=4032  C=1765181):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=4032  C=1777115):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4032  C=1777236):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=4032  C=1777244):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=4056  C=1777285):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4056  C=1781388):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4056  C=1781510):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=4056  C=1781518):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=4080  C=1781559):  CPU halted after 48 cycles
+** Heartbeat for core[4]:        insts:1000000     cycles:1779147     seconds:64    -- 0.56 IPC (0.56 IPC) -- 0.00 KIPS (15.63 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:1000000     cycles:1779147     seconds:64    -- 0.56 IPC (0.56 IPC) -- 0.00 KIPS (15.63 KIPS)
+src/trace_read.cc:1435: (I=4080  C=1791488):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4080  C=1791554):  ACC 4 halted after 9996 cycles
+src/trace_read.cc:1435: (I=4080  C=1791562):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=4104  C=1791603):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4104  C=1797443):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4104  C=1797563):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=4104  C=1797571):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=4128  C=1797612):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4128  C=1803452):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4128  C=1803572):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=4128  C=1803583):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=4157  C=1803636):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=4157  C=1812391):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4157  C=1812497):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=4166  C=1812521):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=4240  C=1812686):  CPU halted after 188 cycles
+** Heartbeat for core[2]:        insts:1000000     cycles:1811261     seconds:65    -- 0.55 IPC (0.55 IPC) -- 0.00 KIPS (15.38 KIPS)
+** Heartbeat for core[2]:  Thread:0      insts:1000000     cycles:1811261     seconds:65    -- 0.55 IPC (0.55 IPC) -- 0.00 KIPS (15.38 KIPS)
+src/trace_read.cc:1435: (I=4240  C=1824620):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4240  C=1824741):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=4240  C=1824749):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=4264  C=1824790):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4264  C=1828893):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4264  C=1829015):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=4264  C=1829023):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=4288  C=1829064):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4288  C=1838988):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4288  C=1839058):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=4288  C=1839066):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=4312  C=1839107):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4312  C=1844947):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4312  C=1845067):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=4312  C=1845075):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=4336  C=1845116):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4336  C=1850956):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4336  C=1851076):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=4336  C=1851087):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=4365  C=1851140):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=4365  C=1859895):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4365  C=1860001):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=4374  C=1860025):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=4448  C=1860190):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=4448  C=1871908):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4448  C=1872029):  ACC 2 halted after 11840 cycles
+src/trace_read.cc:1435: (I=4448  C=1872037):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=4472  C=1872078):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4472  C=1876181):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4472  C=1876303):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=4472  C=1876311):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=4496  C=1876352):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4496  C=1886280):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4496  C=1886346):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=4496  C=1886354):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=4520  C=1886395):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4520  C=1892235):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4520  C=1892355):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=4520  C=1892363):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=4544  C=1892404):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4544  C=1898244):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4544  C=1898364):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=4544  C=1898375):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=4573  C=1898428):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=4573  C=1907183):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4573  C=1907289):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=4582  C=1907313):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=4656  C=1907478):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=4656  C=1919412):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4656  C=1919533):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=4656  C=1919541):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=4680  C=1919582):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4680  C=1923685):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4680  C=1923807):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=4680  C=1923815):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=4704  C=1923856):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4704  C=1933780):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4704  C=1933846):  ACC 4 halted after 9991 cycles
+src/trace_read.cc:1435: (I=4704  C=1933854):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=4728  C=1933895):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4728  C=1939735):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4728  C=1939855):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=4728  C=1939863):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=4752  C=1939904):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4752  C=1945744):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4752  C=1945864):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=4752  C=1945875):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=4781  C=1945928):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=4781  C=1954683):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4781  C=1954789):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=4790  C=1954813):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=4864  C=1954978):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=4864  C=1966912):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4864  C=1967033):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=4864  C=1967041):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=4888  C=1967082):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4888  C=1971185):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4888  C=1971307):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=4888  C=1971315):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=4912  C=1971356):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4912  C=1981285):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4912  C=1981351):  ACC 4 halted after 9996 cycles
+src/trace_read.cc:1435: (I=4912  C=1981359):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=4936  C=1981400):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4936  C=1987240):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4936  C=1987360):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=4936  C=1987368):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=4960  C=1987409):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=4960  C=1993249):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4960  C=1993369):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=4960  C=1993380):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=4989  C=1993433):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=4989  C=2002188):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=4989  C=2002294):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=4998  C=2002318):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=5072  C=2002483):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=5072  C=2014417):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5072  C=2014538):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=5072  C=2014546):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=5096  C=2014587):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5096  C=2018690):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5096  C=2018812):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=5096  C=2018820):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=5120  C=2018861):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5120  C=2028785):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5120  C=2028855):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=5120  C=2028863):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=5144  C=2028904):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5144  C=2034744):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5144  C=2034864):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=5144  C=2034872):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=5168  C=2034913):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5168  C=2040753):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5168  C=2040873):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=5168  C=2040884):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=5197  C=2040937):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=5197  C=2049692):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5197  C=2049798):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=5206  C=2049822):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=5280  C=2049987):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=5280  C=2061705):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5280  C=2061826):  ACC 2 halted after 11840 cycles
+src/trace_read.cc:1435: (I=5280  C=2061834):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=5304  C=2061875):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5304  C=2065978):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5304  C=2066100):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=5304  C=2066108):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=5328  C=2066149):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5328  C=2076077):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5328  C=2076143):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=5328  C=2076151):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=5352  C=2076192):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5352  C=2082032):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5352  C=2082152):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=5352  C=2082160):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=5376  C=2082201):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5376  C=2088041):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5376  C=2088161):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=5376  C=2088172):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=5405  C=2088225):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=5405  C=2096980):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5405  C=2097086):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=5414  C=2097110):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=5488  C=2097275):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=5488  C=2109209):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5488  C=2109330):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=5488  C=2109338):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=5512  C=2109379):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5512  C=2113482):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5512  C=2113604):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=5512  C=2113612):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=5536  C=2113653):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5536  C=2123578):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5536  C=2123644):  ACC 4 halted after 9992 cycles
+src/trace_read.cc:1435: (I=5536  C=2123652):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=5560  C=2123693):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5560  C=2129533):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5560  C=2129653):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=5560  C=2129661):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=5584  C=2129702):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5584  C=2135542):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5584  C=2135662):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=5584  C=2135673):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=5613  C=2135726):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=5613  C=2144481):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5613  C=2144587):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=5622  C=2144611):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=5696  C=2144776):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=5696  C=2156710):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5696  C=2156831):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=5696  C=2156839):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=5720  C=2156880):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5720  C=2160983):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5720  C=2161105):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=5720  C=2161113):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=5744  C=2161154):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5744  C=2171082):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5744  C=2171148):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=5744  C=2171156):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=5768  C=2171197):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5768  C=2177037):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5768  C=2177157):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=5768  C=2177165):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=5792  C=2177206):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5792  C=2183046):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5792  C=2183166):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=5792  C=2183177):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=5821  C=2183230):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=5821  C=2191985):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5821  C=2192091):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=5830  C=2192115):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=5904  C=2192280):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=5904  C=2204214):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5904  C=2204335):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=5904  C=2204343):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=5928  C=2204384):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5928  C=2208487):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5928  C=2208609):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=5928  C=2208617):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=5952  C=2208658):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5952  C=2218582):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5952  C=2218652):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=5952  C=2218660):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=5976  C=2218701):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=5976  C=2224541):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=5976  C=2224661):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=5976  C=2224669):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=6000  C=2224710):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6000  C=2230550):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6000  C=2230670):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=6000  C=2230681):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=6029  C=2230734):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=6029  C=2239489):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6029  C=2239595):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=6038  C=2239619):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=6112  C=2239784):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=6112  C=2251502):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6112  C=2251623):  ACC 2 halted after 11840 cycles
+src/trace_read.cc:1435: (I=6112  C=2251631):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=6136  C=2251672):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6136  C=2255775):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6136  C=2255897):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=6136  C=2255905):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=6160  C=2255946):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6160  C=2265874):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6160  C=2265940):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=6160  C=2265948):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=6184  C=2265989):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6184  C=2271829):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6184  C=2271949):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=6184  C=2271957):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=6208  C=2271998):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6208  C=2277838):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6208  C=2277958):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=6208  C=2277969):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=6237  C=2278022):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=6237  C=2286777):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6237  C=2286883):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=6246  C=2286907):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=6320  C=2287072):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=6320  C=2299006):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6320  C=2299127):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=6320  C=2299135):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=6344  C=2299176):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6344  C=2303279):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6344  C=2303401):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=6344  C=2303409):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=6368  C=2303450):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6368  C=2313375):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6368  C=2313441):  ACC 4 halted after 9992 cycles
+src/trace_read.cc:1435: (I=6368  C=2313449):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=6392  C=2313490):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6392  C=2319330):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6392  C=2319450):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=6392  C=2319458):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=6416  C=2319499):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6416  C=2325339):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6416  C=2325459):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=6416  C=2325470):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=6445  C=2325523):  CPU halted after 63 cycles
+** Heartbeat for core[7]:        insts:1000000     cycles:2311746     seconds:74    -- 0.43 IPC (0.43 IPC) -- 0.00 KIPS (13.51 KIPS)
+** Heartbeat for core[7]:  Thread:0      insts:1000000     cycles:2311746     seconds:74    -- 0.43 IPC (0.43 IPC) -- 0.00 KIPS (13.51 KIPS)
+src/trace_read.cc:1435: (I=6445  C=2334278):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6445  C=2334384):  ACC 7 halted after 8862 cycles
+src/trace_read.cc:1435: (I=6454  C=2334408):  Core 0 got acc_segment_delim marker switching to : 2
+src/core.cc:491: (I=6528  C=2334573):  CPU halted after 188 cycles
+src/trace_read.cc:1435: (I=6528  C=2346507):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6528  C=2346628):  ACC 2 halted after 12056 cycles
+src/trace_read.cc:1435: (I=6528  C=2346636):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=6552  C=2346677):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6552  C=2350780):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6552  C=2350902):  ACC 3 halted after 4226 cycles
+src/trace_read.cc:1435: (I=6552  C=2350910):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=6576  C=2350951):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6576  C=2360879):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6576  C=2360945):  ACC 4 halted after 9995 cycles
+src/trace_read.cc:1435: (I=6576  C=2360953):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=6600  C=2360994):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6600  C=2366834):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6600  C=2366954):  ACC 5 halted after 5961 cycles
+src/trace_read.cc:1435: (I=6600  C=2366962):  Core 0 got acc_segment_delim marker switching to : 6
+src/core.cc:491: (I=6624  C=2367003):  CPU halted after 48 cycles
+src/trace_read.cc:1435: (I=6624  C=2372843):  Core 6 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6624  C=2372963):  ACC 6 halted after 5961 cycles
+src/trace_read.cc:1435: (I=6624  C=2372974):  Core 0 got acc_segment_delim marker switching to : 7
+src/core.cc:491: (I=6653  C=2373027):  CPU halted after 63 cycles
+src/trace_read.cc:1435: (I=6653  C=2381782):  Core 7 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=6653  C=2381888):  ACC 7 halted after 8862 cycles
+**Core 0 Thread 0 Finished:   insts:6655        cycles:2381904     seconds:75    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.09 KHz) 
+**Core 0 Core_Total  Finished:   insts:6655        cycles:2381904     seconds:75    -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.09 KHz)
+Deleting system...
+Deleting system done
+Deleting event queue...
+Deleting event queue done
+src/macsim.cc:496: (I=6655  C=2381905):  finalize simulation
+src/macsim.cc:502: (I=6655  C=2381905):  elapsed time:75.3 seconds
