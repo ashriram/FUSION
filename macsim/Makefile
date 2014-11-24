@@ -9,13 +9,13 @@ INCDIR=-I$(SRCDIR) -I$(GEMS_HOME)/ruby_clean/O3sim_ruby
 CC = g++-4.6
 #CWARN = -W -Wall -Wshadow -Wimplicit -Wreturn-type -Wcomment -Wtrigraphs -Wformat -Wparentheses -Wpointer-arith -Wuninitialized -O
 CFLAGS = $(INCDIR) -std=c++0x
-CWARD = -O3 
+CWARD = -O3
 CDBG = -g $(CWARN) -fno-inline -DCHECK_REGISTER_FILE
 DFLAGS = -g $(CWARN) -fno-inline -DDEBUG=0
 
 # Uncomment for full Debug mode
-CFLAGS += $(CWARD)
-#CFLAGS += $(DFLAGS) 
+#CFLAGS += $(CWARD)
+CFLAGS += $(DFLAGS) 
 
 
 CTAG = etags

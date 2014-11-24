@@ -709,14 +709,16 @@ int macsim_c::run_a_cycle()
         if(ii > 0 && m_core_pointers[0]->m_active)
            continue; 
 
+        // ska124 --  Add clock domain for DMA and ACC here
+        //if (m_clock_internal % m_clock_divisor[CLOCK_ACC] == 0 && ii > 1) 
+            //continue; // Run ACC at lower clock if required
 
         
         string core_type = core->get_core_type();
-        if (core_type == "ptx" && m_clock_internal % m_clock_divisor[CLOCK_GPU] != 0) {
-            continue;
-        }
-        // ska124 --  Add clock domain for DMA and ACC here
-        else if (core_type != "ptx" && m_clock_internal % m_clock_divisor[CLOCK_CPU] != 0) {
+        //if (core_type == "ptx" && m_clock_internal % m_clock_divisor[CLOCK_GPU] != 0) {
+            //continue;
+        //}
+        if (core_type != "ptx" && m_clock_internal % m_clock_divisor[CLOCK_CPU] != 0) {
             continue;
         }
 
