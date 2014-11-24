@@ -19,49 +19,43 @@ void  processTrace()
         Inst_info *II = (Inst_info*)malloc(sizeof(Inst_info));
         memcpy((void *)II, (void *)inst, sizeof(Inst_info));
 
-        
-        
-            if(II->acc_heap_load) 
-            {
-                loadSize ++; 
-            }
-            else if (II->acc_heap_store )
-            {
-                 storeSize ++;
-                
-            }
-            else if (II->is_fp)
-            {
-                    floatSize++; 
-            
-            }
-            else if (II->ld_vaddr1 != 0 ||  II->ld_vaddr2 != 0  ) 
-            {
-                loadSize++;
-            }
-            
-            else if (II->st_vaddr != 0 )
-            {
-                storeSize++;
-            }
 
-            else 
-            {
+
+        if(II->acc_heap_load) 
+        {
+            loadSize ++; 
+        }
+        else if (II->acc_heap_store )
+        {
+            storeSize ++;
+
+        }
+        else if (II->is_fp)
+        {
+            if(II->opcode == TR_FMUL || II->opcode == TR_FDIV)
+                floatLargeSize++;
+            else
+                floatSize++; 
+        }
+        else 
+        {
+            if(II->opcode == TR_MUL || II->opcode == TR_DIV)
+                intLargeSize++;
+            else
                 intSize++;
-            }
-
-
+        }
     }
     free(inst);
-//    cout<<"load     inst :"<<loadSize<<endl;
-//    cout<<"store    inst :"<<storeSize<<endl;
-//    cout<<"Int      inst :"<<intSize<<endl;
-//    cout<<"Float    inst :"<<floatSize<<endl;
+    //    cout<<"load     inst :"<<loadSize<<endl;
+    //    cout<<"store    inst :"<<storeSize<<endl;
+    //    cout<<"Int      inst :"<<intSize<<endl;
+    //    cout<<"Float    inst :"<<floatSize<<endl;
     cout<<intSize<<endl;
     cout<<floatSize<<endl;
-
     cout<<loadSize<<endl;
     cout<<storeSize<<endl;
+    cout<<intLargeSize<<endl;
+    cout<<floatLargeSize<<endl;
 
 }
 
@@ -81,22 +75,22 @@ void storeTrace( int i )
         myfile <<hex<<x<<dec<<endl;
 
     }
-    
+
     myfile.close();
     LoadInsts.clear();
     //gzclose(MemLoadFilename);
 
-//
-//    string StMemTraceFilename = string("st_trace_") + to_string(i) + string(".out");
-//    MemStoreFilename = gzopen(StMemTraceFilename.c_str(), "wb");    
-//
-//    for(auto &dl : StoreInsts)
-//            {
-//                gzwrite(MemStoreFilename, dl.second, sizeof(Inst_info));
-//            }
-//    
-//    StoreInsts.clear();
-//    gzclose(MemStoreFilename);
+    //
+    //    string StMemTraceFilename = string("st_trace_") + to_string(i) + string(".out");
+    //    MemStoreFilename = gzopen(StMemTraceFilename.c_str(), "wb");    
+    //
+    //    for(auto &dl : StoreInsts)
+    //            {
+    //                gzwrite(MemStoreFilename, dl.second, sizeof(Inst_info));
+    //            }
+    //    
+    //    StoreInsts.clear();
+    //    gzclose(MemStoreFilename);
 
 
 }
@@ -106,21 +100,21 @@ void  countDatasharing(int i, int j)
 {
     int data_sharing_count= 0;
     unsigned int memSize = 0;
-//    Inst_info *inst_i = (Inst_info *)malloc(sizeof(Inst_info));    
-//    while(gzread(trace_i, (void*)inst_i, sizeof(Inst_info)) > 0)
-//    {
-// 
-//
-//        Inst_info *inst_j = (Inst_info *)malloc(sizeof(Inst_info));    
-//        while(gzread(trace_j, (void*)inst_j, sizeof(Inst_info)) > 0)
-//        {
-//            cout<<inst_i<<"\t"<<inst_j<<endl;
-//            if (inst_i==inst_j)    
-//                data_sharing_count++; 
-//            //memSize += inst_j->mem_read_size; 
-//        }
-//        free(inst_j);
-//    }
+    //    Inst_info *inst_i = (Inst_info *)malloc(sizeof(Inst_info));    
+    //    while(gzread(trace_i, (void*)inst_i, sizeof(Inst_info)) > 0)
+    //    {
+    // 
+    //
+    //        Inst_info *inst_j = (Inst_info *)malloc(sizeof(Inst_info));    
+    //        while(gzread(trace_j, (void*)inst_j, sizeof(Inst_info)) > 0)
+    //        {
+    //            cout<<inst_i<<"\t"<<inst_j<<endl;
+    //            if (inst_i==inst_j)    
+    //                data_sharing_count++; 
+    //            //memSize += inst_j->mem_read_size; 
+    //        }
+    //        free(inst_j);
+    //    }
 
     string traceFilename_i = string("mem_trace_") + to_string(i) + string(".out");
     string traceFilename_i_1 = string("mem_trace_") + to_string(j) + string(".out");
@@ -131,22 +125,22 @@ void  countDatasharing(int i, int j)
     //ifstream myfile (trace_i);
     if (trace_i.is_open() && trace_j.is_open())
     {
-            while ( getline (trace_i,line) )
-            {
+        while ( getline (trace_i,line) )
+        {
 
-                while(getline (trace_j,line2))
-                {
-                    if(line==line2) 
-                        data_sharing_count++;
-                                    
-                }
-                trace_j.seekg(0);
+            while(getline (trace_j,line2))
+            {
+                if(line==line2) 
+                    data_sharing_count++;
+
             }
+            trace_j.seekg(0);
+        }
     }
 
     trace_i.close();
     trace_j.close();
-    
+
     cout <<"DATA sharing between " <<i <<"and "<<j << "=  "<<data_sharing_count<<"\n"<<endl;
 
     //free(inst_i);
@@ -155,7 +149,7 @@ void  countDatasharing(int i, int j)
 
 int main()
 {
-       // Open trace.txt to find out the number of traces
+    // Open trace.txt to find out the number of traces
 
     ifstream traceTxt("trace.txt",ios::in);
     if(!traceTxt.is_open())
@@ -177,7 +171,7 @@ int main()
     {
         string OrigFilename = string("trace_") + to_string(i) + string(".raw");
         OrigTrace = gzopen(OrigFilename.c_str(), "rb");
-        
+
 
         if(!OrigTrace )
         {
@@ -186,7 +180,7 @@ int main()
         }
         //unsigned long long  total_load_size =0;
         //cout<< "Total load + Store size for i=" <<i<<" is "<<processTrace()<<endl;
-        
+
         cout<<"Trace No :"<<i<<endl;
         processTrace();
         //storeTrace(i);
