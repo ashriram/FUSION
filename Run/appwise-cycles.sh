@@ -6,8 +6,9 @@ bench=('b1'  'b2'  'b3'  'b4')
 #bench=('b1')
 
 path='small/'
-
+dir='app-cycle-'
 cd ${path}
+
 for x in ${bench[@]}
 do
     cd ${x}    
@@ -22,7 +23,7 @@ do
         #./ooo-sim>std_out  2>std_err &        
         #------ to Calculate CPU -- DMA --- ACC Cycles ----
         
-        grep "CPU halted after"  std_out | awk '{ sum+=$7} END {print sum}'>>../../../app-cycle/${APPS[i]}-cycles.csv
+        grep "CPU halted after"  std_out | awk '{ sum+=$7} END {print sum}'>>../../../${dir}${APPS[i]}-cycles.csv
         
         if [ "${x}" == "b1"  ] 
         then

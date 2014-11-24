@@ -27,7 +27,7 @@ L2T_CACHE_NUM_SETS_BITS: 16
 L1_to_L2_MSG_LATENCY: 2
 L2_to_L1_MSG_LATENCY: 2
 // L2T_to_L1T increased to 5 for larger L2T (256K)
-L2T_to_L1T_DATA_LATENCY: 5
+L2T_to_L1T_DATA_LATENCY: 6
 L1_to_L2_DATA_LATENCY: 2
 L2_to_L1_DATA_LATENCY: 8
 MEM_to_L2_MSG_LATENCY: 200
@@ -42,6 +42,7 @@ g_CACHE_DESIGN: FUSION  // specifies file prefix for FILE_SPECIFIED topology
 g_DATA_BLOCK_BYTES:32
 // Needs to be same as block size. Could be slightly bigger to accomodate fields
 g_DATA_MESSAGE_SIZE: 32
+NUMBER_OF_VIRTUAL_NETWORKS: 8
 g_DMA_PROC:1
 g_FLIT_SIZE:8
 g_GMEM_SKIP_L1D: false
