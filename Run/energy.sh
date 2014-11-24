@@ -40,7 +40,7 @@ run_baseline_1 () {
     L2T_TO_L1T_DATA=`grep "L2T_TO_L1T_DATA" ruby.stat.out |awk '{print $3}' `
     
     
-    FINAL_DMA_CACHE_PJ=`echo "$L2_TOTAL_REQ*(${L2_ACCESS_PJ}+${L1T_SP_ACCESS_PJ}) "|bc -l`  #40byte is 5flits*8bytes
+    FINAL_DMA_CACHE_PJ=`echo "$NUM_DMA*(${L2_ACCESS_PJ}+${L1T_SP_ACCESS_PJ}) "|bc -l`  #40byte is 5flits*8bytes
 
     echo "L2_TOTAL_REQ  $L2_TOTAL_REQ"
 
@@ -125,18 +125,46 @@ run_baseline_3 () {
         echo "ERROR XXXX -- KHATRA"
         exit
     fi
+    
     L2T_MISS=`grep "L2T_cache_total_misses:" ruby.stat.out | awk '{print $2}'`    
     L2_TO_L2T_DATA=`grep "L2_TO_L2T_DATA" ruby.stat.out |  awk '{print $3}'` 
     LINK_PJ=`echo "($L2T_MISS + $L2_TO_L2T_DATA)*8*$L2T_TO_L2_LINK_PJ_BYTE" |bc -l` 
+    
+    
+    
+    
     L2_ACCESS_PJ=`echo " $L2T_MISS*$L2_ACCESS_PJ" | bc -l`
     FINAL_L2_PJ=`echo " $L2_ACCESS_PJ + $LINK_PJ" | bc -l`
 
+    
+    
+    
+    
     L2T_TOTAL_REQ=`grep "L2T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
     L2T_TO_L1T_DATA=`grep "L2T_TO_L1T_DATA" ruby.stat.out | awk '{print $3}'`
     L1T_TO_L2T_MSG=`grep "L1T_TO_L2T_MSG" ruby.stat.out | awk '{print $3}'`
-    FINAL_L2T_PJ=`echo "($L2T_TOTAL_REQ - $L2T_MISS) * $L2T_ACCESS_PJ +  8*$L1T_TO_L2T_LINK_PJ_BYTE*( $L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG )" | bc -l`
+    
+
+#    L2T (GETS)*ACCESS ENERGY + DMA STORES * ACCESS ENERGY
+#   
+
+
+    FINAL_L2T_PJ=
+    
+    
+    
+    
+    
+    #`echo "($L2T_TOTAL_REQ - $L2T_MISS) * $L2T_ACCESS_PJ +  \
+    #    8*$L1T_TO_L2T_LINK_PJ_BYTE*( $L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG )" | bc -l`
  
+    
+    
+    
     L1T_TOTAL_REQ=`grep "L1T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
+    
+    
+    
     FINAL_L1T_PJ=`echo  "$L1T_TOTAL_REQ * $L1T_ACCESS_PJ" | bc -l`
 
     FINAL_CORE_PJ=`echo "${NUM_INT_ADD} * ${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`

@@ -23,7 +23,7 @@ NUM_FP_MUL=1000
 #-------------- BASELINE 1 --------------------------
 run_baseline_1 () {    
     
-    echo "Running Baseline 1"    
+#    echo "Running Baseline 1"    
     if [ "$1" == "small" ]; then
         L1T_SP_ACCESS_PJ=${L1T_4K_SP_ACCESS_PJ}
     elif [ "$1" == "large" ];then
@@ -41,14 +41,15 @@ run_baseline_1 () {
     L1T_HIT=`grep -A19 "\-\-\- L1TCache \-\-\-" ruby.stat.out | grep "^S\ \ Load" | awk '{print $3}'`
     FINAL_SP_PJ=`echo "${L1T_SP_ACCESS_PJ}*(${L1T_HIT} + ${L1T_TOT_STORES})"|bc -l`
 
-    echo "$FINAL_CORE_PJ"
+    #echo "$FINAL_CORE_PJ"
     echo "$FINAL_SP_PJ"
     echo "$FINAL_DMA_PJ"
+    echo "0"
 }
 #-------------- BASELINE 2 --------------------------
 
 run_baseline_2 () {    
-    echo "Running Baseline 2"    
+#    echo "Running Baseline 2"    
     if [ "$1" == "small" ]; then
         L2T_ACCESS_PJ=${L2T_64K_ACCESS_PJ}
     elif [ "$1" == "large" ]; then
@@ -66,13 +67,13 @@ run_baseline_2 () {
     L2T_TO_L1T_DATA=`grep "L2T_TO_L1T_DATA" ruby.stat.out | awk '{print $3}'`
     L1T_TO_L2T_MSG=`grep "L1T_TO_L2T_MSG" ruby.stat.out | awk '{print $3}'`
 
-    FINAL_L2T_PJ=`echo "$L2T_TOTAL_REQ * $L2T_ACCESS_PJ +  8*$L1T_TO_L2T_LINK_PJ_BYTE*( $L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG )" | bc -l`
+    FINAL_L2T_PJ=`echo "($L2T_TOTAL_REQ  - $L2T_MISS)* $L2T_ACCESS_PJ +  8*$L1T_TO_L2T_LINK_PJ_BYTE*( $L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG )" | bc -l`
     FINAL_L2_PJ=`echo "($L2T_MISS +$L2_TO_L2T_DATA) *8* $L2T_TO_L2_LINK_PJ_BYTE + $L2T_MISS * $L2_ACCESS_PJ"|bc -l`
 
-    echo "$FINAL_CORE_PJ"
+    #echo "$FINAL_CORE_PJ"
     echo "$FINAL_L2T_PJ"
     echo "$FINAL_L2_PJ"
-
+    echo "0"
 }
 
 
@@ -81,16 +82,16 @@ run_baseline_2 () {
 
 
 run_baseline_3 () {    
-    if [ "$2" == "b3" ]; then 
-        echo "Running Baseline 3" 
-    elif [ "$2" == "b4" ]; then 
-        echo "Running Baseline 4" 
-    else
-        echo "ERROR not b3 or b4"
-        echo "$2"
-        exit
-    fi
-
+#    if [ "$2" == "b3" ]; then 
+#        echo "Running Baseline 3" 
+#    elif [ "$2" == "b4" ]; then 
+#        echo "Running Baseline 4" 
+#    else
+#        echo "ERROR not b3 or b4"
+#        echo "$2"
+#        exit
+#    fi
+#
 
     if [ "$1" == "small" ]; then
         L2T_ACCESS_PJ=${L2T_64K_ACCESS_PJ}
@@ -111,7 +112,7 @@ run_baseline_3 () {
     L2T_TOTAL_REQ=`grep "L2T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
     L2T_TO_L1T_DATA=`grep "L2T_TO_L1T_DATA" ruby.stat.out | awk '{print $3}'`
     L1T_TO_L2T_MSG=`grep "L1T_TO_L2T_MSG" ruby.stat.out | awk '{print $3}'`
-    FINAL_L2T_PJ=`echo "$L2T_TOTAL_REQ * $L2T_ACCESS_PJ +  8*$L1T_TO_L2T_LINK_PJ_BYTE*( $L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG )" | bc -l`
+    FINAL_L2T_PJ=`echo "($L2T_TOTAL_REQ - $L2T_MISS) * $L2T_ACCESS_PJ +  8*$L1T_TO_L2T_LINK_PJ_BYTE*( $L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG )" | bc -l`
  
     L1T_TOTAL_REQ=`grep "L1T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
     FINAL_L1T_PJ=`echo  "$L1T_TOTAL_REQ * $L1T_ACCESS_PJ" | bc -l`
@@ -119,7 +120,7 @@ run_baseline_3 () {
     FINAL_CORE_PJ=`echo "${NUM_INT_ADD} * ${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
 
 
-    echo "$FINAL_CORE_PJ"
+    #echo "$FINAL_CORE_PJ"
     echo "$FINAL_L1T_PJ"
     echo "$FINAL_L2T_PJ"
     echo "$FINAL_L2_PJ"

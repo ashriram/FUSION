@@ -3,9 +3,11 @@
 APPS=('tracking' 'histogram'  'nw'  'disparity'  'susan'  'filter'  'fft' 'adpcm') 
 #APPS=('fft')
 #bench=('b1'  'b2'  'b3'  'b4')
-bench=('b1')
+bench=('b4' 'b3')
 
-path='large/'
+#path='large/'
+#path='small'
+path='large-b4'
 
 cd ${path}
 for x in ${bench[@]}
@@ -19,8 +21,13 @@ do
         cwd=$(pwd)
         echo -e "$cwd"
         #--- To Run BENCH MARK--------------------------
+        #cp ../../../energy.sh  .
+        #./energy.sh ${path}  ${x} >>../../../energy/large/energy-${APPS[$i]}.csv
+        
         #rm CONFIG_SCRATCHPAD_4K
-        #rm CONFIG       
+        rm CONFIG       
+        ln -s ../../../../gems-lib/ruby_clean/config/LARGE/CONFIG_XLARGE_B4 CONFIG
+
         #if [ "${x}" == "b1"  ] 
         #then    
         #    ln -s ../../../../gems-lib/ruby_clean/config/LARGE/CONFIG_SCRATCHPAD_8K  CONFIG
