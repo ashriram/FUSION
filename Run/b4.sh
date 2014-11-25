@@ -22,7 +22,7 @@ NUM_FP_MUL=1000
 ## HACK: Benchname
 BENCH_NAME=$3
 
-FWDX=100
+FWDX=`cat FWDX`
     
 run_baseline_3 () {    
 
@@ -89,6 +89,11 @@ run_baseline_3 () {
 }
 
 run_baseline_4 () {    
+
+    if [ ! -f "FWDX" ]; then
+        echo "FWDX File not found"
+        exit
+    fi
 
     L2T_ACCESS_PJ=${L2T_512K_ACCESS_PJ}
     L1T_ACCESS_PJ=${L1T_8K_CACHE_ACCESS_PJ}

@@ -19,6 +19,7 @@ unsigned long long  processTrace()
         
             if(II->acc_heap_load && LoadInsts.count(makeCacheAddr(II->ld_vaddr1)) == 0)
             {
+                //std::cerr << "Adding load" <<endl;
                 LoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr1),II));
                 loadSize += II->mem_read_size; 
                 LoadOrder.push_back(II->ld_vaddr1);
@@ -27,6 +28,7 @@ unsigned long long  processTrace()
         
             if(II->acc_heap_load && LoadInsts.count(makeCacheAddr(II->ld_vaddr2)) == 0)
             {
+                //std::cerr << "Adding load" <<endl;
                 LoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr2),II));
                 loadSize += II->mem_read_size; 
                 LoadOrder.push_back(II->ld_vaddr2);
@@ -34,6 +36,7 @@ unsigned long long  processTrace()
          
             if(II->acc_heap_store && LoadInsts.count(makeCacheAddr(II->st_vaddr)) == 0)
             {
+                //std::cerr << "Adding Store" <<endl;
                 StoreInsts.insert(make_pair(II->st_vaddr,II));
                 storeSize += II->mem_write_size;
             }
@@ -49,6 +52,8 @@ unsigned long long  processTrace()
 void storeTrace( int i )
 {
 
+    cerr << "Storing trace " << i << endl;
+
     string LdMemTraceFilename = string("Ld_mem_trace_") + to_string(i) + string(".out");
     ofstream myfile;
     myfile.open (LdMemTraceFilename);
@@ -56,6 +61,7 @@ void storeTrace( int i )
     {
         uint32_t  x = dl;
         myfile <<hex<<x<<dec<<endl;
+        
     }
     
     myfile.close();
@@ -112,6 +118,7 @@ int main()
         }
         //unsigned long long  total_load_size =0;
         //cout<< "Total load + Store size for i=" <<i<<" is "<<processTrace()<<endl;
+        processTrace();
         storeTrace(i);
 
         gzclose(OrigTrace);
