@@ -5,7 +5,7 @@ CFLAGS+=-I../../macsim/tools/x86_trace_generator
 LDFLAGS=-lz
 SOURCES=$(wildcard *.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=calc_inst
+EXECUTABLE=calc_type_inst
 
 all: $(SOURCES) $(EXECUTABLE)
 	
