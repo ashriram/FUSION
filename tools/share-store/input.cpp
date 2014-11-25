@@ -37,7 +37,7 @@ unsigned long long  processTrace()
             if(II->acc_heap_store && LoadInsts.count(makeCacheAddr(II->st_vaddr)) == 0)
             {
                 //std::cerr << "Adding Store" <<endl;
-                StoreInsts.insert(make_pair(II->st_vaddr,II));
+                StoreInsts.insert(make_pair(makeCacheAddr(II->st_vaddr),II));
                 storeSize += II->mem_write_size;
             }
 
