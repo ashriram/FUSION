@@ -5,7 +5,7 @@ APPS=('tracking' 'histogram'  'nw'  'disparity'  'susan'  'filter'  'fft' 'adpcm
 bench=('b1'  'b2'  'b3'  'b4')
 #bench=('b4' 'b3')
 
-path='small'
+path='$1'
 #path='small'
 #path='small'
 
@@ -40,7 +40,8 @@ do
         #echo "../../../../Traces/large/${x}/"${APPS[$i]}"/trace.txt">>trace_file_list
         #./ooo-sim>std_out  2>std_err &        
         #------ to Calculate CPU -- DMA --- ACC Cycles ----
-        
+       
+        #---- CPU DMA AND ACC  CYCLES------
         #grep "CPU halted after"  std_out | awk '{ sum+=$7} END {print sum}'
         #
         #if [ "${x}" == "b1"  ] 

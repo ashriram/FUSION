@@ -1,0 +1,978 @@
+Real time: Nov/24/2014 13:14:26
+
+Profiler Stats
+--------------
+Elapsed_time_in_seconds: 1791
+Elapsed_time_in_minutes: 29.85
+Elapsed_time_in_hours: 0.4975
+Elapsed_time_in_days: 0.0207292
+
+Virtual_time_in_seconds: 1787.33
+Virtual_time_in_minutes: 29.7888
+Virtual_time_in_hours:   0.496481
+Virtual_time_in_days:    0.496481
+
+Ruby_current_time: 59192744
+Ruby_start_time: 1
+Ruby_cycles: 59192743
+
+mbytes_resident: 101.113
+mbytes_total: 137.996
+resident_ratio: 0.732726
+
+Total_misses: 0
+total_misses: 0 [ 0 0 0 0 0 0 0 0 ]
+user_misses: 0 [ 0 0 0 0 0 0 0 0 ]
+supervisor_misses: 0 [ 0 0 0 0 0 0 0 0 ]
+
+instruction_executed: 8 [ 1 1 1 1 1 1 1 1 ]
+simics_cycles_executed: 8 [ 1 1 1 1 1 1 1 1 ]
+cycles_per_instruction: 5.91927e+07 [ 5.91927e+07 5.91927e+07 5.91927e+07 5.91927e+07 5.91927e+07 5.91927e+07 5.91927e+07 5.91927e+07 ]
+misses_per_thousand_instructions: 0 [ 0 0 0 0 0 0 0 0 ]
+
+transactions_started: 0 [ 0 0 0 0 0 0 0 0 ]
+transactions_ended: 0 [ 0 0 0 0 0 0 0 0 ]
+instructions_per_transaction: 0 [ 0 0 0 0 0 0 0 0 ]
+cycles_per_transaction: 0 [ 0 0 0 0 0 0 0 0 ]
+misses_per_transaction: 0 [ 0 0 0 0 0 0 0 0 ]
+
+L1D_cache cache stats: 
+  L1D_cache_total_requests: 2833
+  L1D_cache_total_misses: 1619	(57.1479%)
+  L1D_cache_total_demand_misses: 1619
+  L1D_cache_total_prefetches: 0
+  L1D_cache_total_sw_prefetches: 0
+  L1D_cache_total_hw_prefetches: 0
+  L1D_cache_misses_per_transaction: 1619
+  L1D_cache_misses_per_instruction: 1619
+  L1D_cache_instructions_per_misses: 0.000617665
+
+  L1D_cache_request_type_LD:   1565	(55.2418)%
+  L1D_cache_request_type_ST:   1268	(44.7582)%
+
+  L1D_cache_request_size: [binsize: log2 max: 32 count: 2833 average:    32 | standard deviation: 0 | 0 0 0 0 0 0 2833 ]
+
+  L1D_cache_miss_type_LD:   794	(49.0426)%
+  L1D_cache_miss_type_ST:   825	(50.9574)%
+
+L1I_cache cache stats: 
+  L1I_cache_total_requests: 0
+  L1I_cache_total_misses: 0
+  L1I_cache_total_demand_misses: 0
+  L1I_cache_total_prefetches: 0
+  L1I_cache_total_sw_prefetches: 0
+  L1I_cache_total_hw_prefetches: 0
+  L1I_cache_misses_per_transaction: 0
+  L1I_cache_misses_per_instruction: 0
+  L1I_cache_instructions_per_misses: NaN
+
+  L1I_cache_request_size: [binsize: log2 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+
+L1T_cache cache stats: 
+  L1T_cache_total_requests: 4650453
+  L1T_cache_total_misses: 1447308	(31.1219%)
+  L1T_cache_total_demand_misses: 1447308
+  L1T_cache_total_prefetches: 0
+  L1T_cache_total_sw_prefetches: 0
+  L1T_cache_total_hw_prefetches: 0
+  L1T_cache_misses_per_transaction: 1.44731e+06
+  L1T_cache_misses_per_instruction: 1.44731e+06
+  L1T_cache_instructions_per_misses: 6.90938e-07
+
+  L1T_cache_request_type_LD:   2740853	(58.9373)%
+  L1T_cache_request_type_ST:   1909600	(41.0627)%
+
+  L1T_cache_request_size: [binsize: log2 max: 32 count: 4650453 average:    32 | standard deviation: 0 | 0 0 0 0 0 0 4650453 ]
+
+  L1T_cache_miss_type_LD:   295978	(20.4502)%
+  L1T_cache_miss_type_ST:   1151330	(79.5498)%
+
+L2_cache cache stats: 
+  L2_cache_total_requests: 2681
+  L2_cache_total_misses: 1244	(46.4006%)
+  L2_cache_total_demand_misses: 1244
+  L2_cache_total_prefetches: 0
+  L2_cache_total_sw_prefetches: 0
+  L2_cache_total_hw_prefetches: 0
+  L2_cache_misses_per_transaction: 1244
+  L2_cache_misses_per_instruction: 1244
+  L2_cache_instructions_per_misses: 0.000803859
+
+  L2_cache_request_type_LD:   794	(29.6158)%
+  L2_cache_request_type_ST:   1887	(70.3842)%
+
+  L2_cache_request_size: [binsize: log2 max: 8 count: 2681 average:     8 | standard deviation: 0 | 0 0 0 0 2681 ]
+
+  L2_cache_miss_type_LD:   503	(40.4341)%
+  L2_cache_miss_type_ST:   741	(59.5659)%
+
+L2T_cache cache stats: 
+  L2T_cache_total_requests: 2205578
+  L2T_cache_total_misses: 1062	(0.0481506%)
+  L2T_cache_total_demand_misses: 1062
+  L2T_cache_total_prefetches: 0
+  L2T_cache_total_sw_prefetches: 0
+  L2T_cache_total_hw_prefetches: 0
+  L2T_cache_misses_per_transaction: 1062
+  L2T_cache_misses_per_instruction: 1062
+  L2T_cache_instructions_per_misses: 0.00094162
+
+  L2T_cache_request_type_LD:   295978	(13.4195)%
+  L2T_cache_request_type_ST:   1909600	(86.5805)%
+
+  L2T_cache_request_size: [binsize: log2 max: 32 count: 2205578 average: 28.7793 | standard deviation: 8.18069 | 0 0 0 0 295978 0 1909600 ]
+
+  L2T_cache_miss_type_LD:   661	(62.2411)%
+  L2T_cache_miss_type_ST:   401	(37.7589)%
+
+
+TBE Queries: 2210229
+Busy TBE Counts: 0
+Busy Controller Counts:
+L1TCache-0:0  L1TCache-1:0  L1TCache-2:0  L1TCache-3:0  L1TCache-4:0  L1TCache-5:0  L1TCache-6:0  L1TCache-7:0  
+
+L2TCache-0:0  L2TCache-1:0  L2TCache-2:0  L2TCache-3:0  
+L2Cache-0:0  L2Cache-1:0  L2Cache-2:0  L2Cache-3:0  
+L1Cache-0:0  L1Cache-1:0  L1Cache-2:0  L1Cache-3:0  L1Cache-4:0  L1Cache-5:0  L1Cache-6:0  L1Cache-7:0  
+
+Directory-0:0  Directory-1:0  Directory-2:0  Directory-3:0  
+
+Busy Bank Count:0
+
+L1TBE_usage: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+L2TBE_usage: [binsize: 2 max: 65 count: 2210229 average: 0.710735 | standard deviation: 1.64598 | 1788202 321945 78222 16911 3533 63 47 49 52 45 42 44 45 48 40 49 50 57 42 40 39 41 39 41 43 51 63 59 52 56 94 123 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]
+StopTable_usage: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+sequencer_requests_outstanding: [binsize: 2 max: 66 count: 4653286 average: 2.36599 | standard deviation: 1.90222 | 2421803 1053742 830443 300316 41166 4873 34 28 29 33 30 31 28 28 26 24 27 36 33 25 25 25 27 23 22 23 23 25 31 41 69 122 73 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]
+store_buffer_size: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+unique_blocks_in_store_buffer: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+
+All Non-Zero Cycle Demand Cache Accesses
+----------------------------------------
+miss_latency: [binsize: 8 max: 1046 count: 4653286 average: 17.5451 | standard deviation: 15.9941 | 2446088 0 0 1 2200078 4342 94 5 18 4 2 0 0 59 149 475 245 33 18 7 12 6 9 7 11 8 6 7 11 6 6 9 3 75 8 6 269 28 148 25 17 13 18 110 13 148 166 15 17 16 10 16 12 2 18 9 11 5 14 14 18 8 12 10 21 16 35 21 38 21 18 12 14 7 6 6 9 6 8 8 6 5 6 5 4 4 4 1 3 2 1 1 2 0 2 0 1 0 2 0 2 0 0 2 0 3 0 0 1 0 0 1 2 0 0 0 0 2 0 2 0 1 1 0 1 2 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]
+miss_latency_LD: [binsize: 64 max: 384 count: 2742418 average: 7.20856 | standard deviation: 10.032 | 2740963 673 271 4 503 3 1 0 0 0 ]
+miss_latency_ST: [binsize: 128 max: 1046 count: 1910868 average: 32.3798 | standard deviation: 10.2518 | 1909679 126 556 191 246 46 12 11 1 0 ]
+miss_latency_L1Cache: [binsize: 2 max: 320 count: 1188 average: 152.317 | standard deviation: 127.796 | 0 0 416 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 53 6 3 0 2 0 1 49 80 12 32 6 3 5 4 4 3 3 2 3 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 67 5 0 0 0 1 0 1 0 46 202 13 0 3 2 1 1 0 0 137 4 4 1 2 2 1 ]
+miss_latency_NULL: [binsize: 8 max: 1046 count: 4652098 average: 17.5107 | standard deviation: 15.7184 | 2445672 0 0 1 2200078 4342 94 5 15 4 2 0 0 0 144 333 199 19 12 7 12 6 9 7 11 8 5 7 10 6 6 7 3 8 3 4 8 21 7 16 16 13 18 110 13 148 166 15 17 16 10 16 12 2 18 9 11 5 14 14 18 8 12 10 21 16 35 21 38 21 18 12 14 7 6 6 9 6 8 8 6 5 6 5 4 4 4 1 3 2 1 1 2 0 2 0 1 0 2 0 2 0 0 2 0 3 0 0 1 0 0 1 2 0 0 0 0 2 0 2 0 1 1 0 1 2 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]
+miss_latency_L2Miss: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+
+All Non-Zero Cycle SW Prefetch Requests
+------------------------------------
+prefetch_latency: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+prefetch_latency_L2Miss:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+multicast_retries: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+gets_mask_prediction_count: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+getx_mask_prediction_count: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+explicit_training_mask: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+
+Sequencer  Requests (MLP)
+------------------------------------
+Sequencer Requests All
+Sequencer_ALL : [binsize: 2 max: 66 count: 4653286 average: 2.36599 | standard deviation: 1.90222 | 2421803 1053742 830443 300316 41166 4873 34 28 29 33 30 31 28 28 26 24 27 36 33 25 25 25 27 23 22 23 23 25 31 41 69 122 73 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]
+Sequencer_0: [binsize: 1 max: 7 count: 621 average: 2.25443 | standard deviation: 1.15703 | 0 180 226 134 49 23 8 1 ]
+Sequencer_1: [binsize: 2 max: 66 count: 2212 average: 19.4426 | standard deviation: 23.1125 | 688 403 73 54 28 30 27 28 29 33 30 31 28 28 26 24 27 36 33 25 25 25 27 23 22 23 23 25 31 41 69 122 73 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]
+Sequencer_2: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+Sequencer_3: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+Sequencer_4: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+Sequencer_5: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+Sequencer_6: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+Sequencer_7: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+SequencerACC_0: [binsize: 1 max: 12 count: 3262375 average: 1.59888 | standard deviation: 1.31489 | 0 2374444 442021 181897 108451 64458 32808 26740 17855 8866 3964 864 7 ]
+SequencerACC_1: [binsize: 1 max: 10 count: 1388078 average: 4.14175 | standard deviation: 1.48803 | 0 46491 136394 292667 365967 291422 170564 70141 13464 953 15 ]
+SequencerACC_2: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+SequencerACC_3: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+SequencerACC_4: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+SequencerACC_5: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+SequencerACC_6: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+SequencerACC_7: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+Request vs. System State Profile
+--------------------------------
+
+
+filter_action: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+
+Message Delayed Cycles
+----------------------
+Total_delay_cycles: [binsize: 16 max: 687 count: 9679 average: 41.1672 | standard deviation: 64.0304 | 1690 5862 694 249 188 204 136 108 80 64 55 26 27 33 28 21 17 14 14 10 9 6 8 6 17 16 36 23 14 7 1 1 0 0 1 4 6 1 1 1 0 0 1 0 0 0 0 0 0 0 ]
+Total_nonPF_delay_cycles: [binsize: 16 max: 687 count: 4196 average: 55.3413 | standard deviation: 90.4221 | 510 2367 546 122 55 66 49 42 32 22 37 25 27 33 28 21 17 14 14 10 9 6 8 6 17 16 36 23 14 7 1 1 0 0 1 4 6 1 1 1 0 0 1 0 0 0 0 0 0 0 ]
+  virtual_network_0_delay_cycles: [binsize: 4 max: 189 count: 5483 average: 30.3201 | standard deviation: 26.6438 | 0 0 1161 19 747 370 75 2303 33 54 24 37 35 38 30 24 39 20 53 21 53 23 40 22 28 24 16 19 19 19 9 19 12 14 13 9 11 11 13 7 10 6 2 0 0 0 0 1 0 0 ]
+  virtual_network_1_delay_cycles: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+  virtual_network_2_delay_cycles: [binsize: 1 max: 25 count: 713 average: 11.8892 | standard deviation: 4.57629 | 0 0 0 0 0 0 0 0 0 506 2 2 0 0 0 0 0 0 0 193 0 9 0 0 0 1 ]
+  virtual_network_3_delay_cycles: [binsize: 16 max: 687 count: 3483 average: 64.2363 | standard deviation: 96.852 | 0 2164 546 122 55 66 49 42 32 22 37 25 27 33 28 21 17 14 14 10 9 6 8 6 17 16 36 23 14 7 1 1 0 0 1 4 6 1 1 1 0 0 1 0 0 0 0 0 0 0 ]
+  virtual_network_4_delay_cycles: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+  virtual_network_5_delay_cycles: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+  virtual_network_6_delay_cycles: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+  virtual_network_7_delay_cycles: [binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+
+Resource Usage
+--------------
+page_size: 4096
+user_time: 1693
+system_time: 93
+page_reclaims: 26056
+page_faults: 0
+swaps: 0
+block_inputs: 0
+block_outputs: 736
+
+Coherence Bandwidth Breakdown
+----------------------
+L1_ATOMIC = 0
+L2_DATA = 6220
+L2_TO_L2T_MSG = 726
+L2_DATA_GX = 1815
+L2T_TO_L1T_DATA = 1183912
+L1_DATA_GX = 60
+L2_TO_L2T_ACK = 730
+L2T_TO_L1T_MSG = 1909600
+L2_DATA_S = 6145
+L2T_TO_L1T_ATOMIC = 0
+L1_DATA_PC = 10
+L1_MSG = 0
+L2_COHMSG_FWD = 706
+L1_DATA_F = 60
+L1_DATA_PX = 3075
+L2_COHMSG_RCL = 0
+L1T_TO_L2T_DATA = 7638400
+L2_MSG = 0
+L2_COHMSG_INV = 7
+L1_COHMSG_RCLACK = 0
+L1T_TO_L2T_ATOMIC = 0
+L2_COHMSG = 3
+L2_ATOMIC = 0
+L2_TO_L2T_DATA = 5310
+L1_DATA = 0
+L1_COHMSG = 5483
+L1_COHMSG_INVACK = 3
+L1T_TO_L2T_MSG = 295978
+----------------------
+total_flits_messages = 11058243
+----------------------
+
+DMA = 5940
+DATA_GX_OW = 3288
+DATA_PX_C = 2460
+DATA_PX_D = 615
+DATA_GX_C = 822
+Block_lifetimes_pow2: [binsize: log2 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+Block_lifetimes[WRITE]_pow2: [binsize: log2 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+Block_lifetimes[EVICT]_pow2: [binsize: log2 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+CL_stall_evict: [binsize: log2 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+CL_stall_fence: [binsize: log2 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+Private_L1_evictions: 0
+MessageBuffer: [Chip 0 0, L1Cache, mandatoryQueue] stats - msgs:621 full:0 size:[binsize: 1 max: 4 count: 621 average: 1.7343 | standard deviation: 0.803219 | 0 287 229 88 17 ]
+MessageBuffer: [Chip 0 1, L1Cache, mandatoryQueue] stats - msgs:2212 full:0 size:[binsize: 2 max: 64 count: 2212 average: 9.6094 | standard deviation: 15.7192 | 1184 292 90 55 43 33 29 27 25 24 24 24 24 20 18 18 18 18 18 18 18 18 18 18 24 28 22 16 16 16 10 4 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]
+MessageBuffer: [Chip 0 2, L1Cache, mandatoryQueue] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 3, L1Cache, mandatoryQueue] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 4, L1Cache, mandatoryQueue] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 5, L1Cache, mandatoryQueue] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 6, L1Cache, mandatoryQueue] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 7, L1Cache, mandatoryQueue] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+
+Network Stats
+-------------
+
+Network interface outbound traffic
+NI_0 (L1TCache) : [L1TCache]=0 [L2TCache]=6420829 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_1 (L1TCache) : [L1TCache]=0 [L2TCache]=1513549 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_2 (L1TCache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_3 (L1TCache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_4 (L1TCache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_5 (L1TCache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_6 (L1TCache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_7 (L1TCache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_8 (L2TCache) : [L1TCache]=58240 [L2TCache]=0 [L2Cache]=34 [L1Cache]=0 [Directory]=0 
+NI_9 (L2TCache) : [L1TCache]=2855936 [L2TCache]=0 [L2Cache]=2211 [L1Cache]=0 [Directory]=0 
+NI_10 (L2TCache) : [L1TCache]=150260 [L2TCache]=0 [L2Cache]=3016 [L1Cache]=0 [Directory]=0 
+NI_11 (L2TCache) : [L1TCache]=29076 [L2TCache]=0 [L2Cache]=9 [L1Cache]=0 [Directory]=0 
+NI_12 (L2Cache) : [L1TCache]=0 [L2TCache]=25 [L2Cache]=0 [L1Cache]=124 [Directory]=12 
+NI_13 (L2Cache) : [L1TCache]=0 [L2TCache]=637 [L2Cache]=0 [L1Cache]=3510 [Directory]=303 
+NI_14 (L2Cache) : [L1TCache]=0 [L2TCache]=2684 [L2Cache]=0 [L1Cache]=5008 [Directory]=926 
+NI_15 (L2Cache) : [L1TCache]=0 [L2TCache]=6 [L2Cache]=0 [L1Cache]=34 [Directory]=3 
+NI_16 (L1Cache) : [L1TCache]=0 [L2TCache]=27 [L2Cache]=109 [L1Cache]=20 [Directory]=0 
+NI_17 (L1Cache) : [L1TCache]=0 [L2TCache]=3387 [L2Cache]=3189 [L1Cache]=103 [Directory]=0 
+NI_18 (L1Cache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_19 (L1Cache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_20 (L1Cache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_21 (L1Cache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_22 (L1Cache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_23 (L1Cache) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=0 [L1Cache]=0 [Directory]=0 
+NI_24 (Directory) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=1560 [L1Cache]=0 [Directory]=0 
+NI_25 (Directory) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=1550 [L1Cache]=0 [Directory]=0 
+NI_26 (Directory) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=1560 [L1Cache]=0 [Directory]=0 
+NI_27 (Directory) : [L1TCache]=0 [L2TCache]=0 [L2Cache]=1550 [L1Cache]=0 [Directory]=0 
+L1_L2_flits_transferred = 0
+L1_out_flits = 0
+L2_out_flits = 0
+-------------
+Average Link Utilization :: 0.00567459 flits/cycle
+total_flits_on_link = 22169038
+-------------
+Total VC Load [0] = 2532 flits
+Total VC Load [1] = 2506 flits
+Total VC Load [2] = 2494 flits
+Total VC Load [3] = 2486 flits
+Total VC Load [4] = 1190 flits
+Total VC Load [5] = 1190 flits
+Total VC Load [6] = 1192 flits
+Total VC Load [7] = 1164 flits
+Total VC Load [8] = 1076 flits
+Total VC Load [9] = 1111 flits
+Total VC Load [10] = 1091 flits
+Total VC Load [11] = 1078 flits
+Total VC Load [12] = 21617 flits
+Total VC Load [13] = 21540 flits
+Total VC Load [14] = 20968 flits
+Total VC Load [15] = 20489 flits
+Total VC Load [16] = 2422 flits
+Total VC Load [17] = 2404 flits
+Total VC Load [18] = 2372 flits
+Total VC Load [19] = 2336 flits
+Total VC Load [20] = 3966232 flits
+Total VC Load [21] = 3965621 flits
+Total VC Load [22] = 3968837 flits
+Total VC Load [23] = 3968066 flits
+Total VC Load [24] = 1545758 flits
+Total VC Load [25] = 1547758 flits
+Total VC Load [26] = 1547388 flits
+Total VC Load [27] = 1546120 flits
+Total VC Load [28] = 0 flits
+Total VC Load [29] = 0 flits
+Total VC Load [30] = 0 flits
+Total VC Load [31] = 0 flits
+-------------
+Average VC Load [0] = 4.27755e-05 flits/cycle 
+Average VC Load [1] = 4.23363e-05 flits/cycle 
+Average VC Load [2] = 4.21335e-05 flits/cycle 
+Average VC Load [3] = 4.19984e-05 flits/cycle 
+Average VC Load [4] = 2.01038e-05 flits/cycle 
+Average VC Load [5] = 2.01038e-05 flits/cycle 
+Average VC Load [6] = 2.01376e-05 flits/cycle 
+Average VC Load [7] = 1.96646e-05 flits/cycle 
+Average VC Load [8] = 1.81779e-05 flits/cycle 
+Average VC Load [9] = 1.87692e-05 flits/cycle 
+Average VC Load [10] = 1.84313e-05 flits/cycle 
+Average VC Load [11] = 1.82117e-05 flits/cycle 
+Average VC Load [12] = 0.000365197 flits/cycle 
+Average VC Load [13] = 0.000363896 flits/cycle 
+Average VC Load [14] = 0.000354233 flits/cycle 
+Average VC Load [15] = 0.00034614 flits/cycle 
+Average VC Load [16] = 4.09172e-05 flits/cycle 
+Average VC Load [17] = 4.06131e-05 flits/cycle 
+Average VC Load [18] = 4.00725e-05 flits/cycle 
+Average VC Load [19] = 3.94643e-05 flits/cycle 
+Average VC Load [20] = 0.0670054 flits/cycle 
+Average VC Load [21] = 0.0669951 flits/cycle 
+Average VC Load [22] = 0.0670494 flits/cycle 
+Average VC Load [23] = 0.0670364 flits/cycle 
+Average VC Load [24] = 0.026114 flits/cycle 
+Average VC Load [25] = 0.0261478 flits/cycle 
+Average VC Load [26] = 0.0261415 flits/cycle 
+Average VC Load [27] = 0.0261201 flits/cycle 
+Average VC Load [28] = 0 flits/cycle 
+Average VC Load [29] = 0 flits/cycle 
+Average VC Load [30] = 0 flits/cycle 
+Average VC Load [31] = 0 flits/cycle 
+-------------
+Average network latency = 8.38752
+-------------
+Dynamic_Link_Power = 0.0415004
+Static_Link_Power = 0.733365
+Total_Link_Power = 0.774866
+Total Link Area = 4.09374e+06 uM^2 
+Router Dynamic Power:
+       Input buffer: 0.00174035, Crossbar: 0.00334193, VC allocator: 0.000365484, SW allocator: 0.001001, Clock: 0.153216, Total: 0.159665
+Router Static Power:
+       Input buffer: 0.891938, Crossbar: 0.1624, VC allocator: 0.438066, SW allocator: 0.0171352, Clock: 0.029369, Total: 1.53891
+Router Total Power: 1.69857
+Dynamic_Router_Power = 0.159665
+Static_Router_Power = 1.53891
+Total_Router_Power = 1.69857
+Area:
+Input buffer: 2.86355e-06, Crossbar: 2.50402e-06, VC allocator: 1.05856e-06, SW allocator: 4.14062e-08
+
+Total_Dynamic_Power = 0.201165
+Total_Static_Power = 2.27227
+Total_Power = 2.47344
+-------------
+
+Gpusim Interface Stats
+----------------------
+
+
+Chip Stats
+----------
+
+ --- L1TCache ---
+ - Event Counts -
+Load  2740853
+L1_WThru  1909600
+L1_Atomic  0
+L1_Replacement  99
+Data  0
+Data_Done  295978
+Ack  0
+Ack_Done  1909600
+DataAtomic  0
+DataAtomic_Done  0
+
+ - Transitions -
+I  Load  295978
+I  L1_WThru  1151330
+I  L1_Atomic  0 <-- 
+I  L1_Replacement  98
+
+S  Load  2444875
+S  L1_WThru  758270
+S  L1_Atomic  0 <-- 
+S  L1_Replacement  1
+
+I_S  L1_WThru  0 <-- 
+I_S  L1_Atomic  0 <-- 
+I_S  Data_Done  295978
+
+I_I  Load  0 <-- 
+I_I  L1_WThru  0 <-- 
+I_I  L1_Atomic  0 <-- 
+I_I  Data  0 <-- 
+I_I  Data_Done  0 <-- 
+I_I  Ack  0 <-- 
+I_I  Ack_Done  1211727
+I_I  DataAtomic  0 <-- 
+I_I  DataAtomic_Done  0 <-- 
+
+SM  Load  0 <-- 
+SM  L1_WThru  0 <-- 
+SM  L1_Atomic  0 <-- 
+SM  Data  0 <-- 
+SM  Data_Done  0 <-- 
+SM  Ack  0 <-- 
+SM  Ack_Done  697873
+
+ --- L2TCache ---
+ - Event Counts -
+L1_GETS  295978
+L1_Write  1151330
+L1_Upgrade_T  730233
+L1_Upgrade_NT  28037
+L2_Atomic  0
+L2_Expire  0
+L2_Replacement  0
+L2_Replacement_clean  0
+Data  2
+Data_all_Acks  1060
+Ack  2
+Ack_all  2
+WB_Ack  726
+Fwd_GETX  447
+Fwd_GETS  279
+Inv  0
+
+ - Transitions -
+NP  L1_GETS  661
+NP  L1_Write  401
+NP  L1_Upgrade_NT  0 <-- 
+NP  L2_Atomic  0 <-- 
+
+E  L1_GETS  295317
+E  L1_Write  1150929
+E  L1_Upgrade_NT  28037
+E  L2_Atomic  0 <-- 
+E  L2_Replacement  0 <-- 
+E  L2_Replacement_clean  0 <-- 
+E  Fwd_GETX  447
+E  Fwd_GETS  279
+E  Inv  0 <-- 
+
+S  L1_GETS  0 <-- 
+S  L1_Upgrade_T  730233
+S  L2_Replacement  0 <-- 
+S  L2_Replacement_clean  0 <-- 
+S  Fwd_GETX  0 <-- 
+S  Fwd_GETS  0 <-- 
+S  Inv  0 <-- 
+
+SS  L1_GETS  0 <-- 
+SS  L2_Replacement  0 <-- 
+SS  L2_Replacement_clean  0 <-- 
+SS  Fwd_GETX  0 <-- 
+SS  Fwd_GETS  0 <-- 
+SS  Inv  0 <-- 
+
+IS  L1_GETS  0 <-- 
+IS  Data  2
+IS  Data_all_Acks  659
+IS  Ack  2
+IS  Ack_all  2
+
+ISS  Data  0 <-- 
+ISS  Data_all_Acks  0 <-- 
+ISS  Ack  0 <-- 
+ISS  Ack_all  0 <-- 
+
+IM  Data  0 <-- 
+IM  Data_all_Acks  401
+IM  Ack  0 <-- 
+IM  Ack_all  0 <-- 
+
+IMA  Data  0 <-- 
+IMA  Data_all_Acks  0 <-- 
+IMA  Ack  0 <-- 
+IMA  Ack_all  0 <-- 
+
+MI  L2_Expire  0 <-- 
+MI  Fwd_GETX  0 <-- 
+MI  Fwd_GETS  0 <-- 
+MI  Inv  0 <-- 
+
+MI_Ack  WB_Ack  726
+MI_Ack  Fwd_GETX  0 <-- 
+MI_Ack  Fwd_GETS  0 <-- 
+MI_Ack  Inv  0 <-- 
+
+ --- L2Cache ---
+ - Event Counts -
+L1_GET_INSTR  0
+L1_GETS  794
+L1_GETX  1884
+L1_UPGRADE  3
+L1_PUTX  0
+L1_PUTX_old  0
+Fwd_L1_GETX  0
+Fwd_L1_GETS  0
+Fwd_L1_GET_INSTR  0
+L2_Replacement  0
+L2_Replacement_clean  0
+Mem_Data  1244
+WB_Data  10
+WB_Data_clean  2
+Ack  0
+Ack_all  0
+Mem_Ack  0
+Unblock  12
+Unblock_Cancel  0
+Exclusive_Unblock  2669
+PUTX_ACC  121
+DATA_ACC  605
+
+ - Transitions -
+NP  L1_GET_INSTR  0 <-- 
+NP  L1_GETS  503
+NP  L1_GETX  741
+NP  L1_PUTX  0 <-- 
+NP  L1_PUTX_old  0 <-- 
+
+SS  L1_GET_INSTR  0 <-- 
+SS  L1_GETS  0 <-- 
+SS  L1_GETX  2
+SS  L1_UPGRADE  3
+SS  L1_PUTX  0 <-- 
+SS  L1_PUTX_old  0 <-- 
+SS  L2_Replacement  0 <-- 
+SS  L2_Replacement_clean  0 <-- 
+
+M  L1_GET_INSTR  0 <-- 
+M  L1_GETS  0 <-- 
+M  L1_GETX  0 <-- 
+M  L1_PUTX  0 <-- 
+M  L1_PUTX_old  0 <-- 
+M  L2_Replacement  0 <-- 
+M  L2_Replacement_clean  0 <-- 
+
+MT  L1_GET_INSTR  0 <-- 
+MT  L1_GETS  291
+MT  L1_GETX  1141
+MT  L1_PUTX  0 <-- 
+MT  L1_PUTX_old  0 <-- 
+MT  L2_Replacement  0 <-- 
+MT  L2_Replacement_clean  0 <-- 
+MT  PUTX_ACC  0 <-- 
+MT  DATA_ACC  0 <-- 
+
+M_I  L1_GET_INSTR  0 <-- 
+M_I  L1_GETS  0 <-- 
+M_I  L1_GETX  0 <-- 
+M_I  L1_UPGRADE  0 <-- 
+M_I  Mem_Ack  0 <-- 
+
+MT_I  L1_GET_INSTR  0 <-- 
+MT_I  L1_GETS  0 <-- 
+MT_I  L1_GETX  0 <-- 
+MT_I  L1_UPGRADE  0 <-- 
+MT_I  L1_PUTX  0 <-- 
+MT_I  L1_PUTX_old  0 <-- 
+MT_I  WB_Data  0 <-- 
+MT_I  WB_Data_clean  0 <-- 
+MT_I  Ack_all  0 <-- 
+MT_I  PUTX_ACC  0 <-- 
+MT_I  DATA_ACC  0 <-- 
+
+MCT_I  L1_GET_INSTR  0 <-- 
+MCT_I  L1_GETS  0 <-- 
+MCT_I  L1_GETX  0 <-- 
+MCT_I  L1_UPGRADE  0 <-- 
+MCT_I  L1_PUTX  0 <-- 
+MCT_I  L1_PUTX_old  0 <-- 
+MCT_I  WB_Data  0 <-- 
+MCT_I  WB_Data_clean  0 <-- 
+MCT_I  Ack_all  0 <-- 
+MCT_I  PUTX_ACC  0 <-- 
+MCT_I  DATA_ACC  0 <-- 
+
+I_I  L1_GET_INSTR  0 <-- 
+I_I  L1_GETS  0 <-- 
+I_I  L1_GETX  0 <-- 
+I_I  L1_UPGRADE  0 <-- 
+I_I  L1_PUTX  0 <-- 
+I_I  L1_PUTX_old  0 <-- 
+I_I  Ack  0 <-- 
+I_I  Ack_all  0 <-- 
+
+S_I  L1_GET_INSTR  0 <-- 
+S_I  L1_GETS  0 <-- 
+S_I  L1_GETX  0 <-- 
+S_I  L1_UPGRADE  0 <-- 
+S_I  L1_PUTX  0 <-- 
+S_I  L1_PUTX_old  0 <-- 
+S_I  Ack  0 <-- 
+S_I  Ack_all  0 <-- 
+
+ISS  L1_GET_INSTR  0 <-- 
+ISS  L1_GETS  0 <-- 
+ISS  L1_GETX  0 <-- 
+ISS  L1_PUTX  0 <-- 
+ISS  L1_PUTX_old  0 <-- 
+ISS  L2_Replacement  0 <-- 
+ISS  L2_Replacement_clean  0 <-- 
+ISS  Mem_Data  503
+
+IS  L1_GET_INSTR  0 <-- 
+IS  L1_GETS  0 <-- 
+IS  L1_GETX  0 <-- 
+IS  L1_PUTX  0 <-- 
+IS  L1_PUTX_old  0 <-- 
+IS  L2_Replacement  0 <-- 
+IS  L2_Replacement_clean  0 <-- 
+IS  Mem_Data  0 <-- 
+
+IM  L1_GET_INSTR  0 <-- 
+IM  L1_GETS  0 <-- 
+IM  L1_GETX  0 <-- 
+IM  L1_PUTX  0 <-- 
+IM  L1_PUTX_old  0 <-- 
+IM  L2_Replacement  0 <-- 
+IM  L2_Replacement_clean  0 <-- 
+IM  Mem_Data  741
+
+SS_MB  L1_GET_INSTR  0 <-- 
+SS_MB  L1_GETS  0 <-- 
+SS_MB  L1_GETX  0 <-- 
+SS_MB  L1_UPGRADE  0 <-- 
+SS_MB  L1_PUTX  0 <-- 
+SS_MB  L1_PUTX_old  0 <-- 
+SS_MB  L2_Replacement  0 <-- 
+SS_MB  L2_Replacement_clean  0 <-- 
+SS_MB  Exclusive_Unblock  5
+
+MT_MB  L1_GET_INSTR  0 <-- 
+MT_MB  L1_GETS  0 <-- 
+MT_MB  L1_GETX  0 <-- 
+MT_MB  L1_UPGRADE  0 <-- 
+MT_MB  L1_PUTX  0 <-- 
+MT_MB  L1_PUTX_old  0 <-- 
+MT_MB  L2_Replacement  0 <-- 
+MT_MB  L2_Replacement_clean  0 <-- 
+MT_MB  Exclusive_Unblock  2664
+MT_MB  PUTX_ACC  2
+MT_MB  DATA_ACC  445
+
+M_MB  L1_GET_INSTR  0 <-- 
+M_MB  L1_GETS  0 <-- 
+M_MB  L1_GETX  0 <-- 
+M_MB  L1_UPGRADE  0 <-- 
+M_MB  L1_PUTX  0 <-- 
+M_MB  L1_PUTX_old  0 <-- 
+M_MB  L2_Replacement  0 <-- 
+M_MB  L2_Replacement_clean  0 <-- 
+M_MB  Exclusive_Unblock  0 <-- 
+
+MT_IIB  L1_GET_INSTR  0 <-- 
+MT_IIB  L1_GETS  0 <-- 
+MT_IIB  L1_GETX  0 <-- 
+MT_IIB  L1_UPGRADE  0 <-- 
+MT_IIB  L1_PUTX  0 <-- 
+MT_IIB  L1_PUTX_old  0 <-- 
+MT_IIB  L2_Replacement  0 <-- 
+MT_IIB  L2_Replacement_clean  0 <-- 
+MT_IIB  WB_Data  10
+MT_IIB  WB_Data_clean  2
+MT_IIB  Unblock  0 <-- 
+MT_IIB  PUTX_ACC  119
+MT_IIB  DATA_ACC  160
+
+MT_IB  L1_GET_INSTR  0 <-- 
+MT_IB  L1_GETS  0 <-- 
+MT_IB  L1_GETX  0 <-- 
+MT_IB  L1_UPGRADE  0 <-- 
+MT_IB  L1_PUTX  0 <-- 
+MT_IB  L1_PUTX_old  0 <-- 
+MT_IB  L2_Replacement  0 <-- 
+MT_IB  L2_Replacement_clean  0 <-- 
+MT_IB  WB_Data  0 <-- 
+MT_IB  WB_Data_clean  0 <-- 
+
+MT_SB  L1_GET_INSTR  0 <-- 
+MT_SB  L1_GETS  0 <-- 
+MT_SB  L1_GETX  0 <-- 
+MT_SB  L1_UPGRADE  0 <-- 
+MT_SB  L1_PUTX  0 <-- 
+MT_SB  L1_PUTX_old  0 <-- 
+MT_SB  L2_Replacement  0 <-- 
+MT_SB  L2_Replacement_clean  0 <-- 
+MT_SB  Unblock  12
+
+ --- L1Cache ---
+ - Event Counts -
+Load  1565
+Ifetch  0
+Store  1268
+Inv  7
+L1_Replacement  0
+Fwd_GETX  694
+Fwd_GETS  12
+Fwd_GET_INSTR  0
+Data  0
+Data_Exclusive  1229
+DataS_fromL1  12
+Data_all_Acks  375
+Ack  3
+Ack_all  3
+WB_Ack  0
+
+ - Transitions -
+NP  Load  515
+NP  Ifetch  0 <-- 
+NP  Store  746
+NP  Inv  0 <-- 
+NP  L1_Replacement  0 <-- 
+
+I  Load  279
+I  Ifetch  0 <-- 
+I  Store  76
+I  Inv  0 <-- 
+I  L1_Replacement  0 <-- 
+
+S  Load  27
+S  Ifetch  0 <-- 
+S  Store  3
+S  Inv  7
+S  L1_Replacement  0 <-- 
+
+E  Load  189
+E  Ifetch  0 <-- 
+E  Store  103
+E  Inv  0 <-- 
+E  L1_Replacement  0 <-- 
+E  Fwd_GETX  485
+E  Fwd_GETS  2
+E  Fwd_GET_INSTR  0 <-- 
+
+M  Load  555
+M  Ifetch  0 <-- 
+M  Store  340
+M  Inv  0 <-- 
+M  L1_Replacement  0 <-- 
+M  Fwd_GETX  209
+M  Fwd_GETS  10
+M  Fwd_GET_INSTR  0 <-- 
+
+IS  Load  0 <-- 
+IS  Ifetch  0 <-- 
+IS  Store  0 <-- 
+IS  Inv  0 <-- 
+IS  L1_Replacement  0 <-- 
+IS  Data_Exclusive  782
+IS  DataS_fromL1  12
+IS  Data_all_Acks  0 <-- 
+
+IM  Load  0 <-- 
+IM  Ifetch  0 <-- 
+IM  Store  0 <-- 
+IM  Inv  0 <-- 
+IM  L1_Replacement  0 <-- 
+IM  Data  0 <-- 
+IM  Data_Exclusive  447
+IM  Data_all_Acks  375
+IM  Ack  0 <-- 
+
+SM  Load  0 <-- 
+SM  Ifetch  0 <-- 
+SM  Store  0 <-- 
+SM  Inv  0 <-- 
+SM  L1_Replacement  0 <-- 
+SM  Ack  3
+SM  Ack_all  3
+
+IS_I  Load  0 <-- 
+IS_I  Ifetch  0 <-- 
+IS_I  Store  0 <-- 
+IS_I  Inv  0 <-- 
+IS_I  L1_Replacement  0 <-- 
+IS_I  Data_Exclusive  0 <-- 
+IS_I  DataS_fromL1  0 <-- 
+IS_I  Data_all_Acks  0 <-- 
+
+M_I  Load  0 <-- 
+M_I  Ifetch  0 <-- 
+M_I  Store  0 <-- 
+M_I  Inv  0 <-- 
+M_I  L1_Replacement  0 <-- 
+M_I  Fwd_GETX  0 <-- 
+M_I  Fwd_GETS  0 <-- 
+M_I  Fwd_GET_INSTR  0 <-- 
+M_I  WB_Ack  0 <-- 
+
+E_I  Load  0 <-- 
+E_I  Ifetch  0 <-- 
+E_I  Store  0 <-- 
+E_I  L1_Replacement  0 <-- 
+
+SINK_WB_ACK  Load  0 <-- 
+SINK_WB_ACK  Ifetch  0 <-- 
+SINK_WB_ACK  Store  0 <-- 
+SINK_WB_ACK  Inv  0 <-- 
+SINK_WB_ACK  L1_Replacement  0 <-- 
+SINK_WB_ACK  WB_Ack  0 <-- 
+
+ --- Directory ---
+ - Event Counts -
+Fetch  1244
+Data  0
+
+ - Transitions -
+I  Fetch  1244
+I  Data  0 <-- 
+
+
+Chip Buffer Stats
+----------
+
+MessageBuffer: [Chip 0 0, L1TCache, requestFromL1Cache] stats - msgs:1736086 full:0 size:[binsize: 1 max: 5 count: 1736086 average: 1.02428 | standard deviation: 0.165112 | 0 1696984 36102 2957 38 5 ]
+MessageBuffer: [Chip 0 1, L1TCache, requestFromL1Cache] stats - msgs:469492 full:0 size:[binsize: 1 max: 6 count: 469492 average: 1.18182 | standard deviation: 0.442384 | 0 394070 66451 8101 778 84 8 ]
+MessageBuffer: [Chip 0 2, L1TCache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 3, L1TCache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 4, L1TCache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 5, L1TCache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 6, L1TCache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 7, L1TCache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 0, L1TCache, responseToL1Cache] stats - msgs:1736086 full:0 size:[binsize: 1 max: 2 count: 1736086 average: 1.00311 | standard deviation: 0.0556525 | 0 1730693 5393 ]
+MessageBuffer: [Chip 0 1, L1TCache, responseToL1Cache] stats - msgs:469492 full:0 size:[binsize: 1 max: 2 count: 469492 average: 1.0319 | standard deviation: 0.175734 | 0 454516 14976 ]
+MessageBuffer: [Chip 0 2, L1TCache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 3, L1TCache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 4, L1TCache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 5, L1TCache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 6, L1TCache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 7, L1TCache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 0, L2TCache, responseFromL2Cache] stats - msgs:14560 full:0 size:[binsize: 1 max: 3 count: 14560 average: 1.02212 | standard deviation: 0.148486 | 0 14241 316 3 ]
+MessageBuffer: [Chip 0 1, L2TCache, responseFromL2Cache] stats - msgs:2137376 full:0 size:[binsize: 1 max: 5 count: 2137376 average: 1.15042 | standard deviation: 0.414258 | 0 1858966 238997 35799 3552 62 ]
+MessageBuffer: [Chip 0 2, L2TCache, responseFromL2Cache] stats - msgs:46373 full:0 size:[binsize: 1 max: 4 count: 46373 average: 1.029 | standard deviation: 0.177803 | 0 45105 1194 71 3 ]
+MessageBuffer: [Chip 0 3, L2TCache, responseFromL2Cache] stats - msgs:7269 full:0 size:[binsize: 1 max: 1 count: 7269 average:     1 | standard deviation: 0 | 0 7269 ]
+MessageBuffer: [Chip 0 0, L2TCache, L1RequestToL2Cache] stats - msgs:14560 full:0 size:[binsize: 1 max: 2 count: 14560 average: 1.00323 | standard deviation: 0.0568176 | 0 14513 47 ]
+MessageBuffer: [Chip 0 1, L2TCache, L1RequestToL2Cache] stats - msgs:2137376 full:0 size:[binsize: 1 max: 2 count: 2137376 average: 1.01365 | standard deviation: 0.116053 | 0 2108191 29185 ]
+MessageBuffer: [Chip 0 2, L2TCache, L1RequestToL2Cache] stats - msgs:46373 full:0 size:[binsize: 1 max: 2 count: 46373 average: 1.00707 | standard deviation: 0.0838457 | 0 46045 328 ]
+MessageBuffer: [Chip 0 3, L2TCache, L1RequestToL2Cache] stats - msgs:7269 full:0 size:[binsize: 1 max: 1 count: 7269 average:     1 | standard deviation: 0 | 0 7269 ]
+MessageBuffer: [Chip 0 0, L2TCache, requestFromL2TCache] stats - msgs:22 full:0 size:[binsize: 1 max: 3 count: 22 average: 1.59091 | standard deviation: 0.816497 | 0 13 5 4 ]
+MessageBuffer: [Chip 0 1, L2TCache, requestFromL2TCache] stats - msgs:569 full:0 size:[binsize: 1 max: 3 count: 569 average: 1.04394 | standard deviation: 0.229819 | 0 547 19 3 ]
+MessageBuffer: [Chip 0 2, L2TCache, requestFromL2TCache] stats - msgs:586 full:0 size:[binsize: 1 max: 3 count: 586 average: 1.03584 | standard deviation: 0.222649 | 0 569 13 4 ]
+MessageBuffer: [Chip 0 3, L2TCache, requestFromL2TCache] stats - msgs:6 full:0 size:[binsize: 1 max: 1 count: 6 average:     1 | standard deviation: 0 | 0 6 ]
+MessageBuffer: [Chip 0 0, L2TCache, responseFromL2TCache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 1, L2TCache, responseFromL2TCache] stats - msgs:229 full:0 size:[binsize: 1 max: 10 count: 229 average: 1.89956 | standard deviation: 1.83413 | 0 151 37 13 12 2 2 3 3 4 2 ]
+MessageBuffer: [Chip 0 2, L2TCache, responseFromL2TCache] stats - msgs:376 full:0 size:[binsize: 1 max: 48 count: 376 average: 22.8537 | standard deviation: 15.5492 | 0 15 18 18 14 7 7 8 8 10 9 8 6 7 7 6 8 5 7 6 9 5 7 6 4 4 8 10 9 6 5 4 4 5 4 3 3 3 4 7 7 10 10 12 11 17 17 7 1 ]
+MessageBuffer: [Chip 0 3, L2TCache, responseFromL2TCache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 0, L2TCache, unblockFromL2TCache] stats - msgs:12 full:0 size:[binsize: 1 max: 2 count: 12 average:  1.25 | standard deviation: 0.522233 | 0 9 3 ]
+MessageBuffer: [Chip 0 1, L2TCache, unblockFromL2TCache] stats - msgs:497 full:0 size:[binsize: 1 max: 2 count: 497 average: 1.00402 | standard deviation: 0.0635001 | 0 495 2 ]
+MessageBuffer: [Chip 0 2, L2TCache, unblockFromL2TCache] stats - msgs:550 full:0 size:[binsize: 1 max: 2 count: 550 average: 1.00727 | standard deviation: 0.0853579 | 0 546 4 ]
+MessageBuffer: [Chip 0 3, L2TCache, unblockFromL2TCache] stats - msgs:3 full:0 size:[binsize: 1 max: 1 count: 3 average:     1 | standard deviation: 0 | 0 3 ]
+MessageBuffer: [Chip 0 0, L2TCache, requestToL2TCache] stats - msgs:10 full:0 size:[binsize: 1 max: 1 count: 10 average:     1 | standard deviation: 0 | 0 10 ]
+MessageBuffer: [Chip 0 1, L2TCache, requestToL2TCache] stats - msgs:301 full:0 size:[binsize: 1 max: 2 count: 301 average: 1.09635 | standard deviation: 0.3 | 0 272 29 ]
+MessageBuffer: [Chip 0 2, L2TCache, requestToL2TCache] stats - msgs:412 full:0 size:[binsize: 1 max: 2 count: 412 average: 1.24757 | standard deviation: 0.432837 | 0 310 102 ]
+MessageBuffer: [Chip 0 3, L2TCache, requestToL2TCache] stats - msgs:3 full:0 size:[binsize: 1 max: 1 count: 3 average:     1 | standard deviation: 0 | 0 3 ]
+MessageBuffer: [Chip 0 0, L2TCache, responseToL2TCache] stats - msgs:24 full:0 size:[binsize: 1 max: 1 count: 24 average:     1 | standard deviation: 0 | 0 24 ]
+MessageBuffer: [Chip 0 1, L2TCache, responseToL2TCache] stats - msgs:800 full:0 size:[binsize: 1 max: 2 count: 800 average: 1.00875 | standard deviation: 0.0936 | 0 793 7 ]
+MessageBuffer: [Chip 0 2, L2TCache, responseToL2TCache] stats - msgs:962 full:0 size:[binsize: 1 max: 2 count: 962 average: 1.0343 | standard deviation: 0.182479 | 0 929 33 ]
+MessageBuffer: [Chip 0 3, L2TCache, responseToL2TCache] stats - msgs:6 full:0 size:[binsize: 1 max: 1 count: 6 average:     1 | standard deviation: 0 | 0 6 ]
+MessageBuffer: [Chip 0 0, L2Cache, DirRequestFromL2Cache] stats - msgs:12 full:0 size:[binsize: 1 max: 2 count: 12 average: 1.08333 | standard deviation: 0.301511 | 0 11 1 ]
+MessageBuffer: [Chip 0 1, L2Cache, DirRequestFromL2Cache] stats - msgs:303 full:0 size:[binsize: 1 max: 3 count: 303 average: 1.0264 | standard deviation: 0.181969 | 0 296 6 1 ]
+MessageBuffer: [Chip 0 2, L2Cache, DirRequestFromL2Cache] stats - msgs:926 full:0 size:[binsize: 1 max: 4 count: 926 average: 1.31102 | standard deviation: 0.58909 | 0 698 169 58 1 ]
+MessageBuffer: [Chip 0 3, L2Cache, DirRequestFromL2Cache] stats - msgs:3 full:0 size:[binsize: 1 max: 1 count: 3 average:     1 | standard deviation: 0 | 0 3 ]
+MessageBuffer: [Chip 0 0, L2Cache, L1RequestFromL2Cache] stats - msgs:23 full:0 size:[binsize: 1 max: 3 count: 23 average: 1.52174 | standard deviation: 0.797724 | 0 15 4 4 ]
+MessageBuffer: [Chip 0 1, L2Cache, L1RequestFromL2Cache] stats - msgs:817 full:0 size:[binsize: 1 max: 3 count: 817 average: 1.12852 | standard deviation: 0.417157 | 0 737 55 25 ]
+MessageBuffer: [Chip 0 2, L2Cache, L1RequestFromL2Cache] stats - msgs:590 full:0 size:[binsize: 1 max: 27 count: 590 average: 5.25932 | standard deviation: 6.91447 | 0 295 90 28 9 10 7 4 8 10 10 6 10 5 10 7 7 10 12 10 10 6 4 8 6 2 4 2 ]
+MessageBuffer: [Chip 0 3, L2Cache, L1RequestFromL2Cache] stats - msgs:7 full:0 size:[binsize: 1 max: 1 count: 7 average:     1 | standard deviation: 0 | 0 7 ]
+MessageBuffer: [Chip 0 0, L2Cache, responseFromL2Cache] stats - msgs:33 full:0 size:[binsize: 1 max: 3 count: 33 average: 1.51515 | standard deviation: 0.684653 | 0 19 11 3 ]
+MessageBuffer: [Chip 0 1, L2Cache, responseFromL2Cache] stats - msgs:909 full:0 size:[binsize: 1 max: 21 count: 909 average: 1.83718 | standard deviation: 2.12028 | 0 522 272 65 23 5 3 2 1 1 1 1 1 1 1 1 1 1 2 2 2 1 ]
+MessageBuffer: [Chip 0 2, L2Cache, responseFromL2Cache] stats - msgs:1750 full:0 size:[binsize: 1 max: 11 count: 1750 average: 2.17771 | standard deviation: 1.5843 | 0 793 403 299 141 45 26 14 9 7 6 7 ]
+MessageBuffer: [Chip 0 3, L2Cache, responseFromL2Cache] stats - msgs:9 full:0 size:[binsize: 1 max: 2 count: 9 average: 1.33333 | standard deviation: 0.5 | 0 6 3 ]
+MessageBuffer: [Chip 0 0, L2Cache, unblockToL2Cache] stats - msgs:35 full:0 size:[binsize: 1 max: 2 count: 35 average: 1.05714 | standard deviation: 0.242536 | 0 33 2 ]
+MessageBuffer: [Chip 0 1, L2Cache, unblockToL2Cache] stats - msgs:1120 full:0 size:[binsize: 1 max: 2 count: 1120 average: 1.00446 | standard deviation: 0.0668452 | 0 1115 5 ]
+MessageBuffer: [Chip 0 2, L2Cache, unblockToL2Cache] stats - msgs:1516 full:0 size:[binsize: 1 max: 2 count: 1516 average: 1.0996 | standard deviation: 0.299615 | 0 1365 151 ]
+MessageBuffer: [Chip 0 3, L2Cache, unblockToL2Cache] stats - msgs:10 full:0 size:[binsize: 1 max: 1 count: 10 average:     1 | standard deviation: 0 | 0 10 ]
+MessageBuffer: [Chip 0 0, L2Cache, L1RequestToL2Cache] stats - msgs:45 full:0 size:[binsize: 1 max: 2 count: 45 average: 1.04444 | standard deviation: 0.213201 | 0 43 2 ]
+MessageBuffer: [Chip 0 1, L2Cache, L1RequestToL2Cache] stats - msgs:1192 full:0 size:[binsize: 1 max: 2 count: 1192 average: 1.01762 | standard deviation: 0.132786 | 0 1171 21 ]
+MessageBuffer: [Chip 0 2, L2Cache, L1RequestToL2Cache] stats - msgs:1552 full:0 size:[binsize: 1 max: 2 count: 1552 average: 1.14755 | standard deviation: 0.355486 | 0 1323 229 ]
+MessageBuffer: [Chip 0 3, L2Cache, L1RequestToL2Cache] stats - msgs:13 full:0 size:[binsize: 1 max: 1 count: 13 average:     1 | standard deviation: 0 | 0 13 ]
+MessageBuffer: [Chip 0 0, L2Cache, responseToL2Cache] stats - msgs:13 full:0 size:[binsize: 1 max: 1 count: 13 average:     1 | standard deviation: 0 | 0 13 ]
+MessageBuffer: [Chip 0 1, L2Cache, responseToL2Cache] stats - msgs:542 full:0 size:[binsize: 1 max: 2 count: 542 average: 1.00923 | standard deviation: 0.0961361 | 0 537 5 ]
+MessageBuffer: [Chip 0 2, L2Cache, responseToL2Cache] stats - msgs:1302 full:0 size:[binsize: 1 max: 2 count: 1302 average: 1.03994 | standard deviation: 0.196041 | 0 1250 52 ]
+MessageBuffer: [Chip 0 3, L2Cache, responseToL2Cache] stats - msgs:4 full:0 size:[binsize: 1 max: 1 count: 4 average:     1 | standard deviation: 0 | 0 4 ]
+MessageBuffer: [Chip 0 0, L1Cache, requestFromL1Cache] stats - msgs:47 full:0 size:[binsize: 1 max: 2 count: 47 average: 1.06383 | standard deviation: 0.255377 | 0 44 3 ]
+MessageBuffer: [Chip 0 1, L1Cache, requestFromL1Cache] stats - msgs:1572 full:0 size:[binsize: 2 max: 60 count: 1572 average: 10.6673 | standard deviation: 15.8052 | 823 155 57 34 31 27 24 24 21 22 21 22 31 30 23 21 18 15 14 14 14 14 14 14 14 14 14 14 14 14 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]
+MessageBuffer: [Chip 0 2, L1Cache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 3, L1Cache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 4, L1Cache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 5, L1Cache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 6, L1Cache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 7, L1Cache, requestFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 0, L1Cache, responseFromL1Cache] stats - msgs:14 full:0 size:[binsize: 1 max: 2 count: 14 average: 1.21429 | standard deviation: 0.480384 | 0 11 3 ]
+MessageBuffer: [Chip 0 1, L1Cache, responseFromL1Cache] stats - msgs:711 full:0 size:[binsize: 1 max: 3 count: 711 average: 1.08158 | standard deviation: 0.318447 | 0 662 40 9 ]
+MessageBuffer: [Chip 0 2, L1Cache, responseFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 3, L1Cache, responseFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 4, L1Cache, responseFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 5, L1Cache, responseFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 6, L1Cache, responseFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 7, L1Cache, responseFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 0, L1Cache, unblockFromL1Cache] stats - msgs:47 full:0 size:[binsize: 1 max: 2 count: 47 average: 1.02128 | standard deviation: 0.147442 | 0 46 1 ]
+MessageBuffer: [Chip 0 1, L1Cache, unblockFromL1Cache] stats - msgs:1572 full:0 size:[binsize: 1 max: 11 count: 1572 average: 1.6215 | standard deviation: 1.64594 | 0 1253 147 30 19 29 34 24 13 16 6 1 ]
+MessageBuffer: [Chip 0 2, L1Cache, unblockFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 3, L1Cache, unblockFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 4, L1Cache, unblockFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 5, L1Cache, unblockFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 6, L1Cache, unblockFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 7, L1Cache, unblockFromL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 0, L1Cache, requestToL1Cache] stats - msgs:11 full:0 size:[binsize: 1 max: 1 count: 11 average:     1 | standard deviation: 0 | 0 11 ]
+MessageBuffer: [Chip 0 1, L1Cache, requestToL1Cache] stats - msgs:702 full:0 size:[binsize: 1 max: 2 count: 702 average: 1.03846 | standard deviation: 0.192587 | 0 675 27 ]
+MessageBuffer: [Chip 0 2, L1Cache, requestToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 3, L1Cache, requestToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 4, L1Cache, requestToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 5, L1Cache, requestToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 6, L1Cache, requestToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 7, L1Cache, requestToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 0, L1Cache, responseToL1Cache] stats - msgs:50 full:0 size:[binsize: 1 max: 2 count: 50 average:  1.02 | standard deviation: 0.142857 | 0 49 1 ]
+MessageBuffer: [Chip 0 1, L1Cache, responseToL1Cache] stats - msgs:1572 full:0 size:[binsize: 1 max: 2 count: 1572 average: 1.04198 | standard deviation: 0.201838 | 0 1506 66 ]
+MessageBuffer: [Chip 0 2, L1Cache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 3, L1Cache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 4, L1Cache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 5, L1Cache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 6, L1Cache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 7, L1Cache, responseToL1Cache] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 0, Directory, requestToDir] stats - msgs:312 full:0 size:[binsize: 1 max: 1 count: 312 average:     1 | standard deviation: 0 | 0 312 ]
+MessageBuffer: [Chip 0 1, Directory, requestToDir] stats - msgs:310 full:0 size:[binsize: 1 max: 1 count: 310 average:     1 | standard deviation: 0 | 0 310 ]
+MessageBuffer: [Chip 0 2, Directory, requestToDir] stats - msgs:312 full:0 size:[binsize: 1 max: 1 count: 312 average:     1 | standard deviation: 0 | 0 312 ]
+MessageBuffer: [Chip 0 3, Directory, requestToDir] stats - msgs:310 full:0 size:[binsize: 1 max: 1 count: 310 average:     1 | standard deviation: 0 | 0 310 ]
+MessageBuffer: [Chip 0 0, Directory, responseToDir] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 1, Directory, responseToDir] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 2, Directory, responseToDir] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 3, Directory, responseToDir] stats - msgs:0 full:0 size:[binsize: 1 max: 0 count: 0 average: NaN |standard deviation: NaN | 0 ]
+MessageBuffer: [Chip 0 0, Directory, responseFromDir] stats - msgs:312 full:0 size:[binsize: 1 max: 16 count: 312 average: 2.98077 | standard deviation: 3.92944 | 0 228 6 6 8 6 7 6 6 6 5 5 5 5 5 4 4 ]
+MessageBuffer: [Chip 0 1, Directory, responseFromDir] stats - msgs:310 full:0 size:[binsize: 1 max: 16 count: 310 average: 2.98065 | standard deviation: 3.91082 | 0 225 9 6 6 6 6 6 6 6 6 6 5 5 5 4 3 ]
+MessageBuffer: [Chip 0 2, Directory, responseFromDir] stats - msgs:312 full:0 size:[binsize: 1 max: 16 count: 312 average: 2.96154 | standard deviation: 3.90975 | 0 227 8 8 6 6 6 6 6 5 6 5 5 5 6 4 3 ]
+MessageBuffer: [Chip 0 3, Directory, responseFromDir] stats - msgs:310 full:0 size:[binsize: 1 max: 16 count: 310 average: 3.04516 | standard deviation: 3.98947 | 0 225 7 6 6 6 6 6 7 6 6 6 5 5 5 4 4 ]
