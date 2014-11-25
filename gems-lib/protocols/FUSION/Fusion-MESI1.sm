@@ -107,6 +107,9 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     // internal generated request
     L1_Replacement,  desc="L1 Replacement", format="!r";    
 
+    // Force replacement
+    Force_L1_Replacement, desc="Force L1 Replacement", format="!r";
+
     // other requests
     Fwd_GETX,   desc="GETX from other processor";
     Fwd_GETS,   desc="GETS from other processor";
@@ -169,6 +172,7 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
 
   MessageBuffer mandatoryQueue, ordered="false", rank="100", abstract_chip_ptr="true";
 
+MessageBuffer L2ExpireTriggerQueue,  ordered="false";
   Sequencer sequencer, abstract_chip_ptr="true", constructor_hack="i";
 
   int cache_state_to_int(State state);
@@ -252,6 +256,23 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
   out_port(requestIntraChipL1Network_out, RequestMsg, requestFromL1Cache);
   out_port(responseIntraChipL1Network_out, ResponseMsg, responseFromL1Cache);
   out_port(unblockNetwork_out, ResponseMsg, unblockFromL1Cache);
+
+  // Force evictions 
+
+
+    out_port(L2ExpireTriggerQueue_out, L2ExpireTriggerMsg, L2ExpireTriggerQueue);
+
+// L2 Expire Trigger Queue
+    in_port(L2ExpireTriggerQueue_in, L2ExpireTriggerMsg, L2ExpireTriggerQueue) {
+        if (L2ExpireTriggerQueue_in.isReady()) {
+            peek(L2ExpireTriggerQueue_in, L2ExpireTriggerMsg) {
+            // This event should only occur for replacement blocks
+                trigger(Event:Force_L1_Replacement, in_msg.Address);
+            }
+        }
+    }
+
+
 
   // Response IntraChip L1 Network - response msg to this L1 cache
   in_port(responseIntraChipL1Network_in, ResponseMsg, responseToL1Cache) {
@@ -358,6 +379,24 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
       }
     }
   }
+
+
+  // Force Evictions
+
+    action(it_insertL2ExpireTriggerQueue, "it", desc="Insert expire event into L2 expire trigger queue") {
+        // Latency hack for L2 Expire trigger queue
+        if(IDToInt(version) == 1)
+        {
+            enqueue(L2ExpireTriggerQueue_out, L2ExpireTriggerMsg, latency="1") {
+                out_msg.Address := address;
+            }
+        }
+    }
+
+    action(o_popL2ExpireTriggerQueue, "ot", desc="Pop L2 Expire Trigger Queue") {
+        L2ExpireTriggerQueue_in.dequeue();
+    }
+
 
   // ACTIONS
   action(a_issueGETS, "a", desc="Issue GETS") {
@@ -595,10 +634,15 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     L1_TBEs[address].isPrefetch := false;
     L1_TBEs[address].Dirty := getL1CacheEntry(address).Dirty;
     L1_TBEs[address].DataBlk := getL1CacheEntry(address).DataBlk;
-    peek(mandatoryQueue_in, CacheMsg) {
-       L1_TBEs[address].reqSize := in_msg.Size;
-       L1_TBEs[address].AccessMask := in_msg.AccessMask;
-    }
+    
+    // Changed to make it work with Force_L1_Replacement, was wrong anyway.
+
+    // peek(mandatoryQueue_in, CacheMsg) {
+    //    L1_TBEs[address].reqSize := in_msg.Size;
+    //    L1_TBEs[address].AccessMask := in_msg.AccessMask;
+    // }
+
+    L1_TBEs[address].reqSize := 32; 
   }
 
   action(k_popMandatoryQueue, "k", desc="Pop mandatory queue.") {
@@ -765,6 +809,13 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     z_recycleMandatoryQueue;
   }
 
+  // Force Evictions
+ 
+  transition({IS, IM, IS_I, M_I, E_I, SM, SINK_WB_ACK, NP, I}, {Force_L1_Replacement}) {
+   o_popL2ExpireTriggerQueue;
+  }
+
+
   // Transitions from Idle
   transition({NP,I}, L1_Replacement) {
     ff_deallocateL1CacheBlock;
@@ -813,7 +864,7 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     k_popMandatoryQueue;
   }
 
-  transition(S, L1_Replacement, I) {
+  transition(S, {L1_Replacement,Force_L1_Replacement}, I) {
     ff_deallocateL1CacheBlock;
   }
 
@@ -835,9 +886,10 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     dm_from_seq;
     hh_store_hit;
     k_popMandatoryQueue;
+    it_insertL2ExpireTriggerQueue;
   }
 
-  transition(E, L1_Replacement, M_I) {
+  transition(E, {Force_L1_Replacement,L1_Replacement}, M_I) {
     // silent E replacement??
     i_allocateTBE;
     g_issuePUTX;   // send data, but hold in case forwarded request
@@ -875,7 +927,7 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     k_popMandatoryQueue;
   }
 
-  transition(M, L1_Replacement, M_I) {
+  transition(M, {Force_L1_Replacement,L1_Replacement}, M_I) {
     i_allocateTBE;
     g_issuePUTX;   // send data, but hold in case forwarded request
     ff_deallocateL1CacheBlock;
@@ -962,6 +1014,7 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     jj_sendExclusiveUnblock;
     s_deallocateTBE;
     o_popIncomingResponseQueue;
+    it_insertL2ExpireTriggerQueue;
   }
 
   transition(IS, Data_Exclusive, E) {
@@ -970,6 +1023,7 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     jj_sendExclusiveUnblock;
     s_deallocateTBE;
     o_popIncomingResponseQueue;
+    it_insertL2ExpireTriggerQueue;
   }
 
   // Transitions from IM
@@ -992,6 +1046,7 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     jj_sendExclusiveUnblock;
     s_deallocateTBE;
     o_popIncomingResponseQueue;
+    it_insertL2ExpireTriggerQueue;
   }
 
   // transitions from SM
@@ -1006,6 +1061,7 @@ machine(L1Cache, "MESI Directory L1 Cache CMP") {
     hh_store_hit;
     s_deallocateTBE;
     o_popIncomingResponseQueue;
+    it_insertL2ExpireTriggerQueue;
   }
 
   transition(SINK_WB_ACK, {Load, Store, Ifetch}){

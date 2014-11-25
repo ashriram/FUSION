@@ -19,6 +19,7 @@ using namespace std;
 gzFile OrigTrace[8];
 gzFile NewTrace[8];
 unsigned SegmentCounter[8] = {0};
+unsigned long DMACount = 0;
 
 struct Inst_info {
     uint8_t num_read_regs;      // 3-bits

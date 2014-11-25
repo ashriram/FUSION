@@ -14,8 +14,8 @@ CDBG = -g $(CWARN) -fno-inline -DCHECK_REGISTER_FILE
 DFLAGS = -g $(CWARN) -fno-inline -DDEBUG=0
 
 # Uncomment for full Debug mode
-CFLAGS += $(CWARD)
-#CFLAGS += $(DFLAGS) 
+#CFLAGS += $(CWARD)
+CFLAGS += $(DFLAGS) 
 
 
 CTAG = etags

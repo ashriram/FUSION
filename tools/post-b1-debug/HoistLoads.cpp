@@ -31,6 +31,7 @@ void processDMATrace(int acc_id)
     bool BreakNext = false;
     while(gzread(OrigTrace[1], (void*)inst, sizeof(Inst_info)) > 0)
     {
+        DMACount++;
         Count++;
         if(inst->acc_window_delim)
         {
@@ -89,6 +90,7 @@ int main(int argc, char *argv[])
     {
         gzclose(OrigTrace[t]);
     }
+    cerr << "DMA Count : " << DMACount << endl;
 
     return 0;
 }

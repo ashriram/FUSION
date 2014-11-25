@@ -1970,6 +1970,11 @@ int memory_c::access(uop_c* uop)
         }
         else
         {
+            //if(uop->m_core_id == 1)
+            //{
+                //report("DMACORE REQ " << hex << req_addr <<dec);
+            //}
+                
             m_ruby->send_request(req_addr, req_size, uop->m_core_id, uop->m_thread_id, isWrite, false, NULL);
         }
         return -1;

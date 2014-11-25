@@ -26,6 +26,14 @@ unsigned processTrace(unsigned ScratchpadSize, int acc_id)
                 DMALoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr1),II));
                 assert(II->acc_segment_delim == 0 && "LD should not have acc_segment_delim flag");
             }
+            else if(LoadInsts.count(makeCacheAddr(II->ld_vaddr2)) == 0)
+            {
+                LoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr2),II));
+                CacheBlocks.insert(makeCacheAddr(II->ld_vaddr2));
+                DMALoadInsts.insert(make_pair(makeCacheAddr(II->ld_vaddr2),II));
+                assert(II->acc_segment_delim == 0 && "LD should not have acc_segment_delim flag");
+            }
+
         }
 
         if(II->acc_heap_store)
