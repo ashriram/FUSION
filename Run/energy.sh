@@ -101,6 +101,8 @@ run_baseline_2 () {
 
     # L1T energy   
     L1T_TOTAL_REQ=`grep "L1T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
+
+    L2T_TOTAL_REQ=`grep "L2T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
     
 
     # L2T energy. Reads + WBacks
@@ -110,8 +112,8 @@ run_baseline_2 () {
     NUM_DMA_WRITES=`echo "$NUM_DMA-$NUM_DMA_READS" | bc -l`
     #echo $NUM_DMA_READS
     #echo $NUM_DMA_WRITES
-    L2T_WRITES=$NUM_DMA_WRITES
-    FINAL_L2T_PJ=`echo "($L2T_READS+$L2T_WRITES)* $L2T_ACCESS_PJ" | bc -l`
+    L2T_WRITES=$
+    FINAL_L2T_PJ=`echo "($L2T_TOTAL_REQ) * $L2T_ACCESS_PJ" | bc -l`
 
     # MESI side cache energy
     #L2 energy
