@@ -12,7 +12,8 @@ void  processTrace()
     unsigned long long  storeSize = 0;
     unsigned long long  intSize = 0;
     unsigned long long  floatSize = 0;
-    //unsigned storeSize = 0;
+    unsigned long long  floatLargeSize = 0;
+    unsigned long long  intLargeSize = 0;
     Inst_info *inst = (Inst_info *)malloc(sizeof(Inst_info));    
     while(gzread(OrigTrace, (void*)inst, sizeof(Inst_info)) > 0)
     {
