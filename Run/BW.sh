@@ -71,7 +71,7 @@ run_baseline_1 () {
     #echo "$FINAL_CORE_PJ"
     #echo "$FINAL_SP_PJ"
     #echo "$FINAL_DMA_CACHE_PJ"
-    echo "0, $FINAL_DMA_LINK_PJ, 0, 0"
+    echo "$BENCH_NAME,b1,0,$FINAL_DMA_LINK_PJ,0,0"
 }
 #-------------- BASELINE 2 --------------------------
 
@@ -142,7 +142,7 @@ run_baseline_2 () {
     #echo $FINAL_T_PJ
     #echo "$FINAL_L2_PJ"
 
-    echo "$FINAL_TILE_MSG_LINK_PJ, $FINAL_TILE_DATA_LINK_PJ, $FINAL_ACC_MSG_LINK_PJ, $FINAL_ACC_DATA_LINK_PJ"
+    echo "$BENCH_NAME,b2,$FINAL_TILE_MSG_LINK_PJ,$FINAL_TILE_DATA_LINK_PJ,$FINAL_ACC_MSG_LINK_PJ,$FINAL_ACC_DATA_LINK_PJ"
     FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
     #echo "$FINAL_LINK"
 
@@ -233,7 +233,7 @@ run_baseline_3 () {
     #echo "$FINAL_L2_PJ"
 
 
-    echo "$FINAL_TILE_MSG_LINK_PJ, $FINAL_TILE_DATA_LINK_PJ, $FINAL_ACC_MSG_LINK_PJ, $FINAL_ACC_DATA_LINK_PJ"
+    echo "$BENCH_NAME,b3,$FINAL_TILE_MSG_LINK_PJ,$FINAL_TILE_DATA_LINK_PJ,$FINAL_ACC_MSG_LINK_PJ,$FINAL_ACC_DATA_LINK_PJ"
     FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
     #echo "$FINAL_LINK"
 }

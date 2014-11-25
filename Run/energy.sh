@@ -69,7 +69,7 @@ run_baseline_1 () {
     #echo " L1T_HIT   $L1T_HIT  L1T_TOT_STORES  $L1T_TOT_STORES "
 
     #echo "$FINAL_CORE_PJ"
-    echo "$FINAL_SP_PJ, $FINAL_DMA_CACHE_PJ, $FINAL_DMA_LINK_PJ"
+    echo "$BENCH_NAME,b1,$FINAL_SP_PJ,$FINAL_DMA_CACHE_PJ,$FINAL_DMA_LINK_PJ"
 }
 #-------------- BASELINE 2 --------------------------
 
@@ -112,7 +112,6 @@ run_baseline_2 () {
     NUM_DMA_WRITES=`echo "$NUM_DMA-$NUM_DMA_READS" | bc -l`
     #echo $NUM_DMA_READS
     #echo $NUM_DMA_WRITES
-    L2T_WRITES=$
     FINAL_L2T_PJ=`echo "($L2T_TOTAL_REQ) * $L2T_ACCESS_PJ" | bc -l`
 
     # MESI side cache energy
@@ -140,7 +139,7 @@ run_baseline_2 () {
     
 
     FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
-    echo "$FINAL_T_PJ, $FINAL_L2_PJ, $FINAL_LINK"
+    echo "$BENCH_NAME,b2,$FINAL_T_PJ,$FINAL_L2_PJ,$FINAL_LINK"
 
 
 }
@@ -227,7 +226,7 @@ run_baseline_3 () {
     #echo "$FINAL_TILE_LINK_PJ"
     #echo "$FINAL_ACC_LINK_PJ"
     FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
-    echo "$FINAL_T_PJ, $FINAL_L2_PJ, $FINAL_LINK"
+    echo "$BENCH_NAME,b3,$FINAL_T_PJ,$FINAL_L2_PJ,$FINAL_LINK"
 
 }
 
