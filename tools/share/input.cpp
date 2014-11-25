@@ -35,7 +35,7 @@ unsigned long long  processTrace()
             if(II->acc_heap_store && LoadInsts.count(makeCacheAddr(II->st_vaddr)) == 0)
             {
                  //Assuming Byte  addresable memory. Hence EA used for matching is [3:0]  
-                LoadInsts.insert(make_pair(II->st_vaddr,II));
+                LoadInsts.insert(make_pair(makeCacheAddr(II->st_vaddr),II));
                 loadSize += II->mem_write_size;
 
             }
