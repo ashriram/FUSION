@@ -2,18 +2,19 @@
 
 APPS=('tracking' 'histogram'  'nw'  'disparity'  'susan'  'filter'  'fft' 'adpcm') 
 #APPS=('fft')
-#bench=('b1'  'b2'  'b3'  'b4')
-bench=('b4' 'b3')
+bench=('b1'  'b2'  'b3'  'b4')
+#bench=('b4' 'b3')
 
-#path='large/'
+path='small'
 #path='small'
-path='large-b4'
+#path='small'
 
 cd ${path}
 for x in ${bench[@]}
 do
     cd ${x}    
-        
+#    echo "" > ../../energy/${path}/energy-${APPS[$i]}.csv
+ 
     for(( i=0;i<${#APPS[@]};i++)) 
     do
         #echo "$(pwd)"
@@ -21,12 +22,12 @@ do
         cwd=$(pwd)
         echo -e "$cwd"
         #--- To Run BENCH MARK--------------------------
-        #cp ../../../energy.sh  .
-        #./energy.sh ${path}  ${x} >>../../../energy/large/energy-${APPS[$i]}.csv
+        cp ../../../energy.sh  .
+        ./energy.sh ${path}  ${x} ${APPS[$i]} >>../../../energy/${path}/energy-${APPS[$i]}.csv
         
         #rm CONFIG_SCRATCHPAD_4K
-        rm CONFIG       
-        ln -s ../../../../gems-lib/ruby_clean/config/LARGE/CONFIG_XLARGE_B4 CONFIG
+        #rm CONFIG       
+        #ln -s ../../../../gems-lib/ruby_clean/config/LARGE/CONFIG_XLARGE_B4 CONFIG
 
         #if [ "${x}" == "b1"  ] 
         #then    
@@ -37,7 +38,7 @@ do
         #rm trace_file_list
         #echo "1">trace_file_list
         #echo "../../../../Traces/large/${x}/"${APPS[$i]}"/trace.txt">>trace_file_list
-        ./ooo-sim>std_out  2>std_err &        
+        #./ooo-sim>std_out  2>std_err &        
         #------ to Calculate CPU -- DMA --- ACC Cycles ----
         
         #grep "CPU halted after"  std_out | awk '{ sum+=$7} END {print sum}'
