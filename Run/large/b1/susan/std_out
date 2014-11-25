@@ -38,7 +38,7 @@ Ruby initialization complete
 Ruby Configuration
 ------------------
 protocol: Fusion
-compiled_at: 21:02:19, Nov 23 2014
+compiled_at: 00:57:33, Nov 25 2014
 RUBY_DEBUG: true
 hostname: cs-amoeba-n4
 g_RANDOM_SEED: 1
@@ -356,6 +356,8 @@ Cache config: L1Cache_0_L1D
   cache_size_Mbytes: 0.0625
 
 L1Cache_mandatoryQueue numberPerChip: 8
+
+L1Cache_L2ExpireTriggerQueue numberPerChip: 8
 
 L1Cache_sequencer numberPerChip: 8
 sequencer: Sequencer - SC
@@ -1279,141 +1281,141 @@ src/process_manager.cc:496: (I=0  C=0):  thread_count:8
 src/trace_read.cc:1435: (I=0  C=1):  Core 0 got acc_segment_delim marker switching to : 2
 src/core.cc:491: (I=0  C=1):  CPU halted after 1 cycles
 src/trace_read.cc:1447: (I=0  C=1):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=0  C=322):  DMA Done Activating 2
-src/core.cc:425: (I=0  C=322):  DMA halted after 321 cycles
-src/trace_read.cc:1435: (I=0  C=19719):  Core 2 got acc_segment_delim marker switching to : 0
-src/core.cc:450: (I=0  C=19833):  ACC 2 halted after 19511 cycles
-src/trace_read.cc:1447: (I=0  C=19834):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=0  C=20204):  DMA Done Activating 0
-src/core.cc:425: (I=0  C=20204):  DMA halted after 371 cycles
-src/trace_read.cc:1435: (I=0  C=20209):  Core 0 got acc_segment_delim marker switching to : 3
-src/core.cc:491: (I=20  C=20573):  CPU halted after 369 cycles
-src/trace_read.cc:1447: (I=20  C=20573):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=20  C=53418):  DMA Done Activating 3
-src/core.cc:425: (I=20  C=53418):  DMA halted after 32846 cycles
-** Heartbeat for core[3]:        insts:1000000     cycles:3579554     seconds:112   -- 0.28 IPC (0.28 IPC) -- 0.00 KIPS (8.93 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:3579554     seconds:112   -- 0.28 IPC (0.28 IPC) -- 0.00 KIPS (8.93 KIPS)
-** Heartbeat for core[3]:        insts:2000000     cycles:7219078     seconds:223   -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.97 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:2000000     cycles:7219078     seconds:223   -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.97 KIPS)
-** Heartbeat for core[3]:        insts:3000000     cycles:10858633    seconds:337   -- 0.27 IPC (0.28 IPC) -- 8.77 KIPS (8.90 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:3000000     cycles:10858633    seconds:337   -- 0.27 IPC (0.28 IPC) -- 8.77 KIPS (8.90 KIPS)
-** Heartbeat for core[3]:        insts:4000000     cycles:14498157    seconds:448   -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.93 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:4000000     cycles:14498157    seconds:448   -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.93 KIPS)
-** Heartbeat for core[3]:        insts:5000000     cycles:18137650    seconds:558   -- 0.27 IPC (0.28 IPC) -- 9.09 KIPS (8.96 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:5000000     cycles:18137650    seconds:558   -- 0.27 IPC (0.28 IPC) -- 9.09 KIPS (8.96 KIPS)
-** Heartbeat for core[3]:        insts:6000000     cycles:21777205    seconds:669   -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.97 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:6000000     cycles:21777205    seconds:669   -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.97 KIPS)
-** Heartbeat for core[3]:        insts:7000000     cycles:25416729    seconds:780   -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.97 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:7000000     cycles:25416729    seconds:780   -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.97 KIPS)
-** Heartbeat for core[3]:        insts:8000000     cycles:29056005    seconds:891   -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.98 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:8000000     cycles:29056005    seconds:891   -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.98 KIPS)
-** Heartbeat for core[3]:        insts:9000000     cycles:32695591    seconds:1002  -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.98 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:9000000     cycles:32695591    seconds:1002  -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.98 KIPS)
-** Heartbeat for core[3]:        insts:10000000    cycles:36335115    seconds:1112  -- 0.27 IPC (0.28 IPC) -- 9.09 KIPS (8.99 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:10000000    cycles:36335115    seconds:1112  -- 0.27 IPC (0.28 IPC) -- 9.09 KIPS (8.99 KIPS)
-** Heartbeat for core[3]:        insts:11000000    cycles:39974639    seconds:1223  -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.99 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:11000000    cycles:39974639    seconds:1223  -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (8.99 KIPS)
-** Heartbeat for core[3]:        insts:12000000    cycles:43614163    seconds:1333  -- 0.27 IPC (0.28 IPC) -- 9.09 KIPS (9.00 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:12000000    cycles:43614163    seconds:1333  -- 0.27 IPC (0.28 IPC) -- 9.09 KIPS (9.00 KIPS)
-** Heartbeat for core[3]:        insts:13000000    cycles:47253656    seconds:1444  -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (9.00 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:13000000    cycles:47253656    seconds:1444  -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (9.00 KIPS)
-** Heartbeat for core[3]:        insts:14000000    cycles:50893180    seconds:1555  -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (9.00 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:14000000    cycles:50893180    seconds:1555  -- 0.27 IPC (0.28 IPC) -- 9.01 KIPS (9.00 KIPS)
-src/trace_read.cc:1447: (I=20  C=50935772):  Core 3 got acc_window_delim marker
-src/core.cc:450: (I=20  C=50936608):  ACC 3 halted after 50883190 cycles
-src/trace_read.cc:1447: (I=20  C=50936613):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=20  C=50943520):  DMA Done Activating 3
-src/core.cc:425: (I=20  C=50943520):  DMA halted after 6912 cycles
-** Heartbeat for core[3]:        insts:15000000    cycles:54539186    seconds:1665  -- 0.27 IPC (0.28 IPC) -- 9.09 KIPS (9.01 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:15000000    cycles:54539186    seconds:1665  -- 0.27 IPC (0.28 IPC) -- 9.09 KIPS (9.01 KIPS)
-** Heartbeat for core[3]:        insts:16000000    cycles:58178741    seconds:1771  -- 0.27 IPC (0.28 IPC) -- 9.43 KIPS (9.03 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:16000000    cycles:58178741    seconds:1771  -- 0.27 IPC (0.28 IPC) -- 9.43 KIPS (9.03 KIPS)
-** Heartbeat for core[3]:        insts:17000000    cycles:61818203    seconds:1876  -- 0.27 IPC (0.27 IPC) -- 9.52 KIPS (9.06 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:17000000    cycles:61818203    seconds:1876  -- 0.27 IPC (0.27 IPC) -- 9.52 KIPS (9.06 KIPS)
-** Heartbeat for core[3]:        insts:18000000    cycles:65457789    seconds:1982  -- 0.27 IPC (0.27 IPC) -- 9.43 KIPS (9.08 KIPS)
-** Heartbeat for core[3]:  Thread:0      insts:18000000    cycles:65457789    seconds:1982  -- 0.27 IPC (0.27 IPC) -- 9.43 KIPS (9.08 KIPS)
-src/trace_read.cc:1435: (I=20  C=65808800):  Core 3 got acc_segment_delim marker switching to : 0
-src/core.cc:450: (I=20  C=65809636):  ACC 3 halted after 14866117 cycles
-src/trace_read.cc:1447: (I=20  C=65809637):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=20  C=65810050):  DMA Done Activating 0
-src/core.cc:425: (I=20  C=65810050):  DMA halted after 414 cycles
-src/trace_read.cc:1435: (I=20  C=65810056):  Core 0 got acc_segment_delim marker switching to : 4
-src/core.cc:491: (I=37  C=65810147):  CPU halted after 97 cycles
-src/trace_read.cc:1447: (I=37  C=65810147):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=37  C=65810415):  DMA Done Activating 4
-src/core.cc:425: (I=37  C=65810415):  DMA halted after 269 cycles
-src/trace_read.cc:1447: (I=37  C=68504466):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=37  C=68504495):  ACC 4 halted after 2694080 cycles
-src/trace_read.cc:1447: (I=37  C=68504500):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=37  C=68508760):  DMA Done Activating 4
-src/core.cc:425: (I=37  C=68508760):  DMA halted after 4265 cycles
-** Heartbeat for core[4]:        insts:1000000     cycles:69072160    seconds:2088  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.48 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:1000000     cycles:69072160    seconds:2088  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.48 KIPS)
-src/trace_read.cc:1447: (I=37  C=70882883):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=37  C=70882920):  ACC 4 halted after 2374161 cycles
-src/trace_read.cc:1447: (I=37  C=70884163):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=37  C=70896792):  DMA Done Activating 4
-src/core.cc:425: (I=37  C=70896792):  DMA halted after 13872 cycles
-** Heartbeat for core[4]:        insts:2000000     cycles:72182024    seconds:2178  -- 0.32 IPC (0.03 IPC) -- 11.11 KIPS (0.92 KIPS)
-** Heartbeat for core[4]:  Thread:0      insts:2000000     cycles:72182024    seconds:2178  -- 0.32 IPC (0.03 IPC) -- 11.11 KIPS (0.92 KIPS)
-src/trace_read.cc:1447: (I=37  C=72368339):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=37  C=72368899):  ACC 4 halted after 1472108 cycles
-src/trace_read.cc:1447: (I=37  C=72369620):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=37  C=72395788):  DMA Done Activating 4
-src/core.cc:425: (I=37  C=72395788):  DMA halted after 26889 cycles
-src/trace_read.cc:1447: (I=37  C=72497539):  Core 4 got acc_window_delim marker
-src/core.cc:450: (I=37  C=72497727):  ACC 4 halted after 101940 cycles
-src/trace_read.cc:1447: (I=37  C=72497732):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=37  C=72517798):  DMA Done Activating 4
-src/core.cc:425: (I=37  C=72517798):  DMA halted after 20071 cycles
-src/trace_read.cc:1435: (I=37  C=72592100):  Core 4 got acc_segment_delim marker switching to : 0
-src/core.cc:450: (I=37  C=72592503):  ACC 4 halted after 74706 cycles
-src/trace_read.cc:1447: (I=37  C=72592504):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=37  C=72593720):  DMA Done Activating 0
-src/core.cc:425: (I=37  C=72593720):  DMA halted after 1217 cycles
-src/trace_read.cc:1435: (I=37  C=72593726):  Core 0 got acc_segment_delim marker switching to : 5
-src/core.cc:491: (I=54  C=72593863):  CPU halted after 143 cycles
-src/trace_read.cc:1447: (I=54  C=72593863):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=54  C=72598989):  DMA Done Activating 5
-src/core.cc:425: (I=54  C=72598989):  DMA halted after 5127 cycles
-src/trace_read.cc:1447: (I=54  C=74302066):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=54  C=74302818):  ACC 5 halted after 1703829 cycles
-src/trace_read.cc:1447: (I=54  C=74302823):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=54  C=74311353):  DMA Done Activating 5
-src/core.cc:425: (I=54  C=74311353):  DMA halted after 8535 cycles
-src/trace_read.cc:1447: (I=54  C=76062465):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=54  C=76063880):  ACC 5 halted after 1752528 cycles
-src/trace_read.cc:1447: (I=54  C=76064909):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=54  C=76074254):  DMA Done Activating 5
-src/core.cc:425: (I=54  C=76074254):  DMA halted after 10374 cycles
-** Heartbeat for core[5]:        insts:1000000     cycles:76384601    seconds:2307  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.43 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:1000000     cycles:76384601    seconds:2307  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.43 KIPS)
-** Heartbeat for core[5]:        insts:2000000     cycles:83386176    seconds:2521  -- 0.14 IPC (0.02 IPC) -- 4.67 KIPS (0.79 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:2000000     cycles:83386176    seconds:2521  -- 0.14 IPC (0.02 IPC) -- 4.67 KIPS (0.79 KIPS)
-src/trace_read.cc:1447: (I=54  C=83471222):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=54  C=83471323):  ACC 5 halted after 7397070 cycles
-src/trace_read.cc:1447: (I=54  C=83471328):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=54  C=83478433):  DMA Done Activating 5
-src/core.cc:425: (I=54  C=83478433):  DMA halted after 7110 cycles
-src/trace_read.cc:1447: (I=54  C=90497380):  Core 5 got acc_window_delim marker
-src/core.cc:450: (I=54  C=90497489):  ACC 5 halted after 7019057 cycles
-src/trace_read.cc:1447: (I=54  C=90497490):  Core 1 got acc_window_delim marker
-src/core.cc:421: (I=54  C=90505242):  DMA Done Activating 5
-src/core.cc:425: (I=54  C=90505242):  DMA halted after 7753 cycles
-** Heartbeat for core[5]:        insts:3000000     cycles:90611281    seconds:2748  -- 0.14 IPC (0.03 IPC) -- 4.41 KIPS (1.09 KIPS)
-** Heartbeat for core[5]:  Thread:0      insts:3000000     cycles:90611281    seconds:2748  -- 0.14 IPC (0.03 IPC) -- 4.41 KIPS (1.09 KIPS)
-src/trace_read.cc:1435: (I=54  C=92620199):  Core 5 got acc_segment_delim marker switching to : 0
-src/core.cc:450: (I=54  C=92620360):  ACC 5 halted after 2115119 cycles
-src/trace_read.cc:1447: (I=54  C=92620361):  Core 1 got acc_window_delim marker
-**Core 1 Thread 0 Finished:   insts:2875        cycles:92619962    seconds:2811  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
-src/core.cc:421: (I=54  C=92620568):  DMA Done Activating 0
-src/core.cc:425: (I=54  C=92620568):  DMA halted after 208 cycles
-**Core 1 Core_Total  Finished:   insts:2875        cycles:92619962    seconds:2811  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
-**Core 0 Thread 0 Finished:   insts:56          cycles:92622052    seconds:2811  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
-**Core 0 Core_Total  Finished:   insts:56          cycles:92622052    seconds:2811  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
+src/core.cc:421: (I=0  C=411):  DMA Done Activating 2
+src/core.cc:425: (I=0  C=411):  DMA halted after 410 cycles
+src/trace_read.cc:1435: (I=0  C=19807):  Core 2 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=0  C=19921):  ACC 2 halted after 19510 cycles
+src/trace_read.cc:1447: (I=0  C=19922):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=0  C=20315):  DMA Done Activating 0
+src/core.cc:425: (I=0  C=20315):  DMA halted after 394 cycles
+src/trace_read.cc:1435: (I=0  C=20320):  Core 0 got acc_segment_delim marker switching to : 3
+src/core.cc:491: (I=20  C=20677):  CPU halted after 362 cycles
+src/trace_read.cc:1447: (I=20  C=20677):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=20  C=53528):  DMA Done Activating 3
+src/core.cc:425: (I=20  C=53528):  DMA halted after 32852 cycles
+** Heartbeat for core[3]:        insts:1000000     cycles:3579278     seconds:335   -- 0.28 IPC (0.28 IPC) -- 0.00 KIPS (2.99 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:1000000     cycles:3579278     seconds:335   -- 0.28 IPC (0.28 IPC) -- 0.00 KIPS (2.99 KIPS)
+** Heartbeat for core[3]:        insts:2000000     cycles:7218802     seconds:676   -- 0.27 IPC (0.28 IPC) -- 2.93 KIPS (2.96 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:2000000     cycles:7218802     seconds:676   -- 0.27 IPC (0.28 IPC) -- 2.93 KIPS (2.96 KIPS)
+** Heartbeat for core[3]:        insts:3000000     cycles:10858357    seconds:1018  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.95 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:3000000     cycles:10858357    seconds:1018  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.95 KIPS)
+** Heartbeat for core[3]:        insts:4000000     cycles:14497850    seconds:1360  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:4000000     cycles:14497850    seconds:1360  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:        insts:5000000     cycles:18137374    seconds:1701  -- 0.27 IPC (0.28 IPC) -- 2.93 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:5000000     cycles:18137374    seconds:1701  -- 0.27 IPC (0.28 IPC) -- 2.93 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:        insts:6000000     cycles:21776929    seconds:2043  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:6000000     cycles:21776929    seconds:2043  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:        insts:7000000     cycles:25416453    seconds:2384  -- 0.27 IPC (0.28 IPC) -- 2.93 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:7000000     cycles:25416453    seconds:2384  -- 0.27 IPC (0.28 IPC) -- 2.93 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:        insts:8000000     cycles:29055729    seconds:2726  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:8000000     cycles:29055729    seconds:2726  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:        insts:9000000     cycles:32695315    seconds:3067  -- 0.27 IPC (0.28 IPC) -- 2.93 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:9000000     cycles:32695315    seconds:3067  -- 0.27 IPC (0.28 IPC) -- 2.93 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:        insts:10000000    cycles:36334839    seconds:3409  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:10000000    cycles:36334839    seconds:3409  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:        insts:11000000    cycles:39974363    seconds:3750  -- 0.27 IPC (0.28 IPC) -- 2.93 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:11000000    cycles:39974363    seconds:3750  -- 0.27 IPC (0.28 IPC) -- 2.93 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:        insts:12000000    cycles:43613887    seconds:4092  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:12000000    cycles:43613887    seconds:4092  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:        insts:13000000    cycles:47253380    seconds:4434  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:13000000    cycles:47253380    seconds:4434  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:        insts:14000000    cycles:50892904    seconds:4776  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:14000000    cycles:50892904    seconds:4776  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+src/trace_read.cc:1447: (I=20  C=50935489):  Core 3 got acc_window_delim marker
+src/core.cc:450: (I=20  C=50936201):  ACC 3 halted after 50882673 cycles
+src/trace_read.cc:1447: (I=20  C=50936206):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=20  C=50945600):  DMA Done Activating 3
+src/core.cc:425: (I=20  C=50945600):  DMA halted after 9399 cycles
+** Heartbeat for core[3]:        insts:15000000    cycles:54541363    seconds:5119  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:15000000    cycles:54541363    seconds:5119  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:        insts:16000000    cycles:58180887    seconds:5461  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:16000000    cycles:58180887    seconds:5461  -- 0.27 IPC (0.28 IPC) -- 2.92 KIPS (2.93 KIPS)
+** Heartbeat for core[3]:        insts:17000000    cycles:61820380    seconds:5792  -- 0.27 IPC (0.27 IPC) -- 3.02 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:17000000    cycles:61820380    seconds:5792  -- 0.27 IPC (0.27 IPC) -- 3.02 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:        insts:18000000    cycles:65459966    seconds:6122  -- 0.27 IPC (0.27 IPC) -- 3.03 KIPS (2.94 KIPS)
+** Heartbeat for core[3]:  Thread:0      insts:18000000    cycles:65459966    seconds:6122  -- 0.27 IPC (0.27 IPC) -- 3.03 KIPS (2.94 KIPS)
+src/trace_read.cc:1435: (I=20  C=65810970):  Core 3 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=20  C=65811806):  ACC 3 halted after 14866207 cycles
+src/trace_read.cc:1447: (I=20  C=65811807):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=20  C=65812294):  DMA Done Activating 0
+src/core.cc:425: (I=20  C=65812294):  DMA halted after 488 cycles
+src/trace_read.cc:1435: (I=20  C=65812300):  Core 0 got acc_segment_delim marker switching to : 4
+src/core.cc:491: (I=37  C=65812369):  CPU halted after 75 cycles
+src/trace_read.cc:1447: (I=37  C=65812369):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=37  C=65815597):  DMA Done Activating 4
+src/core.cc:425: (I=37  C=65815597):  DMA halted after 3229 cycles
+src/trace_read.cc:1447: (I=37  C=68509295):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=37  C=68509331):  ACC 4 halted after 2693734 cycles
+src/trace_read.cc:1447: (I=37  C=68509336):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=37  C=68516286):  DMA Done Activating 4
+src/core.cc:425: (I=37  C=68516286):  DMA halted after 6955 cycles
+** Heartbeat for core[4]:        insts:1000000     cycles:69080217    seconds:6441  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.16 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:1000000     cycles:69080217    seconds:6441  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.16 KIPS)
+src/trace_read.cc:1447: (I=37  C=70884716):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=37  C=70884750):  ACC 4 halted after 2368465 cycles
+src/trace_read.cc:1447: (I=37  C=70886428):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=37  C=70903423):  DMA Done Activating 4
+src/core.cc:425: (I=37  C=70903423):  DMA halted after 18673 cycles
+** Heartbeat for core[4]:        insts:2000000     cycles:72199933    seconds:6710  -- 0.32 IPC (0.03 IPC) -- 3.72 KIPS (0.30 KIPS)
+** Heartbeat for core[4]:  Thread:0      insts:2000000     cycles:72199933    seconds:6710  -- 0.32 IPC (0.03 IPC) -- 3.72 KIPS (0.30 KIPS)
+src/trace_read.cc:1447: (I=37  C=72386235):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=37  C=72386693):  ACC 4 halted after 1483271 cycles
+src/trace_read.cc:1447: (I=37  C=72387772):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=37  C=72419064):  DMA Done Activating 4
+src/core.cc:425: (I=37  C=72419064):  DMA halted after 32371 cycles
+src/trace_read.cc:1447: (I=37  C=72518356):  Core 4 got acc_window_delim marker
+src/core.cc:450: (I=37  C=72518865):  ACC 4 halted after 99802 cycles
+src/trace_read.cc:1447: (I=37  C=72518870):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=37  C=72541874):  DMA Done Activating 4
+src/core.cc:425: (I=37  C=72541874):  DMA halted after 23009 cycles
+src/trace_read.cc:1435: (I=37  C=72613520):  Core 4 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=37  C=72613902):  ACC 4 halted after 72029 cycles
+src/trace_read.cc:1447: (I=37  C=72613903):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=37  C=72615119):  DMA Done Activating 0
+src/core.cc:425: (I=37  C=72615119):  DMA halted after 1217 cycles
+src/trace_read.cc:1435: (I=37  C=72615125):  Core 0 got acc_segment_delim marker switching to : 5
+src/core.cc:491: (I=54  C=72615259):  CPU halted after 140 cycles
+src/trace_read.cc:1447: (I=54  C=72615259):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=54  C=72622167):  DMA Done Activating 5
+src/core.cc:425: (I=54  C=72622167):  DMA halted after 6909 cycles
+src/trace_read.cc:1447: (I=54  C=74314776):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=54  C=74314782):  ACC 5 halted after 1692615 cycles
+src/trace_read.cc:1447: (I=54  C=74314787):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=54  C=74326101):  DMA Done Activating 5
+src/core.cc:425: (I=54  C=74326101):  DMA halted after 11319 cycles
+src/trace_read.cc:1447: (I=54  C=76053192):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=54  C=76053391):  ACC 5 halted after 1727291 cycles
+src/trace_read.cc:1447: (I=54  C=76054569):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=54  C=76072664):  DMA Done Activating 5
+src/core.cc:425: (I=54  C=76072664):  DMA halted after 19273 cycles
+** Heartbeat for core[5]:        insts:1000000     cycles:76418684    seconds:7097  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.14 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:1000000     cycles:76418684    seconds:7097  -- 0.01 IPC (0.01 IPC) -- 0.00 KIPS (0.14 KIPS)
+** Heartbeat for core[5]:        insts:2000000     cycles:83421462    seconds:7735  -- 0.14 IPC (0.02 IPC) -- 1.57 KIPS (0.26 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:2000000     cycles:83421462    seconds:7735  -- 0.14 IPC (0.02 IPC) -- 1.57 KIPS (0.26 KIPS)
+src/trace_read.cc:1447: (I=54  C=83479566):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=54  C=83479640):  ACC 5 halted after 7406977 cycles
+src/trace_read.cc:1447: (I=54  C=83479645):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=54  C=83496543):  DMA Done Activating 5
+src/core.cc:425: (I=54  C=83496543):  DMA halted after 16903 cycles
+src/trace_read.cc:1447: (I=54  C=90504977):  Core 5 got acc_window_delim marker
+src/core.cc:450: (I=54  C=90506824):  ACC 5 halted after 7010282 cycles
+src/trace_read.cc:1447: (I=54  C=90506825):  Core 1 got acc_window_delim marker
+src/core.cc:421: (I=54  C=90517310):  DMA Done Activating 5
+src/core.cc:425: (I=54  C=90517310):  DMA halted after 10486 cycles
+** Heartbeat for core[5]:        insts:3000000     cycles:90652903    seconds:8411  -- 0.14 IPC (0.03 IPC) -- 1.48 KIPS (0.36 KIPS)
+** Heartbeat for core[5]:  Thread:0      insts:3000000     cycles:90652903    seconds:8411  -- 0.14 IPC (0.03 IPC) -- 1.48 KIPS (0.36 KIPS)
+src/trace_read.cc:1435: (I=54  C=92660563):  Core 5 got acc_segment_delim marker switching to : 0
+src/core.cc:450: (I=54  C=92660693):  ACC 5 halted after 2143384 cycles
+src/trace_read.cc:1447: (I=54  C=92660694):  Core 1 got acc_window_delim marker
+**Core 1 Thread 0 Finished:   insts:2883        cycles:92660354    seconds:8599  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
+src/core.cc:421: (I=54  C=92660928):  DMA Done Activating 0
+src/core.cc:425: (I=54  C=92660928):  DMA halted after 235 cycles
+**Core 1 Core_Total  Finished:   insts:2883        cycles:92660354    seconds:8599  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
+**Core 0 Thread 0 Finished:   insts:56          cycles:92662401    seconds:8599  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz) 
+**Core 0 Core_Total  Finished:   insts:56          cycles:92662401    seconds:8599  -- 0.00 IPC (0.00 IPC) --  N/A  KHz (0.00 KHz)
 Deleting system...
 Deleting system done
 Deleting event queue...
 Deleting event queue done
-src/macsim.cc:496: (I=56  C=92622053):  finalize simulation
-src/macsim.cc:502: (I=56  C=92622053):  elapsed time:2815.2 seconds
+src/macsim.cc:496: (I=56  C=92662402):  finalize simulation
+src/macsim.cc:502: (I=56  C=92662402):  elapsed time:8606.3 seconds
