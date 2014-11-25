@@ -1,29 +1,31 @@
 #!/bin/bash 
 
-APPS=('tracking' 'histogram'  'nw'  'disparity'  'susan'  'filter'  'fft' 'adpcm') 
+APPS=( 'fft' 'disparity' 'tracking' 'histogram'  'susan'  'filter' 'adpcm') 
 #APPS=('fft')
-bench=('b1'  'b2'  'b3'  'b4')
+bench=('b1'  'b2'  'b3')
 #bench=('b4' 'b3')
 
-path='$1'
+path=$1
 #path='small'
 #path='small'
 
 cd ${path}
-for x in ${bench[@]}
+
+for(( i=0;i<${#APPS[@]};i++)) 
 do
-    cd ${x}    
 #    echo "" > ../../energy/${path}/energy-${APPS[$i]}.csv
  
-    for(( i=0;i<${#APPS[@]};i++)) 
+    for x in ${bench[@]}
     do
-        #echo "$(pwd)"
-        cd ${APPS[$i]} 
+
+        #cd ${x}    
+        echo "${APPS[$i]}"
+        cd  "${x}/${APPS[$i]}" 
         cwd=$(pwd)
         echo -e "$cwd"
         #--- To Run BENCH MARK--------------------------
         cp ../../../energy.sh  .
-        ./energy.sh ${path}  ${x} ${APPS[$i]} >>../../../energy/${path}/energy-${APPS[$i]}.csv
+        ./energy.sh ${path}  ${x} ${APPS[$i]} >>../../../energy/${path}/energy-all.csv
         
         #rm CONFIG_SCRATCHPAD_4K
         #rm CONFIG       
@@ -56,8 +58,8 @@ do
         #grep "ACC\s[2-7]\shalted after"  std_out | awk '{ sum+=$8} END {print sum}' 
         
         #-----------------------------------------------------
-        cd ..
+        cd ../../
     done
-    cd ..
+    #cd ..
 done
 cd ..

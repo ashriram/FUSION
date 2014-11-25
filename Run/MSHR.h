@@ -37,39 +37,28 @@ run_baseline_1 () {
 
     fi
     
-    L2_TOTAL_REQ=`grep "L2_cache_total_requests:" ruby.stat.out | awk '{print $2}'`    
-    L2_TO_L2T_DATA=`grep "L2_TO_L2T_DATA" ruby.stat.out |  awk '{print $3}'`
-    NUM_DMA=`grep Sequencer_1 ruby.stat.out | awk '{print $7}'`
-    L2T_TO_L1T_DATA=`grep "L2T_TO_L1T_DATA" ruby.stat.out |awk '{print $3}' `
-    
-    
-    FINAL_DMA_CACHE_PJ=`echo "$NUM_DMA*(${L2_ACCESS_PJ}+${L1T_SP_ACCESS_PJ}) "|bc -l`  #40byte is 5flits*8bytes
+    MSHR_0=`grep "SequencerACC_0:"  ruby.stat.out | awk '{print $9}'`
+    MSHR_1=`grep "SequencerACC_1:"  ruby.stat.out | awk '{print $9}'`
+    MSHR_2=`grep "SequencerACC_2:"  ruby.stat.out | awk '{print $9}'`
+    MSHR_3=`grep "SequencerACC_3:"  ruby.stat.out | awk '{print $9}'`
+    MSHR_4=`grep "SequencerACC_4:"  ruby.stat.out | awk '{print $9}'`
+    MSHR_5=`grep "SequencerACC_5:"  ruby.stat.out | awk '{print $9}'`
+    MSHR_6=`grep "SequencerACC_6:"  ruby.stat.out | awk '{print $9}'`
+    MSHR_7=`grep "SequencerACC_7:"  ruby.stat.out | awk '{print $9}'`
+    L1T_TOTAL_REQ=`grep "L1T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
 
-    #echo "L2_TOTAL_REQ  $L2_TOTAL_REQ"
-
-
-
-    FINAL_DMA_LINK_PJ=`echo "$L2_TO_L2T_DATA  * 8 * $L2T_TO_L2_LINK_PJ_BYTE +\
-                             $L2T_TO_L1T_DATA * 8 * $L1T_TO_L2T_LINK_PJ_BYTE+ \
-                             $NUM_DMA         * 8 * $L1T_TO_L2T_LINK_PJ_BYTE" |bc -l `    
-   #Push based model no message is accounted 
-#    
-#    echo "L2_TO_L2T_DATA    $L2_TO_L2T_DATA "
-#    echo "L2T_TO_L1T_DATA   $L2T_TO_L1T_DATA"
-#    echo " NUM_DMA          $NUM_DMA "
-#    
-    FINAL_CORE_PJ=`echo "${NUM_INT_ADD}*${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
-
-
-    L1T_TOT_STORES=`grep "^L1_WThru" ruby.stat.out | awk '{print $2}'`  #Since we are faking L1T and L2T behaves as the actual Scratchpad 
-    L1T_HIT=`grep -A19 "\-\-\- L1TCache \-\-\-" ruby.stat.out | grep "^S\ \ Load" | awk '{print $3}'`
-   
-
-    FINAL_SP_PJ=`echo "${L1T_SP_ACCESS_PJ}*(${L1T_HIT} + ${L1T_TOT_STORES})"|bc -l`
-    #echo " L1T_HIT   $L1T_HIT  L1T_TOT_STORES  $L1T_TOT_STORES "
 
     #echo "$FINAL_CORE_PJ"
-    echo "$BENCH_NAME,b1,$FINAL_SP_PJ,$FINAL_DMA_CACHE_PJ,$FINAL_DMA_LINK_PJ"
+    #echo "$FINAL_SP_PJ"
+    #echo "$FINAL_DMA_CACHE_PJ"
+    echo $MSHR_0
+    echo $MSHR_1
+    echo $MSHR_2
+    echo $MSHR_3
+    echo $MSHR_4
+    echo $MSHR_5
+    echo $MSHR_6
+    echo $MSHR_7
 }
 #-------------- BASELINE 2 --------------------------
 
@@ -101,8 +90,6 @@ run_baseline_2 () {
 
     # L1T energy   
     L1T_TOTAL_REQ=`grep "L1T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
-
-    L2T_TOTAL_REQ=`grep "L2T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
     
 
     # L2T energy. Reads + WBacks
@@ -112,7 +99,8 @@ run_baseline_2 () {
     NUM_DMA_WRITES=`echo "$NUM_DMA-$NUM_DMA_READS" | bc -l`
     #echo $NUM_DMA_READS
     #echo $NUM_DMA_WRITES
-    FINAL_L2T_PJ=`echo "($L2T_TOTAL_REQ) * $L2T_ACCESS_PJ" | bc -l`
+    L2T_WRITES=$NUM_DMA_WRITES
+    FINAL_L2T_PJ=`echo "($L2T_READS+$L2T_WRITES)* $L2T_ACCESS_PJ" | bc -l`
 
     # MESI side cache energy
     #L2 energy
@@ -129,17 +117,21 @@ run_baseline_2 () {
     FINAL_TILE_LINK_PJ=`echo "($L2_TO_L2T_DATA + $L2T_TO_L2_MSG)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
     FINAL_ACC_LINK_PJ=`echo "($L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
 
-#    FINAL_CORE_PJ=`echo "${NUM_INT_ADD} * ${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
+    FINAL_TILE_MSG_LINK_PJ=`echo "($L2T_TO_L2_MSG)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
+    FINAL_TILE_DATA_LINK_PJ=`echo "($L2_TO_L2T_DATA)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
+    FINAL_ACC_MSG_LINK_PJ=`echo "($L1T_TO_L2T_MSG)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
+    FINAL_ACC_DATA_LINK_PJ=`echo "($L2T_TO_L1T_DATA)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
+
+    FINAL_CORE_PJ=`echo "${NUM_INT_ADD} * ${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
 
     
     FINAL_T_PJ=`echo "$FINAL_L2T_PJ"`
+    #echo $FINAL_T_PJ
+    #echo "$FINAL_L2_PJ"
 
-    #echo "$FINAL_TILE_LINK_PJ"
-    #echo "$FINAL_ACC_LINK_PJ"
-    
-
+    echo "$FINAL_TILE_MSG_LINK_PJ, $FINAL_TILE_DATA_LINK_PJ, $FINAL_ACC_MSG_LINK_PJ, $FINAL_ACC_DATA_LINK_PJ"
     FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
-    echo "$BENCH_NAME,b2,$FINAL_T_PJ,$FINAL_L2_PJ,$FINAL_LINK"
+    #echo "$FINAL_LINK"
 
 
 }
@@ -215,19 +207,22 @@ run_baseline_3 () {
 	FINAL_TILE_LINK_PJ=`echo "($L2_TO_L2T_DATA + $L2T_TO_L2_MSG)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
     FINAL_ACC_LINK_PJ=`echo "($L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
 
+    FINAL_TILE_MSG_LINK_PJ=`echo "($L2T_TO_L2_MSG)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
+    FINAL_TILE_DATA_LINK_PJ=`echo "($L2_TO_L2T_DATA)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
+    FINAL_ACC_MSG_LINK_PJ=`echo "($L1T_TO_L2T_MSG)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
+    FINAL_ACC_DATA_LINK_PJ=`echo "($L2T_TO_L1T_DATA)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
+
     FINAL_CORE_PJ=`echo "${NUM_INT_ADD} * ${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
 
 
-    # echo "$FINAL_L1T_PJ"
-    # echo "$FINAL_L2T_PJ"
-    FINAL_T_PJ=`echo "$FINAL_L1T_PJ +$FINAL_L2T_PJ" | bc -l`
+    FINAL_T_PJ=`echo "$FINAL_L2T_PJ"`
     #echo $FINAL_T_PJ
     #echo "$FINAL_L2_PJ"
-    #echo "$FINAL_TILE_LINK_PJ"
-    #echo "$FINAL_ACC_LINK_PJ"
-    FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
-    echo "$BENCH_NAME,b3,$FINAL_T_PJ,$FINAL_L2_PJ,$FINAL_LINK"
 
+
+    echo "$FINAL_TILE_MSG_LINK_PJ, $FINAL_TILE_DATA_LINK_PJ, $FINAL_ACC_MSG_LINK_PJ, $FINAL_ACC_DATA_LINK_PJ"
+    FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
+    #echo "$FINAL_LINK"
 }
 
 

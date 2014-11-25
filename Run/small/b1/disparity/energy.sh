@@ -5,9 +5,9 @@ L2T_64K_ACCESS_PJ=6
 L2T_256K_ACCESS_PJ=12
 
 L1T_TO_L2T_LINK_PJ_BYTE=0.4
-L1T_8K_CACHE_ACCESS_PJ=8
+L1T_8K_CACHE_ACCESS_PJ=7.2
 L1T_8K_SP_ACCESS_PJ=6.8
-L1T_4K_CACHE_ACCESS_PJ=5
+L1T_4K_CACHE_ACCESS_PJ=4.2
 L1T_4K_SP_ACCESS_PJ=3.8
 INT_ADD_PJ=0.2
 INT_MUL_PJ=3
@@ -69,9 +69,7 @@ run_baseline_1 () {
     #echo " L1T_HIT   $L1T_HIT  L1T_TOT_STORES  $L1T_TOT_STORES "
 
     #echo "$FINAL_CORE_PJ"
-    echo "$FINAL_SP_PJ"
-    echo "$FINAL_DMA_LINK_PJ"
-    echo "$FINAL_DMA_CACHE_PJ"
+    echo "$BENCH_NAME,b1,$FINAL_SP_PJ,$FINAL_DMA_CACHE_PJ,$FINAL_DMA_LINK_PJ"
 }
 #-------------- BASELINE 2 --------------------------
 
@@ -86,21 +84,64 @@ run_baseline_2 () {
         exit
     fi
 
-    FINAL_CORE_PJ=`echo "${NUM_INT_ADD}*${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
-
     L2T_MISS=`grep "L2T_cache_total_misses:" ruby.stat.out | awk '{print $2}'`    
+    L2_TO_L2T_DATA=`grep "L2_TO_L2T_DATA" ruby.stat.out |  awk '{print $3}'` 
+    LINK_PJ=`echo "($L2T_MISS + $L2_TO_L2T_DATA)*8*$L2T_TO_L2_LINK_PJ_BYTE" |bc -l` 
+    
+
+
     L2T_TOTAL_REQ=`grep "L2T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
-    L2_TO_L2T_DATA=`grep "L2_TO_L2T_DATA" ruby.stat.out |  awk '{print $3}'`
     L2T_TO_L1T_DATA=`grep "L2T_TO_L1T_DATA" ruby.stat.out | awk '{print $3}'`
     L1T_TO_L2T_MSG=`grep "L1T_TO_L2T_MSG" ruby.stat.out | awk '{print $3}'`
 
-    FINAL_L2T_PJ=`echo "($L2T_TOTAL_REQ  - $L2T_MISS)* $L2T_ACCESS_PJ +  8*$L1T_TO_L2T_LINK_PJ_BYTE*( $L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG )" | bc -l`
-    FINAL_L2_PJ=`echo "($L2T_MISS +$L2_TO_L2T_DATA) *8* $L2T_TO_L2_LINK_PJ_BYTE + $L2T_MISS * $L2_ACCESS_PJ"|bc -l`
 
-    #echo "$FINAL_CORE_PJ"
-    echo "$FINAL_L2T_PJ"
-    echo "$FINAL_L2_PJ"
-    echo "0"
+    # Cache Energy. Accelerator side
+    #    L2T (GETS)*ACCESS ENERGY + DMA STORES * ACCESS ENERGY
+    #   L1T + L2T
+
+    # L1T energy   
+    L1T_TOTAL_REQ=`grep "L1T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
+
+    L2T_TOTAL_REQ=`grep "L2T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
+    
+
+    # L2T energy. Reads + WBacks
+    L2T_READS=`grep -A2 "\-\-\- L2TCache \-\-\-" ruby.stat.out | grep "^L1_GETS" | awk '{print $2}'`
+    NUM_DMA=`grep Sequencer_1 ../../b1/$BENCH_NAME/ruby.stat.out | awk '{print $7}'`
+    NUM_DMA_READS=`grep "^DMA" ../../b1/$BENCH_NAME/ruby.stat.out | awk '{print $3}' | xargs -i echo "{} / 5" | bc -l`
+    NUM_DMA_WRITES=`echo "$NUM_DMA-$NUM_DMA_READS" | bc -l`
+    #echo $NUM_DMA_READS
+    #echo $NUM_DMA_WRITES
+    FINAL_L2T_PJ=`echo "($L2T_TOTAL_REQ) * $L2T_ACCESS_PJ" | bc -l`
+
+    # MESI side cache energy
+    #L2 energy
+    FINAL_L2_PJ=`echo "$L2T_MISS * $L2_ACCESS_PJ" | bc -l`
+
+
+    #LINK Energy (Accelerator + ACC->CPU)
+    
+    L2_TO_L2T_DATA=`grep "L2_TO_L2T_DATA" ruby.stat.out |  awk '{print $3}'`
+    L2T_TO_L1T_DATA=`grep "L2T_TO_L1T_DATA" ruby.stat.out| awk '{print $3}' `
+    L1T_TO_L2T_MSG=`grep "L1T_TO_L2T_MSG" ruby.stat.out |  awk '{print $3}' `
+    L2T_TO_L2_MSG=$L2T_MISS
+
+    FINAL_TILE_LINK_PJ=`echo "($L2_TO_L2T_DATA + $L2T_TO_L2_MSG)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
+    FINAL_ACC_LINK_PJ=`echo "($L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
+
+#    FINAL_CORE_PJ=`echo "${NUM_INT_ADD} * ${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
+
+    
+    FINAL_T_PJ=`echo "$FINAL_L2T_PJ"`
+
+    #echo "$FINAL_TILE_LINK_PJ"
+    #echo "$FINAL_ACC_LINK_PJ"
+    
+
+    FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
+    echo "$BENCH_NAME,b2,$FINAL_T_PJ,$FINAL_L2_PJ,$FINAL_LINK"
+
+
 }
 
 
@@ -177,31 +218,26 @@ run_baseline_3 () {
     FINAL_CORE_PJ=`echo "${NUM_INT_ADD} * ${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
 
 
-    #echo "$FINAL_CORE_PJ"
-   # 
-   # echo "$FINAL_L1T_PJ"
-   # echo "$FINAL_L2T_PJ"
+    # echo "$FINAL_L1T_PJ"
+    # echo "$FINAL_L2T_PJ"
     FINAL_T_PJ=`echo "$FINAL_L1T_PJ +$FINAL_L2T_PJ" | bc -l`
-    echo $FINAL_T_PJ
-    echo "$FINAL_L2_PJ"
+    #echo $FINAL_T_PJ
+    #echo "$FINAL_L2_PJ"
     #echo "$FINAL_TILE_LINK_PJ"
     #echo "$FINAL_ACC_LINK_PJ"
     FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
-    echo "$FINAL_LINK"
+    echo "$BENCH_NAME,b3,$FINAL_T_PJ,$FINAL_L2_PJ,$FINAL_LINK"
+
 }
 
 
 #------------- MAIN-----------------------
 if [ "$2" == "b1" ]; then
-    run_baseline_1 $1
+    run_baseline_1 $1 $2
 elif [ "$2" == "b2" ]; then
-    run_baseline_2 $1
-
+    run_baseline_2 $1 $2 $3
 elif [ "$2" == "b3"  ]; then
-    run_baseline_3 $1 $2
-
-elif [ "$2" == "b4" ]; then   ## baseline 3 and 4 are same 
-    run_baseline_3 $1  $2
+    run_baseline_3 $1 $2 $3
 else
     echo "WRONG ARGUMENT ENTER b1 or b2 or b3 or b4 for \$2"
     exit

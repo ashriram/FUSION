@@ -69,7 +69,9 @@ run_baseline_1 () {
     #echo " L1T_HIT   $L1T_HIT  L1T_TOT_STORES  $L1T_TOT_STORES "
 
     #echo "$FINAL_CORE_PJ"
-    echo "$BENCH_NAME,b1,$FINAL_SP_PJ,$FINAL_DMA_CACHE_PJ,$FINAL_DMA_LINK_PJ"
+    #echo "$FINAL_SP_PJ"
+    #echo "$FINAL_DMA_CACHE_PJ"
+    echo "0, $FINAL_DMA_LINK_PJ, 0, 0"
 }
 #-------------- BASELINE 2 --------------------------
 
@@ -101,8 +103,6 @@ run_baseline_2 () {
 
     # L1T energy   
     L1T_TOTAL_REQ=`grep "L1T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
-
-    L2T_TOTAL_REQ=`grep "L2T_cache_total_requests:"  ruby.stat.out | awk '{print $2}'`
     
 
     # L2T energy. Reads + WBacks
@@ -112,7 +112,8 @@ run_baseline_2 () {
     NUM_DMA_WRITES=`echo "$NUM_DMA-$NUM_DMA_READS" | bc -l`
     #echo $NUM_DMA_READS
     #echo $NUM_DMA_WRITES
-    FINAL_L2T_PJ=`echo "($L2T_TOTAL_REQ) * $L2T_ACCESS_PJ" | bc -l`
+    L2T_WRITES=$NUM_DMA_WRITES
+    FINAL_L2T_PJ=`echo "($L2T_READS+$L2T_WRITES)* $L2T_ACCESS_PJ" | bc -l`
 
     # MESI side cache energy
     #L2 energy
@@ -129,17 +130,21 @@ run_baseline_2 () {
     FINAL_TILE_LINK_PJ=`echo "($L2_TO_L2T_DATA + $L2T_TO_L2_MSG)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
     FINAL_ACC_LINK_PJ=`echo "($L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
 
-#    FINAL_CORE_PJ=`echo "${NUM_INT_ADD} * ${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
+    FINAL_TILE_MSG_LINK_PJ=`echo "($L2T_TO_L2_MSG)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
+    FINAL_TILE_DATA_LINK_PJ=`echo "($L2_TO_L2T_DATA)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
+    FINAL_ACC_MSG_LINK_PJ=`echo "($L1T_TO_L2T_MSG)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
+    FINAL_ACC_DATA_LINK_PJ=`echo "($L2T_TO_L1T_DATA)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
+
+    FINAL_CORE_PJ=`echo "${NUM_INT_ADD} * ${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
 
     
     FINAL_T_PJ=`echo "$FINAL_L2T_PJ"`
+    #echo $FINAL_T_PJ
+    #echo "$FINAL_L2_PJ"
 
-    #echo "$FINAL_TILE_LINK_PJ"
-    #echo "$FINAL_ACC_LINK_PJ"
-    
-
+    echo "$FINAL_TILE_MSG_LINK_PJ, $FINAL_TILE_DATA_LINK_PJ, $FINAL_ACC_MSG_LINK_PJ, $FINAL_ACC_DATA_LINK_PJ"
     FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
-    echo "$BENCH_NAME,b2,$FINAL_T_PJ,$FINAL_L2_PJ,$FINAL_LINK"
+    #echo "$FINAL_LINK"
 
 
 }
@@ -215,19 +220,22 @@ run_baseline_3 () {
 	FINAL_TILE_LINK_PJ=`echo "($L2_TO_L2T_DATA + $L2T_TO_L2_MSG)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
     FINAL_ACC_LINK_PJ=`echo "($L2T_TO_L1T_DATA + $L1T_TO_L2T_MSG)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
 
+    FINAL_TILE_MSG_LINK_PJ=`echo "($L2T_TO_L2_MSG)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
+    FINAL_TILE_DATA_LINK_PJ=`echo "($L2_TO_L2T_DATA)*8*$L2T_TO_L2_LINK_PJ_BYTE" | bc -l`
+    FINAL_ACC_MSG_LINK_PJ=`echo "($L1T_TO_L2T_MSG)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
+    FINAL_ACC_DATA_LINK_PJ=`echo "($L2T_TO_L1T_DATA)*8*$L1T_TO_L2T_LINK_PJ_BYTE" | bc -l`
+
     FINAL_CORE_PJ=`echo "${NUM_INT_ADD} * ${INT_ADD_PJ} + ${NUM_INT_MUL}*${INT_MUL_PJ} + ${NUM_FP_ADD}*${FP_ADD_PJ} + ${NUM_FP_MUL}*${FP_MUL_PJ}"|bc -l`
 
 
-    # echo "$FINAL_L1T_PJ"
-    # echo "$FINAL_L2T_PJ"
-    FINAL_T_PJ=`echo "$FINAL_L1T_PJ +$FINAL_L2T_PJ" | bc -l`
+    FINAL_T_PJ=`echo "$FINAL_L2T_PJ"`
     #echo $FINAL_T_PJ
     #echo "$FINAL_L2_PJ"
-    #echo "$FINAL_TILE_LINK_PJ"
-    #echo "$FINAL_ACC_LINK_PJ"
-    FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
-    echo "$BENCH_NAME,b3,$FINAL_T_PJ,$FINAL_L2_PJ,$FINAL_LINK"
 
+
+    echo "$FINAL_TILE_MSG_LINK_PJ, $FINAL_TILE_DATA_LINK_PJ, $FINAL_ACC_MSG_LINK_PJ, $FINAL_ACC_DATA_LINK_PJ"
+    FINAL_LINK=`echo "$FINAL_ACC_LINK_PJ + $FINAL_TILE_LINK_PJ "|bc -l`
+    #echo "$FINAL_LINK"
 }
 
 
