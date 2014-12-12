@@ -1419,7 +1419,6 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
         }
 
         // ska124
-        //if(core_id == 1 && !*KNOB(KNOB_ENABLE_DMA_CORE))
         //{
             //// Don't do anything if its the DMA core consuming instructions
         //}
@@ -1569,7 +1568,7 @@ bool trace_read_c::get_uops_from_traces(int core_id, uop_c *uop, int sim_thread_
     else {
         // since we can have 64-bit address space and each trace has 32-bit address,
         // using extra bits to differentiate address space of each application
-        uop->m_vaddr = trace_uop->m_va + m_simBase->m_memory->base_addr(core_id,
+        uop->m_vaddr = trace_uop->m_va + m_simBase->m_memory->base_addr(
                 (unsigned long)UINT_MAX *
                 (core->get_trace_info(sim_thread_id)->m_process->m_process_id) * 10ul);
     }

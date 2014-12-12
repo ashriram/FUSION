@@ -528,7 +528,7 @@ void dcu_c::run_a_cycle()
 
 void memory_c::process_mshr(int core_id)
 {
-    int m_line_size = line_size(core_id);
+    int m_line_size = line_size();
     
     //report("Searching for Core: " << core_id);
     while(!m_ruby->RubyQueueEmpty(core_id))
@@ -1371,49 +1371,49 @@ memory_c::memory_c(macsim_c* simBase)
     int num_small_core = *m_simBase->m_knobs->KNOB_NUM_SIM_SMALL_CORES;
 
     // allocate caches
-    m_l1_cache = new dcu_c*[m_num_core];
-    m_l2_cache = new dcu_c*[m_num_core];
-    m_l3_cache = new dcu_c*[m_num_l3];
+    //m_l1_cache = new dcu_c*[m_num_core];
+    //m_l2_cache = new dcu_c*[m_num_core];
+    //m_l3_cache = new dcu_c*[m_num_l3];
 
-    int id = 0;
-    for (int ii = 0; ii < num_large_core; ++id, ++ii) {
-        m_l1_cache[id] = new dcu_c(id, UNIT_LARGE, MEM_L1, this, id, m_l2_cache, NULL, simBase);
-        m_l2_cache[id] = new dcu_c(id, UNIT_LARGE, MEM_L2, this, id + m_num_core, \
-                m_l3_cache, m_l1_cache, simBase);
-    }
+    //int id = 0;
+    //for (int ii = 0; ii < num_large_core; ++id, ++ii) {
+        //m_l1_cache[id] = new dcu_c(id, UNIT_LARGE, MEM_L1, this, id, m_l2_cache, NULL, simBase);
+        //m_l2_cache[id] = new dcu_c(id, UNIT_LARGE, MEM_L2, this, id + m_num_core, \
+                //m_l3_cache, m_l1_cache, simBase);
+    //}
 
-    for (int ii = 0; ii < num_medium_core; ++id, ++ii) {
-        m_l1_cache[id] = new dcu_c(id, UNIT_MEDIUM, MEM_L1, this, id, m_l2_cache, NULL, simBase);
-        m_l2_cache[id] = new dcu_c(id, UNIT_MEDIUM, MEM_L2, this, id + m_num_core, m_l3_cache, \
-                m_l1_cache, simBase);
-    }
+    //for (int ii = 0; ii < num_medium_core; ++id, ++ii) {
+        //m_l1_cache[id] = new dcu_c(id, UNIT_MEDIUM, MEM_L1, this, id, m_l2_cache, NULL, simBase);
+        //m_l2_cache[id] = new dcu_c(id, UNIT_MEDIUM, MEM_L2, this, id + m_num_core, m_l3_cache, \
+                //m_l1_cache, simBase);
+    //}
 
-    for (int ii = 0; ii < num_small_core; ++id, ++ii) {
-        m_l1_cache[id] = new dcu_c(id, UNIT_SMALL, MEM_L1, this, id, m_l2_cache, NULL, simBase);
-        m_l2_cache[id] = new dcu_c(id, UNIT_SMALL, MEM_L2, this, id + m_num_core, m_l3_cache, \
-                m_l1_cache, simBase);
-    }
+    //for (int ii = 0; ii < num_small_core; ++id, ++ii) {
+        //m_l1_cache[id] = new dcu_c(id, UNIT_SMALL, MEM_L1, this, id, m_l2_cache, NULL, simBase);
+        //m_l2_cache[id] = new dcu_c(id, UNIT_SMALL, MEM_L2, this, id + m_num_core, m_l3_cache, \
+                //m_l1_cache, simBase);
+    //}
 
 
-    // l3 cache
-    id += m_num_core;
-    for (int ii = 0; ii < m_num_l3; ++ii, ++id) {
-        m_l3_cache[ii] = new dcu_c(ii, UNIT_LARGE, MEM_L3, this, id, NULL, m_l2_cache, simBase);
-    }
+    //// l3 cache
+    //id += m_num_core;
+    //for (int ii = 0; ii < m_num_l3; ++ii, ++id) {
+        //m_l3_cache[ii] = new dcu_c(ii, UNIT_LARGE, MEM_L3, this, id, NULL, m_l2_cache, simBase);
+    //}
 
-    m_noc_index_base[MEM_L1] = 0;
-    m_noc_index_base[MEM_L2] = m_num_core;
-    m_noc_index_base[MEM_L3] = m_num_core * 2;
-    m_noc_index_base[MEM_MC] = m_num_core * 2 + m_num_l3;
+    //m_noc_index_base[MEM_L1] = 0;
+    //m_noc_index_base[MEM_L2] = m_num_core;
+    //m_noc_index_base[MEM_L3] = m_num_core * 2;
+    //m_noc_index_base[MEM_MC] = m_num_core * 2 + m_num_l3;
 
-    // misc
-    m_stop_prefetch = 0;
+    //// misc
+    //m_stop_prefetch = 0;
 
-    m_l3_interleave_factor = log2_int(*m_simBase->m_knobs->KNOB_L3_NUM_SET) + log2_int(*m_simBase->m_knobs->KNOB_L3_LINE_SIZE);
-    m_l3_interleave_factor = static_cast<int>(pow(2.0, m_l3_interleave_factor));
+    //m_l3_interleave_factor = log2_int(*m_simBase->m_knobs->KNOB_L3_NUM_SET) + log2_int(*m_simBase->m_knobs->KNOB_L3_LINE_SIZE);
+    //m_l3_interleave_factor = static_cast<int>(pow(2.0, m_l3_interleave_factor));
 
-    // destination router map
-    m_dst_map = new map<int, int>;
+    //// destination router map
+    //m_dst_map = new map<int, int>;
 }
 
 
@@ -1894,12 +1894,12 @@ int memory_c::access(uop_c* uop)
     // DCU->Mem Hacks - Fix later
     bool m_ptx_sim = false;
     int m_latency = 8;
-    int m_line_size = line_size(uop->m_thread_id);
+    int m_line_size = line_size();
 
     uop->m_state = OS_DCACHE_BEGIN;
     Addr vaddr     = uop->m_vaddr;
     Mem_Type type  = uop->m_mem_type;
-    Addr line_addr = base_addr(uop->m_thread_id,vaddr);
+    Addr line_addr = base_addr(vaddr);
     uop->m_uop_info.m_dcmiss = true;
 
     // set type;
@@ -1992,17 +1992,18 @@ int memory_c::access(uop_c* uop)
 // get base line address
 // FIXME (jaekyu, 3-7-2012)
 // replace 63 with the cache line size
-Addr memory_c::base_addr(int core_id, Addr addr)
+Addr memory_c::base_addr(Addr addr)
 {
     //return (addr & ~63);
-    return (addr & ~31);
+    return (addr & ~(*KNOB(KNOB_RUBY_LINE_SIZE) - 1));
 }
 
 
 // get cache line size
-int memory_c::line_size(int core_id)
+int memory_c::line_size()
 {
-    return m_l1_cache[core_id]->line_size();
+    return *KNOB(KNOB_RUBY_LINE_SIZE);
+    //return m_l1_cache[core_id]->line_size();
 }
 
 
@@ -2056,7 +2057,17 @@ void memory_c::get_level_id(int noc_id, int* level, int* id)
 // cache done function
 bool memory_c::done(mem_req_s* req)
 {
-    return m_l1_cache[req->m_cache_id[MEM_L1]]->done(req);
+    if (req->m_uop)
+    {
+        uop_c* uop = req->m_uop;
+
+        DEBUG("uop:%lld done\n", uop->m_uop_num);
+        uop->m_done_cycle = m_simBase->m_core_cycle[uop->m_core_id] + 1;
+        uop->m_state = OS_SCHEDULED;
+    }
+
+    //return m_l1_cache[req->m_cache_id[MEM_L1]]->done(req);
+    return true;
 }
 
 
@@ -2095,8 +2106,8 @@ void memory_c::run_a_cycle(void)
 void memory_c::run_a_cycle_core(int core_id)
 {
     process_mshr(core_id);
-    m_l2_cache[core_id]->run_a_cycle();
-    m_l1_cache[core_id]->run_a_cycle();
+    //m_l2_cache[core_id]->run_a_cycle();
+    //m_l1_cache[core_id]->run_a_cycle();
 }
 
 void memory_c::run_a_cycle_uncore(void)

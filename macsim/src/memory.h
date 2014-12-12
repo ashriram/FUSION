@@ -367,12 +367,12 @@ class memory_c
     /**
      * Return base line address
      */
-    Addr base_addr(int core_id, Addr addr);
+    Addr base_addr(Addr addr);
 
     /**
      * Return cache line size
      */
-    int  line_size(int core_id);
+    int  line_size();
 
     /**
      * Return cache bank id

@@ -54,7 +54,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 #define PREF_TRACKERS_NUM 16
-#define LOG2_DCACHE_LINE_SIZE log2_int(m_simBase->m_memory->line_size(core_id))
+#define LOG2_DCACHE_LINE_SIZE log2_int(m_simBase->m_memory->line_size())
 #define LOG2_PREF_REGION_SIZE log2_int(*m_simBase->m_knobs->KNOB_PREF_REGION_SIZE)
 
 
