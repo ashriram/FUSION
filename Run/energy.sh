@@ -197,7 +197,9 @@ run_baseline_3 () {
 	NUM_DMA_WRITES=`echo "$NUM_DMA-$NUM_DMA_READS" | bc -l`
     #echo $NUM_DMA_READS
     #echo $NUM_DMA_WRITES
-	L2T_WRITES=$NUM_DMA_WRITES
+    L2T_WRITES=`grep "^DATA_ACC" ../../b1/$BENCH_NAME/ruby.stat.out | awk '{print $2}'`
+
+    #$NUM_DMA_WRITES
 	FINAL_L2T_PJ=`echo "($L2T_READS+$L2T_WRITES)* $L2T_ACCESS_PJ" | bc -l`
 
 	# MESI side cache energy
