@@ -249,17 +249,17 @@ class core_c
     /**
      * GPU simulation : Get shared memory
      */
-    sw_managed_cache_c* get_shared_memory(void) { return m_shared_memory; }
+    //sw_managed_cache_c* get_shared_memory(void) { return m_shared_memory; }
 
     /**
      * GPU simulation : Get constant cache
      */
-    readonly_cache_c* get_const_cache(void) { return m_const_cache; }
+    //readonly_cache_c* get_const_cache(void) { return m_const_cache; }
 
     /**
      * GPU simulation : Get texture cache
      */
-    readonly_cache_c* get_texture_cache(void) { return m_texture_cache; }
+    //readonly_cache_c* get_texture_cache(void) { return m_texture_cache; }
     
     /**
      * Train hardware prefetchers
@@ -369,9 +369,9 @@ class core_c
     pqueue_c<int*>*                 m_q_frontend; /**< frontend queue */
     pqueue_c<int>**                 m_q_iaq; /**< allocation queue */
     pqueue_c<gpu_allocq_entry_s>**  m_gpu_q_iaq; /**< GPU allocation queue */
-    readonly_cache_c               *m_const_cache; /**< GPU : constant cache */
-    readonly_cache_c               *m_texture_cache; /**< GPU : texture cache */
-    sw_managed_cache_c             *m_shared_memory; /**< GPU : scatchpad memory */
+    //readonly_cache_c               *m_const_cache; [>*< GPU : constant cache <]
+    //readonly_cache_c               *m_texture_cache; [>*< GPU : texture cache <]
+    //sw_managed_cache_c             *m_shared_memory; [>*< GPU : scatchpad memory <]
     hwp_common_c                   *m_hw_pref; /**< hardware prefetcher */
     pool_c<uop_c>                  *m_uop_pool; /**< uop pool */
     map_c*                          m_map; /**< dependence information */

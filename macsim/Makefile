@@ -62,7 +62,6 @@ COMMONOBJS = \
   $(OBJDIR)/pref_factory.o \
   $(OBJDIR)/pref_stride.o \
   $(OBJDIR)/process_manager.o \
-  $(OBJDIR)/readonly_cache.o \
   $(OBJDIR)/retire.o \
   $(OBJDIR)/rob.o \
   $(OBJDIR)/rob_smc.o \
@@ -72,7 +71,6 @@ COMMONOBJS = \
   $(OBJDIR)/schedule_ooo.o \
   $(OBJDIR)/schedule_smc.o \
   $(OBJDIR)/statistics.o \
-  $(OBJDIR)/sw_managed_cache.o \
   $(OBJDIR)/trace_read.o \
   $(OBJDIR)/uop.o \
   $(OBJDIR)/utils.o \

@@ -61,36 +61,12 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "O3sim_ruby.h"
 
 
-//#define PROC_REQ 1
-//#define L1_REQ 2
-//#define L2_REQ 3
-//#define L3_REQ 4
-//#define MC_RESP 5
-
 
 
 #undef DEBUG
 #define DEBUG(args...) _DEBUG(*m_simBase->m_knobs->KNOB_DEBUG_MEM, ## args)
 
-//#define ULINK 1
-//#define DLINK 1
-//#define ENABLE 0
-//#define DISABLE 1
-//#define HAS_ROUTER 1
-//#define NO_ROUTER 0
-#define HAS_DONE_FUNC 1
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-/// \page memory Memory system
-/// memory system
-///
-// \image html memory.jpg (todo: add image)
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
 
 
 int g_mem_priority[] = {
@@ -170,42 +146,9 @@ memory_c *default_mem(macsim_c* m_simBase)
     //string policy = m_simBase->m_knobs->KNOB_MEMORY_TYPE->getValue();
     memory_c* new_mem;
     new_mem = new no_cache_c(m_simBase);
-    //if (policy == "l3_coupled_network") {
-        //new_mem = new l3_coupled_network_c(m_simBase);
-    //}
-    //else if (policy == "l3_decoupled_network") {
-        //new_mem = new l3_decoupled_network_c(m_simBase);
-    //}
-    //else if (policy == "l2_coupled_local") {
-        //new_mem = new l2_coupled_local_c(m_simBase);
-    //}
-    //else if (policy == "no_cache") {
-        //new_mem = new no_cache_c(m_simBase);
-    //}
-    //else if (policy == "l2_decoupled_network") {
-        //new_mem = new l2_decoupled_network_c(m_simBase);
-    //}
-    //else if (policy == "l2_decoupled_local") {
-        //new_mem = new l2_decoupled_local_c(m_simBase);
-    //}
-    //else {
-        //ASSERT(0);
-    //}
-
     return new_mem;
 }
 
-
-// Default LLC constructor function
-//cache_c *default_llc(macsim_c* m_simBase)
-//{
-    //string llc_type = KNOB(KNOB_LLC_TYPE)->getValue();
-    //assert(llc_type == "default");
-    //cache_c* llc = new cache_c("llc_default", *KNOB(KNOB_L3_NUM_SET), *KNOB(KNOB_L3_ASSOC),
-            //*KNOB(KNOB_L3_LINE_SIZE), sizeof(dcache_data_s), *KNOB(KNOB_L3_NUM_BANK),
-            //false, 0, CACHE_DL1, false, m_simBase);
-    //return llc;
-//}
 
 
 
@@ -302,225 +245,6 @@ bool queue_c::full()
     return false;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// data cache constructor.
-//dcu_c::dcu_c(int id, Unit_Type type, int level, memory_c* mem, int noc_id, dcu_c** next,\
-        //dcu_c** prev, macsim_c* simBase)
-//{
-    //m_simBase = simBase;
-
-    //CREATE_CACHE_CONFIGURATION();
-
-    //// instantiate queues
-    //m_in_queue = new queue_c(simBase, 1024);
-    //m_wb_queue = new queue_c(simBase, 2048);
-    //m_fill_queue = new queue_c(simBase, 1024);
-    //m_out_queue = new queue_c(simBase, 2048);
-
-
-    //m_id     = id;
-    //m_noc_id = noc_id;
-    //m_type   = type;
-    //m_level  = level;
-    //m_memory = mem;
-    //m_next   = next;
-    //m_prev   = prev;
-
-    //// clock cycle
-    //m_cycle = 0;
-//}
-
-
-// dcu_c destructor.
-//dcu_c::~dcu_c()
-//{
-    //if (m_disable)
-        //return ;
-
-    //delete m_cache;
-
-    //for (int ii = 0; ii < m_banks; ++ii)
-        //delete m_port[ii];
-    //delete[] m_port;
-//}
-
-
-// initialize data cache.
-//void dcu_c::init(int next_id, int prev_id, bool done, bool coupled_up, bool coupled_down, \
-        //bool disable, bool has_router)
-//{
-    //m_next_id      = next_id;
-    //m_prev_id      = prev_id;
-    //m_coupled_up   = coupled_up;
-    //m_coupled_down = coupled_down;
-    //m_done         = done;
-    //m_disable      = disable;
-    //m_has_router   = has_router;
-
-    //if (!m_disable) {
-        //if (m_level == MEM_L3) {
-            //string llc_policy = *KNOB(KNOB_LLC_TYPE);
-            //m_cache = llc_factory_c::get()->allocate(llc_policy, m_simBase);
-            //m_cache->set_core_id(m_id);
-        //}
-        //else {
-            //m_cache = new cache_c("dcache", m_num_set, m_assoc, m_line_size, sizeof(dcache_data_s),
-                    //m_banks, false, m_id, CACHE_DL1, m_level == MEM_L3 ? true : false, m_simBase);
-        //}
-
-        //// allocate port
-        //m_port = new port_c* [m_banks];
-        //for (int ii = 0; ii < m_banks; ++ii) {
-            //m_port[ii] = new port_c("dcache_port", m_num_read_port, m_num_write_port, false, m_simBase);
-        //}
-    //}
-    //else {
-        //m_latency = 1;
-    //}
-
-    //if (m_bypass == true) {
-        //m_disable = true;
-    //}
-//}
-
-
-//// check input queue availability.
-//bool dcu_c::full(void)
-//{
-    //return m_in_queue->full();
-//}
-
-
-//// get cache line address.
-//// FIXME (jaekyu, 3-7-2012)
-//// replace 63 with the cache line size
-//Addr dcu_c::base_addr(Addr addr)
-//{
-    //return (addr & ~63);
-//}
-
-
-//// get cache line size.
-//int dcu_c::line_size()
-//{
-    //return m_line_size;
-//}
-
-
-//// get bank id.
-//int dcu_c::bank_id(Addr addr)
-//{
-    //return BANK(addr, m_banks, 256);
-//}
-
-
-//// acquire read port.
-//bool dcu_c::get_read_port(int bank_id)
-//{
-    //return m_port[bank_id]->get_read_port(m_cycle);
-//}
-
-
-//// access the cache.
-//dcache_data_s* dcu_c::access_cache(Addr addr, Addr *line_addr, bool update, int appl_id)
-//{
-    //return (dcache_data_s*)m_cache->access_cache(addr, line_addr, update, appl_id);
-//}
-
-
-//// search a prefetch request in input queue.
-//mem_req_s* dcu_c::search_pref_in_queue()
-//{
-    //mem_req_s* evict_req = NULL;
-    //for (auto I = m_in_queue->m_entry.rbegin(), E = m_in_queue->m_entry.rend(); I != E; ++I) {
-        //if ((*I)->m_type == MRT_DPRF) {
-            //evict_req = (*I);
-            //break;
-        //}
-    //}
-
-    //if (evict_req) {
-        //m_in_queue->m_entry.remove(evict_req);
-    //}
-
-    //return evict_req;
-//}
-
-
-//// DCACHE (L1) access from the pipeline stage
-//// If miss in the cache, it will go thru the memory system.
-//int dcu_c::access(uop_c* uop)
-//{
-
-    //ASSERTM(false, "DCU Access Called");
-
-    //return -1;
-
-//}
-
-
-//// fill a cache line (fill_queue)
-//bool dcu_c::fill(mem_req_s* req)
-//{
-    //macsim_c* m_simBase = req->m_simBase;
-    //if (m_fill_queue->push(req)) {
-        //req->m_queue = m_fill_queue;
-        //req->m_state = MEM_FILL_NEW;
-        //req->m_rdy_cycle = m_cycle + 1;
-        //DEBUG("L%d[%d] (->fill_queue) req:%d type:%s\n",
-                //m_level, m_id, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-
-        //if (m_level != MEM_L3) {
-            //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_LINEFILL_BUF_W + m_level - MEM_L1);
-        //}
-        //else {
-            //POWER_EVENT(POWER_L3CACHE_LINEFILL_BUF_W);
-        //}
-        //return true;
-    //}
-
-    //if (req->m_type == MRT_WB)
-        //DEBUG("L%d[%d] req:%d type:%s fill queue rejected\n",
-                //m_level, m_id, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-
-    //return false;
-//}
-
-
-//// insert to the cache (in_queue)
-//bool dcu_c::insert(mem_req_s* req)
-//{
-    //if (m_in_queue->push(req)) {
-        //req->m_queue = m_in_queue;
-        //req->m_rdy_cycle = m_cycle + m_latency;
-        //DEBUG("L%d[%d] (->in_queue) req:%d type:%s\n",
-                //m_level, m_id, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-        //return true;
-    //}
-
-    //return false;
-//}
-
-
-//// =======================================
-//// cache run_a_cycle
-//// =======================================
-//void dcu_c::run_a_cycle()
-//{
-    ////  process_wb_queue();
-    ////  process_fill_queue();
-    ////  process_out_queue();
-    ////  process_in_queue();
-
-    ////  if (*KNOB(KNOB_ENABLE_NEW_NOC))
-    ////      receive_packet();
-
-    //++m_cycle;
-//}
-
 // Check the m_rdy_cycle of each request in the MSHR
 // and trigger done_func if required
 // New: Check ruby queues here instead of m_ready_cycle.
@@ -573,743 +297,6 @@ void memory_c::process_mshr(int core_id)
     }
 
 }
-
-// Main cache access function
-// process requests in the input queue
-// input queue:
-//   1) to access the cache
-//   2) requests originated from upper-level cache misses
-//   3) will go to the output queue on cache misses
-//void dcu_c::process_in_queue()
-//{
-    //list<mem_req_s*> done_list;
-    //int count = 0;
-    //for (auto I = m_in_queue->m_entry.begin(), E = m_in_queue->m_entry.end(); I != E; ++I) {
-        //if (count == 4)
-            //break;
-
-        //mem_req_s* req = (*I);
-
-        //if (req->m_rdy_cycle > m_cycle)
-            //continue;
-
-
-        //if (req->m_type == MRT_IFETCH) {
-            //POWER_CORE_EVENT(req->m_core_id, POWER_ICACHE_MISS_BUF_R);
-            //POWER_CORE_EVENT(req->m_core_id, POWER_LOAD_BYPASS);
-        //}
-        //else if (req->m_type == MRT_DSTORE) {
-            //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_MISS_BUF_R);
-            //POWER_CORE_EVENT(req->m_core_id, POWER_LOAD_BYPASS);
-        //}
-        //else {
-            //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_MISS_BUF_R);
-            //POWER_CORE_EVENT(req->m_core_id, POWER_LOAD_BYPASS);
-        //}
-
-
-        //// -------------------------------------
-        //// Cache access
-        //// -------------------------------------
-        //Addr line_addr;
-        //dcache_data_s* line;
-        //bool cache_hit = false;
-        //if (m_level == MEM_L3 && req->m_bypass == true) {
-            //line = NULL;
-            //cache_hit = false;
-        //}
-        //else if (!m_disable) {
-            //// for wb request, do not update lru state in case of the hit
-            //line = (dcache_data_s*)m_cache->access_cache(req->m_addr, &line_addr,
-                    //req->m_type == MRT_WB ? false : true, req->m_appl_id);
-            //cache_hit = (line) ? true : false;
-
-            //if (m_level != MEM_L3) {
-                //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_R_TAG + (m_level -1));
-            //}
-            //else {
-                //POWER_EVENT(POWER_L3CACHE_R_TAG );
-            //}
-        //}
-
-
-        //// -------------------------------------
-        //// Cache hit
-        //// -------------------------------------
-        //if (cache_hit) {
-            //if (m_level != MEM_L3) {
-                //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_R + (m_level -1));
-            //}
-            //else {
-                //POWER_EVENT(POWER_L3CACHE_R );
-            //}
-
-            //// -------------------------------------
-            //// hardware prefetcher training
-            //// -------------------------------------
-            //m_simBase->m_core_pointers[req->m_core_id]->train_hw_pref(m_level, req->m_thread_id, \
-                    //req->m_addr, req->m_pc, req->m_uop ? req->m_uop : NULL, true);
-
-            //STAT_EVENT(L1_HIT_CPU + (m_level - 1)*4 + req->m_ptx);
-
-            //if (line && req->m_type == MRT_DSTORE) {
-                //line->m_dirty = true;
-            //}
-
-            ////      handle_coherence(m_level, false, );
-
-            //// -------------------------------------
-            //// WB reqeust: the line should be changed to the dirty state and retire (no further act.)
-            //// -------------------------------------
-            //if (req->m_type == MRT_WB) {
-                //line->m_dirty = true;
-                //req->m_done   = true;
-            //}
-            //// -------------------------------------
-            //// If done_func is enabled in this level, need to call done_func to fill lower levels
-            //// -------------------------------------
-            //else if (m_done) {
-                //DEBUG("L%d[%d] (in_queue->done_func()) req:%d type:%s access hit\n",
-                        //m_level, m_id, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-                //if (req->m_done_func && !req->m_done_func(req))
-                    //continue;
-                //req->m_done = true;
-            //}
-            //// -------------------------------------
-            //// Send a fill request to the upper level via direct path
-            //// -------------------------------------
-            //else if ((m_coupled_up && m_prev_id == req->m_cache_id[m_level-1]) || !m_has_router) {
-                //ASSERTM(m_level == MEM_L3, "Level:%d\n", m_level);
-                //DEBUG("L%d[%d] (in_queue->L%d[%d]) req:%d type:%s access hit\n",
-                        //m_level, m_id, m_level-1, req->m_cache_id[m_level-1], req->m_id,
-                        //mem_req_c::mem_req_type_name[req->m_type]);
-                //if (!m_prev[req->m_cache_id[m_level-1]]->fill(req))
-                    //continue;
-            //}
-            //// L3 cache - decoupled
-            //// : send to l2 cache fill via NoC
-            //// -------------------------------------
-            //// Send a fill request to the upper level via direct path
-            //// -------------------------------------
-            //else {
-                //if (!m_out_queue->push(req))
-                    //continue;
-                //DEBUG("L%d[%d] (in_queue->out_queue) req:%d type:%s access hit\n",
-                        //m_level, m_id, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-                //req->m_state = MEM_OUT_FILL;
-                //req->m_rdy_cycle = m_cycle + 1;
-            //}
-
-            //done_list.push_back(req);
-            //++count;
-        //}
-        //// -------------------------------------
-        //// Cache miss or Disabled cache
-        //// -------------------------------------
-        //else {
-            //// hardware prefetcher training
-            //if (!m_disable) {
-                //m_simBase->m_core_pointers[req->m_core_id]->train_hw_pref(m_level, req->m_thread_id, \
-                        //req->m_addr, req->m_pc, req->m_uop ? req->m_uop : NULL, false);
-                ////g_core_pointers[req->m_core_id]->m_hw_pref->train(m_level, req->m_thread_id,
-                ////    req->m_addr, req->m_pc, req->m_uop ? req->m_uop : NULL, false);
-            //}
-
-            //STAT_EVENT(L1_HIT_CPU + (m_level - 1)*4 + 2 + req->m_ptx);
-
-            ////      handle_coherence(m_level, false, );
-
-            //// -------------------------------------
-            //// If there is a direct link from current level and next lower level,
-            //// directly insert current request to the input queue of lower level
-            //// -------------------------------------
-            //if ((m_coupled_down && m_next_id == req->m_cache_id[m_level+1]) || !m_has_router) {
-                //ASSERT(m_level != MEM_L3); // L3 is always connected to memory controllers via noc
-                //if (!m_next[req->m_cache_id[m_level+1]]->insert(req)) {
-                    //continue;
-                //}
-                //DEBUG("L%d[%d] (in_queue->L%d[%d]) req:%d type:%s access miss\n",
-                        //m_level, m_id, m_level+1, req->m_cache_id[m_level+1], req->m_id,
-                        //mem_req_c::mem_req_type_name[req->m_type]);
-            //}
-            //// -------------------------------------
-            //// Because there is no direct link to the next level, send a request thru NoC
-            //// -------------------------------------
-            //else {
-                //if (!m_out_queue->push(req)) {
-                    //continue;
-                //}
-                //DEBUG("L%d[%d] (in_queue->out_queue) req:%d type:%s access miss\n",
-                        //m_level, m_id, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-                //req->m_state = MEM_OUTQUEUE_NEW;
-                //req->m_rdy_cycle = m_cycle + 1;
-            //}
-
-            //done_list.push_back(req);
-            //++count;
-        //}
-    //}
-
-
-    //// -------------------------------------
-    //// Delete processed requests from the queue
-    //// -------------------------------------
-    //for (auto I = done_list.begin(), E = done_list.end(); I != E; ++I) {
-        //m_in_queue->pop((*I));
-        //if ((*I)->m_done == true) {
-            //DEBUG("L%d[%d] (in_queue) req:%d type:%s has been completed lat:%lld\n",
-                    //m_level, m_id, (*I)->m_id, mem_req_c::mem_req_type_name[(*I)->m_type], \
-                    //m_cycle - (*I)->m_in);
-            //m_simBase->m_memory->free_req((*I)->m_core_id, (*I));
-        //}
-    //}
-
-    //done_list.clear();
-//}
-
-
-//// receive a packet from the NoC
-//void dcu_c::receive_packet(void)
-//{
-    //if (!m_has_router)
-        //return ;
-
-
-    //mem_req_s* req = NULL;
-
-
-    //if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
-        //req = m_router->receive_req();
-    //}
-
-
-    //if (req != NULL) {
-        //req->m_state = MEM_NOC_DONE;
-        //bool insert_done = false;
-        //if (req->m_msg_type == NOC_FILL) {
-            //insert_done = fill(req);
-        //}
-        //else if (req->m_msg_type == NOC_NEW) {
-            //insert_done = insert(req);
-        //}
-        //else {
-            //assert(0);
-        //}
-
-        //if (insert_done) {
-            //if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
-                //m_router->pop_req();
-            //}
-
-            //if (*KNOB(KNOB_BUG_DETECTOR_ENABLE)) {
-                //m_simBase->m_bug_detector->deallocate_noc(req);
-            //}
-        //}
-        //else {
-            //if (*KNOB(KNOB_ENABLE_IRIS))
-                //assert(0);
-        //}
-    //}
-//}
-
-
-//// =======================================
-//// send a packet to the NoC
-//// =======================================
-//bool dcu_c::send_packet(mem_req_s* req, int msg_type, int dir)
-//{
-    //req->m_msg_type = msg_type;
-
-    //if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
-        //req->m_msg_src = m_router->get_id();
-        //req->m_msg_dst = m_memory->get_dst_router_id(m_level+dir, req->m_cache_id[m_level+dir]);
-    //}
-    //else {
-        //req->m_msg_src = m_noc_id;
-    //}
-
-    //assert(req->m_msg_src != -1 && req->m_msg_dst != -1);
-
-
-    //bool packet_insert = false;
-
-    //int dst = m_memory->get_dst_id(m_level+dir, req->m_cache_id[m_level+dir]);
-    //if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
-        //packet_insert = m_router->inject_packet(req);
-    //}
-    //else {
-        //packet_insert = m_simBase->m_noc->insert(m_noc_id, dst, msg_type, req);
-    //}
-
-
-    //if (packet_insert) {
-        //if (*KNOB(KNOB_BUG_DETECTOR_ENABLE) &&
-                //(*KNOB(KNOB_ENABLE_IRIS) || *KNOB(KNOB_ENABLE_NEW_NOC))) {
-            //m_simBase->m_bug_detector->allocate_noc(req);
-        //}
-
-        //req->m_state = MEM_IN_NOC;
-        //return true;
-    //}
-    //else {
-        //return false;
-    //}
-//}
-
-
-//// process out queue
-//// output request
-////   request that are waiting to be sent to the router
-//void dcu_c::process_out_queue()
-//{
-    //list<mem_req_s*> done_list;
-    //int count = 0;
-    //for (auto I = m_out_queue->m_entry.begin(), E = m_out_queue->m_entry.end(); I != E; ++I) {
-        //if (count == 4)
-            //break;
-
-        //mem_req_s* req = (*I);
-
-        //if (req->m_rdy_cycle > m_cycle)
-            //continue;
-
-        //ASSERT(m_has_router == true);
-
-        //// -------------------------------------
-        //// NEW request : send to lower level
-        //// -------------------------------------
-        //if (req->m_state == MEM_OUTQUEUE_NEW) {
-            //if (!send_packet(req, NOC_NEW, 1))
-                //continue;
-            //DEBUG("L%d[%d]->L%d[%d] (out_queue->noc) req:%d type:%s (new)\n",
-                    //m_level, m_id, m_level+1, req->m_cache_id[m_level+1], req->m_id,
-                    //mem_req_c::mem_req_type_name[req->m_type]);
-            //done_list.push_back(req);
-            //++count;
-        //}
-        //// -------------------------------------
-        //// FILL request : send to upward
-        //// -------------------------------------
-        //else if (req->m_state == MEM_OUT_FILL) {
-            //if (!send_packet(req, NOC_FILL, -1))
-                //continue;
-            //DEBUG("L%d[%d]->L%d[%d] (out_queue->noc) req:%d type:%s(fill)\n",
-                    //m_level, m_id, m_level-1, req->m_cache_id[m_level-1], req->m_id,
-                    //mem_req_c::mem_req_type_name[req->m_type]);
-            //done_list.push_back(req);
-            //++count;
-        //}
-        //// -------------------------------------
-        //// WB request : send to lower level
-        //// -------------------------------------
-        //else if (req->m_state == MEM_OUT_WB) {
-            //if (!send_packet(req, NOC_FILL, 1))
-                //continue;
-            //DEBUG("L%d[%d]->L%d[%d] (out_queue->noc) req:%d type:%s(fill)\n",
-                    //m_level, m_id, m_level+1, req->m_cache_id[m_level+1], req->m_id,
-                    //mem_req_c::mem_req_type_name[req->m_type]);
-            //done_list.push_back(req);
-            //++count;
-        //}
-        //else
-            //ASSERT(0);
-    //}
-
-
-    //// -------------------------------------
-    //// Delete processed requests from the queue
-    //// -------------------------------------
-    //for (auto I = done_list.begin(), E = done_list.end(); I != E; ++I) {
-        //(*I)->m_queue = NULL;
-        //m_out_queue->pop((*I));
-    //}
-
-    //done_list.clear();
-//}
-
-
-//// process fill queue
-//// fill queue
-////   request that come from the memory or write back from the upper-level cache
-////   to fill a cache line
-//void dcu_c::process_fill_queue()
-//{
-    //list<mem_req_s*> done_list;
-    //int count = 0;
-
-    //for (auto I = m_fill_queue->m_entry.begin(), E = m_fill_queue->m_entry.end(); I != E; ++I) {
-        //if (count == 4)
-            //break;
-
-        //// if wb-queue is full, fill request cannot be made
-        //if (m_wb_queue->full())
-            //break;
-
-        //mem_req_s* req = (*I);
-
-        //if (m_level != MEM_L3) {
-            //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_LINEFILL_BUF_R_TAG + m_level - MEM_L1);
-        //}
-        //else {
-            //POWER_EVENT(POWER_L3CACHE_LINEFILL_BUF_R_TAG );
-        //}
-
-        //if (req->m_rdy_cycle > m_cycle)
-            //continue;
-
-        //if (m_level != MEM_L3) {
-            //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_LINEFILL_BUF_R + m_level - MEM_L1);
-        //}
-        //else {
-            //POWER_EVENT(POWER_L3CACHE_LINEFILL_BUF_R );
-        //}
-
-
-        //// MEM_FILL_NEW
-        //// MEM_FILL_WAIT_DONE
-        //// MEM_FILL_WAIT_FILL
-        //switch (req->m_state)
-        //{
-        //// -------------------------------------
-        //// MEM_FILL_NEW : just inserted to the fill queue
-        //// -------------------------------------
-        //case MEM_FILL_NEW: {
-            //Addr line_addr, victim_line_addr;
-            //dcache_data_s* line = NULL;
-            //bool cache_hit = true;
-
-            //// Access cache to check whether there is the same line in the cache.
-            //if (!m_disable) {
-                //line = (dcache_data_s*)m_cache->access_cache(req->m_addr, &line_addr, false, req->m_appl_id);
-                //cache_hit = (line) ? true: false;
-            //}
-
-            //if (!cache_hit) { // !cache_hit
-                //// Access write ports
-                //int bank = m_cache->get_bank_num(req->m_addr);
-                //if (!m_port[bank]->get_write_port(m_cycle)) {
-                    //STAT_EVENT(CACHE_BANK_BUSY);
-                    //continue;
-                //}
-
-                //// -------------------------------------
-                //// Insert a cache line
-                //// -------------------------------------
-                //dcache_data_s* data;
-                //data = (dcache_data_s*)m_cache->insert_cache(req->m_addr, &line_addr, &victim_line_addr, req->m_appl_id, req->m_ptx);
-
-                //if (m_level != MEM_L3) {
-                    //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_W + (m_level -1));
-                //}
-                //else {
-                    //POWER_EVENT(POWER_L3CACHE_W );
-                //}
-
-                //// -------------------------------------
-                //// If there is a victim line, we do the write-back.
-                //// -------------------------------------
-                //if (victim_line_addr) {
-                    //if (data->m_dirty) {
-                        //if (*(m_simBase->m_knobs->KNOB_USE_INCOMING_TID_CID_FOR_WB)) {
-                            //data->m_core_id = req->m_core_id;
-                            //data->m_tid = req->m_thread_id;
-                        //}
-
-                        //// new write-back request
-                        //mem_req_s* wb = m_simBase->m_memory->new_wb_req(victim_line_addr, m_line_size,
-                                //m_ptx_sim, data, m_level);
-
-                        //if (!m_wb_queue->push(wb))
-                            //ASSERT(0);
-
-                        //if (m_level != MEM_L3) {
-                            //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_WB_BUF_W + m_level - MEM_L1);
-                        //}
-                        //else {
-                            //POWER_EVENT( POWER_L3CACHE_WB_BUF_W );
-                        //}
-
-                        //DEBUG("L%d[%d] (fill_queue) new_wb_req:%d addr:%s type:%s by req:%d\n",
-                                //m_level, m_id, wb->m_id, hexstr64s(victim_line_addr), \
-                                //mem_req_c::mem_req_type_name[wb->m_type], req->m_id);
-                    //}
-                //}
-
-                //// -------------------------------------
-                //// cache line setup
-                //// -------------------------------------
-                //data->m_dirty       = req->m_dirty;
-                //data->m_fetch_cycle = m_cycle;
-                //data->m_core_id     = req->m_core_id;
-                //data->m_pc          = req->m_pc;
-                //data->m_tid         = req->m_thread_id;
-            //}
-            //else if (line != NULL) {
-                //line->m_dirty |= req->m_dirty;
-            //}
-
-            //// L2: done function has been called in this level
-            //if (m_done == true) {
-                //ASSERTM(m_level != MEM_L3, "req:%d type:%s", req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-                //if (req->m_done_func && !req->m_done_func(req)) {
-                    //req->m_state = MEM_FILL_WAIT_DONE;
-                    //continue;
-                //}
-                //req->m_done = true;
-                //DEBUG("L%d[%d] (fill_queue->done_func()) hit:%d req:%d type:%s filled\n",
-                        //m_level, m_id, cache_hit, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-            //}
-            //else if (req->m_type == MRT_WB) {
-                //req->m_done = true;
-                //DEBUG("L%d[%d] (fill_queue->done_func()) hit:%d req:%d type:%s filled\n",
-                        //m_level, m_id, cache_hit, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-            //}
-            //else {
-                //// Disabled Cache
-                //if (m_disable) {
-                    //ASSERT(m_coupled_up && m_prev_id == req->m_cache_id[m_level-1]);
-
-                    //if (!m_prev[m_prev_id]->fill(req)) {
-                        //req->m_state = MEM_FILL_WAIT_FILL;
-                        //continue;
-                    //}
-                    //DEBUG("L%d[%d] (fill_queue->L%d[%d]) hit:%d req:%d type:%s bypass\n",
-                            //m_level, m_id, m_level-1, req->m_cache_id[m_level-1], cache_hit, req->m_id, \
-                            //mem_req_c::mem_req_type_name[req->m_type]);
-                //}
-                //// COUPLED L3 OR without router: fill upper level cache
-                //else if ((m_coupled_up && m_prev_id == req->m_cache_id[m_level-1]) || !m_has_router) {
-                    //if (!m_prev[req->m_cache_id[m_level-1]]->fill(req)) {
-                        //req->m_state = MEM_FILL_WAIT_FILL;
-                        //continue;
-                    //}
-                    //DEBUG("L%d[%d] (fill_queue->L%d[%d]) hit:%d req:%d type:%s filled\n",
-                            //m_level, m_id, m_level-1, req->m_cache_id[m_level-1], cache_hit, req->m_id, \
-                            //mem_req_c::mem_req_type_name[req->m_type]);
-                //}
-                //// DECOUPLED L3: send to busout queue
-                //else {
-                    //if (!m_out_queue->push(req)) {
-                        //req->m_state = MEM_FILL_WAIT_FILL;
-                        //continue;
-                    //}
-                    //req->m_state = MEM_OUT_FILL;
-                    //DEBUG("L%d[%d] (fill_queue->out_queue) hit:%d req:%d type:%s filled\n",
-                            //m_level, m_id, cache_hit, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-                //}
-            //}
-            //done_list.push_back(req);
-            //++count;
-            //break;
-        //}
-
-        //// -------------------------------------
-        //// MEM_FILL_NEW -> MEM_FILL_WAIT_DONE : waiting done_func is successfully done
-        //// -------------------------------------
-        //case MEM_FILL_WAIT_DONE: {
-            //if (req->m_done_func && !req->m_done_func(req))
-                //continue;
-
-            //req->m_done = true;
-            //done_list.push_back(req);
-            //++count;
-            //break;
-
-        //}
-        //// -------------------------------------
-        //// MEM_FILL_NEW -> MEM_FILL_WAIT_FILL : waiting for sending to next/prev level
-        //// -------------------------------------
-        //case MEM_FILL_WAIT_FILL: {
-            //// COUPLED L3 OR without router: fill upper level cache
-            //if ((m_coupled_up && m_prev_id == req->m_cache_id[m_level-1]) || !m_has_router) {
-                //if (!m_prev[req->m_cache_id[m_level-1]]->fill(req)) {
-                    //req->m_state = MEM_FILL_WAIT_FILL;
-                    //continue;
-                //}
-                //DEBUG("L%d[%d] (fill_queue->L%d[%d]) req:%d type:%s filled\n",
-                        //m_level, m_id, m_level-1, req->m_cache_id[m_level-1], req->m_id, \
-                        //mem_req_c::mem_req_type_name[req->m_type]);
-            //}
-            //// DECOUPLED L3: send to busout queue
-            //else {
-                //if (!m_out_queue->push(req)) {
-                    //req->m_state = MEM_FILL_WAIT_FILL;
-                    //continue;
-                //}
-                //req->m_state = MEM_OUT_FILL;
-                //DEBUG("L%d[%d] (fill_queue->out_queue) req:%d type:%s filled\n",
-                        //m_level, m_id, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-            //}
-            //done_list.push_back(req);
-            //++count;
-            //break;
-        //}
-        //default: {
-            //ASSERTM(0, "req_id:%d state:%d\n", req->m_id, req->m_state);
-            //assert(0);
-            //break;
-        //}
-        //}
-    //}
-
-
-    //for (auto I = done_list.begin(), E = done_list.end(); I != E; ++I) {
-        //m_fill_queue->pop((*I));
-        //if ((*I)->m_done == true) {
-            //DEBUG("L%d[%d] fill_queue req:%d type:%s has been completed lat:%lld\n",
-                    //m_level, m_id, (*I)->m_id, mem_req_c::mem_req_type_name[(*I)->m_type], \
-                    //m_cycle - (*I)->m_in);
-            //m_memory->free_req((*I)->m_core_id, (*I));
-        //}
-    //}
-
-    //done_list.clear();
-//}
-
-
-//// process write-back queue
-//// write-back queue
-////   destination would be either the output queue or the fill queue of the next-level cache
-//void dcu_c::process_wb_queue()
-//{
-    //list<mem_req_s*> done_list;
-    //int count = 0;
-    //for (auto I = m_wb_queue->m_entry.begin(), E = m_wb_queue->m_entry.end(); I != E; ++I) {
-        //if (count == 4)
-            //break;
-
-        //mem_req_s* req = (*I);
-
-        //if (m_level != MEM_L3) {
-            //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_WB_BUF_R_TAG + m_level - MEM_L1);
-        //}
-        //else {
-            //POWER_EVENT(POWER_L3CACHE_WB_BUF_R_TAG);
-        //}
-
-        //if (req->m_rdy_cycle > m_cycle)
-            //continue;
-
-        //if (m_level != MEM_L3) {
-            //POWER_CORE_EVENT(req->m_core_id, POWER_DCACHE_WB_BUF_R + m_level - MEM_L1);
-        //}
-        //else {
-            //POWER_EVENT(POWER_L3CACHE_WB_BUF_R );
-        //}
-
-        //// L1 and L2 : insert next level's in_queue
-        //if (m_level != MEM_L3 &&
-                //m_coupled_down == true &&
-                //m_next_id == req->m_cache_id[m_level+1]) {
-            ////if (!m_next->insert(req))
-            //if (!m_next[m_next_id]->fill(req))
-                //continue;
-            //DEBUG("L%d[%d] req:%d type:%s inserted to L%d[%d]\n",
-                    //m_level, m_id, req->m_id, mem_req_c::mem_req_type_name[req->m_type], m_level+1,
-                    //req->m_cache_id[m_level+1]);
-        //}
-        //// L3 : send to dram controller
-        //else {
-            //if (!m_out_queue->push(req))
-                //continue;
-            //DEBUG("L%d[%d] req:%d type:%s send to busout queue\n",
-                    //m_level, m_id, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-            //req->m_state = MEM_OUT_WB;
-        //}
-
-        //done_list.push_back(req);
-        //++count;
-    //}
-
-    //for (auto I = done_list.begin(), E = done_list.end(); I != E; ++I) {
-        //m_wb_queue->pop((*I));
-    //}
-    //done_list.clear();
-//}
-
-
-//// Modified Done function - ska
-////
-//bool dcu_c::done(mem_req_s* req)
-//{
-    //int bank;
-    //dcache_data_s* data;
-    //dcache_data_s* line = NULL;
-    //Addr addr;
-    //Addr line_addr;
-    //Addr repl_line_addr;
-
-    //if (req->m_uop)
-    //{
-        //uop_c* uop = req->m_uop;
-
-        //DEBUG("uop:%lld done\n", uop->m_uop_num);
-        //uop->m_done_cycle = m_simBase->m_core_cycle[uop->m_core_id] + 1;
-        //uop->m_state = OS_SCHEDULED;
-        //if (m_ptx_sim)
-        //{
-            //if (uop->m_parent_uop)
-            //{
-                //uop_c* puop = uop->m_parent_uop;
-                //++puop->m_num_child_uops_done;
-                //if (puop->m_num_child_uops_done == puop->m_num_child_uops) {
-                    //if (*m_simBase->m_knobs->KNOB_FETCH_ONLY_LOAD_READY) {
-                        //m_simBase->m_core_pointers[puop->m_core_id]->get_frontend()->set_load_ready( \
-                                //puop->m_thread_id, puop->m_uop_num);
-                    //}
-
-                    //puop->m_done_cycle = m_simBase->m_core_cycle[uop->m_core_id] + 1;
-                    //puop->m_state = OS_SCHEDULED;
-                //}
-            //} // uop->m_parent_uop
-            //else {
-                //if (*m_simBase->m_knobs->KNOB_FETCH_ONLY_LOAD_READY)
-                //{
-                    //m_simBase->m_core_pointers[uop->m_core_id]->get_frontend()->set_load_ready( \
-                            //uop->m_thread_id, uop->m_uop_num);
-                //}
-            //}
-        //}
-    //}
-
-    //return true;
-//}
-
-
-//// =======================================
-//// create the network interface
-//// =======================================
-//bool dcu_c::create_network_interface(int mclass)
-//{
-    //if (m_has_router) {
-
-        //if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
-            //int type;
-            //if (mclass == L3_REQ) {
-                //type = L3_ROUTER;
-            //}
-            //else if (mclass == PROC_REQ) {
-                //if (m_ptx_sim) {
-                    //type = GPU_ROUTER;
-                //}
-                //else {
-                    //type = CPU_ROUTER;
-                //}
-            //}
-            //else {
-                //type = MC_ROUTER;
-            //}
-            //m_router = m_simBase->create_router(type);
-            //m_noc_id = m_router->get_id();
-        //}
-
-        //return true;
-    //}
-    //else {
-        //m_noc_id = -1;
-        //return false;
-    //}
-//}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1366,54 +353,6 @@ memory_c::memory_c(macsim_c* simBase)
         }
     }
 
-    //int num_large_core = *m_simBase->m_knobs->KNOB_NUM_SIM_LARGE_CORES;
-    //int num_medium_core = *m_simBase->m_knobs->KNOB_NUM_SIM_MEDIUM_CORES;
-    //int num_small_core = *m_simBase->m_knobs->KNOB_NUM_SIM_SMALL_CORES;
-
-    // allocate caches
-    //m_l1_cache = new dcu_c*[m_num_core];
-    //m_l2_cache = new dcu_c*[m_num_core];
-    //m_l3_cache = new dcu_c*[m_num_l3];
-
-    //int id = 0;
-    //for (int ii = 0; ii < num_large_core; ++id, ++ii) {
-        //m_l1_cache[id] = new dcu_c(id, UNIT_LARGE, MEM_L1, this, id, m_l2_cache, NULL, simBase);
-        //m_l2_cache[id] = new dcu_c(id, UNIT_LARGE, MEM_L2, this, id + m_num_core, \
-                //m_l3_cache, m_l1_cache, simBase);
-    //}
-
-    //for (int ii = 0; ii < num_medium_core; ++id, ++ii) {
-        //m_l1_cache[id] = new dcu_c(id, UNIT_MEDIUM, MEM_L1, this, id, m_l2_cache, NULL, simBase);
-        //m_l2_cache[id] = new dcu_c(id, UNIT_MEDIUM, MEM_L2, this, id + m_num_core, m_l3_cache, \
-                //m_l1_cache, simBase);
-    //}
-
-    //for (int ii = 0; ii < num_small_core; ++id, ++ii) {
-        //m_l1_cache[id] = new dcu_c(id, UNIT_SMALL, MEM_L1, this, id, m_l2_cache, NULL, simBase);
-        //m_l2_cache[id] = new dcu_c(id, UNIT_SMALL, MEM_L2, this, id + m_num_core, m_l3_cache, \
-                //m_l1_cache, simBase);
-    //}
-
-
-    //// l3 cache
-    //id += m_num_core;
-    //for (int ii = 0; ii < m_num_l3; ++ii, ++id) {
-        //m_l3_cache[ii] = new dcu_c(ii, UNIT_LARGE, MEM_L3, this, id, NULL, m_l2_cache, simBase);
-    //}
-
-    //m_noc_index_base[MEM_L1] = 0;
-    //m_noc_index_base[MEM_L2] = m_num_core;
-    //m_noc_index_base[MEM_L3] = m_num_core * 2;
-    //m_noc_index_base[MEM_MC] = m_num_core * 2 + m_num_l3;
-
-    //// misc
-    //m_stop_prefetch = 0;
-
-    //m_l3_interleave_factor = log2_int(*m_simBase->m_knobs->KNOB_L3_NUM_SET) + log2_int(*m_simBase->m_knobs->KNOB_L3_LINE_SIZE);
-    //m_l3_interleave_factor = static_cast<int>(pow(2.0, m_l3_interleave_factor));
-
-    //// destination router map
-    //m_dst_map = new map<int, int>;
 }
 
 
@@ -1421,22 +360,14 @@ memory_c::memory_c(macsim_c* simBase)
 memory_c::~memory_c()
 {
     for (int ii = 0; ii < m_num_core; ++ii) {
-        //delete m_l1_cache[ii];
-        //delete m_l2_cache[ii];
         m_mshr_free_list[ii].clear();
         m_mshr[ii].clear();
     }
 
-    //for (int ii = 0; ii < m_num_l3; ++ii) {
-        //delete m_l3_cache[ii];
-    //}
 
 
     delete[] m_mshr;
     delete[] m_mshr_free_list;
-    //delete[] m_l1_cache;
-    //delete[] m_l2_cache;
-    //delete[] m_l3_cache;
 
 
     std::ofstream ruby_stat_file("ruby.stat.out", ios::out);
@@ -1455,122 +386,6 @@ void memory_c::init(void)
 {
     if (*KNOB(KNOB_ENABLE_IRIS) == false && *KNOB(KNOB_ENABLE_NEW_NOC) == false)
         return;
-
-    //int total_num_router = 0;
-    //m_noc_id_base[MEM_L1] = 0;
-    //for (int ii = 0; ii < m_num_core; ++ii) {
-        //if (m_l1_cache[ii]->create_network_interface(PROC_REQ))
-            //++total_num_router;
-    //}
-
-    //m_noc_id_base[MEM_L2] = total_num_router;
-    //for (int ii = 0; ii < m_num_core; ++ii) {
-        //if (m_l2_cache[ii]->create_network_interface(PROC_REQ))     //represents GPU
-            //++total_num_router;
-    //}
-
-    //m_noc_id_base[MEM_L3] = total_num_router;
-    //for (int ii = 0; ii < m_num_l3; ++ii) {
-        //if (m_l3_cache[ii]->create_network_interface(L3_REQ))       //represents L2 cache
-            //++total_num_router;
-    //}
-
-    //m_noc_id_base[MEM_MC] = total_num_router;
-    //for (int ii = 0; ii < m_num_mc; ++ii) {
-        //m_simBase->m_dram_controller[ii]->create_network_interface();
-        //++total_num_router;
-    //}
-
-
-    //// NEW NOC Model
-    //// TODO (jaekyu, 5-9-2012)
-    //// improve mapping mechanism
-    //if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
-        //if (*KNOB(KNOB_NOC_DIMENSION) == 2) {
-            //int l3_start_index = *KNOB(KNOB_NUM_SIM_LARGE_CORES);
-            //for (int ii = 0; ii < *KNOB(KNOB_NUM_SIM_LARGE_CORES); ++ii) {
-                //(*m_dst_map)[MEM_L2 * 100 + ii] = ii;
-            //}
-
-            //if (*KNOB(KNOB_NUM_SIM_LARGE_CORES) == 0) {
-                //for (int ii = 0; ii < *KNOB(KNOB_NUM_SIM_SMALL_CORES); ++ii) {
-                    //(*m_dst_map)[MEM_L2 * 100 + ii] = ii;
-                //}
-                //l3_start_index = *KNOB(KNOB_NUM_SIM_SMALL_CORES);
-            //}
-
-            //for (int ii = 0; ii < m_num_l3; ++ii) {
-                //(*m_dst_map)[MEM_L3 * 100 + ii] = l3_start_index + ii;
-            //}
-            //for (int ii = 0; ii < m_num_mc; ++ii) {
-                //(*m_dst_map)[MEM_MC * 100 + ii] = l3_start_index + m_num_l3 + ii;
-            //}
-
-            //if (*KNOB(KNOB_NUM_SIM_LARGE_CORES) != 0) {
-                //for (int ii = 0; ii < *KNOB(KNOB_NUM_SIM_SMALL_CORES); ++ii) {
-                    //(*m_dst_map)[MEM_L2 * 100 + *KNOB(KNOB_NUM_SIM_LARGE_CORES) + ii] = *KNOB(KNOB_NUM_SIM_LARGE_CORES) + m_num_l3 + m_num_mc + ii;
-                //}
-            //}
-        //}
-        //else if (*KNOB(KNOB_NOC_DIMENSION) == 1) {
-            //if (*KNOB(KNOB_ROUTER_PLACEMENT) == 0) { // GPU_FRIENDLY
-                //for (int ii = 0; ii < m_num_core; ++ii) {
-                    //(*m_dst_map)[MEM_L2 * 100 + ii] = ii;
-                //}
-                //for (int ii = 0; ii < m_num_l3; ++ii) {
-                    //(*m_dst_map)[MEM_L3 * 100 + ii] = m_num_core + ii;
-                //}
-                //for (int ii = 0; ii < m_num_mc; ++ii) {
-                    //(*m_dst_map)[MEM_MC * 100 + ii] = m_num_core + m_num_l3 + ii;
-                //}
-            //}
-            //else if (*KNOB(KNOB_ROUTER_PLACEMENT) == 1) { // CPU_FRIENDLY
-                //for (int ii = 0; ii < *KNOB(KNOB_NUM_SIM_LARGE_CORES); ++ii) {
-                    //(*m_dst_map)[MEM_L2 * 100 + ii] = *KNOB(KNOB_NUM_SIM_SMALL_CORES) + ii;
-                //}
-                //for (int ii = 0; ii < *KNOB(KNOB_NUM_SIM_SMALL_CORES); ++ii) {
-                    //(*m_dst_map)[MEM_L2 * 100 + *KNOB(KNOB_NUM_SIM_LARGE_CORES) + ii] = ii;
-                //}
-                //for (int ii = 0; ii < m_num_l3; ++ii) {
-                    //(*m_dst_map)[MEM_L3 * 100 + ii] = m_num_core + ii;
-                //}
-                //for (int ii = 0; ii < m_num_mc; ++ii) {
-                    //(*m_dst_map)[MEM_MC * 100 + ii] = m_num_core + m_num_l3 + ii;
-                //}
-            //}
-            //else if (*KNOB(KNOB_ROUTER_PLACEMENT) == 2) { // MIXED
-                //int count = 0;
-                //for (int ii = 0; ii < m_num_core; ++ii) {
-                    //(*m_dst_map)[MEM_L2 * 100 + ii] = ii;
-                    //count++;
-                //}
-                //for (int ii = 0; ii < m_num_mc/2; ++ii) {
-                    //(*m_dst_map)[MEM_MC * 100 + ii] = m_num_core + ii;
-                    //count++;
-                //}
-                //for (int ii = 0; ii < m_num_l3; ++ii) {
-                    //(*m_dst_map)[MEM_L3 * 100 + ii] = count++;
-                //}
-                //for (int ii = m_num_mc/2; ii < m_num_mc; ++ii) {
-                    //(*m_dst_map)[MEM_MC * 100 + ii] = count++;
-                //}
-            //}
-            //else if (*KNOB(KNOB_ROUTER_PLACEMENT) == 3) { // INTERLEAVE
-                //for (int ii = 0; ii < *KNOB(KNOB_NUM_SIM_LARGE_CORES); ++ii) {
-                    //(*m_dst_map)[MEM_L2 * 100 + ii] = ii*2;
-                //}
-                //for (int ii = 0; ii < *KNOB(KNOB_NUM_SIM_SMALL_CORES); ++ii) {
-                    //(*m_dst_map)[MEM_L2 * 100 + *KNOB(KNOB_NUM_SIM_LARGE_CORES) + ii] = ii*2 + 1;
-                //}
-                //for (int ii = 0; ii < m_num_l3; ++ii) {
-                    //(*m_dst_map)[MEM_L3 * 100 + ii] = m_num_core + ii;
-                //}
-                //for (int ii = 0; ii < m_num_mc; ++ii) {
-                    //(*m_dst_map)[MEM_MC * 100 + ii] = m_num_core + m_num_l3 + ii;
-                //}
-            //}
-        //}
-    //}
 }
 
 
@@ -1617,18 +432,6 @@ bool memory_c::new_mem_req(Mem_Req_Type type, Addr addr, uns size, uns delay, uo
         }
     }
 
-
-    //  // queue full
-    //  if (m_l2_cache[core_id]->full()) {
-    //    m_stop_prefetch = m_cycle + 500;
-    //    flush_prefetch(core_id);
-    //    if (m_l2_cache[core_id]->full()) {
-    //      STAT_EVENT(MSHR_FULL);
-    //      if (type == MRT_DPRF) {
-    //        return true;
-    //      }
-    //    }
-    //  }
 
 
     // allocate an entry
@@ -1755,9 +558,7 @@ void memory_c::init_new_req(mem_req_s* req, Mem_Req_Type type, Addr addr, int si
 
     ASSERT(req->m_merge.empty());
 
-    //set_cache_id(req);
 }
-
 
 // adjust a new request
 void memory_c::adjust_req(mem_req_s* req, Mem_Req_Type type, Addr addr, int size, \
@@ -1785,71 +586,8 @@ void memory_c::adjust_req(mem_req_s* req, Mem_Req_Type type, Addr addr, int size
     req->m_bypass                 = false;
     req->m_skip                   = false;
 
-    //set_cache_id(req);
 }
 
-
-// set each cache-level id
-//void memory_c::set_cache_id(mem_req_s* req)
-//{
-    //req->m_cache_id[MEM_L1] = req->m_core_id;
-    //req->m_cache_id[MEM_L2] = req->m_core_id;
-    //req->m_cache_id[MEM_L3] = BANK(req->m_addr, m_num_l3, m_l3_interleave_factor);
-    //req->m_cache_id[MEM_MC] = BANK(req->m_addr, m_num_mc, *KNOB(KNOB_DRAM_INTERLEAVE_FACTOR));
-//}
-
-
-// receive a message from interconnection
-// based on the destination id, call appropiriate component (L1, L2, L3, Memory Controller)
-//bool memory_c::receive(int src, int dst, int msg, mem_req_s* req)
-//{
-    //bool result = false;
-    //int level;
-    //int id;
-    //int src_level;
-    //int src_id;
-
-    //get_level_id(dst, &level, &id);
-    //get_level_id(src, &src_level, &src_id);
-
-    //req->m_rdy_cycle = m_cycle + 1;
-    //if (level == MEM_L1) {
-        //ASSERT(0);
-    //}
-    //else if (level == MEM_L2) {
-        //ASSERTM(msg == NOC_FILL, "msg:%d\n", msg);
-        //result = m_l2_cache[id]->fill(req);
-        //if (result) {
-            //DEBUG("L2[%d] fill_req:%d type:%s from L3\n",
-                    //id, req->m_id, mem_req_c::mem_req_type_name[req->m_type]);
-        //}
-    //}
-    //else if (level == MEM_L3) {
-        //if (msg == NOC_FILL) {
-            //result = m_l3_cache[id]->fill(req);
-        //}
-        //else if (msg == NOC_NEW) {
-            //result = m_l3_cache[id]->insert(req);
-        //}
-    //}
-    //else if (level == MEM_MC) {
-        //ASSERTM(msg == NOC_NEW || msg == NOC_FILL, "msg:%d", msg);
-        //result = m_simBase->m_dram_controller[id]->insert_new_req(req);
-        ////    assert(0); // jaekyu (2-15-2012) this will be completely removed
-        //if (result) {
-            //DEBUG("MC[%d] new_req:%d addr:%s type:%s\n",
-                    //id, req->m_id, hexstr64s(req->m_addr), mem_req_c::mem_req_type_name[req->m_type]);
-        //}
-        //else {
-            //if (req->m_type == MRT_DPRF) {
-                //free_req(req->m_core_id, req);
-                //result = true;
-            //}
-        //}
-    //}
-
-    //return result;
-//}
 
 
 // deallocate a memory request
@@ -1983,18 +721,11 @@ int memory_c::access(uop_c* uop)
         uop->m_state = OS_DCACHE_MEM_ACCESS_DENIED;
         return 0;
     }
-
-
-    // return m_l1_cache[uop->m_core_id]->access(uop);
 }
 
 
-// get base line address
-// FIXME (jaekyu, 3-7-2012)
-// replace 63 with the cache line size
 Addr memory_c::base_addr(Addr addr)
 {
-    //return (addr & ~63);
     return (addr & ~(*KNOB(KNOB_RUBY_LINE_SIZE) - 1));
 }
 
@@ -2003,55 +734,7 @@ Addr memory_c::base_addr(Addr addr)
 int memory_c::line_size()
 {
     return *KNOB(KNOB_RUBY_LINE_SIZE);
-    //return m_l1_cache[core_id]->line_size();
 }
-
-
-// from level id, get destination noc id
-//int memory_c::get_dst_id(int level, int id)
-//{
-    //return m_noc_index_base[level] + id;
-//}
-
-
-// =======================================
-// Get destination router ID
-// =======================================
-//int memory_c::get_dst_router_id(int level, int id)
-//{
-    //if (*KNOB(KNOB_ENABLE_IRIS)) {
-        //return m_iris_node_id[m_noc_id_base[level] + id];
-    //}
-    //else if (*KNOB(KNOB_ENABLE_NEW_NOC)) {
-        //return (*m_dst_map)[level * 100 + id];
-        ////    return m_noc_id_base[level] + id;
-    //}
-    //else {
-        //return m_noc_id_base[level] + id;
-    //}
-//}
-
-
-// from network id, get cache level and cache id
-//void memory_c::get_level_id(int noc_id, int* level, int* id)
-//{
-    //if (m_noc_index_base[MEM_L2] > noc_id) {
-        //*level = MEM_L1;
-        //*id = noc_id - m_noc_index_base[MEM_L1];
-    //}
-    //else if (m_noc_index_base[MEM_L3] > noc_id) {
-        //*level = MEM_L2;
-        //*id = noc_id - m_noc_index_base[MEM_L2];
-    //}
-    //else if (m_noc_index_base[MEM_MC] > noc_id) {
-        //*level = MEM_L3;
-        //*id = noc_id - m_noc_index_base[MEM_L3];
-    //}
-    //else {
-        //*level = MEM_MC;
-        //*id = noc_id - m_noc_index_base[MEM_MC];
-    //}
-//}
 
 
 // cache done function
@@ -2066,7 +749,6 @@ bool memory_c::done(mem_req_s* req)
         uop->m_state = OS_SCHEDULED;
     }
 
-    //return m_l1_cache[req->m_cache_id[MEM_L1]]->done(req);
     return true;
 }
 
@@ -2076,7 +758,6 @@ int memory_c::bank_id(int core_id, Addr addr)
 {
     ASSERTM(false, "Unsupported function -- Using Ruby as memory system");
     return 0;
-    //return m_l2_cache[core_id]->bank_id(addr);
 }
 
 
@@ -2085,7 +766,6 @@ bool memory_c::get_read_port(int core_id, int bank_id)
 {
     ASSERTM(false, "Unsupported function -- using Ruby as memory system");
     return false;
-    //return m_l1_cache[core_id]->get_read_port(bank_id);
 }
 
 
@@ -2095,7 +775,6 @@ dcache_data_s* memory_c::access_cache(int core_id, Addr addr, Addr *line_addr, \
 {
     ASSERTM(false, "Unsupported function -- using Ruby as memory system");
     return 0;
-    //return m_l1_cache[core_id]->access_cache(addr, line_addr, update, appl_id);
 }
 
 
@@ -2112,74 +791,13 @@ void memory_c::run_a_cycle(void)
 void memory_c::run_a_cycle_core(int core_id)
 {
     process_mshr(core_id);
-    //m_l2_cache[core_id]->run_a_cycle();
-    //m_l1_cache[core_id]->run_a_cycle();
 }
 
-//void memory_c::run_a_cycle_uncore(void)
-//{
-    //int index = m_cycle % m_num_l3;
-    //for (int ii = index; ii < index + m_num_l3; ++ii) {
-        //m_l3_cache[ii % m_num_l3]->run_a_cycle();
-    //}
-//}
-
-// evict a prefetch request
-//mem_req_s* memory_c::evict_prefetch(int core_id)
-//{
-    //mem_req_s* evict = m_l2_cache[core_id]->search_pref_in_queue();
-    //if (evict != NULL) {
-        //DEBUG("pref_req:%d has been evicted.\n", evict->m_id);
-    //}
-
-    //return evict;
-//}
-
-
-// new write-back request
-//#define GET_APPL_ID(xx, yy) (m_simBase->m_core_pointers[(xx)]->get_appl_id((yy)))
-
-//mem_req_s* memory_c::new_wb_req(Addr addr, int size, bool ptx, dcache_data_s* data, int level)
-//{
-    //STAT_EVENT(TOTAL_WB);
-    //STAT_EVENT(L1_WB + (level-1));
-    //mem_req_s* req = new mem_req_s(m_simBase);
-
-    //req->m_id                     = m_unique_id++;
-    //req->m_appl_id                = GET_APPL_ID(data->m_core_id, data->m_tid);
-    //req->m_core_id                = data->m_core_id;
-    //req->m_thread_id              = data->m_tid;
-    //req->m_block_id               = 0;
-    //req->m_state                  = MEM_NEW;
-    //req->m_type                   = MRT_WB;
-    //req->m_priority               = g_mem_priority[MRT_WB];
-    //req->m_addr                   = addr;
-    //req->m_size                   = size;
-    //req->m_rdy_cycle              = m_cycle + 1;
-    //req->m_pc                     = data->m_pc;
-    //req->m_prefetcher_id          = 0;
-    //req->m_pref_loadPC            = 0;
-    //req->m_ptx                    = ptx;
-    //req->m_done_func              = NULL;
-    //req->m_uop                    = NULL;
-    //req->m_in                     = m_cycle;
-    //req->m_dirty                  = true;
-    //req->m_done                   = false;
-
-    //req->m_cache_id[MEM_L1] = data->m_core_id;
-    //req->m_cache_id[MEM_L2] = data->m_core_id;
-    //req->m_cache_id[MEM_L3] = BANK(addr, m_num_l3, m_l3_interleave_factor);
-    //req->m_cache_id[MEM_MC] = BANK(addr, m_num_mc, *KNOB(KNOB_DRAM_INTERLEAVE_FACTOR));
-
-    //return req;
-//}
 
 
 // print all mshr entries
 void memory_c::print_mshr(void)
 {
-    // print noc entries
-    //m_simBase->m_bug_detector->print_noc();
 
 
     // print mshr
@@ -2224,90 +842,12 @@ void memory_c::flush_prefetch(int core_id)
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//l3_coupled_network_c::l3_coupled_network_c(macsim_c* simBase) : memory_c(simBase)
-//{
-    //ASSERT(m_num_core == m_num_l3);
-    //// next_id, next, prev_id, prev, done, coupled_up, doupled_down, disable
-    //for (int ii = 0; ii < m_num_core; ++ii) {
-        //m_l1_cache[ii]->init(ii, -1, false, false, true, false, false);
-        //m_l2_cache[ii]->init(ii, ii, true,  true,  true, false, true);
-        //m_l3_cache[ii]->init(-1, ii, false, true,  false,false, true);
-    //}
-//}
-
-
-//l3_coupled_network_c::~l3_coupled_network_c()
-//{
-//}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//l3_decoupled_network_c::l3_decoupled_network_c(macsim_c* simBase) : memory_c(simBase)
-//{
-    //// next_id, next, prev_id, prev, done, coupled_up, doupled_down, disable
-    ////for (int ii = 0; ii < m_num_core; ++ii) {
-        ////m_l1_cache[ii]->init(ii, -1, false, false, true,  false, false);
-        ////m_l2_cache[ii]->init(-1, ii, true,  true,  false, false, true);
-    ////}
-
-    ////for (int ii = 0; ii < m_num_l3; ++ii) {
-        ////m_l3_cache[ii]->init(-1, -1, false, false, false, false, true);
-    ////}
-//}
-
-
-//l3_decoupled_network_c::~l3_decoupled_network_c()
-//{
-//}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//l2_coupled_local_c::l2_coupled_local_c(macsim_c* simBase) : memory_c(simBase)
-//{
-    //ASSERT(m_num_core == m_num_l3);
-    //// next_id, next, prev_id, prev, done, coupled_up, doupled_down, disable
-    //for (int ii = 0; ii < m_num_core; ++ii) {
-        //m_l1_cache[ii]->init(ii, -1, false, false, true,  false, true);
-        //m_l2_cache[ii]->init(ii, ii, true,  true,  true,  false, true);
-        //m_l3_cache[ii]->init(-1, ii, false, true,  false, true,  true);
-    //}
-//}
-
-
-//l2_coupled_local_c::~l2_coupled_local_c()
-//{
-//}
-
-
-//void l2_coupled_local_c::set_cache_id(mem_req_s* req)
-//{
-    //req->m_cache_id[MEM_L1] = req->m_core_id;
-    //req->m_cache_id[MEM_L2] = req->m_core_id;
-    //req->m_cache_id[MEM_L3] = req->m_core_id;
-    //req->m_cache_id[MEM_MC] = BANK(req->m_addr, m_num_mc, *m_simBase->m_knobs->KNOB_DRAM_INTERLEAVE_FACTOR);
-//}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
 no_cache_c::no_cache_c(macsim_c* simBase) : memory_c(simBase)
 {
-    //ASSERT(m_num_core == m_num_l3);
-    //// next_id, next, prev_id, prev, done, coupled_up, doupled_down, disable
-    //for (int ii = 0; ii < m_num_core; ++ii) {
-        ////                   next_id, next,  prev_id, prev,  done,  cup,   cdown, disable
-        //m_l1_cache[ii]->init(ii, -1, false, false, true,  true, false);
-        //m_l2_cache[ii]->init(ii, ii, true,  true,  true,  true, true);
-        //m_l3_cache[ii]->init(-1, ii, false, true,  false, true, true);
-    //}
 }
 
 
@@ -2318,76 +858,5 @@ no_cache_c::~no_cache_c()
 
 void no_cache_c::set_cache_id(mem_req_s* req)
 {
-    req->m_cache_id[MEM_L1] = req->m_core_id;
-    req->m_cache_id[MEM_L2] = req->m_core_id;
-    req->m_cache_id[MEM_L3] = req->m_core_id;
-    req->m_cache_id[MEM_MC] = BANK(req->m_addr, m_num_mc, *m_simBase->m_knobs->KNOB_DRAM_INTERLEAVE_FACTOR);
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//l2_decoupled_network_c::l2_decoupled_network_c(macsim_c* simBase) : memory_c(simBase)
-//{
-    //// next_id, next, prev_id, prev, done, coupled_up, doupled_down, disable
-    //for (int ii = 0; ii < m_num_core; ++ii) {
-        //m_l1_cache[ii]->init(ii, -1, false, false, true,  false, false);
-        //m_l2_cache[ii]->init(-1, ii, true,  true,  false, true,  true);
-    //}
-
-    //for (int ii = 0; ii < m_num_l3; ++ii) {
-        //// next_id, next, prev_id, prev, done, coupled_up, doupled_down, disable
-        //m_l3_cache[ii]->init(-1, -1, false, false, false, false, true);
-    //}
-//}
-
-
-//l2_decoupled_network_c::~l2_decoupled_network_c()
-//{
-//}
-
-
-//void l2_decoupled_network_c::set_cache_id(mem_req_s* req)
-//{
-    //req->m_cache_id[MEM_L1] = req->m_core_id;
-    //req->m_cache_id[MEM_L2] = req->m_core_id;
-    //req->m_cache_id[MEM_L3] = BANK(req->m_addr, m_num_l3, m_l3_interleave_factor);
-    //req->m_cache_id[MEM_MC] = BANK(req->m_addr, m_num_mc, *m_simBase->m_knobs->KNOB_DRAM_INTERLEAVE_FACTOR);
-//}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//l2_decoupled_local_c::l2_decoupled_local_c(macsim_c* simBase) : memory_c(simBase)
-//{
-    //// next_id, prev_id, done, coupled_up, coupled_down, disable, has_router
-    //for (int ii = 0; ii < m_num_core; ++ii) {
-        //m_l1_cache[ii]->init(ii, -1, !HAS_DONE_FUNC, !ULINK,  DLINK,  ENABLE, !HAS_ROUTER);
-        //m_l2_cache[ii]->init(-1, ii,  HAS_DONE_FUNC,  ULINK, !DLINK, !ENABLE, !HAS_ROUTER);
-    //}
-
-    //for (int ii = 0; ii < m_num_l3; ++ii) {
-        //// next_id, prev_id, done, coupled_up, coupled_down, disable, has_router
-        //m_l3_cache[ii]->init(-1, -1, !HAS_DONE_FUNC, !ULINK, !DLINK, ENABLE, HAS_ROUTER);
-    //}
-//}
-
-
-//l2_decoupled_local_c::~l2_decoupled_local_c()
-//{
-//}
-
-
-//void l2_decoupled_local_c::set_cache_id(mem_req_s* req)
-//{
-    //req->m_cache_id[MEM_L1] = req->m_core_id;
-    //req->m_cache_id[MEM_L2] = req->m_core_id;
-    //req->m_cache_id[MEM_L3] = BANK(req->m_addr, m_num_l3, m_l3_interleave_factor);
-    //req->m_cache_id[MEM_MC] = BANK(req->m_addr, m_num_mc, *m_simBase->m_knobs->KNOB_DRAM_INTERLEAVE_FACTOR);
-//}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -76,7 +76,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 // declare factories
-FACTORY_DECLARE(dram_factory_c, dram_controller_c*);
+//FACTORY_DECLARE(dram_factory_c, dram_controller_c*);
 FACTORY_DECLARE(bp_factory_c, bp_dir_base_c*);
 FACTORY_DECLARE(mem_factory_c, memory_c*);
 FACTORY_DECLARE(llc_factory_c, cache_c*);

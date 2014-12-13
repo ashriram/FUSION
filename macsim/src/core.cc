@@ -270,33 +270,33 @@ core_c::core_c (int c_id, macsim_c* simBase, Unit_Type type)
         m_hw_pref = new hwp_common_c(c_id, type, m_simBase);
 
     // const / texture cache
-    if (m_core_type == "ptx" && *m_simBase->m_knobs->KNOB_USE_CONST_AND_TEX_CACHES) {
-        m_const_cache = new readonly_cache_c("const_cache", m_core_id,
-                *KNOB(KNOB_CONST_CACHE_SIZE), *KNOB(KNOB_CONST_CACHE_ASSOC),
-                *KNOB(KNOB_CONST_CACHE_LINE_SIZE), *KNOB(KNOB_CONST_CACHE_BANKS),
-                *KNOB(KNOB_CONST_CACHE_CYCLES), 0, CACHE_CONST, sizeof(dcache_data_s), m_simBase);
+    //if (m_core_type == "ptx" && *m_simBase->m_knobs->KNOB_USE_CONST_AND_TEX_CACHES) {
+        //m_const_cache = new readonly_cache_c("const_cache", m_core_id,
+                //*KNOB(KNOB_CONST_CACHE_SIZE), *KNOB(KNOB_CONST_CACHE_ASSOC),
+                //*KNOB(KNOB_CONST_CACHE_LINE_SIZE), *KNOB(KNOB_CONST_CACHE_BANKS),
+                //*KNOB(KNOB_CONST_CACHE_CYCLES), 0, CACHE_CONST, sizeof(dcache_data_s), m_simBase);
 
-        m_texture_cache = new readonly_cache_c("texture_cache", m_core_id,
-                *KNOB(KNOB_TEXTURE_CACHE_SIZE), *KNOB(KNOB_TEXTURE_CACHE_ASSOC),
-                *KNOB(KNOB_TEXTURE_CACHE_LINE_SIZE), *KNOB(KNOB_TEXTURE_CACHE_BANKS),
-                *KNOB(KNOB_TEXTURE_CACHE_CYCLES), 0, CACHE_TEXTURE, sizeof(dcache_data_s), m_simBase);
-    }
-    else {
-        m_const_cache = NULL;
-        m_texture_cache = NULL;
-    }
+        //m_texture_cache = new readonly_cache_c("texture_cache", m_core_id,
+                //*KNOB(KNOB_TEXTURE_CACHE_SIZE), *KNOB(KNOB_TEXTURE_CACHE_ASSOC),
+                //*KNOB(KNOB_TEXTURE_CACHE_LINE_SIZE), *KNOB(KNOB_TEXTURE_CACHE_BANKS),
+                //*KNOB(KNOB_TEXTURE_CACHE_CYCLES), 0, CACHE_TEXTURE, sizeof(dcache_data_s), m_simBase);
+    //}
+    //else {
+        //m_const_cache = NULL;
+        //m_texture_cache = NULL;
+    //}
 
     // shared memory
-    if (m_core_type == "ptx") {
-        m_shared_memory = new sw_managed_cache_c("shared_memory", m_core_id,
-                *KNOB(KNOB_SHARED_MEM_SIZE), *KNOB(KNOB_SHARED_MEM_ASSOC),
-                *KNOB(KNOB_SHARED_MEM_LINE_SIZE), *KNOB(KNOB_SHARED_MEM_BANKS),
-                *KNOB(KNOB_SHARED_MEM_CYCLES), 0, CACHE_SW_MANAGED, *KNOB(KNOB_SHARED_MEM_PORTS),
-                *KNOB(KNOB_SHARED_MEM_PORTS), sizeof(dcache_data_s), m_simBase);
-    }
-    else {
-        m_shared_memory = NULL;
-    }
+    //if (m_core_type == "ptx") {
+        //m_shared_memory = new sw_managed_cache_c("shared_memory", m_core_id,
+                //*KNOB(KNOB_SHARED_MEM_SIZE), *KNOB(KNOB_SHARED_MEM_ASSOC),
+                //*KNOB(KNOB_SHARED_MEM_LINE_SIZE), *KNOB(KNOB_SHARED_MEM_BANKS),
+                //*KNOB(KNOB_SHARED_MEM_CYCLES), 0, CACHE_SW_MANAGED, *KNOB(KNOB_SHARED_MEM_PORTS),
+                //*KNOB(KNOB_SHARED_MEM_PORTS), sizeof(dcache_data_s), m_simBase);
+    //}
+    //else {
+        //m_shared_memory = NULL;
+    //}
 
     // clock cycle
     m_cycle = 0;

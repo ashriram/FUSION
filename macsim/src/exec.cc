@@ -245,7 +245,8 @@ bool exec_c::exec(int thread_id, int entry, uop_c* uop)
         // shared memory access
         if (uop->m_mem_type == MEM_LD_SM || uop->m_mem_type == MEM_ST_SM) {
           // shared memory access
-          uop_latency = core->get_shared_memory()->load(uop);
+            ASSERTM(false, "Unsupported function -- Using Ruby as memory system");
+          //uop_latency = core->get_shared_memory()->load(uop);
           if (uop_latency != 0) {
             uop->m_mem_start_cycle = m_cur_core_cycle;
           }
@@ -254,10 +255,12 @@ bool exec_c::exec(int thread_id, int entry, uop_c* uop)
         else {
           // constant memory
           if (uop->m_mem_type == MEM_LD_CM) {
-            uop_latency = core->get_const_cache()->load(uop);
+            ASSERTM(false, "Unsupported function -- Using Ruby as memory system");
+            //uop_latency = core->get_const_cache()->load(uop);
           }
           else if (uop->m_mem_type == MEM_LD_TM) {
-            uop_latency = core->get_texture_cache()->load(uop);
+            ASSERTM(false, "Unsupported function -- Using Ruby as memory system");
+            //uop_latency = core->get_texture_cache()->load(uop);
           }
           // other (global, texture, local) memory access
           else {
@@ -331,10 +334,11 @@ bool exec_c::exec(int thread_id, int entry, uop_c* uop)
           // shared memory access
           // -------------------------------------
           if (uop->m_mem_type == MEM_LD_SM || uop->m_mem_type == MEM_ST_SM) {
-            latency = core->get_shared_memory()->load(uop->m_child_uops[next_set_bit]);
-            if (latency != 0) {
-              uop->m_mem_start_cycle = m_cur_core_cycle;
-            }
+            ASSERTM(false, "Unsupported function -- Using Ruby as memory system");
+            //latency = core->get_shared_memory()->load(uop->m_child_uops[next_set_bit]);
+            //if (latency != 0) {
+              //uop->m_mem_start_cycle = m_cur_core_cycle;
+            //}
           }
           // -------------------------------------
           // other types of memory access

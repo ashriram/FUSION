@@ -200,9 +200,9 @@ class macsim_c
         acc_core_c *m_acc_core_pointers[MAX_NUM_ACC]; // Support upto 8 accelerator cores
         dma_core_c *m_dma_core_pointer; // DMA core pointer
         memory_c* m_memory; /**< main memory */
-        dram_controller_c** m_dram_controller; /**< dram controller */
+        //dram_controller_c** m_dram_controller; [>*< dram controller <]
         int m_num_mc; /**< number of memory controllers */
-        noc_c* m_noc; /**<  interconnection network */
+        //noc_c* m_noc; [>*<  interconnection network <]
         trace_read_c* m_trace_reader; /**< trace reader */
 
     // clock handling
