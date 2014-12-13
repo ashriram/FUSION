@@ -143,19 +143,19 @@ class queue_c
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Data cache class
 ///////////////////////////////////////////////////////////////////////////////////////////////
-class dcu_c
-{
-  public:
+//class dcu_c
+//{
+  //public:
     /**
      * data cache constructor
      */
-    dcu_c(int id, Unit_Type type, int level, memory_c* mem, int,
-          dcu_c** next, dcu_c** prev, macsim_c* simBase);
+    //dcu_c(int id, Unit_Type type, int level, memory_c* mem, int,
+          //dcu_c** next, dcu_c** prev, macsim_c* simBase);
 
     /**
      * data cache destructor
      */
-    ~dcu_c();
+    //~dcu_c();
 
     /**
      * Initialize a data cache
@@ -167,73 +167,73 @@ class dcu_c
      * @param disable disabled cache (in case of 2-level cache hierarchy)
      * @param has_router decide the next destination (NoC or next cache)
      */
-    void init(int next_id, int prev_id, bool done, bool coupled_up, bool coupled_down, \
-        bool disable, bool has_router);
+    //void init(int next_id, int prev_id, bool done, bool coupled_up, bool coupled_down, \
+        //bool disable, bool has_router);
 
     /**
      * Get the cache line address
      */
-    Addr base_addr(Addr addr);
+    //Addr base_addr(Addr addr);
 
     /**
      * Get the cache line size
      */
-    int  line_size();
+    //int  line_size();
 
     /**
      * Get the bank id
      */
-    int  bank_id(Addr addr);
+    //int  bank_id(Addr addr);
 
     /**
      * Acquire data cache read port
      */
-    bool get_read_port(int bank_id);
+    //bool get_read_port(int bank_id);
 
     /**
      * Access data cache
      */
-    int  access(uop_c* uop);
+    //int  access(uop_c* uop);
 
     /**
      * Insert a request to fill_queue (FILL REQ)
      */
-    bool fill(mem_req_s* req);
+    //bool fill(mem_req_s* req);
 
     /**
      * Fill a cache line
      */
-    bool done(mem_req_s* req);
+    //bool done(mem_req_s* req);
 
     /**
      * Insert a request to in_queue (NEW REQ)
      */
-    bool insert(mem_req_s* req);
+    //bool insert(mem_req_s* req);
 
     /**
      * Tick a cycle
      */
-    void run_a_cycle();
+    //void run_a_cycle();
 
     /**
      * Check available buffer space
      */
-    bool full();
+    //bool full();
 
     /**
      * Access the data cache
      */
-    dcache_data_s* access_cache(Addr addr, Addr *line_addr, bool update, int appl_id);
+    //dcache_data_s* access_cache(Addr addr, Addr *line_addr, bool update, int appl_id);
 
     /**
      * Search a prefetch request from queues
      */
-    mem_req_s* search_pref_in_queue();
+    //mem_req_s* search_pref_in_queue();
 
     /**
      * Create the network interface
      */
-    bool create_network_interface(int);
+    //bool create_network_interface(int);
 
     /**
      * Send a packet to the NoC
@@ -241,83 +241,83 @@ class dcu_c
      * @param msg - message type
      * @param dir - direction
      */
-    bool send_packet(mem_req_s* req, int msg, int dir);
+    //bool send_packet(mem_req_s* req, int msg, int dir);
 
     /**
      * Receive a packet from the NoC
      */
-    void receive_packet(void);
+    //void receive_packet(void);
 
-  private:
+  //private:
     /**
      * data cache default constructor
      */
-    dcu_c(); // do not implement
+    //dcu_c(); // do not implement
 
 
 
     /**
      * Process requests from in_queue
      */
-    void process_in_queue();
+    //void process_in_queue();
 
     /**
      * Process requests from out_queue
      */
-    void process_out_queue();
+    //void process_out_queue();
 
     /**
      * Process requests from fill_queue
      */
-    void process_fill_queue();
+    //void process_fill_queue();
 
     /**
      * Process requests from wb_queue
      */
-    void process_wb_queue();
+    //void process_wb_queue();
 
-  private:
-    int       m_id; /**< cache id */
-    int       m_noc_id; /**< cache network id */
-    int       m_level; /**< cache level (L1, L2, L3, or memory controller) */
-    bool      m_disable; /**< disabled */
-    bool      m_bypass; /**< bypass cache */
-    cache_c*  m_cache; /**< cache structure */
-    port_c**  m_port; /**< cache port */
-    int       m_next_id; /**< next-level cache id */
-    dcu_c**   m_next; /**< next-level cache pointer */
-    int       m_prev_id; /**< previous-level cache id */
-    dcu_c**   m_prev; /**< previous-level ache pointer */
-    bool      m_coupled_up; /**< directly connected to upward cache w/o NoC */
-    bool      m_coupled_down; /**< directly connected to downward cache w/o NoC */
-    bool      m_has_router; /**< has network router in this level */
-    bool      m_done; /**< done_func can be called */
-    Unit_Type m_type; /**< core type that this cache belongs to */
-    int       m_num_set; /**< number of cache sets */
-    int       m_assoc; /**< cache associativity */
-    int       m_line_size; /**< cache line size */
-    int       m_banks; /**< number of cache banks */
-    int       m_latency; /**< cache access latency */
-    bool      m_ptx_sim; /**< gpu cache */
-    queue_c*  m_in_queue; /**< input queue */
-    queue_c*  m_wb_queue; /**< write-back queue */
-    queue_c*  m_fill_queue; /**< fill queue */
-    queue_c*  m_out_queue; /**< out queue */
-    bool      m_req_llc_bypass; /**< bypass llc */
-    int       m_num_read_port; /**< number of read ports */
-    int       m_num_write_port; /**< number of write ports */
+  //private:
+    //int       m_id; [>*< cache id <]
+    //int       m_noc_id; [>*< cache network id <]
+    //int       m_level; [>*< cache level (L1, L2, L3, or memory controller) <]
+    //bool      m_disable; [>*< disabled <]
+    //bool      m_bypass; [>*< bypass cache <]
+    //cache_c*  m_cache; [>*< cache structure <]
+    //port_c**  m_port; [>*< cache port <]
+    //int       m_next_id; [>*< next-level cache id <]
+    //dcu_c**   m_next; [>*< next-level cache pointer <]
+    //int       m_prev_id; [>*< previous-level cache id <]
+    //dcu_c**   m_prev; [>*< previous-level ache pointer <]
+    //bool      m_coupled_up; [>*< directly connected to upward cache w/o NoC <]
+    //bool      m_coupled_down; [>*< directly connected to downward cache w/o NoC <]
+    //bool      m_has_router; [>*< has network router in this level <]
+    //bool      m_done; [>*< done_func can be called <]
+    //Unit_Type m_type; [>*< core type that this cache belongs to <]
+    //int       m_num_set; [>*< number of cache sets <]
+    //int       m_assoc; [>*< cache associativity <]
+    //int       m_line_size; [>*< cache line size <]
+    //int       m_banks; [>*< number of cache banks <]
+    //int       m_latency; [>*< cache access latency <]
+    //bool      m_ptx_sim; [>*< gpu cache <]
+    //queue_c*  m_in_queue; [>*< input queue <]
+    //queue_c*  m_wb_queue; [>*< write-back queue <]
+    //queue_c*  m_fill_queue; [>*< fill queue <]
+    //queue_c*  m_out_queue; [>*< out queue <]
+    //bool      m_req_llc_bypass; [>*< bypass llc <]
+    //int       m_num_read_port; [>*< number of read ports <]
+    //int       m_num_write_port; [>*< number of write ports <]
 
-    memory_c* m_memory; /**< pointer to the memory system */
-    macsim_c* m_simBase; /**< macsim_c base class for simulation globals */
+    //memory_c* m_memory; [>*< pointer to the memory system <]
+    //macsim_c* m_simBase; [>*< macsim_c base class for simulation globals <]
 
 
 
-    // interconnection
-    router_c* m_router; /**< router */
+    //// interconnection
+    //router_c* m_router; [>*< router <]
 
-    // clock
-    Counter m_cycle; /**< clock cycle */
-};
+    //// clock
+    //Counter m_cycle; [>*< clock cycle <]
+//};
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -397,7 +397,7 @@ class memory_c
     /**
      * Tick a cycle for L3 cache
      */
-    void run_a_cycle_uncore();
+    //void run_a_cycle_uncore();
 
     /**
      * Deallocate completed memory request
@@ -407,22 +407,22 @@ class memory_c
     /**
      * Receive a message from NoC
      */
-    bool receive(int src, int dst, int msg, mem_req_s* req);
+    //bool receive(int src, int dst, int msg, mem_req_s* req);
 
     /**
      * Using level and its id, get network id
      */
-    int get_dst_id(int level, int id);
+    //int get_dst_id(int level, int id);
 
     /**
      * Using level and its id, get destination router id
      */
-    int get_dst_router_id(int level, int id);
+    //int get_dst_router_id(int level, int id);
 
     /**
      * Using network id, get level and its id
      */
-    void get_level_id(int noc_id, int* level, int* id);
+    //void get_level_id(int noc_id, int* level, int* id);
 
     /**
      * Cache line fill function
@@ -438,7 +438,7 @@ class memory_c
     /**
      * Generate a new write-back request
      */
-    mem_req_s* new_wb_req(Addr addr, int size, bool ptx, dcache_data_s* data, int level);
+    //mem_req_s* new_wb_req(Addr addr, int size, bool ptx, dcache_data_s* data, int level);
 
     /**
      * Print all entries in MSHR
@@ -466,7 +466,7 @@ class memory_c
   public:
     static int m_unique_id; /**< unique memory request id */
 
-    int *m_iris_node_id; /**< noc id for iris network nodes */
+    //int *m_iris_node_id; [>*< noc id for iris network nodes <]
 
     // Add O3sim_ruby here
     O3sim_ruby* m_ruby;
@@ -500,7 +500,7 @@ class memory_c
     /**
      * Set the level of each cache level
      */
-    virtual void set_cache_id(mem_req_s* req);
+    //virtual void set_cache_id(mem_req_s* req);
 
     /**
      * When MSHR is full, try to evict a prefetch request
@@ -513,18 +513,18 @@ class memory_c
     void flush_prefetch(int core_id);
 
   protected:
-    dcu_c** m_l1_cache; /**< L1 caches */
-    dcu_c** m_l2_cache; /**< L2 caches */
-    dcu_c** m_l3_cache; /**< L3 caches */
+    //dcu_c** m_l1_cache; [>*< L1 caches <]
+    //dcu_c** m_l2_cache; [>*< L2 caches <]
+    //dcu_c** m_l3_cache; [>*< L3 caches <]
     list<mem_req_s*>* m_mshr; /**< mshr entry per L1 cache */
     list<mem_req_s*>* m_mshr_free_list; /**< mshr entry free list */
     int m_num_core; /**< number of cores */
     int m_num_l3; /**< number of l3 caches */
     int m_num_mc; /**< number of memory controllers */
-    int m_noc_index_base[MEM_LAST]; /**< component id of each memory hierarchy */
-    int m_noc_id_base[MEM_LAST]; /**< noc id base per level */
-    Counter m_stop_prefetch; /**< when set, no prefetches will be inserted */
-    int m_l3_interleave_factor; /**< mask bit for L3 id */
+    //int m_noc_index_base[MEM_LAST]; [>*< component id of each memory hierarchy <]
+    //int m_noc_id_base[MEM_LAST]; [>*< noc id base per level <]
+    Counter m_stop_prefetch; //  when set, no prefetches will be inserted 
+    //int m_l3_interleave_factor; [>*< mask bit for L3 id <]
     macsim_c* m_simBase;         /**< macsim_c base class for simulation globals */
     map<int, int>* m_dst_map; /**< destination id mapping function */
 
@@ -533,21 +533,21 @@ class memory_c
 };
 
 
-#define NEW_MEMORY_CLASS(x) \
-  class x : public memory_c { \
-    public: \
-      x(); \
-      ~x(); \
-  }; \
+//#define NEW_MEMORY_CLASS(x) \
+  //class x : public memory_c { \
+    //public: \
+      //x(); \
+      //~x(); \
+  //}; \
 
-#define NEW_MEMORY_CLASS_ID(x) \
-  class x : public memory_c { \
-    public: \
-      x(); \
-      ~x(); \
-    private: \
-      void set_cache_id(mem_req_s* req); \
-  }; \
+//#define NEW_MEMORY_CLASS_ID(x) \
+  //class x : public memory_c { \
+    //public: \
+      //x(); \
+      //~x(); \
+    //private: \
+      //void set_cache_id(mem_req_s* req); \
+  //}; \
 
 
 /*
@@ -560,65 +560,65 @@ class memory_c
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief 3-Level, Coupled architecture (Intel Sandy Bridge)
 ///////////////////////////////////////////////////////////////////////////////////////////////
-class l3_coupled_network_c : public memory_c
-{
-  public:
+//class l3_coupled_network_c : public memory_c
+//{
+  //public:
     /**
      * constructor
      */
-    l3_coupled_network_c(macsim_c* simBase);
+    //l3_coupled_network_c(macsim_c* simBase);
 
     /**
      * Destructor
      */
-    ~l3_coupled_network_c();
-};
+    //~l3_coupled_network_c();
+//};
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-/// \brief 3-Level, Decoupled architecture (2D topology)
-///////////////////////////////////////////////////////////////////////////////////////////////
-class l3_decoupled_network_c : public memory_c
-{
-  public:
+/////////////////////////////////////////////////////////////////////////////////////////////////
+///// \brief 3-Level, Decoupled architecture (2D topology)
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//class l3_decoupled_network_c : public memory_c
+//{
+  //public:
     /**
      * Constructor
      */
-    l3_decoupled_network_c(macsim_c* simBase);
+    //l3_decoupled_network_c(macsim_c* simBase);
 
     /**
      * Destructor
      */
-    ~l3_decoupled_network_c();
-};
+    //~l3_decoupled_network_c();
+//};
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-/// \brief 2-Level, Local architecture (Intel Core 2)
-///////////////////////////////////////////////////////////////////////////////////////////////
-class l2_coupled_local_c : public memory_c
-{
-  public:
+/////////////////////////////////////////////////////////////////////////////////////////////////
+///// \brief 2-Level, Local architecture (Intel Core 2)
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//class l2_coupled_local_c : public memory_c
+//{
+  //public:
     /**
      * Constructor
      */
-    l2_coupled_local_c(macsim_c* simBase);
+    //l2_coupled_local_c(macsim_c* simBase);
 
     /**
      * Destructor
      */
-    ~l2_coupled_local_c();
+    //~l2_coupled_local_c();
 
-  private:
+  //private:
     /**
      * Set the level of each cache level
      */
-    void set_cache_id(mem_req_s* req);
-};
+    //void set_cache_id(mem_req_s* req);
+//};
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-/// \brief  No cache architecture (NVIDIA G80, G200)
-///////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+///// \brief  No cache architecture (NVIDIA G80, G200)
+/////////////////////////////////////////////////////////////////////////////////////////////////
 class no_cache_c : public memory_c
 {
   public:
@@ -640,50 +640,50 @@ class no_cache_c : public memory_c
 };
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-/// \brief 2-Level, L2 is accessed via NoC (NVIDIA Fermi)
-///////////////////////////////////////////////////////////////////////////////////////////////
-class l2_decoupled_network_c : public memory_c
-{
-  public:
+/////////////////////////////////////////////////////////////////////////////////////////////////
+///// \brief 2-Level, L2 is accessed via NoC (NVIDIA Fermi)
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//class l2_decoupled_network_c : public memory_c
+//{
+  //public:
     /**
      * Constructor
      */
-    l2_decoupled_network_c(macsim_c* simBase);
+    //l2_decoupled_network_c(macsim_c* simBase);
 
     /**
      * Destructor
      */
-    ~l2_decoupled_network_c();
+    //~l2_decoupled_network_c();
 
-  private:
+  //private:
     /**
      * Set the level of each cache level
      */
-    void set_cache_id(mem_req_s* req);
-};
+    //void set_cache_id(mem_req_s* req);
+//};
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-/// \brief 2-Level, L2 is accessed locally (Intel Core 2)
-///////////////////////////////////////////////////////////////////////////////////////////////
-class l2_decoupled_local_c : public memory_c
-{
-  public:
+/////////////////////////////////////////////////////////////////////////////////////////////////
+///// \brief 2-Level, L2 is accessed locally (Intel Core 2)
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//class l2_decoupled_local_c : public memory_c
+//{
+  //public:
     /**
      * Constructor
      */
-    l2_decoupled_local_c(macsim_c* simBase);
+    //l2_decoupled_local_c(macsim_c* simBase);
 
     /**
      * Destructor
      */
-    ~l2_decoupled_local_c();
+    //~l2_decoupled_local_c();
 
-  private:
+  //private:
     /**
      * Set the level of each cache level
      */
-    void set_cache_id(mem_req_s* req);
-};
+    //void set_cache_id(mem_req_s* req);
+//};
 #endif

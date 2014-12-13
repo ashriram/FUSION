@@ -46,7 +46,6 @@ COMMONOBJS = \
   $(OBJDIR)/bug_detector.o \
   $(OBJDIR)/cache.o \
   $(OBJDIR)/core.o \
-  $(OBJDIR)/dram.o \
   $(OBJDIR)/exec.o \
   $(OBJDIR)/factory_class.o \
   $(OBJDIR)/fetch_factory.o \
@@ -57,7 +56,6 @@ COMMONOBJS = \
   $(OBJDIR)/map.o \
   $(OBJDIR)/memory.o \
   $(OBJDIR)/memreq_info.o \
-  $(OBJDIR)/noc.o \
   $(OBJDIR)/port.o \
   $(OBJDIR)/pref.o \
   $(OBJDIR)/pref_common.o \

@@ -172,21 +172,21 @@ void macsim_c::init_knobs(int argc, char** argv)
 // =======================================
 void macsim_c::register_functions(void)
 {
-    mem_factory_c::get()->register_class("l3_coupled_network", default_mem);
-    mem_factory_c::get()->register_class("l3_decoupled_network", default_mem);
-    mem_factory_c::get()->register_class("l2_coupled_local", default_mem);
+    //mem_factory_c::get()->register_class("l3_coupled_network", default_mem);
+    //mem_factory_c::get()->register_class("l3_decoupled_network", default_mem);
+    //mem_factory_c::get()->register_class("l2_coupled_local", default_mem);
     mem_factory_c::get()->register_class("no_cache", default_mem);
-    mem_factory_c::get()->register_class("l2_decoupled_network", default_mem);
-    mem_factory_c::get()->register_class("l2_decoupled_local", default_mem);
+    //mem_factory_c::get()->register_class("l2_decoupled_network", default_mem);
+    //mem_factory_c::get()->register_class("l2_decoupled_local", default_mem);
 
-    dram_factory_c::get()->register_class("FRFCFS", frfcfs_controller);
-    dram_factory_c::get()->register_class("FCFS", fcfs_controller);
+    //dram_factory_c::get()->register_class("FRFCFS", frfcfs_controller);
+    //dram_factory_c::get()->register_class("FCFS", fcfs_controller);
 
     fetch_factory_c::get()->register_class("rr", fetch_factory);
     pref_factory_c::get()->register_class(pref_factory);
     bp_factory_c::get()->register_class("gshare", default_bp);
 
-    llc_factory_c::get()->register_class("default", default_llc);
+    //llc_factory_c::get()->register_class("default", default_llc);
 }
 
 
@@ -222,25 +222,25 @@ void macsim_c::init_memory(void)
   m_memory = mem_factory_c::get()->allocate(memory_type, m_simBase);
 
   // dram controller
-  m_num_mc = m_simBase->m_knobs->KNOB_DRAM_NUM_MC->getValue();
-  m_dram_controller = new dram_controller_c*[m_num_mc];
-  int num_noc_node = *m_simBase->m_knobs->KNOB_NUM_SIM_CORES
-    + *m_simBase->m_knobs->KNOB_NUM_L3;
-  for (int ii = 0; ii < m_num_mc; ++ii) {
-    m_dram_controller[ii] = dram_factory_c::get()->allocate(
-        m_simBase->m_knobs->KNOB_DRAM_SCHEDULING_POLICY->getValue(), m_simBase);
-    m_dram_controller[ii]->init(ii, num_noc_node + ii);
-  }
+  //m_num_mc = m_simBase->m_knobs->KNOB_DRAM_NUM_MC->getValue();
+  //m_dram_controller = new dram_controller_c*[m_num_mc];
+  //int num_noc_node = *m_simBase->m_knobs->KNOB_NUM_SIM_CORES
+    //+ *m_simBase->m_knobs->KNOB_NUM_L3;
+  //for (int ii = 0; ii < m_num_mc; ++ii) {
+    //m_dram_controller[ii] = dram_factory_c::get()->allocate(
+        //m_simBase->m_knobs->KNOB_DRAM_SCHEDULING_POLICY->getValue(), m_simBase);
+    //m_dram_controller[ii]->init(ii, num_noc_node + ii);
+  //}
 
 
-    // interconnection network
-  if (*KNOB(KNOB_ENABLE_NEW_NOC))
-    m_router = new router_wrapper_c(m_simBase);
+    //// interconnection network
+  //if (*KNOB(KNOB_ENABLE_NEW_NOC))
+    //m_router = new router_wrapper_c(m_simBase);
 
-  if (*KNOB(KNOB_ENABLE_IRIS) || *KNOB(KNOB_ENABLE_NEW_NOC))
-    m_memory->init();
-  else
-    m_noc = new noc_c(m_simBase);
+  //if (*KNOB(KNOB_ENABLE_IRIS) || *KNOB(KNOB_ENABLE_NEW_NOC))
+    //m_memory->init();
+  //else
+    //m_noc = new noc_c(m_simBase);
 
     // bug detector
     if (*KNOB(KNOB_BUG_DETECTOR_ENABLE)) {
@@ -458,11 +458,11 @@ void macsim_c::deallocate_memory(void)
   delete m_invalid_uop;
   delete m_memory;
 
-  if (*KNOB(KNOB_ENABLE_IRIS) == false)
-    delete m_noc;
+  //if (*KNOB(KNOB_ENABLE_IRIS) == false)
+    //delete m_noc;
 
-  if (*KNOB(KNOB_ENABLE_NEW_NOC))
-    delete m_router;
+  //if (*KNOB(KNOB_ENABLE_NEW_NOC))
+    //delete m_router;
 
   if (*m_simBase->m_knobs->KNOB_BUG_DETECTOR_ENABLE)
     delete m_bug_detector;
