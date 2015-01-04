@@ -26,6 +26,9 @@ void  processTrace()
         {
             loadSize ++; 
         }
+
+
+
         else if (II->acc_heap_store )
         {
             storeSize ++;
