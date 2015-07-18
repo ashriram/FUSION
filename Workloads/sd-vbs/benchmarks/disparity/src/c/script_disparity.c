@@ -48,11 +48,11 @@ int main(int argc, char* argv[])
     SHIFT = 8;
 #endif
 
-    start = photonStartTiming();
+    // start = photonStartTiming();
     __app_roi_begin();
     retDisparity = getDisparity(imleft, imright, WIN_SZ, SHIFT);
     __app_roi_end();
-    endC = photonEndTiming();
+     //endC = photonEndTiming();
 
     printf("Input size\t\t- (%dx%d)\n", rows, cols);
 #ifdef CHECK   
@@ -70,8 +70,8 @@ int main(int argc, char* argv[])
     /** Self checking done **/
 #endif
 
-    elapsed = photonReportTiming(start, endC);
-    photonPrintTiming(elapsed);
+    /*elapsed = photonReportTiming(start, endC);*/
+    /*photonPrintTiming(elapsed);*/
     
     iFreeHandle(imleft);
     iFreeHandle(imright);

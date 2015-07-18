@@ -322,9 +322,9 @@ int main(){
     // loop
     for(k = 0; k < NUM_ITERS; k++)
     {
-        __app_roi_begin();
+        /*__app_roi_begin();*/
         fft1D_512(a_x+(k*512), a_y+(k*512), DATA_x + (k*THREADS*8), DATA_y+(k*THREADS*8), data_x+(k*8), data_y+(k*8), smem, reversed, sin_64_h, sin_512_h, cos_64_h, cos_512_h);
-        __app_roi_end();
+        /*__app_roi_end();*/
 
         for( i = 0; i < 2; i++){
             printf("x = %i y = %i \n", a_x[i+k*512], a_y[i+k*512]);
